@@ -25,6 +25,7 @@
 </script>
 
 <Sprite
+	label={`symbol:${props.symbolInfo.assetKey}`}
 	x={props.x}
 	y={props.y}
 	anchor={0.5}

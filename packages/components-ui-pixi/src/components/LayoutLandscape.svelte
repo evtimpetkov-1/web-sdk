@@ -2,14 +2,21 @@
 	import { stateUi } from 'state-shared';
 	import { BLACK } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
-	import { Container, Rectangle, anchorToPivot } from 'pixi-svelte';
+	import { Container, Rectangle } from 'pixi-svelte';
 
-	import { LANDSCAPE_BASE_SIZE, LANDSCAPE_BACKGROUND_WIDTH_LIST } from '../constants';
 	import type { LayoutUiProps } from '../types';
 	import { getContext } from '../context';
 
 	const props: LayoutUiProps = $props();
 	const context = getContext();
+
+	// Landscape design space: 1600 x 900
+	const w = $derived(context.stateLayoutDerived.mainLayoutStandard().width);
+	const h = $derived(context.stateLayoutDerived.mainLayoutStandard().height);
+	const cx = $derived(w * 0.5);
+
+	// Row baseline — centered in bottom bar
+	const rowY = $derived(h - 65);
 </script>
 
 <Container x={20}>
@@ -21,68 +28,63 @@
 </Container>
 
 <MainContainer standard alignVertical="bottom">
-	<Container
-		x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-		y={context.stateLayoutDerived.mainLayoutStandard().height - LANDSCAPE_BASE_SIZE - 40}
-		pivot={anchorToPivot({
-			anchor: { x: 0.5, y: 0 },
-			sizes: {
-				height: LANDSCAPE_BASE_SIZE,
-				width: LANDSCAPE_BACKGROUND_WIDTH_LIST.reduce((sum, width) => sum + width, 0),
-			},
-		})}
-	>
-		<Container y={LANDSCAPE_BASE_SIZE * 0.5 - 90} x={85 + 20} scale={0.8}>
-			{@render props.buttonMenu({ anchor: 0.5 })}
-		</Container>
+	<!-- Bottom bar -->
+	<Rectangle
+		x={cx}
+		y={h - 130}
+		anchor={{ x: 0.5, y: 0 }}
+		width={w + 20}
+		height={130}
+		backgroundColor={0x000000}
+		backgroundAlpha={0.5}
+		borderRadius={14}
+	/>
 
-		<Container y={LANDSCAPE_BASE_SIZE * 0.5 - 90} x={220 + 20} scale={0.8}>
-			{@render props.buttonBuyBonus({ anchor: 0.5 })}
-		</Container>
-
-		<Container y={LANDSCAPE_BASE_SIZE * 0.5} x={420} scale={0.8}>
-			{@render props.amountBalance({ stacked: true })}
-		</Container>
-
-		<Container y={LANDSCAPE_BASE_SIZE * 0.5} x={910} scale={0.8}>
-			{@render props.amountWin({ stacked: true })}
-		</Container>
-
-		<Container y={LANDSCAPE_BASE_SIZE * 0.5} x={1400} scale={0.8}>
-			{@render props.amountBet({ stacked: true })}
-		</Container>
-
-		<Container y={LANDSCAPE_BASE_SIZE * 0.5 - 90} x={1580} scale={0.8}>
-			{@render props.buttonDecrease({ anchor: 0.5 })}
-		</Container>
-
-		<Container y={LANDSCAPE_BASE_SIZE * 0.5 - 90} x={1715} scale={0.8}>
-			{@render props.buttonIncrease({ anchor: 0.5 })}
-		</Container>
+	<!-- Left: Menu + BuyBonus -->
+	<Container x={55} y={rowY} scale={0.45}>
+		{@render props.buttonMenu({ anchor: 0.5 })}
 	</Container>
 
-	<Container
-		x={context.stateLayoutDerived.mainLayoutStandard().width - 60}
-		y={context.stateLayoutDerived.mainLayoutStandard().height * 0.5}
-		pivot={anchorToPivot({
-			anchor: { x: 1, y: 0.5 },
-			sizes: {
-				height: LANDSCAPE_BASE_SIZE,
-				width: LANDSCAPE_BASE_SIZE,
-			},
-		})}
-	>
-		<Container x={LANDSCAPE_BASE_SIZE * 0.5} y={LANDSCAPE_BASE_SIZE * 0.5 - 140} scale={0.8}>
-			{@render props.buttonAutoSpin({ anchor: 0.5 })}
-		</Container>
+	<Container x={150} y={rowY} scale={0.45}>
+		{@render props.buttonBuyBonus({ anchor: 0.5 })}
+	</Container>
 
-		<Container x={LANDSCAPE_BASE_SIZE * 0.5} y={LANDSCAPE_BASE_SIZE * 0.5} scale={0.8}>
-			{@render props.buttonBet({ anchor: 0.5 })}
-		</Container>
+	<!-- BALANCE -->
+	<Container x={400} y={rowY} scale={0.4}>
+		{@render props.amountBalance({ stacked: true })}
+	</Container>
 
-		<Container x={LANDSCAPE_BASE_SIZE * 0.5} y={LANDSCAPE_BASE_SIZE * 0.5 + 140} scale={0.8}>
-			{@render props.buttonTurbo({ anchor: 0.5 })}
-		</Container>
+	<!-- WIN -->
+	<Container x={cx} y={rowY} scale={0.4}>
+		{@render props.amountWin({ stacked: true })}
+	</Container>
+
+	<!-- [-] BET [+] -->
+	<Container x={1020} y={rowY} scale={0.3}>
+		{@render props.buttonDecrease({ anchor: 0.5 })}
+	</Container>
+
+	<Container x={1110} y={rowY} scale={0.4}>
+		{@render props.amountBet({ stacked: true })}
+	</Container>
+
+	<Container x={1200} y={rowY} scale={0.3}>
+		{@render props.buttonIncrease({ anchor: 0.5 })}
+	</Container>
+
+	<!-- AutoSpin -->
+	<Container x={w - 300} y={rowY} scale={0.45}>
+		{@render props.buttonAutoSpin({ anchor: 0.5 })}
+	</Container>
+
+	<!-- SPIN — hero, extends above bar -->
+	<Container x={w - 170} y={rowY} scale={1.0}>
+		{@render props.buttonBet({ anchor: 0.5 })}
+	</Container>
+
+	<!-- Turbo -->
+	<Container x={w - 50} y={rowY} scale={0.45}>
+		{@render props.buttonTurbo({ anchor: 0.5 })}
 	</Container>
 </MainContainer>
 
@@ -101,27 +103,24 @@
 	/>
 
 	<MainContainer standard alignVertical="bottom">
-		<Container
-			x={165}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - LANDSCAPE_BASE_SIZE - 130}
-		>
-			<Container scale={0.8} y={LANDSCAPE_BASE_SIZE * 0.5 - 150 - 170 * 3}>
+		<Container x={cx} y={h - 170}>
+			<Container y={-640} scale={0.6}>
 				{@render props.buttonPayTable({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.8} y={LANDSCAPE_BASE_SIZE * 0.5 - 150 - 170 * 2}>
+			<Container y={-480} scale={0.6}>
 				{@render props.buttonGameRules({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.8} y={LANDSCAPE_BASE_SIZE * 0.5 - 150 - 170 * 1}>
+			<Container y={-320} scale={0.6}>
 				{@render props.buttonSettings({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.8} y={LANDSCAPE_BASE_SIZE * 0.5 - 150}>
+			<Container y={-160} scale={0.6}>
 				{@render props.buttonSoundSwitch({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.8} y={LANDSCAPE_BASE_SIZE * 0.5}>
+			<Container scale={0.6}>
 				{@render props.buttonMenuClose({ anchor: 0.5 })}
 			</Container>
 		</Container>

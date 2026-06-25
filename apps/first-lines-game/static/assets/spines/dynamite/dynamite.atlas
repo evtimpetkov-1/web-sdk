@@ -1,0 +1,14 @@
+dynamite.webp
+size:512,512
+filter:Linear,Linear
+scale:0.2
+dynamite_glow
+bounds:0,0,280,280
+dynamite
+bounds:282,0,200,200
+radial
+bounds:0,282,80,80
+dropshadow
+bounds:82,282,68,68
+spark
+bounds:152,282,40,40

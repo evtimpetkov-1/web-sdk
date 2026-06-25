@@ -17,9 +17,17 @@
 	const props: LayoutUiProps = $props();
 	const context = getContext();
 
+	const w = $derived(context.stateLayoutDerived.mainLayoutStandard().width);
+	const h = $derived(context.stateLayoutDerived.mainLayoutStandard().height);
+	const cx = $derived(w * 0.5);
+
+	// Spin button: 150 base * 2.2 scale = 330px visual
+	// Secondary buttons: 150 base * 0.8 scale = 120px visual
+	// Ratio: spin is ~2.75x secondary buttons
+
 	const DRAWER_Y = {
 		unfold: 0,
-		fold: 550,
+		fold: 400,
 	};
 	const drawerTween = new Tween(stateUi.drawerFold ? DRAWER_Y.fold : DRAWER_Y.unfold, {
 		easing: cubicInOut,
@@ -27,7 +35,7 @@
 
 	const DRAWER_BUTTON_Y = {
 		unfold: 0,
-		fold: 50,
+		fold: 30,
 	};
 	const drawerButtonTween = new Tween(
 		stateUi.drawerFold ? DRAWER_BUTTON_Y.fold : DRAWER_BUTTON_Y.unfold,
@@ -74,104 +82,84 @@
 	{@render props.logo()}
 </Container>
 
+<!-- Drawer container: panel + action row -->
 <MainContainer standard alignVertical="bottom">
-	<!-- drawer container -->
 	<Container y={drawerTween.current}>
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 440}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
-		>
-			{@render props.buttonMenu({ anchor: 0.5 })}
-		</Container>
+		<!-- Semi-transparent dark panel -->
+		<Rectangle
+			x={cx}
+			y={h - 470}
+			anchor={{ x: 0.5, y: 0 }}
+			width={w + 20}
+			height={520}
+			backgroundColor={0x000000}
+			backgroundAlpha={0.5}
+			borderRadius={30}
+		/>
 
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 440}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
-		>
-			{@render props.buttonBuyBonus({ anchor: 0.5 })}
-		</Container>
-
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
-		>
+		<!-- SPIN (hero) — centered -->
+		<Container x={cx} y={h - 280} scale={2.2}>
 			{@render props.buttonBet({ anchor: 0.5 })}
 		</Container>
 
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 180}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
-		>
+		<!-- Secondary buttons — vertically centered with spin button -->
+		<Container x={cx - 280} y={h - 280} scale={0.8}>
 			{@render props.buttonAutoSpin({ anchor: 0.5 })}
 		</Container>
 
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 180}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
-		>
+		<Container x={cx - 280 - 130} y={h - 280} scale={0.8}>
+			{@render props.buttonMenu({ anchor: 0.5 })}
+		</Container>
+
+		<Container x={cx + 280} y={h - 280} scale={0.8}>
 			{@render props.buttonTurbo({ anchor: 0.5 })}
 		</Container>
 
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 270}
-		>
-			{@render props.amountBalance({ stacked: true })}
-		</Container>
-	</Container>
-
-	<Container y={Math.min(drawerTween.current, 350)}>
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 670}
-		>
-			{@render props.amountWin({ stacked: true })}
+		<Container x={cx + 280 + 130} y={h - 280} scale={0.8}>
+			{@render props.buttonBuyBonus({ anchor: 0.5 })}
 		</Container>
 	</Container>
 </MainContainer>
 
+<!-- Info row (always visible) -->
 <MainContainer standard alignVertical="bottom">
+	<!-- Balance -->
+	<Container x={cx - 250} y={h - 90} scale={0.5}>
+		{@render props.amountBalance({ stacked: true })}
+	</Container>
+
+	<!-- Win -->
+	<Container x={cx} y={h - 90} scale={0.5}>
+		{@render props.amountWin({ stacked: true })}
+	</Container>
+
+	<!-- Bet or Free Spin Counter -->
 	{#if stateUi.freeSpinCounterShow}
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 130}
-		>
+		<Container x={cx + 250} y={h - 90} scale={0.5}>
 			<LabelFreeSpinCounter stacked />
 		</Container>
 	{:else}
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 130}
-		>
+		<Container x={cx + 250} y={h - 90} scale={0.5}>
 			{@render props.amountBet({ stacked: true })}
 		</Container>
 
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 390}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 85}
-		>
+		<Container x={cx + 250 - 100} y={h - 80} scale={0.4}>
 			{@render props.buttonDecrease({ anchor: 0.5 })}
 		</Container>
 
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 390}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 85}
-		>
+		<Container x={cx + 250 + 100} y={h - 80} scale={0.4}>
 			{@render props.buttonIncrease({ anchor: 0.5 })}
 		</Container>
 	{/if}
 
-	<!-- drawer button -->
+	<!-- Drawer button -->
 	<FadeContainer
 		persistent
 		show={stateUi.drawerButtonShow}
 		oncomplete={drawerButtonFadeComplete}
 		y={drawerButtonTween.current}
 	>
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 + 440}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 105}
-		>
+		<Container x={w - 55} y={h - 150} scale={0.4}>
 			<ButtonDrawer disabled={!stateUi.drawerButtonShow} anchor={0.5} />
 		</Container>
 	</FadeContainer>
@@ -192,27 +180,24 @@
 	/>
 
 	<MainContainer standard alignVertical="bottom">
-		<Container
-			x={context.stateLayoutDerived.mainLayoutStandard().width * 0.5 - 440}
-			y={context.stateLayoutDerived.mainLayoutStandard().height - 400}
-		>
-			<Container y={-190 - 210 * 3}>
+		<Container x={cx} y={h - 500}>
+			<Container y={-640} scale={0.7}>
 				{@render props.buttonPayTable({ anchor: 0.5 })}
 			</Container>
 
-			<Container y={-190 - 210 * 2}>
+			<Container y={-480} scale={0.7}>
 				{@render props.buttonGameRules({ anchor: 0.5 })}
 			</Container>
 
-			<Container y={-190 - 210 * 1}>
+			<Container y={-320} scale={0.7}>
 				{@render props.buttonSettings({ anchor: 0.5 })}
 			</Container>
 
-			<Container y={-190}>
+			<Container y={-160} scale={0.7}>
 				{@render props.buttonSoundSwitch({ anchor: 0.5 })}
 			</Container>
 
-			<Container>
+			<Container scale={0.7}>
 				{@render props.buttonMenuClose({ anchor: 0.5 })}
 			</Container>
 		</Container>

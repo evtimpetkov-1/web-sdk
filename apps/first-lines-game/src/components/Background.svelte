@@ -1,34 +1,38 @@
 <script lang="ts">
-	import { Rectangle, SpineProvider, SpineTrack } from 'pixi-svelte';
-	import { FadeContainer } from 'components-pixi';
-	import { SECOND } from 'constants-shared/time';
+	import { Rectangle, Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
 
 	const context = getContext();
-	const backgroundProps = $derived(
-		context.stateLayoutDerived.normalBackgroundLayout({ scale: 0.5 }),
-	);
-	const showBaseBackground = $derived(context.stateGame.gameType === 'basegame');
-	const showFeatureBackground = $derived(context.stateGame.gameType === 'freegame');
+	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
+	// Cover the canvas — use the larger dimension since our BG is square
+	const bgSize = $derived(Math.max(canvas.width, canvas.height));
+	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
+	const bgEffectsScale = $derived(isPortrait ? 0.1 : 0.15);
 </script>
 
-<Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />
+<Rectangle label="bgBlack" {...canvas} backgroundColor={0x000000} zIndex={-3} />
 
-<FadeContainer show={showBaseBackground} duration={SECOND} zIndex={-2}>
-	<SpineProvider key="foregroundAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'idle'} loop />
-	</SpineProvider>
-	<SpineProvider key="foregroundAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'dust'} loop />
-	</SpineProvider>
-</FadeContainer>
+<Sprite
+	key="backgroundBaseGame"
+	label="background"
+	anchor={0.5}
+	x={canvas.width / 2}
+	y={canvas.height / 2}
+	width={bgSize}
+	height={bgSize}
+	zIndex={-2}
+/>
 
-<FadeContainer show={showFeatureBackground} duration={SECOND} zIndex={-1}>
-	<SpineProvider key="foregroundFeatureAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'idle'} loop />
+{#if context.stateApp.loadedAssets?.['bgEffects']}
+	<SpineProvider
+		key="bgEffects"
+		label="bgEffects"
+		scale={bgEffectsScale}
+		x={canvas.width / 2}
+		y={canvas.height / 2}
+		zIndex={-1}
+	>
+		<SpineTrack trackIndex={0} animationName="idle" loop={true} />
 	</SpineProvider>
-	<SpineProvider key="foregroundFeatureAnimation" {...backgroundProps}>
-		<SpineTrack trackIndex={0} animationName={'dust'} loop />
-	</SpineProvider>
-</FadeContainer>
+{/if}

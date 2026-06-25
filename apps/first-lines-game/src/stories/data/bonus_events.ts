@@ -24,7 +24,7 @@ export default {
 					name: 'H1',
 				},
 				{
-					name: 'L5',
+					name: 'L4',
 				},
 				{
 					name: 'L2',
@@ -41,7 +41,7 @@ export default {
 					name: 'L3',
 				},
 				{
-					name: 'L5',
+					name: 'L4',
 				},
 				{
 					name: 'L3',
@@ -64,7 +64,7 @@ export default {
 					name: 'L4',
 				},
 				{
-					name: 'L5',
+					name: 'L4',
 				},
 				{
 					name: 'L1',

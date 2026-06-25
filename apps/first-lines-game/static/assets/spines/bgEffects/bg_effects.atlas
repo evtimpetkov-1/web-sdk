@@ -1,0 +1,12 @@
+bg_effects.webp
+size:256,512
+filter:Linear,Linear
+scale:0.5
+lamp_glow
+bounds:0,0,200,200
+lamp_glow_small
+bounds:0,202,120,120
+shimmer
+bounds:122,202,80,80
+sparkle
+bounds:204,202,48,48

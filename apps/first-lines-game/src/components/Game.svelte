@@ -4,7 +4,7 @@
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
-	import { App, Text, REM } from 'pixi-svelte';
+	import { App, Text, REM, SpriteSheet, Sprite } from 'pixi-svelte';
 	import { stateModal } from 'state-shared';
 
 	import { UI, UiGameName } from 'components-ui-pixi';
@@ -57,11 +57,20 @@
 		-->
 		<Sound />
 
-		<MainContainer>
+		<MainContainer label="mainFrame">
 			<BoardFrame />
 		</MainContainer>
 
-		<MainContainer>
+		<MainContainer label="mainBoard">
+			{@const isPortrait = context.stateLayoutDerived.layoutType() === 'portrait'}
+			<Sprite
+				key="mineCart"
+				label="mineCart"
+				anchor={{ x: 0.5, y: 1 }}
+				x={isPortrait ? 400 : 200}
+				y={isPortrait ? 500 : 800}
+				scale={isPortrait ? 0.3 : 0.4}
+			/>
 			<Board />
 			<Anticipations />
 		</MainContainer>

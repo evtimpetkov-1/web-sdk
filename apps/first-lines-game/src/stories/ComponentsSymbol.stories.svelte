@@ -7,7 +7,7 @@
 		args: {
 			x: 100,
 			y: 100,
-			rawSymbol: { name: 'S', scatter: true },
+			rawSymbol: { name: 'H1' },
 			state: 'static',
 		},
 	});
@@ -24,20 +24,23 @@
 	const BASE = 180;
 
 	const SYMBOLS_LEFT = [
+		{ name: 'W' },
+		{ name: 'H1' },
+		{ name: 'H2' },
+		{ name: 'H3' },
+		{ name: 'H4' },
 		{ name: 'L1' },
 		{ name: 'L2' },
-		{ name: 'L3' },
-		{ name: 'L4' },
-		{ name: 'L5' },
 	] as const;
 
 	const SYMBOLS_RIGHT = [
-		{ name: 'S' },
-		{ name: 'W', multiplier: 2 },
-		{ name: 'H1' },
-		{ name: 'H3' },
-		{ name: 'H2' },
-		{ name: 'H4' },
+		{ name: 'L3' },
+		{ name: 'L4' },
+		{ name: 'CASH' },
+		{ name: 'COLLECT' },
+		{ name: 'DYNAMITE' },
+		{ name: 'STONE' },
+		{ name: 'MULT' },
 	] as const;
 </script>
 

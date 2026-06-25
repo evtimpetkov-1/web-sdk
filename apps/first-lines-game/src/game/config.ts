@@ -1,7 +1,7 @@
 export default {
 	providerName: 'sample_provider',
-	gameName: 'sample_lines',
-	gameID: '0_0_lines',
+	gameName: 'first_lines_game',
+	gameID: '0_0_first_lines',
 	rtp: 0.97,
 	numReels: 5,
 	numRows: [3, 3, 3, 3, 3],
@@ -44,6525 +44,2248 @@ export default {
 		'20': [1, 0, 0, 0, 1],
 	},
 	symbols: {
-		L1: {
-			paytable: [
-				{
-					'5': 5,
-				},
-				{
-					'4': 1,
-				},
-				{
-					'3': 0.5,
-				},
-			],
-		},
-		H4: {
-			paytable: [
-				{
-					'5': 8,
-				},
-				{
-					'4': 2,
-				},
-				{
-					'3': 1,
-				},
-			],
-		},
-		L4: {
-			paytable: [
-				{
-					'5': 2,
-				},
-				{
-					'4': 0.5,
-				},
-				{
-					'3': 0.2,
-				},
-			],
-		},
-		S: {
-			special_properties: ['scatter'],
-		},
-		H2: {
-			paytable: [
-				{
-					'5': 15,
-				},
-				{
-					'4': 5,
-				},
-				{
-					'3': 3,
-				},
-			],
-		},
-		L5: {
-			paytable: [
-				{
-					'5': 1,
-				},
-				{
-					'4': 0.3,
-				},
-				{
-					'3': 0.1,
-				},
-			],
-		},
-		L3: {
-			paytable: [
-				{
-					'5': 3,
-				},
-				{
-					'4': 0.7,
-				},
-				{
-					'3': 0.3,
-				},
-			],
-		},
 		W: {
-			paytable: [
-				{
-					'5': 20,
-				},
-				{
-					'4': 10,
-				},
-				{
-					'3': 5,
-				},
-			],
-			special_properties: ['wild', 'multiplier'],
+			paytable: [{ '5': 20 }, { '4': 10 }, { '3': 5 }],
+			special_properties: ['wild'],
 		},
-		H3: {
-			paytable: [
-				{
-					'5': 10,
-				},
-				{
-					'4': 3,
-				},
-				{
-					'3': 2,
-				},
-			],
-		},
-		L2: {
-			paytable: [
-				{
-					'5': 3,
-				},
-				{
-					'4': 0.7,
-				},
-				{
-					'3': 0.3,
-				},
-			],
-		},
-		H1: {
-			paytable: [
-				{
-					'5': 20,
-				},
-				{
-					'4': 10,
-				},
-				{
-					'3': 5,
-				},
-			],
-		},
+		H1: { paytable: [{ '5': 20 }, { '4': 10 }, { '3': 5 }] },
+		H2: { paytable: [{ '5': 15 }, { '4': 5 }, { '3': 3 }] },
+		H3: { paytable: [{ '5': 10 }, { '4': 3 }, { '3': 2 }] },
+		H4: { paytable: [{ '5': 8 }, { '4': 2 }, { '3': 1 }] },
+		L1: { paytable: [{ '5': 5 }, { '4': 1 }, { '3': 0.5 }] },
+		L2: { paytable: [{ '5': 3 }, { '4': 0.7 }, { '3': 0.3 }] },
+		L3: { paytable: [{ '5': 3 }, { '4': 0.7 }, { '3': 0.3 }] },
+		L4: { paytable: [{ '5': 2 }, { '4': 0.5 }, { '3': 0.2 }] },
+		CASH: { special_properties: ['cash'] },
+		COLLECT: { special_properties: ['collect'] },
+		DYNAMITE: { special_properties: ['dynamite'] },
+		STONE: { special_properties: ['stone'] },
+		MULT: { special_properties: ['multiplier'] },
 	},
 	paddingReels: {
 		basegame: [
 			[
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'COLLECT' },
+				{ name: 'L4' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H1' },
+				{ name: 'W' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'MULT' },
+				{ name: 'H4' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'MULT' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'COLLECT' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'MULT' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'L3' },
+				{ name: 'COLLECT' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'COLLECT' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H4' },
+				{ name: 'W' },
 			],
 			[
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'W' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'MULT' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'COLLECT' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'COLLECT' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'MULT' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'CASH' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'COLLECT' },
+				{ name: 'MULT' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'H1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'CASH' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'CASH' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'MULT' },
+				{ name: 'L1' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'COLLECT' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L3' },
+				{ name: 'L4' },
 			],
 			[
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'COLLECT' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L3' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H4' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'MULT' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'COLLECT' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'CASH' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'MULT' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'COLLECT' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'W' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'COLLECT' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'MULT' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'H3' },
 			],
 			[
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'COLLECT' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'W' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'W' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'COLLECT' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'MULT' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'COLLECT' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'H1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'COLLECT' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'MULT' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'L3' },
 			],
 			[
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-			],
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'MULT' },
+				{ name: 'COLLECT' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'H4' },
+				{ name: 'H1' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'DYNAMITE' },
+				{ name: 'W' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'COLLECT' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'MULT' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'COLLECT' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'W' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'MULT' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'CASH' },
+				{ name: 'COLLECT' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+			]
 		],
 		freegame: [
 			[
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'MULT' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'COLLECT' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'CASH' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'MULT' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'COLLECT' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'MULT' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'W' },
+				{ name: 'COLLECT' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H1' },
+				{ name: 'W' },
+				{ name: 'MULT' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'COLLECT' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'H3' },
+				{ name: 'L2' },
 			],
 			[
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'COLLECT' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H1' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'H1' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'COLLECT' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'H4' },
+				{ name: 'MULT' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'MULT' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'COLLECT' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'W' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'MULT' },
+				{ name: 'H3' },
+				{ name: 'COLLECT' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'H1' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'H2' },
 			],
 			[
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'MULT' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'DYNAMITE' },
+				{ name: 'CASH' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'COLLECT' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'MULT' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'W' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'DYNAMITE' },
+				{ name: 'COLLECT' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'MULT' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'COLLECT' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'CASH' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'W' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L3' },
+				{ name: 'COLLECT' },
+				{ name: 'L3' },
+				{ name: 'L1' },
 			],
 			[
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'S',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
+				{ name: 'COLLECT' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'H4' },
+				{ name: 'W' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H2' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'W' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'DYNAMITE' },
+				{ name: 'H3' },
+				{ name: 'MULT' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'COLLECT' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'DYNAMITE' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'MULT' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'H4' },
+				{ name: 'COLLECT' },
+				{ name: 'W' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'COLLECT' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'H1' },
+				{ name: 'MULT' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'H3' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L1' },
+				{ name: 'H2' },
+				{ name: 'L4' },
 			],
 			[
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'W',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H2',
-				},
-				{
-					name: 'H3',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L1',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L4',
-				},
-				{
-					name: 'L5',
-				},
-				{
-					name: 'L3',
-				},
-				{
-					name: 'H1',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L2',
-				},
-				{
-					name: 'H4',
-				},
-				{
-					name: 'L4',
-				},
-			],
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'L3' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'COLLECT' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L4' },
+				{ name: 'CASH' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'CASH' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H4' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'MULT' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'L2' },
+				{ name: 'W' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'COLLECT' },
+				{ name: 'H4' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H3' },
+				{ name: 'H2' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'COLLECT' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'L1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'H4' },
+				{ name: 'H1' },
+				{ name: 'H1' },
+				{ name: 'MULT' },
+				{ name: 'H1' },
+				{ name: 'W' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L2' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L1' },
+				{ name: 'CASH' },
+				{ name: 'L1' },
+				{ name: 'W' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'H3' },
+				{ name: 'L4' },
+				{ name: 'H4' },
+				{ name: 'L2' },
+				{ name: 'L2' },
+				{ name: 'H1' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'COLLECT' },
+				{ name: 'L2' },
+				{ name: 'L4' },
+				{ name: 'L4' },
+				{ name: 'H2' },
+				{ name: 'L4' },
+				{ name: 'MULT' },
+				{ name: 'L2' },
+				{ name: 'H2' },
+				{ name: 'L3' },
+				{ name: 'CASH' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'H4' },
+				{ name: 'H3' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L4' },
+				{ name: 'L2' },
+				{ name: 'H4' },
+				{ name: 'H2' },
+				{ name: 'H3' },
+				{ name: 'H1' },
+				{ name: 'DYNAMITE' },
+				{ name: 'L3' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'L3' },
+				{ name: 'L1' },
+				{ name: 'W' },
+			]
 		],
 	},
 };

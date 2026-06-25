@@ -36,6 +36,8 @@
 			width={UI_BASE_FONT_SIZE * 3 * (326 / 73)}
 			height={UI_BASE_FONT_SIZE * 3}
 			borderRadius={35}
+			backgroundColor={0x000000}
+			backgroundAlpha={0.35}
 		/>
 	{/if}
 	<Text anchor={{ x: 0.5, y: 0 }} text={props.label} style={labelStyle} />
@@ -49,6 +51,8 @@
 			width={UI_BASE_FONT_SIZE * 3 * (326 / 73)}
 			height={UI_BASE_FONT_SIZE * 3}
 			borderRadius={35}
+			backgroundColor={0x000000}
+			backgroundAlpha={0.35}
 		/>
 	{/if}
 	<Text anchor={{ x: 0, y: 0.5 }} text={props.label} style={labelStyle} />

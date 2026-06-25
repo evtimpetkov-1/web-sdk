@@ -25,7 +25,7 @@
 </script>
 
 {#if props.debug || (show && inFrame)}
-	<Container x={props.x} y={props.y}>
+	<Container label="symbolWrap" x={props.x} y={props.y}>
 		{@render props.children()}
 	</Container>
 {/if}

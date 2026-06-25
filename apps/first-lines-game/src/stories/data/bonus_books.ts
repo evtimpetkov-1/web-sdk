@@ -12,7 +12,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -27,7 +27,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -36,11 +36,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -48,7 +48,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -75,25 +75,25 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -147,7 +147,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -178,7 +178,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -209,7 +209,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -263,7 +263,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -272,7 +272,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -280,7 +280,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -328,7 +328,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -367,7 +367,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -384,7 +384,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -524,7 +524,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -541,7 +541,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -552,7 +552,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -629,7 +629,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -649,7 +649,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -657,7 +657,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -675,7 +675,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -724,7 +724,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -738,7 +738,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -752,7 +752,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -840,7 +840,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -851,7 +851,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -880,12 +880,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -897,7 +897,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -939,7 +939,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -959,7 +959,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -976,7 +976,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -993,7 +993,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -1092,7 +1092,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -1115,7 +1115,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -1146,7 +1146,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -1209,7 +1209,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -1226,7 +1226,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -1261,7 +1261,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -1272,7 +1272,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -1306,7 +1306,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -1354,7 +1354,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -1463,12 +1463,12 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -1480,7 +1480,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -1502,7 +1502,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -1528,7 +1528,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -1579,11 +1579,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -1591,11 +1591,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -1609,13 +1609,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -1624,7 +1624,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -1644,13 +1644,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -1719,7 +1719,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -1753,7 +1753,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -1776,10 +1776,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -1824,7 +1824,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -1850,7 +1850,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -1867,7 +1867,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -1878,7 +1878,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -1912,7 +1912,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -1935,10 +1935,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -1949,7 +1949,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -1969,7 +1969,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -1989,7 +1989,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -2017,7 +2017,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -2040,7 +2040,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -2054,13 +2054,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -2074,13 +2074,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -2093,7 +2093,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -2147,14 +2147,14 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -2165,7 +2165,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -2273,7 +2273,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -2358,7 +2358,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -2375,7 +2375,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -2486,7 +2486,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -2494,7 +2494,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -2622,12 +2622,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -2636,7 +2636,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -2678,7 +2678,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -2687,7 +2687,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -2721,7 +2721,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -2738,14 +2738,14 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -2753,7 +2753,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -2795,7 +2795,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -2840,7 +2840,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -2849,7 +2849,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -2880,7 +2880,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -2928,7 +2928,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -2968,7 +2968,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -2982,7 +2982,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -2991,7 +2991,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -3070,11 +3070,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -3091,7 +3091,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -3120,11 +3120,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -3180,7 +3180,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -3191,7 +3191,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -3214,7 +3214,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -3235,7 +3235,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -3247,13 +3247,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -3311,7 +3311,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -3328,14 +3328,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -3358,7 +3358,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -3418,7 +3418,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -3461,7 +3461,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -3566,7 +3566,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -3637,7 +3637,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -3656,7 +3656,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -3673,7 +3673,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -3690,7 +3690,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -3790,7 +3790,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -3801,7 +3801,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -3838,7 +3838,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -3849,7 +3849,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -3892,7 +3892,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -3912,7 +3912,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -3940,7 +3940,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -3960,7 +3960,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -3997,7 +3997,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -4017,7 +4017,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -4057,7 +4057,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -4120,7 +4120,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -4134,7 +4134,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -4148,7 +4148,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -4174,7 +4174,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -4267,7 +4267,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -4321,7 +4321,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -4381,7 +4381,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -4460,7 +4460,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -4483,7 +4483,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -4517,7 +4517,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -4543,7 +4543,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -4551,7 +4551,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -4571,7 +4571,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -4585,7 +4585,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -4659,18 +4659,18 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -4780,17 +4780,17 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -4815,7 +4815,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -4850,13 +4850,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -4946,7 +4946,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -4989,7 +4989,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -5006,7 +5006,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -5017,7 +5017,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -5057,7 +5057,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -5088,7 +5088,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -5099,7 +5099,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -5125,7 +5125,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -5210,7 +5210,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -5227,7 +5227,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -5332,7 +5332,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -5352,7 +5352,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -5381,13 +5381,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -5498,7 +5498,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -5544,7 +5544,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -5566,7 +5566,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -5609,7 +5609,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -5656,7 +5656,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -5789,7 +5789,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -5857,7 +5857,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -5931,7 +5931,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -5982,7 +5982,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -6011,7 +6011,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -6035,7 +6035,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -6046,7 +6046,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -6162,10 +6162,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -6210,7 +6210,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -6219,7 +6219,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -6270,7 +6270,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -6307,7 +6307,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -6366,10 +6366,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -6386,7 +6386,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -6423,7 +6423,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -6530,7 +6530,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -6623,7 +6623,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -6643,7 +6643,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -6677,7 +6677,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -6722,7 +6722,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -6742,7 +6742,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -6759,7 +6759,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -6827,7 +6827,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -6887,7 +6887,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -6918,13 +6918,13 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -6961,7 +6961,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -6986,7 +6986,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -7037,17 +7037,17 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -7055,7 +7055,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -7072,7 +7072,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -7082,7 +7082,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -7093,7 +7093,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -7111,11 +7111,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -7186,7 +7186,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -7274,7 +7274,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -7294,7 +7294,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -7319,7 +7319,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -7327,7 +7327,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -7350,7 +7350,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -7384,7 +7384,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -7407,7 +7407,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -7454,7 +7454,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -7531,7 +7531,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -7718,14 +7718,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -7736,7 +7736,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -7764,7 +7764,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -7773,7 +7773,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -7818,7 +7818,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -7835,13 +7835,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -7864,7 +7864,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -7907,7 +7907,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -7924,7 +7924,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -8032,7 +8032,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -8041,7 +8041,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -8049,7 +8049,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -8086,7 +8086,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -8123,7 +8123,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -8137,7 +8137,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -8154,7 +8154,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -8171,7 +8171,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -8191,7 +8191,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -8272,7 +8272,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -8305,13 +8305,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -8331,7 +8331,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -8405,7 +8405,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -8501,10 +8501,10 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -8519,11 +8519,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -8531,13 +8531,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -8552,7 +8552,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -8575,7 +8575,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -8636,7 +8636,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -8673,12 +8673,12 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -8698,13 +8698,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -8741,7 +8741,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -8752,7 +8752,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -8775,7 +8775,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -8789,7 +8789,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -8806,13 +8806,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -8849,7 +8849,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -8905,7 +8905,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -9047,10 +9047,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -9070,7 +9070,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -9121,7 +9121,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -9138,7 +9138,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -9158,7 +9158,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -9189,7 +9189,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -9262,7 +9262,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -9279,7 +9279,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -9302,7 +9302,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -9327,7 +9327,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -9361,7 +9361,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -9373,7 +9373,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -9435,7 +9435,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -9469,7 +9469,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -9628,7 +9628,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -9685,7 +9685,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -9736,7 +9736,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -9830,7 +9830,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -9838,7 +9838,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -9884,7 +9884,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -9988,7 +9988,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -10036,13 +10036,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -10087,22 +10087,22 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -10111,22 +10111,22 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -10150,7 +10150,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -10164,7 +10164,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -10225,7 +10225,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -10233,14 +10233,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -10268,7 +10268,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -10325,7 +10325,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -10362,13 +10362,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -10399,7 +10399,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -10436,7 +10436,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -10450,10 +10450,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -10504,7 +10504,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -10532,7 +10532,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -10552,10 +10552,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -10589,7 +10589,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -10606,7 +10606,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -10657,7 +10657,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -10677,13 +10677,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -10694,7 +10694,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -10785,7 +10785,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -10796,7 +10796,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -10816,7 +10816,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -10895,7 +10895,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -10906,14 +10906,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -10924,7 +10924,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -10938,7 +10938,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -10961,13 +10961,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -11054,7 +11054,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -11077,7 +11077,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -11105,7 +11105,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -11195,7 +11195,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -11212,7 +11212,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -11249,13 +11249,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -11299,7 +11299,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -11316,7 +11316,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -11458,7 +11458,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -11491,7 +11491,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -11525,13 +11525,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -11607,7 +11607,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -11615,7 +11615,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -11725,11 +11725,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -11751,12 +11751,12 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -11765,7 +11765,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -11774,7 +11774,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -11795,13 +11795,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -11849,13 +11849,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -11869,7 +11869,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -11894,10 +11894,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -11908,7 +11908,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -11956,7 +11956,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -11982,7 +11982,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -12032,7 +12032,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -12066,7 +12066,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -12097,7 +12097,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -12131,7 +12131,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -12177,7 +12177,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -12194,7 +12194,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -12231,7 +12231,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -12245,7 +12245,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -12276,7 +12276,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -12327,7 +12327,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -12443,13 +12443,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -12460,7 +12460,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -12500,7 +12500,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -12511,7 +12511,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -12548,7 +12548,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -12571,7 +12571,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -12588,7 +12588,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -12622,7 +12622,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -12682,7 +12682,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -12690,7 +12690,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -12724,7 +12724,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -12772,7 +12772,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -12792,11 +12792,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -12810,13 +12810,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -12825,7 +12825,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -12848,7 +12848,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -12905,7 +12905,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -12916,7 +12916,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -12925,7 +12925,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -12950,7 +12950,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -12967,7 +12967,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -12979,7 +12979,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -13007,7 +13007,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -13030,7 +13030,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -13044,7 +13044,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -13084,7 +13084,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -13165,7 +13165,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -13221,7 +13221,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -13351,7 +13351,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -13399,7 +13399,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -13422,7 +13422,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -13439,7 +13439,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -13550,12 +13550,12 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -13572,7 +13572,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -13682,7 +13682,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -13699,7 +13699,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -13722,7 +13722,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -13736,7 +13736,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -13745,7 +13745,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -13796,7 +13796,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -13804,7 +13804,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -13821,7 +13821,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -13847,7 +13847,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -13855,7 +13855,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -13951,7 +13951,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -13963,7 +13963,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -13972,11 +13972,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -13987,10 +13987,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -14024,11 +14024,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -14123,12 +14123,12 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -14171,7 +14171,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -14182,7 +14182,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -14219,7 +14219,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -14247,7 +14247,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -14261,10 +14261,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -14344,13 +14344,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -14387,7 +14387,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -14449,7 +14449,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -14458,7 +14458,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -14483,7 +14483,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -14509,7 +14509,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -14560,7 +14560,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -14580,7 +14580,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -14588,7 +14588,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -14645,7 +14645,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -14662,7 +14662,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -14671,7 +14671,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -14705,7 +14705,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -14750,7 +14750,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -14764,7 +14764,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -14778,7 +14778,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -14812,7 +14812,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -14826,7 +14826,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -14917,13 +14917,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -14934,7 +14934,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -15016,7 +15016,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -15033,7 +15033,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -15042,11 +15042,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -15054,13 +15054,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -15072,7 +15072,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -15093,7 +15093,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -15146,7 +15146,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -15220,7 +15220,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -15251,7 +15251,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -15265,7 +15265,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -15282,7 +15282,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -15305,7 +15305,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -15376,7 +15376,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -15387,7 +15387,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -15462,7 +15462,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -15515,7 +15515,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -15668,7 +15668,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -15676,7 +15676,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -15775,7 +15775,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -15783,7 +15783,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -15857,7 +15857,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -15891,7 +15891,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -15972,7 +15972,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -15989,7 +15989,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -16012,7 +16012,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -16100,13 +16100,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -16117,7 +16117,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -16135,7 +16135,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -16159,7 +16159,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -16224,7 +16224,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -16250,7 +16250,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -16281,7 +16281,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -16315,10 +16315,10 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -16392,7 +16392,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -16423,7 +16423,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -16451,7 +16451,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -16525,7 +16525,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -16545,14 +16545,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -16569,12 +16569,12 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -16600,7 +16600,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -16667,7 +16667,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -16690,7 +16690,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -16727,7 +16727,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -16778,7 +16778,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -16823,7 +16823,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -16831,7 +16831,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -16851,7 +16851,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -16959,7 +16959,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -16984,7 +16984,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -17001,7 +17001,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -17021,7 +17021,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -17112,7 +17112,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -17174,11 +17174,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -17198,7 +17198,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -17209,14 +17209,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -17224,7 +17224,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -17233,7 +17233,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -17251,7 +17251,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -17346,7 +17346,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -17376,7 +17376,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -17393,7 +17393,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -17417,7 +17417,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -17516,7 +17516,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -17533,14 +17533,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -17548,10 +17548,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -17565,7 +17565,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -17628,7 +17628,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -17659,7 +17659,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -17676,7 +17676,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -17721,7 +17721,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -17741,14 +17741,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -17799,7 +17799,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -17895,16 +17895,16 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -17912,7 +17912,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -18042,7 +18042,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -18056,7 +18056,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -18110,7 +18110,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -18153,7 +18153,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -18269,13 +18269,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -18292,7 +18292,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -18368,22 +18368,22 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -18392,22 +18392,22 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -18425,7 +18425,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -18443,7 +18443,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -18508,7 +18508,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -18609,7 +18609,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -18635,7 +18635,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -18649,7 +18649,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -18689,7 +18689,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -18748,10 +18748,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -18788,7 +18788,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -18895,13 +18895,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -18912,7 +18912,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -18927,7 +18927,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -18964,7 +18964,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -18984,14 +18984,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -19008,7 +19008,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -19033,7 +19033,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -19045,7 +19045,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -19070,7 +19070,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -19087,7 +19087,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -19110,13 +19110,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -19130,7 +19130,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -19150,7 +19150,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -19187,7 +19187,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -19297,7 +19297,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -19331,7 +19331,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -19453,7 +19453,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -19507,7 +19507,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -19561,7 +19561,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -19609,7 +19609,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -19637,7 +19637,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -19679,7 +19679,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -19716,7 +19716,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -19739,7 +19739,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -19773,7 +19773,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -19804,7 +19804,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -19830,7 +19830,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -19881,7 +19881,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -19929,7 +19929,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -19946,7 +19946,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -20053,7 +20053,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -20087,7 +20087,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -20110,7 +20110,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -20127,7 +20127,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -20164,7 +20164,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -20172,7 +20172,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -20237,7 +20237,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -20279,11 +20279,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -20317,7 +20317,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -20335,7 +20335,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -20350,7 +20350,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -20359,7 +20359,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -20409,7 +20409,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -20440,7 +20440,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -20483,7 +20483,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -20519,7 +20519,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -20550,13 +20550,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -20584,7 +20584,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -20777,7 +20777,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -20881,14 +20881,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -20902,7 +20902,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -20928,7 +20928,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -21028,7 +21028,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -21051,7 +21051,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -21062,7 +21062,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -21071,7 +21071,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -21091,7 +21091,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -21125,7 +21125,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -21136,7 +21136,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -21223,7 +21223,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -21260,7 +21260,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -21274,7 +21274,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -21346,7 +21346,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -21381,14 +21381,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -21413,20 +21413,20 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -21476,7 +21476,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -21513,7 +21513,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -21578,7 +21578,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -21595,13 +21595,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -21609,7 +21609,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -21703,7 +21703,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -21810,7 +21810,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -21830,7 +21830,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -21850,7 +21850,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -22022,7 +22022,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -22059,7 +22059,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -22070,7 +22070,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -22079,7 +22079,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -22104,7 +22104,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -22155,7 +22155,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -22181,7 +22181,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -22282,7 +22282,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -22312,12 +22312,12 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -22397,7 +22397,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -22408,7 +22408,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -22420,7 +22420,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -22429,7 +22429,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -22447,7 +22447,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -22540,7 +22540,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -22588,7 +22588,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -22597,7 +22597,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -22715,7 +22715,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -22729,7 +22729,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -22760,7 +22760,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -22780,7 +22780,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -22836,7 +22836,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -22856,7 +22856,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -22870,7 +22870,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -22881,7 +22881,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -23027,7 +23027,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -23041,7 +23041,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -23104,7 +23104,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -23118,7 +23118,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -23132,7 +23132,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -23279,7 +23279,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -23316,7 +23316,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -23418,7 +23418,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -23435,7 +23435,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -23573,7 +23573,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -23596,7 +23596,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -23618,7 +23618,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -23630,7 +23630,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -23678,11 +23678,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -23693,7 +23693,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -23707,14 +23707,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -23744,13 +23744,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -23841,7 +23841,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -23861,7 +23861,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -23874,7 +23874,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -23973,7 +23973,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -24019,7 +24019,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -24152,7 +24152,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -24169,7 +24169,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -24279,7 +24279,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -24341,7 +24341,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -24451,12 +24451,12 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -24479,7 +24479,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -24519,7 +24519,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -24530,7 +24530,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -24544,7 +24544,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -24570,7 +24570,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -24587,7 +24587,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -24621,7 +24621,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -24635,7 +24635,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -24654,10 +24654,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -24697,7 +24697,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -24856,29 +24856,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
-						},
-						{
-							name: 'L3',
-						},
-						{
-							name: 'L5',
-						},
-					],
-					[
-						{
-							name: 'H4',
-						},
-						{
-							name: 'S',
-							scatter: true,
-						},
-						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -24889,7 +24871,25 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'H4',
+						},
+						{
+							name: 'CASH',
+							scatter: true,
+						},
+						{
+							name: 'L4',
+						},
+						{
+							name: 'L3',
+						},
+						{
+							name: 'L4',
+						},
+					],
+					[
+						{
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -24909,7 +24909,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -24930,7 +24930,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -25002,7 +25002,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -25067,7 +25067,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -25112,7 +25112,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -25146,7 +25146,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -25259,7 +25259,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -25307,7 +25307,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -25316,7 +25316,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -25395,7 +25395,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -25485,7 +25485,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -25525,18 +25525,18 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -25545,7 +25545,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -25553,7 +25553,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -25565,7 +25565,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -25663,7 +25663,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -25740,7 +25740,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -25760,7 +25760,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -25768,7 +25768,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -25788,7 +25788,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -25849,7 +25849,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -25869,7 +25869,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -25877,7 +25877,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -25897,7 +25897,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -25911,7 +25911,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -25920,7 +25920,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -25957,7 +25957,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -25974,7 +25974,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -25982,7 +25982,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -25991,7 +25991,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -26135,7 +26135,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -26151,7 +26151,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -26194,7 +26194,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -26307,7 +26307,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -26316,7 +26316,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -26324,7 +26324,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -26446,7 +26446,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -26455,12 +26455,12 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -26514,17 +26514,17 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -26540,7 +26540,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -26554,7 +26554,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -26566,7 +26566,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -26589,11 +26589,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -26640,7 +26640,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -26660,10 +26660,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -26683,7 +26683,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -26762,14 +26762,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -26817,7 +26817,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -26893,7 +26893,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -26907,14 +26907,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -26931,7 +26931,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -26965,7 +26965,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -27109,7 +27109,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -27199,7 +27199,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -27208,7 +27208,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -27219,7 +27219,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -27284,13 +27284,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -27301,13 +27301,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -27344,7 +27344,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -27412,7 +27412,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -27426,7 +27426,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -27449,7 +27449,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -27469,7 +27469,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -27531,7 +27531,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -27616,7 +27616,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -27631,10 +27631,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -27654,14 +27654,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -27669,7 +27669,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -27684,20 +27684,20 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -27748,7 +27748,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -27765,7 +27765,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -27788,7 +27788,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -27802,7 +27802,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -27909,7 +27909,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -27926,7 +27926,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -27943,7 +27943,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -27996,7 +27996,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -28022,7 +28022,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -28036,7 +28036,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -28050,7 +28050,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -28067,7 +28067,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -28121,13 +28121,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -28135,13 +28135,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -28155,7 +28155,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -28164,7 +28164,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -28172,7 +28172,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -28223,7 +28223,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -28243,7 +28243,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -28263,7 +28263,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -28313,16 +28313,16 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -28350,13 +28350,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -28364,13 +28364,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -28446,7 +28446,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -28460,7 +28460,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -28474,7 +28474,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -28483,7 +28483,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -28571,7 +28571,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -28614,7 +28614,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -28645,7 +28645,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -28685,12 +28685,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -28719,7 +28719,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -28747,7 +28747,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -28795,7 +28795,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -28824,7 +28824,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -28994,7 +28994,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -29005,7 +29005,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -29053,7 +29053,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -29180,11 +29180,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -29198,11 +29198,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -29213,14 +29213,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -29240,7 +29240,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -29248,7 +29248,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -29495,7 +29495,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -29509,7 +29509,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -29631,7 +29631,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -29645,7 +29645,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -29695,7 +29695,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -29749,13 +29749,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -29772,7 +29772,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -29794,7 +29794,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -29802,7 +29802,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -29811,7 +29811,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -29879,7 +29879,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -29893,13 +29893,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -29953,7 +29953,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -29970,7 +29970,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -29981,7 +29981,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -29998,7 +29998,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -30010,7 +30010,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -30022,7 +30022,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -30047,7 +30047,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -30070,7 +30070,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -30212,7 +30212,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -30291,7 +30291,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -30308,7 +30308,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -30317,7 +30317,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -30331,7 +30331,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -30379,7 +30379,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -30402,7 +30402,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -30419,7 +30419,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -30442,7 +30442,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -30476,7 +30476,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -30510,7 +30510,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -30527,7 +30527,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -30646,7 +30646,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -30654,14 +30654,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -30675,7 +30675,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -30689,7 +30689,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -30698,7 +30698,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -30802,10 +30802,10 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -30837,14 +30837,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -30861,7 +30861,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -30875,7 +30875,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -30960,7 +30960,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -31136,7 +31136,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -31153,7 +31153,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -31176,7 +31176,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -31184,7 +31184,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -31193,7 +31193,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -31204,7 +31204,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -31334,7 +31334,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -31447,7 +31447,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -31455,7 +31455,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -31557,13 +31557,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -31637,7 +31637,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -31745,7 +31745,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -31762,7 +31762,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -31827,7 +31827,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -31835,7 +31835,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -31858,14 +31858,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -31873,7 +31873,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -31894,7 +31894,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -31962,7 +31962,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -31988,7 +31988,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -31999,7 +31999,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -32059,7 +32059,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -32086,7 +32086,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -32106,13 +32106,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -32254,7 +32254,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -32285,7 +32285,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -32319,7 +32319,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -32328,7 +32328,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -32365,7 +32365,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -32376,7 +32376,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -32396,7 +32396,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -32421,7 +32421,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -32433,7 +32433,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -32470,12 +32470,12 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -32492,7 +32492,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -32530,7 +32530,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -32621,7 +32621,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -32635,7 +32635,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -32692,7 +32692,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -32703,7 +32703,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -32732,7 +32732,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -32749,7 +32749,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -32786,7 +32786,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -32852,7 +32852,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -32900,7 +32900,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -32918,7 +32918,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -32949,7 +32949,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -32958,7 +32958,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -32976,11 +32976,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -33027,7 +33027,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -33084,7 +33084,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -33158,18 +33158,18 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -33239,7 +33239,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -33282,7 +33282,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -33395,7 +33395,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -33406,7 +33406,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -33443,7 +33443,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -33463,7 +33463,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -33561,10 +33561,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -33607,7 +33607,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -33632,7 +33632,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -33669,7 +33669,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -33689,7 +33689,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -33703,7 +33703,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -33793,7 +33793,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -33827,7 +33827,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -33893,7 +33893,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -33901,13 +33901,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -33938,7 +33938,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -33958,7 +33958,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -34006,11 +34006,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -34035,13 +34035,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -34056,16 +34056,16 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
-						},
-						{
 							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
+						},
+						{
+							name: 'L4',
 						},
 					],
 					[
@@ -34076,7 +34076,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -34144,7 +34144,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -34173,7 +34173,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -34187,7 +34187,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -34199,7 +34199,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -34208,7 +34208,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -34236,7 +34236,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -34256,7 +34256,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -34287,7 +34287,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -34355,7 +34355,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -34364,7 +34364,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -34384,7 +34384,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -34395,7 +34395,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -34416,7 +34416,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -34447,7 +34447,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -34470,7 +34470,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -34495,7 +34495,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -34561,7 +34561,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -34569,7 +34569,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -34666,7 +34666,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -34680,7 +34680,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -34691,7 +34691,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -34703,7 +34703,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -34711,7 +34711,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -34808,7 +34808,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -34819,7 +34819,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -34893,7 +34893,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -34910,10 +34910,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -34924,7 +34924,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -34938,13 +34938,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -35028,7 +35028,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -35043,7 +35043,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -35063,7 +35063,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -35084,7 +35084,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -35101,7 +35101,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -35158,7 +35158,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -35175,7 +35175,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -35186,7 +35186,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -35269,7 +35269,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -35283,7 +35283,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -35291,7 +35291,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -35331,7 +35331,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -35365,7 +35365,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -35379,14 +35379,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -35403,13 +35403,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -35420,7 +35420,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -35440,7 +35440,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -35518,7 +35518,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -35538,7 +35538,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -35552,7 +35552,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -35575,7 +35575,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -35590,7 +35590,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -35706,7 +35706,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -35835,7 +35835,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -35844,7 +35844,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -35949,7 +35949,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -35957,7 +35957,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -35974,7 +35974,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -35997,7 +35997,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -36011,13 +36011,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -36081,7 +36081,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -36098,7 +36098,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -36110,7 +36110,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -36118,7 +36118,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -36138,7 +36138,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -36155,7 +36155,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -36203,11 +36203,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -36218,7 +36218,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -36238,14 +36238,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -36256,7 +36256,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -36270,20 +36270,20 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -36330,7 +36330,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -36347,7 +36347,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -36478,7 +36478,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -36495,7 +36495,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -36566,7 +36566,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -36577,7 +36577,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -36614,7 +36614,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -36653,7 +36653,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -36673,7 +36673,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -36681,7 +36681,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -36712,7 +36712,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -36721,7 +36721,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -36795,7 +36795,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -36812,7 +36812,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -36826,7 +36826,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -36913,7 +36913,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -36930,7 +36930,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -37043,7 +37043,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -37065,12 +37065,12 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -37082,7 +37082,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -37175,7 +37175,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -37186,7 +37186,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -37266,20 +37266,20 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -37301,13 +37301,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -37325,7 +37325,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -37339,7 +37339,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -37402,7 +37402,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -37433,7 +37433,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -37447,7 +37447,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -37524,7 +37524,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -37535,13 +37535,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -37555,7 +37555,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -37575,7 +37575,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -37623,7 +37623,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -37654,7 +37654,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -37671,7 +37671,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -37771,7 +37771,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -37821,7 +37821,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -37871,7 +37871,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -37880,12 +37880,12 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -37897,7 +37897,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -37990,7 +37990,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -38021,7 +38021,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -38092,7 +38092,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -38112,7 +38112,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -38126,7 +38126,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -38248,7 +38248,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -38268,7 +38268,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -38285,7 +38285,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -38293,7 +38293,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -38310,7 +38310,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -38361,17 +38361,17 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -38382,7 +38382,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -38393,7 +38393,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -38402,7 +38402,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -38411,7 +38411,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -38423,7 +38423,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -38431,7 +38431,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -38441,7 +38441,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -38533,7 +38533,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -38544,7 +38544,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -38651,7 +38651,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -38665,7 +38665,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -38682,7 +38682,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -38694,7 +38694,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -38705,7 +38705,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -38753,7 +38753,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -38909,7 +38909,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -38920,7 +38920,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -39007,7 +39007,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -39016,7 +39016,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -39024,7 +39024,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -39061,13 +39061,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -39098,7 +39098,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -39121,7 +39121,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -39223,7 +39223,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -39407,7 +39407,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -39424,7 +39424,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -39441,7 +39441,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -39492,7 +39492,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -39507,11 +39507,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -39522,7 +39522,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -39531,7 +39531,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -39543,10 +39543,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -39616,13 +39616,13 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -39630,7 +39630,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -39659,7 +39659,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -39667,7 +39667,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -39690,7 +39690,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -39718,7 +39718,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -39752,7 +39752,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -39789,7 +39789,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -39891,7 +39891,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -39919,7 +39919,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -40078,7 +40078,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -40109,7 +40109,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -40176,7 +40176,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -40188,7 +40188,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -40199,7 +40199,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -40295,7 +40295,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -40320,7 +40320,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -40487,7 +40487,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -40516,12 +40516,12 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -40533,7 +40533,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -40618,7 +40618,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -40635,7 +40635,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -40694,7 +40694,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -40703,11 +40703,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -40715,7 +40715,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -40725,12 +40725,12 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -40739,7 +40739,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -40748,20 +40748,20 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -40826,7 +40826,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -40852,7 +40852,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -40866,7 +40866,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -40922,7 +40922,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -40956,7 +40956,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -41021,10 +41021,10 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -41101,7 +41101,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -41132,7 +41132,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -41166,7 +41166,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -41189,7 +41189,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -41200,7 +41200,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -41248,7 +41248,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -41294,7 +41294,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -41336,7 +41336,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -41393,7 +41393,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -41416,7 +41416,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -41486,7 +41486,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -41497,10 +41497,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -41526,7 +41526,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -41551,7 +41551,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -41784,7 +41784,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -41889,7 +41889,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -41954,7 +41954,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -42019,7 +42019,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -42033,12 +42033,12 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -42061,7 +42061,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -42091,7 +42091,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -42103,7 +42103,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -42157,7 +42157,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -42165,7 +42165,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -42182,7 +42182,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -42196,10 +42196,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -42276,18 +42276,18 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -42305,7 +42305,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -42317,13 +42317,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -42386,7 +42386,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -42411,7 +42411,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -42420,7 +42420,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -42445,7 +42445,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -42530,7 +42530,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -42561,7 +42561,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -42575,7 +42575,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -42595,7 +42595,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -42632,7 +42632,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -42652,12 +42652,12 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -42697,7 +42697,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -42731,13 +42731,13 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -42751,7 +42751,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -42774,7 +42774,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -42796,7 +42796,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -42876,10 +42876,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -42893,7 +42893,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -42901,7 +42901,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -42963,7 +42963,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -42983,7 +42983,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -42995,7 +42995,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -43046,7 +43046,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -43075,7 +43075,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -43089,7 +43089,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -43106,7 +43106,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -43151,10 +43151,10 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -43180,7 +43180,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -43188,7 +43188,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -43225,7 +43225,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -43276,11 +43276,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -43288,7 +43288,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -43314,7 +43314,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -43346,7 +43346,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -43397,7 +43397,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -43519,14 +43519,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -43554,7 +43554,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -43577,7 +43577,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -43617,7 +43617,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -43634,7 +43634,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -43648,13 +43648,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -43684,7 +43684,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -43771,7 +43771,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -43794,7 +43794,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -43887,7 +43887,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -43912,7 +43912,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -43938,7 +43938,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -43978,7 +43978,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -44006,7 +44006,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -44027,7 +44027,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -44089,7 +44089,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -44106,7 +44106,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -44126,7 +44126,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -44181,7 +44181,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -44221,7 +44221,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -44232,7 +44232,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -44297,20 +44297,20 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -44327,7 +44327,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -44338,14 +44338,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -44356,7 +44356,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -44370,13 +44370,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -44470,21 +44470,21 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -44581,7 +44581,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -44592,7 +44592,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -44601,7 +44601,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -44618,7 +44618,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -44629,7 +44629,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -44700,14 +44700,14 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -44752,13 +44752,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -44809,7 +44809,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -44860,7 +44860,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -44894,7 +44894,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -44956,7 +44956,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -45044,7 +45044,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -45052,7 +45052,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -45078,7 +45078,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -45092,7 +45092,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -45154,14 +45154,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -45184,7 +45184,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -45195,7 +45195,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -45286,7 +45286,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -45489,11 +45489,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -45507,7 +45507,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -45521,14 +45521,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -45553,13 +45553,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -45619,7 +45619,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -45630,7 +45630,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -45661,7 +45661,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -45681,7 +45681,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -45777,7 +45777,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -45789,7 +45789,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -45823,7 +45823,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -45834,7 +45834,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -45970,7 +45970,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -45981,7 +45981,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -46004,7 +46004,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -46015,7 +46015,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -46027,7 +46027,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -46111,7 +46111,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -46156,7 +46156,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -46198,7 +46198,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -46227,7 +46227,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -46325,7 +46325,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -46334,7 +46334,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -46342,13 +46342,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -46362,7 +46362,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -46456,7 +46456,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -46470,7 +46470,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -46571,7 +46571,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -46580,7 +46580,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -46607,7 +46607,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -46730,7 +46730,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -46759,14 +46759,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -46774,13 +46774,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -46794,13 +46794,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -46896,7 +46896,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -46930,7 +46930,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -46955,7 +46955,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -46975,7 +46975,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -46984,7 +46984,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -47006,7 +47006,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -47015,7 +47015,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -47080,7 +47080,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -47089,7 +47089,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -47128,10 +47128,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -47187,7 +47187,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -47221,7 +47221,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -47241,7 +47241,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -47380,7 +47380,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -47388,7 +47388,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -47488,7 +47488,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -47505,7 +47505,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -47519,7 +47519,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -47536,13 +47536,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -47635,7 +47635,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -47646,14 +47646,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -47664,7 +47664,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -47687,7 +47687,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -47708,7 +47708,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -47808,18 +47808,18 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -47842,13 +47842,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -47870,7 +47870,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -47924,14 +47924,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -47954,7 +47954,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -48047,7 +48047,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -48076,7 +48076,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -48090,7 +48090,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -48147,7 +48147,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -48175,7 +48175,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -48249,7 +48249,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -48257,7 +48257,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -48280,7 +48280,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -48294,10 +48294,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -48399,7 +48399,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -48408,7 +48408,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -48447,7 +48447,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -48469,7 +48469,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -48509,13 +48509,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -48563,7 +48563,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -48589,13 +48589,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -48627,13 +48627,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -48698,7 +48698,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -48755,7 +48755,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -48831,7 +48831,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -48876,7 +48876,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -48993,7 +48993,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -49007,7 +49007,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -49182,7 +49182,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -49199,7 +49199,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -49222,7 +49222,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -49239,7 +49239,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -49323,7 +49323,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -49386,7 +49386,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -49397,7 +49397,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -49457,7 +49457,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -49466,7 +49466,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -49483,7 +49483,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -49560,7 +49560,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -49591,7 +49591,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -49659,11 +49659,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -49671,7 +49671,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -49680,11 +49680,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -49706,7 +49706,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -49715,7 +49715,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -49730,7 +49730,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -49836,7 +49836,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -49850,7 +49850,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -49881,7 +49881,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -49956,7 +49956,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -49998,7 +49998,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -50007,7 +50007,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -50081,7 +50081,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -50089,7 +50089,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -50191,7 +50191,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -50259,7 +50259,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -50284,7 +50284,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -50369,7 +50369,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -50378,7 +50378,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -50398,7 +50398,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -50420,7 +50420,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -50432,7 +50432,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -50522,7 +50522,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -50542,14 +50542,14 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -50586,7 +50586,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -50594,7 +50594,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -50637,7 +50637,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -50654,7 +50654,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -50685,7 +50685,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -50699,7 +50699,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -50733,7 +50733,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -50756,7 +50756,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -50767,7 +50767,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -50813,7 +50813,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -50892,7 +50892,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -50913,7 +50913,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -51007,7 +51007,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -51055,7 +51055,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -51069,10 +51069,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -51095,7 +51095,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -51177,7 +51177,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -51220,7 +51220,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -51229,7 +51229,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -51241,11 +51241,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -51335,7 +51335,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -51412,12 +51412,12 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -51440,13 +51440,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -51460,7 +51460,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -51471,7 +51471,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -51528,7 +51528,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -51542,7 +51542,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -51562,7 +51562,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -51579,7 +51579,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -51627,7 +51627,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -51771,7 +51771,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -51791,7 +51791,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -51822,7 +51822,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -51848,7 +51848,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -51865,7 +51865,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -51882,7 +51882,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -51933,7 +51933,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -51944,7 +51944,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -51981,7 +51981,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -52004,7 +52004,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -52044,7 +52044,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -52058,7 +52058,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -52078,7 +52078,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -52106,7 +52106,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -52190,20 +52190,20 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -52214,11 +52214,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -52226,7 +52226,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -52235,7 +52235,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -52244,7 +52244,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -52253,7 +52253,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -52268,7 +52268,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -52330,7 +52330,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -52356,7 +52356,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -52408,7 +52408,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -52456,7 +52456,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -52486,7 +52486,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -52540,13 +52540,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -52577,7 +52577,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -52696,7 +52696,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -52710,7 +52710,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -52724,7 +52724,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -52738,7 +52738,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -52761,7 +52761,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -52801,7 +52801,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -52809,7 +52809,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -52818,7 +52818,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -52869,7 +52869,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -52987,7 +52987,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -52996,12 +52996,12 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -53038,10 +53038,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -53144,7 +53144,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -53153,7 +53153,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -53250,7 +53250,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -53304,7 +53304,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -53406,10 +53406,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -53434,7 +53434,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -53471,7 +53471,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -53617,7 +53617,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -53730,7 +53730,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -53770,7 +53770,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -53790,7 +53790,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -53906,7 +53906,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -53934,7 +53934,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -53951,7 +53951,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -53988,7 +53988,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -54051,7 +54051,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -54062,7 +54062,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -54096,7 +54096,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -54122,7 +54122,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -54153,7 +54153,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -54221,7 +54221,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -54242,7 +54242,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -54250,14 +54250,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -54277,7 +54277,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -54291,11 +54291,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -54345,7 +54345,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -54399,7 +54399,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -54407,7 +54407,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -54447,7 +54447,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -54600,7 +54600,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -54617,12 +54617,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -54651,7 +54651,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -54662,7 +54662,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -54693,16 +54693,16 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -54710,7 +54710,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -54750,7 +54750,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -54767,7 +54767,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -54801,7 +54801,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -54824,7 +54824,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -54912,7 +54912,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -54920,14 +54920,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -54975,7 +54975,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -55035,7 +55035,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -55060,7 +55060,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -55089,7 +55089,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -55131,7 +55131,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -55165,7 +55165,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -55174,7 +55174,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -55242,11 +55242,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -55254,11 +55254,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -55292,7 +55292,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -55306,7 +55306,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -55316,7 +55316,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -55372,7 +55372,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -55389,7 +55389,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -55406,7 +55406,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -55417,7 +55417,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -55437,7 +55437,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -55578,7 +55578,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -55624,7 +55624,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -55680,12 +55680,12 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -55697,7 +55697,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -55768,7 +55768,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -55801,7 +55801,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -55830,7 +55830,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -55838,7 +55838,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -55895,7 +55895,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -55912,7 +55912,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -55929,7 +55929,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -55977,7 +55977,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -55989,12 +55989,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -56017,7 +56017,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -56057,7 +56057,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -56091,7 +56091,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -56110,7 +56110,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -56121,13 +56121,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -56266,7 +56266,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -56296,10 +56296,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -56378,11 +56378,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -56399,11 +56399,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -56414,13 +56414,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -56449,7 +56449,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -56530,7 +56530,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -56547,7 +56547,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -56637,7 +56637,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -56648,7 +56648,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -56671,7 +56671,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -56685,7 +56685,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -56731,7 +56731,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -56773,7 +56773,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -56782,7 +56782,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -56889,7 +56889,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -56935,7 +56935,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -56946,7 +56946,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -56966,7 +56966,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -56994,7 +56994,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -57011,7 +57011,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -57040,7 +57040,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -57147,7 +57147,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -57164,7 +57164,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -57218,7 +57218,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -57286,7 +57286,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -57373,7 +57373,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -57410,7 +57410,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -57470,7 +57470,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -57478,10 +57478,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -57512,7 +57512,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -57529,7 +57529,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -57563,7 +57563,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -57586,13 +57586,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -57746,7 +57746,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -57849,7 +57849,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -57883,7 +57883,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -57991,11 +57991,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -58003,11 +58003,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -58021,7 +58021,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -58042,7 +58042,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -58056,7 +58056,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -58066,7 +58066,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -58267,7 +58267,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -58284,7 +58284,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -58435,7 +58435,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -58495,7 +58495,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -58503,7 +58503,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -58512,7 +58512,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -58583,7 +58583,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -58605,7 +58605,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -58650,7 +58650,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -58662,7 +58662,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -58760,7 +58760,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -58772,12 +58772,12 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -58823,7 +58823,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -58831,7 +58831,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -58930,7 +58930,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -59063,7 +59063,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -59083,7 +59083,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -59169,7 +59169,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -59180,13 +59180,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -59276,7 +59276,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -59321,7 +59321,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -59443,7 +59443,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -59494,7 +59494,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -59505,7 +59505,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -59514,7 +59514,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -59565,7 +59565,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -59582,7 +59582,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -59590,7 +59590,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -59602,12 +59602,12 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -59616,7 +59616,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -59703,7 +59703,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -59715,7 +59715,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -59735,13 +59735,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -59770,7 +59770,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -59875,7 +59875,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -59889,7 +59889,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -59918,7 +59918,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -59972,7 +59972,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -59986,13 +59986,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -60003,7 +60003,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -60020,7 +60020,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -60108,7 +60108,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -60137,7 +60137,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -60154,7 +60154,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -60202,7 +60202,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -60230,7 +60230,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -60301,7 +60301,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -60327,7 +60327,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -60338,7 +60338,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -60398,7 +60398,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -60406,7 +60406,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -60415,7 +60415,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -60432,7 +60432,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -60440,7 +60440,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -60567,7 +60567,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -60584,7 +60584,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -60601,7 +60601,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -60658,7 +60658,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -60672,7 +60672,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -60706,13 +60706,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -60760,7 +60760,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -60795,14 +60795,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -60830,13 +60830,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -61046,7 +61046,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -61057,7 +61057,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -61097,7 +61097,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -61201,24 +61201,24 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -61229,7 +61229,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -61246,7 +61246,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -61309,7 +61309,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -61346,7 +61346,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -61357,7 +61357,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -61388,7 +61388,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -61408,7 +61408,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -61428,7 +61428,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -61439,7 +61439,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -61456,7 +61456,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -61468,7 +61468,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -61527,7 +61527,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -61547,7 +61547,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -61570,7 +61570,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -61635,7 +61635,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -61644,7 +61644,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -61678,7 +61678,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -61729,7 +61729,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -61740,7 +61740,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -61763,7 +61763,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -61771,7 +61771,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -61825,7 +61825,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -61840,7 +61840,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -61869,7 +61869,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -61880,7 +61880,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -61895,13 +61895,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -62000,7 +62000,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -62025,7 +62025,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -62062,10 +62062,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -62110,7 +62110,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -62127,7 +62127,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -62144,7 +62144,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -62224,7 +62224,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -62249,7 +62249,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -62303,7 +62303,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -62429,13 +62429,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -62463,7 +62463,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -62472,7 +62472,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -62517,7 +62517,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -62540,7 +62540,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -62551,7 +62551,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -62574,7 +62574,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -62593,7 +62593,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -62627,7 +62627,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -62644,14 +62644,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -62662,13 +62662,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -62733,16 +62733,16 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -62753,7 +62753,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -62770,18 +62770,18 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -62807,7 +62807,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -62917,11 +62917,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -62952,13 +62952,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -62970,7 +62970,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -62987,13 +62987,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -63050,7 +63050,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -63061,7 +63061,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -63070,7 +63070,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -63098,7 +63098,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -63206,7 +63206,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -63217,7 +63217,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -63253,7 +63253,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -63282,7 +63282,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -63310,7 +63310,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -63330,7 +63330,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -63358,7 +63358,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -63392,7 +63392,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -63401,7 +63401,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -63412,7 +63412,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -63435,7 +63435,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -63486,7 +63486,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -63508,7 +63508,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -63539,7 +63539,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -63599,7 +63599,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -63610,7 +63610,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -63627,7 +63627,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -63731,7 +63731,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -63748,7 +63748,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -63760,7 +63760,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -63771,7 +63771,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -63782,7 +63782,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -63864,7 +63864,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -63875,7 +63875,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -63946,10 +63946,10 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -64000,7 +64000,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -64015,13 +64015,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -64157,7 +64157,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -64241,13 +64241,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -64275,13 +64275,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -64301,7 +64301,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -64409,7 +64409,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -64491,7 +64491,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -64502,7 +64502,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -64559,13 +64559,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -64579,7 +64579,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -64605,7 +64605,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -64633,7 +64633,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -64676,7 +64676,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -64698,7 +64698,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -64735,7 +64735,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -64792,7 +64792,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -64803,7 +64803,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -64815,7 +64815,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -64823,7 +64823,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -64925,7 +64925,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -64947,7 +64947,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -64964,7 +64964,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -64981,7 +64981,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -65035,22 +65035,22 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -65059,11 +65059,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -65071,7 +65071,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -65081,7 +65081,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -65089,7 +65089,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -65113,11 +65113,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -65172,7 +65172,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -65189,7 +65189,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -65243,7 +65243,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -65331,7 +65331,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -65391,7 +65391,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -65435,7 +65435,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -65449,7 +65449,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -65458,7 +65458,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -65565,7 +65565,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -65579,7 +65579,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -65652,7 +65652,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -65697,7 +65697,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -65799,7 +65799,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -65810,7 +65810,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -65819,7 +65819,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -65844,13 +65844,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -65904,7 +65904,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -66000,7 +66000,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -66062,13 +66062,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -66155,7 +66155,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -66212,7 +66212,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -66263,7 +66263,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -66305,7 +66305,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -66322,7 +66322,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -66345,7 +66345,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -66373,7 +66373,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -66422,12 +66422,12 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -66453,7 +66453,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -66478,7 +66478,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -66524,7 +66524,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -66532,7 +66532,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -66541,7 +66541,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -66558,7 +66558,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -66662,7 +66662,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -66679,7 +66679,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -66716,7 +66716,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -66727,7 +66727,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -66852,7 +66852,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -66957,7 +66957,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -66986,7 +66986,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -67007,7 +67007,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -67021,7 +67021,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -67084,7 +67084,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -67138,7 +67138,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -67262,7 +67262,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -67279,7 +67279,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -67288,7 +67288,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -67313,7 +67313,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -67325,7 +67325,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -67412,7 +67412,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -67440,7 +67440,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -67466,7 +67466,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -67500,7 +67500,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -67523,12 +67523,12 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -67537,7 +67537,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -67602,7 +67602,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -67616,7 +67616,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -67645,13 +67645,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -67717,7 +67717,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -67765,7 +67765,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -67833,7 +67833,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -67847,7 +67847,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -67856,7 +67856,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -67867,7 +67867,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -67981,7 +67981,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -67995,7 +67995,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -68040,7 +68040,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -68055,7 +68055,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -68064,11 +68064,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -68076,7 +68076,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -68111,11 +68111,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -68175,7 +68175,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -68195,7 +68195,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -68223,7 +68223,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -68303,7 +68303,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -68314,7 +68314,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -68328,7 +68328,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -68351,7 +68351,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -68413,7 +68413,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -68422,7 +68422,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -68430,7 +68430,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -68447,7 +68447,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -68459,7 +68459,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -68490,7 +68490,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -68510,7 +68510,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -68530,7 +68530,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -68563,7 +68563,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -68591,13 +68591,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -68628,7 +68628,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -68645,7 +68645,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -68758,7 +68758,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -68797,7 +68797,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -68806,10 +68806,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -68923,7 +68923,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -68948,7 +68948,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -68968,7 +68968,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -69008,7 +69008,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -69082,7 +69082,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -69096,7 +69096,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -69110,7 +69110,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -69128,7 +69128,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -69185,7 +69185,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -69197,7 +69197,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -69217,7 +69217,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -69277,7 +69277,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -69294,7 +69294,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -69312,12 +69312,12 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -69380,7 +69380,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -69391,7 +69391,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -69442,7 +69442,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -69499,11 +69499,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -69528,13 +69528,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -69543,7 +69543,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -69566,7 +69566,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -69677,7 +69677,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -69728,7 +69728,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -69781,7 +69781,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -69849,7 +69849,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -69858,7 +69858,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -69886,7 +69886,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -70007,7 +70007,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -70024,7 +70024,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -70118,7 +70118,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -70129,7 +70129,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -70138,7 +70138,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -70358,13 +70358,13 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -70378,7 +70378,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -70392,7 +70392,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -70423,7 +70423,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -70435,7 +70435,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -70537,7 +70537,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -70565,7 +70565,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -70650,7 +70650,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -70662,7 +70662,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -70671,11 +70671,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -70686,19 +70686,19 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -70707,7 +70707,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -70719,11 +70719,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -70915,7 +70915,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -70926,7 +70926,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -70937,7 +70937,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -70991,7 +70991,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -71008,7 +71008,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -71051,7 +71051,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -71065,7 +71065,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -71096,7 +71096,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -71108,7 +71108,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -71125,7 +71125,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -71139,7 +71139,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -71164,7 +71164,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -71230,7 +71230,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -71244,7 +71244,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -71261,7 +71261,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -71272,7 +71272,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -71318,7 +71318,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -71335,7 +71335,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -71386,7 +71386,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -71423,7 +71423,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -71431,7 +71431,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -71479,7 +71479,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -71519,7 +71519,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -71576,7 +71576,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -71584,7 +71584,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -71630,7 +71630,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -71672,7 +71672,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -71735,7 +71735,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -71746,7 +71746,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -71843,7 +71843,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -71857,7 +71857,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -71865,7 +71865,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -71885,7 +71885,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -71942,7 +71942,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -71962,7 +71962,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -72075,7 +72075,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -72092,7 +72092,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -72109,7 +72109,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -72121,7 +72121,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -72214,7 +72214,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -72228,7 +72228,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -72256,7 +72256,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -72332,7 +72332,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -72457,7 +72457,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -72478,7 +72478,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -72489,7 +72489,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -72521,11 +72521,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -72586,7 +72586,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -72594,7 +72594,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -72606,7 +72606,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -72634,7 +72634,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -72651,7 +72651,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -72705,14 +72705,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -72734,7 +72734,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -72743,7 +72743,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -72838,7 +72838,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -72852,10 +72852,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -72897,7 +72897,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -72909,7 +72909,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -72934,7 +72934,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -73062,14 +73062,14 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -73080,7 +73080,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -73108,7 +73108,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -73117,7 +73117,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -73174,7 +73174,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -73191,7 +73191,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -73213,7 +73213,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -73261,7 +73261,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -73281,7 +73281,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -73303,7 +73303,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -73329,7 +73329,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -73399,7 +73399,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -73413,7 +73413,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -73427,12 +73427,12 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -73449,7 +73449,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -73469,7 +73469,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -73478,7 +73478,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -73523,7 +73523,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -73535,7 +73535,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -73544,11 +73544,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -73556,7 +73556,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -73574,7 +73574,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -73589,20 +73589,20 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -73671,7 +73671,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -73697,10 +73697,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -73734,7 +73734,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -73771,7 +73771,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -73779,13 +73779,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -73813,7 +73813,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -73833,7 +73833,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -73876,7 +73876,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -73890,7 +73890,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -73910,12 +73910,12 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -74005,7 +74005,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -74017,7 +74017,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -74028,7 +74028,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -74042,7 +74042,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -74102,7 +74102,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -74116,7 +74116,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -74136,7 +74136,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -74210,7 +74210,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -74258,7 +74258,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -74286,7 +74286,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -74309,7 +74309,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -74329,7 +74329,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -74357,7 +74357,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -74403,7 +74403,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -74417,7 +74417,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -74434,7 +74434,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -74448,7 +74448,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -74530,7 +74530,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -74539,7 +74539,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -74550,7 +74550,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -74577,7 +74577,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -74602,7 +74602,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -74662,7 +74662,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -74730,14 +74730,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -74776,7 +74776,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -74830,13 +74830,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -74856,7 +74856,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -74867,7 +74867,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -74938,13 +74938,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -74952,7 +74952,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -74986,7 +74986,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -74995,7 +74995,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -75023,7 +75023,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -75035,7 +75035,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -75043,14 +75043,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -75171,7 +75171,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -75191,19 +75191,19 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -75240,7 +75240,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -75291,11 +75291,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -75329,14 +75329,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -75358,13 +75358,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -75491,7 +75491,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -75508,7 +75508,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -75525,7 +75525,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -75559,7 +75559,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -75602,7 +75602,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -75639,7 +75639,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -75670,7 +75670,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -75704,7 +75704,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -75721,7 +75721,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -75772,7 +75772,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -75789,13 +75789,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -75826,7 +75826,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -75877,7 +75877,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -75903,7 +75903,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -75911,7 +75911,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -75928,7 +75928,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -75949,7 +75949,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -76000,7 +76000,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -76023,7 +76023,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -76087,7 +76087,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -76107,7 +76107,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -76143,7 +76143,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -76163,7 +76163,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -76194,7 +76194,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -76234,7 +76234,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -76268,7 +76268,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -76316,7 +76316,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -76331,13 +76331,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -76351,13 +76351,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -76386,7 +76386,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -76497,7 +76497,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -76520,7 +76520,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -76599,7 +76599,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -76622,7 +76622,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -76667,7 +76667,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -76797,7 +76797,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -76811,7 +76811,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -76837,7 +76837,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -76868,7 +76868,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -76916,7 +76916,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -76973,7 +76973,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -77021,7 +77021,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -77035,7 +77035,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -77238,7 +77238,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -77306,7 +77306,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -77346,7 +77346,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -77357,7 +77357,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -77405,17 +77405,17 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -77437,13 +77437,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -77472,20 +77472,20 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -77529,13 +77529,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -77546,7 +77546,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -77569,13 +77569,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -77583,7 +77583,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -77600,7 +77600,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -77642,7 +77642,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -77665,7 +77665,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -77682,12 +77682,12 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -77699,7 +77699,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -77753,7 +77753,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -77764,7 +77764,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -77801,7 +77801,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -77902,7 +77902,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -78021,7 +78021,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -78044,7 +78044,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -78123,7 +78123,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -78140,7 +78140,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -78174,7 +78174,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -78183,7 +78183,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -78234,7 +78234,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -78271,7 +78271,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -78291,7 +78291,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -78300,7 +78300,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -78379,7 +78379,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -78399,7 +78399,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -78410,7 +78410,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -78430,7 +78430,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -78492,20 +78492,20 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -78530,7 +78530,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -78540,7 +78540,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -78551,7 +78551,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -78572,7 +78572,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -78644,7 +78644,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -78670,7 +78670,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -78687,7 +78687,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -78704,7 +78704,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -78749,7 +78749,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -78766,7 +78766,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -78800,7 +78800,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -78840,7 +78840,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -78894,7 +78894,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -78912,7 +78912,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -78943,7 +78943,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -79016,7 +79016,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -79120,7 +79120,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -79160,7 +79160,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -79242,7 +79242,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -79262,7 +79262,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -79342,12 +79342,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -79424,7 +79424,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -79444,10 +79444,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -79518,7 +79518,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -79526,13 +79526,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -79543,7 +79543,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -79557,7 +79557,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -79583,7 +79583,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -79628,10 +79628,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -79665,7 +79665,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -79691,7 +79691,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -79847,7 +79847,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -79855,14 +79855,14 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -79916,7 +79916,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -79981,7 +79981,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -80001,7 +80001,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -80078,7 +80078,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -80087,11 +80087,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -80099,7 +80099,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -80137,11 +80137,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -80191,7 +80191,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -80245,7 +80245,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -80265,7 +80265,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -80369,7 +80369,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -80403,7 +80403,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -80412,7 +80412,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -80449,12 +80449,12 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -80542,7 +80542,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -80562,7 +80562,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -80602,7 +80602,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -80724,7 +80724,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -80747,7 +80747,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -80761,7 +80761,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -80792,7 +80792,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -80832,13 +80832,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -80866,7 +80866,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -80903,7 +80903,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -80962,7 +80962,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -80976,7 +80976,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -81013,7 +81013,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -81047,7 +81047,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -81061,7 +81061,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -81132,11 +81132,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -81158,7 +81158,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -81167,7 +81167,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -81196,7 +81196,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -81206,7 +81206,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -81267,7 +81267,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -81301,7 +81301,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -81313,7 +81313,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -81355,7 +81355,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -81401,7 +81401,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -81466,13 +81466,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -81483,7 +81483,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -81585,7 +81585,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -81594,7 +81594,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -81605,7 +81605,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -81629,7 +81629,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -81716,7 +81716,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -81730,7 +81730,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -81761,7 +81761,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -81838,14 +81838,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -81875,13 +81875,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -81946,7 +81946,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -81980,7 +81980,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -81992,7 +81992,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -82001,7 +82001,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -82102,13 +82102,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -82128,7 +82128,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -82204,7 +82204,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -82213,22 +82213,22 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -82260,11 +82260,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -82331,7 +82331,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -82357,7 +82357,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -82371,7 +82371,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -82385,7 +82385,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -82419,7 +82419,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -82459,7 +82459,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -82490,7 +82490,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -82587,7 +82587,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -82607,13 +82607,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -82644,10 +82644,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -82714,7 +82714,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -82737,7 +82737,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -82862,7 +82862,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -82887,7 +82887,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -82964,7 +82964,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -83029,7 +83029,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -83046,7 +83046,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -83080,7 +83080,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -83140,13 +83140,13 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -83154,7 +83154,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -83168,7 +83168,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -83191,7 +83191,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -83256,7 +83256,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -83277,11 +83277,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -83298,7 +83298,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -83333,7 +83333,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -83403,7 +83403,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -83426,7 +83426,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -83514,7 +83514,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -83669,7 +83669,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -83677,7 +83677,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -83694,13 +83694,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -83846,7 +83846,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -83917,7 +83917,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -83928,7 +83928,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -83945,7 +83945,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -83985,7 +83985,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -83999,7 +83999,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -84115,7 +84115,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -84161,7 +84161,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -84231,7 +84231,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -84242,7 +84242,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -84265,7 +84265,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -84351,7 +84351,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -84363,11 +84363,11 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -84384,14 +84384,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -84425,11 +84425,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -84485,7 +84485,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -84527,13 +84527,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -84553,7 +84553,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -84632,7 +84632,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -84683,7 +84683,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -84712,12 +84712,12 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -84740,7 +84740,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -84800,7 +84800,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -84808,7 +84808,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -84937,7 +84937,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -84954,7 +84954,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -84977,7 +84977,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -85149,7 +85149,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -85200,7 +85200,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -85209,7 +85209,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -85220,7 +85220,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -85254,7 +85254,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -85291,13 +85291,13 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -85322,7 +85322,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -85356,7 +85356,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -85410,7 +85410,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -85445,14 +85445,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -85486,7 +85486,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -85568,7 +85568,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -85659,7 +85659,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -85668,7 +85668,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -85696,7 +85696,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -85716,7 +85716,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -85764,7 +85764,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -85815,7 +85815,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -85858,7 +85858,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -85892,7 +85892,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -85971,7 +85971,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -85980,7 +85980,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -86000,7 +86000,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -86022,7 +86022,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -86118,7 +86118,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -86144,7 +86144,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -86161,7 +86161,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -86172,7 +86172,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -86220,7 +86220,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -86237,7 +86237,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -86266,7 +86266,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -86274,7 +86274,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -86387,7 +86387,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -86529,7 +86529,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -86561,14 +86561,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -86599,11 +86599,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -86664,7 +86664,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -86693,7 +86693,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -86707,7 +86707,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -86721,7 +86721,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -86755,7 +86755,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -86769,7 +86769,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -86863,7 +86863,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -86914,7 +86914,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -86971,7 +86971,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -87010,7 +87010,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -87044,7 +87044,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -87117,7 +87117,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -87128,7 +87128,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -87159,7 +87159,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -87250,7 +87250,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -87259,7 +87259,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -87290,7 +87290,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -87324,7 +87324,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -87341,7 +87341,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -87383,7 +87383,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -87401,7 +87401,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -87438,7 +87438,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -87506,7 +87506,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -87551,11 +87551,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -87583,7 +87583,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -87604,7 +87604,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -87625,11 +87625,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -87734,7 +87734,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -87748,7 +87748,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -87808,7 +87808,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -87856,7 +87856,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -87930,10 +87930,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -87944,7 +87944,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -87958,13 +87958,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -88001,7 +88001,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -88009,7 +88009,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -88023,7 +88023,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -88054,7 +88054,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -88144,13 +88144,13 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -88172,7 +88172,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -88249,7 +88249,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -88269,7 +88269,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -88280,7 +88280,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -88306,7 +88306,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -88387,7 +88387,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -88421,7 +88421,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -88503,7 +88503,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -88511,7 +88511,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -88540,12 +88540,12 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -88647,7 +88647,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -88655,7 +88655,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -88672,7 +88672,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -88789,7 +88789,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -88820,7 +88820,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -88907,7 +88907,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -88916,7 +88916,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -89037,7 +89037,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -89048,7 +89048,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -89057,7 +89057,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -89071,7 +89071,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -89108,7 +89108,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -89198,11 +89198,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -89210,7 +89210,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -89219,7 +89219,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -89230,14 +89230,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -89268,7 +89268,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -89339,7 +89339,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -89362,7 +89362,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -89370,7 +89370,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -89379,7 +89379,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -89424,7 +89424,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -89498,7 +89498,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -89604,7 +89604,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -89615,7 +89615,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -89629,7 +89629,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -89658,7 +89658,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -89672,7 +89672,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -89768,7 +89768,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -89790,7 +89790,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -89807,7 +89807,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -89816,7 +89816,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -89850,7 +89850,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -89881,7 +89881,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -89901,7 +89901,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -90011,14 +90011,14 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -90052,12 +90052,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -90120,7 +90120,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -90134,10 +90134,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -90221,7 +90221,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -90247,12 +90247,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -90323,7 +90323,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -90364,7 +90364,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -90393,13 +90393,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -90464,7 +90464,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -90484,13 +90484,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -90504,7 +90504,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -90527,7 +90527,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -90572,7 +90572,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -90586,7 +90586,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -90603,7 +90603,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -90680,7 +90680,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -90700,7 +90700,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -90708,7 +90708,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -90717,7 +90717,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -90734,7 +90734,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -90774,12 +90774,12 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -90791,12 +90791,12 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -90825,7 +90825,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -90877,7 +90877,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -90894,7 +90894,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -90914,7 +90914,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -91041,7 +91041,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -91052,7 +91052,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -91066,7 +91066,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -91144,7 +91144,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -91175,7 +91175,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -91186,7 +91186,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -91265,7 +91265,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -91282,7 +91282,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -91325,13 +91325,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -91391,11 +91391,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -91420,7 +91420,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -91441,7 +91441,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -91458,7 +91458,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -91526,7 +91526,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -91552,7 +91552,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -91616,7 +91616,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -91645,7 +91645,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -91670,7 +91670,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -91690,7 +91690,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -91749,7 +91749,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -91884,7 +91884,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -91893,7 +91893,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -91904,13 +91904,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -91927,7 +91927,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -91941,7 +91941,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -92001,7 +92001,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -92012,7 +92012,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -92077,7 +92077,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -92094,7 +92094,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -92128,7 +92128,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -92137,7 +92137,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -92244,7 +92244,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -92261,7 +92261,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -92298,7 +92298,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -92355,12 +92355,12 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -92406,7 +92406,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -92451,11 +92451,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -92480,7 +92480,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -92489,7 +92489,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -92504,7 +92504,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -92522,7 +92522,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -92583,7 +92583,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -92690,7 +92690,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -92724,7 +92724,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -92801,7 +92801,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -92900,7 +92900,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -93019,7 +93019,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -93039,13 +93039,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -93073,7 +93073,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -93107,7 +93107,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -93133,7 +93133,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -93141,13 +93141,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -93212,7 +93212,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -93235,7 +93235,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -93280,7 +93280,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -93353,7 +93353,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -93370,7 +93370,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -93379,7 +93379,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -93387,10 +93387,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -93407,7 +93407,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -93433,7 +93433,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -93481,13 +93481,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -93518,7 +93518,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -93535,7 +93535,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -93634,7 +93634,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -93671,7 +93671,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -93733,7 +93733,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -93814,7 +93814,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -93831,7 +93831,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -93874,7 +93874,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -93938,7 +93938,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -93979,7 +93979,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -93987,7 +93987,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -93996,7 +93996,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -94011,11 +94011,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -94071,7 +94071,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -94082,7 +94082,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -94108,7 +94108,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -94136,7 +94136,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -94170,16 +94170,16 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -94187,7 +94187,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -94201,13 +94201,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -94224,7 +94224,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -94363,7 +94363,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -94374,7 +94374,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -94400,7 +94400,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -94454,19 +94454,19 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -94506,7 +94506,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -94517,7 +94517,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -94613,7 +94613,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -94641,7 +94641,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -94678,7 +94678,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -94695,7 +94695,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -94802,7 +94802,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -94819,7 +94819,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -94910,7 +94910,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -94924,7 +94924,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -94944,7 +94944,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -94958,7 +94958,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -95046,7 +95046,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -95063,7 +95063,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -95120,11 +95120,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -95135,11 +95135,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -95153,7 +95153,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -95168,7 +95168,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -95278,7 +95278,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -95309,7 +95309,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -95352,7 +95352,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -95391,7 +95391,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -95399,7 +95399,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -95535,13 +95535,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -95569,7 +95569,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -95663,7 +95663,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -95677,7 +95677,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -95752,7 +95752,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -95775,7 +95775,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -95834,7 +95834,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -95854,7 +95854,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -95894,7 +95894,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -95942,7 +95942,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -96002,7 +96002,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -96048,7 +96048,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -96062,13 +96062,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -96079,7 +96079,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -96102,7 +96102,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -96117,10 +96117,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -96171,11 +96171,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -96186,11 +96186,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -96207,14 +96207,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -96239,7 +96239,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -96249,7 +96249,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -96300,7 +96300,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -96314,10 +96314,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -96348,7 +96348,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -96357,7 +96357,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -96376,7 +96376,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -96530,7 +96530,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -96544,7 +96544,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -96567,7 +96567,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -96632,7 +96632,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -96660,13 +96660,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -96703,7 +96703,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -96877,7 +96877,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -96923,7 +96923,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -97067,7 +97067,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -97090,7 +97090,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -97121,7 +97121,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -97155,7 +97155,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -97206,7 +97206,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -97232,7 +97232,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -97280,7 +97280,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -97331,7 +97331,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -97439,7 +97439,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -97447,7 +97447,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -97473,12 +97473,12 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -97490,7 +97490,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -97532,7 +97532,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -97544,7 +97544,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -97558,7 +97558,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -97569,7 +97569,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -97643,7 +97643,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -97657,7 +97657,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -97666,7 +97666,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -97680,7 +97680,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -97694,7 +97694,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -97745,7 +97745,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -97762,13 +97762,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -97782,13 +97782,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -97822,7 +97822,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -97935,7 +97935,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -97967,14 +97967,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -97985,7 +97985,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -98000,13 +98000,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -98058,7 +98058,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -98075,7 +98075,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -98183,7 +98183,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -98200,7 +98200,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -98214,13 +98214,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -98234,7 +98234,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -98291,7 +98291,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -98336,13 +98336,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -98379,7 +98379,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -98396,7 +98396,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -98407,7 +98407,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -98424,7 +98424,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -98447,7 +98447,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -98555,7 +98555,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -98628,7 +98628,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -98648,7 +98648,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -98668,7 +98668,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -98680,7 +98680,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -98731,7 +98731,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -98768,7 +98768,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -98779,7 +98779,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -98797,7 +98797,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -98834,7 +98834,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -98891,7 +98891,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -98939,7 +98939,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -98965,7 +98965,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -99016,7 +99016,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -99097,7 +99097,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -99128,7 +99128,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -99156,7 +99156,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -99304,13 +99304,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -99338,7 +99338,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -99352,7 +99352,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -99489,7 +99489,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -99548,20 +99548,20 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -99586,7 +99586,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -99596,7 +99596,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -99621,11 +99621,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -99678,7 +99678,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -99695,7 +99695,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -99712,7 +99712,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -99752,10 +99752,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -99842,10 +99842,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -99862,7 +99862,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -99876,7 +99876,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -99887,7 +99887,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -99930,7 +99930,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -99941,7 +99941,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -99955,7 +99955,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -99963,13 +99963,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -99977,7 +99977,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -99986,7 +99986,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -100102,7 +100102,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -100116,13 +100116,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -100133,10 +100133,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -100147,7 +100147,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -100173,7 +100173,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -100318,7 +100318,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -100332,7 +100332,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -100397,7 +100397,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -100420,7 +100420,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -100440,7 +100440,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -100454,13 +100454,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -100471,7 +100471,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -100508,7 +100508,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -100525,7 +100525,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -100611,16 +100611,16 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -100634,7 +100634,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -100645,7 +100645,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -100739,7 +100739,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -100754,7 +100754,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -100771,14 +100771,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -100789,7 +100789,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -100803,11 +100803,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -100857,13 +100857,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -100874,7 +100874,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -100883,7 +100883,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -100931,13 +100931,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -101002,7 +101002,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -101022,7 +101022,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -101107,7 +101107,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -101124,7 +101124,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -101220,7 +101220,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -101234,7 +101234,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -101282,13 +101282,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -101336,7 +101336,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -101390,7 +101390,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -101430,7 +101430,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -101484,7 +101484,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -101527,7 +101527,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -101584,7 +101584,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -101636,7 +101636,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -101653,7 +101653,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -101676,7 +101676,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -101707,7 +101707,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -101800,7 +101800,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -101809,7 +101809,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -101818,11 +101818,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -101830,7 +101830,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -101851,25 +101851,25 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -101931,7 +101931,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -101953,7 +101953,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -101965,7 +101965,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -101982,12 +101982,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -101996,7 +101996,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -102070,7 +102070,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -102104,7 +102104,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -102154,7 +102154,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -102182,13 +102182,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -102199,7 +102199,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -102265,7 +102265,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -102307,7 +102307,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -102409,7 +102409,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -102488,10 +102488,10 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -102511,7 +102511,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -102545,7 +102545,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -102553,7 +102553,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -102593,7 +102593,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -102610,7 +102610,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -102667,7 +102667,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -102754,7 +102754,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -102763,15 +102763,15 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -102859,11 +102859,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -102888,13 +102888,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -102928,13 +102928,13 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -103005,7 +103005,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -103028,12 +103028,12 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -103114,7 +103114,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -103145,7 +103145,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -103159,7 +103159,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -103196,13 +103196,13 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -103210,7 +103210,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -103310,7 +103310,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -103321,13 +103321,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -103335,7 +103335,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -103361,7 +103361,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -103375,7 +103375,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -103426,7 +103426,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -103446,7 +103446,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -103557,7 +103557,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -103565,7 +103565,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -103650,7 +103650,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -103662,7 +103662,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -103676,7 +103676,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -103684,7 +103684,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -103693,7 +103693,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -103738,7 +103738,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -103755,7 +103755,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -103911,7 +103911,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -103929,11 +103929,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -103944,13 +103944,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -103965,7 +103965,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -103985,7 +103985,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -104052,7 +104052,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -104078,7 +104078,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -104089,7 +104089,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -104146,7 +104146,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -104169,7 +104169,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -104194,7 +104194,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -104307,7 +104307,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -104335,7 +104335,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -104355,7 +104355,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -104364,7 +104364,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -104395,7 +104395,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -104429,7 +104429,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -104443,7 +104443,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -104467,7 +104467,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -104498,7 +104498,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -104548,7 +104548,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -104568,7 +104568,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -104628,7 +104628,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -104654,13 +104654,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -104677,7 +104677,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -104720,7 +104720,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -104751,7 +104751,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -104781,7 +104781,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -104866,7 +104866,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -104874,7 +104874,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -104914,7 +104914,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -104928,13 +104928,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -105018,11 +105018,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -105056,7 +105056,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -105064,7 +105064,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -105073,7 +105073,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -105091,11 +105091,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -105229,7 +105229,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -105263,7 +105263,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -105277,7 +105277,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -105351,7 +105351,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -105388,7 +105388,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -105419,7 +105419,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -105439,14 +105439,14 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -105548,7 +105548,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -105556,7 +105556,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -105710,7 +105710,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -105727,7 +105727,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -105738,7 +105738,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -105775,7 +105775,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -105869,7 +105869,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -105880,7 +105880,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -105956,7 +105956,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -106007,7 +106007,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -106086,7 +106086,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -106111,7 +106111,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -106187,10 +106187,10 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -106219,13 +106219,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -106240,10 +106240,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -106254,11 +106254,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -106331,7 +106331,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -106365,7 +106365,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -106469,7 +106469,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -106512,7 +106512,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -106584,7 +106584,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -106602,7 +106602,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -106613,7 +106613,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -106816,7 +106816,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -106827,7 +106827,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -106850,7 +106850,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -106861,7 +106861,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -106943,7 +106943,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -106988,7 +106988,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -107031,7 +107031,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -107082,7 +107082,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -107251,11 +107251,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -107272,7 +107272,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -107283,7 +107283,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -107292,7 +107292,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -107304,7 +107304,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -107319,20 +107319,20 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -107426,7 +107426,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -107460,7 +107460,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -107488,7 +107488,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -107514,7 +107514,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -107525,7 +107525,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -107536,7 +107536,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -107545,7 +107545,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -107565,7 +107565,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -107619,13 +107619,13 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -107654,7 +107654,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -107665,10 +107665,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -107719,10 +107719,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -107736,13 +107736,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -107807,7 +107807,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -107841,7 +107841,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -107853,7 +107853,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -107862,7 +107862,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -107884,7 +107884,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -107949,7 +107949,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -107972,7 +107972,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -107980,7 +107980,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -108020,7 +108020,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -108036,7 +108036,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -108090,7 +108090,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -108186,7 +108186,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -108203,7 +108203,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -108212,7 +108212,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -108243,7 +108243,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -108298,7 +108298,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -108338,7 +108338,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -108349,13 +108349,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -108397,7 +108397,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -108417,7 +108417,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -108426,12 +108426,12 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -108460,7 +108460,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -108513,7 +108513,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -108530,7 +108530,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -108541,7 +108541,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -108564,7 +108564,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -108575,7 +108575,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -108661,7 +108661,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -108675,14 +108675,14 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -108693,7 +108693,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -108716,7 +108716,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -108781,11 +108781,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -108802,7 +108802,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -108810,7 +108810,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -108820,7 +108820,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -108848,7 +108848,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -108899,7 +108899,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -108919,7 +108919,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -108964,7 +108964,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -109032,7 +109032,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -109043,7 +109043,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -109151,7 +109151,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -109216,7 +109216,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -109279,7 +109279,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -109296,7 +109296,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -109383,7 +109383,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -109411,7 +109411,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -109434,7 +109434,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -109533,7 +109533,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -109564,7 +109564,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -109652,7 +109652,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -109663,7 +109663,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -109680,7 +109680,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -109723,7 +109723,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -109731,7 +109731,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -109881,7 +109881,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -109892,11 +109892,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -109910,14 +109910,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -109945,7 +109945,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -110055,7 +110055,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -110118,7 +110118,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -110149,13 +110149,13 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -110177,10 +110177,10 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -110197,7 +110197,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -110220,7 +110220,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -110285,7 +110285,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -110305,7 +110305,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -110316,7 +110316,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -110353,7 +110353,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -110376,7 +110376,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -110396,7 +110396,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -110407,7 +110407,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -110468,7 +110468,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -110479,7 +110479,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -110529,7 +110529,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -110569,7 +110569,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -110589,10 +110589,10 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -110612,7 +110612,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -110623,7 +110623,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -110643,7 +110643,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -110677,7 +110677,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -110696,7 +110696,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -110710,7 +110710,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -110744,7 +110744,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -110817,7 +110817,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -110829,7 +110829,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -110846,7 +110846,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -110942,11 +110942,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -110976,7 +110976,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -111000,10 +111000,10 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -111014,7 +111014,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -111099,7 +111099,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -111125,7 +111125,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -111136,7 +111136,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -111182,12 +111182,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -111196,7 +111196,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -111213,7 +111213,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -111332,7 +111332,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -111355,7 +111355,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -111380,10 +111380,10 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -111437,7 +111437,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -111448,7 +111448,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -111527,7 +111527,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -111541,7 +111541,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -111561,7 +111561,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -111570,7 +111570,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -111629,13 +111629,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -111675,7 +111675,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -111700,7 +111700,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -111760,7 +111760,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -111771,7 +111771,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -111805,7 +111805,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -111842,7 +111842,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -111885,7 +111885,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -111899,7 +111899,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -111914,7 +111914,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -111971,7 +111971,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -111989,18 +111989,18 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -112018,7 +112018,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -112036,7 +112036,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -112104,7 +112104,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -112158,7 +112158,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -112203,7 +112203,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -112214,7 +112214,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -112223,7 +112223,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -112237,7 +112237,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -112257,7 +112257,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -112325,7 +112325,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -112336,7 +112336,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -112356,7 +112356,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -112373,7 +112373,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -112430,7 +112430,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -112450,7 +112450,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -112481,7 +112481,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -112518,7 +112518,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -112538,7 +112538,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -112560,7 +112560,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -112569,7 +112569,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -112626,7 +112626,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -112643,7 +112643,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -112668,7 +112668,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -112767,7 +112767,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -112787,7 +112787,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -112812,7 +112812,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -112838,7 +112838,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -112869,10 +112869,10 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -112926,7 +112926,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -113027,7 +113027,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -113045,7 +113045,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -113063,11 +113063,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -113126,7 +113126,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -113174,7 +113174,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -113194,7 +113194,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -113256,7 +113256,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -113276,7 +113276,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -113293,7 +113293,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -113350,7 +113350,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -113381,7 +113381,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -113447,7 +113447,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -113456,7 +113456,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -113481,7 +113481,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -113552,7 +113552,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -113592,7 +113592,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -113606,7 +113606,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -113705,7 +113705,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -113717,7 +113717,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -113785,7 +113785,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -113856,7 +113856,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -113864,7 +113864,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -113918,7 +113918,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -113932,7 +113932,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -113949,7 +113949,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -113966,13 +113966,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -114043,7 +114043,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -114069,13 +114069,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -114107,7 +114107,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -114117,7 +114117,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -114161,7 +114161,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -114204,7 +114204,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -114331,7 +114331,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -114381,7 +114381,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -114472,7 +114472,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -114489,7 +114489,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -114517,7 +114517,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -114529,12 +114529,12 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -114554,7 +114554,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -114645,7 +114645,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -114673,7 +114673,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -114733,13 +114733,13 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -114752,7 +114752,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -114786,7 +114786,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -114797,7 +114797,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -114856,7 +114856,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -114890,7 +114890,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -114904,7 +114904,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -114916,7 +114916,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -114993,7 +114993,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -115109,10 +115109,10 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -115124,11 +115124,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -115142,13 +115142,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -115177,13 +115177,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -115286,7 +115286,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -115300,7 +115300,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -115320,7 +115320,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -115344,7 +115344,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -115381,7 +115381,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -115404,7 +115404,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -115432,7 +115432,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -115450,7 +115450,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -115462,7 +115462,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -115490,7 +115490,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -115515,7 +115515,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -115552,7 +115552,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -115560,13 +115560,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -115600,7 +115600,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -115651,7 +115651,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -115671,7 +115671,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -115705,7 +115705,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -115739,7 +115739,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -115824,13 +115824,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -115880,7 +115880,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -115917,7 +115917,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -115971,7 +115971,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -115988,7 +115988,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -116022,7 +116022,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -116033,7 +116033,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -116053,7 +116053,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -116076,7 +116076,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -116096,7 +116096,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -116192,7 +116192,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -116229,13 +116229,13 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -116351,7 +116351,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -116391,7 +116391,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -116460,7 +116460,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -116658,7 +116658,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -116693,7 +116693,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -116705,7 +116705,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -116723,7 +116723,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -116804,7 +116804,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -116838,7 +116838,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -116898,7 +116898,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -116923,7 +116923,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -116937,7 +116937,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -116960,7 +116960,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -117112,7 +117112,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -117176,7 +117176,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -117207,7 +117207,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -117243,7 +117243,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -117266,7 +117266,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -117280,7 +117280,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -117451,7 +117451,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -117459,7 +117459,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -117569,7 +117569,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -117603,7 +117603,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -117667,12 +117667,12 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -117698,7 +117698,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -117726,7 +117726,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -117766,7 +117766,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -117777,14 +117777,14 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -117804,10 +117804,10 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -117824,7 +117824,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -117838,7 +117838,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -117911,7 +117911,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -117922,7 +117922,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -117956,7 +117956,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -117976,7 +117976,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -118070,7 +118070,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -118186,7 +118186,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -118231,7 +118231,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -118260,7 +118260,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -118390,7 +118390,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -118401,7 +118401,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -118419,7 +118419,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -118443,7 +118443,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -118508,7 +118508,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -118551,7 +118551,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -118616,7 +118616,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -118639,7 +118639,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -118666,7 +118666,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -118675,7 +118675,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -118715,7 +118715,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -118749,7 +118749,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -118763,7 +118763,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -118780,7 +118780,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -118847,7 +118847,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -118861,7 +118861,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -118878,7 +118878,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -118903,7 +118903,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -118912,7 +118912,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -118963,7 +118963,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -118977,7 +118977,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -119011,7 +119011,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -119023,7 +119023,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -119080,7 +119080,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -119100,13 +119100,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -119114,7 +119114,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -119182,7 +119182,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -119194,7 +119194,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -119202,7 +119202,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -119222,7 +119222,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -119236,7 +119236,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -119296,7 +119296,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -119316,7 +119316,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -119324,7 +119324,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -119333,7 +119333,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -119347,7 +119347,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -119392,11 +119392,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -119424,13 +119424,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -119462,13 +119462,13 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -119536,7 +119536,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -119545,7 +119545,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -119553,7 +119553,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -119562,7 +119562,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -119579,7 +119579,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -119689,7 +119689,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -119712,7 +119712,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -119736,7 +119736,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -119826,7 +119826,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -119835,7 +119835,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -119846,7 +119846,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -119914,13 +119914,13 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -119931,13 +119931,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -119957,12 +119957,12 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -120025,7 +120025,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -120036,7 +120036,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -120053,7 +120053,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -120124,7 +120124,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -120144,7 +120144,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -120164,7 +120164,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -120285,7 +120285,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -120322,7 +120322,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -120370,7 +120370,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -120382,7 +120382,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -120574,11 +120574,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -120592,13 +120592,13 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -120606,14 +120606,14 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -120624,7 +120624,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -120642,7 +120642,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -120734,7 +120734,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -120859,7 +120859,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -120882,7 +120882,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -120896,13 +120896,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -120913,7 +120913,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -121020,7 +121020,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -121040,7 +121040,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -121068,7 +121068,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -121130,7 +121130,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -121141,7 +121141,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -121152,7 +121152,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -121161,7 +121161,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -121178,7 +121178,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -121297,7 +121297,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -121305,7 +121305,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -121359,7 +121359,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -121416,7 +121416,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -121470,7 +121470,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -121498,7 +121498,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -121515,7 +121515,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -121538,13 +121538,13 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -121566,13 +121566,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -121612,7 +121612,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'W',
@@ -121667,7 +121667,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -121685,7 +121685,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -121739,7 +121739,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -121747,11 +121747,11 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -121768,14 +121768,14 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -121786,7 +121786,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -121801,14 +121801,14 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -121930,7 +121930,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -121964,13 +121964,13 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -122027,7 +122027,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -122142,13 +122142,13 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -122292,7 +122292,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -122314,7 +122314,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -122338,13 +122338,13 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -122355,7 +122355,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -122409,14 +122409,14 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -122430,7 +122430,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -122450,7 +122450,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -122504,12 +122504,12 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -122597,7 +122597,7 @@ export default [
 				board: [
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -122609,7 +122609,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -122631,7 +122631,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -122660,12 +122660,12 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -122750,7 +122750,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -122758,7 +122758,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -122775,7 +122775,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -122883,7 +122883,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -122998,7 +122998,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -123007,7 +123007,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -123092,7 +123092,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -123112,7 +123112,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -123120,7 +123120,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -123146,7 +123146,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -123157,7 +123157,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -123217,7 +123217,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -123228,7 +123228,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -123245,7 +123245,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -123316,10 +123316,10 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -123345,7 +123345,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -123354,7 +123354,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -123363,7 +123363,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -123372,7 +123372,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -123479,7 +123479,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -123499,7 +123499,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
@@ -123510,7 +123510,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -123556,7 +123556,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -123607,7 +123607,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -123624,7 +123624,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 				],
@@ -123726,7 +123726,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -123771,7 +123771,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -123780,7 +123780,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -123791,7 +123791,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -123814,7 +123814,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -123879,7 +123879,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L1',
@@ -123902,7 +123902,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -123927,7 +123927,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -123987,7 +123987,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -124075,7 +124075,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -124086,7 +124086,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -124095,7 +124095,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -124145,7 +124145,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -124182,13 +124182,13 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -124216,7 +124216,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L3',
@@ -124239,7 +124239,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 					],
@@ -124251,7 +124251,7 @@ export default [
 							name: 'L1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -124344,11 +124344,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -124365,7 +124365,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -124373,7 +124373,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -124408,11 +124408,11 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -124471,7 +124471,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -124485,7 +124485,7 @@ export default [
 							name: 'H1',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -124519,7 +124519,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',
@@ -124621,7 +124621,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H1',
@@ -124684,7 +124684,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -124791,7 +124791,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -124805,15 +124805,15 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -124830,7 +124830,7 @@ export default [
 					],
 					[
 						{
-							name: 'S',
+							name: 'CASH',
 							scatter: true,
 						},
 						{
@@ -124850,7 +124850,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -124909,13 +124909,13 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -124923,7 +124923,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -124940,7 +124940,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -124966,7 +124966,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -125036,7 +125036,7 @@ export default [
 							name: 'L4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -125053,7 +125053,7 @@ export default [
 							name: 'H4',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H3',
@@ -125079,7 +125079,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -125101,7 +125101,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L4',
@@ -125169,7 +125169,7 @@ export default [
 							name: 'L3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -125186,7 +125186,7 @@ export default [
 							name: 'H3',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 					],
 					[
@@ -125214,7 +125214,7 @@ export default [
 							name: 'L2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -125268,7 +125268,7 @@ export default [
 							name: 'H2',
 						},
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'H4',
@@ -125315,7 +125315,7 @@ export default [
 					],
 					[
 						{
-							name: 'L5',
+							name: 'L4',
 						},
 						{
 							name: 'L2',

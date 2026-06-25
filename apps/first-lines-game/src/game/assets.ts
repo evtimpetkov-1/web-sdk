@@ -13,113 +13,91 @@ export default {
 		src: new URL('../../assets/sprites/pressToContinueText/MM_pressanywhere.json', import.meta.url).href,
 		preload: true,
 	},
-	H1: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h1.json', import.meta.url).href,
-			scale: 2,
-		},
+	// UI buttons — spin
+	spinActive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/spin_active.png', import.meta.url).href,
 	},
-	H2: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h2.json', import.meta.url).href,
-			scale: 2,
-		},
+	spinHover: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/spin_hover.png', import.meta.url).href,
 	},
-	H3: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h3.json', import.meta.url).href,
-			scale: 2,
-		},
+	spinInactive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/spin_inactive.png', import.meta.url).href,
 	},
-	H4: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h4.json', import.meta.url).href,
-			scale: 2,
-		},
+	// UI buttons — secondary
+	menuActive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/menu_active.png', import.meta.url).href,
 	},
-	H5: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h5.json', import.meta.url).href,
-			scale: 2,
-		},
+	menuHover: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/menu_hover.png', import.meta.url).href,
 	},
-	L1: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l1.json', import.meta.url).href,
-			scale: 2,
-		},
+	menuInactive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/menu_inactive.png', import.meta.url).href,
 	},
-	L2: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l2.json', import.meta.url).href,
-			scale: 2,
-		},
+	autoActive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/auto_active.png', import.meta.url).href,
 	},
-	L3: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l3.json', import.meta.url).href,
-			scale: 2,
-		},
+	autoHover: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/auto_hover.png', import.meta.url).href,
 	},
-	L4: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l4.json', import.meta.url).href,
-			scale: 2,
-		},
+	autoInactive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/auto_inactive.png', import.meta.url).href,
 	},
-	M: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols2/symbols2.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols2/M.json', import.meta.url).href,
-			scale: 2,
-		},
+	turboActive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/turbo_active.png', import.meta.url).href,
 	},
-	S: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols2/symbols2.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols2/S.json', import.meta.url).href,
-			scale: 2,
-		},
+	turboHover: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/turbo_hover.png', import.meta.url).href,
 	},
-	explosion: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols3/symbols3.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols3/explosion.json', import.meta.url).href,
-			scale: 2,
-		},
+	turboInactive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/turbo_inactive.png', import.meta.url).href,
 	},
-	W: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/symbols3/symbols3.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols3/W.json', import.meta.url).href,
-			scale: 2,
-		},
+	bonusActive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/bonus_active.png', import.meta.url).href,
 	},
-	reelsFrame: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/reelsFrame/reels_frame.json', import.meta.url).href,
+	bonusHover: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/bonus_hover.png', import.meta.url).href,
+	},
+	bonusInactive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/bonus_inactive.png', import.meta.url).href,
+	},
+	minusActive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/minus_active.png', import.meta.url).href,
+	},
+	minusHover: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/minus_hover.png', import.meta.url).href,
+	},
+	minusInactive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/minus_inactive.png', import.meta.url).href,
+	},
+	plusActive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/plus_active.png', import.meta.url).href,
+	},
+	plusHover: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/plus_hover.png', import.meta.url).href,
+	},
+	plusInactive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/plus_inactive.png', import.meta.url).href,
 	},
 	payFrame: {
 		type: 'sprite',
@@ -189,23 +167,30 @@ export default {
 			scale: 2,
 		},
 	},
-	foregroundAnimation: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/foregroundAnimation/mm_bg.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/foregroundAnimation/mm_bg.json', import.meta.url).href,
-			scale: 2,
-		},
+	backgroundBaseGame: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/background_base_game.jpg', import.meta.url).href,
 		preload: true,
 	},
-	foregroundFeatureAnimation: {
+	bgEffects: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/foregroundFeatureAnimation/mm_bg_feature.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/foregroundFeatureAnimation/mm_bg_feature.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/bgEffects/bg_effects.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/bgEffects/bg_effects.json', import.meta.url).href,
 			scale: 2,
 		},
-		preload: true,
+	},
+	reelsFrame: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/reels_frame.png', import.meta.url).href,
+	},
+	reelsBg: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/reels_bg.png', import.meta.url).href,
+	},
+	mineCart: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/mine_cart.png', import.meta.url).href,
 	},
 	tumble_multiplier: {
 		type: 'spine',
@@ -267,6 +252,10 @@ export default {
 	coins: {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/coin/SD2_Coin.json', import.meta.url).href,
+	},
+	chestAnim: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/chestAnim/chestAnim.json', import.meta.url).href,
 	},
 	sound: {
 		type: 'audio',
