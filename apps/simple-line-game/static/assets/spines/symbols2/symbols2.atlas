@@ -1,0 +1,16 @@
+symbols2.webp
+size:512,512
+filter:Linear,Linear
+scale:0.2
+S_glow
+bounds:0,0,280,280
+S
+bounds:282,0,200,200
+ring
+bounds:0,282,120,120
+radial
+bounds:122,282,80,80
+dropshadow
+bounds:204,282,68,68
+sparkle
+bounds:274,282,32,32
