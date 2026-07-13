@@ -135,38 +135,6 @@ export default {
 			scale: 2,
 		},
 	},
-	globalMultiplier: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/globalMultiplier/multiframe.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/globalMultiplier/multiframe.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
-	fsIntro: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/fsIntro/fs_screen.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/fs_screen.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
-	fsIntroNumber: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/fsIntro/fs_screen.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/fs_screen_number.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
-	fsOutroNumber: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/fsIntro/fs_screen.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/fs_total_number.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
 	backgroundBaseGame: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/background_base_game.jpg', import.meta.url).href,
@@ -188,54 +156,14 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/reels_bg.png', import.meta.url).href,
 	},
-	mineCart: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/mine_cart.png', import.meta.url).href,
-	},
-	tumble_multiplier: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/tumbleWin/tumble_win.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/tumbleWin/tumble_multiplier.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
-	tumble_win: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/tumbleWin/tumble_win.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/tumbleWin/tumble_win.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
-	reelhouse: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/reelhouse/reelhouse_glow.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/reelhouse/reelhouse_glow.json', import.meta.url).href,
-			scale: 2,
-		},
-	},
 	progressBar: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/progressBar/progressBar.json', import.meta.url).href,
 		preload: true,
 	},
-	freeSpins: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/freeSpins/freeSpins.json', import.meta.url).href,
-	},
 	winSmall: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/winSmall/MM_Localisation_winsmall.json', import.meta.url).href,
-	},
-	clusterWin: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/clusterWin/clusterpay.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/clusterWin/clusterpay.json', import.meta.url).href,
-			scale: 2,
-		},
 	},
 	transition: {
 		type: 'spine',
@@ -249,13 +177,17 @@ export default {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/symbolsStatic/symbolsStatic.json', import.meta.url).href,
 	},
+	W: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbolsNew/symbols.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbolsNew/W.json', import.meta.url).href,
+			scale: 2,
+		},
+	},
 	coins: {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/coin/SD2_Coin.json', import.meta.url).href,
-	},
-	chestAnim: {
-		type: 'spriteSheet',
-		src: new URL('../../assets/sprites/chestAnim/chestAnim.json', import.meta.url).href,
 	},
 	sound: {
 		type: 'audio',

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wild Symbol Animation Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1a1a2e; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+  canvas { image-rendering: auto; }
+  #info { position: fixed; bottom: 20px; color: #888; font-family: monospace; font-size: 14px; text-align: center; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="info">Wild symbol — spritesheet + scale pulse + glow overlay</div>
+<script>
+const COLS = 3, ROWS = 3, TOTAL = 9;
+const FW = 512, FH = 512;
+const DISPLAY = 400;
+const FPS = 12;
+
+// Scale pulse config
+const SCALE_MIN = 1.0;
+const SCALE_MAX = 1.12;
+const SCALE_SPEED = 2.5; // full cycles per second
+
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+// Extra room for scale-up
+canvas.width = DISPLAY * 1.3;
+canvas.height = DISPLAY * 1.3;
+ctx.imageSmoothingEnabled = true;
+
+const img = new Image();
+img.src = 'assets/sprites/symbolAnims/W_win.webp';
+img.onload = () => {
+  let frame = 0;
+  let lastFrame = 0;
+  const interval = 1000 / FPS;
+
+  function draw(ts) {
+    if (ts - lastFrame >= interval) {
+      frame = (frame + 1) % TOTAL;
+      lastFrame = ts;
+    }
+
+    // Scale pulse: smooth sine wave
+    const scaleT = (Math.sin(ts / 1000 * SCALE_SPEED * Math.PI * 2) + 1) / 2;
+    const scale = SCALE_MIN + (SCALE_MAX - SCALE_MIN) * scaleT;
+
+    const col = frame % COLS;
+    const row = Math.floor(frame / COLS);
+
+    const drawW = DISPLAY * scale;
+    const drawH = DISPLAY * scale;
+    const ox = (canvas.width - drawW) / 2;
+    const oy = (canvas.height - drawH) / 2;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Draw spritesheet frame scaled
+    ctx.drawImage(img, col * FW, row * FH, FW, FH, ox, oy, drawW, drawH);
+
+    // Additive glow overlay — golden radial gradient that pulses
+    const glowAlpha = 0.15 + 0.15 * Math.sin(ts / 1000 * SCALE_SPEED * Math.PI * 2 + Math.PI * 0.5);
+    const cx = canvas.width / 2;
+    const cy = canvas.height / 2;
+    const grad = ctx.createRadialGradient(cx, cy, drawW * 0.05, cx, cy, drawW * 0.5);
+    grad.addColorStop(0, `rgba(255, 200, 50, ${glowAlpha})`);
+    grad.addColorStop(0.5, `rgba(255, 160, 20, ${glowAlpha * 0.5})`);
+    grad.addColorStop(1, 'rgba(255, 120, 0, 0)');
+    ctx.globalCompositeOperation = 'screen';
+    ctx.fillStyle = grad;
+    ctx.fillRect(ox, oy, drawW, drawH);
+    ctx.globalCompositeOperation = 'source-over';
+
+    requestAnimationFrame(draw);
+  }
+  requestAnimationFrame(draw);
+};
+</script>
+</body>
+</html>

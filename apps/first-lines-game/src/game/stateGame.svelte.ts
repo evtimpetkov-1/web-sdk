@@ -17,15 +17,15 @@ import {
 	SPIN_OPTIONS_DEFAULT,
 	SPIN_OPTIONS_FAST,
 	INITIAL_SYMBOL_STATE,
-	SCATTER_LAND_SOUND_MAP,
+	CASH_LAND_SOUND_MAP,
 } from './constants';
 
 const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
-	if (rawSymbol.name === 'S') {
-		eventEmitter.broadcast({ type: 'soundScatterCounterIncrease' });
+	if (rawSymbol.name === 'CASH') {
+		eventEmitter.broadcast({ type: 'soundCashCounterIncrease' });
 		eventEmitter.broadcast({
 			type: 'soundOnce',
-			name: SCATTER_LAND_SOUND_MAP[scatterLandIndex()],
+			name: CASH_LAND_SOUND_MAP[cashLandIndex()],
 		});
 	}
 
@@ -76,7 +76,7 @@ export const stateGame = $state({
 	board,
 	gameType: 'basegame' as GameType,
 	multiplierBoard: [] as (MultiplierSymbol | undefined)[][],
-	scatterCounter: 0,
+	cashCounter: 0,
 });
 
 const boardLayout = () => ({
@@ -90,10 +90,10 @@ const boardLayout = () => ({
 const boardRaw = () =>
 	board.map((reel) => reel.reelState.symbols.map((reelSymbol) => reelSymbol.rawSymbol));
 
-const scatterLandIndex = () => {
-	if (stateGame.scatterCounter > 5) return 5;
-	if (stateGame.scatterCounter < 1) return 1;
-	return stateGame.scatterCounter as 1 | 2 | 3 | 4 | 5;
+const cashLandIndex = () => {
+	if (stateGame.cashCounter > 5) return 5;
+	if (stateGame.cashCounter < 1) return 1;
+	return stateGame.cashCounter as 1 | 2 | 3 | 4 | 5;
 };
 
 const { enhanceBoard } = createEnhanceBoard();
@@ -107,7 +107,7 @@ export const stateGameDerived = {
 	onSymbolLand,
 	boardLayout,
 	boardRaw,
-	scatterLandIndex,
+	cashLandIndex,
 	enhancedBoard,
 	getWinLevelDataByWinLevelAlias,
 };

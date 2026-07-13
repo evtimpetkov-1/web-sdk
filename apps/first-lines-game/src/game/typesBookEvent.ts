@@ -2,7 +2,6 @@ import type { BetType } from 'rgs-requests';
 
 import type { SymbolName, RawSymbol, GameType, Position } from './types';
 
-// book events shared with scatter game
 type BookEventReveal = {
 	index: number;
 	type: 'reveal';
@@ -24,30 +23,9 @@ type BookEventFinalWin = {
 	amount: number;
 };
 
-type BookEventFreeSpinTrigger = {
-	index: number;
-	type: 'freeSpinTrigger';
-	totalFs: number;
-	positions: Position[];
-};
-
-type BookEventUpdateFreeSpin = {
-	index: number;
-	type: 'updateFreeSpin';
-	amount: number;
-	total: number;
-};
-
 type BookEventSetWin = {
 	index: number;
 	type: 'setWin';
-	amount: number;
-	winLevel: number;
-};
-
-type BookEventFreeSpinEnd = {
-	index: number;
-	type: 'freeSpinEnd';
 	amount: number;
 	winLevel: number;
 };
@@ -71,25 +49,12 @@ type BookEventWinInfo = {
 	}[];
 };
 
-// customised
-type BookEventCreateBonusSnapshot = {
-	index: number;
-	type: 'createBonusSnapshot';
-	bookEvents: BookEvent[];
-};
-
 export type BookEvent =
 	| BookEventReveal
 	| BookEventWinInfo
 	| BookEventSetTotalWin
-	| BookEventFreeSpinTrigger
-	| BookEventUpdateFreeSpin
-	| BookEventCreateBonusSnapshot
 	| BookEventFinalWin
-	| BookEventSetWin
-	| BookEventFreeSpinEnd
-	// customised
-	| BookEventCreateBonusSnapshot;
+	| BookEventSetWin;
 
 export type Bet = BetType<BookEvent>;
 export type BookEventOfType<T> = Extract<BookEvent, { type: T }>;

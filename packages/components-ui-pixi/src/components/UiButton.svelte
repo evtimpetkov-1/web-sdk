@@ -22,6 +22,12 @@
 		turbo: 'turbo',
 		decrease: 'minus',
 		increase: 'plus',
+		payTable: 'payTable',
+		info: 'info',
+		settings: 'settings',
+		soundOn: 'soundOn',
+		soundOff: 'soundOff',
+		menuExit: 'menuExit',
 	};
 
 	const {

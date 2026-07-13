@@ -50,25 +50,25 @@
 	</Container>
 
 	<!-- BALANCE -->
-	<Container x={400} y={rowY} scale={0.4}>
+	<Container x={400} y={rowY} scale={0.45}>
 		{@render props.amountBalance({ stacked: true })}
 	</Container>
 
 	<!-- WIN -->
-	<Container x={cx} y={rowY} scale={0.4}>
+	<Container x={cx} y={rowY} scale={0.45}>
 		{@render props.amountWin({ stacked: true })}
 	</Container>
 
-	<!-- [-] BET [+] -->
-	<Container x={1020} y={rowY} scale={0.3}>
-		{@render props.buttonDecrease({ anchor: 0.5 })}
-	</Container>
-
-	<Container x={1110} y={rowY} scale={0.4}>
+	<!-- [-] BET [+] — BET first, buttons on top -->
+	<Container x={1110} y={rowY} scale={0.45}>
 		{@render props.amountBet({ stacked: true })}
 	</Container>
 
-	<Container x={1200} y={rowY} scale={0.3}>
+	<Container x={1040} y={rowY} scale={0.28}>
+		{@render props.buttonDecrease({ anchor: 0.5 })}
+	</Container>
+
+	<Container x={1180} y={rowY} scale={0.28}>
 		{@render props.buttonIncrease({ anchor: 0.5 })}
 	</Container>
 

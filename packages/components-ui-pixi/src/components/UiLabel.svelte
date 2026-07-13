@@ -17,42 +17,34 @@
 	const labelStyle = {
 		fontFamily: 'proxima-nova',
 		fontSize: UI_BASE_FONT_SIZE,
-		fill: WHITE,
+		fontWeight: '700',
+		fill: 0xf0d060,
+		letterSpacing: 2,
 	} as const;
 
 	const valueStyle = {
 		fontFamily: 'proxima-nova',
-		fontSize: UI_BASE_FONT_SIZE,
+		fontSize: UI_BASE_FONT_SIZE * 1.15,
+		fontWeight: '700',
 		fill: WHITE,
+		letterSpacing: 1,
 	} as const;
 </script>
 
 {#if props.stacked}
 	{#if props.tiled}
 		<UiSprite
-			y={-20}
-			anchor={{ x: 0.5, y: 0 }}
-			key="base_ticker"
-			width={UI_BASE_FONT_SIZE * 3 * (326 / 73)}
-			height={UI_BASE_FONT_SIZE * 3}
-			borderRadius={35}
-			backgroundColor={0x000000}
-			backgroundAlpha={0.35}
+			anchor={0.5}
+			scale={0.7}
 		/>
 	{/if}
-	<Text anchor={{ x: 0.5, y: 0 }} text={props.label} style={labelStyle} />
-	<Text anchor={{ x: 0.5, y: 0 }} text={props.value} style={valueStyle} y={UI_BASE_FONT_SIZE} />
+	<Text anchor={{ x: 0.5, y: 1 }} text={props.label} style={labelStyle} y={-10} />
+	<Text anchor={{ x: 0.5, y: 0 }} text={props.value} style={valueStyle} y={-2} />
 {:else}
 	{#if props.tiled}
 		<UiSprite
-			x={-90}
-			anchor={{ x: 0, y: 0.5 }}
-			key="base_ticker"
-			width={UI_BASE_FONT_SIZE * 3 * (326 / 73)}
-			height={UI_BASE_FONT_SIZE * 3}
-			borderRadius={35}
-			backgroundColor={0x000000}
-			backgroundAlpha={0.35}
+			anchor={0.5}
+			scale={0.7}
 		/>
 	{/if}
 	<Text anchor={{ x: 0, y: 0.5 }} text={props.label} style={labelStyle} />

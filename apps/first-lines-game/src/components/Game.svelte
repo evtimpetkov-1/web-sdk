@@ -21,9 +21,6 @@
 	import Board from './Board.svelte';
 	import Anticipations from './Anticipations.svelte';
 	import Win from './Win.svelte';
-	import FreeSpinIntro from './FreeSpinIntro.svelte';
-	import FreeSpinCounter from './FreeSpinCounter.svelte';
-	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
 	import I18nTest from './I18nTest.svelte';
 
@@ -62,22 +59,13 @@
 		</MainContainer>
 
 		<MainContainer label="mainBoard">
-			{@const isPortrait = context.stateLayoutDerived.layoutType() === 'portrait'}
-			<Sprite
-				key="mineCart"
-				label="mineCart"
-				anchor={{ x: 0.5, y: 1 }}
-				x={isPortrait ? 400 : 200}
-				y={isPortrait ? 500 : 800}
-				scale={isPortrait ? 0.3 : 0.4}
-			/>
 			<Board />
 			<Anticipations />
 		</MainContainer>
 
 		<UI>
 			{#snippet gameName()}
-				<UiGameName name="LINES GAME" />
+				<UiGameName name="CASH QUAKE" />
 			{/snippet}
 			{#snippet logo()}
 				<Text
@@ -94,11 +82,6 @@
 			{/snippet}
 		</UI>
 		<Win />
-		<FreeSpinIntro />
-		{#if ['desktop', 'landscape'].includes(context.stateLayoutDerived.layoutType())}
-			<FreeSpinCounter />
-		{/if}
-		<FreeSpinOutro />
 		<Transition />
 
 		<I18nTest />

@@ -98,7 +98,7 @@
 		/>
 
 		<!-- SPIN (hero) — centered -->
-		<Container x={cx} y={h - 280} scale={2.2}>
+		<Container x={cx} y={h - 280} scale={1.6}>
 			{@render props.buttonBet({ anchor: 0.5 })}
 		</Container>
 
@@ -123,31 +123,31 @@
 
 <!-- Info row (always visible) -->
 <MainContainer standard alignVertical="bottom">
-	<!-- Balance -->
-	<Container x={cx - 250} y={h - 90} scale={0.5}>
+	<!-- Balance (below menu) -->
+	<Container x={cx - 400} y={h - 90} scale={0.6}>
 		{@render props.amountBalance({ stacked: true })}
 	</Container>
 
-	<!-- Win -->
-	<Container x={cx} y={h - 90} scale={0.5}>
+	<!-- Win (center) -->
+	<Container x={cx} y={h - 90} scale={0.6}>
 		{@render props.amountWin({ stacked: true })}
 	</Container>
 
-	<!-- Bet or Free Spin Counter -->
+	<!-- Bet or Free Spin Counter (below bonus) -->
 	{#if stateUi.freeSpinCounterShow}
-		<Container x={cx + 250} y={h - 90} scale={0.5}>
+		<Container x={cx + 400} y={h - 90} scale={0.6}>
 			<LabelFreeSpinCounter stacked />
 		</Container>
 	{:else}
-		<Container x={cx + 250} y={h - 90} scale={0.5}>
+		<Container x={cx + 400} y={h - 90} scale={0.6}>
 			{@render props.amountBet({ stacked: true })}
 		</Container>
 
-		<Container x={cx + 250 - 100} y={h - 80} scale={0.4}>
+		<Container x={cx + 320} y={h - 90} scale={0.35}>
 			{@render props.buttonDecrease({ anchor: 0.5 })}
 		</Container>
 
-		<Container x={cx + 250 + 100} y={h - 80} scale={0.4}>
+		<Container x={cx + 480} y={h - 90} scale={0.35}>
 			{@render props.buttonIncrease({ anchor: 0.5 })}
 		</Container>
 	{/if}

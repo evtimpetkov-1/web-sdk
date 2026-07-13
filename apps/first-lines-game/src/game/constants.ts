@@ -78,7 +78,7 @@ export const zIndexes = {
 };
 
 // Symbol sprite definitions — frame names match symbolsStatic spritesheet
-// symbol_0=W, 1-4=H1-H4, 5-8=L1-L4, 9=CASH, 10=COLLECT, 11=DYNAMITE, 12=STONE, 13=MULT
+// symbol_0=W, 1-4=H1-H4, 5-8=L1-L4, 9=CASH, 10=COLLECT, 13=MULT
 const SYMBOL_SCALE = 0.82;
 const sym = (frame: string) => ({ type: 'sprite', assetKey: frame, sizeRatios: { width: SYMBOL_SCALE, height: SYMBOL_SCALE } });
 
@@ -93,8 +93,6 @@ const l3Sprite = sym('symbol_7.png');
 const l4Sprite = sym('symbol_8.png');
 const cashSprite = sym('symbol_9.png');
 const collectSprite = sym('symbol_10.png');
-const dynamiteSprite = sym('symbol_11.png');
-const stoneSprite = sym('symbol_12.png');
 const multSprite = sym('symbol_13.png');
 
 const allStates = (sprite: ReturnType<typeof sym>) => ({
@@ -106,8 +104,15 @@ const allStates = (sprite: ReturnType<typeof sym>) => ({
 	explosion: sprite,
 });
 
+const wWinSpine = {
+	type: 'spine',
+	assetKey: 'W',
+	animationName: 'W',
+	sizeRatios: { width: SYMBOL_SCALE * 0.57, height: SYMBOL_SCALE * 0.57 },
+};
+
 export const SYMBOL_INFO_MAP = {
-	W: allStates(wSprite),
+	W: { ...allStates(wSprite), win: wWinSpine },
 	H1: allStates(h1Sprite),
 	H2: allStates(h2Sprite),
 	H3: allStates(h3Sprite),
@@ -118,12 +123,11 @@ export const SYMBOL_INFO_MAP = {
 	L4: allStates(l4Sprite),
 	CASH: allStates(cashSprite),
 	COLLECT: allStates(collectSprite),
-	DYNAMITE: allStates(dynamiteSprite),
-	STONE: allStates(stoneSprite),
 	MULT: allStates(multSprite),
 } as const;
 
-export const SCATTER_LAND_SOUND_MAP = {
+// Cash-land sound map — plays escalating SFX as CASH symbols land (used for bonus trigger buildup)
+export const CASH_LAND_SOUND_MAP = {
 	1: 'sfx_scatter_stop_1',
 	2: 'sfx_scatter_stop_2',
 	3: 'sfx_scatter_stop_3',

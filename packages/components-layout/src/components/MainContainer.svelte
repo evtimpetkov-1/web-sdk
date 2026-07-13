@@ -34,7 +34,7 @@
 	const x = $derived.by(getX);
 </script>
 
-<Container {x} {y}>
+<Container {x} {y} label={containerProps.label ? `${containerProps.label}_outer` : undefined}>
 	<Container
 		{...containerProps}
 		x={mainLayout.x}
