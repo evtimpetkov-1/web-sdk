@@ -17,7 +17,14 @@
 	const props: Props = $props();
 </script>
 
-<!-- main -->
+<!-- win frame (behind symbol) -->
+{#if props.showWinFrame}
+	<SpineProvider x={props.x} y={props.y} key="payframe" width={SYMBOL_SIZE * 1.3}>
+		<SpineTrack trackIndex={0} animationName={'payframe'} loop />
+	</SpineProvider>
+{/if}
+
+<!-- main symbol (on top) -->
 <SymbolSpineMain
 	x={props.x}
 	y={props.y}
@@ -25,10 +32,3 @@
 	listener={props.listener}
 	loop={props.loop}
 />
-
-<!-- tumble frame -->
-{#if props.showWinFrame}
-	<SpineProvider x={props.x} y={props.y} key="anticipation" width={SYMBOL_SIZE * 0.19}>
-		<SpineTrack trackIndex={0} animationName={'payframe'} loop />
-	</SpineProvider>
-{/if}

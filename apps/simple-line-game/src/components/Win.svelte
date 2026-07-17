@@ -12,12 +12,13 @@
 	import { FadeContainer, WinCountUpProvider, ResponsiveText } from 'components-pixi';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
-	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
+	import { MainContainer } from 'components-layout';
 	import { OnMount } from 'components-shared';
 
+	import { OnPressFullScreen } from 'components-layout';
+	import { OnHotkey } from 'components-shared';
 	import WinCoins from './WinCoins.svelte';
 	import WinAnimation from './WinAnimation.svelte';
-	import PressToContinue from './PressToContinue.svelte';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getContext } from '../game/context';
 	import { winTextStyle } from '../game/textStyles';
@@ -29,11 +30,13 @@
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
 	let onCountUpComplete = $state(() => {});
+	let requestExitAnimation = $state(false);
 
 	context.eventEmitter.subscribeOnMount({
 		winShow: () => (show = true),
 		winHide: () => (show = false),
 		winUpdate: async (emitterEvent) => {
+			requestExitAnimation = false;
 			amount = emitterEvent.amount;
 			winLevelData = emitterEvent.winLevelData;
 			await waitForResolve((resolve) => (oncomplete = resolve));
@@ -44,40 +47,51 @@
 <FadeContainer {show}>
 	{#if winLevelData}
 		{@const isBigWin = winLevelData.type === 'big'}
+		{@const isMega = winLevelData.alias === 'mega' || winLevelData.alias === 'epic' || winLevelData.alias === 'max' || winLevelData.alias === 'superwin'}
 		{@const duration = winLevelData.presentDuration}
 		<WinCountUpProvider {amount} {duration} oncomplete={() => onCountUpComplete()}>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
-				{#if isBigWin}
-					<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.5} />
-				{/if}
-
 				<OnMount
 					onmount={async () => {
 						await startCountUp();
-						await waitForTimeout(300);
-						oncomplete();
+						if (isBigWin) {
+							await waitForTimeout(300);
+							requestExitAnimation = true;
+						} else {
+							oncomplete();
+						}
 					}}
 				/>
 
-				<MainContainer>
-					<Container
-						label="WinAnimationContainer"
-						x={context.stateGameDerived.boardLayout().x}
-						y={context.stateGameDerived.boardLayout().y}
-					>
-						{#if winLevelData?.animation}
-							<WinAnimation animationMap={winLevelData.animation}>
+				{#if isBigWin}
+					<!-- Full-screen big/mega win: background + kraken spine + shower spine + text -->
+					<WinAnimation {isMega} requestExit={requestExitAnimation} onexit={() => oncomplete()}>
+						<MainContainer>
+							<Container
+								label="WinTextContainer"
+								x={context.stateLayoutDerived.canvasSizes().width / 2 / context.stateLayoutDerived.mainLayout().scale}
+								y={context.stateLayoutDerived.canvasSizes().height * 0.7 / context.stateLayoutDerived.mainLayout().scale}
+							>
 								<ResponsiveText
 									anchor={0.5}
-									maxWidth={2130}
+									maxWidth={context.stateLayoutDerived.canvasSizes().width / context.stateLayoutDerived.mainLayout().scale}
 									text={bookEventAmountToCurrencyString(countUpAmount)}
 									style={{
 										...winTextStyle,
-										fontSize: SYMBOL_SIZE * 3.6,
+										fontSize: SYMBOL_SIZE * 0.7,
 									}}
 								/>
-							</WinAnimation>
-						{:else}
+							</Container>
+						</MainContainer>
+					</WinAnimation>
+				{:else}
+					<!-- Small/medium win: just text centered on board -->
+					<MainContainer>
+						<Container
+							label="WinTextContainer"
+							x={context.stateGameDerived.boardLayout().x}
+							y={context.stateGameDerived.boardLayout().y}
+						>
 							<ResponsiveText
 								anchor={0.5}
 								maxWidth={context.stateLayoutDerived.canvasSizes().width /
@@ -88,13 +102,16 @@
 									fontSize: SYMBOL_SIZE,
 								}}
 							/>
-						{/if}
-					</Container>
-				</MainContainer>
+						</Container>
+					</MainContainer>
+				{/if}
 
 				<WinCoins emit={!countUpCompleted} levelAlias={winLevelData?.alias} />
 
-				<PressToContinue onpress={() => (countUpCompleted ? oncomplete() : finishCountUp())} />
+				{#if !countUpCompleted}
+					<OnPressFullScreen onpress={() => finishCountUp()} />
+					<OnHotkey hotkey="Space" onpress={() => finishCountUp()} />
+				{/if}
 			{/snippet}
 		</WinCountUpProvider>
 	{/if}

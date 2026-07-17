@@ -27,12 +27,11 @@
 
 <SpineProvider
 	key="anticipation"
-	width={SYMBOL_SIZE * 0.56}
-	height={SYMBOL_SIZE * 1.6}
+	width={SYMBOL_SIZE * 1.2}
 	x={context.stateGameDerived.boardLayout().x -
 		context.stateGameDerived.boardLayout().width * 0.5 +
 		(props.reel.reelIndex + REEL_PADDING) * SYMBOL_SIZE}
-	y={context.stateGameDerived.boardLayout().y - SYMBOL_SIZE * 0.06}
+	y={context.stateGameDerived.boardLayout().y}
 >
 	<SpineTrack
 		trackIndex={0}

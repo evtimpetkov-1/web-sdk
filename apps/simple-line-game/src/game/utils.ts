@@ -59,5 +59,5 @@ export const getSymbolInfo = ({
 	rawSymbol: RawSymbol;
 	state: SymbolState;
 }) => {
-	return SYMBOL_INFO_MAP[rawSymbol.name][state];
+	return SYMBOL_INFO_MAP[rawSymbol.name][state] ?? SYMBOL_INFO_MAP[rawSymbol.name]['static'];
 };

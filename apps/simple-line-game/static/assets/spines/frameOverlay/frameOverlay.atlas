@@ -1,0 +1,16 @@
+frameOverlay.webp
+size:512,128
+filter:Linear,Linear
+scale:0.5
+caustic
+bounds:0,0,100,100
+gem_glow_teal
+bounds:102,0,60,60
+gem_glow_blue
+bounds:164,0,60,60
+shimmer
+bounds:226,0,80,40
+sparkle
+bounds:308,0,28,28
+bubble
+bounds:338,0,16,16

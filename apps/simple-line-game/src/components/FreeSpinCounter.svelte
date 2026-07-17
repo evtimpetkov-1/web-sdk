@@ -11,24 +11,17 @@
 
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
-	import { anchorToPivot, Text, Container, Sprite, type Sizes } from 'pixi-svelte';
+	import { anchorToPivot, Text, Container, type Sizes } from 'pixi-svelte';
 	import { gameTextStyle } from '../game/textStyles';
 
 	const context = getContext();
-	const PANEL_KEY_DESKTOP = 'Frame_FSCounter.png';
-	const PANEL_RATIO_DESKTOP = 824 / 622;
-	const panelKey = PANEL_KEY_DESKTOP;
 	const panelWidth = $derived(SYMBOL_SIZE * 2);
-	const panelSizes = $derived({
-		width: panelWidth,
-		height: panelWidth / PANEL_RATIO_DESKTOP,
-	});
 	const scale = 1;
 	const position = $derived({
 		x:
 			context.stateGameDerived.boardLayout().x -
 			context.stateGameDerived.boardLayout().width * 0.5 -
-			panelSizes.width -
+			panelWidth -
 			SYMBOL_SIZE * 0.7,
 		y:
 			context.stateGameDerived.boardLayout().y -
@@ -59,13 +52,11 @@
 	});
 </script>
 
+<!-- TODO: add custom free spin counter panel -->
 <MainContainer>
 	<FadeContainer {show} {...position} {scale}>
-		<Sprite key={panelKey} {...panelSizes} />
 		<Container
 			label="FreeSpinCounterContainer"
-			x={panelSizes.width * 0.5}
-			y={panelSizes.height * 0.48}
 			pivot={anchorToPivot({
 				sizes: textContainerSizes,
 				anchor: { x: 0.5, y: 0.5 },

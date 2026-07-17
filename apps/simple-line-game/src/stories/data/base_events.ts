@@ -190,6 +190,16 @@ export default {
 		amount: 400,
 		winLevel: 4,
 	},
+	setWinBig: {
+		type: 'setWin',
+		amount: 5000,
+		winLevel: 6,
+	},
+	setWinMega: {
+		type: 'setWin',
+		amount: 50000,
+		winLevel: 7,
+	},
 	freeSpinEnd: {
 		type: 'freeSpinEnd',
 		amount: 400,

@@ -4,7 +4,7 @@
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
-	import { App, Text, REM } from 'pixi-svelte';
+	import { App, Sprite, REM } from 'pixi-svelte';
 	import { stateModal } from 'state-shared';
 
 	import { UI, UiGameName } from 'components-ui-pixi';
@@ -71,17 +71,7 @@
 				<UiGameName name="KRAKEN'S WILDS" />
 			{/snippet}
 			{#snippet logo()}
-				<Text
-					anchor={{ x: 1, y: 0 }}
-					text="ADD YOUR LOGO"
-					style={{
-						fontFamily: 'proxima-nova',
-						fontSize: REM * 1.5,
-						fontWeight: '600',
-						lineHeight: REM * 2,
-						fill: 0xffffff,
-					}}
-				/>
+				<Sprite key="gameLogo" anchor={{ x: 1, y: 0 }} scale={0.15} />
 			{/snippet}
 		</UI>
 		<Win />

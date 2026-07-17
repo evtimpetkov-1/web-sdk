@@ -18,17 +18,17 @@ export const gameTextStyle = {
 	align: 'center',
 } as const satisfies TextStyleOptions;
 
-/** Gold style for win amounts and big win displays */
+/** Antique gold style for win amounts and big win displays */
 export const winTextStyle = {
 	fontFamily: FONT_FAMILY,
 	fontWeight: '900',
-	fill: '#FFD700',
-	stroke: { color: '#4a2800', width: 6 },
+	fill: '#C9A84C',
+	stroke: { color: '#2A1A08', width: 6 },
 	dropShadow: {
-		color: '#FF8C00',
-		blur: 12,
+		color: '#A07828',
+		blur: 14,
 		distance: 0,
-		alpha: 0.5,
+		alpha: 0.6,
 	},
 	letterSpacing: 2,
 	align: 'center',

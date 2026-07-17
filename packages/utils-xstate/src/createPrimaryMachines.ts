@@ -69,6 +69,8 @@ const handleUpdateBalance = ({ balanceAmountFromApi }: { balanceAmountFromApi: n
 	stateBet.balanceAmount = balanceAmountFromApi / API_AMOUNT_MULTIPLIER;
 };
 
+type RequestBetResult = Awaited<ReturnType<typeof requestBet>>;
+
 type Options<TBet extends BaseBet> = {
 	onResumeGameActive: (betToResume: TBet) => TBet;
 	onResumeGameInactive: (betToResume: TBet) => void;
@@ -76,6 +78,7 @@ type Options<TBet extends BaseBet> = {
 	onNewGameError: () => any;
 	onPlayGame: (bet: TBet) => Promise<void>;
 	checkIsBonusGame: (bet: TBet) => boolean;
+	onRequestBet?: () => Promise<RequestBetResult>;
 };
 
 function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
@@ -86,6 +89,7 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 		onNewGameError,
 		onPlayGame,
 		checkIsBonusGame,
+		onRequestBet,
 	} = options;
 
 	let balanceAmountFromApiHolder: null | number = null;
@@ -97,6 +101,7 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 		},
 		singleRoundWin: {
 			newGame: async () => {
+				if (onRequestBet) return; // dev mode: balance already handled
 				const endRoundData = await handleRequestEndRound();
 				if (endRoundData?.balance) {
 					balanceAmountFromApiHolder = endRoundData.balance.amount;
@@ -112,6 +117,7 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 		bonusWin: {
 			newGame: async () => undefined,
 			endGame: async () => {
+				if (onRequestBet) return; // dev mode: balance already handled
 				const data = await handleRequestEndRound();
 				if (data?.balance) {
 					handleUpdateBalance({ balanceAmountFromApi: data.balance.amount });
@@ -140,9 +146,15 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 	const newGame = fromPromise(async () => {
 		await onNewGameStart();
 
-		const data = await handleRequestBet({ onError: onNewGameError });
+		const data = onRequestBet
+			? await onRequestBet()
+			: await handleRequestBet({ onError: onNewGameError });
 
 		if (data) {
+			if (onRequestBet) {
+				stateBet.wageredBetAmount = stateBet.betAmount;
+			}
+
 			if (data.balance) {
 				handleUpdateBalance({ balanceAmountFromApi: data.balance.amount });
 			}

@@ -76,7 +76,8 @@ export const HIGH_SYMBOLS = ['H1', 'H2', 'H3', 'H4'];
 export const INITIAL_SYMBOL_STATE: SymbolState = 'static';
 
 // Spine skeleton bounds are 1400x1400, symbol occupies 1000x1000 (71.4%).
-// To match 120px static sprite: sizeRatio = 1/0.714 ≈ 1.4
+// To match SYMBOL_SIZE static sprite: sizeRatio = 1/0.714 ≈ 1.4
+// Requires loader scale=1 in assets.ts (scale=2 would double the rendered size).
 const SPINE_SYMBOL_SIZE = 1.4;
 
 const SPIN_OPTIONS_SHARED = {
@@ -233,21 +234,28 @@ export const SYMBOL_INFO_MAP = {
 			animationName: 'wild_dynamite_land',
 			sizeRatios: wSizeRatios,
 		},
+		idle: {
+			type: 'spine',
+			assetKey: 'W',
+			animationName: 'wild_idle',
+			sizeRatios: wSizeRatios,
+		},
 	},
 	S: {
 		postWinStatic: sStatic,
 		static: sStatic,
-		spin: {
-			type: 'spine',
-			assetKey: 'S',
-			animationName: 'scatter_spin',
-			sizeRatios: sSizeRatios,
-		},
+		spin: sStatic,
 		win: { type: 'spine', assetKey: 'S', animationName: 'scatter_win', sizeRatios: sSizeRatios },
 		land: {
 			type: 'spine',
 			assetKey: 'S',
 			animationName: 'scatter_land',
+			sizeRatios: sSizeRatios,
+		},
+		idle: {
+			type: 'spine',
+			assetKey: 'S',
+			animationName: 'scatter_idle',
 			sizeRatios: sSizeRatios,
 		},
 	},
@@ -257,6 +265,4 @@ export const SCATTER_LAND_SOUND_MAP = {
 	1: 'sfx_scatter_stop_1',
 	2: 'sfx_scatter_stop_2',
 	3: 'sfx_scatter_stop_3',
-	4: 'sfx_scatter_stop_4',
-	5: 'sfx_scatter_stop_5',
 } as const;

@@ -11,7 +11,7 @@ export type RawSymbol = {
 export type BetMode = keyof typeof config.betModes;
 export type GameType = keyof typeof config.paddingReels;
 
-export const SYMBOL_STATES = ['static', 'spin', 'land', 'win', 'postWinStatic'] as const;
+export const SYMBOL_STATES = ['static', 'spin', 'land', 'win', 'postWinStatic', 'idle'] as const;
 
 export type SymbolState = SpinningReelSymbolState | (typeof SYMBOL_STATES)[number];
 

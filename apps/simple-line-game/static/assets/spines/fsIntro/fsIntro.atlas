@@ -1,0 +1,16 @@
+fsIntro.webp
+size:1024,2048
+filter:Linear,Linear
+scale:0.5
+tablet
+bounds:0,0,720,405
+rune_border
+bounds:0,407,720,405
+tentacle_reach
+bounds:722,407,180,240
+tentacle_curled
+bounds:0,814,200,220
+sparkle
+bounds:202,814,40,40
+bubble
+bounds:244,814,32,32

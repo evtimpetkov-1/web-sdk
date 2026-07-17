@@ -8,7 +8,10 @@
 		| {
 				type: 'boardWithAnimateSymbols';
 				symbolPositions: Position[];
-		  };
+		  }
+		| { type: 'boardLoopSymbols'; symbolPositions: Position[] }
+		| { type: 'boardStopLoop' }
+		| { type: 'boardResetSymbols' };
 </script>
 
 <script lang="ts">
@@ -23,6 +26,7 @@
 	const context = getContext();
 
 	let show = $state(true);
+	let loopingPositions: Position[] = [];
 
 	context.eventEmitter.subscribeOnMount({
 		stopButtonClick: () => context.stateGameDerived.enhancedBoard.stop(),
@@ -35,10 +39,39 @@
 					const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
 					reelSymbol.symbolState = 'win';
 					await waitForResolve((resolve) => (reelSymbol.oncomplete = resolve));
-					reelSymbol.symbolState = 'postWinStatic';
+					if (reelSymbol.symbolState === 'win') {
+						reelSymbol.symbolState = 'postWinStatic';
+					}
 				});
 
 			await Promise.all(getPromises());
+		},
+		boardLoopSymbols: ({ symbolPositions }) => {
+			loopingPositions = symbolPositions;
+			for (const position of symbolPositions) {
+				const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
+				reelSymbol.symbolState = 'win';
+			}
+		},
+		boardStopLoop: () => {
+			for (const position of loopingPositions) {
+				const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
+				reelSymbol.symbolState = 'postWinStatic';
+			}
+			loopingPositions = [];
+		},
+		boardResetSymbols: () => {
+			loopingPositions = [];
+			for (const reel of context.stateGame.board) {
+				for (const reelSymbol of reel.reelState.symbols) {
+					if (reelSymbol.symbolState === 'win') {
+						reelSymbol.oncomplete();
+					}
+					if (reelSymbol.symbolState !== 'static' && reelSymbol.symbolState !== 'spin') {
+						reelSymbol.symbolState = 'static';
+					}
+				}
+			}
 		},
 	});
 

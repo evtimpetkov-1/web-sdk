@@ -6,6 +6,7 @@ import { createEnhanceBoard, createReelForSpinning } from 'utils-slots';
 import { createGetWinLevelDataByWinLevelAlias } from 'utils-shared/winLevel';
 
 import type { GameType, RawSymbol, SymbolState } from './types';
+import type { BookEventOfType } from './typesBookEvent';
 import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
 import { eventEmitter } from './eventEmitter';
@@ -32,7 +33,7 @@ const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
 	if (rawSymbol.name === 'W') {
 		eventEmitter.broadcast({
 			type: 'soundOnce',
-			name: 'sfx_multiplier_landing',
+			name: 'sfx_wild_land',
 		});
 	}
 };
@@ -46,7 +47,7 @@ const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
 		onReelStopping: () => {
 			eventEmitter.broadcast({
 				type: 'soundOnce',
-				name: 'sfx_reel_stop_1',
+				name: 'sfx_reel_stop',
 				forcePlay: !stateBet.isTurbo,
 			});
 		},
@@ -77,7 +78,19 @@ export const stateGame = $state({
 	gameType: 'basegame' as GameType,
 	multiplierBoard: [] as (MultiplierSymbol | undefined)[][],
 	scatterCounter: 0,
+	winLooping: false,
 });
+
+// Win cycle state — persists across book event handlers and into idle
+export const winCycleState = {
+	lastWins: null as BookEventOfType<'winInfo'>['wins'] | null,
+	abortController: null as AbortController | null,
+	cancel() {
+		this.abortController?.abort();
+		this.abortController = null;
+		this.lastWins = null;
+	},
+};
 
 const boardLayout = () => ({
 	x: stateLayoutDerived.mainLayout().width * 0.5,
@@ -91,9 +104,9 @@ const boardRaw = () =>
 	board.map((reel) => reel.reelState.symbols.map((reelSymbol) => reelSymbol.rawSymbol));
 
 const scatterLandIndex = () => {
-	if (stateGame.scatterCounter > 5) return 5;
+	if (stateGame.scatterCounter > 3) return 3;
 	if (stateGame.scatterCounter < 1) return 1;
-	return stateGame.scatterCounter as 1 | 2 | 3 | 4 | 5;
+	return stateGame.scatterCounter as 1 | 2 | 3;
 };
 
 const { enhanceBoard } = createEnhanceBoard();

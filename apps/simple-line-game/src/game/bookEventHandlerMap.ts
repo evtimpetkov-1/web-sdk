@@ -2,12 +2,12 @@ import _ from 'lodash';
 
 import { recordBookEvent, checkIsMultipleRevealEvents, type BookEventHandlerMap } from 'utils-book';
 import { stateBet, stateUi } from 'state-shared';
-import { sequence } from 'utils-shared/sequence';
+import { waitForTimeout } from 'utils-shared/wait';
 
 import { eventEmitter } from './eventEmitter';
 import { playBookEvent } from './utils';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
-import { stateGame, stateGameDerived } from './stateGame.svelte';
+import { stateGame, stateGameDerived, winCycleState } from './stateGame.svelte';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { Position } from './types';
 import config from './config';
@@ -20,13 +20,14 @@ const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) =>
 	if (winLevelData?.sound?.bgm) {
 		eventEmitter.broadcast({ type: 'soundMusic', name: winLevelData.sound.bgm });
 	}
-	if (winLevelData?.type === 'big') {
-		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_bigwin_coinloop' });
+	if (winLevelData?.presentDuration) {
+		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_countup' });
 	}
 };
 
 const winLevelSoundsStop = () => {
-	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bigwin_coinloop' });
+	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_countup' });
+	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_countup_end' });
 	if (stateBet.activeBetModeKey === 'SUPERSPIN' || stateGame.gameType === 'freegame') {
 		// check if SUPERSPIN, when finishing a bet.
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
@@ -48,22 +49,43 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	reveal: async (bookEvent: BookEventOfType<'reveal'>, { bookEvents }: BookEventContext) => {
 		const isBonusGame = checkIsMultipleRevealEvents({ bookEvents });
 		if (isBonusGame) {
+			// Clean up previous spin's win state so Win.svelte unmounts and re-mounts
+			eventEmitter.broadcast({ type: 'winHide' });
+			eventEmitter.broadcast({ type: 'boardResetSymbols' });
+			winCycleState.lastWins = null;
+
 			eventEmitter.broadcast({ type: 'stopButtonEnable' });
 			recordBookEvent({ bookEvent });
 		}
 
 		stateGame.gameType = bookEvent.gameType;
+		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_reelspin' });
 		await stateGameDerived.enhancedBoard.spin({
 			revealEvent: bookEvent,
 			paddingBoard: config.paddingReels[bookEvent.gameType],
 		});
+		eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_reelspin' });
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
+
+		// Breathing room for no-win free spins so player can see the board
+		if (bookEvent.gameType === 'freegame') {
+			const nextEvent = bookEvents[bookEvent.index + 1];
+			if (nextEvent?.type !== 'winInfo') {
+				await waitForTimeout(1000);
+			}
+		}
 	},
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_winlevel_small' });
-		await sequence(bookEvent.wins, async (win) => {
-			await animateSymbols({ positions: win.positions });
-		});
+		winCycleState.lastWins = bookEvent.wins;
+
+		// All win symbols animate once simultaneously
+		const allPositions = _.uniqWith(
+			bookEvent.wins.flatMap((win) => win.positions),
+			_.isEqual,
+		);
+
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_win_line' });
+		await animateSymbols({ positions: allPositions });
 	},
 	setTotalWin: async (bookEvent: BookEventOfType<'setTotalWin'>) => {
 		stateBet.winBookEventAmount = bookEvent.amount;
@@ -112,11 +134,14 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	freeSpinEnd: async (bookEvent: BookEventOfType<'freeSpinEnd'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];
 
+		eventEmitter.broadcast({ type: 'winHide' });
+		eventEmitter.broadcast({ type: 'boardResetSymbols' });
+		winCycleState.lastWins = null;
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
 		stateGame.gameType = 'basegame';
 		eventEmitter.broadcast({ type: 'boardFrameGlowHide' });
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_youwon_panel' });
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_totalwin_panel' });
 		winLevelSoundsPlay({ winLevelData });
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinOutroCountUp',
@@ -135,6 +160,16 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];
 
+		// Start looping all win symbols during countup
+		if (winCycleState.lastWins) {
+			const allPositions = _.uniqWith(
+				winCycleState.lastWins.flatMap((win) => win.positions),
+				_.isEqual,
+			);
+			eventEmitter.broadcast({ type: 'boardLoopSymbols', symbolPositions: allPositions });
+			stateGame.winLooping = true;
+		}
+
 		eventEmitter.broadcast({ type: 'winShow' });
 		winLevelSoundsPlay({ winLevelData });
 		await eventEmitter.broadcastAsync({
@@ -143,10 +178,75 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			winLevelData,
 		});
 		winLevelSoundsStop();
-		eventEmitter.broadcast({ type: 'winHide' });
+
+		// Stop looping — winbox stays visible, hidden later by finalWin
+		eventEmitter.broadcast({ type: 'boardStopLoop' });
+		stateGame.winLooping = false;
 	},
-	finalWin: async (bookEvent: BookEventOfType<'finalWin'>) => {
-		// Do nothing
+	finalWin: async (bookEvent: BookEventOfType<'finalWin'>, { bookEvents }: BookEventContext) => {
+		const hasFs = bookEvents.some(
+			(e) => e.type === 'freeSpinTrigger' || e.type === 'freeSpinEnd',
+		);
+
+		if (hasFs || !winCycleState.lastWins?.length) {
+			winCycleState.lastWins = null;
+			eventEmitter.broadcast({ type: 'winHide' });
+			return;
+		}
+
+		const wins = winCycleState.lastWins;
+		const abortController = new AbortController();
+		winCycleState.abortController = abortController;
+
+		// Hide winbox after 2s (cancellable)
+		const hideTimeout = setTimeout(() => eventEmitter.broadcast({ type: 'winHide' }), 2000);
+		abortController.signal.addEventListener(
+			'abort',
+			() => {
+				clearTimeout(hideTimeout);
+				eventEmitter.broadcast({ type: 'winHide' });
+			},
+			{ once: true },
+		);
+
+		// Second cycle: per-winline animation (fire-and-forget)
+		(async () => {
+			const abortableWait = (ms: number) =>
+				new Promise<void>((resolve) => {
+					if (abortController.signal.aborted) {
+						resolve();
+						return;
+					}
+					const t = setTimeout(resolve, ms);
+					abortController.signal.addEventListener(
+						'abort',
+						() => {
+							clearTimeout(t);
+							resolve();
+						},
+						{ once: true },
+					);
+				});
+
+			// Brief pause before starting cycle
+			await abortableWait(500);
+
+			while (!abortController.signal.aborted) {
+				for (const win of wins) {
+					if (abortController.signal.aborted) break;
+
+					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_payline_switch' });
+					await eventEmitter.broadcastAsync({
+						type: 'boardWithAnimateSymbols',
+						symbolPositions: win.positions,
+					});
+
+					if (abortController.signal.aborted) break;
+
+					await abortableWait(500);
+				}
+			}
+		})();
 	},
 	// customised
 	createBonusSnapshot: async (bookEvent: BookEventOfType<'createBonusSnapshot'>) => {

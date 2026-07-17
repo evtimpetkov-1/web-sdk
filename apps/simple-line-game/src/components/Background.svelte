@@ -36,5 +36,14 @@
 </FadeContainer>
 
 <FadeContainer label="FeatureBackgroundContainer" show={showFeatureBackground} duration={SECOND} zIndex={-1}>
-	<Sprite key={bgKey} anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} />
+	<Sprite key="freeSpinBg" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} />
+	<SpineProvider
+		key="reelsOverlay"
+		x={canvas.width / 2}
+		y={canvas.height / 2}
+		width={overlayScale}
+		height={overlayScale}
+	>
+		<SpineTrack trackIndex={0} animationName="idle" loop={true} />
+	</SpineProvider>
 </FadeContainer>

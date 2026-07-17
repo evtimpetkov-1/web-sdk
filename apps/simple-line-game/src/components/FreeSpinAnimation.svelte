@@ -1,66 +1,64 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	import {
-		anchorToPivot,
-		Container,
-		SpineProvider,
-		SpineSlot,
-		SpineTrack,
-		type Sizes,
-	} from 'pixi-svelte';
-	import { MainContainer } from 'components-layout';
+	import { BlurFilter } from 'pixi.js';
+	import { Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { SYMBOL_SIZE, BOARD_DIMENSIONS } from '../game/constants';
 
 	type Props = {
-		children: Snippet<[{ sizes: Sizes }]>;
+		blur?: boolean;
+		children: Snippet;
 	};
 
 	const props: Props = $props();
-
-	type AnimationName = 'intro' | 'idle';
-
 	const context = getContext();
-	const BACKGROUND_RATIO = 920 / 720;
-	const BACKGROUND_WIDTH = SYMBOL_SIZE * BOARD_DIMENSIONS.x;
-	const BACKGROUND_SIZES = {
-		width: BACKGROUND_WIDTH,
-		height: BACKGROUND_WIDTH / BACKGROUND_RATIO,
-	};
-	const PANEL_SIZES = {
-		width: SYMBOL_SIZE * BOARD_DIMENSIONS.x,
-		height: SYMBOL_SIZE * BOARD_DIMENSIONS.x,
-	};
+	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
 
-	let animationName = $state<AnimationName>('intro');
+	// Background: cover mode for non-square source image
+	const bgCover = $derived(Math.max(canvas.width, canvas.height));
+	const cx = $derived(canvas.width / 2);
+	const cy = $derived(canvas.height / 2);
+
+	// Blur filter for intro overlay (sharp for gameplay)
+	const blurFilter = new BlurFilter({ strength: 6, quality: 4 });
+	const bgFilters = $derived(props.blur ? [blurFilter] : []);
+
+	// Spine animation: intro -> idle loop
+	let spineAnim = $state<'intro' | 'idle'>('intro');
 </script>
 
-<MainContainer>
-	<Container
-		label="FreeSpinAnimationContainer"
-		x={context.stateGameDerived.boardLayout().x}
-		y={context.stateGameDerived.boardLayout().y}
-		pivot={anchorToPivot({ anchor: 0.5, sizes: BACKGROUND_SIZES })}
-	>
-		<SpineProvider
-			key="fsIntro"
-			width={PANEL_SIZES.width}
-			x={PANEL_SIZES.width * 0.5}
-			y={PANEL_SIZES.height * 0.4}
-		>
-			<SpineTrack
-				trackIndex={0}
-				{animationName}
-				loop={animationName === 'idle'}
-				listener={{
-					complete: () => (animationName = 'idle'),
-				}}
-			/>
-			<SpineSlot slotName="slot_text_placeholder">
-				{@render props.children({ sizes: BACKGROUND_SIZES })}
-			</SpineSlot>
-		</SpineProvider>
-	</Container>
-</MainContainer>
+<!-- Layer 1: FS background (full canvas, cover mode) -->
+<Sprite
+	key="freeSpinBg"
+	anchor={0.5}
+	x={cx}
+	y={cy}
+	width={bgCover}
+	height={bgCover}
+	filters={bgFilters}
+/>
+
+<!-- Layer 2: fsIntro Spine (tentacles + tablet + sparkles + bubbles) -->
+<SpineProvider
+	key="fsIntro"
+	width={canvas.width}
+	x={cx}
+	y={cy}
+>
+	<SpineTrack
+		trackIndex={0}
+		animationName={spineAnim}
+		loop={spineAnim === 'idle'}
+		listener={{
+			complete: () => {
+				if (spineAnim === 'intro') {
+					spineAnim = 'idle';
+				}
+			},
+		}}
+	/>
+</SpineProvider>
+
+<!-- Layer 3: Text content (children) -->
+{@render props.children()}

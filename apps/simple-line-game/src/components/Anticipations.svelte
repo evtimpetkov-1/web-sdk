@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { OnMount } from 'components-shared';
-	import { SECOND } from 'constants-shared/time';
 
 	import { getContext } from '../game/context';
 	import Anticipation from './Anticipation.svelte';
@@ -14,14 +13,7 @@
 {#if hasAnticipation}
 	<OnMount
 		onmount={() => {
-			context.eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_anticipation' });
-			context.eventEmitter.broadcast({
-				type: 'soundFade',
-				name: 'sfx_anticipation',
-				from: 0,
-				to: 1,
-				duration: SECOND,
-			});
+			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_anticipation' });
 
 			return () => {
 				context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_anticipation' });
