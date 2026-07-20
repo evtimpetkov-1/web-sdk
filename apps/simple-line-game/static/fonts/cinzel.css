@@ -1,4 +1,12 @@
 @font-face {
+  font-family: 'Bebas Neue';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./bebas-neue.woff2') format('woff2');
+}
+
+@font-face {
   font-family: 'Cinzel';
   font-style: normal;
   font-weight: 700;

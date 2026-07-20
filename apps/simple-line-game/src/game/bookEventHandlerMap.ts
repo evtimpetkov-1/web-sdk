@@ -85,7 +85,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		);
 
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_win_line' });
-		await animateSymbols({ positions: allPositions });
+		// Start animations but proceed after 500ms so winbox shows early
+		await Promise.race([
+			animateSymbols({ positions: allPositions }),
+			waitForTimeout(500),
+		]);
 	},
 	setTotalWin: async (bookEvent: BookEventOfType<'setTotalWin'>) => {
 		stateBet.winBookEventAmount = bookEvent.amount;

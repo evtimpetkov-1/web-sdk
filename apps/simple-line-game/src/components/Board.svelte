@@ -39,7 +39,7 @@
 					const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
 					reelSymbol.symbolState = 'win';
 					await waitForResolve((resolve) => (reelSymbol.oncomplete = resolve));
-					if (reelSymbol.symbolState === 'win') {
+					if (reelSymbol.symbolState === 'win' && !context.stateGame.winLooping) {
 						reelSymbol.symbolState = 'postWinStatic';
 					}
 				});

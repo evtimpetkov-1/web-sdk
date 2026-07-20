@@ -23,5 +23,5 @@
 	isMask
 	x={-SYMBOL_SIZE}
 	width={context.stateGameDerived.boardLayout().width + SYMBOL_SIZE * 2}
-	height={context.stateGameDerived.boardLayout().height}
+	height={context.stateGameDerived.boardLayout().height - 5}
 />

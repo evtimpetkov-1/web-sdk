@@ -64,11 +64,11 @@
 		{@render props.amountBet({ stacked: true })}
 	</Container>
 
-	<Container x={w * 0.53} y={rowY} scale={0.28}>
+	<Container x={w * 0.58 - 65} y={rowY} scale={0.5}>
 		{@render props.buttonDecrease({ anchor: 0.5 })}
 	</Container>
 
-	<Container x={w * 0.63} y={rowY} scale={0.28}>
+	<Container x={w * 0.58 + 65} y={rowY} scale={0.5}>
 		{@render props.buttonIncrease({ anchor: 0.5 })}
 	</Container>
 
@@ -78,7 +78,7 @@
 	</Container>
 
 	<!-- SPIN — hero, extends above bar -->
-	<Container x={w - 152} y={rowY} scale={0.9}>
+	<Container x={w - 152} y={rowY - 20} scale={0.9}>
 		{@render props.buttonBet({ anchor: 0.5 })}
 	</Container>
 

@@ -67,6 +67,7 @@
 					anchor={0.5}
 					width={buttonProps.sizes.width}
 					height={buttonProps.sizes.height}
+					alpha={active !== undefined && !active ? 0.5 : 1}
 				/>
 			{/if}
 		{:else}

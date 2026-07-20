@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	import { Container } from 'pixi-svelte';
+	import { Container, Sprite } from 'pixi-svelte';
 	import { FadeContainer, WinCountUpProvider, ResponsiveText } from 'components-pixi';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
@@ -92,6 +92,7 @@
 							x={context.stateGameDerived.boardLayout().x}
 							y={context.stateGameDerived.boardLayout().y}
 						>
+							<Sprite key="winGlow" anchor={0.5} />
 							<ResponsiveText
 								anchor={0.5}
 								maxWidth={context.stateLayoutDerived.canvasSizes().width /

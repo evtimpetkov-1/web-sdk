@@ -42,7 +42,7 @@
 <!-- Layer 2: fsIntro Spine (tentacles + tablet + sparkles + bubbles) -->
 <SpineProvider
 	key="fsIntro"
-	width={canvas.width}
+	width={Math.min(canvas.width, canvas.height * 2)}
 	x={cx}
 	y={cy}
 >

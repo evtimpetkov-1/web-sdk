@@ -8,41 +8,11 @@ export const REEL_PADDING = 0.53;
 
 // initial board (padded top and bottom)
 export const INITIAL_BOARD: RawSymbol[][] = [
-	[
-		{ name: 'L2' },
-		{ name: 'H1' },
-		{ name: 'L1' },
-		{ name: 'H3' },
-		{ name: 'L3' },
-	],
-	[
-		{ name: 'H2' },
-		{ name: 'L2' },
-		{ name: 'W' },
-		{ name: 'L4' },
-		{ name: 'H4' },
-	],
-	[
-		{ name: 'L4' },
-		{ name: 'H4' },
-		{ name: 'S' },
-		{ name: 'H1' },
-		{ name: 'L1' },
-	],
-	[
-		{ name: 'H3' },
-		{ name: 'L3' },
-		{ name: 'H2' },
-		{ name: 'L2' },
-		{ name: 'H1' },
-	],
-	[
-		{ name: 'L1' },
-		{ name: 'H3' },
-		{ name: 'L4' },
-		{ name: 'H4' },
-		{ name: 'L3' },
-	],
+	[{ name: 'L2' }, { name: 'H1' }, { name: 'L1' }, { name: 'H3' }, { name: 'L3' }],
+	[{ name: 'H2' }, { name: 'L2' }, { name: 'W' }, { name: 'L4' }, { name: 'H4' }],
+	[{ name: 'L4' }, { name: 'H4' }, { name: 'S' }, { name: 'H1' }, { name: 'L1' }],
+	[{ name: 'H3' }, { name: 'L3' }, { name: 'H2' }, { name: 'L2' }, { name: 'H1' }],
+	[{ name: 'L1' }, { name: 'H3' }, { name: 'L4' }, { name: 'H4' }, { name: 'L3' }],
 ];
 
 export const BOARD_DIMENSIONS = { x: INITIAL_BOARD.length, y: INITIAL_BOARD[0].length - 2 };
@@ -85,12 +55,12 @@ const SPIN_OPTIONS_SHARED = {
 	reelSpinSpeedBeforeBounce: 4,
 	reelPaddingMultiplierNormal: 1.2,
 	reelPaddingMultiplierAnticipated: 10,
-	reelSpinDelay: 145,
+	reelSpinDelay: 100,
 };
 
 export const SPIN_OPTIONS_DEFAULT = {
 	...SPIN_OPTIONS_SHARED,
-	reelPreSpinSpeed: 2,
+	reelPreSpinSpeed: 5,
 	reelSpinSpeed: 3,
 	reelBounceSizeMulti: 0.3,
 };

@@ -65,11 +65,11 @@
 			{@render props.buttonTurbo({ anchor: 0.5 })}
 		</Container>
 
-		<Container y={DESKTOP_BASE_SIZE * 0.5 - 220} x={880 + 640 - 120} scale={0.3}>
+		<Container y={DESKTOP_BASE_SIZE * 0.5 - 220} x={880 + 640 - 90} scale={0.50}>
 			{@render props.buttonDecrease({ anchor: 0.5 })}
 		</Container>
 
-		<Container y={DESKTOP_BASE_SIZE * 0.5 - 220} x={880 + 640 + 120} scale={0.3}>
+		<Container y={DESKTOP_BASE_SIZE * 0.5 - 220} x={880 + 640 + 90} scale={0.50}>
 			{@render props.buttonIncrease({ anchor: 0.5 })}
 		</Container>
 

@@ -13,13 +13,6 @@ export default {
 			rtp: 0.965,
 			max_win: 5000.0,
 		},
-		bonus: {
-			cost: 80.0,
-			feature: false,
-			buyBonus: true,
-			rtp: 0.965,
-			max_win: 5000.0,
-		},
 	},
 	paylines: {
 		'1': [0, 0, 0, 0, 0],

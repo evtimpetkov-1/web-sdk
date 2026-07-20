@@ -5,8 +5,6 @@
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
 	import { App, Sprite, REM } from 'pixi-svelte';
-	import { stateModal } from 'state-shared';
-
 	import { UI, UiGameName } from 'components-ui-pixi';
 	import { GameVersion, Modals } from 'components-ui-html';
 
@@ -31,11 +29,6 @@
 
 	onMount(() => (context.stateLayout.showLoadingScreen = true));
 
-	context.eventEmitter.subscribeOnMount({
-		buyBonusConfirm: () => {
-			stateModal.modal = { name: 'buyBonusConfirm' };
-		},
-	});
 </script>
 
 <App>

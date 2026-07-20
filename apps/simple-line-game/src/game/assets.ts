@@ -84,22 +84,10 @@ export default {
 			scale: 1,
 		},
 	},
-	// UI buttons spritesheets (multipack)
+	// UI buttons spritesheet
 	uiButtons0: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/uiButtons/uiButtons-0.json', import.meta.url).href,
-	},
-	uiButtons1: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/uiButtons/uiButtons-1.json', import.meta.url).href,
-	},
-	uiButtons2: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/uiButtons/uiButtons-2.json', import.meta.url).href,
-	},
-	uiButtons3: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/uiButtons/uiButtons-3.json', import.meta.url).href,
 	},
 	frameEdgeDeep: {
 		type: 'sprite',
@@ -184,6 +172,10 @@ export default {
 	symbolsStatic: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/symbolsStatic/symbols.json', import.meta.url).href,
+	},
+	winGlow: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/win_glow.webp', import.meta.url).href,
 	},
 	sound: {
 		type: 'audio',

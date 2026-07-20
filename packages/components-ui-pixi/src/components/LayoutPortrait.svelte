@@ -143,11 +143,11 @@
 			{@render props.amountBet({ stacked: true })}
 		</Container>
 
-		<Container x={cx + 320} y={h - 90} scale={0.35}>
+		<Container x={cx + 400 - 110} y={h - 90} scale={0.55}>
 			{@render props.buttonDecrease({ anchor: 0.5 })}
 		</Container>
 
-		<Container x={cx + 480} y={h - 90} scale={0.35}>
+		<Container x={cx + 400 + 110} y={h - 90} scale={0.55}>
 			{@render props.buttonIncrease({ anchor: 0.5 })}
 		</Container>
 	{/if}
