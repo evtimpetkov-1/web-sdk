@@ -72,6 +72,32 @@
 		width: 70%;
 		display: flex;
 		align-items: center;
+		-webkit-appearance: none;
+		appearance: none;
+		height: 6px;
+		background: var(--modal-slider-track);
+		border-radius: 3px;
+		outline: none;
+
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			appearance: none;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background: var(--modal-slider-thumb);
+			cursor: pointer;
+			border: none;
+		}
+
+		&::-moz-range-thumb {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			background: var(--modal-slider-thumb);
+			cursor: pointer;
+			border: none;
+		}
 	}
 
 	.value {

@@ -28,7 +28,7 @@
 	.toggle {
 		position: relative;
 		display: inline-block;
-		color: white;
+		color: var(--modal-text, white);
 		font-weight: normal;
 		cursor: pointer;
 
@@ -45,15 +45,18 @@
 	}
 
 	.content {
-		font-weight: bold;
+		font-weight: 600;
 		white-space: nowrap;
+		font-size: 0.9rem;
+		letter-spacing: 0.03em;
 	}
 
 	.content:after {
 		content: '▼';
 		vertical-align: middle;
-		color: white;
+		color: var(--modal-text-dim, rgba(255, 255, 255, 0.6));
 		margin-left: 0.5rem;
+		font-size: 0.7em;
 	}
 
 	.content.toggled:after {

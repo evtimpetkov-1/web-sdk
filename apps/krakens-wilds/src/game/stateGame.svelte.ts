@@ -96,13 +96,22 @@ export const winCycleState = {
 	},
 };
 
-const boardLayout = () => ({
-	x: stateLayoutDerived.mainLayout().width * 0.5,
-	y: stateLayoutDerived.mainLayout().height * 0.5,
-	anchor: { x: 0.5, y: 0.5 },
-	pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
-	...BOARD_SIZES,
-});
+const boardLayout = () => {
+	const w = stateLayoutDerived.mainLayout().width;
+	const h = stateLayoutDerived.mainLayout().height;
+	const layout = stateLayoutDerived.layoutType();
+	// Offset board upward in landscape/desktop to account for the bottom bar
+	const yOffset = layout === 'landscape' ? -50 : layout === 'desktop' ? -30 : 0;
+	const scale = layout === 'portrait' ? 1.15 : layout === 'landscape' ? 1.35 : 1;
+	return {
+		x: w * 0.5,
+		y: h * 0.5 + yOffset,
+		scale,
+		anchor: { x: 0.5, y: 0.5 },
+		pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
+		...BOARD_SIZES,
+	};
+};
 
 const boardRaw = () =>
 	board.map((reel) => reel.reelState.symbols.map((reelSymbol) => reelSymbol.rawSymbol));

@@ -19,9 +19,10 @@
 		<BaseIcon
 			width="100%"
 			height="2rem"
+			background={option === stateUi.autoSpinsSingleWinLimitText ? 'var(--modal-bg-active)' : 'var(--modal-btn-bg)'}
 			border={option === stateUi.autoSpinsSingleWinLimitText
-				? '2px white solid'
-				: '2px black solid'}
+				? '2px solid var(--modal-border-selected)'
+				: '1px solid var(--modal-border)'}
 		/>
 		<BaseButtonContent>
 			<span

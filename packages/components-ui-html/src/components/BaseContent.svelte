@@ -22,5 +22,6 @@
 		z-index: var(--zIndex);
 		max-width: var(--maxWidth);
 		gap: 1rem;
+		color: var(--modal-text);
 	}
 </style>

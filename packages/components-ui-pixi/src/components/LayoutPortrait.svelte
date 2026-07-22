@@ -2,17 +2,20 @@
 	import { Tween } from 'svelte/motion';
 	import { cubicInOut } from 'svelte/easing';
 
-	import { stateUi } from 'state-shared';
-	import { BLACK } from 'constants-shared/colors';
-	import { FadeContainer } from 'components-pixi';
+	import { stateUi, stateModal, stateBet, stateBetDerived } from 'state-shared';
+	import { BLACK, WHITE } from 'constants-shared/colors';
+	import { FadeContainer, Button } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
-	import { Container, Rectangle } from 'pixi-svelte';
+	import { Container, Rectangle, Text, Sprite } from 'pixi-svelte';
 	import { waitForResolve } from 'utils-shared/wait';
+	import { numberToCurrencyString } from 'utils-shared/amount';
+	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
 	import LabelFreeSpinCounter from './LabelFreeSpinCounter.svelte';
 	import ButtonDrawer from './ButtonDrawer.svelte';
 	import type { LayoutUiProps } from '../types';
 	import { getContext } from '../context';
+	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: LayoutUiProps = $props();
 	const context = getContext();
@@ -21,9 +24,35 @@
 	const h = $derived(context.stateLayoutDerived.mainLayoutStandard().height);
 	const cx = $derived(w * 0.5);
 
-	// Spin button: 150 base * 2.2 scale = 330px visual
-	// Secondary buttons: 150 base * 0.8 scale = 120px visual
-	// Ratio: spin is ~2.75x secondary buttons
+	// Bottom bar text styles (same as landscape)
+	const labelStyle = {
+		fontFamily: 'proxima-nova',
+		fontSize: 36,
+		fontWeight: '700',
+		fill: 0xc0c8d0,
+		letterSpacing: 2,
+	} as const;
+
+	const valueStyle = {
+		fontFamily: 'proxima-nova',
+		fontSize: 44,
+		fontWeight: '700',
+		fill: WHITE,
+		letterSpacing: 1,
+	} as const;
+
+	// Reactive values for bottom bar
+	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
+	const winValue = $derived(bookEventAmountToCurrencyString(stateBet.winBookEventAmount));
+	const betValue = $derived(numberToCurrencyString(stateBetDerived.betCost()));
+
+	// Bet button handler
+	const betDisabled = $derived(!context.stateXstateDerived.isIdle());
+	const onBetPress = () => {
+		if (betDisabled) return;
+		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		stateModal.modal = { name: 'betAmountMenu' };
+	};
 
 	const DRAWER_Y = {
 		unfold: 0,
@@ -78,77 +107,91 @@
 	{@render props.gameName()}
 </Container>
 
-<Container x={context.stateLayoutDerived.canvasSizes().width - 20}>
-	{@render props.logo()}
-</Container>
+<!-- Logo: centered above the slot -->
+<MainContainer standard>
+	<Container x={cx + 215} y={h * 0.06} scale={2.8}>
+		{@render props.logo()}
+	</Container>
+</MainContainer>
 
 <!-- Drawer container: panel + action row -->
 <MainContainer standard alignVertical="bottom">
 	<Container y={drawerTween.current}>
-		<!-- Semi-transparent dark panel -->
-		<Rectangle
-			x={cx}
-			y={h - 470}
-			anchor={{ x: 0.5, y: 0 }}
-			width={w + 20}
-			height={520}
-			backgroundColor={0x000000}
-			backgroundAlpha={0.5}
-			borderRadius={30}
-		/>
-
 		<!-- SPIN (hero) — centered -->
-		<Container x={cx} y={h - 280} scale={1.6}>
+		<Container x={cx} y={h - 400} scale={1.6}>
 			{@render props.buttonBet({ anchor: 0.5 })}
 		</Container>
 
-		<!-- Secondary buttons — vertically centered with spin button -->
-		<Container x={cx - 280} y={h - 280} scale={0.8}>
-			{@render props.buttonAutoSpin({ anchor: 0.5 })}
-		</Container>
-
-		<Container x={cx - 280 - 130} y={h - 280} scale={0.8}>
+		<!-- Left: menu, autoplay -->
+		<Container x={140} y={h - 280} scale={0.8}>
 			{@render props.buttonMenu({ anchor: 0.5 })}
 		</Container>
 
-		<Container x={cx + 280} y={h - 280} scale={0.8}>
+		<Container x={290} y={h - 280} scale={0.8}>
+			{@render props.buttonAutoSpin({ anchor: 0.5 })}
+		</Container>
+
+		<!-- Right: turbo, bet -->
+		<Container x={w - 290} y={h - 280} scale={0.8}>
 			{@render props.buttonTurbo({ anchor: 0.5 })}
 		</Container>
 
-		<Container x={cx + 280 + 130} y={h - 280} scale={0.8}>
-			{@render props.buttonBuyBonus({ anchor: 0.5 })}
+		<Container x={w - 140} y={h - 280} scale={0.8}>
+			<Button
+				anchor={0.5}
+				sizes={{ width: 150, height: 150 }}
+				disabled={betDisabled}
+				onpress={onBetPress}
+			>
+				{#snippet children({ center, hovered, pressed })}
+					<Sprite
+						{...center}
+						key="betButton"
+						anchor={0.5}
+						width={150}
+						height={150}
+						alpha={betDisabled ? 0.4 : hovered || pressed ? 1 : 0.85}
+					/>
+				{/snippet}
+			</Button>
 		</Container>
 	</Container>
 </MainContainer>
 
-<!-- Info row (always visible) -->
+<!-- Bottom info bar -->
 <MainContainer standard alignVertical="bottom">
-	<!-- Balance (below menu) -->
-	<Container x={cx - 400} y={h - 90} scale={0.6}>
-		{@render props.amountBalance({ stacked: true })}
+	<Rectangle
+		x={cx}
+		y={h - 130}
+		anchor={{ x: 0.5, y: 0 }}
+		width={w + 20}
+		height={140}
+		backgroundColor={0x000000}
+		backgroundAlpha={0.7}
+		borderRadius={14}
+	/>
+
+	<!-- BALANCE -->
+	<Container x={150} y={h - 65}>
+		<Text text={i18nDerived.balance()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+		<Text text={balanceValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
 	</Container>
 
-	<!-- Win (center) -->
-	<Container x={cx} y={h - 90} scale={0.6}>
-		{@render props.amountWin({ stacked: true })}
+	<!-- WIN -->
+	<Container x={cx} y={h - 65}>
+		<Text text={i18nDerived.win()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+		<Text text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
 	</Container>
 
-	<!-- Bet or Free Spin Counter (below bonus) -->
+	<!-- BET or Free Spin Counter -->
 	{#if stateUi.freeSpinCounterShow}
-		<Container x={cx + 400} y={h - 90} scale={0.6}>
+		<Container x={w - 150} y={h - 65} scale={0.48}>
 			<LabelFreeSpinCounter stacked />
 		</Container>
 	{:else}
-		<Container x={cx + 400} y={h - 90} scale={0.6}>
-			{@render props.amountBet({ stacked: true })}
-		</Container>
-
-		<Container x={cx + 400 - 110} y={h - 90} scale={0.55}>
-			{@render props.buttonDecrease({ anchor: 0.5 })}
-		</Container>
-
-		<Container x={cx + 400 + 110} y={h - 90} scale={0.55}>
-			{@render props.buttonIncrease({ anchor: 0.5 })}
+		<Container x={w - 150} y={h - 65}>
+			<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+			<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
 		</Container>
 	{/if}
 

@@ -34,7 +34,11 @@ l3
 bounds:808,846,200,200
 l4
 bounds:0,1048,200,200
+ring
+bounds:202,1048,120,120
 radial
-bounds:202,1048,80,80
+bounds:324,1048,80,80
 dropshadow
-bounds:284,1048,68,68
+bounds:406,1048,68,68
+sparkle
+bounds:476,1048,32,32

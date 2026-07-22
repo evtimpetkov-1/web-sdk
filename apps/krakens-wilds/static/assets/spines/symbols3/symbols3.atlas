@@ -6,7 +6,13 @@ W_glow
 bounds:0,0,280,280
 W
 bounds:282,0,200,200
+ring
+bounds:0,282,120,120
+expl_flash
+bounds:122,282,120,120
 radial
-bounds:0,282,80,80
+bounds:244,282,80,80
 dropshadow
-bounds:82,282,68,68
+bounds:326,282,68,68
+sparkle
+bounds:396,282,32,32

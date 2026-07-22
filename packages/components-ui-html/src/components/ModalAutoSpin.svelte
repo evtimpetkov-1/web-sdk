@@ -22,7 +22,7 @@
 			</BaseTitle>
 			<BaseScrollable type="column">
 				{#snippet children({ element })}
-					<div class="subtitle" data-test="number-of-rounds">{i18nDerived.numberOfRounds()}</div>
+					<div style="color: var(--modal-text-dim); font-size: 0.9rem;" data-test="number-of-rounds">{i18nDerived.numberOfRounds()}</div>
 					<AutoSpinsOptions />
 					<AutoSpinsAdvanced
 						ontoggle={(duration) => {

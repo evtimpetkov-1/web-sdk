@@ -115,20 +115,29 @@
 
 	.close-button-wrap {
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: 0.5rem;
+		right: 0.5rem;
 		z-index: var(--zIndex);
 	}
 
 	.close-button {
 		cursor: pointer;
-		color: white;
-		font-size: 3rem;
-		font-weight: 900;
-		background-color: transparent;
-		border-color: transparent;
-		line-height: 0px; /* to remove the button style influence */
-		width: 3rem;
-		height: 3rem;
+		color: var(--modal-text, white);
+		font-size: 1.8rem;
+		font-weight: 400;
+		background: var(--modal-btn-bg, rgba(255, 255, 255, 0.1));
+		border: 1px solid var(--modal-border, rgba(255, 255, 255, 0.15));
+		border-radius: 50%;
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		line-height: 1;
+		transition: background 0.15s ease;
+
+		&:hover {
+			background: var(--modal-btn-bg-hover, rgba(255, 255, 255, 0.2));
+		}
 	}
 </style>

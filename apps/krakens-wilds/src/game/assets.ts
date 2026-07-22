@@ -181,6 +181,10 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/fs_counter_bg.webp', import.meta.url).href,
 	},
+	betButton: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/betButton.png', import.meta.url).href,
+	},
 	sound: {
 		type: 'audio',
 		src: new URL('../../assets/audio/sounds.json', import.meta.url).href,

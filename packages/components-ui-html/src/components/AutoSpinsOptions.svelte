@@ -27,7 +27,10 @@
 		<BaseIcon
 			width="100%"
 			height="2rem"
-			border={option === stateUi.autoSpinsText ? '2px white solid' : '2px black solid'}
+			background={option === stateUi.autoSpinsText ? 'var(--modal-bg-active)' : 'var(--modal-btn-bg)'}
+			border={option === stateUi.autoSpinsText
+				? '2px solid var(--modal-border-selected)'
+				: '1px solid var(--modal-border)'}
 		/>
 		<BaseButtonContent>
 			<span style="font-size: 1rem;" class:infinity={option === '∞'} data-test="round-options">

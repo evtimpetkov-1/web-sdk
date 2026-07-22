@@ -25,15 +25,22 @@
 				{i18nDerived.betMenu()}
 			</BaseTitle>
 			<BaseScrollable type="column">
-				<span>{i18nDerived.selectYourBet()}</span>
+				<span style="color: var(--modal-text-dim); font-size: 0.9rem;">{i18nDerived.selectYourBet()}</span>
 				<BetMenuAmountToggle />
 				<BetMenuAmountGrid />
 			</BaseScrollable>
 			<BaseButtonWrap type="full-width">
 				<Button data-test="confirm-button" onclick={confirm}>
-					<BaseIcon width="100%" height="3rem" />
+					<BaseIcon
+						width="100%"
+						height="3rem"
+						background="var(--modal-btn-confirm-bg)"
+						border="1px solid var(--modal-btn-confirm-border)"
+					/>
 					<BaseButtonContent>
-						<span style="font-size: 1rem;">{i18nDerived.confirm()}</span>
+						<span style="font-size: 1rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;"
+							>{i18nDerived.confirm()}</span
+						>
 					</BaseButtonContent>
 				</Button>
 			</BaseButtonWrap>

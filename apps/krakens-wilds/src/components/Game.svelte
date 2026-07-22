@@ -4,7 +4,7 @@
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
-	import { App, Sprite, REM } from 'pixi-svelte';
+	import { App, Sprite, REM, Container } from 'pixi-svelte';
 	import { UI, UiGameName } from 'components-ui-pixi';
 	import { GameVersion, Modals } from 'components-ui-html';
 
@@ -21,9 +21,9 @@
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
-	import I18nTest from './I18nTest.svelte';
 
 	const context = getContext();
+	const bl = $derived(context.stateGameDerived.boardLayout());
 
 	onMount(() => (context.stateLayout.showLoadingScreen = true));
 
@@ -49,11 +49,15 @@
 		<Sound />
 
 		<MainContainer label="BoardFrameContainer">
-			<BoardFrame />
+			<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
+				<BoardFrame />
+			</Container>
 		</MainContainer>
 
 		<MainContainer label="BoardContainer">
-			<Board />
+			<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
+				<Board />
+			</Container>
 		</MainContainer>
 
 		<UI>
@@ -68,13 +72,11 @@
 		<FreeSpinIntro />
 		<FreeSpinOutro />
 		<Transition />
-
-		<I18nTest />
 	{/if}
 </App>
 
 <Modals>
 	{#snippet version()}
-		<GameVersion version="0.0.0" />
+		<GameVersion version="1.0.0" />
 	{/snippet}
 </Modals>

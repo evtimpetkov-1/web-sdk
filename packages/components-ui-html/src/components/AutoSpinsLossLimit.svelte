@@ -19,7 +19,10 @@
 		<BaseIcon
 			width="100%"
 			height="2rem"
-			border={option === stateUi.autoSpinsLossLimitText ? '2px white solid' : '2px black solid'}
+			background={option === stateUi.autoSpinsLossLimitText ? 'var(--modal-bg-active)' : 'var(--modal-btn-bg)'}
+			border={option === stateUi.autoSpinsLossLimitText
+				? '2px solid var(--modal-border-selected)'
+				: '1px solid var(--modal-border)'}
 		/>
 		<BaseButtonContent>
 			<span
