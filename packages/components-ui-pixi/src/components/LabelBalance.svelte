@@ -17,7 +17,7 @@
 	const value = $derived(numberToCurrencyString(balanceTween.current));
 
 	$effect(() => {
-		balanceTween.set(stateBet.balanceAmount);
+		balanceTween.set(stateBet.balanceAmount, { duration: 0 });
 	});
 </script>
 

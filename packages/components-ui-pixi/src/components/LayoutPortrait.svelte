@@ -180,7 +180,7 @@
 	/>
 
 	<MainContainer standard alignVertical="bottom">
-		<Container x={cx} y={h - 500}>
+		<Container x={cx - 410} y={h - 500}>
 			<Container y={-640} scale={0.7}>
 				{@render props.buttonPayTable({ anchor: 0.5 })}
 			</Container>

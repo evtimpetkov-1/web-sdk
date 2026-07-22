@@ -17,7 +17,7 @@
 	const value = $derived(bookEventAmountToCurrencyString(winBookEventAmountTween.current));
 
 	$effect(() => {
-		winBookEventAmountTween.set(stateBet.winBookEventAmount);
+		winBookEventAmountTween.set(stateBet.winBookEventAmount, { duration: 0 });
 	});
 </script>
 
