@@ -1,22 +1,89 @@
 <script lang="ts">
-	import { stateUi } from 'state-shared';
-	import { BLACK } from 'constants-shared/colors';
+	import { stateUi, stateConfig } from 'state-shared';
+	import { BLACK, WHITE } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
-	import { Container, Rectangle } from 'pixi-svelte';
+	import { Container, Rectangle, Text } from 'pixi-svelte';
+	import { numberToCurrencyString } from 'utils-shared/amount';
+	import { stateBet, stateBetDerived } from 'state-shared';
+	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
+	import { Button } from 'components-pixi';
 
 	import type { LayoutUiProps } from '../types';
 	import { getContext } from '../context';
+	import { i18nDerived } from '../i18n/i18nDerived';
+	import LabelFreeSpinCounter from './LabelFreeSpinCounter.svelte';
 
 	const props: LayoutUiProps = $props();
 	const context = getContext();
 
-	// Desktop design space: 1422 x 800
+	// Desktop design space: 1920 x 1080
 	const w = $derived(context.stateLayoutDerived.mainLayoutStandard().width);
 	const h = $derived(context.stateLayoutDerived.mainLayoutStandard().height);
 	const cx = $derived(w * 0.5);
 
 	// Row baseline — centered in bottom bar
 	const rowY = $derived(h - 58);
+
+	// Bottom bar text style
+	const labelStyle = {
+		fontFamily: 'Inter',
+		fontSize: 28,
+		fontWeight: '700',
+		fill: 0xc0c8d0,
+		letterSpacing: 2,
+	} as const;
+
+	const valueStyle = {
+		fontFamily: 'Inter',
+		fontSize: 30,
+		fontWeight: '700',
+		fill: WHITE,
+		letterSpacing: 1,
+	} as const;
+
+	const pmStyle = {
+		fontFamily: 'Inter',
+		fontSize: 63,
+		fontWeight: '700',
+		fill: 0xc0c8d0,
+		letterSpacing: 0,
+	} as const;
+
+	const pmStyleHover = {
+		...pmStyle,
+		fill: WHITE,
+	} as const;
+
+	// Reactive values for bottom bar
+	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
+	const winValue = $derived(bookEventAmountToCurrencyString(stateBet.winBookEventAmount));
+	const betValue = $derived(numberToCurrencyString(stateBetDerived.betCost()));
+
+	// +/- bet logic
+	const smallest = $derived(stateConfig.betAmountOptions[0]);
+	const biggest = $derived(stateConfig.betAmountOptions[stateConfig.betAmountOptions.length - 1]);
+	const decDisabled = $derived(
+		!context.stateXstateDerived.isIdle() || stateBet.betAmount === smallest,
+	);
+	const incDisabled = $derived(
+		!context.stateXstateDerived.isIdle() || stateBet.betAmount === biggest,
+	);
+
+	const onDecrease = () => {
+		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		const nextSmaller = [...stateConfig.betAmountOptions]
+			.sort((a, b) => b - a)
+			.find((o) => o < stateBet.betAmount);
+		stateBetDerived.setBetAmount(nextSmaller || smallest);
+	};
+
+	const onIncrease = () => {
+		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		const nextBigger = [...stateConfig.betAmountOptions]
+			.sort((a, b) => a - b)
+			.find((o) => o > stateBet.betAmount);
+		stateBetDerived.setBetAmount(nextBigger || biggest);
+	};
 </script>
 
 <Container x={20}>
@@ -36,7 +103,7 @@
 		width={w + 20}
 		height={115}
 		backgroundColor={0x000000}
-		backgroundAlpha={0.5}
+		backgroundAlpha={0.7}
 		borderRadius={14}
 	/>
 
@@ -50,26 +117,66 @@
 	</Container>
 
 	<!-- BALANCE -->
-	<Container x={w * 0.2} y={rowY} scale={0.42}>
-		{@render props.amountBalance({ stacked: true })}
+	<Container x={w * 0.33} y={rowY}>
+		<Text text={i18nDerived.balance()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+		<Text text={balanceValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
 	</Container>
 
 	<!-- WIN -->
-	<Container x={w * 0.37} y={rowY} scale={0.42}>
-		{@render props.amountWin({ stacked: true })}
+	<Container x={cx} y={rowY}>
+		<Text text={i18nDerived.win()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+		<Text text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
 	</Container>
 
-	<!-- [-] BET [+] — BET first, buttons rendered on top -->
-	<Container x={w * 0.58} y={rowY} scale={0.42}>
-		{@render props.amountBet({ stacked: true })}
+	<!-- BET or Free Spin Counter -->
+	{#if stateUi.freeSpinCounterShow}
+		<Container x={w * 0.67} y={rowY} scale={0.48}>
+			<LabelFreeSpinCounter stacked />
+		</Container>
+	{:else}
+		<Container x={w * 0.67} y={rowY}>
+			<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+			<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+		</Container>
+	{/if}
+
+	<!-- Text -/+ bet buttons -->
+	<Container x={w * 0.67 - 80} y={rowY - 30}>
+		<Button
+			anchor={0.5}
+			sizes={{ width: 50, height: 50 }}
+			disabled={decDisabled}
+			onpress={onDecrease}
+		>
+			{#snippet children({ center, hovered })}
+				<Text
+					{...center}
+					text="−"
+					style={hovered && !decDisabled ? pmStyleHover : pmStyle}
+					anchor={0.5}
+					alpha={decDisabled ? 0.3 : 1}
+				/>
+			{/snippet}
+		</Button>
 	</Container>
 
-	<Container x={w * 0.58 - 65} y={rowY} scale={0.5}>
-		{@render props.buttonDecrease({ anchor: 0.5 })}
-	</Container>
-
-	<Container x={w * 0.58 + 65} y={rowY} scale={0.5}>
-		{@render props.buttonIncrease({ anchor: 0.5 })}
+	<Container x={w * 0.67 + 80} y={rowY - 25}>
+		<Button
+			anchor={0.5}
+			sizes={{ width: 50, height: 50 }}
+			disabled={incDisabled}
+			onpress={onIncrease}
+		>
+			{#snippet children({ center, hovered })}
+				<Text
+					{...center}
+					text="+"
+					style={hovered && !incDisabled ? pmStyleHover : pmStyle}
+					anchor={0.5}
+					alpha={incDisabled ? 0.3 : 1}
+				/>
+			{/snippet}
+		</Button>
 	</Container>
 
 	<!-- AutoSpin -->

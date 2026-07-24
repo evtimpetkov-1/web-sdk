@@ -11,38 +11,25 @@ import { playBet, convertTorResumableBet } from './utils';
 import { stateGame, stateGameDerived, winCycleState } from './stateGame.svelte';
 import { eventEmitter } from './eventEmitter';
 import config from './config';
-import devBooks from './devBooks';
 import { loadMathFiles, selectRandomBook } from './devMath';
 
-// Dev mode: try math-sdk files first (static/assets/math/), fall back to devBooks
+// Dev mode: use math-sdk files from static/assets/math/ (enable with ?math in URL)
 const isDevMode = !stateUrlDerived.rgsUrl();
-let devBookIndex = 0;
 let mathReady: boolean | null = null;
 let devPendingPayout = 0;
 
 const devRequestBet = async () => {
-	// Load math files only when ?math is in URL, otherwise use devBooks
 	if (mathReady === null) {
-		const useMath = new URLSearchParams(window.location.search).has('math');
-		mathReady = useMath ? await loadMathFiles() : false;
+		mathReady = await loadMathFiles();
 	}
 
-	let payoutMultiplier: number;
-	let events: typeof devBooks[number]['events'];
-
-	if (mathReady) {
-		const selected = selectRandomBook();
-		payoutMultiplier = selected.payoutMultiplier;
-		events = selected.events;
-	} else {
-		const book = devBooks[devBookIndex % devBooks.length];
-		devBookIndex++;
-		payoutMultiplier = book.payoutMultiplier;
-		events = book.events;
+	if (!mathReady) {
+		throw new Error('Math files not loaded. Run tools/prepare-math.sh and add ?math to URL.');
 	}
 
+	const selected = selectRandomBook();
 	const betAmount = stateBet.betAmount;
-	const payout = payoutMultiplier * betAmount;
+	const payout = selected.payoutMultiplier * betAmount;
 
 	// Deduct bet now, store payout for after animations finish
 	const postDeductionBalance = stateBet.balanceAmount - betAmount;
@@ -57,10 +44,10 @@ const devRequestBet = async () => {
 			roundID: Date.now(),
 			amount: betAmount * API_AMOUNT_MULTIPLIER,
 			payout,
-			payoutMultiplier,
-			active: events.some((e) => e.type === 'freeSpinTrigger'),
+			payoutMultiplier: selected.payoutMultiplier,
+			active: selected.events.some((e) => e.type === 'freeSpinTrigger'),
 			mode: 'BASE',
-			state: events,
+			state: selected.events,
 		},
 	};
 };

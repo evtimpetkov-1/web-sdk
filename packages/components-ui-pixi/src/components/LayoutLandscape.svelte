@@ -27,7 +27,7 @@
 
 	// Bottom bar text style
 	const labelStyle = {
-		fontFamily: 'proxima-nova',
+		fontFamily: 'Inter',
 		fontSize: 36,
 		fontWeight: '700',
 		fill: 0xc0c8d0,
@@ -35,7 +35,7 @@
 	} as const;
 
 	const valueStyle = {
-		fontFamily: 'proxima-nova',
+		fontFamily: 'Inter',
 		fontSize: 44,
 		fontWeight: '700',
 		fill: WHITE,
@@ -153,7 +153,7 @@
 			text={betValue}
 			anchor={{ x: 0.5, y: 0 }}
 			style={{
-				fontFamily: 'proxima-nova',
+				fontFamily: 'Inter',
 				fontSize: 24,
 				fontWeight: '700',
 				fill: WHITE,

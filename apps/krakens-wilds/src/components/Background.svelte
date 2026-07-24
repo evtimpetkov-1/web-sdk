@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { BlurFilter } from 'pixi.js';
-	import { Rectangle, Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { BlurFilter, Rectangle, Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { SECOND } from 'constants-shared/time';
 

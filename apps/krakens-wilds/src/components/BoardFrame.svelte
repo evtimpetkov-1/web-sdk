@@ -79,7 +79,7 @@
 			anchor={{ x: 0.5, y: 1 }}
 			y={-10}
 			style={{
-				fontFamily: 'proxima-nova',
+				fontFamily: 'Inter',
 				fontSize: 45,
 				fontWeight: '700',
 				fill: 0xf0d060,
@@ -91,7 +91,7 @@
 			anchor={{ x: 0.5, y: 0 }}
 			y={-2}
 			style={{
-				fontFamily: 'proxima-nova',
+				fontFamily: 'Inter',
 				fontSize: 52,
 				fontWeight: '700',
 				fill: WHITE,

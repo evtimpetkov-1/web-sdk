@@ -1,4 +1,5 @@
-import { FillGradient, type TextStyleOptions } from 'pixi.js';
+import { FillGradient } from 'pixi-svelte';
+import type { TextStyleOptions } from 'pixi.js';
 
 const FONT_FAMILY = 'Cinzel';
 const WIN_FONT_FAMILY = 'Bebas Neue';
@@ -35,7 +36,6 @@ const winGoldGradient = new FillGradient({
 	],
 });
 
-/** Gold style for win amounts — Bebas Neue (equal-width digits, no jiggle) */
 export const winTextStyle = {
 	fontFamily: WIN_FONT_FAMILY,
 	fontWeight: '400',
@@ -49,4 +49,4 @@ export const winTextStyle = {
 	},
 	letterSpacing: 4,
 	align: 'center',
-} satisfies TextStyleOptions;
+} as const satisfies TextStyleOptions;

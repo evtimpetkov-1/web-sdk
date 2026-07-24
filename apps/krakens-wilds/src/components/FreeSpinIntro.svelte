@@ -62,14 +62,14 @@
 				text={`${freeSpinsFromEvent}`}
 				style={{
 					...winTextStyle,
-					fontSize: 86,
+					fontSize: 120,
 				}}
 			/>
 
 			<!-- FREE SPINS label -->
 			<ResponsiveText
 				anchor={0.5}
-				y={70}
+				y={94}
 				maxWidth={500}
 				text="FREE SPINS"
 				style={{

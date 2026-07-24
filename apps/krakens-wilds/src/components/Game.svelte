@@ -25,7 +25,9 @@
 	const context = getContext();
 	const bl = $derived(context.stateGameDerived.boardLayout());
 
-	onMount(() => (context.stateLayout.showLoadingScreen = true));
+	onMount(() => {
+		context.stateLayout.showLoadingScreen = true;
+	});
 
 </script>
 

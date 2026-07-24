@@ -26,7 +26,7 @@
 
 	// Bottom bar text styles (same as landscape)
 	const labelStyle = {
-		fontFamily: 'proxima-nova',
+		fontFamily: 'Inter',
 		fontSize: 36,
 		fontWeight: '700',
 		fill: 0xc0c8d0,
@@ -34,7 +34,7 @@
 	} as const;
 
 	const valueStyle = {
-		fontFamily: 'proxima-nova',
+		fontFamily: 'Inter',
 		fontSize: 44,
 		fontWeight: '700',
 		fill: WHITE,

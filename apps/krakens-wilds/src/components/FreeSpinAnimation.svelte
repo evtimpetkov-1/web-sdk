@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	import { BlurFilter } from 'pixi.js';
-	import { Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { BlurFilter, Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
 

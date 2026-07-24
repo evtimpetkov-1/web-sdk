@@ -15,7 +15,7 @@
 	const props: Props = $props();
 
 	const labelStyle = {
-		fontFamily: 'proxima-nova',
+		fontFamily: 'Inter',
 		fontSize: UI_BASE_FONT_SIZE,
 		fontWeight: '700',
 		fill: 0xf0d060,
@@ -23,7 +23,7 @@
 	} as const;
 
 	const valueStyle = {
-		fontFamily: 'proxima-nova',
+		fontFamily: 'Inter',
 		fontSize: UI_BASE_FONT_SIZE * 1.15,
 		fontWeight: '700',
 		fill: WHITE,
