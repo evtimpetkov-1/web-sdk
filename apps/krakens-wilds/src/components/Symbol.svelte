@@ -5,7 +5,7 @@
 	import type { SymbolState, RawSymbol } from '../game/types';
 	import { getContext } from '../game/context';
 	import { Text } from 'pixi-svelte';
-	import { winTextStyle } from '../game/textStyles';
+	import { goldTextStyle } from '../game/textStyles';
 
 	type Props = {
 		x?: number;
@@ -49,7 +49,7 @@
 		y={props.y}
 		text={`${props.rawSymbol.multiplier}X`}
 		style={{
-			...winTextStyle,
+			...goldTextStyle,
 			fontSize: 50,
 		}}
 	/>

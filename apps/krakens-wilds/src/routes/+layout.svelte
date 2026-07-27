@@ -3,6 +3,7 @@
 	import { GlobalStyle } from 'components-ui-html';
 	import { Authenticate, LoaderStakeEngine, LoadI18n } from 'components-shared';
 	import LoaderGame from '../components/LoaderGame.svelte';
+	import DevMenu from '../components/DevMenu.svelte';
 	import { stateUrlDerived, stateBet } from 'state-shared';
 	import Game from '../components/Game.svelte';
 	import { setContext } from '../game/context';
@@ -28,6 +29,7 @@
 
 <GlobalStyle>
 	{#if isDevMode}
+		<DevMenu />
 		<LoadI18n {messagesMap}>
 			<Game />
 		</LoadI18n>

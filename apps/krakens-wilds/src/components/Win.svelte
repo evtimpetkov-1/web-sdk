@@ -8,20 +8,18 @@
 </script>
 
 <script lang="ts">
-	import { Container, Sprite } from 'pixi-svelte';
-	import { FadeContainer, WinCountUpProvider, ResponsiveText } from 'components-pixi';
+	import { Container, Sprite, Text } from 'pixi-svelte';
+	import { FadeContainer, WinCountUpProvider } from 'components-pixi';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
-	import { MainContainer } from 'components-layout';
-	import { OnMount } from 'components-shared';
+	import { MainContainer, OnPressFullScreen } from 'components-layout';
+	import { OnMount, OnHotkey } from 'components-shared';
 
-	import { OnPressFullScreen } from 'components-layout';
-	import { OnHotkey } from 'components-shared';
 	import WinCoins from './WinCoins.svelte';
 	import WinAnimation from './WinAnimation.svelte';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getContext } from '../game/context';
-	import { winTextStyle } from '../game/textStyles';
+	import { goldTextStyle } from '../game/textStyles';
 
 	const context = getContext();
 
@@ -36,6 +34,7 @@
 		}
 	});
 	let requestExitAnimation = $state(false);
+	let stableTextWidth = $state(0);
 
 	context.eventEmitter.subscribeOnMount({
 		winShow: () => (show = true),
@@ -82,14 +81,22 @@
 							y={cy - 100}
 							scale={spineScale}
 						>
-							<ResponsiveText
+							<!-- Measure final amount once for stable scale -->
+							<Container visible={false}>
+								<Text
+									text={bookEventAmountToCurrencyString(amount)}
+									style={{ ...goldTextStyle, fontSize: 96 }}
+									onresize={(s) => (stableTextWidth = s.width)}
+								/>
+							</Container>
+							<Text
 								anchor={0.5}
-								y={350}
-								maxWidth={800}
+								y={300}
+								scale={Math.min(800 / (stableTextWidth || 1), 1)}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{
-									...winTextStyle,
-									fontSize: 72,
+									...goldTextStyle,
+									fontSize: 96,
 								}}
 							/>
 						</Container>
@@ -103,13 +110,22 @@
 							y={context.stateGameDerived.boardLayout().y}
 						>
 							<Sprite key="winGlow" anchor={0.5} />
-							<ResponsiveText
+							{@const smallWinMaxWidth = context.stateLayoutDerived.canvasSizes().width /
+								context.stateLayoutDerived.mainLayout().scale}
+							<!-- Measure final amount once for stable scale -->
+							<Container visible={false}>
+								<Text
+									text={bookEventAmountToCurrencyString(amount)}
+									style={{ ...goldTextStyle, fontSize: SYMBOL_SIZE }}
+									onresize={(s) => (stableTextWidth = s.width)}
+								/>
+							</Container>
+							<Text
 								anchor={0.5}
-								maxWidth={context.stateLayoutDerived.canvasSizes().width /
-									context.stateLayoutDerived.mainLayout().scale}
+								scale={Math.min(smallWinMaxWidth / (stableTextWidth || 1), 1)}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{
-									...winTextStyle,
+									...goldTextStyle,
 									fontSize: SYMBOL_SIZE,
 								}}
 							/>

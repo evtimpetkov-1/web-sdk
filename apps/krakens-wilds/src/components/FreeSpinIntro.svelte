@@ -11,7 +11,7 @@
 	import { waitForResolve } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
-	import { gameTextStyle, winTextStyle } from '../game/textStyles';
+	import { gameTextStyle, goldTextStyle } from '../game/textStyles';
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 
@@ -61,7 +61,7 @@
 				maxWidth={400}
 				text={`${freeSpinsFromEvent}`}
 				style={{
-					...winTextStyle,
+					...goldTextStyle,
 					fontSize: 120,
 				}}
 			/>

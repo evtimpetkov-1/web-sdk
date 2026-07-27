@@ -5,18 +5,26 @@
  * This decompresses books.jsonl.zst → books.jsonl and copies lookup.csv
  * into static/assets/math/
  *
- * Enable with ?math=local in the URL. Falls back to devBooks.ts otherwise.
- *
  * payoutMultiplier is integer cents (250 = 2.50x).
  */
 
 import type { BookEvent } from './typesBookEvent';
+import { stateGame } from './stateGame.svelte';
 
 type MathBook = {
 	id: number;
 	payoutMultiplier: number;
 	events: BookEvent[];
 };
+
+export type DevCheatMode = 'none' | 'fs' | 'retrigger' | 'bigwin';
+export let devCheatMode: DevCheatMode = 'none';
+
+export function setDevCheatMode(mode: DevCheatMode) {
+	devCheatMode = mode;
+	filteredCache = null;
+	console.log(`[dev] Cheat mode: ${mode}`);
+}
 
 let books: Map<number, MathBook> | null = null;
 let cumWeights: { cumWeight: number; simId: number }[] | null = null;
@@ -61,9 +69,46 @@ export async function loadMathFiles(): Promise<boolean> {
 	}
 }
 
-/** Weighted random selection — same algorithm as the RGS. */
+let filteredCache: { mode: DevCheatMode; books: MathBook[] } | null = null;
+
+function getFilteredBooks(): MathBook[] {
+	// Retrigger mode filter depends on gameType, so don't cache it
+	if (filteredCache && filteredCache.mode === devCheatMode && devCheatMode !== 'retrigger')
+		return filteredCache.books;
+	if (!books) throw new Error('Math files not loaded');
+
+	let arr = Array.from(books.values());
+
+	if (devCheatMode === 'fs') {
+		arr = arr.filter((b) => b.events.some((e) => e.type === 'freeSpinTrigger'));
+	} else if (devCheatMode === 'retrigger') {
+		if (stateGame.gameType === 'freegame') {
+			// Already in free spins — pick books with retrigger events
+			arr = arr.filter((b) => b.events.some((e) => e.type === 'freeSpinRetrigger'));
+		} else {
+			// Base game — first trigger free spins
+			arr = arr.filter((b) => b.events.some((e) => e.type === 'freeSpinTrigger'));
+		}
+	} else if (devCheatMode === 'bigwin') {
+		arr = arr.filter((b) => b.payoutMultiplier >= 1000);
+	}
+
+	filteredCache = { mode: devCheatMode, books: arr };
+	return arr;
+}
+
+/** Weighted random selection — same algorithm as the RGS. Uses cheat filter when active. */
 export function selectRandomBook(): { payoutMultiplier: number; events: BookEvent[] } {
 	if (!books || !cumWeights) throw new Error('Math files not loaded');
+
+	if (devCheatMode !== 'none') {
+		const pool = getFilteredBooks();
+		const book = pool[Math.floor(Math.random() * pool.length)];
+		return {
+			payoutMultiplier: book.payoutMultiplier / 100,
+			events: book.events,
+		};
+	}
 
 	const rand = Math.random() * totalWeight;
 	let lo = 0;
@@ -78,7 +123,6 @@ export function selectRandomBook(): { payoutMultiplier: number; events: BookEven
 	const book = books.get(simId);
 	if (!book) throw new Error(`Book id=${simId} not found in books`);
 
-	// payoutMultiplier is integer cents (250 = 2.50x)
 	return {
 		payoutMultiplier: book.payoutMultiplier / 100,
 		events: book.events,

@@ -179,7 +179,7 @@ export default {
 	},
 	fsCounterBg: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/fs_counter_bg.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/fs_counter_bg.png', import.meta.url).href,
 	},
 	betButton: {
 		type: 'sprite',

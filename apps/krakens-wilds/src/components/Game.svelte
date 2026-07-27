@@ -4,9 +4,11 @@
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
-	import { App, Sprite, REM, Container } from 'pixi-svelte';
+	import { App, REM, Container } from 'pixi-svelte';
 	import { UI, UiGameName } from 'components-ui-pixi';
 	import { GameVersion, Modals } from 'components-ui-html';
+	import PayTable from './PayTable.svelte';
+	import GameRules from './GameRules.svelte';
 
 	import { getContext } from '../game/context';
 	import EnableSound from './EnableSound.svelte';
@@ -17,9 +19,12 @@
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
+	import MovingWilds from './MovingWilds.svelte';
+	import BoardContainer from './BoardContainer.svelte';
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
+	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import Transition from './Transition.svelte';
 
 	const context = getContext();
@@ -62,17 +67,24 @@
 			</Container>
 		</MainContainer>
 
+		<MainContainer label="MovingWildsContainer">
+			<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
+				<BoardContainer>
+					<MovingWilds />
+				</BoardContainer>
+			</Container>
+		</MainContainer>
+
 		<UI>
 			{#snippet gameName()}
 				<UiGameName name="KRAKEN'S WILDS" />
 			{/snippet}
-			{#snippet logo()}
-				<Sprite key="gameLogo" anchor={{ x: 1, y: 0 }} scale={0.15} />
-			{/snippet}
+			{#snippet logo()}{/snippet}
 		</UI>
 		<Win />
 		<FreeSpinIntro />
 		<FreeSpinOutro />
+		<FreeSpinRetrigger />
 		<Transition />
 	{/if}
 </App>
@@ -82,3 +94,5 @@
 		<GameVersion version="1.0.0" />
 	{/snippet}
 </Modals>
+<PayTable />
+<GameRules />

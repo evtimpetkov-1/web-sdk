@@ -8,14 +8,14 @@
 </script>
 
 <script lang="ts">
-	import { Container } from 'pixi-svelte';
-	import { FadeContainer, WinCountUpProvider, ResponsiveText } from 'components-pixi';
+	import { Container, Text } from 'pixi-svelte';
+	import { FadeContainer, WinCountUpProvider } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { OnMount } from 'components-shared';
 
 	import { getContext } from '../game/context';
-	import { winTextStyle } from '../game/textStyles';
+	import { goldTextStyle } from '../game/textStyles';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import WinAnimation from './WinAnimation.svelte';
 	import WinCoins from './WinCoins.svelte';
@@ -35,6 +35,7 @@
 		}
 	});
 	let requestExitAnimation = $state(false);
+	let stableTextWidth = $state(0);
 
 	context.eventEmitter.subscribeOnMount({
 		freeSpinOutroShow: () => (show = true),
@@ -69,14 +70,22 @@
 						y={cy - 100}
 						scale={spineScale}
 					>
-						<ResponsiveText
+						<!-- Measure final amount once for stable scale -->
+						<Container visible={false}>
+							<Text
+								text={bookEventAmountToCurrencyString(amount)}
+								style={{ ...goldTextStyle, fontSize: 96 }}
+								onresize={(s) => (stableTextWidth = s.width)}
+							/>
+						</Container>
+						<Text
 							anchor={0.5}
-							y={350}
-							maxWidth={800}
+							y={250}
+							scale={Math.min(800 / (stableTextWidth || 1), 1)}
 							text={bookEventAmountToCurrencyString(countUpAmount)}
 							style={{
-								...winTextStyle,
-								fontSize: 72,
+								...goldTextStyle,
+								fontSize: 96,
 							}}
 						/>
 					</Container>

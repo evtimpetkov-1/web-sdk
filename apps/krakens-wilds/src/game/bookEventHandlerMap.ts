@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { Tween } from 'svelte/motion';
 
 import { recordBookEvent, checkIsMultipleRevealEvents, type BookEventHandlerMap } from 'utils-book';
 import { stateBet, stateUi } from 'state-shared';
@@ -7,10 +8,15 @@ import { waitForTimeout } from 'utils-shared/wait';
 import { eventEmitter } from './eventEmitter';
 import { playBookEvent } from './utils';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
-import { stateGame, stateGameDerived, winCycleState } from './stateGame.svelte';
+import { stateGame, stateGameDerived, winCycleState, type MovingWild } from './stateGame.svelte';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { Position } from './types';
+import { SYMBOL_SIZE, REEL_PADDING } from './constants';
 import config from './config';
+
+let movingWildIdCounter = 0;
+const wildX = (reel: number) => SYMBOL_SIZE * (reel + REEL_PADDING);
+const wildY = (row: number) => (row - 0.5) * SYMBOL_SIZE;
 
 const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) => {
 	if (winLevelData?.alias === 'max') eventEmitter.broadcastAsync({ type: 'uiHide' });
@@ -62,11 +68,102 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		for (const reel of stateGame.board) {
 			reel.reelState.anticipating = false;
 		}
+		// Disable anticipation during free spins
+		if (bookEvent.gameType === 'freegame') {
+			bookEvent.anticipation = bookEvent.anticipation.map(() => 0);
+		}
 		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_reelspin' });
-		await stateGameDerived.enhancedBoard.spin({
-			revealEvent: bookEvent,
-			paddingBoard: config.paddingReels[bookEvent.gameType],
-		});
+
+		if (bookEvent.gameType === 'freegame') {
+			// Extract wild positions from board data (visible rows 1-3)
+			const wildPositions: Position[] = [];
+			for (let reelIndex = 0; reelIndex < bookEvent.board.length; reelIndex++) {
+				const reel = bookEvent.board[reelIndex];
+				for (let symbolIndex = 1; symbolIndex <= 3; symbolIndex++) {
+					if (reel[symbolIndex]?.wild) {
+						wildPositions.push({ reel: reelIndex, row: symbolIndex });
+					}
+				}
+			}
+
+			// Start reels spinning visually
+			await stateGameDerived.enhancedBoard.preSpin({
+				paddingBoard: config.paddingReels[bookEvent.gameType],
+			});
+
+			// Position wilds while reels spin
+			const isFirstFreeSpinReveal = stateGame.movingWilds.length === 0;
+
+			if (isFirstFreeSpinReveal && wildPositions.length > 0) {
+				// First free spin: stagger wild appearances while reels spin
+				await waitForTimeout(300);
+				for (const pos of wildPositions) {
+					const wild: MovingWild = {
+						id: movingWildIdCounter++,
+						x: new Tween(wildX(pos.reel)),
+						y: new Tween(wildY(pos.row)),
+						reel: pos.reel,
+						row: pos.row,
+						landed: false,
+					};
+					stateGame.movingWilds = [...stateGame.movingWilds, wild];
+					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land' });
+					await waitForTimeout(200);
+				}
+				await waitForTimeout(400);
+			} else if (wildPositions.length > 0) {
+				// Subsequent spins: move existing wilds to new positions
+				const updated = [...stateGame.movingWilds];
+
+				// Move existing wilds
+				const keepCount = Math.min(updated.length, wildPositions.length);
+				for (let i = 0; i < keepCount; i++) {
+					updated[i].x.set(wildX(wildPositions[i].reel), { duration: 400 });
+					updated[i].y.set(wildY(wildPositions[i].row), { duration: 400 });
+					updated[i].reel = wildPositions[i].reel;
+					updated[i].row = wildPositions[i].row;
+				}
+
+				// Add new wilds if more than before
+				for (let i = updated.length; i < wildPositions.length; i++) {
+					updated.push({
+						id: movingWildIdCounter++,
+						x: new Tween(wildX(wildPositions[i].reel)),
+						y: new Tween(wildY(wildPositions[i].row)),
+						reel: wildPositions[i].reel,
+						row: wildPositions[i].row,
+						landed: false,
+					});
+				}
+
+				// Remove extras if fewer
+				if (wildPositions.length < updated.length) {
+					updated.length = wildPositions.length;
+				}
+
+				stateGame.movingWilds = updated;
+				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land' });
+				await waitForTimeout(1000);
+			} else {
+				// No wilds this spin — clear all
+				stateGame.movingWilds = [];
+				await waitForTimeout(2000);
+			}
+
+			// Send stop targets — reels begin stopping sequence
+			const spinPromise = stateGameDerived.enhancedBoard.spin({
+				revealEvent: bookEvent,
+				paddingBoard: config.paddingReels[bookEvent.gameType],
+			});
+
+			await spinPromise;
+		} else {
+			await stateGameDerived.enhancedBoard.spin({
+				revealEvent: bookEvent,
+				paddingBoard: config.paddingReels[bookEvent.gameType],
+			});
+		}
+
 		eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_reelspin' });
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
 
@@ -129,8 +226,14 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	freeSpinRetrigger: async (bookEvent: BookEventOfType<'freeSpinRetrigger'>) => {
 		// Animate retrigger scatters and update the free spin counter
+		const extraSpins = bookEvent.totalFs - stateUi.freeSpinCounterTotal;
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
 		await animateSymbols({ positions: bookEvent.positions });
+		// Show retrigger screen
+		await eventEmitter.broadcastAsync({
+			type: 'freeSpinRetriggerShow',
+			extraSpins,
+		});
 		eventEmitter.broadcast({
 			type: 'freeSpinCounterUpdate',
 			current: undefined,
@@ -154,9 +257,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		eventEmitter.broadcast({ type: 'winHide' });
 		eventEmitter.broadcast({ type: 'boardResetSymbols' });
+		stateGame.movingWilds = [];
+		stateGame.gameType = 'basegame';
 		winCycleState.lastWins = null;
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
-		stateGame.gameType = 'basegame';
 		eventEmitter.broadcast({ type: 'boardFrameGlowHide' });
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_totalwin_panel' });

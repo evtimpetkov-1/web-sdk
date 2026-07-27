@@ -50,9 +50,12 @@
 		}
 	};
 	const restoreIdleAnimations = () => {
+		const isFreegame = context.stateGame.gameType === 'freegame';
 		for (const reel of context.stateGame.board) {
 			for (const reelSymbol of reel.reelState.symbols) {
 				const name = reelSymbol.rawSymbol.name;
+				// During free spins, W is hidden — don't restore to idle
+				if (isFreegame && name === 'W') continue;
 				if (reelSymbol.symbolState === 'static' && (name === 'W' || name === 'S')) {
 					reelSymbol.symbolState = 'idle';
 				}
@@ -70,6 +73,20 @@
 			context.stateGame.winAnimating = true;
 			stopIdleAnimations();
 
+			// During free spins, identify which moving wilds participate in wins
+			const hasMovingWilds = context.stateGame.gameType === 'freegame' && context.stateGame.movingWilds.length > 0;
+			if (hasMovingWilds) {
+				const winSet = new Set<number>();
+				for (const pos of symbolPositions) {
+					const reelSymbol = context.stateGame.board[pos.reel].reelState.symbols[pos.row];
+					if (reelSymbol.rawSymbol.name === 'W') {
+						const wild = context.stateGame.movingWilds.find(w => w.reel === pos.reel && w.row === pos.row);
+						if (wild) winSet.add(wild.id);
+					}
+				}
+				context.stateGame.movingWildWinSet = winSet;
+			}
+
 			// During the second win cycle, move previously-animated symbols to postWinStatic
 			// so the current winline gets a fresh animation start
 			if (context.stateGame.winLooping) {
@@ -84,14 +101,22 @@
 			}
 
 			const getPromises = () =>
-				symbolPositions.map(async (position) => {
-					const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
-					reelSymbol.symbolState = 'win';
-					await waitForResolve((resolve) => (reelSymbol.oncomplete = resolve));
-					if (reelSymbol.symbolState === 'win' && !context.stateGame.winLooping) {
-						reelSymbol.symbolState = 'postWinStatic';
-					}
-				});
+				symbolPositions
+					.filter((pos) => {
+						// During free spins, skip W — moving wilds handle their win animation
+						if (hasMovingWilds) {
+							return context.stateGame.board[pos.reel].reelState.symbols[pos.row].rawSymbol.name !== 'W';
+						}
+						return true;
+					})
+					.map(async (position) => {
+						const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
+						reelSymbol.symbolState = 'win';
+						await waitForResolve((resolve) => (reelSymbol.oncomplete = resolve));
+						if (reelSymbol.symbolState === 'win' && !context.stateGame.winLooping) {
+							reelSymbol.symbolState = 'postWinStatic';
+						}
+					});
 
 			await Promise.all(getPromises());
 			// Keep dimming persistent during the second win cycle (finalWin per-winline loop)
@@ -99,6 +124,7 @@
 			if (!context.stateGame.winLooping && dimmed) {
 				dimmed = false;
 				context.stateGame.winAnimating = false;
+				context.stateGame.movingWildWinSet = new Set();
 				restoreIdleAnimations();
 			}
 		},
@@ -107,14 +133,31 @@
 			context.stateGame.winAnimating = true;
 			stopIdleAnimations();
 			loopingPositions = symbolPositions;
-			for (const position of symbolPositions) {
-				const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
-				reelSymbol.symbolState = 'win';
+
+			const hasMovingWilds = context.stateGame.gameType === 'freegame' && context.stateGame.movingWilds.length > 0;
+			if (hasMovingWilds) {
+				const winSet = new Set<number>();
+				for (const position of symbolPositions) {
+					const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
+					if (reelSymbol.rawSymbol.name === 'W') {
+						const wild = context.stateGame.movingWilds.find(w => w.reel === position.reel && w.row === position.row);
+						if (wild) winSet.add(wild.id);
+						continue; // skip setting reel W to 'win' — it's hidden
+					}
+					reelSymbol.symbolState = 'win';
+				}
+				context.stateGame.movingWildWinSet = winSet;
+			} else {
+				for (const position of symbolPositions) {
+					const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
+					reelSymbol.symbolState = 'win';
+				}
 			}
 		},
 		boardStopLoop: () => {
 			dimmed = false;
 			context.stateGame.winAnimating = false;
+			context.stateGame.movingWildWinSet = new Set();
 			restoreIdleAnimations();
 			for (const position of loopingPositions) {
 				const reelSymbol = context.stateGame.board[position.reel].reelState.symbols[position.row];
@@ -125,6 +168,7 @@
 		boardResetSymbols: () => {
 			dimmed = false;
 			context.stateGame.winAnimating = false;
+			context.stateGame.movingWildWinSet = new Set();
 			loopingPositions = [];
 			context.stateGame.winLooping = false;
 			for (const reel of context.stateGame.board) {

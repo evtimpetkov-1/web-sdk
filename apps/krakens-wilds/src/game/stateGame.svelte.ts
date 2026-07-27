@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import type { Tween } from 'svelte/motion';
+import { Tween } from 'svelte/motion';
 
 import { stateBet } from 'state-shared';
 import { createEnhanceBoard, createReelForSpinning } from 'utils-slots';
@@ -33,7 +33,7 @@ const onSymbolLand = ({ rawSymbol, symbolIndex }: { rawSymbol: RawSymbol; symbol
 		});
 	}
 
-	if (rawSymbol.name === 'W') {
+	if (rawSymbol.name === 'W' && stateGame.gameType !== 'freegame') {
 		eventEmitter.broadcast({
 			type: 'soundOnce',
 			name: 'sfx_wild_land',
@@ -57,8 +57,13 @@ const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
 		onSymbolLand,
 	});
 
-	reel.reelState.spinOptions = () =>
-		reel.reelState.spinType === 'fast' ? SPIN_OPTIONS_FAST : SPIN_OPTIONS_DEFAULT;
+	reel.reelState.spinOptions = () => {
+		if (reel.reelState.spinType === 'fast') return SPIN_OPTIONS_FAST;
+		if (reel.reelState.anticipating) {
+			return { ...SPIN_OPTIONS_DEFAULT, reelSpinSpeed: SPIN_OPTIONS_DEFAULT.reelSpinSpeed / 2 };
+		}
+		return SPIN_OPTIONS_DEFAULT;
+	};
 
 	return reel;
 });
@@ -76,10 +81,21 @@ export type MultiplierSymbol = {
 	oncomplete: () => void;
 };
 
+export type MovingWild = {
+	id: number;
+	x: Tween<number>;
+	y: Tween<number>;
+	reel: number;
+	row: number;
+	landed: boolean;
+};
+
 export const stateGame = $state({
 	board,
 	gameType: 'basegame' as GameType,
 	multiplierBoard: [] as (MultiplierSymbol | undefined)[][],
+	movingWilds: [] as MovingWild[],
+	movingWildWinSet: new Set<number>() as Set<number>,
 	scatterCounter: 0,
 	winLooping: false,
 	winAnimating: false,
@@ -101,7 +117,7 @@ const boardLayout = () => {
 	const h = stateLayoutDerived.mainLayout().height;
 	const layout = stateLayoutDerived.layoutType();
 	// Offset board upward in landscape/desktop to account for the bottom bar
-	const yOffset = layout === 'landscape' ? -50 : layout === 'desktop' ? -30 : 0;
+	const yOffset = layout === 'portrait' ? -80 : layout === 'landscape' ? -50 : layout === 'desktop' ? -30 : 0;
 	const scale = layout === 'portrait' ? 1.15 : layout === 'landscape' ? 1.35 : 1;
 	return {
 		x: w * 0.5,
