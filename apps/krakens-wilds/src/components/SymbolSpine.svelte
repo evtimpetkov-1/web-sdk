@@ -19,8 +19,8 @@
 
 <!-- win frame (behind symbol) -->
 {#if props.showWinFrame}
-	<SpineProvider x={props.x} y={props.y} key="payframe" width={SYMBOL_SIZE * 1.3} zIndex={-1}>
-		<SpineTrack trackIndex={0} animationName={'payframe'} loop />
+	<SpineProvider x={props.x} y={props.y} key="payframe" width={SYMBOL_SIZE * 1.2} zIndex={-1}>
+		<SpineTrack trackIndex={0} animationName={'win'} loop />
 	</SpineProvider>
 {/if}
 

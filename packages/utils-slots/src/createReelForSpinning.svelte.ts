@@ -231,9 +231,7 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 
 		// Q: When to skip the slideDown?
 		// A: When it's preSpinning(isSpinning) and stop button is clicked(isTurbo) and is noStop is false
-		if (noStop) {
-			await slideDown();
-		} else if (stateBet.isTurbo && isSpinning) {
+		if (!noStop && stateBet.isTurbo && isSpinning) {
 			// skip
 		} else {
 			await interruptible.add(slideDown);

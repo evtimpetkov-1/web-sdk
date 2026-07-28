@@ -5,7 +5,6 @@
 	import { Text } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 
-	import UiSprite from './UiSprite.svelte';
 	import { UI_BASE_FONT_SIZE, UI_BASE_SIZE } from '../constants';
 	import { getContext } from '../context';
 	import { Tween } from 'svelte/motion';
@@ -58,13 +57,6 @@
 
 <Button {...props} {sizes} {onpress} {disabled} alpha={disabled ? 0.5 : 1}>
 	{#snippet children({ center })}
-		<UiSprite
-			key="base_mobile_drawer"
-			{...center}
-			anchor={0.5}
-			width={sizes.width}
-			height={sizes.height}
-		/>
 		<Text
 			{...center}
 			anchor={0.5}

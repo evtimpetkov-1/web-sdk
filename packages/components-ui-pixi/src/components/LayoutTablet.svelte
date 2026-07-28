@@ -1,8 +1,8 @@
 <script lang="ts">
-	import { stateUi, stateModal, stateConfig } from 'state-shared';
+	import { stateUi, stateModal } from 'state-shared';
 	import { BLACK, WHITE } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
-	import { Container, Rectangle, Text } from 'pixi-svelte';
+	import { Container, Rectangle, Text, Sprite } from 'pixi-svelte';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { stateBet, stateBetDerived } from 'state-shared';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
@@ -10,7 +10,7 @@
 
 	import { getContext } from '../context';
 	import type { LayoutUiProps } from '../types';
-	import LabelFreeSpinCounter from './LabelFreeSpinCounter.svelte';
+
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const props: LayoutUiProps = $props();
@@ -37,47 +37,16 @@
 		letterSpacing: 1,
 	} as const;
 
-	const pmStyle = {
-		fontFamily: 'Inter',
-		fontSize: 80,
-		fontWeight: '700',
-		fill: 0xc0c8d0,
-		letterSpacing: 0,
-	} as const;
-
-	const pmStyleHover = {
-		...pmStyle,
-		fill: WHITE,
-	} as const;
-
 	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
 	const winValue = $derived(bookEventAmountToCurrencyString(stateBet.winBookEventAmount));
 	const betValue = $derived(numberToCurrencyString(stateBetDerived.betCost()));
 
-	// +/- bet logic
-	const smallest = $derived(stateConfig.betAmountOptions[0]);
-	const biggest = $derived(stateConfig.betAmountOptions[stateConfig.betAmountOptions.length - 1]);
-	const decDisabled = $derived(
-		!context.stateXstateDerived.isIdle() || stateBet.betAmount === smallest,
-	);
-	const incDisabled = $derived(
-		!context.stateXstateDerived.isIdle() || stateBet.betAmount === biggest,
-	);
-
-	const onDecrease = () => {
+	// Bet button handler
+	const betDisabled = $derived(!context.stateXstateDerived.isIdle());
+	const onBetPress = () => {
+		if (betDisabled) return;
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
-		const nextSmaller = [...stateConfig.betAmountOptions]
-			.sort((a, b) => b - a)
-			.find((o) => o < stateBet.betAmount);
-		stateBetDerived.setBetAmount(nextSmaller || smallest);
-	};
-
-	const onIncrease = () => {
-		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
-		const nextBigger = [...stateConfig.betAmountOptions]
-			.sort((a, b) => a - b)
-			.find((o) => o > stateBet.betAmount);
-		stateBetDerived.setBetAmount(nextBigger || biggest);
+		stateModal.modal = { name: 'betAmountMenu' };
 	};
 </script>
 
@@ -119,56 +88,11 @@
 		<Text text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
 	</Container>
 
-	<!-- BET or Free Spin Counter -->
-	{#if stateUi.freeSpinCounterShow}
-		<Container x={w * 0.75} y={h - 65} scale={0.48}>
-			<LabelFreeSpinCounter stacked />
-		</Container>
-	{:else}
-		<Container x={w * 0.75} y={h - 65}>
-			<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-			<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
-		</Container>
-
-		<!-- Text -/+ bet buttons -->
-		<Container x={w * 0.75 - 80} y={h - 100}>
-			<Button
-				anchor={0.5}
-				sizes={{ width: 50, height: 50 }}
-				disabled={decDisabled}
-				onpress={onDecrease}
-			>
-				{#snippet children({ center, hovered })}
-					<Text
-						{...center}
-						text="−"
-						style={hovered && !decDisabled ? pmStyleHover : pmStyle}
-						anchor={0.5}
-						alpha={decDisabled ? 0.3 : 1}
-					/>
-				{/snippet}
-			</Button>
-		</Container>
-
-		<Container x={w * 0.75 + 80} y={h - 95}>
-			<Button
-				anchor={0.5}
-				sizes={{ width: 50, height: 50 }}
-				disabled={incDisabled}
-				onpress={onIncrease}
-			>
-				{#snippet children({ center, hovered })}
-					<Text
-						{...center}
-						text="+"
-						style={hovered && !incDisabled ? pmStyleHover : pmStyle}
-						anchor={0.5}
-						alpha={incDisabled ? 0.3 : 1}
-					/>
-				{/snippet}
-			</Button>
-		</Container>
-	{/if}
+	<!-- BET -->
+	<Container x={w * 0.75} y={h - 65}>
+		<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+		<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+	</Container>
 
 	<!-- Buttons above bar -->
 	<Container x={cx - 400} y={h - 250} scale={0.6}>
@@ -186,6 +110,26 @@
 
 	<Container x={cx + 220} y={h - 250} scale={0.6}>
 		{@render props.buttonTurbo({ anchor: 0.5 })}
+	</Container>
+
+	<Container x={cx + 400} y={h - 250} scale={0.6}>
+		<Button
+			anchor={0.5}
+			sizes={{ width: 150, height: 150 }}
+			disabled={betDisabled}
+			onpress={onBetPress}
+		>
+			{#snippet children({ center, hovered, pressed })}
+				<Sprite
+					{...center}
+					key="bet.png"
+					anchor={0.5}
+					width={150}
+					height={150}
+					alpha={betDisabled ? 0.4 : hovered || pressed ? 1 : 0.85}
+				/>
+			{/snippet}
+		</Button>
 	</Container>
 </MainContainer>
 

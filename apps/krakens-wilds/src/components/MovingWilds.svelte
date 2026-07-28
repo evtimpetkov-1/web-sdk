@@ -18,10 +18,10 @@
 			x={wild.x.current}
 			y={wild.y.current}
 			key="payframe"
-			width={SYMBOL_SIZE * 1.3}
+			width={SYMBOL_SIZE * 1.2}
 			zIndex={-1}
 		>
-			<SpineTrack trackIndex={0} animationName="payframe" loop />
+			<SpineTrack trackIndex={0} animationName="win" loop />
 		</SpineProvider>
 	{/if}
 

@@ -23,8 +23,6 @@ export type EmitterEventUi =
 	| { type: 'bet' };
 
 export type ButtonIcon =
-	| 'decrease'
-	| 'increase'
 	| 'menu'
 	| 'turbo'
 	| 'autoSpin'
@@ -45,8 +43,6 @@ export type LayoutUiProps = {
 	buttonBet: Snippet<[Partial<ButtonProps>]>;
 	buttonTurbo: Snippet<[Partial<ButtonProps>]>;
 	buttonAutoSpin: Snippet<[Partial<ButtonProps>]>;
-	buttonIncrease: Snippet<[Partial<ButtonProps>]>;
-	buttonDecrease: Snippet<[Partial<ButtonProps>]>;
 	buttonMenu: Snippet<[Partial<ButtonProps>]>;
 	buttonMenuClose: Snippet<[Partial<ButtonProps>]>;
 	buttonPayTable: Snippet<[Partial<ButtonProps>]>;

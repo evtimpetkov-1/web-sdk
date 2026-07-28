@@ -10,6 +10,7 @@
 		isTotal?: boolean;
 		requestExit?: boolean;
 		onexit?: () => void;
+		behindSpines?: Snippet;
 		children: Snippet;
 	};
 
@@ -31,27 +32,14 @@
 
 	let krakenAnim = $state<KrakenState>(props.isTotal ? 'total_win_in' : 'big_win_in');
 
-	// Shower animation runs in parallel
-	type ShowerState =
-		| 'shower_big_in'
-		| 'shower_big_idle'
-		| 'shower_big_out'
-		| 'shower_mega_in'
-		| 'shower_mega_idle'
-		| 'shower_mega_out';
-
-	let showerAnim = $state<ShowerState>(props.isTotal ? 'shower_mega_in' : 'shower_big_in');
-
 	function triggerExit() {
 		if (krakenAnim === 'total_win_in' || krakenAnim === 'total_win_idle') {
 			krakenAnim = 'total_win_out';
-			showerAnim = 'shower_mega_out';
 			return;
 		}
 		const isMegaState =
 			krakenAnim === 'mega_win_idle' || krakenAnim === 'big_win_to_mega_transition';
 		krakenAnim = isMegaState ? 'mega_win_out' : 'big_win_out';
-		showerAnim = isMegaState ? 'shower_mega_out' : 'shower_big_out';
 	}
 
 	// When requestExit changes to true while in idle, trigger exit immediately
@@ -78,21 +66,17 @@
 		switch (krakenAnim) {
 			case 'big_win_in':
 				krakenAnim = 'big_win_idle';
-				showerAnim = 'shower_big_idle';
 				break;
 			case 'big_win_idle':
 				if (props.isMega) {
 					krakenAnim = 'big_win_to_mega_transition';
-					showerAnim = 'shower_mega_in';
 				}
 				break;
 			case 'big_win_to_mega_transition':
 				krakenAnim = 'mega_win_idle';
-				showerAnim = 'shower_mega_idle';
 				break;
 			case 'total_win_in':
 				krakenAnim = 'total_win_idle';
-				showerAnim = 'shower_mega_idle';
 				break;
 			case 'big_win_out':
 			case 'mega_win_out':
@@ -102,9 +86,11 @@
 		}
 	}
 
-	// Center everything on canvas, scale to fill screen width
+	// Center everything on canvas, constrain to both dimensions
 	const cx = $derived(canvas.width / 2);
 	const cy = $derived(canvas.height / 2);
+	// Spine skeleton: 1441.6 × 1234.01 — scale to fit viewport
+	const winScale = $derived(Math.min(canvas.width / 850, canvas.height / 1100));
 	// Background is 2048x2048 (square) — use cover mode
 	const bgCover = $derived(Math.max(canvas.width, canvas.height));
 </script>
@@ -119,12 +105,15 @@
 	height={bgCover}
 />
 
-<!-- Layer 2: Kraken Spine (centered on canvas, fills screen width) -->
+<!-- Layer 2: Content behind spines (coin particles) -->
+{@render props.behindSpines?.()}
+
+<!-- Layer 3: Kraken Spine (centered, constrained by both width and height) -->
 <SpineProvider
 	key="bigwin"
-	width={canvas.width}
+	scale={winScale}
 	x={cx}
-	y={cy - 100}
+	y={cy * 0.85}
 >
 	<SpineTrack
 		trackIndex={0}
@@ -133,20 +122,6 @@
 		listener={{
 			complete: () => onKrakenComplete(),
 		}}
-	/>
-</SpineProvider>
-
-<!-- Layer 3: Treasure Shower Spine (centered on canvas, same scale as kraken) -->
-<SpineProvider
-	key="shower"
-	width={canvas.width}
-	x={cx}
-	y={cy - 100}
->
-	<SpineTrack
-		trackIndex={0}
-		animationName={showerAnim}
-		loop={showerAnim === 'shower_big_idle' || showerAnim === 'shower_mega_idle'}
 	/>
 </SpineProvider>
 

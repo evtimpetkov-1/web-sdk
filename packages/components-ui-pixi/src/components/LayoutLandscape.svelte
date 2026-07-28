@@ -11,7 +11,7 @@
 	import type { LayoutUiProps } from '../types';
 	import { getContext } from '../context';
 	import { i18nDerived } from '../i18n/i18nDerived';
-	import LabelFreeSpinCounter from './LabelFreeSpinCounter.svelte';
+
 
 	const props: LayoutUiProps = $props();
 	const context = getContext();
@@ -94,17 +94,11 @@
 		<Text text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
 	</Container>
 
-	<!-- BET or Free Spin Counter -->
-	{#if stateUi.freeSpinCounterShow}
-		<Container x={w - 350} y={h - 65} scale={0.48}>
-			<LabelFreeSpinCounter stacked />
-		</Container>
-	{:else}
-		<Container x={w - 350} y={h - 65}>
-			<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-			<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
-		</Container>
-	{/if}
+	<!-- BET -->
+	<Container x={w - 350} y={h - 65}>
+		<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+		<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+	</Container>
 
 	<!-- Right button column -->
 	<!-- Menu (top) -->
@@ -127,7 +121,7 @@
 		{@render props.buttonTurbo({ anchor: 0.5 })}
 	</Container>
 
-	<!-- Bet settings button -->
+	<!-- Bet button -->
 	<Container x={w - 80} y={spinY + 320} scale={0.77}>
 		<Button
 			anchor={0.5}
@@ -138,7 +132,7 @@
 			{#snippet children({ center, hovered, pressed })}
 				<Sprite
 					{...center}
-					key="betButton"
+					key="bet.png"
 					anchor={0.5}
 					width={150}
 					height={150}
@@ -146,19 +140,6 @@
 				/>
 			{/snippet}
 		</Button>
-	</Container>
-	<!-- Bet amount below button -->
-	<Container x={w - 80} y={spinY + 395}>
-		<Text
-			text={betValue}
-			anchor={{ x: 0.5, y: 0 }}
-			style={{
-				fontFamily: 'Inter',
-				fontSize: 24,
-				fontWeight: '700',
-				fill: WHITE,
-			}}
-		/>
 	</Container>
 </MainContainer>
 

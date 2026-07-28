@@ -72,6 +72,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		if (bookEvent.gameType === 'freegame') {
 			bookEvent.anticipation = bookEvent.anticipation.map(() => 0);
 		}
+		stateUi.reelsSpinning = true;
 		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_reelspin' });
 
 		if (bookEvent.gameType === 'freegame') {
@@ -164,6 +165,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			});
 		}
 
+		stateUi.reelsSpinning = false;
 		eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_reelspin' });
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
 
@@ -201,7 +203,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// show free spin intro
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_superfreespin' });
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
-		await eventEmitter.broadcastAsync({ type: 'transition' });
 		eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs' });
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
@@ -221,8 +222,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		});
 		stateUi.freeSpinCounterTotal = bookEvent.totalFs;
 		await eventEmitter.broadcastAsync({ type: 'uiShow' });
-		await eventEmitter.broadcastAsync({ type: 'drawerButtonShow' });
-		eventEmitter.broadcast({ type: 'drawerFold' });
 	},
 	freeSpinRetrigger: async (bookEvent: BookEventOfType<'freeSpinRetrigger'>) => {
 		// Animate retrigger scatters and update the free spin counter
@@ -276,8 +275,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateUi.freeSpinCounterShow = false;
 		await eventEmitter.broadcastAsync({ type: 'transition' });
 		await eventEmitter.broadcastAsync({ type: 'uiShow' });
-		await eventEmitter.broadcastAsync({ type: 'drawerUnfold' });
-		eventEmitter.broadcast({ type: 'drawerButtonHide' });
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];

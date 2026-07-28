@@ -19,6 +19,10 @@
 	const cx = $derived(canvas.width / 2);
 	const cy = $derived(canvas.height / 2);
 
+	// Spine scale — proportional to viewport, capped at 2
+	// w/290 makes portrait ~scale 1.3, h/310 limits landscape, cap 2 for desktop
+	const fsScale = $derived(Math.min(canvas.width / 290, canvas.height / 310));
+
 	// Blur filter for intro overlay (sharp for gameplay)
 	const blurFilter = new BlurFilter({ strength: 6, quality: 4 });
 	const bgFilters = $derived(props.blur ? [blurFilter] : []);
@@ -41,7 +45,7 @@
 <!-- Layer 2: fsIntro Spine (tentacles + tablet + sparkles + bubbles) -->
 <SpineProvider
 	key="fsIntro"
-	scale={1}
+	scale={fsScale}
 	x={cx}
 	y={cy}
 >

@@ -11,7 +11,7 @@
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
-	import LabelFreeSpinCounter from './LabelFreeSpinCounter.svelte';
+
 	import ButtonDrawer from './ButtonDrawer.svelte';
 	import type { LayoutUiProps } from '../types';
 	import { getContext } from '../context';
@@ -146,7 +146,7 @@
 				{#snippet children({ center, hovered, pressed })}
 					<Sprite
 						{...center}
-						key="betButton"
+						key="bet.png"
 						anchor={0.5}
 						width={150}
 						height={150}
@@ -183,17 +183,11 @@
 		<Text text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
 	</Container>
 
-	<!-- BET or Free Spin Counter -->
-	{#if stateUi.freeSpinCounterShow}
-		<Container x={w - 150} y={h - 65} scale={0.48}>
-			<LabelFreeSpinCounter stacked />
-		</Container>
-	{:else}
-		<Container x={w - 150} y={h - 65}>
-			<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-			<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
-		</Container>
-	{/if}
+	<!-- BET -->
+	<Container x={w - 150} y={h - 65}>
+		<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+		<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+	</Container>
 
 	<!-- Drawer button -->
 	<FadeContainer

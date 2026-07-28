@@ -7,16 +7,20 @@
 
 <script lang="ts">
 	import { Container } from 'pixi-svelte';
-	import { FadeContainer, ResponsiveText } from 'components-pixi';
+	import { FadeContainer, ResponsiveText, ResponsiveBitmapText } from 'components-pixi';
 	import { waitForResolve } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
-	import { gameTextStyle, goldTextStyle } from '../game/textStyles';
+	import { gameTextStyle } from '../game/textStyles';
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
+
+	// Scale factor for text — applied directly to fontSize/positions (no Container scale)
+	// Match spine scale so text stays proportional to the frame at all orientations
+	const s = $derived(Math.min(canvas.width / 395, canvas.height / 370));
 
 	let show = $state(false);
 	let freeSpinsFromEvent = $state(0);
@@ -34,47 +38,54 @@
 
 <FadeContainer {show}>
 	<FreeSpinAnimation blur>
-		{@const spineScale = canvas.width / 1280}
 		<Container
 			label="FreeSpinIntroText"
 			x={canvas.width / 2}
 			y={canvas.height / 2}
-			scaleX={spineScale}
-			scaleY={spineScale}
 		>
-			<!-- CONGRATULATIONS! -->
 			<ResponsiveText
 				anchor={0.5}
-				y={-80}
-				maxWidth={500}
+				y={-135 * s}
+				maxWidth={340 * s}
 				text="CONGRATULATIONS!"
 				style={{
 					...gameTextStyle,
-					fontSize: 44,
+					fontSize: Math.max(26 * s, 1),
 				}}
 			/>
 
-			<!-- Number of free spins (large, gold) -->
 			<ResponsiveText
 				anchor={0.5}
-				y={0}
-				maxWidth={400}
+				y={-50 * s}
+				maxWidth={280 * s}
+				text="YOU WON"
+				style={{
+					...gameTextStyle,
+					fontSize: Math.max(20 * s, 1),
+				}}
+			/>
+
+			<ResponsiveBitmapText
+				anchor={0.5}
+				y={-2 * s}
+				maxWidth={230 * s}
 				text={`${freeSpinsFromEvent}`}
 				style={{
-					...goldTextStyle,
-					fontSize: 120,
+					fontFamily: 'cinzel-bold-gold',
+					fontSize: Math.max(68 * s, 1),
+					align: 'center',
+					letterSpacing: 0,
 				}}
 			/>
 
-			<!-- FREE SPINS label -->
 			<ResponsiveText
 				anchor={0.5}
-				y={94}
-				maxWidth={500}
+				y={50 * s}
+				maxWidth={280 * s}
 				text="FREE SPINS"
 				style={{
 					...gameTextStyle,
-					fontSize: 48,
+					fontSize: Math.max(24 * s, 1),
 				}}
 			/>
 		</Container>

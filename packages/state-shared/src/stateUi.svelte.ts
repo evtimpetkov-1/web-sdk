@@ -65,6 +65,7 @@ export const stateUi = $state({
 	menuOpen: false,
 	drawerFold: false,
 	drawerButtonShow: false,
+	reelsSpinning: false,
 	config: {
 		mode: 'default' as UIConfigMode,
 	}

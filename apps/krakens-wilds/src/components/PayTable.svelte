@@ -141,10 +141,12 @@
 		width: 90vw;
 		max-height: 85vh;
 		overflow-y: auto;
+		overflow-x: hidden;
 		padding: 2rem 1.5rem;
 		color: #e0e0e0;
 		font-family: 'Inter', sans-serif;
 		z-index: 100;
+		box-sizing: border-box;
 
 		scrollbar-width: thin;
 		scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
@@ -187,16 +189,18 @@
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		padding: 1rem 0.5rem;
+		padding: 0.75rem 0.5rem;
 		background: rgba(255, 255, 255, 0.04);
 		border-radius: 8px;
 		border: 1px solid rgba(255, 215, 0, 0.15);
 		gap: 0.4rem;
+		overflow: hidden;
+		min-width: 0;
 	}
 
 	.special-img {
-		width: 140px;
-		height: 140px;
+		width: 110px;
+		height: 110px;
 		object-fit: contain;
 		filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.3));
 	}
@@ -213,41 +217,46 @@
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		padding: 0.6rem 0.4rem;
+		padding: 0.6rem 0.3rem;
 		background: rgba(255, 255, 255, 0.04);
 		border-radius: 8px;
 		border: 1px solid rgba(255, 255, 255, 0.06);
 		gap: 0.25rem;
+		overflow: hidden;
+		min-width: 0;
 	}
 
 	.symbol-img {
-		width: 140px;
-		height: 140px;
+		width: 100px;
+		height: 100px;
 		object-fit: contain;
 		filter: drop-shadow(0 0 6px rgba(0, 150, 255, 0.3));
 	}
 
 	.pays-row {
 		display: flex;
-		gap: 0.75rem;
-		justify-content: center;
+		flex-direction: column;
+		gap: 0.15rem;
+		width: 100%;
 	}
 
 	.pay-entry {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
+		flex-direction: row;
+		justify-content: center;
+		align-items: baseline;
+		gap: 0.4rem;
 	}
 
 	.pay-count {
 		color: rgba(255, 255, 255, 0.5);
-		font-size: 1rem;
+		font-size: 0.8rem;
 	}
 
 	.pay-value {
 		color: #ffd700;
 		font-weight: 700;
-		font-size: 1.05rem;
+		font-size: 0.85rem;
 	}
 
 	.symbol-desc {
@@ -321,7 +330,20 @@
 
 	@media screen and (max-width: 500px) {
 		.paytable {
-			padding: 1.5rem 1rem;
+			padding: 1rem 0.5rem;
+			width: 95vw;
+		}
+
+		.modal-title {
+			font-size: 1.4rem;
+		}
+
+		h2 {
+			font-size: 1.1rem;
+		}
+
+		.special-grid {
+			grid-template-columns: 1fr;
 		}
 
 		.symbols-grid {
@@ -329,17 +351,82 @@
 		}
 
 		.symbol-img {
-			width: 110px;
-			height: 110px;
+			width: 70px;
+			height: 70px;
 		}
 
 		.special-img {
-			width: 110px;
-			height: 110px;
+			width: 90px;
+			height: 90px;
+		}
+
+		.symbol-desc {
+			font-size: 0.75rem;
+		}
+
+		.pay-count {
+			font-size: 0.7rem;
+		}
+
+		.pay-value {
+			font-size: 0.75rem;
 		}
 
 		.paylines-grid {
-			grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+			grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
 		}
+
+		section {
+			margin-bottom: 1.2rem;
+		}
+	}
+
+	/* Landscape mobile */
+	@media screen and (max-height: 500px) {
+		.paytable {
+			max-height: 90vh;
+			padding: 0.5rem;
+		}
+
+		.symbols-grid {
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+		.symbol-img {
+			width: 60px;
+			height: 60px;
+		}
+
+		.special-img {
+			width: 70px;
+			height: 70px;
+		}
+
+		.modal-title {
+			font-size: 1.2rem;
+			margin-bottom: 0.4rem;
+		}
+
+		h2 {
+			font-size: 0.9rem;
+			margin-bottom: 0.3rem;
+		}
+
+		section {
+			margin-bottom: 0.75rem;
+		}
+
+		.symbol-desc {
+			font-size: 0.7rem;
+		}
+
+		.pay-count {
+			font-size: 0.7rem;
+		}
+
+		.pay-value {
+			font-size: 0.75rem;
+		}
+
 	}
 </style>

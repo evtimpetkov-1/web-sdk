@@ -87,7 +87,7 @@ export default {
 	// UI buttons spritesheet
 	uiButtons0: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/uiButtons/uiButtons-0.json', import.meta.url).href,
+		src: new URL('../../assets/sprites/uiButtons/ui_new_packed.json', import.meta.url).href,
 	},
 	frameEdgeDeep: {
 		type: 'sprite',
@@ -104,8 +104,8 @@ export default {
 	payframe: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/payframe/payframe.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/payframe/payframe.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/payframe/winframe.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/payframe/winframe.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
@@ -118,14 +118,6 @@ export default {
 		src: {
 			atlas: new URL('../../assets/spines/bigwin/bigwin.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/bigwin/bigwin.json', import.meta.url).href,
-			scale: 1,
-		},
-	},
-	shower: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/shower/shower.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/shower/shower.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
@@ -181,9 +173,13 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/fs_counter_bg.png', import.meta.url).href,
 	},
-	betButton: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/betButton.png', import.meta.url).href,
+	winFont: {
+		type: 'font',
+		src: new URL('../../assets/fonts/winFont/cinzel-bold-gold.xml', import.meta.url).href,
+	},
+	coins: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/coin/KW_Coin.json', import.meta.url).href,
 	},
 	sound: {
 		type: 'audio',

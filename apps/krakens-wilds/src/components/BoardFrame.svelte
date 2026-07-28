@@ -5,12 +5,45 @@
 </script>
 
 <script lang="ts">
-	import { Rectangle, Sprite, SpineProvider, SpineTrack, Container, Text } from 'pixi-svelte';
+	import { Rectangle, Sprite, SpineProvider, SpineTrack, Container, Text, FillGradient } from 'pixi-svelte';
+	import type { TextStyleOptions } from 'pixi.js';
 	import { stateBet, stateUi } from 'state-shared';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
 	import { getContext } from '../game/context';
-	import { goldTextStyle } from '../game/textStyles';
+
+	const counterHeaderGradient = new FillGradient({
+		type: 'linear',
+		start: { x: 0, y: 0 },
+		end: { x: 0, y: 1 },
+		textureSpace: 'local',
+		colorStops: [
+			{ offset: 0, color: '#00E5FF' },
+			{ offset: 0.5, color: '#B2EBF2' },
+			{ offset: 1, color: '#00ACC1' },
+		],
+	});
+
+	const counterHeaderStyle = {
+		fontFamily: 'Cinzel',
+		fontWeight: '700',
+		fill: counterHeaderGradient,
+		stroke: { color: '#071a2b', width: 3 },
+		dropShadow: { color: '#00BCD4', blur: 10, distance: 0, alpha: 0.5 },
+		letterSpacing: 3,
+		align: 'center',
+		fontSize: 28,
+	} as const satisfies TextStyleOptions;
+
+	const counterValueStyle = {
+		fontFamily: 'Cinzel',
+		fontWeight: '700',
+		fill: '#B0C4DE',
+		stroke: { color: '#0a1929', width: 2 },
+		letterSpacing: 1,
+		align: 'center',
+		fontSize: 36,
+	} as const satisfies TextStyleOptions;
 
 	const context = getContext();
 	const BG_SCALE = { width: 1.1, height: 0.7 };
@@ -85,16 +118,14 @@
 	<SpineTrack trackIndex={0} animationName="idle" loop={true} />
 </SpineProvider>
 
-<!-- Game logo — centered above frame, hidden during free spins -->
-{#if !stateUi.freeSpinCounterShow}
-	<Sprite
-		key="gameLogo"
-		anchor={{ x: 0.5, y: 0.5 }}
-		x={frameX}
-		y={frameTopY}
-		scale={logoScale}
-	/>
-{/if}
+<!-- Game logo — centered above frame -->
+<Sprite
+	key="gameLogo"
+	anchor={{ x: 0.5, y: 0.5 }}
+	x={frameX}
+	y={frameTopY}
+	scale={logoScale}
+/>
 
 <!-- Free spin counters -->
 {#if stateUi.freeSpinCounterShow}
@@ -102,53 +133,25 @@
 		<!-- Portrait: below the board, side by side -->
 		<Container label="FreeSpinCounter" x={counterLeftX} y={counterBottomY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text
-				y={8}
-				text={`FREE SPINS\n${stateUi.freeSpinCounterCurrent} / ${stateUi.freeSpinCounterTotal}`}
-				anchor={0.5}
-				style={{
-					...goldTextStyle,
-					fontSize: 42,
-				}}
-			/>
+			<Text text="FREE SPINS" anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<Text text={`${stateUi.freeSpinCounterCurrent} / ${stateUi.freeSpinCounterTotal}`} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 		<Container label="TotalWinCounter" x={counterRightX} y={counterBottomY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text
-				y={8}
-				text={`TOTAL WIN\n${bookEventAmountToCurrencyString(stateBet.winBookEventAmount)}`}
-				anchor={0.5}
-				style={{
-					...goldTextStyle,
-					fontSize: 42,
-				}}
-			/>
+			<Text text="TOTAL WIN" anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 	{:else}
 		<!-- Desktop/Landscape: left of frame, stacked vertically -->
 		<Container label="FreeSpinCounter" x={counterX} y={counterFsY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text
-				y={8}
-				text={`FREE SPINS\n${stateUi.freeSpinCounterCurrent} / ${stateUi.freeSpinCounterTotal}`}
-				anchor={0.5}
-				style={{
-					...goldTextStyle,
-					fontSize: 42,
-				}}
-			/>
+			<Text text="FREE SPINS" anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<Text text={`${stateUi.freeSpinCounterCurrent} / ${stateUi.freeSpinCounterTotal}`} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 		<Container label="TotalWinCounter" x={counterX} y={counterWinY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text
-				y={8}
-				text={`TOTAL WIN\n${bookEventAmountToCurrencyString(stateBet.winBookEventAmount)}`}
-				anchor={0.5}
-				style={{
-					...goldTextStyle,
-					fontSize: 42,
-				}}
-			/>
+			<Text text="TOTAL WIN" anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 	{/if}
 {/if}

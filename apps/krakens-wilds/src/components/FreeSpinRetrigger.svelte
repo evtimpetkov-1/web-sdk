@@ -5,15 +5,18 @@
 
 <script lang="ts">
 	import { Container, Rectangle } from 'pixi-svelte';
-	import { FadeContainer, ResponsiveText } from 'components-pixi';
+	import { FadeContainer, ResponsiveBitmapText } from 'components-pixi';
 	import { Tween } from 'svelte/motion';
 	import { waitForTimeout } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
-	import { goldTextStyle } from '../game/textStyles';
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
+
+	// Scale factor — applied directly to fontSize/positions (no Container scale)
+	// Match spine scale so text stays proportional to the frame at all orientations
+	const s = $derived(Math.min(canvas.width / 395, canvas.height / 370));
 
 	let show = $state(false);
 	let extraSpins = $state(0);
@@ -39,32 +42,35 @@
 		backgroundColor={0x000000}
 		alpha={0.6}
 	/>
-	{@const spineScale = canvas.width / 1280}
 	<Container
 		label="FreeSpinRetriggerText"
 		x={canvas.width / 2}
 		y={canvas.height / 2}
-		scaleX={spineScale * scale.current}
-		scaleY={spineScale * scale.current}
+		scaleX={scale.current}
+		scaleY={scale.current}
 	>
-		<ResponsiveText
+		<ResponsiveBitmapText
 			anchor={0.5}
-			y={-20}
-			maxWidth={600}
+			y={-10 * s}
+			maxWidth={315 * s}
 			text={`+${extraSpins}`}
 			style={{
-				...goldTextStyle,
-				fontSize: 160,
+				fontFamily: 'cinzel-bold-gold',
+				fontSize: Math.max(84 * s, 1),
+				align: 'center',
+				letterSpacing: 0,
 			}}
 		/>
-		<ResponsiveText
+		<ResponsiveBitmapText
 			anchor={0.5}
-			y={100}
-			maxWidth={600}
+			y={53 * s}
+			maxWidth={315 * s}
 			text="FREE SPINS"
 			style={{
-				...goldTextStyle,
-				fontSize: 48,
+				fontFamily: 'cinzel-bold-gold',
+				fontSize: Math.max(25 * s, 1),
+				align: 'center',
+				letterSpacing: 0,
 			}}
 		/>
 	</Container>

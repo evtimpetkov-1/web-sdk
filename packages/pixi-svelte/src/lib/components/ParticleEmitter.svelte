@@ -32,7 +32,11 @@
 	propsSyncEffect({ props, target: emitter, ignore: ['emit'] });
 
 	$effect(() => {
-		if (props.emit) emitter.init(updatedConfig);
+		if (props.emit) {
+			emitter.init(updatedConfig);
+		} else {
+			emitter.emit = false;
+		}
 	});
 
 	if (context.stateApp.pixiApplication) {

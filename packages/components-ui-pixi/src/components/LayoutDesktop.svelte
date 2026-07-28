@@ -2,7 +2,7 @@
 	import { stateUi, stateConfig } from 'state-shared';
 	import { BLACK, WHITE } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
-	import { Container, Rectangle, Text } from 'pixi-svelte';
+	import { Container, Rectangle, Text, Sprite } from 'pixi-svelte';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { stateBet, stateBetDerived } from 'state-shared';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
@@ -11,7 +11,7 @@
 	import type { LayoutUiProps } from '../types';
 	import { getContext } from '../context';
 	import { i18nDerived } from '../i18n/i18nDerived';
-	import LabelFreeSpinCounter from './LabelFreeSpinCounter.svelte';
+
 
 	const props: LayoutUiProps = $props();
 	const context = getContext();
@@ -39,19 +39,6 @@
 		fontWeight: '700',
 		fill: WHITE,
 		letterSpacing: 1,
-	} as const;
-
-	const pmStyle = {
-		fontFamily: 'Inter',
-		fontSize: 63,
-		fontWeight: '700',
-		fill: 0xc0c8d0,
-		letterSpacing: 0,
-	} as const;
-
-	const pmStyleHover = {
-		...pmStyle,
-		fill: WHITE,
 	} as const;
 
 	// Reactive values for bottom bar
@@ -128,20 +115,14 @@
 		<Text text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
 	</Container>
 
-	<!-- BET or Free Spin Counter -->
-	{#if stateUi.freeSpinCounterShow}
-		<Container x={w * 0.67} y={rowY} scale={0.48}>
-			<LabelFreeSpinCounter stacked />
-		</Container>
-	{:else}
-		<Container x={w * 0.67} y={rowY}>
-			<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-			<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
-		</Container>
-	{/if}
+	<!-- BET -->
+	<Container x={w * 0.67} y={rowY}>
+		<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
+		<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+	</Container>
 
-	<!-- Text -/+ bet buttons -->
-	<Container x={w * 0.67 - 80} y={rowY - 30}>
+	<!-- -/+ bet buttons -->
+	<Container x={w * 0.67 - 80} y={rowY - 14}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}
@@ -149,18 +130,19 @@
 			onpress={onDecrease}
 		>
 			{#snippet children({ center, hovered })}
-				<Text
+				<Sprite
 					{...center}
-					text="−"
-					style={hovered && !decDisabled ? pmStyleHover : pmStyle}
+					key="minus.png"
 					anchor={0.5}
-					alpha={decDisabled ? 0.3 : 1}
+					width={50}
+					height={50}
+					alpha={decDisabled ? 0.3 : hovered ? 1 : 0.7}
 				/>
 			{/snippet}
 		</Button>
 	</Container>
 
-	<Container x={w * 0.67 + 80} y={rowY - 25}>
+	<Container x={w * 0.67 + 80} y={rowY - 14}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}
@@ -168,12 +150,13 @@
 			onpress={onIncrease}
 		>
 			{#snippet children({ center, hovered })}
-				<Text
+				<Sprite
 					{...center}
-					text="+"
-					style={hovered && !incDisabled ? pmStyleHover : pmStyle}
+					key="plus.png"
 					anchor={0.5}
-					alpha={incDisabled ? 0.3 : 1}
+					width={50}
+					height={50}
+					alpha={incDisabled ? 0.3 : hovered ? 1 : 0.7}
 				/>
 			{/snippet}
 		</Button>

@@ -36,7 +36,10 @@
 	:global(html) {
 		font-size: 16px; /* you can chose any size here 16 is default */
 		@media screen and (max-width: 500px) {
-			font-size: 150%;
+			font-size: 110%;
+		}
+		@media screen and (orientation: landscape) and (max-height: 450px) {
+			font-size: 75%;
 		}
 	}
 </style>

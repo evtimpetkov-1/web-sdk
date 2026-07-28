@@ -8,21 +8,20 @@
 </script>
 
 <script lang="ts">
-	import { Container, Text } from 'pixi-svelte';
-	import { FadeContainer, WinCountUpProvider } from 'components-pixi';
+	import { Container } from 'pixi-svelte';
+	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { OnMount } from 'components-shared';
 
 	import { getContext } from '../game/context';
-	import { goldTextStyle } from '../game/textStyles';
-	import { SYMBOL_SIZE } from '../game/constants';
 	import WinAnimation from './WinAnimation.svelte';
 	import WinCoins from './WinCoins.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
+	const spineScale = $derived(Math.min(canvas.width / 850, canvas.height / 1100));
 
 	let show = $state(true);
 	let amount = $state(0);
@@ -35,7 +34,6 @@
 		}
 	});
 	let requestExitAnimation = $state(false);
-	let stableTextWidth = $state(0);
 
 	context.eventEmitter.subscribeOnMount({
 		freeSpinOutroShow: () => (show = true),
@@ -60,38 +58,32 @@
 					}}
 				/>
 
-				{@const spineScale = canvas.width / 1441.6}
 				{@const cx = canvas.width / 2}
 				{@const cy = canvas.height / 2}
 				<WinAnimation isMega={false} isTotal requestExit={requestExitAnimation} onexit={() => oncomplete()}>
+					{#snippet behindSpines()}
+						<WinCoins emit={!countUpCompleted} levelAlias={winLevelData?.alias} />
+					{/snippet}
 					<Container
 						label="TotalWinTextContainer"
 						x={cx}
-						y={cy - 100}
+						y={cy * 0.85}
 						scale={spineScale}
 					>
-						<!-- Measure final amount once for stable scale -->
-						<Container visible={false}>
-							<Text
-								text={bookEventAmountToCurrencyString(amount)}
-								style={{ ...goldTextStyle, fontSize: 96 }}
-								onresize={(s) => (stableTextWidth = s.width)}
-							/>
-						</Container>
-						<Text
+						<ResponsiveBitmapText
 							anchor={0.5}
-							y={250}
-							scale={Math.min(800 / (stableTextWidth || 1), 1)}
+							y={300}
+							maxWidth={2130}
 							text={bookEventAmountToCurrencyString(countUpAmount)}
 							style={{
-								...goldTextStyle,
+								fontFamily: 'cinzel-bold-gold',
 								fontSize: 96,
+								align: 'center',
+								letterSpacing: 0,
 							}}
 						/>
 					</Container>
 				</WinAnimation>
-
-				<WinCoins emit={!countUpCompleted} levelAlias={winLevelData?.alias} />
 
 				<PressToContinue
 					onpress={() => {

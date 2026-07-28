@@ -4,8 +4,7 @@
 	import { getSymbolInfo } from '../game/utils';
 	import type { SymbolState, RawSymbol } from '../game/types';
 	import { getContext } from '../game/context';
-	import { Text } from 'pixi-svelte';
-	import { goldTextStyle } from '../game/textStyles';
+	import { BitmapText } from 'pixi-svelte';
 
 	type Props = {
 		x?: number;
@@ -43,14 +42,16 @@
 {/if}
 
 {#if props.rawSymbol.multiplier}
-	<Text
+	<BitmapText
 		anchor={0.5}
 		x={props.x}
 		y={props.y}
 		text={`${props.rawSymbol.multiplier}X`}
 		style={{
-			...goldTextStyle,
+			fontFamily: 'cinzel-bold-gold',
 			fontSize: 50,
+			align: 'center',
+			letterSpacing: 0,
 		}}
 	/>
 {/if}
