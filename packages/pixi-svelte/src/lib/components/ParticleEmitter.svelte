@@ -32,16 +32,13 @@
 	propsSyncEffect({ props, target: emitter, ignore: ['emit'] });
 
 	$effect(() => {
-		if (props.emit) {
-			emitter.init(updatedConfig);
-		} else {
-			emitter.emit = false;
-		}
+		emitter.init(updatedConfig);
 	});
 
 	if (context.stateApp.pixiApplication) {
 		context.stateApp.pixiApplication.ticker.add(() => {
 			if (context.stateApp.pixiApplication) {
+				emitter.emit = !!props.emit;
 				const deltaUpdate =
 					context.stateApp.pixiApplication.ticker.deltaMS * (props.emitSpeed || 0.00234);
 				emitter.update(deltaUpdate);

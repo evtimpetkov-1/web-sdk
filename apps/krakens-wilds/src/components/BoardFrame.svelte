@@ -32,7 +32,7 @@
 		dropShadow: { color: '#00BCD4', blur: 10, distance: 0, alpha: 0.5 },
 		letterSpacing: 3,
 		align: 'center',
-		fontSize: 28,
+		fontSize: 34,
 	} as const satisfies TextStyleOptions;
 
 	const counterValueStyle = {
@@ -42,7 +42,7 @@
 		stroke: { color: '#0a1929', width: 2 },
 		letterSpacing: 1,
 		align: 'center',
-		fontSize: 36,
+		fontSize: 42,
 	} as const satisfies TextStyleOptions;
 
 	const context = getContext();
@@ -66,8 +66,8 @@
 	const PANEL_HEIGHT = PANEL_WIDTH / 1.876; // match 782x417 image aspect ratio
 
 	// Counter positioning per layout
-	const isPortrait = $derived(layout === 'portrait');
-	const counterScale = $derived(isPortrait ? boardLayout.width / 850 : boardLayout.width / 850);
+	const countersBelow = $derived(layout === 'portrait' || layout === 'tablet');
+	const counterScale = $derived(boardLayout.width / 850);
 
 	// Desktop/landscape: left of frame, stacked vertically
 	const counterX = $derived(frameX - frameW * 0.5 - 170 * counterScale);
@@ -129,7 +129,7 @@
 
 <!-- Free spin counters -->
 {#if stateUi.freeSpinCounterShow}
-	{#if isPortrait}
+	{#if countersBelow}
 		<!-- Portrait: below the board, side by side -->
 		<Container label="FreeSpinCounter" x={counterLeftX} y={counterBottomY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
