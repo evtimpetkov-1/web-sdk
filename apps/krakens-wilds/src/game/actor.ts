@@ -1,7 +1,6 @@
 import _ from 'lodash';
 
-import { API_AMOUNT_MULTIPLIER } from 'constants-shared/bet';
-import { stateBet, stateUrlDerived } from 'state-shared';
+import { stateBet } from 'state-shared';
 import { checkIsMultipleRevealEvents } from 'utils-book';
 import { createPrimaryMachines, createIntermediateMachines, createGameActor } from 'utils-xstate';
 
@@ -11,46 +10,6 @@ import { playBet, convertTorResumableBet } from './utils';
 import { stateGame, stateGameDerived, winCycleState } from './stateGame.svelte';
 import { eventEmitter } from './eventEmitter';
 import config from './config';
-import { loadMathFiles, selectRandomBook } from './devMath';
-
-// Dev mode: use math-sdk files from static/assets/math/ (enable with ?math in URL)
-const isDevMode = !stateUrlDerived.rgsUrl();
-let mathReady: boolean | null = null;
-let devPendingPayout = 0;
-
-const devRequestBet = async () => {
-	if (mathReady === null) {
-		mathReady = await loadMathFiles();
-	}
-
-	if (!mathReady) {
-		throw new Error('Math files not loaded. Run tools/prepare-math.sh and add ?math to URL.');
-	}
-
-	const selected = selectRandomBook();
-	const betAmount = stateBet.betAmount;
-	const payout = selected.payoutMultiplier * betAmount;
-
-	// Deduct bet now, store payout for after animations finish
-	const postDeductionBalance = stateBet.balanceAmount - betAmount;
-	devPendingPayout = payout;
-
-	return {
-		balance: {
-			amount: postDeductionBalance * API_AMOUNT_MULTIPLIER,
-			currency: stateBet.currency || 'USD',
-		},
-		round: {
-			roundID: Date.now(),
-			amount: betAmount * API_AMOUNT_MULTIPLIER,
-			payout,
-			payoutMultiplier: selected.payoutMultiplier,
-			active: selected.events.some((e) => e.type === 'freeSpinTrigger'),
-			mode: 'BASE',
-			state: selected.events,
-		},
-	};
-};
 
 const primaryMachines = createPrimaryMachines<Bet>({
 	onResumeGameActive: (betToResume) => convertTorResumableBet(betToResume),
@@ -76,14 +35,8 @@ const primaryMachines = createPrimaryMachines<Bet>({
 	onNewGameError: () => stateGameDerived.enhancedBoard.settle(),
 	onPlayGame: async (bet) => {
 		await playBet(bet);
-		// Dev mode: apply payout after all animations finish (mimics RGS endRound)
-		if (isDevMode && devPendingPayout > 0) {
-			stateBet.balanceAmount += devPendingPayout;
-			devPendingPayout = 0;
-		}
 	},
 	checkIsBonusGame: (bet) => checkIsMultipleRevealEvents({ bookEvents: bet.state }),
-	...(isDevMode && { onRequestBet: devRequestBet }),
 });
 
 const intermediateMachines = createIntermediateMachines(primaryMachines);

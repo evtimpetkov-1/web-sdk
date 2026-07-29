@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
+	const logoTextImg = new URL('../../assets/sprites/logo_text.png', import.meta.url).href;
 
 	let visible = $state(true);
 
@@ -17,7 +18,7 @@
 		<div class="loader-content">
 			<img
 				class="logo-text"
-				src={new URL('../../static/assets/sprites/logo_text.png', import.meta.url).href}
+				src={logoTextImg}
 				alt="Kraken's Wilds"
 			/>
 			<div class="spinner">

@@ -5,7 +5,7 @@
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
 	import { App, REM, Container } from 'pixi-svelte';
-	import { UI, UiGameName } from 'components-ui-pixi';
+	import { UI } from 'components-ui-pixi';
 	import { GameVersion, Modals } from 'components-ui-html';
 	import PayTable from './PayTable.svelte';
 	import GameRules from './GameRules.svelte';
@@ -75,9 +75,7 @@
 		</MainContainer>
 
 		<UI>
-			{#snippet gameName()}
-				<UiGameName name="KRAKEN'S WILDS" />
-			{/snippet}
+			{#snippet gameName()}{/snippet}
 			{#snippet logo()}{/snippet}
 		</UI>
 		<Win />

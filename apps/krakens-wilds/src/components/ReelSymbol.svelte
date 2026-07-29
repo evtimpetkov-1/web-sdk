@@ -47,11 +47,11 @@
 			}}
 		/>
 		{#if showRetriggerLabel}
-			<Container zIndex={20}>
+			<Container y={-SYMBOL_SIZE * 0.3} zIndex={20}>
 				<ResponsiveBitmapText
 					anchor={0.5}
 					maxWidth={SYMBOL_SIZE}
-					text={`+${context.stateGame.retriggerExtra}`}
+					text="+1"
 					style={{
 						fontFamily: 'cinzel-bold-gold',
 						fontSize: 96,

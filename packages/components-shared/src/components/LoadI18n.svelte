@@ -28,8 +28,10 @@
 
 	onMount(() => {
 		try {
-			const messages = loadMessages(stateUrlDerived.lang());
-			stateI18nDerived.init(stateUrlDerived.lang(), messages);
+			// Social mode: force English regardless of lang parameter (Stake requirement)
+			const lang = stateUrlDerived.social() ? 'en' : stateUrlDerived.lang();
+			const messages = loadMessages(lang);
+			stateI18nDerived.init(lang, messages);
 		} catch (error) {
 			console.error("Loading fallback locale 'en' because of error", error);
 			try {

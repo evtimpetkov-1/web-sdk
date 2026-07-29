@@ -21,6 +21,7 @@
 		align-items: center;
 		z-index: var(--zIndex);
 		max-width: var(--maxWidth);
+		max-height: 100%;
 		gap: 1rem;
 		color: var(--modal-text);
 	}

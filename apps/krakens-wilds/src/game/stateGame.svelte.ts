@@ -119,7 +119,7 @@ const boardLayout = () => {
 	const h = stateLayoutDerived.mainLayout().height;
 	const layout = stateLayoutDerived.layoutType();
 	// Offset board upward in landscape/desktop to account for the bottom bar
-	const yOffset = layout === 'portrait' ? -80 : layout === 'landscape' ? -50 : layout === 'desktop' ? -30 : 0;
+	const yOffset = layout === 'portrait' ? -80 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
 	const scale = layout === 'portrait' ? 1.15 : layout === 'landscape' ? 1.35 : 1;
 	return {
 		x: w * 0.5,

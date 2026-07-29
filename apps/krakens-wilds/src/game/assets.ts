@@ -91,7 +91,11 @@ export default {
 	},
 	frameEdgeDeep: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/reelsFrame/frame_edge_deep.png', import.meta.url).href,
+		src: new URL('../../assets/sprites/reelsFrame/frame_edge_deep.webp', import.meta.url).href,
+	},
+	frameEdgeFs: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/reelsFrame/frame_edge_fs.webp', import.meta.url).href,
 	},
 	anticipation: {
 		type: 'spine',
@@ -143,15 +147,7 @@ export default {
 	},
 	freeSpinBg: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/fs_intro_bg/fs_bg.jpg', import.meta.url).href,
-	},
-	fsIntro: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/fsIntro/fsIntro.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/fsIntro/fsIntro.json', import.meta.url).href,
-			scale: 0.5,
-		},
+		src: new URL('../../assets/sprites/fs_intro_bg/fs_bg_v2.jpg', import.meta.url).href,
 	},
 	frameOverlay: {
 		type: 'spine',
@@ -163,7 +159,7 @@ export default {
 	},
 	symbolsStatic: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/symbolsStatic/symbols.json', import.meta.url).href,
+		src: new URL('../../assets/sprites/paytable/symbols.json', import.meta.url).href,
 	},
 	winGlow: {
 		type: 'sprite',
@@ -171,7 +167,7 @@ export default {
 	},
 	fsCounterBg: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/fs_counter_bg.png', import.meta.url).href,
+		src: new URL('../../assets/sprites/fs_counter_bg_new.webp', import.meta.url).href,
 	},
 	winFont: {
 		type: 'font',

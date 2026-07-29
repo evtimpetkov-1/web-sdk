@@ -2,10 +2,13 @@ import type { LinguiConfig } from "@lingui/conf";
 
 export const locales = [
   "ar",
+  "da",
   "de",
   "en",
   "es",
+  "fi",
   "fr",
+  "hi",
   "id",
   "ja",
   "ko",
@@ -14,9 +17,7 @@ export const locales = [
   "ru",
   "tr",
   "vi",
-  "zh",
-  "fi",
-  "hi"
+  "zh"
 ] as const;
 
 const config: LinguiConfig = {

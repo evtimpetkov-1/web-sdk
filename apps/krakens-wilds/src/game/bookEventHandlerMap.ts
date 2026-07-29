@@ -115,9 +115,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			} else if (wildPositions.length > 0) {
 				// Subsequent spins: move existing wilds to new positions
 				const updated = [...stateGame.movingWilds];
+				const existingCount = updated.length;
 
-				// Move existing wilds
-				const keepCount = Math.min(updated.length, wildPositions.length);
+				// Move existing wilds (no sound — just repositioning)
+				const keepCount = Math.min(existingCount, wildPositions.length);
 				for (let i = 0; i < keepCount; i++) {
 					updated[i].x.set(wildX(wildPositions[i].reel), { duration: 400 });
 					updated[i].y.set(wildY(wildPositions[i].row), { duration: 400 });
@@ -126,7 +127,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				}
 
 				// Add new wilds if more than before
-				for (let i = updated.length; i < wildPositions.length; i++) {
+				const newWildCount = wildPositions.length - existingCount;
+				for (let i = existingCount; i < wildPositions.length; i++) {
 					updated.push({
 						id: movingWildIdCounter++,
 						x: new Tween(wildX(wildPositions[i].reel)),
@@ -138,12 +140,16 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				}
 
 				// Remove extras if fewer
-				if (wildPositions.length < updated.length) {
+				if (wildPositions.length < existingCount) {
 					updated.length = wildPositions.length;
 				}
 
 				stateGame.movingWilds = updated;
-				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+				// Only play landing sound for newly added wilds
+				for (let i = 0; i < newWildCount; i++) {
+					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+					if (i < newWildCount - 1) await waitForTimeout(150);
+				}
 				await waitForTimeout(1000);
 			} else {
 				// No wilds this spin — clear all
@@ -253,8 +259,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		eventEmitter.broadcast({ type: 'winHide' });
 		eventEmitter.broadcast({ type: 'boardResetSymbols' });
-		stateGame.movingWilds = [];
-		stateGame.gameType = 'basegame';
 		winCycleState.lastWins = null;
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
 		eventEmitter.broadcast({ type: 'boardFrameGlowHide' });
@@ -268,6 +272,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		});
 		winLevelSoundsStop();
 		eventEmitter.broadcast({ type: 'freeSpinOutroHide' });
+		stateGame.movingWilds = [];
+		stateGame.gameType = 'basegame';
 		eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
 		stateUi.freeSpinCounterShow = false;
 		await eventEmitter.broadcastAsync({ type: 'transition' });
@@ -373,7 +379,14 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const lastSetTotalWinEvent = findLastBookEvent('setTotalWin' as const);
 		const lastUpdateGlobalMultEvent = findLastBookEvent('updateGlobalMult' as const);
 
-		if (lastFreeSpinTriggerEvent) await playBookEvent(lastFreeSpinTriggerEvent, { bookEvents });
+		// Restore FS state without animations (skip intro popup on resume)
+		if (lastFreeSpinTriggerEvent) {
+			stateGame.gameType = 'freegame';
+			eventEmitter.broadcast({ type: 'boardFrameGlowShow' });
+			eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
+			stateUi.freeSpinCounterShow = true;
+			eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
+		}
 		if (lastUpdateFreeSpinEvent) playBookEvent(lastUpdateFreeSpinEvent, { bookEvents });
 		if (lastSetTotalWinEvent) playBookEvent(lastSetTotalWinEvent, { bookEvents });
 		if (lastUpdateGlobalMultEvent) playBookEvent(lastUpdateGlobalMultEvent, { bookEvents });

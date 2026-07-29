@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "stake-engine-docs": {
+      "command": "node",
+      "args": [
+        "/Users/evtimpetkov/Desktop/Projects/stake-engine/docs/mcp-server/dist/index.js"
+      ]
+    }
+  }
+}

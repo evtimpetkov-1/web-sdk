@@ -11,6 +11,7 @@
 	import { waitForResolve } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
+	import { i18nDerived } from '../i18n/i18nDerived';
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 
@@ -32,9 +33,9 @@
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
 
-	// Scale factor for text — applied directly to fontSize/positions (no Container scale)
-	// Match spine scale so text stays proportional to the frame at all orientations
-	const s = $derived(Math.min(canvas.width / 395, canvas.height / 370));
+	// Scale factor — match plate scale from FreeSpinAnimation
+	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
+	const s = $derived(Math.min(canvas.width / (isPortrait ? 750 : 900), canvas.height / 700));
 
 	let show = $state(false);
 	let freeSpinsFromEvent = $state(0);
@@ -52,72 +53,76 @@
 
 <FadeContainer {show}>
 	<FreeSpinAnimation blur>
+		{@const plateCY = canvas.height / 2 + 20 * s}
 		<Container
 			label="FreeSpinIntroText"
 			x={canvas.width / 2}
-			y={canvas.height / 2}
+			y={0}
 		>
+			<!-- CONGRATULATIONS above the plate -->
 			<ResponsiveText
 				anchor={0.5}
-				y={-130 * s}
-				maxWidth={340 * s}
-				text="CONGRATULATIONS!"
+				y={plateCY - 260 * s}
+				maxWidth={700 * s}
+				text={i18nDerived.congratulations()}
 				style={{
 					fontFamily: 'Cinzel',
 					fontWeight: '700',
 					fill: icyGradient,
-					stroke: { color: '#06283B', width: 2.2 },
-					dropShadow: { color: '#000000', alpha: 0.5, blur: 2, distance: 0 },
-					letterSpacing: 2,
+					stroke: { color: '#06283B', width: 3 },
+					dropShadow: { color: '#000000', alpha: 0.6, blur: 4, distance: 0 },
+					letterSpacing: 3,
 					align: 'center',
-					fontSize: Math.max(30 * s, 1),
+					fontSize: Math.max(56 * s, 1),
 				}}
 			/>
 
+			<!-- Inside the plate: YOU WON -->
 			<ResponsiveText
 				anchor={0.5}
-				y={-42 * s}
-				maxWidth={280 * s}
-				text="YOU WON"
+				y={plateCY - 65 * s}
+				maxWidth={500 * s}
+				text={i18nDerived.youWon()}
 				style={{
 					fontFamily: 'Cinzel',
 					fontWeight: '700',
-					fill: icyGradient,
-					stroke: { color: '#06283B', width: 2.2 },
-					dropShadow: { color: '#000000', alpha: 0.5, blur: 2, distance: 0 },
-					letterSpacing: 2,
+					fill: '#B0C4DE',
+					stroke: { color: '#0a1929', width: 2 },
+					letterSpacing: 3,
 					align: 'center',
-					fontSize: Math.max(23 * s, 1),
+					fontSize: Math.max(48 * s, 1),
 				}}
 			/>
 
-			<ResponsiveBitmapText
-				anchor={0.5}
-				y={-12 * s}
-				maxWidth={230 * s}
-				text={`${freeSpinsFromEvent}`}
-				style={{
-					fontFamily: 'cinzel-bold-gold',
-					fontSize: Math.max(68 * s, 1),
-					align: 'center',
-					letterSpacing: 0,
-				}}
-			/>
+			<!-- Number — fixed fontSize, scaled via Container to avoid black bitmap on resize -->
+			<Container y={plateCY - 35 * s} scale={s}>
+				<ResponsiveBitmapText
+					anchor={0.5}
+					maxWidth={300}
+					text={`${freeSpinsFromEvent}`}
+					style={{
+						fontFamily: 'cinzel-bold-gold',
+						fontSize: 120,
+						align: 'center',
+						letterSpacing: 0,
+					}}
+				/>
+			</Container>
 
+			<!-- FREE SPINS -->
 			<ResponsiveText
 				anchor={0.5}
-				y={50 * s}
-				maxWidth={280 * s}
-				text="FREE SPINS"
+				y={plateCY + 90 * s}
+				maxWidth={500 * s}
+				text={i18nDerived.freeSpins()}
 				style={{
 					fontFamily: 'Cinzel',
 					fontWeight: '700',
-					fill: icyGradient,
-					stroke: { color: '#06283B', width: 2.2 },
-					dropShadow: { color: '#000000', alpha: 0.5, blur: 2, distance: 0 },
-					letterSpacing: 2,
+					fill: '#B0C4DE',
+					stroke: { color: '#0a1929', width: 2 },
+					letterSpacing: 3,
 					align: 'center',
-					fontSize: Math.max(24 * s, 1),
+					fontSize: Math.max(48 * s, 1),
 				}}
 			/>
 		</Container>

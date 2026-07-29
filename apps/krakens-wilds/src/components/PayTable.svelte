@@ -3,36 +3,48 @@
 	import { zIndex } from 'constants-shared/zIndex';
 	import { stateModal, stateUrlDerived, stateBet } from 'state-shared';
 	import { numberToCurrencyString } from 'utils-shared/amount';
+	import { i18nDerived } from '../i18n/i18nDerived';
+
+	const imgW = new URL('../../assets/paytable/w.png', import.meta.url).href;
+	const imgS = new URL('../../assets/paytable/s.png', import.meta.url).href;
+	const imgH1 = new URL('../../assets/paytable/h1.png', import.meta.url).href;
+	const imgH2 = new URL('../../assets/paytable/h2.png', import.meta.url).href;
+	const imgH3 = new URL('../../assets/paytable/h3.png', import.meta.url).href;
+	const imgH4 = new URL('../../assets/paytable/h4.png', import.meta.url).href;
+	const imgL1 = new URL('../../assets/paytable/l1.png', import.meta.url).href;
+	const imgL2 = new URL('../../assets/paytable/l2.png', import.meta.url).href;
+	const imgL3 = new URL('../../assets/paytable/l3.png', import.meta.url).href;
+	const imgL4 = new URL('../../assets/paytable/l4.png', import.meta.url).href;
 
 	const social = $derived(stateUrlDerived.social());
-	const title = $derived(social ? 'WIN TABLE' : 'PAYTABLE');
+	const title = $derived(social ? i18nDerived.symbolWins() : i18nDerived.payLinesHeader());
 	const bet = $derived(stateBet.betAmount);
 	const formatWin = (multiplier: number) => numberToCurrencyString(multiplier * bet);
 
-	const specialSymbols = [
+	const specialSymbols = $derived([
 		{
-			img: '/assets/symbols/w.png',
-			name: 'Wild',
+			img: imgW,
+			name: i18nDerived.wild(),
 			pays: { 5: 50, 4: 10, 3: 4 },
-			description: 'Substitutes for all symbols except Bonus. During Free Spins, 1 to 10 Random Wilds are placed on the reels each spin.',
+			description: i18nDerived.wildDesc(),
 		},
 		{
-			img: '/assets/symbols/s.png',
-			name: 'Bonus',
-			description: '3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins',
+			img: imgS,
+			name: i18nDerived.bonus(),
+			description: i18nDerived.bonusDesc(),
 		},
-	];
+	]);
 
-	const symbols = [
-		{ img: '/assets/symbols/h1.png', name: 'Shark', pays: { 5: 50, 4: 10, 3: 4 } },
-		{ img: '/assets/symbols/h2.png', name: 'Sea Turtle', pays: { 5: 25, 4: 5, 3: 2.5 } },
-		{ img: '/assets/symbols/h3.png', name: 'Pearl', pays: { 5: 12.5, 4: 3, 3: 2 } },
-		{ img: '/assets/symbols/h4.png', name: 'Nautilus', pays: { 5: 7.5, 4: 2.5, 3: 1 } },
-		{ img: '/assets/symbols/l1.png', name: 'A', pays: { 5: 5, 4: 2, 3: 0.6 } },
-		{ img: '/assets/symbols/l2.png', name: 'K', pays: { 5: 5, 4: 2, 3: 0.6 } },
-		{ img: '/assets/symbols/l3.png', name: 'Q', pays: { 5: 4, 4: 1, 3: 0.3 } },
-		{ img: '/assets/symbols/l4.png', name: 'J', pays: { 5: 4, 4: 1, 3: 0.3 } },
-	];
+	const symbols = $derived([
+		{ img: imgH1, name: i18nDerived.shark(), pays: { 5: 50, 4: 10, 3: 4 } },
+		{ img: imgH2, name: i18nDerived.seaTurtle(), pays: { 5: 25, 4: 5, 3: 2.5 } },
+		{ img: imgH3, name: i18nDerived.pearl(), pays: { 5: 12.5, 4: 3, 3: 2 } },
+		{ img: imgH4, name: i18nDerived.nautilus(), pays: { 5: 7.5, 4: 2.5, 3: 1 } },
+		{ img: imgL1, name: 'A', pays: { 5: 5, 4: 2, 3: 0.6 } },
+		{ img: imgL2, name: 'K', pays: { 5: 5, 4: 2, 3: 0.6 } },
+		{ img: imgL3, name: 'Q', pays: { 5: 4, 4: 1, 3: 0.3 } },
+		{ img: imgL4, name: 'J', pays: { 5: 4, 4: 1, 3: 0.3 } },
+	]);
 
 	const paylines = [
 		[1, 1, 1, 1, 1],
@@ -62,10 +74,10 @@
 {#if stateModal.modal?.name === 'payTable'}
 	<Popup zIndex={zIndex.modal + 1} onclose={() => (stateModal.modal = null)}>
 		<div class="paytable">
-			<h1 class="modal-title">{title}</h1>
+			<h1 class="modal-title">{social ? i18nDerived.symbolWins() : i18nDerived.symbolPayouts()}</h1>
 
 			<section class="special-symbols">
-				<h2>Special Symbols</h2>
+				<h2>{i18nDerived.specialSymbols()}</h2>
 				<div class="special-grid">
 					{#each specialSymbols as symbol}
 						<div class="special-card">
@@ -88,7 +100,7 @@
 			</section>
 
 			<section class="symbol-payouts">
-				<h2>Symbol {social ? 'Wins' : 'Payouts'}</h2>
+				<h2>{social ? i18nDerived.symbolWins() : i18nDerived.symbolPayouts()}</h2>
 
 				<div class="symbols-grid">
 					{#each symbols as symbol}
@@ -108,8 +120,8 @@
 			</section>
 
 			<section class="paylines-section">
-				<h2>{social ? 'Win' : 'Pay'} Lines</h2>
-				<p>20 fixed {social ? 'win' : 'pay'}lines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.</p>
+				<h2>{social ? i18nDerived.winLinesHeader() : i18nDerived.payLinesHeader()}</h2>
+				<p>{social ? i18nDerived.winlinesDesc() : i18nDerived.paylinesDesc()}</p>
 				<div class="paylines-grid">
 					{#each paylines as line, i}
 						<div class="payline">

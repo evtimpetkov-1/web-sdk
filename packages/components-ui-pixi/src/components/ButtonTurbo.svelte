@@ -9,12 +9,14 @@
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
-	const active = $derived(stateBet.isTurbo);
+	const active = $derived(persistentTurbo);
+	let persistentTurbo = $state(stateBet.isTurbo);
 	const disabled = $derived(stateBet.isSpaceHold);
 
 	const onpress = () => {
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
-		stateBetDerived.updateIsTurbo(!stateBet.isTurbo, { persistent: true });
+		persistentTurbo = !stateBet.isTurbo;
+		stateBetDerived.updateIsTurbo(persistentTurbo, { persistent: true });
 	};
 
 	context.eventEmitter.subscribeOnMount({
@@ -23,4 +25,4 @@
 	});
 </script>
 
-<UiButton {...props} {sizes} {active} {onpress} {disabled} icon="turbo" />
+<UiButton {...props} {sizes} {active} {onpress} {disabled} icon="turbo" iconActive={persistentTurbo} />

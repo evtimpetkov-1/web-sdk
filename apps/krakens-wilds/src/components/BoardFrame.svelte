@@ -11,6 +11,7 @@
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
 	import { getContext } from '../game/context';
+	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const counterHeaderGradient = new FillGradient({
 		type: 'linear',
@@ -58,8 +59,8 @@
 	const frameH = $derived(boardLayout.width * FRAME_SCALE.height);
 
 	// Logo — positioned at top of frame
-	const frameTopY = $derived(frameY - frameH * 0.5);
-	const logoScale = $derived(boardLayout.width / 3000);
+	const frameTopY = $derived(frameY - frameH * 0.5 + 20);
+	const logoScale = $derived(boardLayout.width / 3400);
 
 	// Counter panel dimensions (local coords, scaled by counterScale)
 	const PANEL_WIDTH = 380;
@@ -99,7 +100,7 @@
 />
 
 <Sprite
-	key="frameEdgeDeep"
+	key={context.stateGame.gameType === 'freegame' ? 'frameEdgeFs' : 'frameEdgeDeep'}
 	anchor={0.5}
 	x={frameX}
 	y={frameY}
@@ -133,24 +134,24 @@
 		<!-- Portrait: below the board, side by side -->
 		<Container label="FreeSpinCounter" x={counterLeftX} y={counterBottomY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text text="FREE SPINS" anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<Text text={i18nDerived.freeSpins()} anchor={0.5} y={-20} style={counterHeaderStyle} />
 			<Text text={`${stateUi.freeSpinCounterCurrent} / ${stateUi.freeSpinCounterTotal}`} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 		<Container label="TotalWinCounter" x={counterRightX} y={counterBottomY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text text="TOTAL WIN" anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<Text text={i18nDerived.totalWin()} anchor={0.5} y={-20} style={counterHeaderStyle} />
 			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 	{:else}
 		<!-- Desktop/Landscape: left of frame, stacked vertically -->
 		<Container label="FreeSpinCounter" x={counterX} y={counterFsY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text text="FREE SPINS" anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<Text text={i18nDerived.freeSpins()} anchor={0.5} y={-20} style={counterHeaderStyle} />
 			<Text text={`${stateUi.freeSpinCounterCurrent} / ${stateUi.freeSpinCounterTotal}`} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 		<Container label="TotalWinCounter" x={counterX} y={counterWinY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text text="TOTAL WIN" anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<Text text={i18nDerived.totalWin()} anchor={0.5} y={-20} style={counterHeaderStyle} />
 			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 	{/if}

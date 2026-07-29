@@ -5,6 +5,7 @@
 	import { onMount } from 'svelte';
 
 	import { getContext } from '../game/context';
+	import { i18nDerived } from '../i18n/i18nDerived';
 	import TransitionAnimation from './TransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -100,9 +101,9 @@
 		<!-- WIDE: side by side -->
 		<Container x={cx - 260 * s} y={cy + 55 * s}>
 			<Sprite key="s" anchor={0.5} width={130 * s} height={130 * s} />
-			<Text text="FREE SPINS" anchor={{ x: 0.5, y: 0 }} y={88 * s} style={headerStyle} />
+			<Text text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={88 * s} style={headerStyle} />
 			<Text
-				text="3 or more Bonus symbols anywhere on the reels trigger Free Spins"
+				text={i18nDerived.loadingFsDesc()}
 				anchor={{ x: 0.5, y: 0 }}
 				y={124 * s}
 				style={bodyStyle}
@@ -110,9 +111,9 @@
 		</Container>
 		<Container x={cx + 260 * s} y={cy + 55 * s}>
 			<Sprite key="w" anchor={0.5} width={145 * s} height={145 * s} />
-			<Text text="RANDOM WILDS" anchor={{ x: 0.5, y: 0 }} y={88 * s} style={headerStyle} />
+			<Text text={i18nDerived.randomWilds()} anchor={{ x: 0.5, y: 0 }} y={88 * s} style={headerStyle} />
 			<Text
-				text="Each Free Spin guarantees 1 to 10 Random Wilds on the reels"
+				text={i18nDerived.loadingWildsDesc()}
 				anchor={{ x: 0.5, y: 0 }}
 				y={124 * s}
 				style={bodyStyle}
@@ -122,9 +123,9 @@
 		<!-- TALL: stacked -->
 		<Container x={cx} y={cy - 30 * s}>
 			<Sprite key="s" anchor={0.5} width={130 * s} height={130 * s} />
-			<Text text="FREE SPINS" anchor={{ x: 0.5, y: 0 }} y={72 * s} style={headerStyle} />
+			<Text text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={72 * s} style={headerStyle} />
 			<Text
-				text="3 or more Bonus symbols anywhere on the reels trigger Free Spins"
+				text={i18nDerived.loadingFsDesc()}
 				anchor={{ x: 0.5, y: 0 }}
 				y={108 * s}
 				style={bodyStyle}
@@ -132,9 +133,9 @@
 		</Container>
 		<Container x={cx} y={cy + 260 * s}>
 			<Sprite key="w" anchor={0.5} width={145 * s} height={145 * s} />
-			<Text text="RANDOM WILDS" anchor={{ x: 0.5, y: 0 }} y={88 * s} style={headerStyle} />
+			<Text text={i18nDerived.randomWilds()} anchor={{ x: 0.5, y: 0 }} y={88 * s} style={headerStyle} />
 			<Text
-				text="Each Free Spin guarantees 1 to 10 Random Wilds on the reels"
+				text={i18nDerived.loadingWildsDesc()}
 				anchor={{ x: 0.5, y: 0 }}
 				y={124 * s}
 				style={bodyStyle}

@@ -6,6 +6,7 @@
 
 	import { getContext } from '../game/context';
 	import { gameTextStyle } from '../game/textStyles';
+	import { i18nDerived } from '../i18n/i18nDerived';
 
 	type Props = {
 		onpress: () => void;
@@ -57,7 +58,7 @@
 		scaleY={textScale}
 	>
 		<Text
-			text="PRESS ANYWHERE TO CONTINUE"
+			text={i18nDerived.pressAnywhere()}
 			anchor={0.5}
 			style={{
 				...gameTextStyle,
