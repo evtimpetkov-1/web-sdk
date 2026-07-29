@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Tween } from 'svelte/motion';
-	import { cubicOut, cubicInOut } from 'svelte/easing';
+	import { cubicInOut } from 'svelte/easing';
 	import { Container, Sprite } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 	import { OnHotkey } from 'components-shared';
@@ -15,35 +15,19 @@
 	const disabled = $derived(!stateBetDerived.isBetCostAvailable());
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
 
-	// Spin icon rotation (180° = bottom arrow swaps to top)
+	// Spin icon: rotate + shrink arrows, then scale up stop button
 	const rotationTween = new Tween(0, { easing: cubicInOut, duration: 250 });
-
+	const arrowScale = new Tween(1, { easing: cubicInOut, duration: 250 });
 	let showStop = $state(false);
 
 	$effect(() => {
-		if (stateUi.reelsSpinning) {
-			// Reels started: rotate icon, then swap to stop after a brief delay
-			showStop = false;
-			rotationTween.set(Math.PI).then(() => {
-				if (stateUi.reelsSpinning) {
-					setTimeout(() => {
-						if (stateUi.reelsSpinning) showStop = true;
-					}, 100);
-				}
-			});
-		} else {
-			// Reels stopped: immediately show spin button
+		if (!stateUi.reelsSpinning) {
 			showStop = false;
 			rotationTween.set(0, { duration: 0 });
+			arrowScale.set(1, { duration: 0 });
 		}
 	});
 
-	// Scale pulse on press
-	const scaleTween = new Tween(1, { easing: cubicOut, duration: 150 });
-
-	const onPressAnimation = () => {
-		scaleTween.set(1.08).then(() => scaleTween.set(1));
-	};
 </script>
 
 <ButtonBetProvider>
@@ -53,15 +37,20 @@
 			{...props}
 			{sizes}
 			onpress={() => {
+				if (key === 'spin_default') {
+					rotationTween.set(Math.PI);
+					arrowScale.set(0).then(() => {
+						showStop = true;
+					});
+				}
 				onpress();
-				onPressAnimation();
 			}}
 			{disabled}
 		>
 			{#snippet children({ center, hovered, pressed })}
 				{@const isDisabled = disabled || ['spin_disabled', 'stop_disabled'].includes(key)}
 				{@const alpha = isDisabled ? 0.4 : hovered || pressed ? 1 : 0.9}
-				<Container {...center} scale={scaleTween.current}>
+				<Container {...center}>
 					{#if showStop}
 						<Sprite
 							key="stop.png"
@@ -82,8 +71,8 @@
 						/>
 						<Sprite
 							key="spin_icon.png"
-							width={sizes.width}
-							height={sizes.height}
+							width={sizes.width * arrowScale.current}
+							height={sizes.height * arrowScale.current}
 							anchor={0.5}
 							{alpha}
 							rotation={rotationTween.current}

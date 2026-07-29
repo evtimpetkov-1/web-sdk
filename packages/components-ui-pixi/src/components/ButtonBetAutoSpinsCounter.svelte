@@ -19,6 +19,7 @@
 		width={UI_BASE_SIZE * 0.9}
 		height={UI_BASE_SIZE * 0.9}
 		borderRadius={50}
+		alpha={0.5}
 	/>
 	<Text
 		anchor={0.5}

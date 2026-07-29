@@ -27,7 +27,8 @@
 			extraSpins = emitterEvent.extraSpins;
 			scale = new Tween(1);
 			show = true;
-			await waitForTimeout(800);
+			console.log('[retrigger] show', { extraSpins, w: canvas.width, h: canvas.height });
+			await waitForTimeout(1500);
 			scale.set(0, { duration: 700 });
 			await waitForTimeout(700);
 			show = false;

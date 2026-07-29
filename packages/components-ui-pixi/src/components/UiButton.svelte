@@ -9,6 +9,7 @@
 		icon: ButtonIcon;
 		sizes: { width: number; height: number };
 		active?: boolean;
+		iconRotation?: number;
 		children?: Snippet;
 	};
 
@@ -24,7 +25,7 @@
 		menuExit: 'close.png',
 	};
 
-	const { icon, active, children: childrenFromParent, ...buttonProps }: Props = $props();
+	const { icon, active, iconRotation, children: childrenFromParent, ...buttonProps }: Props = $props();
 
 	const spriteKey = $derived(ICON_SPRITE_MAP[icon]);
 </script>
@@ -33,18 +34,20 @@
 	{#snippet children({ center, hovered, pressed })}
 		{@const alpha = buttonProps.disabled
 			? 0.35
-			: active !== undefined && !active
-				? 0.5
-				: hovered || pressed
-					? 1
+			: hovered || pressed
+				? 1
+				: active !== undefined && !active
+					? 0.5
 					: 0.85}
+		{@const scale = hovered || pressed ? 1.15 : active ? 1.2 : 1}
 		<Sprite
 			{...center}
 			key={spriteKey}
 			anchor={0.5}
-			width={buttonProps.sizes.width}
-			height={buttonProps.sizes.height}
+			width={buttonProps.sizes.width * scale}
+			height={buttonProps.sizes.height * scale}
 			{alpha}
+			rotation={iconRotation ?? 0}
 		/>
 
 		{@render childrenFromParent?.()}

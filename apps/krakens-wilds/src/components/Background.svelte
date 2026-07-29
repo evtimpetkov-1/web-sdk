@@ -8,7 +8,6 @@
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
 	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
-	const bgKey = $derived(isPortrait ? 'baseGameBgPortrait' : 'baseGameBgDesktop');
 	const showBaseBackground = $derived(context.stateGame.gameType === 'basegame');
 	const showFeatureBackground = $derived(context.stateGame.gameType === 'freegame');
 
@@ -22,7 +21,13 @@
 <Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />
 
 <FadeContainer label="BackgroundContainer" show={showBaseBackground} duration={SECOND} zIndex={-2} filters={bgFilters}>
-	<Sprite key={bgKey} anchor={0.5} x={canvas.width / 2 + 91} y={canvas.height / 2} />
+	{#if isPortrait}
+		{@const bgCover = Math.max(canvas.width, canvas.height) * 1}
+		<Sprite key="baseGameBgPortrait" anchor={0.5} x={canvas.width / 2 + 30} y={canvas.height / 2} width={bgCover} height={bgCover} />
+	{:else}
+		{@const scale = Math.max(canvas.width / 1920, canvas.height / 1072) * 1.1}
+		<Sprite key="baseGameBgDesktop" anchor={0.5} x={canvas.width / 2 + 70} y={canvas.height / 2} width={1920 * scale} height={1072 * scale} />
+	{/if}
 	<SpineProvider
 		key="reelsOverlay"
 		x={canvas.width / 2 }

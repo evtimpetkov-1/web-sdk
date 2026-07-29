@@ -26,7 +26,8 @@
 		],
 		"sfx_anticipation": [
 			136939,
-			2900.658
+			2900.658,
+			true
 		],
 		"sfx_countup": [
 			140840,

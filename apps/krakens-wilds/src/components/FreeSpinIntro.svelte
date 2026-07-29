@@ -6,14 +6,28 @@
 </script>
 
 <script lang="ts">
-	import { Container } from 'pixi-svelte';
+	import { Container, FillGradient } from 'pixi-svelte';
 	import { FadeContainer, ResponsiveText, ResponsiveBitmapText } from 'components-pixi';
 	import { waitForResolve } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
-	import { gameTextStyle } from '../game/textStyles';
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
+
+	const icyGradient = new FillGradient({
+		type: 'linear',
+		start: { x: 0, y: 0 },
+		end: { x: 0, y: 1 },
+		textureSpace: 'local',
+		colorStops: [
+			{ offset: 0.0, color: '#F5FFFF' },
+			{ offset: 0.16, color: '#D7FBFF' },
+			{ offset: 0.42, color: '#72EEFF' },
+			{ offset: 0.65, color: '#44E7FF' },
+			{ offset: 0.84, color: '#16BBD9' },
+			{ offset: 1.0, color: '#0C9DE0' },
+		],
+	});
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
@@ -45,23 +59,35 @@
 		>
 			<ResponsiveText
 				anchor={0.5}
-				y={-135 * s}
+				y={-130 * s}
 				maxWidth={340 * s}
 				text="CONGRATULATIONS!"
 				style={{
-					...gameTextStyle,
-					fontSize: Math.max(26 * s, 1),
+					fontFamily: 'Cinzel',
+					fontWeight: '700',
+					fill: icyGradient,
+					stroke: { color: '#06283B', width: 2.2 },
+					dropShadow: { color: '#000000', alpha: 0.5, blur: 2, distance: 0 },
+					letterSpacing: 2,
+					align: 'center',
+					fontSize: Math.max(30 * s, 1),
 				}}
 			/>
 
 			<ResponsiveText
 				anchor={0.5}
-				y={-50 * s}
+				y={-42 * s}
 				maxWidth={280 * s}
 				text="YOU WON"
 				style={{
-					...gameTextStyle,
-					fontSize: Math.max(20 * s, 1),
+					fontFamily: 'Cinzel',
+					fontWeight: '700',
+					fill: icyGradient,
+					stroke: { color: '#06283B', width: 2.2 },
+					dropShadow: { color: '#000000', alpha: 0.5, blur: 2, distance: 0 },
+					letterSpacing: 2,
+					align: 'center',
+					fontSize: Math.max(23 * s, 1),
 				}}
 			/>
 
@@ -84,7 +110,13 @@
 				maxWidth={280 * s}
 				text="FREE SPINS"
 				style={{
-					...gameTextStyle,
+					fontFamily: 'Cinzel',
+					fontWeight: '700',
+					fill: icyGradient,
+					stroke: { color: '#06283B', width: 2.2 },
+					dropShadow: { color: '#000000', alpha: 0.5, blur: 2, distance: 0 },
+					letterSpacing: 2,
+					align: 'center',
 					fontSize: Math.max(24 * s, 1),
 				}}
 			/>

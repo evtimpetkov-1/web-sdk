@@ -47,7 +47,7 @@
 	key="fsIntro"
 	scale={fsScale}
 	x={cx}
-	y={cy}
+	y={cy + fsScale * 7}
 >
 	<SpineTrack
 		trackIndex={0}
