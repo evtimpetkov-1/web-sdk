@@ -14,9 +14,9 @@ export default {
 	// PayTable — headers
 	'Special Symbols': 'Specielle symboler',
 	'Symbol Payouts': 'Symboludbetalinger',
-	'Symbol Wins': 'Symbolgevinster',
+
 	'Pay Lines': 'Betalingslinjer',
-	'Win Lines': 'Gevinstlinjer',
+
 	// PayTable — symbol names
 	'Wild': 'Wild',
 	'Bonus': 'Bonus',
@@ -29,52 +29,46 @@ export default {
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 gratisspins\n4 Bonus = 12 gratisspins\n5 Bonus = 18 gratisspins',
 	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 faste betalingslinjer, venstre mod højre. Kun symboler på tilstødende hjul fra det venstre hjul tæller med. Dette gælder ikke for Bonus-symboler.',
 	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 faste gevinstlinjer, venstre mod højre. Kun symboler på tilstødende hjul fra det venstre hjul tæller med. Dette gælder ikke for Bonus-symboler.',
-	// GameRules — social mode variable words
-	'bet': 'indsats',
-	'play': 'spil',
-	'payout': 'udbetaling',
-	'win': 'gevinst',
-	'payline': 'betalingslinje',
-	'winline': 'gevinstlinje',
-	'paylines': 'betalingslinjer',
-	'winlines': 'gevinstlinjer',
-	'paid': 'udbetalt',
-	'won': 'vundet',
 	// GameRules — headers
 	'Game Overview': 'Spilleoversigt',
 	'Bet Mode': 'Indsatstilstand',
-	'Play Mode': 'Spilletilstand',
+
 	'Wild Symbol': 'Wild-symbol',
 	'Bonus & Free Spins': 'Bonus og gratisspins',
 	'General Rules': 'Generelle regler',
 	'User Interface Guide': 'Brugerfladevejledning',
 	'Disclaimer': 'Ansvarsfraskrivelse',
 	// GameRules — paragraphs
-	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed {0}. Wins are evaluated from left to right on each {1}, starting from the leftmost reel. Only symbols on adjacent reels count. The highest win per {1} is {2}.': 'Kraken\'s Wilds er en videoslot med 5 hjul og 3 rækker med 20 faste {0}. Gevinster evalueres fra venstre mod højre på hver {1}, startende fra det venstre hjul. Kun symboler på tilstødende hjul tæller. Den højeste gevinst per {1} er {2}.',
-	'Base game: RTP 96.50%. Maximum win: 5,000x total {0}.': 'Grundspil: RTP 96,50%. Maksimal gevinst: 5.000x samlet {0}.',
-	'All {0} values are shown as multipliers of the total {1} amount.': 'Alle {0}-værdier vises som multiplikatorer af det samlede {1}-beløb.',
-	'The Wild (Kraken) substitutes for all symbols except the Bonus symbol. Wild has its own {0} values.': 'Wild (Kraken) erstatter alle symboler undtagen Bonus-symbolet. Wild har sine egne {0}-værdier.',
+	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Wins are evaluated from left to right on each __1__, starting from the leftmost reel. Only symbols on adjacent reels count. The highest win per __1__ is __2__.': 'Kraken\'s Wilds er en videoslot med 5 hjul og 3 rækker med 20 faste betalingslinjer. Gevinster evalueres fra venstre mod højre på hver betalingslinje, startende fra det venstre hjul. Kun symboler på tilstødende hjul tæller. Den højeste gevinst per betalingslinje er udbetalt.',
+	'Base game: RTP 96.50%. Maximum win: 5,000x total __0__.': 'Grundspil: RTP 96,50%. Maksimal gevinst: 5.000x samlet indsats.',
+	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Alle udbetaling-værdier vises som multiplikatorer af det samlede indsats-beløb.',
+	'The Wild (Kraken) substitutes for all symbols except the Bonus symbol. Wild has its own __0__ values.': 'Wild (Kraken) erstatter alle symboler undtagen Bonus-symbolet. Wild har sine egne udbetaling-værdier.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-symboler hvor som helst på hjulene giver 6 gratisspins.',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus-symboler giver 12 gratisspins.',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus-symboler giver 18 gratisspins.',
 	'During Free Spins, 1 to 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Under gratisspins placeres 1 til 10 tilfældige Wilds på hjulene i starten af hvert spin. Hvert Bonus-symbol der lander under gratisspins giver +1 ekstra gratisspin. Der er ingen grænse for genudløsninger.',
-	'Only the highest win per {0} is {1}.': 'Kun den højeste gevinst per {0} bliver {1}.',
-	'Simultaneous wins on different {0} are added together.': 'Samtidige gevinster på forskellige {0} lægges sammen.',
-	'{0} wins and Bonus wins are added together.': '{0}-gevinster og Bonus-gevinster lægges sammen.',
-	'Bonus symbols {0} in any position (not limited to {1}).': 'Bonus-symboler {0} i enhver position (ikke begrænset til {1}).',
+	'Only the highest win per __0__ is __1__.': 'Kun den højeste gevinst per betalingslinje bliver udbetalt.',
+	'Simultaneous wins on different __0__ are added together.': 'Samtidige gevinster på forskellige betalingslinjer lægges sammen.',
+	'__0__ wins and Bonus wins are added together.': 'Betalingslinje-gevinster og Bonus-gevinster lægges sammen.',
+	'Bonus symbols __0__ in any position (not limited to __1__).': 'Bonus-symboler udbetaling i enhver position (ikke begrænset til betalingslinjer).',
 	// GameRules — UI guide
-	'Spin — Start a spin at the current {0} amount.': 'Spin — Start et spin med det aktuelle {0}-beløb.',
+	'Spin — Start a spin at the current __0__ amount.': 'Spin — Start et spin med det aktuelle indsats-beløb.',
 	'Stop — Stop the reels early during a spin.': 'Stop — Stop hjulene tidligt under et spin.',
 	'Auto Spin — Automatically spin a set number of times.': 'Autospin — Spin automatisk et bestemt antal gange.',
 	'Turbo — Speed up reel animations.': 'Turbo — Fremskynd hjulanimationer.',
-	'+/− — Increase or decrease the {0} amount.': '+/− — Forøg eller formindsk {0}-beløbet.',
+	'+/− — Increase or decrease the __0__ amount.': '+/− — Forøg eller formindsk indsats-beløbet.',
 	'Menu (☰) — Open the settings menu.': 'Menu (☰) — Åbn indstillingsmenuen.',
-	'{0} — View symbol {1} values and {2}.': '{0} — Se symbol {1}-værdier og {2}.',
+	'__0__ — View symbol __1__ values and __2__.': 'Udbetalingstabel — Se symbol udbetaling-værdier og betalingslinjer.',
 	'Game Rules — View the game rules and disclaimer.': 'Spilleregler — Se spilleregler og ansvarsfraskrivelse.',
 	'Sound — Toggle game sounds on or off.': 'Lyd — Slå spillyde til eller fra.',
 	'Settings — Adjust game settings.': 'Indstillinger — Juster spilleindstillinger.',
 	'Pay Table': 'Udbetalingstabel',
-	'Win Table': 'Gevinststabel',
+
 	// GameRules — disclaimer
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Fejlfunktion annullerer alle gevinster og spil. En stabil internetforbindelse er påkrævet. I tilfælde af afbrydelse skal spillet genindlæses for at afslutte eventuelle ufærdige runder. Det forventede afkast beregnes over mange spil. Spillets visning repræsenterer ikke nogen fysisk enhed og er kun til illustrative formål. Gevinster afregnes i henhold til beløbet modtaget fra Remote Game Server og ikke fra hændelser i webbrowseren.',
+
+	// Replay
+	'REPLAY': 'GENAFSPIL',
+	'NO WIN': 'INGEN GEVINST',
+	'PLAY AGAIN': 'SPIL IGEN',
 };

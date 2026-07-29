@@ -6,6 +6,7 @@
 
 <script lang="ts">
 	import { Rectangle, Sprite, SpineProvider, SpineTrack, Container, Text, FillGradient } from 'pixi-svelte';
+	import { ResponsiveText } from 'components-pixi';
 	import type { TextStyleOptions } from 'pixi.js';
 	import { stateBet, stateUi } from 'state-shared';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
@@ -134,24 +135,24 @@
 		<!-- Portrait: below the board, side by side -->
 		<Container label="FreeSpinCounter" x={counterLeftX} y={counterBottomY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text text={i18nDerived.freeSpins()} anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<ResponsiveText text={i18nDerived.freeSpins()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
 			<Text text={`${stateUi.freeSpinCounterCurrent} / ${stateUi.freeSpinCounterTotal}`} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 		<Container label="TotalWinCounter" x={counterRightX} y={counterBottomY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text text={i18nDerived.totalWin()} anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<ResponsiveText text={i18nDerived.totalWin()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
 			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 	{:else}
 		<!-- Desktop/Landscape: left of frame, stacked vertically -->
 		<Container label="FreeSpinCounter" x={counterX} y={counterFsY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text text={i18nDerived.freeSpins()} anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<ResponsiveText text={i18nDerived.freeSpins()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
 			<Text text={`${stateUi.freeSpinCounterCurrent} / ${stateUi.freeSpinCounterTotal}`} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 		<Container label="TotalWinCounter" x={counterX} y={counterWinY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-			<Text text={i18nDerived.totalWin()} anchor={0.5} y={-20} style={counterHeaderStyle} />
+			<ResponsiveText text={i18nDerived.totalWin()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
 			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 	{/if}

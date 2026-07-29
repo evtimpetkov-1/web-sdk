@@ -23,7 +23,7 @@
 
 	// Plate scale — proportional to viewport, larger in portrait
 	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
-	const plateScale = $derived(Math.min(canvas.width / (isPortrait ? 750 : 900), canvas.height / 700));
+	const plateScale = $derived(Math.min(canvas.width / (isPortrait ? 700 : 840), canvas.height / 650));
 	const PLATE_W = 782;
 	const PLATE_H = 417;
 

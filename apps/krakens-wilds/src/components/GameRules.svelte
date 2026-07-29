@@ -22,22 +22,22 @@
 			<section>
 				<h2>{i18nDerived.gameOverview()}</h2>
 				<p>
-					{i18nDerived.overviewDesc().replace(/\{0\}/g, linesLabel).replace(/\{1\}/g, lineLabel).replace(/\{2\}/g, paidLabel)}
+					{i18nDerived.overviewDesc().replace(/__0__/g, linesLabel).replace(/__1__/g, lineLabel).replace(/__2__/g, paidLabel)}
 				</p>
 			</section>
 
 			<section>
 				<h2>{social ? i18nDerived.playMode() : i18nDerived.betMode()}</h2>
 				<ul>
-					<li>{i18nDerived.betModeRtp().replace('{0}', betLabel)}</li>
-					<li>{i18nDerived.betModeMultiplier().replace('{0}', payoutLabel).replace('{1}', betLabel)}</li>
+					<li>{i18nDerived.betModeRtp().replace('__0__', betLabel)}</li>
+					<li>{i18nDerived.betModeMultiplier().replace('__0__', payoutLabel).replace('__1__', betLabel)}</li>
 				</ul>
 			</section>
 
 			<section>
 				<h2>{i18nDerived.wildSymbol()}</h2>
 				<p>
-					{i18nDerived.wildSymbolDesc().replace('{0}', payoutLabel)}
+					{i18nDerived.wildSymbolDesc().replace('__0__', payoutLabel)}
 				</p>
 			</section>
 
@@ -56,23 +56,23 @@
 			<section>
 				<h2>{i18nDerived.generalRules()}</h2>
 				<ul>
-					<li>{i18nDerived.grHighestWin().replace('{0}', lineLabel).replace('{1}', paidLabel)}</li>
-					<li>{i18nDerived.grSimultaneous().replace('{0}', linesLabel)}</li>
-					<li>{i18nDerived.grLineBonus().replace('{0}', lineLabel.charAt(0).toUpperCase() + lineLabel.slice(1))}</li>
-					<li>{i18nDerived.grBonusAny().replace('{0}', social ? i18nDerived.winWord() : i18nDerived.payoutWord()).replace('{1}', linesLabel)}</li>
+					<li>{i18nDerived.grHighestWin().replace('__0__', lineLabel).replace('__1__', paidLabel)}</li>
+					<li>{i18nDerived.grSimultaneous().replace('__0__', linesLabel)}</li>
+					<li>{i18nDerived.grLineBonus().replace('__0__', lineLabel.charAt(0).toUpperCase() + lineLabel.slice(1))}</li>
+					<li>{i18nDerived.grBonusAny().replace('__0__', social ? i18nDerived.winWord() : i18nDerived.payoutWord()).replace('__1__', linesLabel)}</li>
 				</ul>
 			</section>
 
 			<section>
 				<h2>{i18nDerived.uiGuide()}</h2>
 				<ul>
-					<li>{i18nDerived.uiSpin().replace('{0}', betLabel)}</li>
+					<li>{i18nDerived.uiSpin().replace('__0__', betLabel)}</li>
 					<li>{i18nDerived.uiStop()}</li>
 					<li>{i18nDerived.uiAutoSpin()}</li>
 					<li>{i18nDerived.uiTurbo()}</li>
-					<li>{i18nDerived.uiPlusMinus().replace('{0}', betLabel)}</li>
+					<li>{i18nDerived.uiPlusMinus().replace('__0__', betLabel)}</li>
 					<li>{i18nDerived.uiMenu()}</li>
-					<li>{i18nDerived.uiPaytable().replace('{0}', payTableName).replace('{1}', payoutLabel).replace('{2}', linesLabel)}</li>
+					<li>{i18nDerived.uiPaytable().replace('__0__', payTableName).replace('__1__', payoutLabel).replace('__2__', linesLabel)}</li>
 					<li>{i18nDerived.uiGameRules()}</li>
 					<li>{i18nDerived.uiSound()}</li>
 					<li>{i18nDerived.uiSettings()}</li>

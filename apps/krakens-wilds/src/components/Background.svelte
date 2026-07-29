@@ -26,7 +26,7 @@
 		<Sprite key="baseGameBgPortrait" anchor={0.5} x={canvas.width / 2 + 30} y={canvas.height / 2} width={bgCover} height={bgCover} />
 	{:else}
 		{@const scale = Math.max(canvas.width / 1920, canvas.height / 1072) * 1.1}
-		<Sprite key="baseGameBgDesktop" anchor={0.5} x={canvas.width / 2 + 90} y={canvas.height / 2} width={1920 * scale} height={1072 * scale} />
+		<Sprite key="baseGameBgDesktop" anchor={0.5} x={canvas.width / 2 + 50} y={canvas.height / 2} width={1920 * scale} height={1072 * scale} />
 	{/if}
 	<SpineProvider
 		key="reelsOverlay"

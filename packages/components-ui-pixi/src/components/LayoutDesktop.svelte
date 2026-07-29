@@ -3,6 +3,7 @@
 	import { BLACK, WHITE } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
 	import { Container, Rectangle, Text, Sprite } from 'pixi-svelte';
+	import { ResponsiveText } from 'components-pixi';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { stateBet, stateBetDerived } from 'state-shared';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
@@ -45,6 +46,7 @@
 	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
 	const winValue = $derived(bookEventAmountToCurrencyString(stateBet.winBookEventAmount));
 	const betValue = $derived(numberToCurrencyString(stateBetDerived.betCost()));
+	const labelMaxWidth = $derived(w * 0.15);
 
 	// +/- bet logic
 	const smallest = $derived(stateConfig.betAmountOptions[0]);
@@ -106,19 +108,19 @@
 	<!-- BALANCE -->
 	<Container x={w * 0.33} y={rowY}>
 		<Text text={i18nDerived.balance()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-		<Text text={balanceValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+		<ResponsiveText text={balanceValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
 
 	<!-- WIN -->
 	<Container x={cx} y={rowY}>
 		<Text text={i18nDerived.win()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-		<Text text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+		<ResponsiveText text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
 
 	<!-- BET -->
 	<Container x={w * 0.67} y={rowY}>
-		<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-		<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+		<ResponsiveText text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} maxWidth={100} />
+		<ResponsiveText text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
 
 	<!-- -/+ bet buttons -->

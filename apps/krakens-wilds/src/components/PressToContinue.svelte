@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { MainContainer, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey } from 'components-shared';
-	import { Container, Text, Rectangle } from 'pixi-svelte';
+	import { ResponsiveText } from 'components-pixi';
+	import { Container, Rectangle } from 'pixi-svelte';
 	import { onMount } from 'svelte';
 
 	import { getContext } from '../game/context';
@@ -10,6 +11,7 @@
 
 	type Props = {
 		onpress: () => void;
+		replay?: boolean;
 	};
 
 	const props: Props = $props();
@@ -57,12 +59,13 @@
 		scaleX={textScale}
 		scaleY={textScale}
 	>
-		<Text
-			text={i18nDerived.pressAnywhere()}
+		<ResponsiveText
+			text={props.replay ? `▶ ${i18nDerived.playAgain()}` : i18nDerived.pressAnywhere()}
 			anchor={0.5}
+			maxWidth={layout.width * 0.85}
 			style={{
 				...gameTextStyle,
-				fontSize: 32,
+				fontSize: props.replay ? 48 : 32,
 			}}
 		/>
 	</Container>

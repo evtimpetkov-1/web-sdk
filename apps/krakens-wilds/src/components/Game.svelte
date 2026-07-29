@@ -6,6 +6,7 @@
 	import { MainContainer } from 'components-layout';
 	import { App, REM, Container } from 'pixi-svelte';
 	import { UI } from 'components-ui-pixi';
+	import { stateUrlDerived } from 'state-shared';
 	import { GameVersion, Modals } from 'components-ui-html';
 	import PayTable from './PayTable.svelte';
 	import GameRules from './GameRules.svelte';
@@ -25,6 +26,7 @@
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
+	import ReplayComplete from './ReplayComplete.svelte';
 
 	const context = getContext();
 	const bl = $derived(context.stateGameDerived.boardLayout());
@@ -74,14 +76,17 @@
 			</Container>
 		</MainContainer>
 
-		<UI>
-			{#snippet gameName()}{/snippet}
-			{#snippet logo()}{/snippet}
-		</UI>
+		{#if !stateUrlDerived.replay()}
+			<UI>
+				{#snippet gameName()}{/snippet}
+				{#snippet logo()}{/snippet}
+			</UI>
+		{/if}
 		<Win />
 		<FreeSpinIntro />
 		<FreeSpinOutro />
 		<Transition />
+		<ReplayComplete />
 	{/if}
 </App>
 

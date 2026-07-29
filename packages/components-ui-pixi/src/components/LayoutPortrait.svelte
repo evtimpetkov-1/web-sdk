@@ -7,6 +7,7 @@
 	import { FadeContainer, Button } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
 	import { Container, Rectangle, Text, Sprite } from 'pixi-svelte';
+	import { ResponsiveText } from 'components-pixi';
 	import { waitForResolve } from 'utils-shared/wait';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
@@ -45,6 +46,7 @@
 	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
 	const winValue = $derived(bookEventAmountToCurrencyString(stateBet.winBookEventAmount));
 	const betValue = $derived(numberToCurrencyString(stateBetDerived.betCost()));
+	const labelMaxWidth = $derived((cx - 150) * 0.6);
 
 	// Bet button handler
 	const betDisabled = $derived(!context.stateXstateDerived.isIdle());
@@ -174,19 +176,19 @@
 	<!-- BALANCE -->
 	<Container x={150} y={h - 65}>
 		<Text text={i18nDerived.balance()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-		<Text text={balanceValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+		<ResponsiveText text={balanceValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
 
 	<!-- WIN -->
 	<Container x={cx} y={h - 65}>
 		<Text text={i18nDerived.win()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-		<Text text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+		<ResponsiveText text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
 
 	<!-- BET -->
 	<Container x={w - 150} y={h - 65}>
 		<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
-		<Text text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} />
+		<ResponsiveText text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
 
 	<!-- Drawer button -->

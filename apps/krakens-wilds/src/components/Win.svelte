@@ -84,7 +84,7 @@
 							<ResponsiveBitmapText
 								anchor={0.5}
 								y={240}
-								maxWidth={2130}
+								maxWidth={canvas.width / spineScale * 0.9}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{
 									fontFamily: 'cinzel-bold-gold',

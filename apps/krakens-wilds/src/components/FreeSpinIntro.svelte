@@ -35,7 +35,7 @@
 
 	// Scale factor — match plate scale from FreeSpinAnimation
 	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
-	const s = $derived(Math.min(canvas.width / (isPortrait ? 750 : 900), canvas.height / 700));
+	const s = $derived(Math.min(canvas.width / (isPortrait ? 700 : 840), canvas.height / 650));
 
 	let show = $state(false);
 	let freeSpinsFromEvent = $state(0);
@@ -80,7 +80,7 @@
 			<!-- Inside the plate: YOU WON -->
 			<ResponsiveText
 				anchor={0.5}
-				y={plateCY - 65 * s}
+				y={plateCY - 85 * s}
 				maxWidth={500 * s}
 				text={i18nDerived.youWon()}
 				style={{
@@ -95,7 +95,7 @@
 			/>
 
 			<!-- Number — fixed fontSize, scaled via Container to avoid black bitmap on resize -->
-			<Container y={plateCY - 35 * s} scale={s}>
+			<Container y={plateCY - 25 * s} scale={s}>
 				<ResponsiveBitmapText
 					anchor={0.5}
 					maxWidth={300}

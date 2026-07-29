@@ -113,22 +113,35 @@
 		stateBet.wageredBetAmount = (stateUrlDerived.amount() / API_AMOUNT_MULTIPLIER) || 0;
 		stateBet.activeBetModeKey = stateUrlDerived.mode();
 
-		const data = await requestReplay({
-			rgsUrl: stateUrlDerived.rgsUrl(),
-			game: stateUrlDerived.game(),
-			mode: stateUrlDerived.mode(),
-			version: stateUrlDerived.version(),
-			event: stateUrlDerived.event(),
-		});
+		// Set currency from URL if provided
+		const currencyParam = new URLSearchParams(window.location.search).get('currency');
+		if (currencyParam) {
+			stateBet.currency = currencyParam;
+		}
 
-		if(data) {
-			// @ts-ignore
-			stateBet.betToResume = {
-				...data,
-				event: '0',
-				active: true,
+		try {
+			const data = await requestReplay({
+				rgsUrl: stateUrlDerived.rgsUrl(),
+				game: stateUrlDerived.game(),
 				mode: stateUrlDerived.mode(),
-			};
+				version: stateUrlDerived.version(),
+				event: stateUrlDerived.event(),
+			});
+
+			if(data) {
+				// @ts-ignore
+				stateBet.betToResume = {
+					...data,
+					event: '0',
+					active: true,
+					mode: stateUrlDerived.mode(),
+				};
+			} else {
+				throw { error: 'No replay data', message: 'Replay returned empty response' };
+			}
+		} catch (error) {
+			console.error(error);
+			stateModal.modal = { name: 'error', error };
 		}
 	};
 

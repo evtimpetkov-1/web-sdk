@@ -1,13 +1,16 @@
 <script lang="ts">
-	import { Container, Sprite, Rectangle, Text, FillGradient } from 'pixi-svelte';
-	import { FadeContainer } from 'components-pixi';
+	import { Container, Sprite, Rectangle, FillGradient } from 'pixi-svelte';
+	import { FadeContainer, ResponsiveText } from 'components-pixi';
 	import type { TextStyleOptions } from 'pixi.js';
 	import { onMount } from 'svelte';
 
+	import { stateUrlDerived } from 'state-shared';
 	import { getContext } from '../game/context';
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import TransitionAnimation from './TransitionAnimation.svelte';
 	import PressToContinue from './PressToContinue.svelte';
+
+	const isReplay = stateUrlDerived.replay();
 
 	type Props = {
 		onloaded: () => void;
@@ -63,8 +66,6 @@
 		dropShadow: { color: '#00BCD4', blur: 12 * s, distance: 0, alpha: 0.5 },
 		letterSpacing: 3 * s,
 		align: 'center' as const,
-		wordWrap: true,
-		wordWrapWidth: 350 * s,
 		fontSize: Math.max(30 * s, 1),
 	} satisfies TextStyleOptions);
 
@@ -77,6 +78,7 @@
 		align: 'center' as const,
 		wordWrap: true,
 		wordWrapWidth: 380 * s,
+		breakWords: true,
 		fontSize: Math.max(19 * s, 1),
 	} satisfies TextStyleOptions);
 </script>
@@ -97,53 +99,63 @@
 
 <!-- feature panels (after load) -->
 <FadeContainer show={loadingType === 'start' && context.stateApp.loaded && fontsReady}>
-	{#if wide}
-		<!-- WIDE: side by side -->
-		<Container x={cx - 260 * s} y={cy + 55 * s}>
-			<Sprite key="s" anchor={0.5} width={130 * s} height={130 * s} />
-			<Text text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={88 * s} style={headerStyle} />
-			<Text
-				text={i18nDerived.loadingFsDesc()}
-				anchor={{ x: 0.5, y: 0 }}
-				y={124 * s}
-				style={bodyStyle}
-			/>
-		</Container>
-		<Container x={cx + 260 * s} y={cy + 55 * s}>
-			<Sprite key="w" anchor={0.5} width={145 * s} height={145 * s} />
-			<Text text={i18nDerived.randomWilds()} anchor={{ x: 0.5, y: 0 }} y={88 * s} style={headerStyle} />
-			<Text
-				text={i18nDerived.loadingWildsDesc()}
-				anchor={{ x: 0.5, y: 0 }}
-				y={124 * s}
-				style={bodyStyle}
-			/>
-		</Container>
-	{:else}
-		<!-- TALL: stacked -->
-		<Container x={cx} y={cy - 30 * s}>
-			<Sprite key="s" anchor={0.5} width={130 * s} height={130 * s} />
-			<Text text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={72 * s} style={headerStyle} />
-			<Text
-				text={i18nDerived.loadingFsDesc()}
-				anchor={{ x: 0.5, y: 0 }}
-				y={108 * s}
-				style={bodyStyle}
-			/>
-		</Container>
-		<Container x={cx} y={cy + 260 * s}>
-			<Sprite key="w" anchor={0.5} width={145 * s} height={145 * s} />
-			<Text text={i18nDerived.randomWilds()} anchor={{ x: 0.5, y: 0 }} y={88 * s} style={headerStyle} />
-			<Text
-				text={i18nDerived.loadingWildsDesc()}
-				anchor={{ x: 0.5, y: 0 }}
-				y={124 * s}
-				style={bodyStyle}
-			/>
-		</Container>
+	{#if !isReplay}
+		{#if wide}
+			<!-- WIDE: side by side -->
+			<Container x={cx - 260 * s} y={cy + 55 * s}>
+				<Sprite key="s" anchor={0.5} width={130 * s} height={130 * s} />
+				<ResponsiveText text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={88 * s} maxWidth={350 * s} style={headerStyle} />
+				<ResponsiveText
+					text={i18nDerived.loadingFsDesc()}
+					anchor={{ x: 0.5, y: 0 }}
+					y={124 * s}
+					maxWidth={380 * s}
+					maxHeight={95 * s}
+					style={bodyStyle}
+				/>
+			</Container>
+			<Container x={cx + 260 * s} y={cy + 55 * s}>
+				<Sprite key="w" anchor={0.5} width={145 * s} height={145 * s} />
+				<ResponsiveText text={i18nDerived.randomWilds()} anchor={{ x: 0.5, y: 0 }} y={88 * s} maxWidth={350 * s} style={headerStyle} />
+				<ResponsiveText
+					text={i18nDerived.loadingWildsDesc()}
+					anchor={{ x: 0.5, y: 0 }}
+					y={124 * s}
+					maxWidth={380 * s}
+					maxHeight={95 * s}
+					style={bodyStyle}
+				/>
+			</Container>
+		{:else}
+			<!-- TALL: stacked -->
+			<Container x={cx} y={cy - 30 * s}>
+				<Sprite key="s" anchor={0.5} width={130 * s} height={130 * s} />
+				<ResponsiveText text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={72 * s} maxWidth={350 * s} style={headerStyle} />
+				<ResponsiveText
+					text={i18nDerived.loadingFsDesc()}
+					anchor={{ x: 0.5, y: 0 }}
+					y={108 * s}
+					maxWidth={380 * s}
+					maxHeight={95 * s}
+					style={bodyStyle}
+				/>
+			</Container>
+			<Container x={cx} y={cy + 260 * s}>
+				<Sprite key="w" anchor={0.5} width={145 * s} height={145 * s} />
+				<ResponsiveText text={i18nDerived.randomWilds()} anchor={{ x: 0.5, y: 0 }} y={88 * s} maxWidth={350 * s} style={headerStyle} />
+				<ResponsiveText
+					text={i18nDerived.loadingWildsDesc()}
+					anchor={{ x: 0.5, y: 0 }}
+					y={124 * s}
+					maxWidth={380 * s}
+					maxHeight={95 * s}
+					style={bodyStyle}
+				/>
+			</Container>
+		{/if}
 	{/if}
 
-	<PressToContinue onpress={() => (loadingType = 'transition')} />
+	<PressToContinue onpress={() => (loadingType = 'transition')} replay={isReplay} />
 </FadeContainer>
 
 <!-- transition -->
