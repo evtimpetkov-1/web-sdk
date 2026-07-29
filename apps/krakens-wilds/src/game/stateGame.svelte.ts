@@ -37,6 +37,7 @@ const onSymbolLand = ({ rawSymbol, symbolIndex }: { rawSymbol: RawSymbol; symbol
 		eventEmitter.broadcast({
 			type: 'soundOnce',
 			name: 'sfx_wild_land',
+			forcePlay: true,
 		});
 	}
 };
@@ -99,6 +100,7 @@ export const stateGame = $state({
 	scatterCounter: 0,
 	winLooping: false,
 	winAnimating: false,
+	retriggerExtra: 0,
 });
 
 // Win cycle state — persists across book event handlers and into idle

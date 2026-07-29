@@ -149,23 +149,23 @@
 
 	<MainContainer standard alignVertical="bottom">
 		<Container x={60} y={h - 65}>
-			<Container y={-640} scale={0.6}>
+			<Container y={-800} scale={0.6}>
 				{@render props.buttonPayTable({ anchor: 0.5 })}
 			</Container>
 
-			<Container y={-480} scale={0.6}>
+			<Container y={-640} scale={0.6}>
 				{@render props.buttonGameRules({ anchor: 0.5 })}
 			</Container>
 
-			<Container y={-320} scale={0.6}>
+			<Container y={-480} scale={0.6}>
 				{@render props.buttonSettings({ anchor: 0.5 })}
 			</Container>
 
-			<Container y={-160} scale={0.6}>
+			<Container y={-320} scale={0.6}>
 				{@render props.buttonSoundSwitch({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.6}>
+			<Container y={-160} scale={0.6}>
 				{@render props.buttonMenuClose({ anchor: 0.5 })}
 			</Container>
 		</Container>

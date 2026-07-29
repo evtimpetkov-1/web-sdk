@@ -93,7 +93,7 @@
 
 			<ResponsiveBitmapText
 				anchor={0.5}
-				y={-2 * s}
+				y={-12 * s}
 				maxWidth={230 * s}
 				text={`${freeSpinsFromEvent}`}
 				style={{

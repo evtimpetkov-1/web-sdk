@@ -83,12 +83,12 @@
 						>
 							<ResponsiveBitmapText
 								anchor={0.5}
-								y={300}
+								y={240}
 								maxWidth={2130}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{
 									fontFamily: 'cinzel-bold-gold',
-									fontSize: 96,
+									fontSize: 200,
 									align: 'center',
 									letterSpacing: 0,
 								}}
@@ -102,9 +102,9 @@
 						<Container
 							label="WinTextContainer"
 							x={context.stateGameDerived.boardLayout().x}
-							y={context.stateGameDerived.boardLayout().y}
+							y={context.stateGameDerived.boardLayout().y - 40}
 						>
-							<Sprite key="winGlow" anchor={0.5} />
+							<Sprite key="winGlow" anchor={0.5} y={40} />
 							<ResponsiveBitmapText
 								anchor={0.5}
 								maxWidth={context.stateLayoutDerived.canvasSizes().width /

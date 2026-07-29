@@ -108,7 +108,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 						landed: false,
 					};
 					stateGame.movingWilds = [...stateGame.movingWilds, wild];
-					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land' });
+					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
 					await waitForTimeout(200);
 				}
 				await waitForTimeout(400);
@@ -143,7 +143,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				}
 
 				stateGame.movingWilds = updated;
-				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land' });
+				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
 				await waitForTimeout(1000);
 			} else {
 				// No wilds this spin — clear all
@@ -224,15 +224,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		await eventEmitter.broadcastAsync({ type: 'uiShow' });
 	},
 	freeSpinRetrigger: async (bookEvent: BookEventOfType<'freeSpinRetrigger'>) => {
-		// Animate retrigger scatters and update the free spin counter
+		// Animate retrigger scatters with "+N" overlay on each bonus symbol
 		const extraSpins = bookEvent.totalFs - stateUi.freeSpinCounterTotal;
+		stateGame.retriggerExtra = extraSpins;
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
 		await animateSymbols({ positions: bookEvent.positions });
-		// Show retrigger screen
-		await eventEmitter.broadcastAsync({
-			type: 'freeSpinRetriggerShow',
-			extraSpins,
-		});
+		stateGame.retriggerExtra = 0;
 		eventEmitter.broadcast({
 			type: 'freeSpinCounterUpdate',
 			current: undefined,

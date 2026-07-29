@@ -72,12 +72,12 @@
 					>
 						<ResponsiveBitmapText
 							anchor={0.5}
-							y={300}
+							y={240}
 							maxWidth={2130}
 							text={bookEventAmountToCurrencyString(countUpAmount)}
 							style={{
 								fontFamily: 'cinzel-bold-gold',
-								fontSize: 96,
+								fontSize: 200,
 								align: 'center',
 								letterSpacing: 0,
 							}}

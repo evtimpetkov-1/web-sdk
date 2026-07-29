@@ -217,7 +217,7 @@
 	/>
 
 	<MainContainer standard alignVertical="bottom">
-		<Container x={cx - 410} y={h - 500}>
+		<Container x={140} y={h - 500}>
 			<Container y={-640} scale={0.7}>
 				{@render props.buttonPayTable({ anchor: 0.5 })}
 			</Container>
@@ -234,7 +234,7 @@
 				{@render props.buttonSoundSwitch({ anchor: 0.5 })}
 			</Container>
 
-			<Container scale={0.7}>
+			<Container y={0} scale={0.7}>
 				{@render props.buttonMenuClose({ anchor: 0.5 })}
 			</Container>
 		</Container>

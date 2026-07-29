@@ -82,13 +82,8 @@ function getFilteredBooks(): MathBook[] {
 	if (devCheatMode === 'fs') {
 		arr = arr.filter((b) => b.events.some((e) => e.type === 'freeSpinTrigger'));
 	} else if (devCheatMode === 'retrigger') {
-		if (stateGame.gameType === 'freegame') {
-			// Already in free spins — pick books with retrigger events
-			arr = arr.filter((b) => b.events.some((e) => e.type === 'freeSpinRetrigger'));
-		} else {
-			// Base game — first trigger free spins
-			arr = arr.filter((b) => b.events.some((e) => e.type === 'freeSpinTrigger'));
-		}
+		// Pick bonus books that contain a retrigger event
+		arr = arr.filter((b) => b.events.some((e) => e.type === 'freeSpinRetrigger'));
 	} else if (devCheatMode === 'bigwin') {
 		arr = arr.filter((b) => b.payoutMultiplier >= 1000);
 	}

@@ -24,7 +24,6 @@
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
-	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import Transition from './Transition.svelte';
 
 	const context = getContext();
@@ -84,7 +83,6 @@
 		<Win />
 		<FreeSpinIntro />
 		<FreeSpinOutro />
-		<FreeSpinRetrigger />
 		<Transition />
 	{/if}
 </App>
