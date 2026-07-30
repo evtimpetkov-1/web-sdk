@@ -25,7 +25,7 @@ export default {
 	'Pearl': 'Perla',
 	'Nautilus': 'Nautilus',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus. During Free Spins, 1 to 10 Random Wilds are placed on the reels each spin.': 'Sustituye a todos los símbolos excepto Bonus. Durante los giros gratis, se colocan de 1 a 10 Wilds aleatorios en los carretes en cada giro.',
+	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': 'Sustituye a todos los símbolos excepto Bonus. Durante los giros gratis, se colocan 1, 2, 3, 4, 5, 6, 7, 8, 9 o 10 Wilds aleatorios en los carretes en cada giro.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 giros gratis\n4 Bonus = 12 giros gratis\n5 Bonus = 18 giros gratis',
 	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 líneas de pago fijas, de izquierda a derecha. Solo cuentan los símbolos en carretes adyacentes a partir del carrete más a la izquierda. Esto no aplica a los símbolos Bonus.',
 	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 líneas de ganancia fijas, de izquierda a derecha. Solo cuentan los símbolos en carretes adyacentes a partir del carrete más a la izquierda. Esto no aplica a los símbolos Bonus.',
@@ -46,7 +46,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 símbolos Bonus en cualquier lugar de los carretes otorgan 6 giros gratis.',
 	'4 Bonus symbols award 12 Free Spins.': '4 símbolos Bonus otorgan 12 giros gratis.',
 	'5 Bonus symbols award 18 Free Spins.': '5 símbolos Bonus otorgan 18 giros gratis.',
-	'During Free Spins, 1 to 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Durante los giros gratis, se colocan de 1 a 10 Wilds aleatorios en los carretes al inicio de cada giro. Cada símbolo Bonus que aparezca durante los giros gratis otorga +1 giro gratis adicional. No hay límite en las reactivaciones.',
+	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Durante los giros gratis, se colocan 1, 2, 3, 4, 5, 6, 7, 8, 9 o 10 Wilds aleatorios en los carretes al inicio de cada giro. Cada símbolo Bonus que aparezca durante los giros gratis otorga +1 giro gratis adicional. No hay límite en las reactivaciones.',
 	'Only the highest win per __0__ is __1__.': 'Solo la ganancia más alta por línea de pago es pagado.',
 	'Simultaneous wins on different __0__ are added together.': 'Las ganancias simultáneas en diferentes líneas de pago se suman.',
 	'__0__ wins and Bonus wins are added together.': 'Las ganancias de Línea de pago y las ganancias de Bonus se suman.',

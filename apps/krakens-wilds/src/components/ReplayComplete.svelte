@@ -49,18 +49,18 @@
 
 	{@const cx = canvas.width / 2}
 	{@const cy = canvas.height / 2}
-	{@const s = Math.min(canvas.width / 700, canvas.height / 1000)}
+	{@const s = Math.min(canvas.width / 380, canvas.height / 400, 1.6)}
 
 	<!-- REPLAY label -->
 	<ResponsiveText
 		text={i18nDerived.replay()}
 		anchor={0.5}
 		x={cx}
-		y={cy - 180 * s}
+		y={cy - 130 * s}
 		maxWidth={canvas.width * 0.8}
 		style={{
 			...gameTextStyle,
-			fontSize: Math.max(48 * s, 1),
+			fontSize: Math.max(48 * s, 16),
 			letterSpacing: 12 * s,
 		}}
 	/>
@@ -71,12 +71,12 @@
 			text={i18nDerived.totalWin()}
 			anchor={0.5}
 			x={cx}
-			y={cy - 80 * s}
+			y={cy - 55 * s}
 			style={{
 				fontFamily: 'Cinzel',
 				fontWeight: '700',
 				fill: 0xc0c8d0,
-				fontSize: Math.max(32 * s, 1),
+				fontSize: Math.max(32 * s, 12),
 				letterSpacing: 4,
 				align: 'center',
 			}}
@@ -85,14 +85,14 @@
 			text={winAmount}
 			anchor={0.5}
 			x={cx}
-			y={cy}
+			y={cy + 10 * s}
 			maxWidth={canvas.width * 0.75}
 			style={{
 				fontFamily: 'Cinzel',
 				fontWeight: '700',
 				fill: '#FFD700',
 				stroke: { color: '#8B6914', width: 2 },
-				fontSize: Math.max(64 * s, 1),
+				fontSize: Math.max(64 * s, 20),
 				letterSpacing: 2,
 				align: 'center',
 			}}
@@ -102,12 +102,12 @@
 			text={i18nDerived.noWin()}
 			anchor={0.5}
 			x={cx}
-			y={cy - 30 * s}
+			y={cy - 20 * s}
 			style={{
 				fontFamily: 'Cinzel',
 				fontWeight: '700',
 				fill: 0x8090a0,
-				fontSize: Math.max(44 * s, 1),
+				fontSize: Math.max(44 * s, 16),
 				letterSpacing: 6,
 				align: 'center',
 			}}
@@ -119,12 +119,12 @@
 		text={`${i18nDerived.bet()}: ${betAmount}`}
 		anchor={0.5}
 		x={cx}
-		y={cy + (hasWin ? 100 : 60) * s}
+		y={cy + (hasWin ? 80 : 50) * s}
 		style={{
 			fontFamily: 'Cinzel',
 			fontWeight: '400',
-			fill: 0x607080,
-			fontSize: Math.max(26 * s, 1),
+			fill: 0xb0c4de,
+			fontSize: Math.max(32 * s, 12),
 			letterSpacing: 3,
 			align: 'center',
 		}}
@@ -135,11 +135,11 @@
 		text={`▶  ${i18nDerived.playAgain()}`}
 		anchor={0.5}
 		x={cx}
-		y={cy + (hasWin ? 200 : 170) * s}
+		y={cy + (hasWin ? 155 : 130) * s}
 		maxWidth={canvas.width * 0.7}
 		style={{
 			...gameTextStyle,
-			fontSize: Math.max(44 * s, 1),
+			fontSize: Math.max(44 * s, 14),
 		}}
 	/>
 

@@ -24,11 +24,11 @@
 			backgroundAlpha: 0,
 			hello: true,
 			multiView: false,
-			antialias: true,
+			antialias: !('ontouchstart' in globalThis),
 			clearBeforeRender: true,
 			preference: 'webgpu',
 			powerPreference: 'high-performance',
-			resolution: devicePixelRatio.current,
+			resolution: Math.min(devicePixelRatio.current ?? 1, 2),
 			resizeTo: window,
 		});
 

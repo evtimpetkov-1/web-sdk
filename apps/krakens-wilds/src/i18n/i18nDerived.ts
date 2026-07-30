@@ -34,7 +34,7 @@ export const i18nDerived = {
 	pearl: () => t('Pearl'),
 	nautilus: () => t('Nautilus'),
 	// PayTable — descriptions
-	wildDesc: () => t('Substitutes for all symbols except Bonus. During Free Spins, 1 to 10 Random Wilds are placed on the reels each spin.'),
+	wildDesc: () => t('Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.'),
 	bonusDesc: () => t('3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins'),
 	paylinesDesc: () => t('20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.'),
 	winlinesDesc: () => t('20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.'),
@@ -70,7 +70,7 @@ export const i18nDerived = {
 	fs3Bonus: () => t('3 Bonus symbols anywhere on the reels award 6 Free Spins.'),
 	fs4Bonus: () => t('4 Bonus symbols award 12 Free Spins.'),
 	fs5Bonus: () => t('5 Bonus symbols award 18 Free Spins.'),
-	fsDesc: () => t('During Free Spins, 1 to 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.'),
+	fsDesc: () => t('During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.'),
 	grHighestWin: () => t('Only the highest win per __0__ is __1__.'),
 	grSimultaneous: () => t('Simultaneous wins on different __0__ are added together.'),
 	grLineBonus: () => t('__0__ wins and Bonus wins are added together.'),

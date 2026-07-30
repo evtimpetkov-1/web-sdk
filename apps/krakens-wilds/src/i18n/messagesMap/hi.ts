@@ -25,7 +25,7 @@ export default {
 	'Pearl': 'मोती',
 	'Nautilus': 'नॉटिलस',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus. During Free Spins, 1 to 10 Random Wilds are placed on the reels each spin.': 'Bonus को छोड़कर सभी प्रतीकों का विकल्प बनता है। फ्री स्पिन के दौरान, प्रत्येक स्पिन में रीलों पर 1 से 10 रैंडम वाइल्ड्स रखे जाते हैं।',
+	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': 'Bonus को छोड़कर सभी प्रतीकों का विकल्प बनता है। फ्री स्पिन के दौरान, प्रत्येक स्पिन में रीलों पर 1, 2, 3, 4, 5, 6, 7, 8, 9 या 10 रैंडम वाइल्ड्स रखे जाते हैं।',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 फ्री स्पिन\n4 Bonus = 12 फ्री स्पिन\n5 Bonus = 18 फ्री स्पिन',
 	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 निश्चित पे लाइनें, बाएं से दाएं। केवल सबसे बाईं रील से शुरू होकर आसन्न रीलों पर प्रतीक गिने जाते हैं। यह Bonus प्रतीकों पर लागू नहीं होता।',
 	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 निश्चित विन लाइनें, बाएं से दाएं। केवल सबसे बाईं रील से शुरू होकर आसन्न रीलों पर प्रतीक गिने जाते हैं। यह Bonus प्रतीकों पर लागू नहीं होता।',
@@ -46,7 +46,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': 'रीलों पर कहीं भी 3 Bonus प्रतीक 6 फ्री स्पिन प्रदान करते हैं।',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus प्रतीक 12 फ्री स्पिन प्रदान करते हैं।',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus प्रतीक 18 फ्री स्पिन प्रदान करते हैं।',
-	'During Free Spins, 1 to 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'फ्री स्पिन के दौरान, प्रत्येक स्पिन की शुरुआत में रीलों पर 1 से 10 रैंडम वाइल्ड्स रखे जाते हैं। फ्री स्पिन के दौरान आने वाला प्रत्येक Bonus प्रतीक +1 अतिरिक्त फ्री स्पिन प्रदान करता है। पुनः ट्रिगर की कोई सीमा नहीं है।',
+	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'फ्री स्पिन के दौरान, प्रत्येक स्पिन की शुरुआत में रीलों पर 1, 2, 3, 4, 5, 6, 7, 8, 9 या 10 रैंडम वाइल्ड्स रखे जाते हैं। फ्री स्पिन के दौरान आने वाला प्रत्येक Bonus प्रतीक +1 अतिरिक्त फ्री स्पिन प्रदान करता है। पुनः ट्रिगर की कोई सीमा नहीं है।',
 	'Only the highest win per __0__ is __1__.': 'प्रति पे लाइन केवल सबसे अधिक जीत भुगतान किया गया होती है।',
 	'Simultaneous wins on different __0__ are added together.': 'विभिन्न पे लाइनें पर एक साथ होने वाली जीत जोड़ी जाती हैं।',
 	'__0__ wins and Bonus wins are added together.': 'पे लाइन जीत और Bonus जीत जोड़ी जाती हैं।',

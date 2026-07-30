@@ -35,40 +35,62 @@
 	const textAlpha = $derived(0.4 + pulse * 0.6);
 	const textScale = $derived(0.97 + pulse * 0.06);
 	const layout = $derived(context.stateLayoutDerived.mainLayout());
+	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
 </script>
 
-<MainContainer alignVertical="bottom">
-	{@const textY = layout.height - 100}
-	{@const barHeight = 70}
-	<!-- dark backing strip -->
-	<Rectangle
-		x={0}
-		y={textY - barHeight / 2}
-		width={layout.width}
-		height={barHeight}
-		backgroundColor={0x000000}
-		backgroundAlpha={0.45}
-		borderRadius={8}
-	/>
-	<!-- pulsing text -->
+{#if props.replay}
 	<Container
 		label="PressToContinueContainer"
-		x={layout.width * 0.5}
-		y={textY}
+		x={canvas.width * 0.5}
+		y={canvas.height * 0.6}
 		alpha={textAlpha}
 		scaleX={textScale}
 		scaleY={textScale}
 	>
 		<ResponsiveText
-			text={props.replay ? `▶ ${i18nDerived.playAgain()}` : i18nDerived.pressAnywhere()}
+			text={`▶ ${i18nDerived.replay()}`}
 			anchor={0.5}
-			maxWidth={layout.width * 0.85}
+			maxWidth={canvas.width * 0.85}
 			style={{
 				...gameTextStyle,
-				fontSize: props.replay ? 48 : 32,
+				fontSize: 64,
 			}}
 		/>
 	</Container>
-</MainContainer>
+{:else}
+	<MainContainer alignVertical="bottom">
+		{@const textY = layout.height - 100}
+		{@const barHeight = 70}
+		<!-- dark backing strip -->
+		<Rectangle
+			x={0}
+			y={textY - barHeight / 2}
+			width={layout.width}
+			height={barHeight}
+			backgroundColor={0x000000}
+			backgroundAlpha={0.45}
+			borderRadius={8}
+		/>
+		<!-- pulsing text -->
+		<Container
+			label="PressToContinueContainer"
+			x={layout.width * 0.5}
+			y={textY}
+			alpha={textAlpha}
+			scaleX={textScale}
+			scaleY={textScale}
+		>
+			<ResponsiveText
+				text={i18nDerived.pressAnywhere()}
+				anchor={0.5}
+				maxWidth={layout.width * 0.85}
+				style={{
+					...gameTextStyle,
+					fontSize: 32,
+				}}
+			/>
+		</Container>
+	</MainContainer>
+{/if}
 <OnHotkey hotkey="Space" onpress={() => props.onpress()} />
 <OnPressFullScreen onpress={() => props.onpress()} />

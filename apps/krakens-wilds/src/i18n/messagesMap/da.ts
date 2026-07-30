@@ -25,7 +25,7 @@ export default {
 	'Pearl': 'Perle',
 	'Nautilus': 'Nautilus',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus. During Free Spins, 1 to 10 Random Wilds are placed on the reels each spin.': 'Erstatter alle symboler undtagen Bonus. Under gratisspins placeres 1 til 10 tilfældige Wilds på hjulene ved hvert spin.',
+	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': 'Erstatter alle symboler undtagen Bonus. Under gratisspins placeres 1, 2, 3, 4, 5, 6, 7, 8, 9 eller 10 tilfældige Wilds på hjulene ved hvert spin.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 gratisspins\n4 Bonus = 12 gratisspins\n5 Bonus = 18 gratisspins',
 	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 faste betalingslinjer, venstre mod højre. Kun symboler på tilstødende hjul fra det venstre hjul tæller med. Dette gælder ikke for Bonus-symboler.',
 	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 faste gevinstlinjer, venstre mod højre. Kun symboler på tilstødende hjul fra det venstre hjul tæller med. Dette gælder ikke for Bonus-symboler.',
@@ -46,7 +46,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-symboler hvor som helst på hjulene giver 6 gratisspins.',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus-symboler giver 12 gratisspins.',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus-symboler giver 18 gratisspins.',
-	'During Free Spins, 1 to 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Under gratisspins placeres 1 til 10 tilfældige Wilds på hjulene i starten af hvert spin. Hvert Bonus-symbol der lander under gratisspins giver +1 ekstra gratisspin. Der er ingen grænse for genudløsninger.',
+	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Under gratisspins placeres 1, 2, 3, 4, 5, 6, 7, 8, 9 eller 10 tilfældige Wilds på hjulene i starten af hvert spin. Hvert Bonus-symbol der lander under gratisspins giver +1 ekstra gratisspin. Der er ingen grænse for genudløsninger.',
 	'Only the highest win per __0__ is __1__.': 'Kun den højeste gevinst per betalingslinje bliver udbetalt.',
 	'Simultaneous wins on different __0__ are added together.': 'Samtidige gevinster på forskellige betalingslinjer lægges sammen.',
 	'__0__ wins and Bonus wins are added together.': 'Betalingslinje-gevinster og Bonus-gevinster lægges sammen.',

@@ -25,7 +25,7 @@ export default {
 	'Pearl': 'لؤلؤة',
 	'Nautilus': 'نوتيلوس',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus. During Free Spins, 1 to 10 Random Wilds are placed on the reels each spin.': 'يحل محل جميع الرموز باستثناء Bonus. أثناء الدورات المجانية، يتم وضع من 1 إلى 10 رموز Wild عشوائية على البكرات في كل دورة.',
+	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': 'يحل محل جميع الرموز باستثناء Bonus. أثناء الدورات المجانية، يتم وضع 1، 2، 3، 4، 5، 6، 7، 8، 9، أو 10 رموز Wild عشوائية على البكرات في كل دورة.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 دورات مجانية\n4 Bonus = 12 دورة مجانية\n5 Bonus = 18 دورة مجانية',
 	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 خط دفع ثابت، من اليسار إلى اليمين. تُحتسب فقط الرموز على البكرات المتجاورة بدءًا من البكرة اليسرى. لا ينطبق هذا على رموز Bonus.',
 	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 خط ربح ثابت، من اليسار إلى اليمين. تُحتسب فقط الرموز على البكرات المتجاورة بدءًا من البكرة اليسرى. لا ينطبق هذا على رموز Bonus.',
@@ -46,7 +46,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 رموز Bonus في أي مكان على البكرات تمنح 6 دورات مجانية.',
 	'4 Bonus symbols award 12 Free Spins.': '4 رموز Bonus تمنح 12 دورة مجانية.',
 	'5 Bonus symbols award 18 Free Spins.': '5 رموز Bonus تمنح 18 دورة مجانية.',
-	'During Free Spins, 1 to 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'أثناء الدورات المجانية، يتم وضع من 1 إلى 10 رموز Wild عشوائية على البكرات في بداية كل دورة. كل رمز Bonus يظهر أثناء الدورات المجانية يمنح +1 دورة مجانية إضافية. لا يوجد حد لإعادة التشغيل.',
+	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'أثناء الدورات المجانية، يتم وضع 1، 2، 3، 4، 5، 6، 7، 8، 9، أو 10 رموز Wild عشوائية على البكرات في بداية كل دورة. كل رمز Bonus يظهر أثناء الدورات المجانية يمنح +1 دورة مجانية إضافية. لا يوجد حد لإعادة التشغيل.',
 	'Only the highest win per __0__ is __1__.': 'يتم مدفوع أعلى ربح فقط لكل خط دفع.',
 	'Simultaneous wins on different __0__ are added together.': 'تُجمع الأرباح المتزامنة على خطوط دفع مختلفة معًا.',
 	'__0__ wins and Bonus wins are added together.': 'تُجمع أرباح خط دفع وأرباح Bonus معًا.',

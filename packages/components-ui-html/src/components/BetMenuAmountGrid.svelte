@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { OptionsGrid } from 'components-shared';
 	import { stateBet, stateConfig } from 'state-shared';
+	import { getCurrencyDecimals } from 'utils-shared/amount';
 
 	import BaseIcon from './BaseIcon.svelte';
 	import BaseButtonContent from './BaseButtonContent.svelte';
@@ -11,12 +12,12 @@
 	const isMaxValue = (value: number) => value === options[options.length - 1];
 	const formatValue = (value: number) => {
 		if (Math.abs(value) > 999999) {
-			return `${(Math.abs(value) / 1000000).toFixed(2)}M`;
+			return `${parseFloat((Math.abs(value) / 1000000).toFixed(2))}M`;
 		}
 		if (Math.abs(value) > 999) {
-			return `${(Math.abs(value) / 1000).toFixed(2)}K`;
+			return `${parseFloat((Math.abs(value) / 1000).toFixed(2))}K`;
 		}
-		return Math.abs(value).toFixed(2);
+		return Math.abs(value).toFixed(getCurrencyDecimals());
 	};
 </script>
 

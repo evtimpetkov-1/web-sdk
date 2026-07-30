@@ -25,7 +25,7 @@ export default {
 	'Pearl': 'Mutiara',
 	'Nautilus': 'Nautilus',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus. During Free Spins, 1 to 10 Random Wilds are placed on the reels each spin.': 'Menggantikan semua simbol kecuali Bonus. Selama Putaran Gratis, 1 hingga 10 Wild Acak ditempatkan pada gulungan setiap putaran.',
+	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': 'Menggantikan semua simbol kecuali Bonus. Selama Putaran Gratis, 1, 2, 3, 4, 5, 6, 7, 8, 9, atau 10 Wild Acak ditempatkan pada gulungan setiap putaran.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 Putaran Gratis\n4 Bonus = 12 Putaran Gratis\n5 Bonus = 18 Putaran Gratis',
 	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 garis pembayaran tetap, kiri ke kanan. Hanya simbol pada gulungan yang berdekatan mulai dari gulungan paling kiri yang dihitung. Ini tidak berlaku untuk simbol Bonus.',
 	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 garis kemenangan tetap, kiri ke kanan. Hanya simbol pada gulungan yang berdekatan mulai dari gulungan paling kiri yang dihitung. Ini tidak berlaku untuk simbol Bonus.',
@@ -46,7 +46,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 simbol Bonus di mana saja pada gulungan memberikan 6 Putaran Gratis.',
 	'4 Bonus symbols award 12 Free Spins.': '4 simbol Bonus memberikan 12 Putaran Gratis.',
 	'5 Bonus symbols award 18 Free Spins.': '5 simbol Bonus memberikan 18 Putaran Gratis.',
-	'During Free Spins, 1 to 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Selama Putaran Gratis, 1 hingga 10 Wild Acak ditempatkan pada gulungan di awal setiap putaran. Setiap simbol Bonus yang muncul selama Putaran Gratis memberikan +1 Putaran Gratis tambahan. Tidak ada batasan pada pengaktifan ulang.',
+	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Selama Putaran Gratis, 1, 2, 3, 4, 5, 6, 7, 8, 9, atau 10 Wild Acak ditempatkan pada gulungan di awal setiap putaran. Setiap simbol Bonus yang muncul selama Putaran Gratis memberikan +1 Putaran Gratis tambahan. Tidak ada batasan pada pengaktifan ulang.',
 	'Only the highest win per __0__ is __1__.': 'Hanya kemenangan tertinggi per garis pembayaran yang dibayar.',
 	'Simultaneous wins on different __0__ are added together.': 'Kemenangan simultan pada garis pembayaran yang berbeda dijumlahkan.',
 	'__0__ wins and Bonus wins are added together.': 'Kemenangan Garis pembayaran dan kemenangan Bonus dijumlahkan.',

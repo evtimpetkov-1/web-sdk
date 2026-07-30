@@ -25,7 +25,7 @@ export default {
 	'Pearl': 'Helmi',
 	'Nautilus': 'Nautilus',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus. During Free Spins, 1 to 10 Random Wilds are placed on the reels each spin.': 'Korvaa kaikki symbolit paitsi Bonuksen. Ilmaiskierrosten aikana kiekoille asetetaan 1–10 satunnaista Wildiä jokaisella kierroksella.',
+	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': 'Korvaa kaikki symbolit paitsi Bonuksen. Ilmaiskierrosten aikana kiekoille asetetaan 1, 2, 3, 4, 5, 6, 7, 8, 9 tai 10 satunnaista Wildiä jokaisella kierroksella.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 ilmaiskierrosta\n4 Bonus = 12 ilmaiskierrosta\n5 Bonus = 18 ilmaiskierrosta',
 	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 kiinteää voittolinjaa, vasemmalta oikealle. Vain vierekkäisten kiekkojen symbolit vasemmanpuoleisimmasta kiekosta alkaen lasketaan. Tämä ei koske Bonus-symboleja.',
 	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 kiinteää voittolinjaa, vasemmalta oikealle. Vain vierekkäisten kiekkojen symbolit vasemmanpuoleisimmasta kiekosta alkaen lasketaan. Tämä ei koske Bonus-symboleja.',
@@ -46,7 +46,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-symbolia missä tahansa kiekoilla myöntävät 6 ilmaiskierrosta.',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus-symbolia myöntävät 12 ilmaiskierrosta.',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus-symbolia myöntävät 18 ilmaiskierrosta.',
-	'During Free Spins, 1 to 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Ilmaiskierrosten aikana kiekoille asetetaan 1–10 satunnaista Wildiä jokaisen kierroksen alussa. Jokainen ilmaiskierrosten aikana laskeutuva Bonus-symboli myöntää +1 lisäilmaiskierroksen. Uudelleenlaukaisuille ei ole rajaa.',
+	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Ilmaiskierrosten aikana kiekoille asetetaan 1, 2, 3, 4, 5, 6, 7, 8, 9 tai 10 satunnaista Wildiä jokaisen kierroksen alussa. Jokainen ilmaiskierrosten aikana laskeutuva Bonus-symboli myöntää +1 lisäilmaiskierroksen. Uudelleenlaukaisuille ei ole rajaa.',
 	'Only the highest win per __0__ is __1__.': 'Vain korkein voitto per voittolinja on maksettu.',
 	'Simultaneous wins on different __0__ are added together.': 'Samanaikaiset voitot eri voittolinjat lasketaan yhteen.',
 	'__0__ wins and Bonus wins are added together.': 'Voittolinja-voitot ja Bonus-voitot lasketaan yhteen.',

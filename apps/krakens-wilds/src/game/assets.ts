@@ -159,7 +159,7 @@ export default {
 	},
 	symbolsStatic: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/paytable/symbols.json', import.meta.url).href,
+		src: new URL('../../assets/sprites/symbols/symbols.json', import.meta.url).href,
 	},
 	winGlow: {
 		type: 'sprite',

@@ -43,8 +43,21 @@ const CurrencyMeta: Record<string, CurrencyInfo> = {
 	OMR: { symbol: 'OMR', decimals: 2, symbolAfter: true },
 	QAR: { symbol: 'QAR', decimals: 2, symbolAfter: true },
 	BHD: { symbol: 'BD', decimals: 2 },
+	PKR: { symbol: 'Rs', decimals: 2 },
+	EGP: { symbol: 'م.ج', decimals: 2, symbolAfter: true },
+	NZD: { symbol: 'NZ$', decimals: 2 },
+	BOB: { symbol: 'Bs', decimals: 2 },
+	GHS: { symbol: 'GH₵', decimals: 2 },
+	KES: { symbol: 'KSh', decimals: 2 },
+	MAD: { symbol: 'MAD', decimals: 2 },
+	BAM: { symbol: 'KM', decimals: 2 },
+	ISK: { symbol: 'kr', decimals: 2 },
+	TZS: { symbol: 'TSh', decimals: 2 },
+	UGX: { symbol: 'USh', decimals: 2 },
+	XOF: { symbol: 'CFA', decimals: 2 },
 	XGC: { symbol: 'GC', decimals: 2, symbolAfter: true },
 	XSC: { symbol: 'SC', decimals: 2, symbolAfter: true },
+	XEC: { symbol: 'SC', decimals: 2, symbolAfter: true },
 };
 
 // bookEventAmount: is the amount or win numbers in the events of books, e.g. the amount in setTotalWin bookEvent
@@ -67,6 +80,9 @@ export const bookEventAmountToNormalisedAmount = (bookEventAmount: number) => {
 };
 
 export const numberToFloat = (value: number) => Number.parseFloat(`${value}`);
+
+export const getCurrencyDecimals = () =>
+	(CurrencyMeta[stateBet.currency] ?? { decimals: 2 }).decimals;
 
 export const numberToCurrencyString = (value: number) => {
 	const meta = CurrencyMeta[stateBet.currency] ?? {
