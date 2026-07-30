@@ -269,6 +269,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
 		stateUi.freeSpinCounterShow = false;
 		await eventEmitter.broadcastAsync({ type: 'transition' });
+		eventEmitter.broadcast({ type: 'stopButtonEnable' });
 		await eventEmitter.broadcastAsync({ type: 'uiShow' });
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {

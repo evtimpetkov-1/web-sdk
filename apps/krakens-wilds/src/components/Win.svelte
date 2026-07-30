@@ -79,17 +79,17 @@
 						<Container
 							label="WinTextContainer"
 							x={cx}
-							y={cy * (isLandscape ? 0.95 : 0.85)}
+							y={cy * (isLandscape ? 0.95 : 1.0)}
 							scale={spineScale}
 						>
 							<ResponsiveBitmapText
 								anchor={0.5}
-								y={240}
+								y={isLandscape ? 240 : 280}
 								maxWidth={canvas.width / spineScale * 0.9}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{
 									fontFamily: 'cinzel-bold-gold',
-									fontSize: 200,
+									fontSize: 160,
 									align: 'center',
 									letterSpacing: 0,
 								}}

@@ -21,7 +21,13 @@ import {
 	SCATTER_LAND_SOUND_MAP,
 } from './constants';
 
-const onSymbolLand = ({ rawSymbol, symbolIndex }: { rawSymbol: RawSymbol; symbolIndex: number }) => {
+const onSymbolLand = ({
+	rawSymbol,
+	symbolIndex,
+}: {
+	rawSymbol: RawSymbol;
+	symbolIndex: number;
+}) => {
 	// Skip padding rows (index 0 = top padding, index BOARD_DIMENSIONS.y + 1 = bottom padding)
 	if (symbolIndex === 0 || symbolIndex > BOARD_DIMENSIONS.y) return;
 
@@ -119,7 +125,8 @@ const boardLayout = () => {
 	const h = stateLayoutDerived.mainLayout().height;
 	const layout = stateLayoutDerived.layoutType();
 	// Offset board upward in landscape/desktop to account for the bottom bar
-	const yOffset = layout === 'portrait' ? -80 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
+	const yOffset =
+		layout === 'portrait' ? -80 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
 	const scale = layout === 'portrait' ? 1.15 : layout === 'landscape' ? 1.35 : 1;
 	return {
 		x: w * 0.5,

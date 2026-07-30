@@ -38,7 +38,7 @@
         <char id="78" x="1501" y="231" width="166" height="225" xoffset="0" yoffset="0" xadvance="168" page="0" chnl="15"/>
         <char id="79" x="1669" y="231" width="169" height="225" xoffset="0" yoffset="0" xadvance="171" page="0" chnl="15"/>
         <char id="80" x="1840" y="231" width="131" height="225" xoffset="0" yoffset="0" xadvance="133" page="0" chnl="15"/>
-        <char id="81" x="1973" y="231" width="173" height="225" xoffset="0" yoffset="0" xadvance="175" page="0" chnl="15"/>
+        <char id="81" x="1973" y="231" width="173" height="225" xoffset="0" yoffset="30" xadvance="175" page="0" chnl="15"/>
         <char id="82" x="2148" y="231" width="150" height="225" xoffset="0" yoffset="0" xadvance="152" page="0" chnl="15"/>
         <char id="83" x="2300" y="231" width="127" height="225" xoffset="0" yoffset="0" xadvance="129" page="0" chnl="15"/>
         <char id="84" x="2429" y="231" width="135" height="225" xoffset="0" yoffset="0" xadvance="137" page="0" chnl="15"/>
@@ -50,7 +50,7 @@
         <char id="90" x="3471" y="231" width="140" height="225" xoffset="0" yoffset="0" xadvance="142" page="0" chnl="15"/>
         <char id="104" x="3613" y="231" width="136" height="225" xoffset="0" yoffset="0" xadvance="138" page="0" chnl="15"/>
         <char id="107" x="3751" y="231" width="147" height="225" xoffset="0" yoffset="0" xadvance="149" page="0" chnl="15"/>
-        <char id="112" x="3900" y="231" width="134" height="225" xoffset="0" yoffset="0" xadvance="136" page="0" chnl="15"/>
+        <char id="112" x="3900" y="231" width="134" height="225" xoffset="0" yoffset="55" xadvance="136" page="0" chnl="15"/>
         <char id="114" x="2" y="460" width="103" height="225" xoffset="0" yoffset="0" xadvance="105" page="0" chnl="15"/>
         <char id="115" x="107" y="460" width="112" height="225" xoffset="0" yoffset="0" xadvance="114" page="0" chnl="15"/>
         <char id="120" x="221" y="460" width="152" height="225" xoffset="0" yoffset="0" xadvance="154" page="0" chnl="15"/>
