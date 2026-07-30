@@ -38,9 +38,8 @@
 	};
 
 	const onpress = () => {
-		context.eventEmitter.broadcast({ type: 'soundPressBet' });
-
 		if (context.stateXstateDerived.isIdle()) {
+			context.eventEmitter.broadcast({ type: 'soundPressBet' });
 			bet();
 		} else {
 			stop();

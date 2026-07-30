@@ -64,14 +64,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		}
 
 		stateGame.gameType = bookEvent.gameType;
-		// Reset stale anticipation state from previous spin
-		for (const reel of stateGame.board) {
-			reel.reelState.anticipating = false;
-		}
-		// Disable anticipation during free spins
-		if (bookEvent.gameType === 'freegame') {
-			bookEvent.anticipation = bookEvent.anticipation.map(() => 0);
-		}
 		stateUi.reelsSpinning = true;
 		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_reelspin' });
 

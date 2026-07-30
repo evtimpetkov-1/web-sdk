@@ -68,6 +68,7 @@
 
 				{#if isBigWin}
 					{@const canvas = context.stateLayoutDerived.canvasSizes()}
+					{@const isLandscape = context.stateLayoutDerived.layoutType() !== 'portrait'}
 					{@const spineScale = Math.min(canvas.width / 850, canvas.height / 1100)}
 					{@const cx = canvas.width / 2}
 					{@const cy = canvas.height / 2}
@@ -78,7 +79,7 @@
 						<Container
 							label="WinTextContainer"
 							x={cx}
-							y={cy * 0.85}
+							y={cy * (isLandscape ? 0.95 : 0.85)}
 							scale={spineScale}
 						>
 							<ResponsiveBitmapText

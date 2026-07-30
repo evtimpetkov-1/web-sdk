@@ -64,7 +64,12 @@
 	};
 
 	context.eventEmitter.subscribeOnMount({
-		stopButtonClick: () => context.stateGameDerived.enhancedBoard.stop(),
+		stopButtonClick: () => {
+			for (const reel of context.stateGame.board) {
+				reel.reelState.anticipating = false;
+			}
+			context.stateGameDerived.enhancedBoard.stop();
+		},
 		boardSettle: ({ board }) => context.stateGameDerived.enhancedBoard.settle(board),
 		boardShow: () => (show = true),
 		boardHide: () => (show = false),

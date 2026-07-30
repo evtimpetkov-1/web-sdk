@@ -21,6 +21,7 @@
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
+	const isLandscape = $derived(context.stateLayoutDerived.layoutType() !== 'portrait');
 	const spineScale = $derived(Math.min(canvas.width / 850, canvas.height / 1100));
 
 	let show = $state(true);
@@ -67,7 +68,7 @@
 					<Container
 						label="TotalWinTextContainer"
 						x={cx}
-						y={cy * 0.85}
+						y={cy * (isLandscape ? 0.95 : 0.85)}
 						scale={spineScale}
 					>
 						<ResponsiveBitmapText

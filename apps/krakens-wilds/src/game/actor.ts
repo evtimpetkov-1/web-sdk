@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import { stateBet } from 'state-shared';
 import { checkIsMultipleRevealEvents } from 'utils-book';
+import { waitForTimeout } from 'utils-shared/wait';
 import { createPrimaryMachines, createIntermediateMachines, createGameActor } from 'utils-xstate';
 
 import type { Bet } from './typesBookEvent';
@@ -26,7 +27,20 @@ const primaryMachines = createPrimaryMachines<Bet>({
 		winCycleState.cancel();
 		eventEmitter.broadcast({ type: 'boardResetSymbols' });
 
-		if ((stateBet.isTurbo && stateXstateDerived.isAutoBetting()) || stateBet.isSpaceHold) return;
+		// Reset anticipation flags immediately — the Anticipation component's
+		// 300ms fade oncomplete may not have fired yet from the previous spin.
+		for (const reel of stateGame.board) {
+			reel.reelState.anticipating = false;
+		}
+
+		// No-win turbo delay — breathing room between spins
+		if (stateBet.isTurbo && stateBet.winBookEventAmount === 0) {
+			await waitForTimeout(150);
+		}
+
+		if ((stateBet.isTurbo && stateXstateDerived.isAutoBetting()) || stateBet.isSpaceHold) {
+			return;
+		}
 		stateBet.winBookEventAmount = 0;
 		await stateGameDerived.enhancedBoard.preSpin({
 			paddingBoard: config.paddingReels[stateGame.gameType],

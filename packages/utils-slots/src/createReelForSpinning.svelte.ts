@@ -48,7 +48,10 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 		reelState.symbols.forEach((reelSymbol) => {
 			reelSymbol.symbolState = value as TSymbolState;
 			if (value === 'land') {
-				reelOptions.onSymbolLand({ rawSymbol: reelSymbol.rawSymbol, symbolIndex: reelSymbol.symbolIndex });
+				reelOptions.onSymbolLand({
+					rawSymbol: reelSymbol.rawSymbol,
+					symbolIndex: reelSymbol.symbolIndex,
+				});
 			}
 		});
 	};
@@ -149,6 +152,7 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 
 	const removePaddingAndBounceBack = async () => {
 		reelState.symbols = [...targetSymbols];
+		updateAllReelSymbolState('land');
 		placeY(defaultY + reelOptions.symbolHeight * reelState.spinOptions().reelBounceSizeMulti);
 		await slideY({
 			reelY: defaultY,
@@ -241,7 +245,6 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 		onSpinFinishing();
 		await removePaddingAndBounceBack();
 		reelState.motion = 'stopped';
-		updateAllReelSymbolState('land');
 	};
 
 	const fastSpin = () =>

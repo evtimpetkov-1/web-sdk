@@ -71,7 +71,7 @@ export default {
 	S: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols2/symbols2.atlas', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols2/S.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols2/S.json', import.meta.url).href,
 			scale: 1,
 		},
@@ -79,7 +79,7 @@ export default {
 	W: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols3/symbols3.atlas', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols3/W.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols3/W.json', import.meta.url).href,
 			scale: 1,
 		},
@@ -91,7 +91,7 @@ export default {
 	},
 	frameEdgeDeep: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/reelsFrame/frame_edge_deep.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/reelsFrame/frame_edge_deep.png', import.meta.url).href,
 	},
 	frameEdgeFs: {
 		type: 'sprite',

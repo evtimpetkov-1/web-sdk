@@ -124,7 +124,7 @@
 	</Container>
 
 	<!-- -/+ bet buttons -->
-	<Container x={w * 0.67 - 80} y={rowY - 14}>
+	<Container x={w * 0.67 - 80} y={rowY - 20}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}
@@ -144,7 +144,7 @@
 		</Button>
 	</Container>
 
-	<Container x={w * 0.67 + 80} y={rowY - 14}>
+	<Container x={w * 0.67 + 80} y={rowY - 20}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}
