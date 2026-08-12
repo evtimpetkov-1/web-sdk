@@ -5,7 +5,7 @@
 </script>
 
 <script lang="ts">
-	import { Rectangle, Sprite, SpineProvider, SpineTrack, Container, Text, FillGradient } from 'pixi-svelte';
+	import { Rectangle, Sprite, Container, Text, FillGradient } from 'pixi-svelte';
 	import { ResponsiveText } from 'components-pixi';
 	import type { TextStyleOptions } from 'pixi.js';
 	import { stateBet, stateUi } from 'state-shared';
@@ -49,8 +49,10 @@
 
 	const context = getContext();
 	const BG_SCALE = { width: 1.1, height: 0.7 };
-	const FRAME_SCALE = { width: 1.3653, height: 0.9217 };
-	const POSITION_ADJUSTMENT = 1.01;
+	// v2 stone frame: hole is 88.64% x 79.60% of the image → these draw sizes
+	// put the opening at 620x380 around the 600x360 board
+	const FRAME_SCALE = { width: 1.166, height: 0.796 };
+	const POSITION_ADJUSTMENT = 1.0;
 
 	const boardLayout = $derived(context.stateGameDerived.boardLayout());
 	const layout = $derived(context.stateLayoutDerived.layoutType());
@@ -109,25 +111,11 @@
 	height={frameH}
 />
 
-<!-- Frame overlay idle animation (gem glows, shimmers, bubbles, caustics, sparkles) -->
-<SpineProvider
-	key="frameOverlay"
-	x={frameX}
-	y={frameY}
-	width={frameW}
-	height={frameH}
->
-	<SpineTrack trackIndex={0} animationName="idle" loop={true} />
-</SpineProvider>
+<!-- The old frameOverlay spine (gem glows etc.) was authored for the v1
+     frame's gem corners — disabled with the v2 stone frame. -->
 
-<!-- Game logo — centered above frame -->
-<Sprite
-	key="gameLogo"
-	anchor={{ x: 0.5, y: 0.5 }}
-	x={frameX}
-	y={frameTopY}
-	scale={logoScale}
-/>
+<!-- Game logo above the frame is replaced by the animated KrakenTopper.
+     Restore this Sprite if the topper is ever removed. -->
 
 <!-- Free spin counters -->
 {#if stateUi.freeSpinCounterShow}

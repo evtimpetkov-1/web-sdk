@@ -7,80 +7,88 @@ export default {
 	H1: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h1.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/h1.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/h1.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
 	H2: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h2.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/h2.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/h2.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
 	H3: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h3.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/h3.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/h3.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
 	H4: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/h4.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/h4.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/h4.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
 	L1: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l1.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/l1.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/l1.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
 	L2: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l2.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/l2.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/l2.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
 	L3: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l3.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/l3.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/l3.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
 	L4: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols/symbols.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols/l4.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/l4.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/l4.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
 	S: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols2/S.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols2/S.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/s.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/s.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
 	W: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/symbols3/W.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/symbols3/W.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/symbols-v2/w.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/w.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	kraken: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/kraken/kraken.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/kraken/kraken.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
@@ -91,11 +99,11 @@ export default {
 	},
 	frameEdgeDeep: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/reelsFrame/frame_edge_deep.png', import.meta.url).href,
+		src: new URL('../../assets/sprites/reelsFrame/reels_frame_v2.webp', import.meta.url).href,
 	},
 	frameEdgeFs: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/reelsFrame/frame_edge_fs.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/reelsFrame/reels_frame_v2.webp', import.meta.url).href,
 	},
 	anticipation: {
 		type: 'spine',
@@ -124,16 +132,6 @@ export default {
 			skeleton: new URL('../../assets/spines/bigwin/bigwin.json', import.meta.url).href,
 			scale: 1,
 		},
-	},
-	reelsOverlay: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/reelsOverlay/reels_overlay.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/reelsOverlay/reels_overlay.json', import.meta.url)
-				.href,
-			scale: 2,
-		},
-		preload: true,
 	},
 	baseGameBgDesktop: {
 		type: 'sprite',
@@ -176,6 +174,10 @@ export default {
 	coins: {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/coin/KW_Coin.json', import.meta.url).href,
+	},
+	bonusChest: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/bonusChest/bonus_chest.json', import.meta.url).href,
 	},
 	sound: {
 		type: 'audio',

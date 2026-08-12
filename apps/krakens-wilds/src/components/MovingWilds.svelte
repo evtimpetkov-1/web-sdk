@@ -11,7 +11,7 @@
 {#each context.stateGame.movingWilds as wild (wild.id)}
 	{@const isWinning = context.stateGame.movingWildWinSet.has(wild.id)}
 	{@const isDimmed = context.stateGame.winAnimating && !isWinning}
-	{@const animName = isWinning ? 'wild_dynamite' : (wild.landed ? 'wild_idle' : 'wild_dynamite_land')}
+	{@const animName = isWinning ? 'wild_win' : (wild.landed ? 'wild_idle' : 'wild_land')}
 
 	{#if isWinning}
 		<SpineProvider

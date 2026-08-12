@@ -91,7 +91,7 @@
 			key="gameLogo"
 			anchor={0.5}
 			y={(wide ? -135 : -260) * s}
-			width={(wide ? 280 : 290) * s}
+			width={(wide ? 420 : 435) * s}
 			height={(wide ? 280 : 290) * s}
 		/>
 	</Container>

@@ -197,11 +197,11 @@ export const SYMBOL_INFO_MAP = {
 		postWinStatic: wStatic,
 		static: wStatic,
 		spin: wStatic,
-		win: { type: 'spine', assetKey: 'W', animationName: 'wild_dynamite', sizeRatios: wSizeRatios },
+		win: { type: 'spine', assetKey: 'W', animationName: 'wild_win', sizeRatios: wSizeRatios },
 		land: {
 			type: 'spine',
 			assetKey: 'W',
-			animationName: 'wild_dynamite_land',
+			animationName: 'wild_land',
 			sizeRatios: wSizeRatios,
 		},
 		idle: {

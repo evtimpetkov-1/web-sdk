@@ -1,0 +1,12 @@
+l4.webp
+size:2048,1024
+filter:Linear,Linear
+scale:0.37615384615384617
+glow
+bounds:0,0,600,600
+l4_art
+bounds:602,0,177,227
+bubble
+bounds:781,0,64,64
+shinebar
+bounds:847,0,256,64

@@ -88,8 +88,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			const isFirstFreeSpinReveal = stateGame.movingWilds.length === 0;
 
 			if (isFirstFreeSpinReveal && wildPositions.length > 0) {
-				// First free spin: stagger wild appearances while reels spin
+				// First free spin: the kraken attacks — its dust cloud covers the
+				// reels (promise resolves on the spine's `reelsCovered` event),
+				// the wilds spawn hidden behind it, and the cloud fade reveals
+				// them. Reels keep spinning underneath throughout.
 				await waitForTimeout(300);
+				await eventEmitter.broadcastAsync({ type: 'krakenAttack' });
 				for (const pos of wildPositions) {
 					const wild: MovingWild = {
 						id: movingWildIdCounter++,
@@ -100,10 +104,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 						landed: false,
 					};
 					stateGame.movingWilds = [...stateGame.movingWilds, wild];
-					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
-					await waitForTimeout(200);
 				}
-				await waitForTimeout(400);
+				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+				// hold while the cloud thins and the wilds emerge
+				await waitForTimeout(1200);
 			} else if (wildPositions.length > 0) {
 				// Subsequent spins: move existing wilds to new positions
 				const updated = [...stateGame.movingWilds];

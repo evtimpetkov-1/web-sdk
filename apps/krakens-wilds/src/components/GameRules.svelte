@@ -85,7 +85,7 @@
 					{i18nDerived.disclaimerText()}
 				</p>
 				<p class="copyright">
-					TM and &copy; 2025 Stake Engine. Developed by Royal Cat Gaming.
+					TM and &copy; 2026 Stake Engine.
 				</p>
 			</section>
 		</div>

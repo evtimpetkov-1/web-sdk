@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { BlurFilter, Rectangle, Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { BlurFilter, Rectangle, Sprite } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 	import { SECOND } from 'constants-shared/time';
 
@@ -10,9 +10,6 @@
 	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
 	const showBaseBackground = $derived(context.stateGame.gameType === 'basegame');
 	const showFeatureBackground = $derived(context.stateGame.gameType === 'freegame');
-
-	// Overlay spine covers the background — scale to fill canvas
-	const overlayScale = $derived(Math.max(canvas.width, canvas.height) * 0.5);
 
 	const blurFilter = new BlurFilter({ strength: 8, quality: 4 });
 	const bgFilters = $derived(context.stateLayout.showLoadingScreen ? [blurFilter] : []);
@@ -25,30 +22,12 @@
 		{@const bgCover = Math.max(canvas.width, canvas.height) * 1}
 		<Sprite key="baseGameBgPortrait" anchor={0.5} x={canvas.width / 2 + 30} y={canvas.height / 2} width={bgCover} height={bgCover} />
 	{:else}
-		{@const scale = Math.max(canvas.width / 1920, canvas.height / 1072) * 1.1}
-		<Sprite key="baseGameBgDesktop" anchor={0.5} x={canvas.width / 2 + 50} y={canvas.height / 2} width={1920 * scale} height={1072 * scale} />
+		{@const scale = Math.max(canvas.width / 1920, canvas.height / 1072)}
+		<Sprite key="baseGameBgDesktop" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={1920 * scale} height={1072 * scale} />
 	{/if}
-	<SpineProvider
-		key="reelsOverlay"
-		x={canvas.width / 2 }
-		y={canvas.height / 2}
-		width={overlayScale}
-		height={overlayScale}
-	>
-		<SpineTrack trackIndex={0} animationName="idle" loop={true} />
-	</SpineProvider>
 </FadeContainer>
 
 <FadeContainer label="FeatureBackgroundContainer" show={showFeatureBackground} duration={SECOND} zIndex={-1}>
 	{@const bgCover = Math.max(canvas.width, canvas.height)}
 	<Sprite key="freeSpinBg" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={bgCover} height={bgCover} />
-	<SpineProvider
-		key="reelsOverlay"
-		x={canvas.width / 2}
-		y={canvas.height / 2}
-		width={overlayScale}
-		height={overlayScale}
-	>
-		<SpineTrack trackIndex={0} animationName="idle" loop={true} />
-	</SpineProvider>
 </FadeContainer>

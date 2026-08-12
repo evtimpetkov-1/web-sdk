@@ -21,6 +21,7 @@
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
 	import MovingWilds from './MovingWilds.svelte';
+	import KrakenTopper from './KrakenTopper.svelte';
 	import BoardContainer from './BoardContainer.svelte';
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
@@ -75,6 +76,8 @@
 				</BoardContainer>
 			</Container>
 		</MainContainer>
+
+		<KrakenTopper />
 
 		{#if !stateUrlDerived.replay()}
 			<UI>
