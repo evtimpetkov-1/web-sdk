@@ -5,45 +5,24 @@
 </script>
 
 <script lang="ts">
-	import { Rectangle, Sprite, Container, Text, FillGradient } from 'pixi-svelte';
+	import { Rectangle, Sprite, Container, Text } from 'pixi-svelte';
 	import { ResponsiveText } from 'components-pixi';
 	import type { TextStyleOptions } from 'pixi.js';
 	import { stateBet, stateUi } from 'state-shared';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 
 	import { getContext } from '../game/context';
+	import { headingGold, uiValue } from '../game/textStyles';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
-	const counterHeaderGradient = new FillGradient({
-		type: 'linear',
-		start: { x: 0, y: 0 },
-		end: { x: 0, y: 1 },
-		textureSpace: 'local',
-		colorStops: [
-			{ offset: 0, color: '#00E5FF' },
-			{ offset: 0.5, color: '#B2EBF2' },
-			{ offset: 1, color: '#00ACC1' },
-		],
-	});
-
 	const counterHeaderStyle = {
-		fontFamily: 'Cinzel',
-		fontWeight: '700',
-		fill: counterHeaderGradient,
-		stroke: { color: '#071a2b', width: 3 },
-		dropShadow: { color: '#00BCD4', blur: 10, distance: 0, alpha: 0.5 },
+		...headingGold,
 		letterSpacing: 3,
-		align: 'center',
 		fontSize: 34,
 	} as const satisfies TextStyleOptions;
 
 	const counterValueStyle = {
-		fontFamily: 'Cinzel',
-		fontWeight: '700',
-		fill: '#B0C4DE',
-		stroke: { color: '#0a1929', width: 2 },
-		letterSpacing: 1,
-		align: 'center',
+		...uiValue,
 		fontSize: 42,
 	} as const satisfies TextStyleOptions;
 

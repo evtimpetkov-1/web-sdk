@@ -10,7 +10,7 @@
 
 	import { getContext } from '../game/context';
 	import { anchorToPivot, Text, Container, type Sizes } from 'pixi-svelte';
-	import { gameTextStyle } from '../game/textStyles';
+	import { headingGold, uiValue } from '../game/textStyles';
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
@@ -55,7 +55,7 @@
 		<Text
 			text={'FREE SPINS'}
 			style={{
-				...gameTextStyle,
+				...headingGold,
 				fontSize,
 				wordWrap: false,
 			}}
@@ -66,7 +66,7 @@
 			{...counterPosition}
 			anchor={{ x: 0.5, y: 0 }}
 			style={{
-				...gameTextStyle,
+				...uiValue,
 				fontSize,
 			}}
 			onresize={(sizes) => (counterSizes = sizes)}

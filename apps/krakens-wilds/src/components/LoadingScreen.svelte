@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Container, Sprite, Rectangle, FillGradient } from 'pixi-svelte';
+	import { Container, Sprite, Rectangle } from 'pixi-svelte';
 	import { FadeContainer, ResponsiveText } from 'components-pixi';
 	import type { TextStyleOptions } from 'pixi.js';
 	import { onMount } from 'svelte';
@@ -24,6 +24,7 @@
 		await Promise.all([
 			document.fonts.load('700 20px Cinzel'),
 			document.fonts.load('400 20px Cinzel'),
+			document.fonts.load('400 20px "Bebas Neue"'),
 		]);
 		fontsReady = true;
 	});
@@ -45,25 +46,12 @@
 	const cx = $derived(canvas.width / 2);
 	const cy = $derived(canvas.height * (wide ? 0.47 : 0.46));
 
-	const headerGradient = new FillGradient({
-		type: 'linear',
-		start: { x: 0, y: 0 },
-		end: { x: 0, y: 1 },
-		textureSpace: 'local',
-		colorStops: [
-			{ offset: 0, color: '#00E5FF' },
-			{ offset: 0.5, color: '#B2EBF2' },
-			{ offset: 1, color: '#00ACC1' },
-		],
-	});
-
 	// Styles are $derived so fontSize updates with scale → forces text re-rasterization.
 	const headerStyle = $derived({
 		fontFamily: 'Cinzel',
 		fontWeight: '700',
-		fill: headerGradient,
-		stroke: { color: '#071a2b', width: 3 * s },
-		dropShadow: { color: '#00BCD4', blur: 12 * s, distance: 0, alpha: 0.5 },
+		fill: '#FFD700',
+		dropShadow: { color: '#000000', blur: 4 * s, distance: 3 * s, alpha: 0.6 },
 		letterSpacing: 3 * s,
 		align: 'center' as const,
 		fontSize: Math.max(30 * s, 1),
@@ -71,9 +59,9 @@
 
 	const bodyStyle = $derived({
 		fontFamily: 'Cinzel',
-		fontWeight: '400',
-		fill: '#B0C4DE',
-		stroke: { color: '#0a1929', width: 2 * s },
+		fontWeight: '700',
+		fill: '#E8E8E8',
+		dropShadow: { color: '#000000', blur: 3 * s, distance: 2 * s, alpha: 0.5 },
 		letterSpacing: 1 * s,
 		align: 'center' as const,
 		wordWrap: true,

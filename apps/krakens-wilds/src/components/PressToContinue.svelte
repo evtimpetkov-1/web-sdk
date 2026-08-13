@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 
 	import { getContext } from '../game/context';
-	import { gameTextStyle } from '../game/textStyles';
+	import { headingGold } from '../game/textStyles';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	type Props = {
@@ -52,7 +52,7 @@
 			anchor={0.5}
 			maxWidth={canvas.width * 0.85}
 			style={{
-				...gameTextStyle,
+				...headingGold,
 				fontSize: 64,
 			}}
 		/>
@@ -85,7 +85,7 @@
 				anchor={0.5}
 				maxWidth={layout.width * 0.85}
 				style={{
-					...gameTextStyle,
+					...headingGold,
 					fontSize: 32,
 				}}
 			/>

@@ -3,7 +3,7 @@
 	import { Tween } from 'svelte/motion';
 	import { onMount } from 'svelte';
 
-	import { BlurFilter, Container, Sprite } from 'pixi-svelte';
+	import { BlurFilter, Container, Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
 
@@ -66,6 +66,16 @@
 	height={bgCover}
 	filters={bgFilters}
 />
+
+<!-- Layer 1.5: purple smoke drifting behind the plate -->
+<SpineProvider
+	key="fsFx"
+	x={cx}
+	y={cy + 20 * plateScale}
+	width={Math.max(canvas.width, canvas.height) * 0.85}
+>
+	<SpineTrack trackIndex={0} animationName="smoke_idle" loop />
+</SpineProvider>
 
 <!-- Layer 2: Counter plate as frame (animated) -->
 <Container x={cx} y={cy + 20 * plateScale} scale={finalPlateScale}>

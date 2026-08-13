@@ -9,8 +9,8 @@
 	const layout = $derived(context.stateLayoutDerived.layoutType());
 	const isPortrait = $derived(layout === 'portrait');
 
-	// logo_no_kraken.webp is 800x276
-	const LOGO_RATIO = 800 / 276;
+	// logo_text.webp is 800x282
+	const LOGO_RATIO = 800 / 282;
 
 	// Desktop/landscape: left of the frame (above the FS counters column).
 	// Portrait: centered above the frame, over the kraken.

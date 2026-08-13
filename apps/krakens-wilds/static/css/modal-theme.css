@@ -1,0 +1,49 @@
+/* Kraken's Wilds modal theme — deep-sea navy panel + flat gold accents.
+   Matches the game's type system (Cinzel gold headings, no neon/gradient text).
+   Loaded by app.html and .storybook/preview-head.html.
+   `:root:root` outranks the package's `:root` defaults in global.scss, which
+   are injected AFTER this stylesheet and would otherwise win the cascade. */
+:root:root {
+	/* panel */
+	--modal-panel-bg: linear-gradient(180deg, rgba(10, 32, 48, 0.96) 0%, rgba(4, 12, 22, 0.98) 100%);
+	--modal-panel-border: 1px solid rgba(255, 215, 0, 0.3);
+	--modal-panel-radius: 16px;
+	--modal-panel-shadow:
+		0 24px 70px rgba(0, 0, 0, 0.65),
+		0 0 0 1px rgba(0, 0, 0, 0.4),
+		inset 0 1px 0 rgba(255, 226, 130, 0.14);
+	--modal-panel-padding: 1.6rem 1.9rem;
+
+	/* type */
+	--modal-title-font: 'Cinzel', serif;
+	--modal-title-size: 1.6rem;
+	--modal-text: #f2ead6;
+	--modal-text-dim: rgba(242, 234, 214, 0.6);
+
+	/* accents */
+	--modal-accent: #ffd700;
+	--modal-accent-selected: #ffd700;
+	--modal-border: rgba(255, 215, 0, 0.25);
+	--modal-border-selected: rgba(255, 215, 0, 0.9);
+	--modal-divider: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.9), transparent);
+
+	/* interactive surfaces */
+	--modal-bg: rgba(18, 48, 68, 0.45);
+	--modal-bg-hover: rgba(255, 215, 0, 0.14);
+	--modal-bg-active: rgba(255, 215, 0, 0.2);
+	--modal-btn-bg: rgba(14, 40, 58, 0.65);
+	--modal-btn-bg-hover: rgba(255, 215, 0, 0.22);
+	--modal-btn-confirm-bg: linear-gradient(180deg, rgba(255, 200, 64, 0.35), rgba(170, 118, 16, 0.45));
+	--modal-btn-confirm-border: rgba(255, 215, 0, 0.75);
+	--modal-btn-radius: 10px;
+
+	/* sliders */
+	--modal-slider-track: rgba(255, 255, 255, 0.14);
+	--modal-slider-thumb: #ffd700;
+	--modal-slider-fill: rgba(255, 215, 0, 0.5);
+}
+
+/* the modal title reads in flat gold, like the paytable/rules headings */
+.ui-modal-title-wrap {
+	--modal-text: #ffd700;
+}

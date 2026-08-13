@@ -1,19 +1,28 @@
 import type { TextStyleOptions } from 'pixi.js';
 
-const FONT_FAMILY = 'Cinzel';
+/**
+ * Game-wide type system — mirrors the paytable/rules typography:
+ * flat warm gold Cinzel for headings/labels, clean white Inter for values.
+ * No neon glows, no runtime gradients — celebration text uses the baked
+ * gold display art (spine titles + cinzel-bold-gold bitmap) instead.
+ */
 
-/** Teal/cyan style for general game UI text (press to continue, labels, etc.) */
-export const gameTextStyle = {
-	fontFamily: FONT_FAMILY,
+/** Flat warm-gold heading/label (the rules-h2 recipe, in Pixi). */
+export const headingGold = {
+	fontFamily: 'Cinzel',
 	fontWeight: '700',
-	fill: '#00E5FF',
-	stroke: { color: '#071a2b', width: 5 },
-	dropShadow: {
-		color: '#00BCD4',
-		blur: 10,
-		distance: 0,
-		alpha: 0.6,
-	},
+	fill: '#FFD700',
+	dropShadow: { color: '#000000', blur: 4, distance: 3, alpha: 0.6 },
 	letterSpacing: 4,
+	align: 'center',
+} as const satisfies TextStyleOptions;
+
+/** Clean white value text (amounts, counters) — matches the bottom bar. */
+export const uiValue = {
+	fontFamily: 'Inter',
+	fontWeight: '700',
+	fill: '#FFFFFF',
+	dropShadow: { color: '#000000', blur: 3, distance: 2, alpha: 0.5 },
+	letterSpacing: 1,
 	align: 'center',
 } as const satisfies TextStyleOptions;

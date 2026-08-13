@@ -5,16 +5,16 @@
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
-	const imgW = new URL('../../assets/paytable/w.png', import.meta.url).href;
-	const imgS = new URL('../../assets/paytable/s.png', import.meta.url).href;
-	const imgH1 = new URL('../../assets/paytable/h1.png', import.meta.url).href;
-	const imgH2 = new URL('../../assets/paytable/h2.png', import.meta.url).href;
-	const imgH3 = new URL('../../assets/paytable/h3.png', import.meta.url).href;
-	const imgH4 = new URL('../../assets/paytable/h4.png', import.meta.url).href;
-	const imgL1 = new URL('../../assets/paytable/l1.png', import.meta.url).href;
-	const imgL2 = new URL('../../assets/paytable/l2.png', import.meta.url).href;
-	const imgL3 = new URL('../../assets/paytable/l3.png', import.meta.url).href;
-	const imgL4 = new URL('../../assets/paytable/l4.png', import.meta.url).href;
+	const imgW = new URL('../../assets/paytable/w.webp', import.meta.url).href;
+	const imgS = new URL('../../assets/paytable/s.webp', import.meta.url).href;
+	const imgH1 = new URL('../../assets/paytable/h1.webp', import.meta.url).href;
+	const imgH2 = new URL('../../assets/paytable/h2.webp', import.meta.url).href;
+	const imgH3 = new URL('../../assets/paytable/h3.webp', import.meta.url).href;
+	const imgH4 = new URL('../../assets/paytable/h4.webp', import.meta.url).href;
+	const imgL1 = new URL('../../assets/paytable/l1.webp', import.meta.url).href;
+	const imgL2 = new URL('../../assets/paytable/l2.webp', import.meta.url).href;
+	const imgL3 = new URL('../../assets/paytable/l3.webp', import.meta.url).href;
+	const imgL4 = new URL('../../assets/paytable/l4.webp', import.meta.url).href;
 
 	const social = $derived(stateUrlDerived.social());
 	const title = $derived(social ? i18nDerived.symbolWins() : i18nDerived.payLinesHeader());
@@ -36,10 +36,10 @@
 	]);
 
 	const symbols = $derived([
-		{ img: imgH1, name: i18nDerived.shark(), pays: { 5: 50, 4: 10, 3: 4 } },
-		{ img: imgH2, name: i18nDerived.seaTurtle(), pays: { 5: 25, 4: 5, 3: 2.5 } },
-		{ img: imgH3, name: i18nDerived.pearl(), pays: { 5: 12.5, 4: 3, 3: 2 } },
-		{ img: imgH4, name: i18nDerived.nautilus(), pays: { 5: 7.5, 4: 2.5, 3: 1 } },
+		{ img: imgH1, name: i18nDerived.trident(), pays: { 5: 50, 4: 10, 3: 4 } },
+		{ img: imgH2, name: i18nDerived.ship(), pays: { 5: 25, 4: 5, 3: 2.5 } },
+		{ img: imgH3, name: i18nDerived.anchor(), pays: { 5: 12.5, 4: 3, 3: 2 } },
+		{ img: imgH4, name: i18nDerived.bottle(), pays: { 5: 7.5, 4: 2.5, 3: 1 } },
 		{ img: imgL1, name: 'A', pays: { 5: 5, 4: 2, 3: 0.6 } },
 		{ img: imgL2, name: 'K', pays: { 5: 5, 4: 2, 3: 0.6 } },
 		{ img: imgL3, name: 'Q', pays: { 5: 4, 4: 1, 3: 0.3 } },

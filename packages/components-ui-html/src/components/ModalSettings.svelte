@@ -37,7 +37,8 @@
 	.wrap {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
+		gap: 1.6rem;
+		padding-top: 0.5rem;
 
 		@media (min-width: 480px) {
 			min-width: 360px;

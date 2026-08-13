@@ -7,7 +7,7 @@
 	import { bookEventAmountToCurrencyString, numberToCurrencyString } from 'utils-shared/amount';
 
 	import { getContext } from '../game/context';
-	import { gameTextStyle } from '../game/textStyles';
+	import { headingGold } from '../game/textStyles';
 	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const context = getContext();
@@ -59,7 +59,7 @@
 		y={cy - 130 * s}
 		maxWidth={canvas.width * 0.8}
 		style={{
-			...gameTextStyle,
+			...headingGold,
 			fontSize: Math.max(48 * s, 16),
 			letterSpacing: 12 * s,
 		}}
@@ -138,7 +138,7 @@
 		y={cy + (hasWin ? 155 : 130) * s}
 		maxWidth={canvas.width * 0.7}
 		style={{
-			...gameTextStyle,
+			...headingGold,
 			fontSize: Math.max(44 * s, 14),
 		}}
 	/>

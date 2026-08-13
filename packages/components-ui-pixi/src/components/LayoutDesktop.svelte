@@ -27,19 +27,20 @@
 
 	// Bottom bar text style
 	const labelStyle = {
-		fontFamily: 'Inter',
-		fontSize: 28,
+		fontFamily: 'Cinzel',
+		fontSize: 22,
 		fontWeight: '700',
-		fill: 0xc0c8d0,
+		fill: 0xffd700,
 		letterSpacing: 2,
 	} as const;
 
 	const valueStyle = {
 		fontFamily: 'Inter',
-		fontSize: 30,
+		fontSize: 33,
 		fontWeight: '700',
 		fill: WHITE,
 		letterSpacing: 1,
+		dropShadow: { color: 0x000000, blur: 3, distance: 2, alpha: 0.5 },
 	} as const;
 
 	// Reactive values for bottom bar

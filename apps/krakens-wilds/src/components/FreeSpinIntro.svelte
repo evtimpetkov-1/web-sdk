@@ -6,8 +6,9 @@
 </script>
 
 <script lang="ts">
-	import { Container, SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { Container, Sprite } from 'pixi-svelte';
 	import { FadeContainer, ResponsiveText, ResponsiveBitmapText } from 'components-pixi';
+	import { stateUrlDerived } from 'state-shared';
 	import { waitForResolve } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
@@ -23,14 +24,21 @@
 	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
 	const s = $derived(Math.min(canvas.width / (isPortrait ? 700 : 840), canvas.height / 650));
 
+	// English gets the baked teal title art (matches the logo's WILDS
+	// lettering); every other locale falls back to the text labels.
+	// Source for YOU WON is the 04_54_07 revision (even letter heights —
+	// the original teal cut had a taller Y).
+	const useTitleArt = stateUrlDerived.lang() === 'en';
+	// you_won_en.webp 700x143, free_spins_en.webp 700x137
+	const YOU_WON_RATIO = 700 / 143;
+	const FREE_SPINS_RATIO = 700 / 137;
+
 	let show = $state(false);
 	let freeSpinsFromEvent = $state(0);
 	let oncomplete = $state(() => {});
-	let titleAnim = $state<'fs_in' | 'fs_idle'>('fs_in');
 
 	context.eventEmitter.subscribeOnMount({
 		freeSpinIntroShow: () => {
-			titleAnim = 'fs_in';
 			show = true;
 		},
 		freeSpinIntroHide: () => (show = false),
@@ -41,7 +49,9 @@
 	});
 </script>
 
-<FadeContainer {show}>
+<!-- 900ms fade ≈ the cloud_burst dissipation window, so the intro crossfades
+     in exactly while the purple smoke thins away -->
+<FadeContainer {show} duration={900}>
 	<FreeSpinAnimation blur>
 		{@const plateCY = canvas.height / 2 + 20 * s}
 		<Container
@@ -49,39 +59,35 @@
 			x={canvas.width / 2}
 			y={0}
 		>
-			<!-- FREE SPINS title art above the plate -->
-			<SpineProvider key="fsText" y={plateCY - 250 * s} width={760 * s}>
-				<SpineTrack
-					trackIndex={0}
-					animationName={titleAnim}
-					loop={titleAnim === 'fs_idle'}
-					listener={{
-						complete: () => {
-							if (titleAnim === 'fs_in') titleAnim = 'fs_idle';
-						},
+			<!-- Inside the plate: YOU WON -->
+			{#if useTitleArt}
+				<Sprite
+					key="youWonTextEn"
+					anchor={0.5}
+					y={plateCY - 120 * s}
+					width={430 * s}
+					height={(430 * s) / YOU_WON_RATIO}
+				/>
+			{:else}
+				<ResponsiveText
+					anchor={0.5}
+					y={plateCY - 120 * s}
+					maxWidth={500 * s}
+					text={i18nDerived.youWon()}
+					style={{
+						fontFamily: 'Inter',
+						fontWeight: '700',
+						fill: '#E8E8E8',
+						dropShadow: { color: '#000000', blur: 4, distance: 3, alpha: 0.6 },
+						letterSpacing: 6,
+						align: 'center',
+						fontSize: Math.max(58 * s, 1),
 					}}
 				/>
-			</SpineProvider>
-
-			<!-- Inside the plate: YOU WON -->
-			<ResponsiveText
-				anchor={0.5}
-				y={plateCY - 85 * s}
-				maxWidth={500 * s}
-				text={i18nDerived.youWon()}
-				style={{
-					fontFamily: 'Cinzel',
-					fontWeight: '700',
-					fill: '#B0C4DE',
-					stroke: { color: '#0a1929', width: 2 },
-					letterSpacing: 3,
-					align: 'center',
-					fontSize: Math.max(48 * s, 1),
-				}}
-			/>
+			{/if}
 
 			<!-- Number — fixed fontSize, scaled via Container to avoid black bitmap on resize -->
-			<Container y={plateCY - 25 * s} scale={s}>
+			<Container y={plateCY - 40 * s} scale={s}>
 				<ResponsiveBitmapText
 					anchor={0.5}
 					maxWidth={300}
@@ -96,21 +102,31 @@
 			</Container>
 
 			<!-- FREE SPINS -->
-			<ResponsiveText
-				anchor={0.5}
-				y={plateCY + 90 * s}
-				maxWidth={500 * s}
-				text={i18nDerived.freeSpins()}
-				style={{
-					fontFamily: 'Cinzel',
-					fontWeight: '700',
-					fill: '#B0C4DE',
-					stroke: { color: '#0a1929', width: 2 },
-					letterSpacing: 3,
-					align: 'center',
-					fontSize: Math.max(48 * s, 1),
-				}}
-			/>
+			{#if useTitleArt}
+				<Sprite
+					key="freeSpinsTextEn"
+					anchor={0.5}
+					y={plateCY + 120 * s}
+					width={490 * s}
+					height={(490 * s) / FREE_SPINS_RATIO}
+				/>
+			{:else}
+				<ResponsiveText
+					anchor={0.5}
+					y={plateCY + 120 * s}
+					maxWidth={500 * s}
+					text={i18nDerived.freeSpins()}
+					style={{
+						fontFamily: 'Inter',
+						fontWeight: '700',
+						fill: '#E8E8E8',
+						dropShadow: { color: '#000000', blur: 4, distance: 3, alpha: 0.6 },
+						letterSpacing: 6,
+						align: 'center',
+						fontSize: Math.max(58 * s, 1),
+					}}
+				/>
+			{/if}
 		</Container>
 	</FreeSpinAnimation>
 

@@ -29,6 +29,7 @@
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
+	import FsCloudTransition from './FsCloudTransition.svelte';
 	import Transition from './Transition.svelte';
 	import ReplayComplete from './ReplayComplete.svelte';
 
@@ -108,6 +109,7 @@
 		<Win />
 		<FreeSpinIntro />
 		<FreeSpinOutro />
+		<FsCloudTransition />
 		<Transition />
 		<ReplayComplete />
 	{/if}

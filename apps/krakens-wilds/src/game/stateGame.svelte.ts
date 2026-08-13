@@ -107,6 +107,9 @@ export const stateGame = $state({
 	winLooping: false,
 	winAnimating: false,
 	retriggerExtra: 0,
+	// winning wilds fed to the kraken this session (base game tension build-up);
+	// purely presentational — resets when the kraken attacks (free spins trigger)
+	krakenCollects: 0,
 });
 
 // Win cycle state — persists across book event handlers and into idle

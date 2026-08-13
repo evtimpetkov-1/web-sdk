@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
-	const logoTextImg = new URL('../../assets/sprites/logo_text.png', import.meta.url).href;
+	const logoTextImg = new URL('../../assets/sprites/logo_text.webp', import.meta.url).href;
 
 	let visible = $state(true);
 

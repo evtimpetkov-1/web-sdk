@@ -27,10 +27,10 @@
 
 	// Bottom bar text styles (same as landscape)
 	const labelStyle = {
-		fontFamily: 'Inter',
-		fontSize: 36,
+		fontFamily: 'Cinzel',
+		fontSize: 28,
 		fontWeight: '700',
-		fill: 0xc0c8d0,
+		fill: 0xffd700,
 		letterSpacing: 2,
 	} as const;
 
@@ -40,6 +40,7 @@
 		fontWeight: '700',
 		fill: WHITE,
 		letterSpacing: 1,
+		dropShadow: { color: 0x000000, blur: 3, distance: 2, alpha: 0.5 },
 	} as const;
 
 	// Reactive values for bottom bar

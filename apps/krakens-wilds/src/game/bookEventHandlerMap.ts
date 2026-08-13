@@ -188,12 +188,20 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			_.isEqual,
 		);
 
+		// Base game: winning wilds fly into the kraken (session tension build-up)
+		if (stateGame.gameType === 'basegame') {
+			const board = stateGameDerived.boardRaw();
+			const wildPositions = allPositions.filter(
+				(pos) => board[pos.reel]?.[pos.row]?.name === 'W',
+			);
+			if (wildPositions.length > 0) {
+				eventEmitter.broadcast({ type: 'krakenCollect', positions: wildPositions });
+			}
+		}
+
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_win_line' });
 		// Start animations but proceed after 500ms so winbox shows early
-		await Promise.race([
-			animateSymbols({ positions: allPositions }),
-			waitForTimeout(500),
-		]);
+		await Promise.race([animateSymbols({ positions: allPositions }), waitForTimeout(500)]);
 	},
 	setTotalWin: async (bookEvent: BookEventOfType<'setTotalWin'>) => {
 		stateBet.winBookEventAmount = bookEvent.amount;
@@ -205,6 +213,16 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// show free spin intro
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_superfreespin' });
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
+		// the kraken finally attacks — the fed-wilds tension is released
+		stateGame.krakenCollects = 0;
+		// the kraken rears up to full size and slams; the fullscreen burst is
+		// fired mid-slam (not after) so its cloud merges with the kraken's own
+		// slam dust into one continuous eruption
+		eventEmitter.broadcast({ type: 'krakenAttack' });
+		await waitForTimeout(1200);
+		// resolves at full coverage; the intro then fades in underneath while
+		// the cloud dissipates
+		await eventEmitter.broadcastAsync({ type: 'fsCloudBurst' });
 		eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs' });
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
@@ -310,9 +328,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// Board stays dimmed with symbols looping — finalWin picks up seamlessly
 	},
 	finalWin: async (bookEvent: BookEventOfType<'finalWin'>, { bookEvents }: BookEventContext) => {
-		const hasFs = bookEvents.some(
-			(e) => e.type === 'freeSpinTrigger' || e.type === 'freeSpinEnd',
-		);
+		const hasFs = bookEvents.some((e) => e.type === 'freeSpinTrigger' || e.type === 'freeSpinEnd');
 
 		if (hasFs || !winCycleState.lastWins?.length) {
 			winCycleState.lastWins = null;

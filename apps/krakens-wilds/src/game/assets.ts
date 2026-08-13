@@ -1,7 +1,8 @@
 export default {
+	// Text-only logo — used everywhere in-game
 	gameLogo: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/logo_no_kraken.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/logo_text.webp', import.meta.url).href,
 		preload: true,
 	},
 	// Full logo with the kraken — loading screen only
@@ -185,11 +186,30 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/free_spins/fs_bg_portrait.jpg', import.meta.url).href,
 	},
+	// English-only baked title art for the FS intro (teal, matches the logo's
+	// WILDS lettering); other locales fall back to text
+	youWonTextEn: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/free_spins/you_won_en.webp', import.meta.url).href,
+	},
+	freeSpinsTextEn: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/free_spins/free_spins_en.webp', import.meta.url).href,
+	},
 	fsText: {
 		type: 'spine',
 		src: {
 			atlas: new URL('../../assets/spines/fstext/fstext.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/fstext/fstext.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	// Purple smoke FX: intro idle smoke + base→FS cloud-burst transition
+	fsFx: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/fsfx/fsfx.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/fsfx/fsfx.json', import.meta.url).href,
 			scale: 1,
 		},
 	},

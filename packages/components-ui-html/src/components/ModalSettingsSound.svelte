@@ -54,24 +54,34 @@
 	.col {
 		display: flex;
 		flex-direction: column;
+		gap: 0.8rem;
+
+		> span {
+			text-align: center;
+			letter-spacing: 0.06em;
+			color: var(--modal-text);
+		}
 	}
 
 	.row {
 		display: flex;
 		flex-direction: row;
-		gap: 0.5rem;
+		align-items: center;
+		gap: 0.75rem;
 	}
 
 	.button-wrap {
 		width: 15%;
 		display: flex;
 		align-items: center;
+		justify-content: center;
 	}
 
 	.range {
 		width: 70%;
 		display: flex;
 		align-items: center;
+		align-self: center;
 		-webkit-appearance: none;
 		appearance: none;
 		height: 6px;

@@ -29,10 +29,10 @@ export const i18nDerived = {
 	// PayTable — symbol names
 	wild: () => t('Wild'),
 	bonus: () => t('Bonus'),
-	shark: () => t('Shark'),
-	seaTurtle: () => t('Sea Turtle'),
-	pearl: () => t('Pearl'),
-	nautilus: () => t('Nautilus'),
+	trident: () => t('Trident'),
+	ship: () => t('Ship'),
+	anchor: () => t('Anchor'),
+	bottle: () => t('Message in a Bottle'),
 	// PayTable — descriptions
 	wildDesc: () => t('Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.'),
 	bonusDesc: () => t('3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins'),
