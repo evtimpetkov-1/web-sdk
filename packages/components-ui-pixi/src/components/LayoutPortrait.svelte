@@ -46,6 +46,14 @@
 	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
 	const winValue = $derived(bookEventAmountToCurrencyString(stateBet.winBookEventAmount));
 	const betValue = $derived(numberToCurrencyString(stateBetDerived.betCost()));
+
+	// BET label + amount press → bet menu (same behavior as LabelBet)
+	const betMenuDisabled = $derived(!context.stateXstateDerived.isIdle());
+	const onBetMenu = () => {
+		if (betMenuDisabled) return;
+		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		stateModal.modal = { name: 'betAmountMenu' };
+	};
 	const labelMaxWidth = $derived((cx - 150) * 0.6);
 
 	// Bet button handler
@@ -133,6 +141,11 @@
 			{@render props.buttonAutoSpin({ anchor: 0.5 })}
 		</Container>
 
+		<!-- Buy bonus: right side, stacked above the bet button -->
+		<Container x={w - 140} y={h - 455} scale={0.9}>
+			{@render props.buttonBuyBonus({ anchor: 0.5 })}
+		</Container>
+
 		<!-- Right: turbo, bet -->
 		<Container x={w - 290} y={h - 280} scale={0.8}>
 			{@render props.buttonTurbo({ anchor: 0.5 })}
@@ -185,8 +198,15 @@
 		<ResponsiveText text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
 
-	<!-- BET -->
-	<Container x={w - 150} y={h - 65}>
+	<!-- BET (press to open the bet menu) -->
+	<Container
+		x={w - 150}
+		y={h - 65}
+		eventMode="static"
+		cursor={betMenuDisabled ? 'not-allowed' : 'pointer'}
+		onpointerup={onBetMenu}
+	>
+		<Rectangle anchor={0.5} width={160} height={100} backgroundColor={0xffffff} backgroundAlpha={0} />
 		<Text text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} />
 		<ResponsiveText text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>

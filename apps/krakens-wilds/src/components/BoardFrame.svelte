@@ -48,16 +48,21 @@
 	} as const satisfies TextStyleOptions;
 
 	const context = getContext();
-	const BG_SCALE = { width: 1.1, height: 0.7 };
-	// v2 stone frame: hole is 88.64% x 79.60% of the image → these draw sizes
-	// put the opening at 620x380 around the 600x360 board
-	const FRAME_SCALE = { width: 1.166, height: 0.796 };
-	const POSITION_ADJUSTMENT = 1.0;
+	const BG_SCALE = { width: 1.053, height: 0.687 };
+	// Openings measured per frame art (hole fraction of the trimmed image):
+	// base 88.64%x79.60%, FS 86.44%x79.61% — both give a 660x420 opening
+	// around the 655x411 grid (131x137 cells).
+	const FRAME_SCALE_BASE = { width: 1.137, height: 0.805 };
+	const FRAME_SCALE_FS = { width: 1.166, height: 0.806 };
+	// symbols sit +10 inside BoardContainer; the frame follows them down
+	const FRAME_Y_OFFSET = 10;
 
 	const boardLayout = $derived(context.stateGameDerived.boardLayout());
 	const layout = $derived(context.stateLayoutDerived.layoutType());
-	const frameX = $derived(boardLayout.x * POSITION_ADJUSTMENT);
-	const frameY = $derived(boardLayout.y * POSITION_ADJUSTMENT);
+	const isFsFrame = $derived(context.stateGame.gameType === 'freegame');
+	const FRAME_SCALE = $derived(isFsFrame ? FRAME_SCALE_FS : FRAME_SCALE_BASE);
+	const frameX = $derived(boardLayout.x);
+	const frameY = $derived(boardLayout.y + FRAME_Y_OFFSET);
 	const frameW = $derived(boardLayout.width * FRAME_SCALE.width);
 	const frameH = $derived(boardLayout.width * FRAME_SCALE.height);
 
@@ -67,7 +72,7 @@
 
 	// Counter panel dimensions (local coords, scaled by counterScale)
 	const PANEL_WIDTH = 380;
-	const PANEL_HEIGHT = PANEL_WIDTH / 1.876; // match 782x417 image aspect ratio
+	const PANEL_HEIGHT = PANEL_WIDTH / 2.607; // match counters_plate 1512x580
 
 	// Counter positioning per layout
 	const countersBelow = $derived(layout === 'portrait' || layout === 'tablet');

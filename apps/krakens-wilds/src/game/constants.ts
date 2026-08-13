@@ -2,7 +2,11 @@ import _ from 'lodash';
 
 import type { RawSymbol, SymbolState } from './types';
 
-export const SYMBOL_SIZE = 120;
+export const SYMBOL_SIZE = 128;
+// Grid pitch (cell spacing) — wider than the symbol display size so the 5x3
+// grid fills the frame opening with real gaps between symbols.
+export const CELL_W = 131;
+export const CELL_H = 137;
 
 export const REEL_PADDING = 0.53;
 
@@ -18,8 +22,8 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 export const BOARD_DIMENSIONS = { x: INITIAL_BOARD.length, y: INITIAL_BOARD[0].length - 2 };
 
 export const BOARD_SIZES = {
-	width: SYMBOL_SIZE * BOARD_DIMENSIONS.x,
-	height: SYMBOL_SIZE * BOARD_DIMENSIONS.y,
+	width: CELL_W * BOARD_DIMENSIONS.x,
+	height: CELL_H * BOARD_DIMENSIONS.y,
 };
 
 export const BACKGROUND_RATIO = 2039 / 1000;
@@ -45,10 +49,14 @@ export const HIGH_SYMBOLS = ['H1', 'H2', 'H3', 'H4'];
 
 export const INITIAL_SYMBOL_STATE: SymbolState = 'static';
 
-// Spine skeleton bounds are 1400x1400, symbol occupies 1000x1000 (71.4%).
-// To match SYMBOL_SIZE static sprite: sizeRatio = 1/0.714 ≈ 1.4
-// Requires loader scale=1 in assets.ts (scale=2 would double the rendered size).
-const SPINE_SYMBOL_SIZE = 1.4;
+// Uniform per-symbol render scales (x === y — art is never deformed).
+// Statics are hand-tuned. Spine scales are measured so the spine art matches
+// the static art size exactly at the sprite→spine swap:
+//   spineScale = (static art px height * static scale) / (spine art height in world units)
+// with the spine art heights measured from a rendered setup pose at 1 world unit = 1 px.
+const STATIC_SCALE_HIGH = 0.23; // H1-H4
+const STATIC_SCALE_SW = 0.2; // S + W
+const STATIC_SCALE_LOW = 0.35; // L1-L4
 
 const SPIN_OPTIONS_SHARED = {
 	reelBounceBackSpeed: 0.15,
@@ -82,19 +90,24 @@ export const zIndexes = {
 	},
 };
 
-const h1Static = { type: 'sprite', assetKey: 'h1', sizeRatios: { width: 1, height: 1 } };
-const h2Static = { type: 'sprite', assetKey: 'h2', sizeRatios: { width: 1, height: 1 } };
-const h3Static = { type: 'sprite', assetKey: 'h3', sizeRatios: { width: 1, height: 1 } };
-const h4Static = { type: 'sprite', assetKey: 'h4', sizeRatios: { width: 1, height: 1 } };
-const l1Static = { type: 'sprite', assetKey: 'l1', sizeRatios: { width: 1, height: 1 } };
-const l2Static = { type: 'sprite', assetKey: 'l2', sizeRatios: { width: 1, height: 1 } };
-const l3Static = { type: 'sprite', assetKey: 'l3', sizeRatios: { width: 1, height: 1 } };
-const l4Static = { type: 'sprite', assetKey: 'l4', sizeRatios: { width: 1, height: 1 } };
-const sStatic = { type: 'sprite', assetKey: 's', sizeRatios: { width: 1.1, height: 1.1 } };
-const wStatic = { type: 'sprite', assetKey: 'w', sizeRatios: { width: 1.1, height: 1.1 } };
+// yOffset (source-canvas px, scaled at render): the h1/h3/h4 art is not
+// vertically centered in its canvas (trim data), so the sprite is lifted to
+// center the visible art in the cell — matching the spines, which the slicer
+// centers on the skeleton origin.
+const h1Static = { type: 'sprite', assetKey: 'h1', scale: STATIC_SCALE_HIGH, yOffset: -26 };
+const h2Static = { type: 'sprite', assetKey: 'h2', scale: STATIC_SCALE_HIGH };
+const h3Static = { type: 'sprite', assetKey: 'h3', scale: STATIC_SCALE_HIGH, yOffset: -20 };
+const h4Static = { type: 'sprite', assetKey: 'h4', scale: STATIC_SCALE_HIGH, yOffset: -37 };
+const l1Static = { type: 'sprite', assetKey: 'l1', scale: STATIC_SCALE_LOW };
+const l2Static = { type: 'sprite', assetKey: 'l2', scale: STATIC_SCALE_LOW };
+const l3Static = { type: 'sprite', assetKey: 'l3', scale: STATIC_SCALE_LOW };
+const l4Static = { type: 'sprite', assetKey: 'l4', scale: STATIC_SCALE_LOW };
+const sStatic = { type: 'sprite', assetKey: 's', scale: STATIC_SCALE_SW };
+const wStatic = { type: 'sprite', assetKey: 'w', scale: STATIC_SCALE_SW };
 
-const wSizeRatios = { width: SPINE_SYMBOL_SIZE * 1.1, height: SPINE_SYMBOL_SIZE * 1.1 };
-const sSizeRatios = { width: SPINE_SYMBOL_SIZE * 1.1, height: SPINE_SYMBOL_SIZE * 1.1 };
+// Measured spine art (world units): W 876x863, S 875x894
+const W_SPINE_SCALE = 0.1388;
+const S_SPINE_SCALE = 0.1544;
 
 export const SYMBOL_INFO_MAP = {
 	H1: {
@@ -102,7 +115,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'H1',
 			animationName: 'h1',
-			sizeRatios: { width: SPINE_SYMBOL_SIZE, height: SPINE_SYMBOL_SIZE },
+			scale: 0.131, // spine art 873x950 world units; static 541px @ 0.23
 		},
 		postWinStatic: h1Static,
 		static: h1Static,
@@ -114,7 +127,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'H2',
 			animationName: 'h2',
-			sizeRatios: { width: SPINE_SYMBOL_SIZE, height: SPINE_SYMBOL_SIZE },
+			scale: 0.1342, // spine art 1018x1001 world units; static 584px @ 0.23
 		},
 		postWinStatic: h2Static,
 		static: h2Static,
@@ -126,7 +139,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'H3',
 			animationName: 'h3',
-			sizeRatios: { width: SPINE_SYMBOL_SIZE, height: SPINE_SYMBOL_SIZE },
+			scale: 0.1308, // spine art 865x934 world units; static 531px @ 0.23
 		},
 		postWinStatic: h3Static,
 		static: h3Static,
@@ -138,7 +151,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'H4',
 			animationName: 'h4',
-			sizeRatios: { width: SPINE_SYMBOL_SIZE, height: SPINE_SYMBOL_SIZE },
+			scale: 0.1329, // spine art 858x881 world units; static 509px @ 0.23
 		},
 		postWinStatic: h4Static,
 		static: h4Static,
@@ -150,7 +163,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'L1',
 			animationName: 'l1',
-			sizeRatios: { width: SPINE_SYMBOL_SIZE, height: SPINE_SYMBOL_SIZE },
+			scale: 0.1399, // spine art 577x568 world units
 		},
 		postWinStatic: l1Static,
 		static: l1Static,
@@ -162,7 +175,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'L2',
 			animationName: 'l2',
-			sizeRatios: { width: SPINE_SYMBOL_SIZE, height: SPINE_SYMBOL_SIZE },
+			scale: 0.1398, // spine art 580x566 world units
 		},
 		postWinStatic: l2Static,
 		static: l2Static,
@@ -174,7 +187,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'L3',
 			animationName: 'l3',
-			sizeRatios: { width: SPINE_SYMBOL_SIZE, height: SPINE_SYMBOL_SIZE },
+			scale: 0.146, // spine art 530x568 world units
 		},
 		postWinStatic: l3Static,
 		static: l3Static,
@@ -186,7 +199,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'L4',
 			animationName: 'l4',
-			sizeRatios: { width: SPINE_SYMBOL_SIZE, height: SPINE_SYMBOL_SIZE },
+			scale: 0.1422, // spine art 442x566 world units
 		},
 		postWinStatic: l4Static,
 		static: l4Static,
@@ -197,36 +210,36 @@ export const SYMBOL_INFO_MAP = {
 		postWinStatic: wStatic,
 		static: wStatic,
 		spin: wStatic,
-		win: { type: 'spine', assetKey: 'W', animationName: 'wild_win', sizeRatios: wSizeRatios },
+		win: { type: 'spine', assetKey: 'W', animationName: 'wild_win', scale: W_SPINE_SCALE },
 		land: {
 			type: 'spine',
 			assetKey: 'W',
 			animationName: 'wild_land',
-			sizeRatios: wSizeRatios,
+			scale: W_SPINE_SCALE,
 		},
 		idle: {
 			type: 'spine',
 			assetKey: 'W',
 			animationName: 'wild_idle',
-			sizeRatios: wSizeRatios,
+			scale: W_SPINE_SCALE,
 		},
 	},
 	S: {
 		postWinStatic: sStatic,
 		static: sStatic,
 		spin: sStatic,
-		win: { type: 'spine', assetKey: 'S', animationName: 'scatter_win', sizeRatios: sSizeRatios },
+		win: { type: 'spine', assetKey: 'S', animationName: 'scatter_win', scale: S_SPINE_SCALE },
 		land: {
 			type: 'spine',
 			assetKey: 'S',
 			animationName: 'scatter_land',
-			sizeRatios: sSizeRatios,
+			scale: S_SPINE_SCALE,
 		},
 		idle: {
 			type: 'spine',
 			assetKey: 'S',
 			animationName: 'scatter_idle',
-			sizeRatios: sSizeRatios,
+			scale: S_SPINE_SCALE,
 		},
 	},
 } as const;

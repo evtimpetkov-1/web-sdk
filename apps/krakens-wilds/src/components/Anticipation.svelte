@@ -5,7 +5,7 @@
 
 	import { getContext } from '../game/context';
 	import type { Reel } from '../game/stateGame.svelte';
-	import { REEL_PADDING, SYMBOL_SIZE, BOARD_SIZES } from '../game/constants';
+	import { REEL_PADDING, SYMBOL_SIZE, CELL_W, BOARD_SIZES } from '../game/constants';
 
 	type Props = {
 		reel: Reel;
@@ -31,7 +31,7 @@
 	<SpineProvider
 		key="anticipation"
 		width={SYMBOL_SIZE * 2}
-		x={(props.reel.reelIndex + REEL_PADDING) * SYMBOL_SIZE}
+		x={(props.reel.reelIndex + REEL_PADDING) * CELL_W}
 		y={BOARD_SIZES.height / 2 - 10}
 	>
 		<SpineTrack

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { stateUi, stateConfig } from 'state-shared';
+	import { stateUi, stateConfig, stateModal } from 'state-shared';
 	import { BLACK, WHITE } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
 	import { Container, Rectangle, Text, Sprite } from 'pixi-svelte';
@@ -73,6 +73,14 @@
 			.find((o) => o > stateBet.betAmount);
 		stateBetDerived.setBetAmount(nextBigger || biggest);
 	};
+
+	// BET label + amount press → bet menu (same behavior as LabelBet)
+	const betMenuDisabled = $derived(!context.stateXstateDerived.isIdle());
+	const onBetMenu = () => {
+		if (betMenuDisabled) return;
+		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		stateModal.modal = { name: 'betAmountMenu' };
+	};
 </script>
 
 <Container x={20}>
@@ -101,7 +109,7 @@
 		{@render props.buttonMenu({ anchor: 0.5 })}
 	</Container>
 
-	<Container x={205} y={rowY} scale={0.42}>
+	<Container x={220} y={rowY} scale={0.6}>
 		{@render props.buttonBuyBonus({ anchor: 0.5 })}
 	</Container>
 
@@ -117,8 +125,15 @@
 		<ResponsiveText text={winValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
 
-	<!-- BET -->
-	<Container x={w * 0.67} y={rowY}>
+	<!-- BET (press to open the bet menu; the +/- buttons render above and keep priority) -->
+	<Container
+		x={w * 0.67}
+		y={rowY}
+		eventMode="static"
+		cursor={betMenuDisabled ? 'not-allowed' : 'pointer'}
+		onpointerup={onBetMenu}
+	>
+		<Rectangle anchor={0.5} width={110} height={90} backgroundColor={0xffffff} backgroundAlpha={0} />
 		<ResponsiveText text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} maxWidth={100} />
 		<ResponsiveText text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>

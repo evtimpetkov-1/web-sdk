@@ -127,6 +127,24 @@ export default {
 		amount: 1,
 		total: 12,
 	},
+	freeSpinRetrigger: {
+		type: 'freeSpinRetrigger',
+		totalFs: 18,
+		positions: [
+			{
+				reel: 0,
+				row: 3,
+			},
+			{
+				reel: 2,
+				row: 3,
+			},
+			{
+				reel: 4,
+				row: 3,
+			},
+		],
+	},
 	winInfo: {
 		type: 'winInfo',
 		totalWin: 400,

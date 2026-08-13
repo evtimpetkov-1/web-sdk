@@ -19,8 +19,8 @@
 
 <FadeContainer label="BackgroundContainer" show={showBaseBackground} duration={SECOND} zIndex={-2} filters={bgFilters}>
 	{#if isPortrait}
-		{@const bgCover = Math.max(canvas.width, canvas.height) * 1}
-		<Sprite key="baseGameBgPortrait" anchor={0.5} x={canvas.width / 2 + 30} y={canvas.height / 2} width={bgCover} height={bgCover} />
+		{@const scale = Math.max(canvas.width / 941, canvas.height / 1672)}
+		<Sprite key="baseGameBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={941 * scale} height={1672 * scale} />
 	{:else}
 		{@const scale = Math.max(canvas.width / 1920, canvas.height / 1072)}
 		<Sprite key="baseGameBgDesktop" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={1920 * scale} height={1072 * scale} />
@@ -28,6 +28,11 @@
 </FadeContainer>
 
 <FadeContainer label="FeatureBackgroundContainer" show={showFeatureBackground} duration={SECOND} zIndex={-1}>
-	{@const bgCover = Math.max(canvas.width, canvas.height)}
-	<Sprite key="freeSpinBg" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={bgCover} height={bgCover} />
+	{#if isPortrait}
+		{@const scale = Math.max(canvas.width / 941, canvas.height / 1672)}
+		<Sprite key="freeSpinBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={941 * scale} height={1672 * scale} />
+	{:else}
+		{@const scale = Math.max(canvas.width / 1448, canvas.height / 1086)}
+		<Sprite key="freeSpinBg" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={1448 * scale} height={1086 * scale} />
+	{/if}
 </FadeContainer>

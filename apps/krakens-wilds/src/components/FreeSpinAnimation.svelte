@@ -25,7 +25,7 @@
 	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
 	const plateScale = $derived(Math.min(canvas.width / (isPortrait ? 700 : 840), canvas.height / 650));
 	const PLATE_W = 782;
-	const PLATE_H = 417;
+	const PLATE_H = PLATE_W / 1.586; // fs_intro_plate 1443x910
 
 	// Blur filter for intro overlay (sharp for gameplay)
 	const blurFilter = new BlurFilter({ strength: 6, quality: 4 });
@@ -70,7 +70,7 @@
 <!-- Layer 2: Counter plate as frame (animated) -->
 <Container x={cx} y={cy + 20 * plateScale} scale={finalPlateScale}>
 	<Sprite
-		key="fsCounterBg"
+		key="fsIntroPlate"
 		anchor={0.5}
 		width={PLATE_W * plateScale}
 		height={PLATE_H * plateScale}

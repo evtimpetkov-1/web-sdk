@@ -5,7 +5,7 @@
 	import { SYMBOL_SIZE, SYMBOL_INFO_MAP } from '../game/constants';
 
 	const context = getContext();
-	const wSizeRatios = SYMBOL_INFO_MAP.W.land.sizeRatios;
+	const wSpineScale = SYMBOL_INFO_MAP.W.land.scale;
 </script>
 
 {#each context.stateGame.movingWilds as wild (wild.id)}
@@ -30,7 +30,7 @@
 			x={wild.x.current}
 			y={wild.y.current}
 			key="W"
-			height={SYMBOL_SIZE * wSizeRatios.height}
+			scale={wSpineScale}
 		>
 			<SpineTrack
 				trackIndex={0}

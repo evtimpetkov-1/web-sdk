@@ -24,5 +24,11 @@
 		max-height: 100%;
 		gap: 1rem;
 		color: var(--modal-text);
+
+		background: var(--modal-panel-bg);
+		border: var(--modal-panel-border);
+		border-radius: var(--modal-panel-radius);
+		box-shadow: var(--modal-panel-shadow);
+		padding: var(--modal-panel-padding);
 	}
 </style>

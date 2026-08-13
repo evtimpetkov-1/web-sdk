@@ -11,7 +11,7 @@ import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
 import { eventEmitter } from './eventEmitter';
 import {
-	SYMBOL_SIZE,
+	CELL_H,
 	BOARD_SIZES,
 	INITIAL_BOARD,
 	BOARD_DIMENSIONS,
@@ -51,7 +51,7 @@ const onSymbolLand = ({
 const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
 	const reel = createReelForSpinning({
 		reelIndex,
-		symbolHeight: SYMBOL_SIZE,
+		symbolHeight: CELL_H,
 		initialSymbols: INITIAL_BOARD[reelIndex],
 		initialSymbolState: INITIAL_SYMBOL_STATE,
 		onReelStopping: () => {
@@ -126,8 +126,9 @@ const boardLayout = () => {
 	const layout = stateLayoutDerived.layoutType();
 	// Offset board upward in landscape/desktop to account for the bottom bar
 	const yOffset =
-		layout === 'portrait' ? -80 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
-	const scale = layout === 'portrait' ? 1.15 : layout === 'landscape' ? 1.35 : 1;
+		layout === 'portrait' ? -50 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
+	// Desktop/landscape reels scaled down ~20% to free space for the bigger kraken
+	const scale = layout === 'portrait' ? 1.15 : layout === 'landscape' ? 1.16 : 0.9;
 	return {
 		x: w * 0.5,
 		y: h * 0.5 + yOffset,

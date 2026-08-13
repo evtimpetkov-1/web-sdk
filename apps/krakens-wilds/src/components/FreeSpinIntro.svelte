@@ -6,7 +6,7 @@
 </script>
 
 <script lang="ts">
-	import { Container, FillGradient } from 'pixi-svelte';
+	import { Container, SpineProvider, SpineTrack } from 'pixi-svelte';
 	import { FadeContainer, ResponsiveText, ResponsiveBitmapText } from 'components-pixi';
 	import { waitForResolve } from 'utils-shared/wait';
 
@@ -15,20 +15,6 @@
 	import PressToContinue from './PressToContinue.svelte';
 	import FreeSpinAnimation from './FreeSpinAnimation.svelte';
 
-	const icyGradient = new FillGradient({
-		type: 'linear',
-		start: { x: 0, y: 0 },
-		end: { x: 0, y: 1 },
-		textureSpace: 'local',
-		colorStops: [
-			{ offset: 0.0, color: '#F5FFFF' },
-			{ offset: 0.16, color: '#D7FBFF' },
-			{ offset: 0.42, color: '#72EEFF' },
-			{ offset: 0.65, color: '#44E7FF' },
-			{ offset: 0.84, color: '#16BBD9' },
-			{ offset: 1.0, color: '#0C9DE0' },
-		],
-	});
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
@@ -40,9 +26,13 @@
 	let show = $state(false);
 	let freeSpinsFromEvent = $state(0);
 	let oncomplete = $state(() => {});
+	let titleAnim = $state<'fs_in' | 'fs_idle'>('fs_in');
 
 	context.eventEmitter.subscribeOnMount({
-		freeSpinIntroShow: () => (show = true),
+		freeSpinIntroShow: () => {
+			titleAnim = 'fs_in';
+			show = true;
+		},
 		freeSpinIntroHide: () => (show = false),
 		freeSpinIntroUpdate: async (emitterEvent) => {
 			freeSpinsFromEvent = emitterEvent.totalFreeSpins;
@@ -59,23 +49,19 @@
 			x={canvas.width / 2}
 			y={0}
 		>
-			<!-- CONGRATULATIONS above the plate -->
-			<ResponsiveText
-				anchor={0.5}
-				y={plateCY - 260 * s}
-				maxWidth={700 * s}
-				text={i18nDerived.congratulations()}
-				style={{
-					fontFamily: 'Cinzel',
-					fontWeight: '700',
-					fill: icyGradient,
-					stroke: { color: '#06283B', width: 3 },
-					dropShadow: { color: '#000000', alpha: 0.6, blur: 4, distance: 0 },
-					letterSpacing: 3,
-					align: 'center',
-					fontSize: Math.max(56 * s, 1),
-				}}
-			/>
+			<!-- FREE SPINS title art above the plate -->
+			<SpineProvider key="fsText" y={plateCY - 250 * s} width={760 * s}>
+				<SpineTrack
+					trackIndex={0}
+					animationName={titleAnim}
+					loop={titleAnim === 'fs_idle'}
+					listener={{
+						complete: () => {
+							if (titleAnim === 'fs_in') titleAnim = 'fs_idle';
+						},
+					}}
+				/>
+			</SpineProvider>
 
 			<!-- Inside the plate: YOU WON -->
 			<ResponsiveText

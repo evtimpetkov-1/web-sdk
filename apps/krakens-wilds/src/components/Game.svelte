@@ -6,12 +6,13 @@
 	import { MainContainer } from 'components-layout';
 	import { App, REM, Container } from 'pixi-svelte';
 	import { UI } from 'components-ui-pixi';
-	import { stateUrlDerived } from 'state-shared';
+	import { stateUrlDerived, stateModal } from 'state-shared';
 	import { GameVersion, Modals } from 'components-ui-html';
 	import PayTable from './PayTable.svelte';
 	import GameRules from './GameRules.svelte';
 
 	import { getContext } from '../game/context';
+	import { applyBetModeMeta } from '../game/betModeMeta';
 	import EnableSound from './EnableSound.svelte';
 	import EnableGameActor from './EnableGameActor.svelte';
 	import ResumeBet from './ResumeBet.svelte';
@@ -21,7 +22,9 @@
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
 	import MovingWilds from './MovingWilds.svelte';
+	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import KrakenTopper from './KrakenTopper.svelte';
+	import GameLogo from './GameLogo.svelte';
 	import BoardContainer from './BoardContainer.svelte';
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
@@ -34,6 +37,13 @@
 
 	onMount(() => {
 		context.stateLayout.showLoadingScreen = true;
+		applyBetModeMeta();
+	});
+
+	context.eventEmitter.subscribeOnMount({
+		buyBonusConfirm: () => {
+			stateModal.modal = { name: 'buyBonusConfirm' };
+		},
 	});
 
 </script>
@@ -78,6 +88,16 @@
 		</MainContainer>
 
 		<KrakenTopper />
+		<GameLogo />
+
+		<!-- Above kraken + logo so its screen shade dims them too -->
+		<MainContainer label="RetriggerContainer">
+			<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
+				<BoardContainer>
+					<FreeSpinRetrigger />
+				</BoardContainer>
+			</Container>
+		</MainContainer>
 
 		{#if !stateUrlDerived.replay()}
 			<UI>

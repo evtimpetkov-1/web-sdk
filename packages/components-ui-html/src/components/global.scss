@@ -29,6 +29,15 @@ body {
 	--modal-slider-track: rgba(255, 255, 255, 0.15);
 	--modal-slider-thumb: #ffffff;
 	--modal-slider-fill: rgba(255, 255, 255, 0.4);
+
+	/* Modal panel chrome (the plate behind modal content) */
+	--modal-panel-bg: linear-gradient(180deg, rgba(32, 36, 46, 0.92) 0%, rgba(13, 15, 21, 0.96) 100%);
+	--modal-panel-border: 1px solid rgba(255, 255, 255, 0.14);
+	--modal-panel-radius: 18px;
+	--modal-panel-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	--modal-panel-padding: 1.5rem 1.75rem;
+	--modal-divider: linear-gradient(90deg, transparent, var(--modal-border-selected), transparent);
+	--modal-btn-radius: 10px;
 }
 
 .scrollY {

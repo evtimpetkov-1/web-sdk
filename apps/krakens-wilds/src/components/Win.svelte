@@ -84,7 +84,7 @@
 						>
 							<ResponsiveBitmapText
 								anchor={0.5}
-								y={isLandscape ? 240 : 280}
+								y={isLandscape ? 300 : 340}
 								maxWidth={canvas.width / spineScale * 0.9}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{

@@ -30,7 +30,8 @@
 		height: var(--height-value);
 		background: var(--background-value);
 		border: var(--border-value);
-		border-radius: 10px;
-		transition: background 0.15s ease, border-color 0.15s ease;
+		border-radius: var(--modal-btn-radius, 10px);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+		transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 	}
 </style>

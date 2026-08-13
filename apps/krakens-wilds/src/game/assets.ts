@@ -1,7 +1,13 @@
 export default {
 	gameLogo: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/logo.png', import.meta.url).href,
+		src: new URL('../../assets/sprites/logo_no_kraken.webp', import.meta.url).href,
+		preload: true,
+	},
+	// Full logo with the kraken — loading screen only
+	gameLogoKraken: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/logo_kraken.webp', import.meta.url).href,
 		preload: true,
 	},
 	H1: {
@@ -92,6 +98,18 @@ export default {
 			scale: 1,
 		},
 	},
+	bonusActive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/bonus_active.png', import.meta.url).href,
+	},
+	bonusHover: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/bonus_hover.png', import.meta.url).href,
+	},
+	bonusInactive: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/ui/bonus_inactive.png', import.meta.url).href,
+	},
 	// UI buttons spritesheet
 	uiButtons0: {
 		type: 'sprites',
@@ -103,7 +121,7 @@ export default {
 	},
 	frameEdgeFs: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/reelsFrame/reels_frame_v2.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/reelsFrame/fs_frame_v2.webp', import.meta.url).href,
 	},
 	anticipation: {
 		type: 'spine',
@@ -128,8 +146,8 @@ export default {
 	bigwin: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/bigwin/bigwin.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/bigwin/bigwin.json', import.meta.url).href,
+			atlas: new URL('../../assets/spines/bigwin-v2/bigwin.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/bigwin-v2/bigwin.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
@@ -145,15 +163,7 @@ export default {
 	},
 	freeSpinBg: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/fs_intro_bg/fs_bg_v2.jpg', import.meta.url).href,
-	},
-	frameOverlay: {
-		type: 'spine',
-		src: {
-			atlas: new URL('../../assets/spines/frameOverlay/frameOverlay.atlas', import.meta.url).href,
-			skeleton: new URL('../../assets/spines/frameOverlay/frameOverlay.json', import.meta.url).href,
-			scale: 1,
-		},
+		src: new URL('../../assets/sprites/free_spins/fs_bg_v2.jpg', import.meta.url).href,
 	},
 	symbolsStatic: {
 		type: 'sprites',
@@ -165,7 +175,23 @@ export default {
 	},
 	fsCounterBg: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/fs_counter_bg_new.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/counters_plate.webp', import.meta.url).href,
+	},
+	fsIntroPlate: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/fs_intro_plate.webp', import.meta.url).href,
+	},
+	freeSpinBgPortrait: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/free_spins/fs_bg_portrait.jpg', import.meta.url).href,
+	},
+	fsText: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/fstext/fstext.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/fstext/fstext.json', import.meta.url).href,
+			scale: 1,
+		},
 	},
 	winFont: {
 		type: 'font',

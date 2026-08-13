@@ -37,6 +37,13 @@
 				{stateBonusDerived.selectedBetModeData().text.title}
 			</BaseTitle>
 			<BaseScrollable type="column">
+				{#if stateBonusDerived.selectedBetModeData().assets.dialogImage}
+					<img
+						class="dialog-image"
+						src={stateBonusDerived.selectedBetModeData().assets.dialogImage}
+						alt={stateBonusDerived.selectedBetModeData().text.title}
+					/>
+				{/if}
 				{stateBonusDerived.selectedBetModeData().text.dialog}
 			</BaseScrollable>
 			<BaseButtonWrap type="max-width">
@@ -57,3 +64,14 @@
 		</BaseContent>
 	</Popup>
 {/if}
+
+<style lang="scss">
+	.dialog-image {
+		display: block;
+		max-width: 240px;
+		max-height: 200px;
+		object-fit: contain;
+		margin: 0 auto 0.75rem;
+		filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+	}
+</style>

@@ -3,7 +3,7 @@
 	import { zIndex } from 'constants-shared/zIndex';
 	import { stateModal, stateUrlDerived } from 'state-shared';
 	import { i18nDerived } from '../i18n/i18nDerived';
-	const logoImg = new URL('../../assets/sprites/logo.png', import.meta.url).href;
+	const logoImg = new URL('../../assets/sprites/logo_no_kraken.webp', import.meta.url).href;
 
 	const social = $derived(stateUrlDerived.social());
 	const betLabel = $derived(social ? i18nDerived.playWord() : i18nDerived.betWord());

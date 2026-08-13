@@ -21,6 +21,12 @@
 {#each props.list as betModeData}
 	{#if betModeData.type !== 'default'}
 		<BonusCard>
+			{#snippet image()}
+				{#if betModeData.assets.dialogImage}
+					<img src={betModeData.assets.dialogImage} alt={betModeData.text.title} />
+				{/if}
+			{/snippet}
+
 			{#snippet title()}
 				<div class="title">
 					{betModeData.text.title}
@@ -63,13 +69,15 @@
 
 <style lang="scss">
 	.title {
-		font-size: 1rem;
-		line-height: 1rem;
+		font-size: 1.25rem;
+		line-height: 1.25rem;
 		text-align: center;
+		font-family: var(--modal-title-font, inherit);
+		letter-spacing: 0.05em;
 	}
 
 	.description {
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 		text-align: center;
 		min-height: 4rem;
 		white-space: pre-line;
@@ -82,8 +90,10 @@
 	}
 
 	.price {
-		font-size: 1rem;
-		line-height: 1rem;
+		font-size: 1.3rem;
+		line-height: 1.3rem;
+		font-weight: 700;
+		color: var(--modal-accent-selected, inherit);
 		text-align: center;
 		white-space: nowrap;
 	}

@@ -76,6 +76,21 @@
 />
 
 <Story
+	name="freeSpinRetrigger"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: events.freeSpinRetrigger,
+		action: async (data) => {
+			// Seed the counter as if 12 spins were already granted, so the
+			// retrigger to 18 yields +6 extra spins like a real book.
+			await playBookEvent(events.updateFreeSpin, { bookEvents: [] });
+			await playBookEvent(data, { bookEvents: [] });
+		},
+	})}
+	{template}
+/>
+
+<Story
 	name="winInfo"
 	args={templateArgs({
 		skipLoadingScreen: true,

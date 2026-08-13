@@ -11,12 +11,12 @@ import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
 import { stateGame, stateGameDerived, winCycleState, type MovingWild } from './stateGame.svelte';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { Position } from './types';
-import { SYMBOL_SIZE, REEL_PADDING } from './constants';
+import { CELL_W, CELL_H, REEL_PADDING } from './constants';
 import config from './config';
 
 let movingWildIdCounter = 0;
-const wildX = (reel: number) => SYMBOL_SIZE * (reel + REEL_PADDING);
-const wildY = (row: number) => (row - 0.5) * SYMBOL_SIZE;
+const wildX = (reel: number) => CELL_W * (reel + REEL_PADDING);
+const wildY = (row: number) => (row - 0.5) * CELL_H;
 
 const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) => {
 	if (winLevelData?.alias === 'max') eventEmitter.broadcastAsync({ type: 'uiHide' });
@@ -230,6 +230,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const extraSpins = bookEvent.totalFs - stateUi.freeSpinCounterTotal;
 		stateGame.retriggerExtra = extraSpins;
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
+		// RETRIGGER splash text over the board; per-scatter "+1" labels are
+		// rendered by ReelSymbol, so no positions are passed here.
+		eventEmitter.broadcast({ type: 'freeSpinRetriggerShow', extraSpins, positions: [] });
 		await animateSymbols({ positions: bookEvent.positions });
 		stateGame.retriggerExtra = 0;
 		eventEmitter.broadcast({

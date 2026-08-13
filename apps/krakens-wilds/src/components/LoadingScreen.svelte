@@ -87,12 +87,13 @@
 <FadeContainer show={loadingType === 'start'}>
 	<Rectangle width={canvas.width} height={canvas.height} backgroundColor={0x000000} alpha={0.7} />
 	<Container x={cx} y={cy}>
+		<!-- logo_kraken.webp is 999x639 — height follows the aspect ratio -->
 		<Sprite
-			key="gameLogo"
+			key="gameLogoKraken"
 			anchor={0.5}
 			y={(wide ? -135 : -260) * s}
 			width={(wide ? 420 : 435) * s}
-			height={(wide ? 280 : 290) * s}
+			height={((wide ? 420 : 435) * s * 639) / 999}
 		/>
 	</Container>
 </FadeContainer>

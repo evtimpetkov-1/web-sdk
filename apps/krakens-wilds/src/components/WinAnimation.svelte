@@ -108,12 +108,14 @@
 <!-- Layer 2: Content behind spines (coin particles) -->
 {@render props.behindSpines?.()}
 
-<!-- Layer 3: Kraken Spine (centered, constrained by both width and height) -->
+<!-- Layer 3: Kraken Spine (centered, constrained by both width and height).
+     Origin at canvas center keeps the kraken's head on-screen; the text sits
+     at +60 world units inside the spine, the amount renders below. -->
 <SpineProvider
 	key="bigwin"
 	scale={winScale}
 	x={cx}
-	y={cy * 0.85}
+	y={cy}
 >
 	<SpineTrack
 		trackIndex={0}

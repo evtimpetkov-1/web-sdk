@@ -22,4 +22,15 @@
 		text-transform: uppercase;
 		color: var(--modal-text);
 	}
+
+	.ui-modal-title-wrap::after {
+		content: '';
+		display: block;
+		height: 2px;
+		margin: 0.5rem auto 0;
+		width: min(220px, 60%);
+		background: var(--modal-divider);
+		border-radius: 2px;
+		opacity: 0.8;
+	}
 </style>
