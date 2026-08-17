@@ -2,10 +2,18 @@
 	import { SpineProvider, SpineTrack, Container } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { SYMBOL_SIZE, SYMBOL_INFO_MAP } from '../game/constants';
+	import {
+		SYMBOL_INFO_MAP,
+		SYMBOL_SIZE,
+		WIN_FRAME_WIDTH,
+		WIN_FRAME_HEIGHT,
+	} from '../game/constants';
 
 	const context = getContext();
-	const wSpineScale = SYMBOL_INFO_MAP.W.land.scale;
+	const wSpineSizes = {
+		width: SYMBOL_SIZE * SYMBOL_INFO_MAP.W.land.sizeRatios.width,
+		height: SYMBOL_SIZE * SYMBOL_INFO_MAP.W.land.sizeRatios.height,
+	};
 </script>
 
 {#each context.stateGame.movingWilds as wild (wild.id)}
@@ -18,10 +26,11 @@
 			x={wild.x.current}
 			y={wild.y.current}
 			key="payframe"
-			width={SYMBOL_SIZE * 1.2}
+			width={WIN_FRAME_WIDTH}
+			height={WIN_FRAME_HEIGHT}
 			zIndex={-1}
 		>
-			<SpineTrack trackIndex={0} animationName="win" loop />
+			<SpineTrack trackIndex={0} animationName="idle" loop />
 		</SpineProvider>
 	{/if}
 
@@ -30,7 +39,8 @@
 			x={wild.x.current}
 			y={wild.y.current}
 			key="W"
-			scale={wSpineScale}
+			width={wSpineSizes.width}
+			height={wSpineSizes.height}
 		>
 			<SpineTrack
 				trackIndex={0}

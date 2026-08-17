@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { SpineProvider, SpineTrack, type SpineTrackProps } from 'pixi-svelte';
 
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { WIN_FRAME_WIDTH, WIN_FRAME_HEIGHT } from '../game/constants';
 	import { getSymbolInfo } from '../game/utils';
 	import SymbolSpineMain from './SymbolSpineMain.svelte';
 
@@ -19,8 +19,15 @@
 
 <!-- win frame (behind symbol) -->
 {#if props.showWinFrame}
-	<SpineProvider x={props.x} y={props.y} key="payframe" width={SYMBOL_SIZE * 1.2} zIndex={-1}>
-		<SpineTrack trackIndex={0} animationName={'win'} loop />
+	<SpineProvider
+		x={props.x}
+		y={props.y}
+		key="payframe"
+		width={WIN_FRAME_WIDTH}
+		height={WIN_FRAME_HEIGHT}
+		zIndex={-1}
+	>
+		<SpineTrack trackIndex={0} animationName={'idle'} loop />
 	</SpineProvider>
 {/if}
 

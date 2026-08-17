@@ -49,14 +49,37 @@ export const HIGH_SYMBOLS = ['H1', 'H2', 'H3', 'H4'];
 
 export const INITIAL_SYMBOL_STATE: SymbolState = 'static';
 
-// Uniform per-symbol render scales (x === y — art is never deformed).
-// Statics are hand-tuned. Spine scales are measured so the spine art matches
-// the static art size exactly at the sprite→spine swap:
-//   spineScale = (static art px height * static scale) / (spine art height in world units)
-// with the spine art heights measured from a rendered setup pose at 1 world unit = 1 px.
-const STATIC_SCALE_HIGH = 0.23; // H1-H4
-const STATIC_SCALE_SW = 0.2; // S + W
-const STATIC_SCALE_LOW = 0.35; // L1-L4
+// Symbol sizing follows the reference games (lines/ways/cluster/scatter):
+// `sizeRatios` are fractions of SYMBOL_SIZE and are applied as absolute
+// width/height, NOT as a scale factor. This decouples display size from asset
+// resolution — re-export the art at any pixel size and nothing on screen moves.
+// (The previous `scale` field multiplied the source canvas size, so resizing the
+// art silently resized every symbol.)
+//
+// Statics use the art's own aspect so nothing is deformed. Spine ratios are
+// square because every symbol skeleton is a uniform 1400x1400 box; they are
+// measured so the spine matches the static footprint at the sprite→spine swap.
+// Derived directly from the art. symbols.json is authored at 2.43x logical size
+// and tagged `meta.scale: "2.43"`, so Pixi reports each texture's logical size as
+// sourceSize/2.43 and the sprite's own scale comes out exactly 1.0.
+//
+// Why 2.43: that is the most device pixels per world unit the board is ever drawn
+// at (desktop 1920 @dpr2 — portrait needs only 1.47, mobile landscape 1.52). Art
+// sized to the maximum is never magnified, and minified as little as possible
+// everywhere else. Anything larger is wasted pixels that get thrown away at draw
+// time, which is what chews up symbol edges.
+//
+// Regenerating: keep every symbol at the same multiple of its logical size, set
+// meta.scale to that multiple, and recompute these four lines.
+const staticRatios = {
+	high: { width: 1.0609568, height: 1.1574074 }, // 330x360 art / 2.43
+	low: { width: 1.3278035, height: 1.3374486 }, // 413x416 / 2.43
+	s: { width: 1.0513117, height: 1.0770319 }, // 327x335 / 2.43
+	c: { width: 0.9870113, height: 1.0063014 }, // 307x313 / 2.43 (coin plate matches H plates)
+	w: { width: 0.9516461, height: 0.935571 }, // 296x291 / 2.43
+} as const;
+
+const spineRatio = (r: number) => ({ width: r, height: r });
 
 const SPIN_OPTIONS_SHARED = {
 	reelBounceBackSpeed: 0.15,
@@ -82,6 +105,30 @@ export const SPIN_OPTIONS_FAST = {
 
 export const MOTION_BLUR_VELOCITY = 31;
 
+// Win frame (spines/payframe) sizing, derived from the CELL PITCH so the frame
+// tiles with the grid.
+//
+// SpineProvider computes scale as prop/skeletonData.<dim>, and the skeleton
+// declares a nominal 220x220 box. The bright border (the `1x1_frame` attachment,
+// which is what the eye reads as the frame edge) has a measured opaque extent of
+// 207x195 skeleton units, and main_atc carries scaleY 0.98 — all folded in below,
+// so each FILL below means exactly "fraction of the cell the border occupies".
+// Those are the only two numbers to touch when retuning.
+//
+// Passing BOTH width and height is required: it switches SpineProvider from
+// uniform scaling (off width alone) to per-axis, which is what lets a square-ish
+// frame sit square on a non-square cell (CELL_W 131 x CELL_H 137).
+//
+// The axes are deliberately NOT equal. >1 on x lets frames on the same payline
+// overlap into a connected band, which reads well. y is held just under 1 so
+// vertically adjacent frames keep a hairline gap — diagonal neighbours only
+// collide when BOTH axes exceed the pitch, so keeping y <= 1 rules that out
+// however wide x gets.
+const WIN_FRAME_FILL_X = 1.08;
+const WIN_FRAME_FILL_Y = 0.97;
+export const WIN_FRAME_WIDTH = (220 / 207) * CELL_W * WIN_FRAME_FILL_X;
+export const WIN_FRAME_HEIGHT = (220 / 195 / 0.98) * CELL_H * WIN_FRAME_FILL_Y;
+
 export const zIndexes = {
 	background: {
 		backdrop: -3,
@@ -90,24 +137,28 @@ export const zIndexes = {
 	},
 };
 
-// yOffset (source-canvas px, scaled at render): the h1/h3/h4 art is not
+// yOffset is in WORLD units (added straight to y): the h1/h3/h4 art is not
 // vertically centered in its canvas (trim data), so the sprite is lifted to
 // center the visible art in the cell — matching the spines, which the slicer
 // centers on the skeleton origin.
-const h1Static = { type: 'sprite', assetKey: 'h1', scale: STATIC_SCALE_HIGH, yOffset: -26 };
-const h2Static = { type: 'sprite', assetKey: 'h2', scale: STATIC_SCALE_HIGH };
-const h3Static = { type: 'sprite', assetKey: 'h3', scale: STATIC_SCALE_HIGH, yOffset: -20 };
-const h4Static = { type: 'sprite', assetKey: 'h4', scale: STATIC_SCALE_HIGH, yOffset: -37 };
-const l1Static = { type: 'sprite', assetKey: 'l1', scale: STATIC_SCALE_LOW };
-const l2Static = { type: 'sprite', assetKey: 'l2', scale: STATIC_SCALE_LOW };
-const l3Static = { type: 'sprite', assetKey: 'l3', scale: STATIC_SCALE_LOW };
-const l4Static = { type: 'sprite', assetKey: 'l4', scale: STATIC_SCALE_LOW };
-const sStatic = { type: 'sprite', assetKey: 's', scale: STATIC_SCALE_SW };
-const wStatic = { type: 'sprite', assetKey: 'w', scale: STATIC_SCALE_SW };
+const h1Static = { type: 'sprite', assetKey: 'h1', sizeRatios: staticRatios.high, yOffset: -5.98 };
+const h2Static = { type: 'sprite', assetKey: 'h2', sizeRatios: staticRatios.high };
+const h3Static = { type: 'sprite', assetKey: 'h3', sizeRatios: staticRatios.high, yOffset: -4.6 };
+const h4Static = { type: 'sprite', assetKey: 'h4', sizeRatios: staticRatios.high, yOffset: -8.51 };
+const l1Static = { type: 'sprite', assetKey: 'l1', sizeRatios: staticRatios.low };
+const l2Static = { type: 'sprite', assetKey: 'l2', sizeRatios: staticRatios.low };
+const l3Static = { type: 'sprite', assetKey: 'l3', sizeRatios: staticRatios.low };
+const l4Static = { type: 'sprite', assetKey: 'l4', sizeRatios: staticRatios.low };
+const sStatic = { type: 'sprite', assetKey: 's', sizeRatios: staticRatios.s };
+const wStatic = { type: 'sprite', assetKey: 'w', sizeRatios: staticRatios.w };
 
-// Measured spine art (world units): W 876x863, S 875x894
-const W_SPINE_SCALE = 0.1388;
-const S_SPINE_SCALE = 0.1544;
+const cStatic = { type: 'sprite', assetKey: 'c', sizeRatios: staticRatios.c };
+
+const W_SPINE_RATIOS = spineRatio(1.5181);
+// measured so the spine's coin_art (879 skeleton units) lands on the static's
+// 121.6-world-unit plate, same method as the other symbols
+const C_SPINE_RATIOS = spineRatio(1.513);
+const S_SPINE_RATIOS = spineRatio(1.6888);
 
 export const SYMBOL_INFO_MAP = {
 	H1: {
@@ -115,7 +166,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'H1',
 			animationName: 'h1',
-			scale: 0.131, // spine art 873x950 world units; static 541px @ 0.23
+			sizeRatios: spineRatio(1.4328), // spine art 873x950 world units
 		},
 		postWinStatic: h1Static,
 		static: h1Static,
@@ -127,7 +178,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'H2',
 			animationName: 'h2',
-			scale: 0.1342, // spine art 1018x1001 world units; static 584px @ 0.23
+			sizeRatios: spineRatio(1.4678), // spine art 1018x1001 world units
 		},
 		postWinStatic: h2Static,
 		static: h2Static,
@@ -139,7 +190,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'H3',
 			animationName: 'h3',
-			scale: 0.1308, // spine art 865x934 world units; static 531px @ 0.23
+			sizeRatios: spineRatio(1.4306), // spine art 865x934 world units
 		},
 		postWinStatic: h3Static,
 		static: h3Static,
@@ -151,7 +202,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'H4',
 			animationName: 'h4',
-			scale: 0.1329, // spine art 858x881 world units; static 509px @ 0.23
+			sizeRatios: spineRatio(1.4536), // spine art 858x881 world units
 		},
 		postWinStatic: h4Static,
 		static: h4Static,
@@ -163,7 +214,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'L1',
 			animationName: 'l1',
-			scale: 0.1399, // spine art 577x568 world units
+			sizeRatios: spineRatio(1.5302), // spine art 577x568 world units
 		},
 		postWinStatic: l1Static,
 		static: l1Static,
@@ -175,7 +226,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'L2',
 			animationName: 'l2',
-			scale: 0.1398, // spine art 580x566 world units
+			sizeRatios: spineRatio(1.5291), // spine art 580x566 world units
 		},
 		postWinStatic: l2Static,
 		static: l2Static,
@@ -187,7 +238,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'L3',
 			animationName: 'l3',
-			scale: 0.146, // spine art 530x568 world units
+			sizeRatios: spineRatio(1.5969), // spine art 530x568 world units
 		},
 		postWinStatic: l3Static,
 		static: l3Static,
@@ -199,7 +250,7 @@ export const SYMBOL_INFO_MAP = {
 			type: 'spine',
 			assetKey: 'L4',
 			animationName: 'l4',
-			scale: 0.1422, // spine art 442x566 world units
+			sizeRatios: spineRatio(1.5553), // spine art 442x566 world units
 		},
 		postWinStatic: l4Static,
 		static: l4Static,
@@ -210,37 +261,45 @@ export const SYMBOL_INFO_MAP = {
 		postWinStatic: wStatic,
 		static: wStatic,
 		spin: wStatic,
-		win: { type: 'spine', assetKey: 'W', animationName: 'wild_win', scale: W_SPINE_SCALE },
+		win: { type: 'spine', assetKey: 'W', animationName: 'wild_win', sizeRatios: W_SPINE_RATIOS },
 		land: {
 			type: 'spine',
 			assetKey: 'W',
 			animationName: 'wild_land',
-			scale: W_SPINE_SCALE,
+			sizeRatios: W_SPINE_RATIOS,
 		},
 		idle: {
 			type: 'spine',
 			assetKey: 'W',
 			animationName: 'wild_idle',
-			scale: W_SPINE_SCALE,
+			sizeRatios: W_SPINE_RATIOS,
 		},
 	},
 	S: {
 		postWinStatic: sStatic,
 		static: sStatic,
 		spin: sStatic,
-		win: { type: 'spine', assetKey: 'S', animationName: 'scatter_win', scale: S_SPINE_SCALE },
+		win: { type: 'spine', assetKey: 'S', animationName: 'scatter_win', sizeRatios: S_SPINE_RATIOS },
 		land: {
 			type: 'spine',
 			assetKey: 'S',
 			animationName: 'scatter_land',
-			scale: S_SPINE_SCALE,
+			sizeRatios: S_SPINE_RATIOS,
 		},
 		idle: {
 			type: 'spine',
 			assetKey: 'S',
 			animationName: 'scatter_idle',
-			scale: S_SPINE_SCALE,
+			sizeRatios: S_SPINE_RATIOS,
 		},
+	},
+	C: {
+		postWinStatic: cStatic,
+		static: cStatic,
+		spin: cStatic,
+		win: { type: 'spine', assetKey: 'C', animationName: 'coin_win', sizeRatios: C_SPINE_RATIOS },
+		land: { type: 'spine', assetKey: 'C', animationName: 'coin_land', sizeRatios: C_SPINE_RATIOS },
+		idle: { type: 'spine', assetKey: 'C', animationName: 'coin_idle', sizeRatios: C_SPINE_RATIOS },
 	},
 } as const;
 

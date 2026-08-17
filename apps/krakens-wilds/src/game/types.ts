@@ -7,6 +7,8 @@ export type RawSymbol = {
 	multiplier?: number;
 	scatter?: boolean;
 	wild?: boolean;
+	/** Coin/cash symbol — carries its payout in `multiplier` (multiple of total bet). */
+	coin?: boolean;
 };
 export type BetMode = keyof typeof config.betModes;
 export type GameType = keyof typeof config.paddingReels;

@@ -24,6 +24,11 @@
 			backgroundAlpha: 0,
 			hello: true,
 			multiView: false,
+			// antialias + resolution restored to upstream StakeEngine values. Our fork
+			// had disabled AA on touch devices and clamped resolution to 2, which on a
+			// dpr-3 phone rendered the canvas at 2/3 size and let the browser upscale
+			// it x1.5 — a mobile-only quality regression. webgl/preferWebGLVersion/
+			// useBackBuffer/preserveDrawingBuffer are kept (upstream prefers webgpu).
 			antialias: !('ontouchstart' in globalThis),
 			clearBeforeRender: true,
 			preference: 'webgl',

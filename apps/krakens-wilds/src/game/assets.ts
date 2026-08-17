@@ -91,6 +91,14 @@ export default {
 			scale: 1,
 		},
 	},
+	C: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/symbols-v2/coin.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/symbols-v2/coin.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
 	kraken: {
 		type: 'spine',
 		src: {
@@ -213,6 +221,11 @@ export default {
 			scale: 1,
 		},
 	},
+	// Digits + , . + x for the coin multiplier tick-up
+	coinTickupFont: {
+		type: 'font',
+		src: new URL('../../assets/fonts/coinTickup/coin-tickup.xml', import.meta.url).href,
+	},
 	winFont: {
 		type: 'font',
 		src: new URL('../../assets/fonts/winFont/cinzel-bold-gold.xml', import.meta.url).href,
@@ -220,10 +233,6 @@ export default {
 	coins: {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/coin/KW_Coin.json', import.meta.url).href,
-	},
-	bonusChest: {
-		type: 'spriteSheet',
-		src: new URL('../../assets/sprites/bonusChest/bonus_chest.json', import.meta.url).href,
 	},
 	sound: {
 		type: 'audio',

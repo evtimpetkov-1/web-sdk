@@ -23,6 +23,13 @@
 		props.reelSymbol.symbolState === 'win' &&
 		context.stateGame.retriggerExtra > 0
 	);
+	// Coin value sits on the coin face. Hidden while the reel is spinning — the
+	// symbol is in motion there and the book's multiplier only applies once landed.
+	const coinMultiplier = $derived(
+		props.reelSymbol.rawSymbol.name === 'C' && props.reelSymbol.symbolState !== 'spin'
+			? props.reelSymbol.rawSymbol.multiplier
+			: undefined
+	);
 </script>
 
 {#if !(context.stateGame.gameType === 'freegame' && props.reelSymbol.rawSymbol.name === 'W')}
@@ -46,6 +53,21 @@
 				}
 			}}
 		/>
+		{#if coinMultiplier}
+			<Container zIndex={20}>
+				<ResponsiveBitmapText
+					anchor={0.5}
+					maxWidth={SYMBOL_SIZE * 0.7}
+					text={`x${coinMultiplier}`}
+					style={{
+						fontFamily: 'coin-tickup',
+						fontSize: SYMBOL_SIZE * 0.42,
+						align: 'center',
+						letterSpacing: 0,
+					}}
+				/>
+			</Container>
+		{/if}
 		{#if showRetriggerLabel}
 			<Container y={-SYMBOL_SIZE * 0.3} zIndex={20}>
 				<ResponsiveBitmapText

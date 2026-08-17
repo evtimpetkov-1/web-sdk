@@ -130,8 +130,10 @@ const boardLayout = () => {
 	// Offset board upward in landscape/desktop to account for the bottom bar
 	const yOffset =
 		layout === 'portrait' ? -50 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
-	// Desktop/landscape reels scaled down ~20% to free space for the bigger kraken
-	const scale = layout === 'portrait' ? 1.15 : layout === 'landscape' ? 1.16 : 0.9;
+	// Per-layout board sizing. Portrait is 1 (unscaled) — the outer MainContainer
+	// already fits the board to the screen, and the extra 1.15 was pushing the
+	// reels wider than the viewport on phones.
+	const scale = layout === 'portrait' ? 1 : layout === 'landscape' ? 1.16 : 0.9;
 	return {
 		x: w * 0.5,
 		y: h * 0.5 + yOffset,

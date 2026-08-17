@@ -165,6 +165,12 @@ export default {
 		S: {
 			special_properties: ['scatter'],
 		},
+		// Coin/cash symbol. Pays by its own `multiplier` (a multiple of the total
+		// bet), not by a paytable — the book sends the value per landed coin and
+		// emits a single winInfo with meta.coinMultipliers.
+		C: {
+			special_properties: ['coin'],
+		},
 	},
 	paddingReels: {
 		basegame: [

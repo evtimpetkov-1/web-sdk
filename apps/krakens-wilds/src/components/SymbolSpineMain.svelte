@@ -2,6 +2,7 @@
 	import { SpineProvider, SpineTrack, type SpineTrackProps } from 'pixi-svelte';
 
 	import { getSymbolInfo } from '../game/utils';
+	import { SYMBOL_SIZE } from '../game/constants';
 
 	type Props = {
 		symbolInfo: ReturnType<typeof getSymbolInfo>;
@@ -18,7 +19,8 @@
 	x={props.x}
 	y={props.y}
 	key={props.symbolInfo.assetKey}
-	scale={props.symbolInfo.scale}
+	width={SYMBOL_SIZE * props.symbolInfo.sizeRatios.width}
+	height={SYMBOL_SIZE * props.symbolInfo.sizeRatios.height}
 >
 	<SpineTrack
 		loop={props.loop}

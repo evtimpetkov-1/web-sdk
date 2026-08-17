@@ -1,0 +1,16 @@
+coin.webp
+size:1103,301
+filter:Linear,Linear
+scale:0.33614537142857137
+coin_art
+bounds:0,0,296,301
+glow
+bounds:298,0,283,283
+arc
+bounds:583,0,242,242
+silt
+bounds:827,0,121,121
+shinebar
+bounds:950,0,121,30
+bubble
+bounds:1073,0,30,30
