@@ -11,7 +11,8 @@
 		requestExit?: boolean;
 		onexit?: () => void;
 		behindSpines?: Snippet;
-		children: Snippet;
+		/** Receives the fitted spine scale — the amount text must use it to stay put. */
+		children: Snippet<[{ scale: number }]>;
 	};
 
 	const props: Props = $props();
@@ -89,8 +90,34 @@
 	// Center everything on canvas, constrain to both dimensions
 	const cx = $derived(canvas.width / 2);
 	const cy = $derived(canvas.height / 2);
-	// Spine skeleton: 1441.6 × 1234.01 — scale to fit viewport
-	const winScale = $derived(Math.min(canvas.width / 850, canvas.height / 1100));
+
+	/**
+	 * Fit the win title inside the viewport.
+	 *
+	 * The scale has to be measured against the SKELETON'S OWN BOX, which bigwin.json
+	 * declares as 1500x1300. The old divisors (850x1100) were neither the skeleton
+	 * nor the canvas, so the art came out ~1.7x too wide at every size and BIG WIN /
+	 * TOTAL WIN ran off both edges of the screen — worst in portrait, where height
+	 * never became the binding constraint.
+	 *
+	 * Read from the loaded skeleton rather than hardcoding, so a re-authored spine
+	 * cannot silently break the fit again; the literals are only a fallback for the
+	 * frames before the asset resolves.
+	 */
+	const FIT = 0.92; // margin so the art never touches the canvas edges
+	// double cast: LoadedAsset is a union (spine | texture | audio), and only the
+	// spine member carries width/height
+	const spineData = $derived(
+		context.stateApp.loadedAssets?.['bigwin'] as unknown as
+			| { width?: number; height?: number }
+			| undefined,
+	);
+	const winScale = $derived(
+		Math.min(
+			canvas.width / (spineData?.width || 1500),
+			canvas.height / (spineData?.height || 1300),
+		) * FIT,
+	);
 	// Background is 2048x2048 (square) — use cover mode
 	const bgCover = $derived(Math.max(canvas.width, canvas.height));
 </script>
@@ -127,5 +154,5 @@
 	/>
 </SpineProvider>
 
-<!-- Layer 4: Win amount text (positioned below center) -->
-{@render props.children()}
+<!-- Layer 4: Win amount text (positioned below center, in the spine's own scale) -->
+{@render props.children({ scale: winScale })}

@@ -4,7 +4,6 @@
 	import { getSymbolInfo } from '../game/utils';
 	import type { SymbolState, RawSymbol } from '../game/types';
 	import { getContext } from '../game/context';
-	import { BitmapText } from 'pixi-svelte';
 
 	type Props = {
 		x?: number;
@@ -41,17 +40,12 @@
 	/>
 {/if}
 
-{#if props.rawSymbol.multiplier}
-	<BitmapText
-		anchor={0.5}
-		x={props.x}
-		y={props.y}
-		text={`${props.rawSymbol.multiplier}X`}
-		style={{
-			fontFamily: 'cinzel-bold-gold',
-			fontSize: 50,
-			align: 'center',
-			letterSpacing: 0,
-		}}
-	/>
-{/if}
+<!--
+	No multiplier text here. This used to draw `${multiplier}X` in cinzel-bold-gold
+	for ANY symbol carrying a multiplier, with no state gate — a leftover from the
+	reference game. On a coin that meant a second value on top of CoinValue's `x2`,
+	in a different font and format ("2X" vs "x2"), visible from the first frame the
+	symbol existed instead of after its reveal. Coin values are CoinValue's job and
+	its alone; see ReelSymbol and SpecialOverlay.
+-->
+

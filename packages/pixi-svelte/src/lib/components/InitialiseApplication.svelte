@@ -29,14 +29,14 @@
 			// dpr-3 phone rendered the canvas at 2/3 size and let the browser upscale
 			// it x1.5 — a mobile-only quality regression. webgl/preferWebGLVersion/
 			// useBackBuffer/preserveDrawingBuffer are kept (upstream prefers webgpu).
-			antialias: !('ontouchstart' in globalThis),
+			antialias: true,
 			clearBeforeRender: true,
 			preference: 'webgl',
 			preferWebGLVersion: 2,
 			useBackBuffer: true,
 			preserveDrawingBuffer: true,
 			powerPreference: 'high-performance',
-			resolution: Math.min(devicePixelRatio.current ?? 1, 2),
+			resolution: Math.min(devicePixelRatio.current ?? 1, 3),
 			resizeTo: window,
 		});
 

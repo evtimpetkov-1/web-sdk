@@ -150,7 +150,8 @@ export default {
 	},
 	bigwinBg: {
 		type: 'sprite',
-		src: new URL('../../assets/spines/bigwin/big_win_background_final.jpg', import.meta.url).href,
+		src: new URL('../../assets/spines/bigwin-v2/big_win_background_final.jpg', import.meta.url)
+			.href,
 	},
 	bigwin: {
 		type: 'spine',

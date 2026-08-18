@@ -24,6 +24,10 @@ const BOOK_EVENT_TYPES_TO_RESERVE_FOR_SNAPSHOT = [
 	'freeSpinTrigger',
 	'updateFreeSpin',
 	'setTotalWin',
+	// Reveals are kept so a resumed round can still find the board that triggered the
+	// feature and put it back when the free spins end. The snapshot handler plays none
+	// of them — it only reads the last base-game one (see createBonusSnapshot).
+	'reveal',
 ];
 
 export const convertTorResumableBet = (betToResume: Bet) => {

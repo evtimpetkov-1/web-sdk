@@ -108,26 +108,35 @@ export const MOTION_BLUR_VELOCITY = 31;
 // Win frame (spines/payframe) sizing, derived from the CELL PITCH so the frame
 // tiles with the grid.
 //
-// SpineProvider computes scale as prop/skeletonData.<dim>, and the skeleton
-// declares a nominal 220x220 box. The bright border (the `1x1_frame` attachment,
-// which is what the eye reads as the frame edge) has a measured opaque extent of
-// 207x195 skeleton units, and main_atc carries scaleY 0.98 — all folded in below,
-// so each FILL below means exactly "fraction of the cell the border occupies".
-// Those are the only two numbers to touch when retuning.
+// SpineProvider scales per axis (scale = prop / skeletonData.<dim>) against the
+// skeleton's nominal 220x220 box. Passing BOTH width and height is required: with
+// width alone the scale is uniform, which cannot fit a square-ish frame onto a
+// non-square cell (CELL_W 131 x CELL_H 137).
 //
-// Passing BOTH width and height is required: it switches SpineProvider from
-// uniform scaling (off width alone) to per-axis, which is what lets a square-ish
-// frame sit square on a non-square cell (CELL_W 131 x CELL_H 137).
+// What has to land on the cell pitch is the BRIGHT LINE the eye reads as the frame
+// edge — not the art's bounding box, which also contains the soft outer glow. That
+// line belongs to the `1x1_frame` attachment and is measured, not guessed:
 //
-// The axes are deliberately NOT equal. >1 on x lets frames on the same payline
-// overlap into a connected band, which reads well. y is held just under 1 so
-// vertically adjacent frames keep a hairline gap — diagonal neighbours only
-// collide when BOTH axes exceed the pitch, so keeping y <= 1 rules that out
-// however wide x gets.
-const WIN_FRAME_FILL_X = 1.08;
-const WIN_FRAME_FILL_Y = 0.97;
-export const WIN_FRAME_WIDTH = (220 / 207) * CELL_W * WIN_FRAME_FILL_X;
-export const WIN_FRAME_HEIGHT = (220 / 195 / 0.98) * CELL_H * WIN_FRAME_FILL_Y;
+//   quad         215 x 199 skeleton units (attachment width/height)
+//   trimmed art  211 x 197 inside it, centred (atlas offsets 2,1)
+//   bright line  centres at x 9..201 and y 3..193 of that art
+//                => spans of 193 x 191 art units, symmetric about the origin
+//   main_atc     scaleY 0.98 -> the vertical span is 191 * 0.98 on screen
+//
+// Aligning the line CENTRES to the pitch means two neighbouring winning cells draw
+// their shared edge as one line of normal thickness, and diagonal neighbours meet
+// exactly at the corner. The pulsing `1x1_frame_2`/`_3` attachments (235x233 and
+// 251x249) sit outside the line by design and are meant to bleed past the cell.
+//
+// The previous numbers took the spans from the art's trim box (207x195) and then
+// biased the axes (x 1.08, y 0.97). That left the vertical edge ~5% short of the
+// pitch while x overlapped, so diagonal corners missed each other.
+const WIN_FRAME_LINE_X = 193;
+const WIN_FRAME_LINE_Y = 191 * 0.98; // main_atc scaleY
+// 1 = the bright line sits exactly on the cell pitch. The only knob to touch.
+const WIN_FRAME_FILL = 1;
+export const WIN_FRAME_WIDTH = (220 / WIN_FRAME_LINE_X) * CELL_W * WIN_FRAME_FILL;
+export const WIN_FRAME_HEIGHT = (220 / WIN_FRAME_LINE_Y) * CELL_H * WIN_FRAME_FILL;
 
 export const zIndexes = {
 	background: {

@@ -10,6 +10,22 @@ type BookEventReveal = {
 	paddingPositions: number[];
 	anticipation: number[];
 	gameType: GameType;
+	/**
+	 * Kraken attack on this spin.
+	 *
+	 * `spinType` is the one to read: the math sets it on every free-spin reveal
+	 * ('WILD' or 'COIN') and on base-game special spins, and leaves
+	 * `isSpecialSpin` false throughout — so treat the PRESENCE of `spinType` as
+	 * the attack flag and `isSpecialSpin` as a legacy fallback.
+	 *
+	 * Both wilds and coins arrive as REAL symbols in `board` (`wild: true` /
+	 * `coin: true` + `multiplier`); the board is authoritative for positions.
+	 * `spinType` only says what kind of attack the book intended.
+	 */
+	isSpecialSpin?: boolean;
+	spinType?: 'WILD' | 'COIN';
+	/** Convenience copy of the landed coin values; the same data is on `board`. */
+	coinMultipliers?: (Position & { multiplier: number })[];
 };
 
 type BookEventSetTotalWin = {
@@ -69,11 +85,18 @@ type BookEventWinInfo = {
 		win: number;
 		positions: Position[];
 		meta: {
-			lineIndex: number;
+			/** Payline wins only — the coin win is not on a line. */
+			lineIndex?: number;
 			multiplier: number;
 			winWithoutMult: number;
 			globalMult: number;
 			lineMultiplier: number;
+			/**
+			 * Coin win only (`symbol: 'C'`): the value of each landed coin, in the
+			 * same order as `positions`. Their sum is the bet multiplier the kraken
+			 * hands to the winbox.
+			 */
+			coinMultipliers?: number[];
 		};
 	}[];
 };

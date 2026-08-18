@@ -22,7 +22,6 @@
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
 	const isLandscape = $derived(context.stateLayoutDerived.layoutType() !== 'portrait');
-	const spineScale = $derived(Math.min(canvas.width / 850, canvas.height / 1100));
 
 	let show = $state(true);
 	let amount = $state(0);
@@ -65,25 +64,28 @@
 					{#snippet behindSpines()}
 						<WinCoins emit={!countUpCompleted} levelAlias={winLevelData?.alias} />
 					{/snippet}
-					<Container
-						label="TotalWinTextContainer"
-						x={cx}
-						y={cy * (isLandscape ? 0.95 : 1.0)}
-						scale={spineScale}
-					>
-						<ResponsiveBitmapText
-							anchor={0.5}
-							y={isLandscape ? 240 : 280}
-							maxWidth={canvas.width / spineScale * 0.9}
-							text={bookEventAmountToCurrencyString(countUpAmount)}
-							style={{
-								fontFamily: 'cinzel-bold-gold',
-								fontSize: 160,
-								align: 'center',
-								letterSpacing: 0,
-							}}
-						/>
-					</Container>
+					<!-- `scale` comes from WinAnimation so the amount tracks the fitted title -->
+					{#snippet children({ scale })}
+						<Container
+							label="TotalWinTextContainer"
+							x={cx}
+							y={cy * (isLandscape ? 0.95 : 1.0)}
+							{scale}
+						>
+							<ResponsiveBitmapText
+								anchor={0.5}
+								y={isLandscape ? 240 : 280}
+								maxWidth={(canvas.width / scale) * 0.9}
+								text={bookEventAmountToCurrencyString(countUpAmount)}
+								style={{
+									fontFamily: 'cinzel-bold-gold',
+									fontSize: 160,
+									align: 'center',
+									letterSpacing: 0,
+								}}
+							/>
+						</Container>
+					{/snippet}
 				</WinAnimation>
 
 				<PressToContinue

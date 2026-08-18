@@ -71,24 +71,36 @@ export function propsSyncEffect<TProps extends object, TTarget>({
 	props,
 	target,
 	ignore,
+	first,
 }: {
 	props: TProps;
 	target?: TTarget | (() => TTarget);
 	ignore?: (keyof TProps)[];
+	/**
+	 * Props to assign before all others. Needed when a prop's meaning depends on
+	 * another: `sprite.width` derives scale from `texture.orig`, so assigning
+	 * width before texture scales against the previous texture. Object key order
+	 * follows the call site, which is too fragile to rely on for that.
+	 */
+	first?: (keyof TProps)[];
 }) {
 	$effect(() => {
 		// The whole thing is wrapped inside an $effect
 		// and because of ”props[key]“，it will react with every single props updated.
 		let targetInstance = target instanceof Function ? target() : target;
 		if (targetInstance) {
+			const assign = (key: keyof TProps) => {
+				if (props[key] !== undefined) {
+					// @ts-ignore
+					targetInstance[key] = props[key];
+				}
+			};
+			const priority = (first ?? []).filter((key) => key in props);
+			priority.forEach(assign);
 			(Object.keys(props) as (keyof TProps)[])
 				.filter((key) => (ignore ? !ignore.includes(key) : true))
-				.forEach((key) => {
-					if (props[key] !== undefined) {
-						// @ts-ignore
-						targetInstance[key] = props[key];
-					}
-				});
+				.filter((key) => !priority.includes(key))
+				.forEach(assign);
 		}
 	});
 }

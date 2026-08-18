@@ -73,27 +73,36 @@
 		boardFrameGlowShow: () => (glowVisible = true),
 		boardFrameGlowHide: () => (glowVisible = false),
 	});
+	/**
+	 * The frame is drawn in two passes. The dark panel belongs BEHIND the reels;
+	 * the stone border and the FS counters go in FRONT, so symbols leaving the board
+	 * slide behind the stone instead of being cut at the opening edge, and the
+	 * counters are not buried by it. `front` selects the front pass.
+	 */
+	const { front = false }: { front?: boolean } = $props();
 </script>
 
-<Rectangle
-	anchor={0.5}
-	x={frameX}
-	y={frameY}
-	width={boardLayout.width * BG_SCALE.width}
-	height={boardLayout.width * BG_SCALE.height}
-	backgroundColor={0x0a2a3a}
-	backgroundAlpha={0.85}
-	borderRadius={8}
-/>
-
-<Sprite
-	key={context.stateGame.gameType === 'freegame' ? 'frameEdgeFs' : 'frameEdgeDeep'}
-	anchor={0.5}
-	x={frameX}
-	y={frameY}
-	width={frameW}
-	height={frameH}
-/>
+{#if front}
+	<Sprite
+		key={context.stateGame.gameType === 'freegame' ? 'frameEdgeFs' : 'frameEdgeDeep'}
+		anchor={0.5}
+		x={frameX}
+		y={frameY}
+		width={frameW}
+		height={frameH}
+	/>
+{:else}
+	<Rectangle
+		anchor={0.5}
+		x={frameX}
+		y={frameY}
+		width={boardLayout.width * BG_SCALE.width}
+		height={boardLayout.width * BG_SCALE.height}
+		backgroundColor={0x0a2a3a}
+		backgroundAlpha={0.85}
+		borderRadius={8}
+	/>
+{/if}
 
 <!-- The old frameOverlay spine (gem glows etc.) was authored for the v1
      frame's gem corners — disabled with the v2 stone frame. -->
@@ -101,8 +110,14 @@
 <!-- Game logo above the frame is replaced by the animated KrakenTopper.
      Restore this Sprite if the topper is ever removed. -->
 
-<!-- Free spin counters -->
-{#if stateUi.freeSpinCounterShow}
+<!--
+	Free spin counters. These belong to the FRONT pass: the panels deliberately sit
+	against the frame (tucked under its bottom edge in portrait/tablet, overlapping
+	its left edge on desktop), so with the stone border now drawn over the reels the
+	back pass would bury their titles — "FREE SPINS" / "TOTAL WIN" disappeared behind
+	the stone while the values below stayed visible.
+-->
+{#if front && stateUi.freeSpinCounterShow}
 	{#if countersBelow}
 		<!-- Portrait: below the board, side by side -->
 		<Container label="FreeSpinCounter" x={counterLeftX} y={counterBottomY} scale={counterScale}>

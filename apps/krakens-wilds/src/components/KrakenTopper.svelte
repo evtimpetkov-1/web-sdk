@@ -3,7 +3,14 @@
 		| { type: 'krakenAttack' } // async: resolves when the dust cloud fully covers the reels
 		| { type: 'krakenTense'; tense: boolean }
 		// winning wilds fly from their cells into the kraken (gulp per impact)
-		| { type: 'krakenCollect'; positions: { reel: number; row: number }[] };
+		| { type: 'krakenCollect'; positions: { reel: number; row: number }[] }
+		// async: coins fly into the kraken one by one, their multipliers summing
+		// above it, then the total flies off toward the winbox. Resolves when the
+		// total has been handed over, so the caller can start the win count-up.
+		| {
+				type: 'coinCollect';
+				coins: { reel: number; row: number; multiplier: number }[];
+		  };
 </script>
 
 <script lang="ts">
@@ -12,10 +19,12 @@
 
 	import { MainContainer } from 'components-layout';
 	import { Container, Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { ResponsiveBitmapText } from 'components-pixi';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
-	import { BOARD_SIZES, CELL_W, CELL_H, REEL_PADDING } from '../game/constants';
+	import { BOARD_SIZES, CELL_W, CELL_H, REEL_PADDING, SYMBOL_SIZE } from '../game/constants';
+	import CoinValue from './CoinValue.svelte';
 
 	const context = getContext();
 	const bl = $derived(context.stateGameDerived.boardLayout());
@@ -43,11 +52,53 @@
 	let onReelsCovered = $state(() => {});
 	const width = new Tween(KRAKEN_WIDTH * IDLE_SCALE, { duration: 450, easing: cubicOut });
 
-	// wild copies in flight from their board cell to the kraken's maw
-	type FlyingWild = { id: number; x: Tween<number>; y: Tween<number>; scale: Tween<number> };
+	// Wild copies in flight from their board cell to the kraken's maw.
+	// `size` is in WORLD units, not a texture scale factor: the symbol atlas is
+	// tagged meta.scale so a raw `scale` would change meaning whenever the art is
+	// re-exported at a different resolution (it already did once — 609 -> 121.8).
+	const FLY_SIZE_FROM = SYMBOL_SIZE * 0.9516; // the wild at its board size
+	const FLY_SIZE_TO = SYMBOL_SIZE * 0.333; // shrinks as it disappears into the maw
+	type FlyingWild = { id: number; x: Tween<number>; y: Tween<number>; size: Tween<number> };
 	let flying = $state<FlyingWild[]>([]);
 	let flyId = 0;
 	const MAW = { x: BOARD_SIZES.width / 2, y: SIT_Y - 40 };
+
+	// Coins in flight, plus the running multiplier total shown above the kraken.
+	type FlyingCoin = {
+		id: number;
+		multiplier: number;
+		x: Tween<number>;
+		y: Tween<number>;
+		size: Tween<number>;
+	};
+	let flyingCoins = $state<FlyingCoin[]>([]);
+	let coinTotal = $state(0);
+	let coinTotalScale = new Tween(0, { duration: 220, easing: cubicOut });
+	let coinTotalPos = new Tween({ x: MAW.x, y: MAW.y }, { duration: 500, easing: cubicIn });
+	let showCoinTotal = $state(false);
+
+	const COIN_SIZE_FROM = SYMBOL_SIZE * 0.987; // the coin at its board size
+	const COIN_SIZE_TO = SYMBOL_SIZE * 0.35;
+
+	const flyCoin = async (coin: { reel: number; row: number; multiplier: number }) => {
+		const c: FlyingCoin = {
+			id: flyId++,
+			multiplier: coin.multiplier,
+			x: new Tween(CELL_W * (coin.reel + REEL_PADDING), { duration: 420, easing: cubicOut }),
+			y: new Tween((coin.row - 0.5) * CELL_H, { duration: 420, easing: cubicIn }),
+			size: new Tween(COIN_SIZE_FROM, { duration: 420, easing: cubicIn }),
+		};
+		flyingCoins = [...flyingCoins, c];
+		c.x.set(MAW.x);
+		c.size.set(COIN_SIZE_TO);
+		await c.y.set(MAW.y);
+		flyingCoins = flyingCoins.filter((f) => f.id !== c.id);
+		// impact: the kraken swallows it and the running total ticks up
+		coinTotal += coin.multiplier;
+		showCoinTotal = true;
+		coinTotalScale.set(1.25, { duration: 120 });
+		await coinTotalScale.set(1, { duration: 160 });
+	};
 
 	const flyWild = async (pos: { reel: number; row: number }, delay: number) => {
 		await waitForTimeout(delay);
@@ -56,7 +107,7 @@
 			// x eases out, y eases in — a light upward arc into the maw
 			x: new Tween(CELL_W * (pos.reel + REEL_PADDING), { duration: 550, easing: cubicOut }),
 			y: new Tween((pos.row - 0.5) * CELL_H, { duration: 550, easing: cubicIn }),
-			scale: new Tween(0.2, { duration: 550, easing: cubicIn }),
+			size: new Tween(FLY_SIZE_FROM, { duration: 550, easing: cubicIn }),
 		};
 		flying = [...flying, wild];
 		// mode mutates from listeners while we await — read it through calls
@@ -66,7 +117,7 @@
 		// flight time), holding the ready pose the gulp starts from
 		if (modeIs('idle', 'tense')) mode = 'pregulp';
 		wild.x.set(MAW.x);
-		wild.scale.set(0.07);
+		wild.size.set(FLY_SIZE_TO);
 		await wild.y.set(MAW.y);
 		flying = flying.filter((f) => f.id !== wild.id);
 		// impact: swallow + count it (tier thresholds live on the idle name)
@@ -85,6 +136,24 @@
 		},
 		krakenCollect: (emitterEvent) => {
 			emitterEvent.positions.forEach((pos, i) => flyWild(pos, i * 180));
+		},
+		coinCollect: async (emitterEvent) => {
+			coinTotal = 0;
+			coinTotalScale.set(0, { duration: 0 });
+			coinTotalPos.set({ x: MAW.x, y: MAW.y }, { duration: 0 });
+			const modeIs = (...ms: (typeof mode)[]) => ms.includes(mode);
+			if (modeIs('idle', 'tense')) mode = 'pregulp';
+			// coins arrive one after another so the total reads as it climbs
+			for (const coin of emitterEvent.coins) {
+				await flyCoin(coin);
+				if (modeIs('idle', 'tense', 'pregulp')) mode = 'gulp';
+			}
+			await waitForTimeout(350);
+			// the summed multiplier flies from the kraken toward the winbox
+			coinTotalScale.set(1.5, { duration: 500 });
+			await coinTotalPos.set({ x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 });
+			showCoinTotal = false;
+			coinTotal = 0;
 		},
 	});
 
@@ -119,9 +188,39 @@
 <MainContainer label="KrakenTopperContainer">
 	<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
 		<Container x={bl.x - BOARD_SIZES.width / 2} y={bl.y - BOARD_SIZES.height / 2}>
+			<!-- flying coins: the coin face with its multiplier riding along -->
+			{#each flyingCoins as f (f.id)}
+				{@const progress = (f.size.current - COIN_SIZE_TO) / (COIN_SIZE_FROM - COIN_SIZE_TO)}
+				<Container x={f.x.current} y={f.y.current}>
+					<Sprite key="c" anchor={0.5} width={f.size.current} height={f.size.current} />
+					<!--
+						The value does NOT shrink with the coin: it is drawn at exactly the size
+						ReelSymbol uses on the board, so this copy renders identically to the one
+						the player was just looking at.
+						Why it has to be exact: coin-tickup's atlas carries BLACK in every
+						partially transparent pixel (cinzel-bold-gold carries gold there, which is
+						why win amounts never do this). Drawn below the board's ~1:1 scale, the
+						sampling pulls that black in and the number goes dark — shrinking it even
+						to 80% was still visibly black. Only the plate shrinks; the value fades
+						out as the coin disappears into the maw, where the running total above the
+						kraken takes over.
+					-->
+					<Container alpha={Math.min(1, Math.max(0, (progress - 0.5) / 0.3))}>
+						<CoinValue multiplier={f.multiplier} size={SYMBOL_SIZE} />
+					</Container>
+				</Container>
+			{/each}
+
 			<!-- flying wilds render behind the kraken so they vanish into its maw -->
 			{#each flying as f (f.id)}
-				<Sprite key="w" anchor={0.5} x={f.x.current} y={f.y.current} scale={f.scale.current} />
+				<Sprite
+					key="w"
+					anchor={0.5}
+					x={f.x.current}
+					y={f.y.current}
+					width={f.size.current}
+					height={f.size.current}
+				/>
 			{/each}
 			<SpineProvider
 				key="kraken"
@@ -150,6 +249,28 @@
 					}}
 				/>
 			</SpineProvider>
+
+			<!-- running multiplier total above the kraken; flies to the winbox at the end -->
+			{#if showCoinTotal}
+				<Container
+					x={coinTotalPos.current.x}
+					y={coinTotalPos.current.y}
+					scale={coinTotalScale.current}
+					zIndex={50}
+				>
+					<ResponsiveBitmapText
+						anchor={0.5}
+						maxWidth={SYMBOL_SIZE * 2.4}
+						text={`x${coinTotal}`}
+						style={{
+							fontFamily: 'coin-tickup',
+							fontSize: SYMBOL_SIZE * 0.72,
+							align: 'center',
+							letterSpacing: 0,
+						}}
+					/>
+				</Container>
+			{/if}
 		</Container>
 	</Container>
 </MainContainer>

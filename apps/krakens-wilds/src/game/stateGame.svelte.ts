@@ -97,19 +97,57 @@ export type MovingWild = {
 	landed: boolean;
 };
 
+/**
+ * A symbol the kraken puts on screen DURING a spin, drawn over the still-spinning
+ * reels (see SpecialOverlay.svelte). The real symbol is already in the reveal's
+ * board and lands underneath when the reels stop, at which point the overlay is
+ * cleared and the two swap seamlessly.
+ *
+ * Free-spin wilds are NOT overlay symbols — they are sticky and move between
+ * spins, which is what `movingWilds` exists for.
+ */
+export type OverlaySymbol = {
+	id: number;
+	name: 'W' | 'C';
+	reel: number;
+	row: number;
+	/** Coins only. Struck onto the coin when its reveal animation completes. */
+	multiplier?: number;
+	landed: boolean;
+};
+
 export const stateGame = $state({
 	board,
 	gameType: 'basegame' as GameType,
 	multiplierBoard: [] as (MultiplierSymbol | undefined)[][],
 	movingWilds: [] as MovingWild[],
 	movingWildWinSet: new Set<number>() as Set<number>,
+	// symbols the kraken drops onto the spinning reels (see OverlaySymbol)
+	overlaySymbols: [] as OverlaySymbol[],
+	// dims the reels while overlay symbols sit on top of them, so the kraken's
+	// bounty reads as being in front of the spin rather than part of it. Cleared
+	// when the reels stop.
+	reelsShaded: false,
 	scatterCounter: 0,
+	/**
+	 * The last base-game board seen this round — i.e. the board that triggered the
+	 * feature. The reels themselves are live state that every reveal overwrites, so by
+	 * the time the free spins end they hold the LAST free spin's board; this is the
+	 * only copy of the one the player should come back to. Stashed from the book, not
+	 * from the reels (see the reveal + createBonusSnapshot handlers).
+	 */
+	triggerBoard: null as RawSymbol[][] | null,
 	winLooping: false,
 	winAnimating: false,
 	retriggerExtra: 0,
 	// winning wilds fed to the kraken this session (base game tension build-up);
 	// purely presentational — resets when the kraken attacks (free spins trigger)
 	krakenCollects: 0,
+	// set from the current reveal. Used to suppress the wild-feeding collect on a
+	// base special spin: the kraken has just spawned those wilds, so flying them
+	// straight back into it reads as the kraken eating its own gift.
+	isSpecialSpin: false,
+	spinType: undefined as 'WILD' | 'COIN' | undefined,
 });
 
 // Win cycle state — persists across book event handlers and into idle

@@ -22,6 +22,7 @@
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
 	import MovingWilds from './MovingWilds.svelte';
+import SpecialOverlay from './SpecialOverlay.svelte';
 	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import KrakenTopper from './KrakenTopper.svelte';
 	import GameLogo from './GameLogo.svelte';
@@ -80,10 +81,23 @@
 			</Container>
 		</MainContainer>
 
+		<!--
+			Second pass: the stone border only, drawn OVER the reels so symbols
+			leaving the board slide behind it rather than being cut at the opening
+			edge mid-spin (BoardMask is extended to match). The dark panel and the
+			FS counters stay in the first pass, behind the reels.
+		-->
+		<MainContainer label="BoardFrameFrontContainer">
+			<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
+				<BoardFrame front />
+			</Container>
+		</MainContainer>
+
 		<MainContainer label="MovingWildsContainer">
 			<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
 				<BoardContainer>
 					<MovingWilds />
+					<SpecialOverlay />
 				</BoardContainer>
 			</Container>
 		</MainContainer>

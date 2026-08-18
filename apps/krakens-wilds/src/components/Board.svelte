@@ -15,6 +15,7 @@
 </script>
 
 <script lang="ts">
+	import { Tween } from 'svelte/motion';
 	import { waitForResolve } from 'utils-shared/wait';
 	import { Rectangle } from 'pixi-svelte';
 	import { BoardContext } from 'components-shared';
@@ -31,6 +32,21 @@
 	let show = $state(true);
 	let dimmed = $state(false);
 	let loopingPositions: Position[] = [];
+
+	// Two things darken the reels, and they can overlap:
+	//  - `dimmed`: the win presentation, where non-winning symbols drop back.
+	//  - `reelsShaded`: the kraken's overlay wilds/coins are sitting on top of
+	//    still-spinning reels, so the reels go back to let them read in front.
+	// The shade fades so the reels don't snap brightness when they stop; the win
+	// dim keeps its hard cut. Whichever is darker wins.
+	const WIN_DIM = 0.5;
+	const SHADE = 0.45;
+	const shade = new Tween(0);
+	$effect(() => {
+		const shaded = context.stateGame.reelsShaded;
+		shade.set(shaded ? SHADE : 0, { duration: shaded ? 200 : 400 });
+	});
+	const dimAlpha = $derived(Math.max(dimmed ? WIN_DIM : 0, shade.current));
 
 	// Stop idle/landing spine animations so they don't render above the dim overlay
 	const stopIdleAnimations = () => {
@@ -197,14 +213,14 @@
 		<BoardContainer>
 			<BoardMask />
 			<BoardBase />
-			{#if dimmed}
+			{#if dimAlpha > 0}
 				<Rectangle
 					x={-12}
 					y={-12}
 					width={BOARD_SIZES.width + 30}
 					height={BOARD_SIZES.height + 20}
 					backgroundColor={0x000000}
-					alpha={0.5}
+					alpha={dimAlpha}
 				/>
 			{/if}
 			<Anticipations />

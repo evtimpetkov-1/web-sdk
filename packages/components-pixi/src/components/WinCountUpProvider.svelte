@@ -30,6 +30,10 @@
 	const resetCountUp = () => countUpAmount.set(props.amount, { duration: 0 });
 	const finishCountUp = () => interruptible.interrupt();
 	const startCountUp = async () => {
+		// a count-up may run more than once per mount (e.g. a win presented in beats,
+		// counting on from where the previous beat stopped), so this cannot stay true
+		// from a previous run — it gates particle emission and press-to-finish
+		countUpCompleted = false;
 		await interruptible.add(countUp);
 		resetCountUp();
 		countUpCompleted = true;
