@@ -11,6 +11,8 @@
 		x: number;
 		y: number;
 		animating: boolean;
+		/** sorted against sibling wraps in the same board layer (default 0) */
+		zIndex?: number;
 		children: Snippet;
 	};
 
@@ -46,7 +48,7 @@
 </script>
 
 {#if props.debug || (show && inFrame)}
-	<Container label="SymbolWrapContainer" x={props.x} y={props.y}>
+	<Container label="SymbolWrapContainer" x={props.x} y={props.y} zIndex={props.zIndex ?? 0}>
 		{@render props.children()}
 	</Container>
 {/if}

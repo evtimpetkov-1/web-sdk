@@ -71,12 +71,18 @@ export const INITIAL_SYMBOL_STATE: SymbolState = 'static';
 //
 // Regenerating: keep every symbol at the same multiple of its logical size, set
 // meta.scale to that multiple, and recompute these four lines.
+// The kraken wild reads a touch small next to the other plates, so it gets a
+// uniform bump. Applied to BOTH its static and spine ratios (see
+// W_SPINE_RATIOS) so the static<->spine swap and the SpecialOverlay
+// blank->reveal handoff stay invisible — never scale one without the other.
+const W_SCALE = 1.07;
+
 const staticRatios = {
 	high: { width: 1.0609568, height: 1.1574074 }, // 330x360 art / 2.43
 	low: { width: 1.3278035, height: 1.3374486 }, // 413x416 / 2.43
 	s: { width: 1.0513117, height: 1.0770319 }, // 327x335 / 2.43
 	c: { width: 0.9870113, height: 1.0063014 }, // 307x313 / 2.43 (coin plate matches H plates)
-	w: { width: 0.9516461, height: 0.935571 }, // 296x291 / 2.43
+	w: { width: 0.9516461 * W_SCALE, height: 0.935571 * W_SCALE }, // 296x291 / 2.43, then bumped
 } as const;
 
 const spineRatio = (r: number) => ({ width: r, height: r });
@@ -170,7 +176,7 @@ const wStatic = { type: 'sprite', assetKey: 'w', sizeRatios: staticRatios.w };
 
 const cStatic = { type: 'sprite', assetKey: 'c', sizeRatios: staticRatios.c };
 
-const W_SPINE_RATIOS = spineRatio(1.5181);
+const W_SPINE_RATIOS = spineRatio(1.5181 * W_SCALE); // measured 1.5181, then W_SCALE
 // measured so the spine's coin_art (879 skeleton units) lands on the static's
 // 121.6-world-unit plate, same method as the other symbols
 const C_SPINE_RATIOS = spineRatio(1.513);

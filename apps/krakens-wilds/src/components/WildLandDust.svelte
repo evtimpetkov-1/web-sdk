@@ -24,6 +24,12 @@
 		y: number;
 		/** true while the landing animation is playing */
 		emit: boolean;
+		/**
+		 * Lift above siblings that mount later. pixi-svelte appends on mount, so
+		 * a reveal spine that mounts after this container would otherwise draw
+		 * over the dust — markup order alone does not decide the stacking.
+		 */
+		zIndex?: number;
 	};
 
 	const props: Props = $props();
@@ -31,7 +37,7 @@
 	// Tuning lives here rather than in constants-shared — this is game-specific and
 	// wants to be adjusted against the animation, not shared with other games.
 	// The puff source frames are 200px, so scale 0.5 ≈ 100px against a 128px symbol.
-	const config = {
+	const config = $derived({
 		alpha: { start: 1, end: 0 },
 		scale: { start: 0.5, end: 1.0, minimumScaleMultiplier: 0.7 },
 		// bright lilac at the moment of impact, settling into the kraken's deep purple
@@ -54,10 +60,10 @@
 		addAtBack: false,
 		spawnType: 'circle',
 		spawnCircle: { x: 0, y: SYMBOL_SIZE * 0.12, r: SYMBOL_SIZE * 0.42 },
-	};
+	});
 </script>
 
-<Container x={props.x} y={props.y}>
+<Container x={props.x} y={props.y} zIndex={props.zIndex ?? 0}>
 	<ParticleEmitter
 		{config}
 		key="dust"

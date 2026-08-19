@@ -18,7 +18,7 @@
 	import { cubicOut, cubicIn } from 'svelte/easing';
 
 	import { MainContainer } from 'components-layout';
-	import { Container, Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { Container, Sprite, SpineProvider, SpineTrack, ParticleEmitter } from 'pixi-svelte';
 	import { ResponsiveBitmapText } from 'components-pixi';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
@@ -37,7 +37,6 @@
 	// then shrinks back once the attack completes. Scale pivots on the
 	// skeleton origin (the sitting line), so the tentacle tips stay put.
 	const KRAKEN_WIDTH = 660;
-	const IDLE_SCALE = 0.5;
 	const SIT_Y = -28; // sitting line: on the frame's top edge (frame sits +10)
 
 	// Kraken enlarged relative to the board (which shrank 20% on
@@ -47,21 +46,28 @@
 	const krakenBoost = $derived(
 		layout === 'portrait' ? 1.6 : layout === 'landscape' ? 1.5 : 1.85,
 	);
+	// Portrait has spare headroom above the frame, so the resting kraken sits
+	// larger there. Only the rest size differs — the attack always grows to the
+	// full KRAKEN_WIDTH, identical on every layout.
+	const IDLE_SCALE = $derived(layout === 'portrait' ? 0.6 : 0.5);
 
-	let mode = $state<'idle' | 'tense' | 'attack' | 'pregulp' | 'gulp'>('idle');
+	// 'introTense': the one-shot stir as the loading screen hands over — same
+	// animation as 'tense' but played ONCE, completing into the idle loop.
+	let mode = $state<'idle' | 'tense' | 'introTense' | 'attack' | 'pregulp' | 'gulp'>('idle');
 	let onReelsCovered = $state(() => {});
 	const width = new Tween(KRAKEN_WIDTH * IDLE_SCALE, { duration: 450, easing: cubicOut });
 
-	// Wild copies in flight from their board cell to the kraken's maw.
-	// `size` is in WORLD units, not a texture scale factor: the symbol atlas is
-	// tagged meta.scale so a raw `scale` would change meaning whenever the art is
-	// re-exported at a different resolution (it already did once — 609 -> 121.8).
-	const FLY_SIZE_FROM = SYMBOL_SIZE * 0.9516; // the wild at its board size
-	const FLY_SIZE_TO = SYMBOL_SIZE * 0.333; // shrinks as it disappears into the maw
-	type FlyingWild = { id: number; x: Tween<number>; y: Tween<number>; size: Tween<number> };
+	// Winning wilds burst into the kraken's dust (the same puff art as its
+	// attack cloud) and the dust streams into its maw — no symbol copy flies.
+	// Each collected wild gets its own stationary emitter at its cell, with the
+	// spray DIRECTION aimed at the maw and speed/lifetime computed from the
+	// distance so the puffs die right as they slide behind the kraken's head.
+	type FlyingWild = { id: number; x: number; y: number; emit: boolean; config: object };
 	let flying = $state<FlyingWild[]>([]);
 	let flyId = 0;
 	const MAW = { x: BOARD_SIZES.width / 2, y: SIT_Y - 40 };
+	const FLY_MS = 480; // dust reaches the maw at about the old copy's pace
+	const EMIT_MS = 260; // spawn window — the rest of the flight is the tail thinning
 
 	// Coins in flight, plus the running multiplier total shown above the kraken.
 	type FlyingCoin = {
@@ -149,27 +155,60 @@
 
 	const flyWild = async (pos: { reel: number; row: number }, delay: number) => {
 		await waitForTimeout(delay);
+		const x = CELL_W * (pos.reel + REEL_PADDING);
+		const y = (pos.row - 0.5) * CELL_H;
+		const dx = MAW.x - x;
+		const dy = MAW.y - y;
+		const dist = Math.hypot(dx, dy);
+		const angle = (Math.atan2(dy, dx) * 180) / Math.PI;
+		const speed = dist / (FLY_MS / 1000);
 		const wild: FlyingWild = {
 			id: flyId++,
-			// x eases out, y eases in — a light upward arc into the maw
-			x: new Tween(CELL_W * (pos.reel + REEL_PADDING), { duration: 550, easing: cubicOut }),
-			y: new Tween((pos.row - 0.5) * CELL_H, { duration: 550, easing: cubicIn }),
-			size: new Tween(FLY_SIZE_FROM, { duration: 550, easing: cubicIn }),
+			x,
+			y,
+			emit: true,
+			// WildLandDust's look (same puff art, lilac -> deep purple), but the
+			// spray is a narrow cone aimed at the maw instead of an outward puff.
+			// emitSpeed 0.001 = real time, see the note in WildLandDust.
+			config: {
+				alpha: { start: 1, end: 0.3 },
+				scale: { start: 0.5, end: 0.28, minimumScaleMultiplier: 0.75 },
+				color: { start: '#e2ccff', end: '#7a44cc' },
+				speed: { start: speed * 1.1, end: speed * 0.9, minimumSpeedMultiplier: 0.92 },
+				acceleration: { x: 0, y: 0 },
+				maxSpeed: 0,
+				startRotation: { min: angle - 7, max: angle + 7 },
+				noRotation: false,
+				rotationSpeed: { min: -60, max: 60 },
+				lifetime: { min: (FLY_MS - 40) / 1000, max: (FLY_MS + 60) / 1000 },
+				blendMode: 'normal',
+				frequency: 0.004,
+				emitterLifetime: -1,
+				maxParticles: 30,
+				pos: { x: 0, y: 0 },
+				addAtBack: false,
+				spawnType: 'circle',
+				spawnCircle: { x: 0, y: 0, r: SYMBOL_SIZE * 0.28 },
+			},
 		};
 		flying = [...flying, wild];
+		// mutate through the $state proxy, not the raw object, or emit's flip
+		// never reaches the emitter
+		const tracked = flying[flying.length - 1];
 		// mode mutates from listeners while we await — read it through calls
 		// so TS control flow doesn't over-narrow the comparisons
 		const modeIs = (...ms: (typeof mode)[]) => ms.includes(mode);
-		// the kraken notices the incoming wild: inhale + track it (0.55s =
-		// flight time), holding the ready pose the gulp starts from
+		// the kraken notices the incoming dust: inhale + track it, holding the
+		// ready pose the gulp starts from
 		if (modeIs('idle', 'tense')) mode = 'pregulp';
-		wild.x.set(MAW.x);
-		wild.size.set(FLY_SIZE_TO);
-		await wild.y.set(MAW.y);
-		flying = flying.filter((f) => f.id !== wild.id);
+		waitForTimeout(EMIT_MS).then(() => (tracked.emit = false));
+		await waitForTimeout(FLY_MS);
 		// impact: swallow + count it (tier thresholds live on the idle name)
 		context.stateGame.krakenCollects += 1;
 		if (modeIs('idle', 'tense', 'pregulp')) mode = 'gulp';
+		// the tail lives out its lifetime before the emitter unmounts
+		await waitForTimeout(FLY_MS + 200);
+		flying = flying.filter((f) => f.id !== wild.id);
 	};
 
 	context.eventEmitter.subscribeOnMount({
@@ -220,10 +259,21 @@
 	const ANIMATION_NAME = $derived({
 		idle: idleAnim,
 		tense: 'kraken_tense',
+		introTense: 'kraken_tense',
 		attack: 'kraken_attack',
 		pregulp: 'kraken_pregulp',
 		gulp: 'kraken_gulp',
 	} as const);
+
+	// The kraken wakes with one tense as the loading screen hands over, then
+	// settles into the idle loop (see the complete listener).
+	let introPlayed = false;
+	$effect(() => {
+		if (!context.stateLayout.showLoadingScreen && !introPlayed) {
+			introPlayed = true;
+			if (mode === 'idle') mode = 'introTense';
+		}
+	});
 
 	// The kraken tenses exactly while reel anticipation runs — same per-reel
 	// flag that drives the purple anticipation column, so it never fires when
@@ -235,15 +285,25 @@
 		if (anticipating && mode === 'idle') mode = 'tense';
 		else if (!anticipating && mode === 'tense') mode = 'idle';
 	});
+
+	// IDLE_SCALE is layout-dependent, so re-target the width on rotation.
+	// Never mid-attack: the attack owns the tween until its complete() handler
+	// hands the resting size back.
+	$effect(() => {
+		if (mode !== 'attack') width.set(KRAKEN_WIDTH * IDLE_SCALE);
+	});
 </script>
 
 <MainContainer label="KrakenTopperContainer">
 	<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
 		<Container x={bl.x - BOARD_SIZES.width / 2} y={bl.y - BOARD_SIZES.height / 2}>
-			<!-- flying coins: the coin face with its multiplier riding along -->
+			<!-- flying coins: the coin face with its multiplier riding along.
+			     zIndex 60 keeps them ABOVE the kraken and the running total (50) for
+			     their whole flight — mount order can't be trusted for stacking here,
+			     since the kraken spine remounts on every gulp ({#key gulpNonce}). -->
 			{#each flyingCoins as f (f.id)}
 				{@const progress = (f.size.current - COIN_SIZE_TO) / (COIN_SIZE_FROM - COIN_SIZE_TO)}
-				<Container x={f.x.current} y={f.y.current}>
+				<Container x={f.x.current} y={f.y.current} zIndex={60}>
 					<Sprite key="c" anchor={0.5} width={f.size.current} height={f.size.current} />
 					<!--
 						The value does NOT shrink with the coin: it is drawn at exactly the size
@@ -263,16 +323,18 @@
 				</Container>
 			{/each}
 
-			<!-- flying wilds render behind the kraken so they vanish into its maw -->
+			<!-- collected wilds stream dust into the maw; rendered behind the
+			     kraken so the puffs vanish into it rather than crossing its face -->
 			{#each flying as f (f.id)}
-				<Sprite
-					key="w"
-					anchor={0.5}
-					x={f.x.current}
-					y={f.y.current}
-					width={f.size.current}
-					height={f.size.current}
-				/>
+				<Container x={f.x} y={f.y}>
+					<ParticleEmitter
+						config={f.config}
+						key="dust"
+						emit={f.emit}
+						emitSpeed={0.001}
+						spawnChance={f.emit ? 1 : 0}
+					/>
+				</Container>
 			{/each}
 			<SpineProvider
 				key="kraken"
@@ -290,7 +352,7 @@
 				<SpineTrack
 					trackIndex={0}
 					animationName={ANIMATION_NAME[mode]}
-					loop={mode !== 'attack' && mode !== 'gulp' && mode !== 'pregulp'}
+					loop={mode !== 'attack' && mode !== 'gulp' && mode !== 'pregulp' && mode !== 'introTense'}
 					listener={{
 						event: (_, event) => {
 							if (event.data?.name === 'reelsCovered') onReelsCovered();
@@ -299,7 +361,7 @@
 							if (mode === 'attack') {
 								mode = 'idle';
 								width.set(KRAKEN_WIDTH * IDLE_SCALE);
-							} else if (mode === 'gulp') {
+							} else if (mode === 'gulp' || mode === 'introTense') {
 								mode = 'idle';
 							}
 							// pregulp: completes into its held ready pose — the

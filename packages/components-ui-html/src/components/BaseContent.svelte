@@ -3,13 +3,24 @@
 
 	type Props = {
 		maxWidth: '100%' | '500px';
+		/**
+		 * Skip the panel chrome (background, border, shadow, padding). For wrappers
+		 * whose children are all position:absolute/fixed (the portrait and landscape
+		 * buy-bonus layouts): with nothing in normal flow the panel collapses to an
+		 * empty padded box and paints as a small phantom square at screen center.
+		 */
+		bare?: boolean;
 		children: Snippet;
 	};
 
 	const props: Props = $props();
 </script>
 
-<div class="ui-popup-standard-content-wrap" style="--maxWidth: {props.maxWidth}; --zIndex: {100}">
+<div
+	class="ui-popup-standard-content-wrap"
+	class:bare={props.bare}
+	style="--maxWidth: {props.maxWidth}; --zIndex: {100}"
+>
 	{@render props.children()}
 </div>
 
@@ -30,5 +41,12 @@
 		border-radius: var(--modal-panel-radius);
 		box-shadow: var(--modal-panel-shadow);
 		padding: var(--modal-panel-padding);
+
+		&.bare {
+			background: none;
+			border: none;
+			box-shadow: none;
+			padding: 0;
+		}
 	}
 </style>

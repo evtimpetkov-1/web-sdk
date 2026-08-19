@@ -21,6 +21,14 @@
 	const bgCover = $derived(Math.max(canvas.width, canvas.height));
 	const cx = $derived(canvas.width / 2);
 	const cy = $derived(canvas.height / 2);
+	// Landscape/desktop: the plate sat visually low (more dead space above it
+	// than below, with the press bar eating the bottom), so its anchor rises to
+	// 44.5% of the canvas height there. Portrait keeps the true centre.
+	// FreeSpinIntro.svelte's plateCY MUST mirror this — the text rides the plate.
+	const plateAnchorY = $derived(
+		canvas.height *
+			(context.stateLayoutDerived.layoutType() === 'portrait' ? 0.5 : 0.445),
+	);
 
 	const PLATE_W = 782;
 	const PLATE_H = PLATE_W / 1.586; // fs_intro_plate 1443x910
@@ -84,14 +92,14 @@
 <SpineProvider
 	key="fsFx"
 	x={cx}
-	y={cy + 20 * plateScale}
+	y={plateAnchorY + 20 * plateScale}
 	width={Math.max(canvas.width, canvas.height) * 0.85}
 >
 	<SpineTrack trackIndex={0} animationName="smoke_idle" loop />
 </SpineProvider>
 
 <!-- Layer 2: Counter plate as frame (animated) -->
-<Container x={cx} y={cy + 20 * plateScale} scale={finalPlateScale}>
+<Container x={cx} y={plateAnchorY + 20 * plateScale} scale={finalPlateScale}>
 	<Sprite
 		key="fsIntroPlate"
 		anchor={0.5}

@@ -91,7 +91,21 @@
 			so it sits IN FRONT of the wild it is thrown up by.
 		-->
 		{#if symbol.name === 'W'}
-			<WildLandDust x={0} y={0} emit={symbol.revealing && !symbol.landed} />
+			<WildLandDust x={0} y={0} emit={symbol.revealing && !symbol.landed} zIndex={10} />
+		{:else}
+			<!--
+				Coins get the same purple reveal smoke as the wilds — it is the kraken's
+				dust either way. Unlike the wild (which draws NOTHING until it reveals),
+				the coin sits on screen as a blank face from placement, so its dust must
+				start at placement too: it boils unseen behind the kraken's cloud, and as
+				the cloud thins the dust is the first thing over every coin.
+
+				It stops emitting the moment the flip STARTS — not when the value shows —
+				so the beats read in order: dust, then the flip plays in the clear as the
+				last puffs die out, then the value fades on at face-on (~0.52s), then the
+				glint tail and coin_idle.
+			-->
+			<WildLandDust x={0} y={0} emit={!symbol.revealing} zIndex={10} />
 		{/if}
 	</Container>
 {/each}

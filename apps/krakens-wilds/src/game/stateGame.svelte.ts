@@ -55,6 +55,12 @@ const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
 		initialSymbols: INITIAL_BOARD[reelIndex],
 		initialSymbolState: INITIAL_SYMBOL_STATE,
 		onReelStopping: () => {
+			// The kraken-spin shade lifts the moment the FIRST reel begins stopping,
+			// not after the whole board settles — the 400ms fade-out then runs while
+			// the remaining reels stop. Fires per reel; repeat writes are harmless.
+			// (The clears after enhancedBoard.spin() in bookEventHandlerMap stay as
+			// the safety net — a stop-button interrupt can skip this callback.)
+			stateGame.reelsShaded = false;
 			eventEmitter.broadcast({
 				type: 'soundOnce',
 				name: 'sfx_reel_stop',
@@ -153,7 +159,7 @@ export const stateGame = $state({
 	// purely presentational — resets when the kraken attacks (free spins trigger)
 	krakenCollects: 0,
 	// set from the current reveal. Used to suppress the wild-feeding collect on a
-	// base special spin: the kraken has just spawned those wilds, so flying them
+	// base kraken spin: the kraken has just spawned those wilds, so flying them
 	// straight back into it reads as the kraken eating its own gift.
 	isSpecialSpin: false,
 	spinType: undefined as 'WILD' | 'COIN' | undefined,

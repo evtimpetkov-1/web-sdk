@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': '合計獲得額',
 	// LoadingScreen
-	'SPECIAL SPIN': 'スペシャルスピン',
+	'KRAKEN SPIN': 'クラーケンスピン',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'リール上の任意の位置にボーナスシンボルが3、4、5個出現すると、6、12、18回のフリースピンを獲得できます',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'クラーケンはどのスピンでも襲いかかる可能性があり、最大10個のワイルドまたは最大10個のコインをリールに追加します。すべてのフリースピンはスペシャルスピンです。',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'クラーケンはどのスピンでも襲いかかる可能性があり、最大10個のワイルドまたは最大10個のコインをリールに追加します。すべてのフリースピンはクラーケンスピンです。',
 	// PayTable — headers
 	'Special Symbols': '特殊シンボル',
 	'Symbol Payouts': 'シンボル配当',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'ボトルメール',
 	'Coin': 'コイン',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'ボーナスとコインを除くすべてのシンボルの代わりになります。ワイルドのスペシャルスピンでは、1〜10個のワイルドがリールに配置されます。',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'ボーナスとコインを除くすべてのシンボルの代わりになります。ワイルドのクラーケンスピンでは、1〜10個のワイルドがリールに配置されます。',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 ボーナス = 6 フリースピン\n4 ボーナス = 12 フリースピン\n5 ボーナス = 18 フリースピン',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20本の固定ペイライン。配当は最も左のリールから連続するリール上で左から右へ支払われます。ボーナスシンボルは任意の位置でフリースピンを付与します。',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20本の固定ウィンライン。配当は最も左のリールから連続するリール上で左から右へカウントされます。ボーナスシンボルは任意の位置でフリースピンを付与します。',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'プレイモード',
 	'Wild Symbol': 'ワイルドシンボル',
 	'Coin Symbol': 'コインシンボル',
-	'Special Spin': 'スペシャルスピン',
+	'Kraken Spin': 'クラーケンスピン',
 	'Bonus & Free Spins': 'ボーナス＆フリースピン',
 	'Buy Feature': 'フィーチャー購入',
 	'General Rules': '一般ルール',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': 'リール上の任意の位置にボーナスシンボルが3つ出現すると、6回のフリースピンが付与されます。',
 	'4 Bonus symbols award 12 Free Spins.': 'ボーナスシンボルが4つで12回のフリースピンが付与されます。',
 	'5 Bonus symbols award 18 Free Spins.': 'ボーナスシンボルが5つで18回のフリースピンが付与されます。',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'すべてのフリースピンはスペシャルスピンであり、リールが停止する前にワイルドまたはコインシンボルが配置されます。フリースピン中に出現したボーナスシンボル1つにつきフリースピンが1回追加され、再発動の回数に制限はありません。',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'すべてのフリースピンはクラーケンスピンであり、リールが停止する前にワイルドまたはコインシンボルが配置されます。フリースピン中に出現したボーナスシンボル1つにつきフリースピンが1回追加され、再発動の回数に制限はありません。',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'フリースピン機能は合計__1__の__0__で直接購入できます。購入した機能はボーナスシンボルで発動した場合とまったく同じように進行し、プレイヤー還元率も同じです。',
 	'Only the highest win per __0__ is __1__.': 'ペイラインごとに最も高い配当のみが支払われます。',
 	'Simultaneous wins on different __0__ are added together.': '異なるペイラインでの同時配当は合算されます。',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': '不具合が発生した場合、すべての配当とプレイは無効となります。安定したインターネット接続が必要です。切断された場合は、ゲームを再読み込みして未完了のラウンドを終了してください。期待リターンは多数のプレイに基づいて計算されます。ゲームの表示は物理的な機器を表すものではなく、説明目的のみです。賞金はウェブブラウザ内のイベントではなく、リモートゲームサーバーから受信した金額に基づいて決済されます。',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': '合計ベットの__0__の値で出現します。コインの値は合計され、ライン配当に加算されます。',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'コインシンボルはコインに表示された値で出現し、その値は合計ベットの__0__です。コインはライン配当を形成しません。リール上のすべてのコインの値が合計され、追加の配当として付与されます。',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'ベースゲームのスピンでは、スペシャルスピンが発動することがあります。発動すると、リールが停止する前にクラーケンが次のいずれかの形で追加シンボルを配置します：',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'ベースゲームのスピンでは、クラーケンスピンが発動することがあります。発動すると、リールが停止する前にクラーケンが次のいずれかの形で追加シンボルを配置します：',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'ワイルド — 1〜10個のワイルドシンボルがリールに配置されます。その後ペイラインが判定され、配当が支払われます。',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'コイン — 1〜10個のコインシンボルがリールに配置されます。まずペイラインが判定され、その後すべてのコインの値が合計されて付与されます。',
-	'Every spin during the Free Spins feature is a Special Spin.': 'フリースピン中は、すべてのスピンがスペシャルスピンです。',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'フリースピン中は、すべてのスピンがクラーケンスピンです。',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': '購入',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'フリースピン機能を即座に発動します。すべてのスピンがクラーケンスピンです。',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': '合計ベットの80倍でフリースピン機能を即座に発動します。すべてのフリースピンはクラーケンスピンで、リールにワイルドまたはコインシンボルを追加します。コインの値はライン配当に加えて付与されます。',
 };

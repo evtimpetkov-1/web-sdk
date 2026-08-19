@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'SAMLET GEVINST',
 	// LoadingScreen
-	'SPECIAL SPIN': 'SPECIALSPIN',
+	'KRAKEN SPIN': 'KRAKEN-SPIN',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Land 3, 4 eller 5 Bonus-symboler hvor som helst på hjulene og vind 6, 12 eller 18 gratisspins',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'Kraken kan slå til på ethvert spin og tilføje op til 10 Wilds eller op til 10 mønter på hjulene. Hvert gratisspin er et specialspin.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'Kraken kan slå til på ethvert spin og tilføje op til 10 Wilds eller op til 10 mønter på hjulene. Hvert gratisspin er et Kraken-spin.',
 	// PayTable — headers
 	'Special Symbols': 'Specielle symboler',
 	'Symbol Payouts': 'Symboludbetalinger',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Flaskepost',
 	'Coin': 'Mønt',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Erstatter alle symboler undtagen Bonus og mønt. Ved et Wild-specialspin placeres 1 til 10 Wilds på hjulene.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Erstatter alle symboler undtagen Bonus og mønt. Ved et Kraken-spin af typen Wild placeres 1 til 10 Wilds på hjulene.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 gratisspins\n4 Bonus = 12 gratisspins\n5 Bonus = 18 gratisspins',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 faste betalingslinjer. Gevinster udbetales fra venstre mod højre på på hinanden følgende hjul, startende fra det venstre hjul. Bonus-symboler giver gratisspins i enhver position.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 faste gevinstlinjer. Gevinster tæller fra venstre mod højre på på hinanden følgende hjul, startende fra det venstre hjul. Bonus-symboler giver gratisspins i enhver position.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Spiltilstand',
 	'Wild Symbol': 'Wild-symbol',
 	'Coin Symbol': 'Mønt-symbol',
-	'Special Spin': 'Specialspin',
+	'Kraken Spin': 'Kraken-spin',
 	'Bonus & Free Spins': 'Bonus og gratisspins',
 	'Buy Feature': 'Køb funktion',
 	'General Rules': 'Generelle regler',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-symboler hvor som helst på hjulene giver 6 gratisspins.',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus-symboler giver 12 gratisspins.',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus-symboler giver 18 gratisspins.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Hvert gratisspin er et specialspin og placerer Wild- eller møntsymboler på hjulene, før de standser. Hvert Bonus-symbol, der lander under gratisspins, giver 1 ekstra gratisspin, uden grænse for gentagne udløsninger.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Hvert gratisspin er et Kraken-spin og placerer Wild- eller møntsymboler på hjulene, før de standser. Hvert Bonus-symbol, der lander under gratisspins, giver 1 ekstra gratisspin, uden grænse for gentagne udløsninger.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Gratisspins-funktionen kan købes direkte for __0__ af den samlede __1__. En købt funktion forløber præcis som en udløst af Bonus-symboler, og tilbagebetalingen er den samme.',
 	'Only the highest win per __0__ is __1__.': 'Kun den højeste gevinst per betalingslinje bliver udbetalt.',
 	'Simultaneous wins on different __0__ are added together.': 'Samtidige gevinster på forskellige betalingslinjer lægges sammen.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Fejlfunktion annullerer alle gevinster og spil. En stabil internetforbindelse er påkrævet. I tilfælde af afbrydelse skal spillet genindlæses for at afslutte eventuelle ufærdige runder. Det forventede afkast beregnes over mange spil. Spillets visning repræsenterer ikke nogen fysisk enhed og er kun til illustrative formål. Gevinster afregnes i henhold til beløbet modtaget fra Remote Game Server og ikke fra hændelser i webbrowseren.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Lander med en værdi fra __0__ af din samlede indsats. Møntværdier lægges sammen og føjes til enhver linjegevinst.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Mønt-symbolet lander med en værdi vist på mønten, fra __0__ af din samlede indsats. Mønter danner ikke linjegevinster — hver møntværdi på hjulene lægges sammen og gives som en ekstra udbetaling.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Ethvert spin i basisspillet kan udløse et specialspin. Sker det, placerer Kraken ekstra symboler på hjulene, før de standser — i en af to former:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Ethvert spin i basisspillet kan udløse et Kraken-spin. Sker det, placerer Kraken ekstra symboler på hjulene, før de standser — i en af to former:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — 1 til 10 Wild-symboler placeres på hjulene. Derefter beregnes betalingslinjerne og udbetales.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Mønt — 1 til 10 møntsymboler placeres på hjulene. Betalingslinjerne beregnes først, derefter lægges alle møntværdier sammen og tildeles.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Under gratisspins er hvert spin et specialspin.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Under gratisspins er hvert spin et Kraken-spin.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'KØB',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Udløser straks GRATISSPINS-funktionen, hvor hvert spin er et Kraken-spin.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Udløser straks GRATISSPINS-funktionen for 80x din samlede indsats. Hvert gratisspin er et Kraken-spin, der tilføjer Wild- eller møntsymboler på hjulene. Møntværdier udbetales ud over linjegevinster.',
 };

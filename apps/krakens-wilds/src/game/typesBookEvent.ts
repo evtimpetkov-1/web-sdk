@@ -14,7 +14,7 @@ type BookEventReveal = {
 	 * Kraken attack on this spin.
 	 *
 	 * `spinType` is the one to read: the math sets it on every free-spin reveal
-	 * ('WILD' or 'COIN') and on base-game special spins, and leaves
+	 * ('WILD' or 'COIN') and on base-game kraken spins, and leaves
 	 * `isSpecialSpin` false throughout — so treat the PRESENCE of `spinType` as
 	 * the attack flag and `isSpecialSpin` as a legacy fallback.
 	 *

@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'ОБЩИЙ ВЫИГРЫШ',
 	// LoadingScreen
-	'SPECIAL SPIN': 'СПЕЦИАЛЬНОЕ ВРАЩЕНИЕ',
+	'KRAKEN SPIN': 'ВРАЩЕНИЕ КРАКЕНА',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Соберите 3, 4 или 5 символов Bonus в любом месте на барабанах, чтобы выиграть 6, 12 или 18 Бесплатных Вращений',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'Кракен может нанести удар на любом вращении, добавив на барабаны до 10 символов Wild или до 10 монет. Каждое Бесплатное Вращение — это Специальное Вращение.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'Кракен может нанести удар на любом вращении, добавив на барабаны до 10 символов Wild или до 10 монет. Каждое Бесплатное Вращение — это Вращение Кракена.',
 	// PayTable — headers
 	'Special Symbols': 'Специальные символы',
 	'Symbol Payouts': 'Выплаты символов',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Послание в бутылке',
 	'Coin': 'Монета',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Заменяет все символы, кроме Bonus и Монеты. В Специальном Вращении типа Wild на барабаны помещается от 1 до 10 символов Wild.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Заменяет все символы, кроме Bonus и Монеты. В Вращении Кракена типа Wild на барабаны помещается от 1 до 10 символов Wild.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 Бесплатных Вращений\n4 Bonus = 12 Бесплатных Вращений\n5 Bonus = 18 Бесплатных Вращений',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 фиксированных линий выплат. Выигрыши выплачиваются слева направо на соседних барабанах, начиная с крайнего левого. Символы Bonus дают Бесплатные Вращения в любой позиции.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 фиксированных линий выигрышей. Выигрыши считаются слева направо на соседних барабанах, начиная с крайнего левого. Символы Bonus дают Бесплатные Вращения в любой позиции.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Режим игры',
 	'Wild Symbol': 'Символ Wild',
 	'Coin Symbol': 'Символ Монеты',
-	'Special Spin': 'Специальное Вращение',
+	'Kraken Spin': 'Вращение Кракена',
 	'Bonus & Free Spins': 'Bonus и Бесплатные Вращения',
 	'Buy Feature': 'Покупка функции',
 	'General Rules': 'Общие правила',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 символа Bonus в любом месте на барабанах дают 6 Бесплатных Вращений.',
 	'4 Bonus symbols award 12 Free Spins.': '4 символа Bonus дают 12 Бесплатных Вращений.',
 	'5 Bonus symbols award 18 Free Spins.': '5 символов Bonus дают 18 Бесплатных Вращений.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Каждое Бесплатное Вращение является Специальным Вращением и размещает на барабанах символы Wild или Монеты до их остановки. Каждый символ Bonus, выпавший во время Бесплатных Вращений, даёт 1 дополнительное Бесплатное Вращение; количество повторных запусков не ограничено.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Каждое Бесплатное Вращение является Вращением Кракена и размещает на барабанах символы Wild или Монеты до их остановки. Каждый символ Bonus, выпавший во время Бесплатных Вращений, даёт 1 дополнительное Бесплатное Вращение; количество повторных запусков не ограничено.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Функцию Бесплатных Вращений можно купить напрямую за __0__ от общей __1__. Купленная функция проходит точно так же, как запущенная символами Bonus, и возврат игроку не меняется.',
 	'Only the highest win per __0__ is __1__.': 'Выплачивается только максимальный выигрыш на линии выплат.',
 	'Simultaneous wins on different __0__ are added together.': 'Одновременные выигрыши на разных линиях выплат суммируются.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Неисправность аннулирует все выигрыши и игры. Требуется стабильное интернет-соединение. В случае отключения перезагрузите игру для завершения незавершённых раундов. Ожидаемый возврат рассчитывается на основе множества игр. Изображение игры не является представлением какого-либо физического устройства и предназначено только для иллюстративных целей. Выигрыши рассчитываются на основе суммы, полученной от Удалённого Игрового Сервера, а не на основе событий в веб-браузере.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Появляется со значением от __0__ вашей общей ставки. Значения монет суммируются и добавляются к любому выигрышу по линии.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Символ Монеты появляется со значением, указанным на монете, от __0__ вашей общей ставки. Монеты не образуют выигрышей по линиям — все значения монет на барабанах суммируются и начисляются как дополнительная выплата.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Любое вращение основной игры может запустить Специальное Вращение. В этом случае Кракен размещает на барабанах дополнительные символы до их остановки — в одной из двух форм:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Любое вращение основной игры может запустить Вращение Кракена. В этом случае Кракен размещает на барабанах дополнительные символы до их остановки — в одной из двух форм:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — на барабаны помещается от 1 до 10 символов Wild. Затем линии выплат рассчитываются и выплачиваются.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Монета — на барабаны помещается от 1 до 10 символов Монеты. Сначала рассчитываются линии выплат, затем все значения монет суммируются и начисляются.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Во время Бесплатных Вращений каждое вращение является Специальным Вращением.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Во время Бесплатных Вращений каждое вращение является Вращением Кракена.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'КУПИТЬ',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Мгновенно запускает функцию БЕСПЛАТНЫХ ВРАЩЕНИЙ, где каждое вращение — это Вращение Кракена.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Мгновенно запускает функцию БЕСПЛАТНЫХ ВРАЩЕНИЙ за 80x от общей ставки. Каждое Бесплатное Вращение является Вращением Кракена и добавляет на барабаны символы Wild или Монеты. Значения монет начисляются в дополнение к линейным выигрышам.',
 };

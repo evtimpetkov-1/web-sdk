@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'إجمالي الربح',
 	// LoadingScreen
-	'SPECIAL SPIN': 'دورة خاصة',
+	'KRAKEN SPIN': 'دورة الكراكن',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'يمنحك ظهور 3 أو 4 أو 5 رموز Bonus في أي مكان على البكرات 6 أو 12 أو 18 دورة مجانية',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'يمكن أن يهاجم Kraken في أي دورة ويضيف حتى 10 رموز Wild أو حتى 10 عملات على البكرات. كل دورة مجانية هي دورة خاصة.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'يمكن أن يهاجم Kraken في أي دورة ويضيف حتى 10 رموز Wild أو حتى 10 عملات على البكرات. كل دورة مجانية هي دورة الكراكن.',
 	// PayTable — headers
 	'Special Symbols': 'رموز خاصة',
 	'Symbol Payouts': 'مدفوعات الرموز',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'رسالة في زجاجة',
 	'Coin': 'عملة',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'يحل محل جميع الرموز باستثناء Bonus والعملة. في الدورة الخاصة من نوع Wild، توضع من 1 إلى 10 رموز Wild على البكرات.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'يحل محل جميع الرموز باستثناء Bonus والعملة. في دورة الكراكن من نوع Wild، توضع من 1 إلى 10 رموز Wild على البكرات.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 دورات مجانية\n4 Bonus = 12 دورة مجانية\n5 Bonus = 18 دورة مجانية',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 خط دفع ثابتًا. تُدفع الأرباح من اليسار إلى اليمين على بكرات متتالية، بدءًا من البكرة اليسرى. تمنح رموز Bonus دورات مجانية في أي موضع.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 خط ربح ثابتًا. تُحتسب الأرباح من اليسار إلى اليمين على بكرات متتالية، بدءًا من البكرة اليسرى. تمنح رموز Bonus دورات مجانية في أي موضع.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'وضع اللعب',
 	'Wild Symbol': 'رمز Wild',
 	'Coin Symbol': 'رمز العملة',
-	'Special Spin': 'الدورة الخاصة',
+	'Kraken Spin': 'دورة الكراكن',
 	'Bonus & Free Spins': 'Bonus والدورات المجانية',
 	'Buy Feature': 'شراء الميزة',
 	'General Rules': 'القواعد العامة',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 رموز Bonus في أي مكان على البكرات تمنح 6 دورات مجانية.',
 	'4 Bonus symbols award 12 Free Spins.': '4 رموز Bonus تمنح 12 دورة مجانية.',
 	'5 Bonus symbols award 18 Free Spins.': '5 رموز Bonus تمنح 18 دورة مجانية.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'كل دورة مجانية هي دورة خاصة وتضع رموز Wild أو العملة على البكرات قبل توقفها. كل رمز Bonus يظهر خلال الدورات المجانية يمنح دورة مجانية إضافية واحدة، دون حد لإعادة التفعيل.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'كل دورة مجانية هي دورة الكراكن وتضع رموز Wild أو العملة على البكرات قبل توقفها. كل رمز Bonus يظهر خلال الدورات المجانية يمنح دورة مجانية إضافية واحدة، دون حد لإعادة التفعيل.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'يمكن شراء ميزة الدورات المجانية مباشرةً مقابل __0__ من إجمالي __1__. تعمل الميزة المشتراة تمامًا مثل الميزة التي تُطلق برموز Bonus، ونسبة العائد للاعب هي نفسها.',
 	'Only the highest win per __0__ is __1__.': 'يُدفع أعلى ربح فقط لكل خط دفع.',
 	'Simultaneous wins on different __0__ are added together.': 'تُجمع الأرباح المتزامنة على خطوط دفع مختلفة معًا.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'أي خلل يُبطل جميع الأرباح واللعبات. يُشترط اتصال إنترنت مستقر. في حالة انقطاع الاتصال، أعد تحميل اللعبة لإنهاء أي جولات غير مكتملة. يتم حساب العائد المتوقع على مدى عدد كبير من اللعبات. عرض اللعبة لا يمثل أي جهاز مادي وهو لأغراض التوضيح فقط. يتم تسوية الأرباح وفقًا للمبلغ المستلم من خادم اللعبة عن بُعد وليس من أحداث متصفح الويب.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'يظهر بقيمة من __0__ من إجمالي رهانك. تُجمع قيم العملات وتُضاف إلى أي فوز على الخط.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'يظهر رمز العملة وعليه قيمة من __0__ من إجمالي رهانك. العملات لا تشكل فوزًا على الخطوط — تُجمع كل قيم العملات على البكرات وتُمنح كدفع إضافي.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'يمكن لأي دورة في اللعبة الأساسية أن تُطلق دورة خاصة. عندها يضع Kraken رموزًا إضافية على البكرات قبل توقفها، بإحدى صورتين:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'يمكن لأي دورة في اللعبة الأساسية أن تُطلق دورة الكراكن. عندها يضع Kraken رموزًا إضافية على البكرات قبل توقفها، بإحدى صورتين:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — توضع من 1 إلى 10 رموز Wild على البكرات. ثم تُحتسب خطوط الدفع وتُدفع.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'عملة — توضع من 1 إلى 10 رموز عملة على البكرات. تُحتسب خطوط الدفع أولاً، ثم تُجمع كل قيم العملات وتُمنح.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'خلال الدورات المجانية، كل دورة هي دورة خاصة.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'خلال الدورات المجانية، كل دورة هي دورة الكراكن.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'شراء',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'يُفعّل فورًا ميزة الدورات المجانية، حيث تكون كل دورة دورة الكراكن.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'يُفعّل فورًا ميزة الدورات المجانية مقابل 80x من إجمالي رهانك. كل دورة مجانية هي دورة الكراكن وتضيف رموز Wild أو العملات على البكرات. تُمنح قيم العملات إضافةً إلى أرباح الخطوط.',
 };

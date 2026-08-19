@@ -33,10 +33,13 @@
 	});
 </script>
 
-<div>
-	{@render props.children()}
-</div>
-
+<!--
+	Upstream rendered `props.children()` a second time here, in a bare <div>
+	OUTSIDE .pop-up-wrap. That orphan copy sits in normal document flow: with the
+	portrait buy-bonus wrapper (whose content is absolutely positioned and
+	centered) it painted as a small phantom card in the middle of the screen.
+	Modal content renders once, inside .top-layer below.
+-->
 <OnHotkey hotkey="Escape" onpress={closeModal} />
 
 <div class="pop-up-wrap" class:disabled style={`z-index: ${props.zIndex};`}>

@@ -5,11 +5,25 @@ export default {
 		src: new URL('../../assets/sprites/logo_text.webp', import.meta.url).href,
 		preload: true,
 	},
-	// Full logo with the kraken — loading screen only
-	gameLogoKraken: {
+	// Kraken Spin feature art — loading screen only
+	loadingKraken: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/logo_kraken.webp', import.meta.url).href,
-		preload: true,
+		src: new URL('../../assets/sprites/loading/kraken_intro.webp', import.meta.url).href,
+	},
+	// English-only baked text art for the loading screen headers and the
+	// press-anywhere bar; other locales fall back to the text labels
+	// (same pattern as youWonTextEn/freeSpinsTextEn on the FS intro).
+	loadingKrakenSpinTextEn: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/loading/kraken_spin_text_en.webp', import.meta.url).href,
+	},
+	loadingFreeSpinsTextEn: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/loading/free_spins_text_en.webp', import.meta.url).href,
+	},
+	pressAnywhereTextEn: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/loading/press_anywhere_en.webp', import.meta.url).href,
 	},
 	H1: {
 		type: 'spine',
@@ -130,7 +144,9 @@ export default {
 	},
 	frameEdgeFs: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/reelsFrame/fs_frame_v2.webp', import.meta.url).href,
+		// v3 candidate under test (blue stone). Previous: reelsFrame/fs_frame_v2.webp —
+		// swapping back also needs FRAME_SCALE_FS restored in BoardFrame.svelte.
+		src: new URL('../../assets/sprites/free_spins/fs_frame_v3.webp', import.meta.url).href,
 	},
 	anticipation: {
 		type: 'spine',
@@ -168,8 +184,8 @@ export default {
 	},
 	freeSpinBg: {
 		type: 'sprite',
-		// v3 candidate under test. Previous: free_spins/fs_bg_v2.jpg (1448x1086)
-		src: new URL('../../assets/sprites/free_spins/bg_fs_land_2.png', import.meta.url).href,
+		// v4 candidate under test. Previous: free_spins/bg_fs_land_2.png, fs_bg_v2.jpg
+		src: new URL('../../assets/sprites/free_spins/bg_fs_land_3.webp', import.meta.url).href,
 	},
 	symbolsStatic: {
 		type: 'sprites',
@@ -189,8 +205,8 @@ export default {
 	},
 	freeSpinBgPortrait: {
 		type: 'sprite',
-		// v3 candidate under test. Previous: free_spins/fs_bg_portrait.jpg (941x1672)
-		src: new URL('../../assets/sprites/free_spins/bg_fs_port_2.png', import.meta.url).href,
+		// v4 candidate under test. Previous: free_spins/bg_fs_port_2.png, fs_bg_portrait.jpg
+		src: new URL('../../assets/sprites/free_spins/bg_fs_port_3.webp', import.meta.url).href,
 	},
 	// English-only baked title art for the FS intro (teal, matches the logo's
 	// WILDS lettering); other locales fall back to text

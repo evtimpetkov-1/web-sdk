@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'TOTAL KEMENANGAN',
 	// LoadingScreen
-	'SPECIAL SPIN': 'PUTARAN KHUSUS',
+	'KRAKEN SPIN': 'PUTARAN KRAKEN',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Dapatkan 3, 4, atau 5 simbol Bonus di mana saja pada gulungan untuk memenangkan 6, 12, atau 18 Putaran Gratis',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'Kraken dapat menyerang pada putaran mana pun, menambahkan hingga 10 Wild atau hingga 10 Koin pada gulungan. Setiap Putaran Gratis adalah Putaran Khusus.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'Kraken dapat menyerang pada putaran mana pun, menambahkan hingga 10 Wild atau hingga 10 Koin pada gulungan. Setiap Putaran Gratis adalah Putaran Kraken.',
 	// PayTable — headers
 	'Special Symbols': 'Simbol Khusus',
 	'Symbol Payouts': 'Pembayaran Simbol',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Pesan dalam Botol',
 	'Coin': 'Koin',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Menggantikan semua simbol kecuali Bonus dan Koin. Pada Putaran Khusus Wild, 1 hingga 10 Wild ditempatkan pada gulungan.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Menggantikan semua simbol kecuali Bonus dan Koin. Pada Putaran Kraken Wild, 1 hingga 10 Wild ditempatkan pada gulungan.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 Putaran Gratis\n4 Bonus = 12 Putaran Gratis\n5 Bonus = 18 Putaran Gratis',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 garis pembayaran tetap. Kemenangan dibayar dari kiri ke kanan pada gulungan berurutan, dimulai dari gulungan paling kiri. Simbol Bonus memberikan Putaran Gratis di posisi mana pun.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 garis kemenangan tetap. Kemenangan dihitung dari kiri ke kanan pada gulungan berurutan, dimulai dari gulungan paling kiri. Simbol Bonus memberikan Putaran Gratis di posisi mana pun.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Mode Main',
 	'Wild Symbol': 'Simbol Wild',
 	'Coin Symbol': 'Simbol Koin',
-	'Special Spin': 'Putaran Khusus',
+	'Kraken Spin': 'Putaran Kraken',
 	'Bonus & Free Spins': 'Bonus & Putaran Gratis',
 	'Buy Feature': 'Beli Fitur',
 	'General Rules': 'Aturan Umum',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 simbol Bonus di mana saja pada gulungan memberikan 6 Putaran Gratis.',
 	'4 Bonus symbols award 12 Free Spins.': '4 simbol Bonus memberikan 12 Putaran Gratis.',
 	'5 Bonus symbols award 18 Free Spins.': '5 simbol Bonus memberikan 18 Putaran Gratis.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Setiap Putaran Gratis adalah Putaran Khusus dan menempatkan simbol Wild atau Koin pada gulungan sebelum berhenti. Setiap simbol Bonus yang muncul selama Putaran Gratis memberikan 1 Putaran Gratis tambahan, tanpa batas pemicuan ulang.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Setiap Putaran Gratis adalah Putaran Kraken dan menempatkan simbol Wild atau Koin pada gulungan sebelum berhenti. Setiap simbol Bonus yang muncul selama Putaran Gratis memberikan 1 Putaran Gratis tambahan, tanpa batas pemicuan ulang.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Fitur Putaran Gratis dapat dibeli langsung seharga __0__ total __1__. Fitur yang dibeli berjalan persis seperti yang dipicu oleh simbol Bonus, dan pengembalian ke pemain tetap sama.',
 	'Only the highest win per __0__ is __1__.': 'Hanya kemenangan tertinggi per garis pembayaran yang dibayar.',
 	'Simultaneous wins on different __0__ are added together.': 'Kemenangan simultan pada garis pembayaran yang berbeda dijumlahkan.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Kerusakan membatalkan semua kemenangan dan permainan. Koneksi internet yang stabil diperlukan. Jika terjadi pemutusan koneksi, muat ulang permainan untuk menyelesaikan putaran yang belum selesai. Pengembalian yang diharapkan dihitung berdasarkan banyak permainan. Tampilan permainan tidak mewakili perangkat fisik apa pun dan hanya untuk tujuan ilustrasi. Kemenangan diselesaikan berdasarkan jumlah yang diterima dari Remote Game Server dan bukan dari peristiwa dalam browser web.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Muncul dengan nilai dari __0__ total taruhan Anda. Nilai Koin dijumlahkan dan ditambahkan ke kemenangan garis mana pun.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Simbol Koin muncul dengan nilai yang tertera pada koin, dari __0__ total taruhan Anda. Koin tidak membentuk kemenangan garis — setiap nilai Koin pada gulungan dijumlahkan dan diberikan sebagai pembayaran tambahan.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Setiap putaran permainan dasar dapat memicu Putaran Khusus. Jika terjadi, Kraken menempatkan simbol tambahan pada gulungan sebelum berhenti, dalam salah satu dari dua bentuk:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Setiap putaran permainan dasar dapat memicu Putaran Kraken. Jika terjadi, Kraken menempatkan simbol tambahan pada gulungan sebelum berhenti, dalam salah satu dari dua bentuk:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — 1 hingga 10 simbol Wild ditempatkan pada gulungan. Garis pembayaran kemudian dievaluasi dan dibayarkan.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Koin — 1 hingga 10 simbol Koin ditempatkan pada gulungan. Garis pembayaran dievaluasi terlebih dahulu, lalu setiap nilai Koin dijumlahkan dan diberikan.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Selama Putaran Gratis, setiap putaran adalah Putaran Khusus.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Selama Putaran Gratis, setiap putaran adalah Putaran Kraken.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'BELI',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Langsung memicu fitur PUTARAN GRATIS, di mana setiap putaran adalah Putaran Kraken.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Langsung memicu fitur PUTARAN GRATIS seharga 80x total taruhan Anda. Setiap Putaran Gratis adalah Putaran Kraken yang menambahkan simbol Wild atau Koin pada gulungan. Nilai koin diberikan sebagai tambahan atas kemenangan garis.',
 };

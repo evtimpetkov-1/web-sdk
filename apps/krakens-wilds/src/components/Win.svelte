@@ -98,16 +98,24 @@
 						{/snippet}
 						<!-- `scale` comes from WinAnimation so the amount tracks the fitted title -->
 						{#snippet children({ scale })}
+							<!--
+								The amount's POSITION stays in spine units below the title (the
+								reworked letters span to spine -190), but its GLYPHS get their
+								own portrait boost on top of the spine scale — the offset is
+								applied outside the scaled container so boosting the text does
+								not push it further down. maxWidth stays in canvas terms, so
+								long amounts still shrink before spilling.
+							-->
+							{@const amountBoost = isLandscape ? 1.35 : 1.55}
 							<Container
 								label="WinTextContainer"
 								x={cx}
-								y={cy * (isLandscape ? 0.95 : 1.0)}
-								{scale}
+								y={cy * (isLandscape ? 0.95 : 1.0) + (isLandscape ? 375 : 385) * scale}
+								scale={scale * amountBoost}
 							>
 								<ResponsiveBitmapText
 									anchor={0.5}
-									y={isLandscape ? 300 : 340}
-									maxWidth={(canvas.width / scale) * 0.9}
+									maxWidth={(canvas.width / (scale * amountBoost)) * 0.9}
 									text={bookEventAmountToCurrencyString(countUpAmount)}
 									style={{
 										fontFamily: 'cinzel-bold-gold',

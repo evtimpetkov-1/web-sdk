@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': '총 획득 금액',
 	// LoadingScreen
-	'SPECIAL SPIN': '스페셜 스핀',
+	'KRAKEN SPIN': '크라켄 스핀',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': '릴의 아무 위치에 보너스 심볼 3, 4, 5개가 나타나면 프리 스핀 6, 12, 18회를 획득합니다',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': '크라켄은 어떤 스핀에서도 공격하여 최대 10개의 와일드 또는 최대 10개의 코인을 릴에 추가할 수 있습니다. 모든 프리 스핀은 스페셜 스핀입니다.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': '크라켄은 어떤 스핀에서도 공격하여 최대 10개의 와일드 또는 최대 10개의 코인을 릴에 추가할 수 있습니다. 모든 프리 스핀은 크라켄 스핀입니다.',
 	// PayTable — headers
 	'Special Symbols': '특수 심볼',
 	'Symbol Payouts': '심볼 배당',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': '병 속의 편지',
 	'Coin': '코인',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': '보너스와 코인을 제외한 모든 심볼을 대체합니다. 와일드 스페셜 스핀에서는 1~10개의 와일드가 릴에 배치됩니다.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': '보너스와 코인을 제외한 모든 심볼을 대체합니다. 와일드 크라켄 스핀에서는 1~10개의 와일드가 릴에 배치됩니다.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 보너스 = 6 프리 스핀\n4 보너스 = 12 프리 스핀\n5 보너스 = 18 프리 스핀',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20개의 고정 페이 라인. 당첨금은 가장 왼쪽 릴부터 연속된 릴에서 왼쪽에서 오른쪽으로 지급됩니다. 보너스 심볼은 어느 위치에서든 프리 스핀을 부여합니다.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20개의 고정 윈 라인. 당첨은 가장 왼쪽 릴부터 연속된 릴에서 왼쪽에서 오른쪽으로 계산됩니다. 보너스 심볼은 어느 위치에서든 프리 스핀을 부여합니다.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': '플레이 모드',
 	'Wild Symbol': '와일드 심볼',
 	'Coin Symbol': '코인 심볼',
-	'Special Spin': '스페셜 스핀',
+	'Kraken Spin': '크라켄 스핀',
 	'Bonus & Free Spins': '보너스 & 프리 스핀',
 	'Buy Feature': '피처 구매',
 	'General Rules': '일반 규칙',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '릴의 아무 위치에 보너스 심볼 3개가 나타나면 프리 스핀 6회가 부여됩니다.',
 	'4 Bonus symbols award 12 Free Spins.': '보너스 심볼 4개는 프리 스핀 12회를 부여합니다.',
 	'5 Bonus symbols award 18 Free Spins.': '보너스 심볼 5개는 프리 스핀 18회를 부여합니다.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': '모든 프리 스핀은 스페셜 스핀이며, 릴이 멈추기 전에 와일드 또는 코인 심볼이 배치됩니다. 프리 스핀 중 나타나는 각 보너스 심볼은 프리 스핀 1회를 추가로 제공하며, 재발동 횟수에 제한은 없습니다.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': '모든 프리 스핀은 크라켄 스핀이며, 릴이 멈추기 전에 와일드 또는 코인 심볼이 배치됩니다. 프리 스핀 중 나타나는 각 보너스 심볼은 프리 스핀 1회를 추가로 제공하며, 재발동 횟수에 제한은 없습니다.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': '프리 스핀 기능은 총 __1__의 __0__로 직접 구매할 수 있습니다. 구매한 기능은 보너스 심볼로 발동된 것과 완전히 동일하게 진행되며, 환원율도 같습니다.',
 	'Only the highest win per __0__ is __1__.': '페이 라인당 최고 당첨만 지급됩니다.',
 	'Simultaneous wins on different __0__ are added together.': '서로 다른 페이 라인에서의 동시 당첨은 합산됩니다.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': '오류 발생 시 모든 당첨 및 플레이가 무효화됩니다. 안정적인 인터넷 연결이 필요합니다. 연결이 끊긴 경우 게임을 다시 로드하여 완료되지 않은 라운드를 마무리하십시오. 기대 수익률은 다수의 플레이를 기준으로 계산됩니다. 게임 화면은 물리적 장치를 나타내지 않으며 설명 목적으로만 사용됩니다. 당첨금은 웹 브라우저 내 이벤트가 아닌 원격 게임 서버에서 수신한 금액에 따라 정산됩니다.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': '총 베팅의 __0__ 값으로 나타납니다. 코인 값은 합산되어 라인 당첨금에 더해집니다.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': '코인 심볼은 코인에 표시된 값으로 나타나며, 총 베팅의 __0__입니다. 코인은 라인 당첨을 만들지 않습니다 — 릴에 있는 모든 코인 값이 합산되어 추가 배당으로 지급됩니다.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': '기본 게임의 모든 스핀에서 스페셜 스핀이 발동될 수 있습니다. 발동되면 크라켄이 릴이 멈추기 전에 다음 두 가지 형태 중 하나로 추가 심볼을 배치합니다:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': '기본 게임의 모든 스핀에서 크라켄 스핀이 발동될 수 있습니다. 발동되면 크라켄이 릴이 멈추기 전에 다음 두 가지 형태 중 하나로 추가 심볼을 배치합니다:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': '와일드 — 1~10개의 와일드 심볼이 릴에 배치됩니다. 이후 페이 라인이 평가되어 배당이 지급됩니다.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': '코인 — 1~10개의 코인 심볼이 릴에 배치됩니다. 먼저 페이 라인이 평가된 후, 모든 코인 값이 합산되어 지급됩니다.',
-	'Every spin during the Free Spins feature is a Special Spin.': '프리 스핀 동안에는 모든 스핀이 스페셜 스핀입니다.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': '프리 스핀 동안에는 모든 스핀이 크라켄 스핀입니다.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': '구매',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': '모든 스핀이 크라켄 스핀인 프리 스핀 기능을 즉시 발동합니다.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': '총 베팅의 80배로 프리 스핀 기능을 즉시 발동합니다. 모든 프리 스핀은 크라켄 스핀으로, 릴에 와일드 또는 코인 심볼을 추가합니다. 코인 값은 라인 당첨금과 별도로 지급됩니다.',
 };

@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'TOPLAM KAZANÇ',
 	// LoadingScreen
-	'SPECIAL SPIN': 'ÖZEL DÖNÜŞ',
+	'KRAKEN SPIN': 'KRAKEN DÖNÜŞÜ',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Makaralarda herhangi bir yere 3, 4 veya 5 Bonus sembolü getirerek 6, 12 veya 18 Bedava Dönüş kazanın',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'Kraken herhangi bir dönüşte saldırarak makaralara 10 adede kadar Wild veya 10 adede kadar Madeni Para ekleyebilir. Her Bedava Dönüş bir Özel Dönüştür.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'Kraken herhangi bir dönüşte saldırarak makaralara 10 adede kadar Wild veya 10 adede kadar Madeni Para ekleyebilir. Her Bedava Dönüş bir Kraken Dönüşüdür.',
 	// PayTable — headers
 	'Special Symbols': 'Özel semboller',
 	'Symbol Payouts': 'Sembol ödemeleri',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Şişedeki Mesaj',
 	'Coin': 'Madeni Para',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Bonus ve Madeni Para dışındaki tüm sembollerin yerine geçer. Wild Özel Dönüşünde makaralara 1 ila 10 Wild yerleştirilir.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Bonus ve Madeni Para dışındaki tüm sembollerin yerine geçer. Wild Kraken Dönüşünde makaralara 1 ila 10 Wild yerleştirilir.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 Bedava Dönüş\n4 Bonus = 12 Bedava Dönüş\n5 Bonus = 18 Bedava Dönüş',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 sabit ödeme hattı. Kazançlar, en soldaki makaradan başlayarak ardışık makaralarda soldan sağa ödenir. Bonus sembolleri herhangi bir pozisyonda Bedava Dönüş kazandırır.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 sabit kazanç hattı. Kazançlar, en soldaki makaradan başlayarak ardışık makaralarda soldan sağa sayılır. Bonus sembolleri herhangi bir pozisyonda Bedava Dönüş kazandırır.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Oyun modu',
 	'Wild Symbol': 'Wild sembolü',
 	'Coin Symbol': 'Madeni Para sembolü',
-	'Special Spin': 'Özel Dönüş',
+	'Kraken Spin': 'Kraken Dönüşü',
 	'Bonus & Free Spins': 'Bonus ve Bedava Dönüşler',
 	'Buy Feature': 'Özellik Satın Al',
 	'General Rules': 'Genel kurallar',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': 'Makaralarda herhangi bir yerde 3 Bonus sembolü 6 Bedava Dönüş verir.',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus sembolü 12 Bedava Dönüş verir.',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus sembolü 18 Bedava Dönüş verir.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Her Bedava Dönüş bir Özel Dönüştür ve makaralar durmadan önce onlara Wild veya Madeni Para sembolleri yerleştirir. Bedava Dönüşler sırasında gelen her Bonus sembolü 1 ek Bedava Dönüş kazandırır; yeniden tetikleme sınırı yoktur.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Her Bedava Dönüş bir Kraken Dönüşüdür ve makaralar durmadan önce onlara Wild veya Madeni Para sembolleri yerleştirir. Bedava Dönüşler sırasında gelen her Bonus sembolü 1 ek Bedava Dönüş kazandırır; yeniden tetikleme sınırı yoktur.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Bedava Dönüşler özelliği doğrudan toplam __1__ tutarının __0__ karşılığında satın alınabilir. Satın alınan özellik, Bonus sembolleriyle tetiklenen özellikle tamamen aynı şekilde işler ve oyuncuya dönüş oranı aynıdır.',
 	'Only the highest win per __0__ is __1__.': 'Ödeme hattı başına yalnızca en yüksek kazanç ödenir.',
 	'Simultaneous wins on different __0__ are added together.': 'Farklı ödeme hatları üzerindeki eş zamanlı kazançlar toplanır.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Arıza, tüm kazançları ve oyunları geçersiz kılar. Kararlı bir internet bağlantısı gereklidir. Bağlantı kesilmesi durumunda, tamamlanmamış turları bitirmek için oyunu yeniden yükleyin. Beklenen getiri birçok oyun üzerinden hesaplanır. Oyun ekranı herhangi bir fiziksel cihazı temsil etmez ve yalnızca açıklama amaçlıdır. Kazançlar, web tarayıcısındaki olaylara göre değil, Uzak Oyun Sunucusundan alınan tutara göre belirlenir.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Toplam bahsinizin __0__ değeriyle gelir. Madeni Para değerleri toplanır ve her çizgi kazancına eklenir.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Madeni Para sembolü, üzerinde gösterilen bir değerle gelir; bu değer toplam bahsinizin __0__ kadarıdır. Madeni Paralar çizgi kazancı oluşturmaz — makaralardaki tüm Madeni Para değerleri toplanır ve ek ödeme olarak verilir.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Ana oyundaki her dönüş bir Özel Dönüş tetikleyebilir. Bu durumda Kraken, makaralar durmadan önce onlara iki biçimden birinde ek semboller yerleştirir:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Ana oyundaki her dönüş bir Kraken Dönüşü tetikleyebilir. Bu durumda Kraken, makaralar durmadan önce onlara iki biçimden birinde ek semboller yerleştirir:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — makaralara 1 ila 10 Wild sembolü yerleştirilir. Ardından ödeme hatları değerlendirilir ve ödenir.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Madeni Para — makaralara 1 ila 10 Madeni Para sembolü yerleştirilir. Önce ödeme hatları değerlendirilir, ardından tüm Madeni Para değerleri toplanır ve verilir.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Bedava Dönüşler sırasında her dönüş bir Özel Dönüştür.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Bedava Dönüşler sırasında her dönüş bir Kraken Dönüşüdür.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'SATIN AL',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Her dönüşün bir Kraken Dönüşü olduğu BEDAVA DÖNÜŞLER özelliğini anında tetikler.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Toplam bahsinin 80 katına BEDAVA DÖNÜŞLER özelliğini anında tetikler. Her Bedava Dönüş, makaralara Wild veya Madeni Para sembolleri ekleyen bir Kraken Dönüşüdür. Madeni para değerleri, çizgi kazançlarına ek olarak verilir.',
 };

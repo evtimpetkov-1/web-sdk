@@ -26,7 +26,10 @@
 	// masks MainContainer, so it stays visible as long as it is inside the canvas,
 	// and tablet ratios leave canvas above the box. Tune these by eye per layout.
 	const logoWidth = $derived(isPortrait ? 360 : layout === 'tablet' ? 280 : 280);
-	const logoX = $derived(bl.x + (isStacked ? 0 : -FRAME_HALF_W - 130));
+	// Desktop/landscape offset matches the FS counters' center-line in
+	// BoardFrame.svelte (frame half-width + 215 * counterScale ≈ 166) so the
+	// logo and both counter panels stack on one vertical axis.
+	const logoX = $derived(bl.x + (isStacked ? 0 : -FRAME_HALF_W - 166));
 	const logoY = $derived(bl.y + (isPortrait ? -510 : layout === 'tablet' ? -475 : -220));
 </script>
 

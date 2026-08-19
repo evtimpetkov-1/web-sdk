@@ -89,7 +89,11 @@
 	<FreeSpinAnimation blur>
 		<!-- `s` is the plate's own scale, handed down so the text cannot drift off it -->
 		{#snippet children({ scale: s })}
-			{@const plateCY = canvas.height / 2 + 20 * s}
+			<!-- mirrors FreeSpinAnimation's plateAnchorY — landscape rises to 44.5% -->
+			{@const plateCY =
+				canvas.height *
+					(context.stateLayoutDerived.layoutType() === 'portrait' ? 0.5 : 0.445) +
+				20 * s}
 		<Container
 			label="FreeSpinIntroText"
 			x={canvas.width / 2}

@@ -30,7 +30,9 @@
 	const scaled = $derived(scale < 1);
 </script>
 
-<BaseContent maxWidth="100%">
+<!-- bare: every child here is position:absolute/fixed, so a chromed panel
+     would collapse to an empty square at screen center -->
+<BaseContent maxWidth="100%" bare>
 	<div class="wrap" class:scaled>
 		<div
 			class="bonuses"

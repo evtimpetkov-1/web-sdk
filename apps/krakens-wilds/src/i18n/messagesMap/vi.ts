@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'TỔNG THẮNG',
 	// LoadingScreen
-	'SPECIAL SPIN': 'VÒNG QUAY ĐẶC BIỆT',
+	'KRAKEN SPIN': 'VÒNG QUAY KRAKEN',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Nhận 3, 4 hoặc 5 biểu tượng Bonus ở bất kỳ đâu trên các cuộn để thắng 6, 12 hoặc 18 Vòng Quay Miễn Phí',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'Kraken có thể tấn công ở bất kỳ vòng quay nào, thêm tối đa 10 Wild hoặc tối đa 10 Đồng Xu lên các cuộn. Mỗi Vòng Quay Miễn Phí là một Vòng Quay Đặc Biệt.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'Kraken có thể tấn công ở bất kỳ vòng quay nào, thêm tối đa 10 Wild hoặc tối đa 10 Đồng Xu lên các cuộn. Mỗi Vòng Quay Miễn Phí là một Vòng Quay Kraken.',
 	// PayTable — headers
 	'Special Symbols': 'Biểu tượng đặc biệt',
 	'Symbol Payouts': 'Thanh toán biểu tượng',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Thư Trong Chai',
 	'Coin': 'Đồng Xu',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Thay thế tất cả biểu tượng ngoại trừ Bonus và Đồng Xu. Trong Vòng Quay Đặc Biệt Wild, 1 đến 10 Wild được đặt lên các cuộn.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Thay thế tất cả biểu tượng ngoại trừ Bonus và Đồng Xu. Trong Vòng Quay Kraken Wild, 1 đến 10 Wild được đặt lên các cuộn.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 Vòng Quay Miễn Phí\n4 Bonus = 12 Vòng Quay Miễn Phí\n5 Bonus = 18 Vòng Quay Miễn Phí',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 dòng thanh toán cố định. Phần thắng được trả từ trái sang phải trên các cuộn liên tiếp, bắt đầu từ cuộn ngoài cùng bên trái. Biểu tượng Bonus trao Vòng Quay Miễn Phí ở bất kỳ vị trí nào.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 dòng thắng cố định. Phần thắng được tính từ trái sang phải trên các cuộn liên tiếp, bắt đầu từ cuộn ngoài cùng bên trái. Biểu tượng Bonus trao Vòng Quay Miễn Phí ở bất kỳ vị trí nào.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Chế độ chơi',
 	'Wild Symbol': 'Biểu tượng Wild',
 	'Coin Symbol': 'Biểu tượng Đồng Xu',
-	'Special Spin': 'Vòng Quay Đặc Biệt',
+	'Kraken Spin': 'Vòng Quay Kraken',
 	'Bonus & Free Spins': 'Bonus & Vòng Quay Miễn Phí',
 	'Buy Feature': 'Mua tính năng',
 	'General Rules': 'Quy tắc chung',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 biểu tượng Bonus ở bất kỳ đâu trên các cuộn trao 6 Vòng Quay Miễn Phí.',
 	'4 Bonus symbols award 12 Free Spins.': '4 biểu tượng Bonus trao 12 Vòng Quay Miễn Phí.',
 	'5 Bonus symbols award 18 Free Spins.': '5 biểu tượng Bonus trao 18 Vòng Quay Miễn Phí.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Mỗi Vòng Quay Miễn Phí là một Vòng Quay Đặc Biệt và đặt biểu tượng Wild hoặc Đồng Xu lên các cuộn trước khi chúng dừng lại. Mỗi biểu tượng Bonus xuất hiện trong Vòng Quay Miễn Phí trao thêm 1 Vòng Quay Miễn Phí, không giới hạn số lần kích hoạt lại.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Mỗi Vòng Quay Miễn Phí là một Vòng Quay Kraken và đặt biểu tượng Wild hoặc Đồng Xu lên các cuộn trước khi chúng dừng lại. Mỗi biểu tượng Bonus xuất hiện trong Vòng Quay Miễn Phí trao thêm 1 Vòng Quay Miễn Phí, không giới hạn số lần kích hoạt lại.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Tính năng Vòng Quay Miễn Phí có thể được mua trực tiếp với giá __0__ tổng __1__. Tính năng đã mua diễn ra hoàn toàn giống như khi được kích hoạt bằng biểu tượng Bonus, và tỷ lệ hoàn trả cho người chơi là như nhau.',
 	'Only the highest win per __0__ is __1__.': 'Chỉ phần thắng cao nhất trên mỗi dòng thanh toán được trả thưởng.',
 	'Simultaneous wins on different __0__ are added together.': 'Các phần thắng đồng thời trên các dòng thanh toán khác nhau được cộng lại.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Sự cố kỹ thuật sẽ hủy tất cả các thắng và lượt chơi. Cần có kết nối internet ổn định. Trong trường hợp mất kết nối, hãy tải lại trò chơi để hoàn thành các vòng chưa hoàn tất. Tỷ lệ hoàn trả dự kiến được tính dựa trên nhiều lượt chơi. Màn hình trò chơi không đại diện cho bất kỳ thiết bị vật lý nào và chỉ nhằm mục đích minh họa. Tiền thắng được thanh toán theo số tiền nhận từ Máy Chủ Trò Chơi Từ Xa chứ không phải từ các sự kiện trong trình duyệt web.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Xuất hiện với giá trị từ __0__ tổng cược của bạn. Giá trị Đồng Xu được cộng lại và thêm vào mọi phần thắng theo hàng.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Biểu tượng Đồng Xu xuất hiện với giá trị hiển thị trên đồng xu, từ __0__ tổng cược của bạn. Đồng Xu không tạo thành phần thắng theo hàng — mọi giá trị Đồng Xu trên các cuộn được cộng lại và trao dưới dạng khoản thanh toán bổ sung.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Bất kỳ vòng quay nào của trò chơi cơ bản đều có thể kích hoạt Vòng Quay Đặc Biệt. Khi đó, Kraken đặt thêm biểu tượng lên các cuộn trước khi chúng dừng lại, theo một trong hai dạng:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Bất kỳ vòng quay nào của trò chơi cơ bản đều có thể kích hoạt Vòng Quay Kraken. Khi đó, Kraken đặt thêm biểu tượng lên các cuộn trước khi chúng dừng lại, theo một trong hai dạng:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — 1 đến 10 biểu tượng Wild được đặt lên các cuộn. Sau đó các dòng thanh toán được tính và chi trả.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Đồng Xu — 1 đến 10 biểu tượng Đồng Xu được đặt lên các cuộn. Các dòng thanh toán được tính trước, sau đó mọi giá trị Đồng Xu được cộng lại và trao thưởng.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Trong Vòng Quay Miễn Phí, mỗi vòng quay đều là Vòng Quay Đặc Biệt.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Trong Vòng Quay Miễn Phí, mỗi vòng quay đều là Vòng Quay Kraken.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'MUA',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Kích hoạt ngay tính năng VÒNG QUAY MIỄN PHÍ, trong đó mỗi vòng quay là một Vòng Quay Kraken.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Kích hoạt ngay tính năng VÒNG QUAY MIỄN PHÍ với giá 80x tổng cược. Mỗi Vòng Quay Miễn Phí là một Vòng Quay Kraken, thêm biểu tượng Wild hoặc Đồng Xu lên các cuộn. Giá trị đồng xu được trao thêm ngoài các chiến thắng theo đường.',
 };

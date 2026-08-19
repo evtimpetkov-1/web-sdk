@@ -5,7 +5,9 @@
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import { COIN_MULTIPLIERS } from '../game/constants';
 	import config from '../game/config';
-	const logoImg = new URL('../../assets/sprites/logo_text.webp', import.meta.url).href;
+	// full logo with the kraken, downscaled to 480px for this modal (the CSS
+	// caps it at 200px, so 480 covers retina without shipping the 999px source)
+	const logoImg = new URL('../../assets/sprites/logo_kraken_rules.webp', import.meta.url).href;
 
 	const social = $derived(stateUrlDerived.social());
 	const betLabel = $derived(social ? i18nDerived.playWord() : i18nDerived.betWord());
@@ -56,13 +58,13 @@
 			</section>
 
 			<section>
-				<h2>{i18nDerived.specialSpinHeader()}</h2>
-				<p>{i18nDerived.specialSpinDesc()}</p>
+				<h2>{i18nDerived.krakenSpinHeader()}</h2>
+				<p>{i18nDerived.krakenSpinDesc()}</p>
 				<ul>
-					<li>{i18nDerived.specialSpinWild().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1)).replace('__1__', paidLabel)}</li>
-					<li>{i18nDerived.specialSpinCoin().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1))}</li>
+					<li>{i18nDerived.krakenSpinWild().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1)).replace('__1__', paidLabel)}</li>
+					<li>{i18nDerived.krakenSpinCoin().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1))}</li>
 				</ul>
-				<p>{i18nDerived.specialSpinFs()}</p>
+				<p>{i18nDerived.krakenSpinFs()}</p>
 			</section>
 
 			<section>

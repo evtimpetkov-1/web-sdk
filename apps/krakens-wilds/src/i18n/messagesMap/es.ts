@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'GANANCIA TOTAL',
 	// LoadingScreen
-	'SPECIAL SPIN': 'GIRO ESPECIAL',
+	'KRAKEN SPIN': 'GIRO DEL KRAKEN',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Consigue 3, 4 o 5 símbolos Bonus en cualquier lugar de los carretes para ganar 6, 12 o 18 giros gratis',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'El Kraken puede atacar en cualquier giro y añadir hasta 10 Wilds o hasta 10 monedas a los carretes. Cada giro gratis es un giro especial.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'El Kraken puede atacar en cualquier giro y añadir hasta 10 Wilds o hasta 10 monedas a los carretes. Cada giro gratis es un giro del Kraken.',
 	// PayTable — headers
 	'Special Symbols': 'Símbolos especiales',
 	'Symbol Payouts': 'Pagos de símbolos',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Mensaje en una botella',
 	'Coin': 'Moneda',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Sustituye a todos los símbolos excepto Bonus y Moneda. En un giro especial de tipo Wild se colocan de 1 a 10 Wilds en los carretes.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Sustituye a todos los símbolos excepto Bonus y Moneda. En un giro del Kraken de tipo Wild se colocan de 1 a 10 Wilds en los carretes.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 giros gratis\n4 Bonus = 12 giros gratis\n5 Bonus = 18 giros gratis',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 líneas de pago fijas. Las ganancias se pagan de izquierda a derecha en carretes consecutivos, comenzando desde el carrete más a la izquierda. Los símbolos Bonus otorgan giros gratis en cualquier posición.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 líneas de ganancia fijas. Las ganancias se cuentan de izquierda a derecha en carretes consecutivos, comenzando desde el carrete más a la izquierda. Los símbolos Bonus otorgan giros gratis en cualquier posición.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Modo juego',
 	'Wild Symbol': 'Símbolo Wild',
 	'Coin Symbol': 'Símbolo Moneda',
-	'Special Spin': 'Giro especial',
+	'Kraken Spin': 'Giro del Kraken',
 	'Bonus & Free Spins': 'Bonus y giros gratis',
 	'Buy Feature': 'Compra de función',
 	'General Rules': 'Reglas generales',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 símbolos Bonus en cualquier lugar de los carretes otorgan 6 giros gratis.',
 	'4 Bonus symbols award 12 Free Spins.': '4 símbolos Bonus otorgan 12 giros gratis.',
 	'5 Bonus symbols award 18 Free Spins.': '5 símbolos Bonus otorgan 18 giros gratis.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Cada giro gratis es un giro especial y coloca símbolos Wild o Moneda en los carretes antes de que se detengan. Cada símbolo Bonus que aparezca durante los giros gratis otorga 1 giro gratis adicional, sin límite de reactivaciones.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Cada giro gratis es un giro del Kraken y coloca símbolos Wild o Moneda en los carretes antes de que se detengan. Cada símbolo Bonus que aparezca durante los giros gratis otorga 1 giro gratis adicional, sin límite de reactivaciones.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'La función de giros gratis puede comprarse directamente por __0__ la __1__ total. Una función comprada se desarrolla exactamente igual que una activada por símbolos Bonus, y el retorno al jugador es el mismo.',
 	'Only the highest win per __0__ is __1__.': 'Solo se paga la ganancia más alta por línea de pago.',
 	'Simultaneous wins on different __0__ are added together.': 'Las ganancias simultáneas en diferentes líneas de pago se suman.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Cualquier mal funcionamiento anula todas las ganancias y jugadas. Se requiere una conexión a internet estable. En caso de desconexión, recargue el juego para finalizar las rondas incompletas. El retorno esperado se calcula sobre muchas jugadas. La visualización del juego no representa ningún dispositivo físico y es solo con fines ilustrativos. Las ganancias se liquidan según el monto recibido del servidor de juego remoto y no según los eventos del navegador web.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Aparece con un valor de __0__ de tu apuesta total. Los valores de las monedas se suman y se añaden a cualquier ganancia de línea.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'El símbolo Moneda aparece con un valor mostrado en la moneda, de __0__ de tu apuesta total. Las monedas no forman ganancias de línea: cada valor de moneda en los carretes se suma y se otorga como un pago adicional.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Cualquier giro del juego base puede activar un giro especial. En ese caso, el Kraken coloca símbolos adicionales en los carretes antes de que se detengan, en una de estas dos formas:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Cualquier giro del juego base puede activar un giro del Kraken. En ese caso, el Kraken coloca símbolos adicionales en los carretes antes de que se detengan, en una de estas dos formas:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — se colocan de 1 a 10 símbolos Wild en los carretes. Luego se evalúan las líneas de pago y se pagan.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Moneda — se colocan de 1 a 10 símbolos Moneda en los carretes. Primero se evalúan las líneas de pago y después se suman y otorgan todos los valores de las monedas.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Durante los giros gratis, cada giro es un giro especial.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Durante los giros gratis, cada giro es un giro del Kraken.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'COMPRAR',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Activa al instante la función de GIROS GRATIS, donde cada giro es un giro del Kraken.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Activa al instante la función de GIROS GRATIS por 80x tu apuesta total. Cada giro gratis es un giro del Kraken, que añade símbolos Wild o Moneda a los carretes. Los valores de las monedas se otorgan además de las ganancias de línea.',
 };

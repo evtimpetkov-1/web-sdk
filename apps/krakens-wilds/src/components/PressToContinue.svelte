@@ -2,8 +2,9 @@
 	import { MainContainer, OnPressFullScreen } from 'components-layout';
 	import { OnHotkey } from 'components-shared';
 	import { ResponsiveText } from 'components-pixi';
-	import { Container, Rectangle } from 'pixi-svelte';
+	import { Container, Rectangle, Sprite } from 'pixi-svelte';
 	import { onMount } from 'svelte';
+	import { stateUrlDerived } from 'state-shared';
 
 	import { getContext } from '../game/context';
 	import { headingGold } from '../game/textStyles';
@@ -36,6 +37,12 @@
 	const textScale = $derived(0.97 + pulse * 0.06);
 	const layout = $derived(context.stateLayoutDerived.mainLayout());
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
+
+	// English gets the baked text art; other locales keep the text label.
+	const useTextArt = stateUrlDerived.lang() === 'en';
+	const PATC_RATIO = 1277 / 100; // press_anywhere_en.webp
+	// capped so the sprite never outgrows the backing strip on narrow layouts
+	const patcWidth = $derived(Math.min(480, layout.width * 0.8));
 </script>
 
 {#if props.replay}
@@ -80,15 +87,24 @@
 			scaleX={textScale}
 			scaleY={textScale}
 		>
-			<ResponsiveText
-				text={i18nDerived.pressAnywhere()}
-				anchor={0.5}
-				maxWidth={layout.width * 0.85}
-				style={{
-					...headingGold,
-					fontSize: 32,
-				}}
-			/>
+			{#if useTextArt}
+				<Sprite
+					key="pressAnywhereTextEn"
+					anchor={0.5}
+					width={patcWidth}
+					height={patcWidth / PATC_RATIO}
+				/>
+			{:else}
+				<ResponsiveText
+					text={i18nDerived.pressAnywhere()}
+					anchor={0.5}
+					maxWidth={layout.width * 0.85}
+					style={{
+						...headingGold,
+						fontSize: 32,
+					}}
+				/>
+			{/if}
 		</Container>
 	</MainContainer>
 {/if}

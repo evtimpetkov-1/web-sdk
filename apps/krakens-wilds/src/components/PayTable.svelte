@@ -70,10 +70,10 @@
 		{ img: imgH2, name: i18nDerived.ship(), pays: paysOf('H2') },
 		{ img: imgH3, name: i18nDerived.anchor(), pays: paysOf('H3') },
 		{ img: imgH4, name: i18nDerived.bottle(), pays: paysOf('H4') },
-		{ img: imgL1, name: 'A', pays: paysOf('L1') },
-		{ img: imgL2, name: 'K', pays: paysOf('L2') },
-		{ img: imgL3, name: 'Q', pays: paysOf('L3') },
-		{ img: imgL4, name: 'J', pays: paysOf('L4') },
+		{ img: imgL1, name: 'A', pays: paysOf('L1'), royal: true },
+		{ img: imgL2, name: 'K', pays: paysOf('L2'), royal: true },
+		{ img: imgL3, name: 'Q', pays: paysOf('L3'), royal: true },
+		{ img: imgL4, name: 'J', pays: paysOf('L4'), royal: true },
 	]);
 
 	// Same story as the payouts: the 20 lines live in config, not twice.
@@ -115,7 +115,7 @@
 				<div class="symbols-grid">
 					{#each symbols as symbol}
 						<div class="symbol-card">
-							<img src={symbol.img} alt={symbol.name} class="symbol-img" />
+							<img src={symbol.img} alt={symbol.name} class="symbol-img" class:royal={symbol.royal} />
 							<div class="pays-row">
 								{#each Object.entries(symbol.pays) as [count, value]}
 									<span class="pay-entry">
@@ -253,6 +253,20 @@
 		height: 100px;
 		object-fit: contain;
 		filter: drop-shadow(0 0 6px rgba(0, 150, 255, 0.3));
+
+		/*
+		 * Royal glyphs fill their canvas edge-to-edge while the premium plates
+		 * carry padding inside theirs, so at an equal box the letters render
+		 * oversized. On the board royals draw at ~2/3 of a plate (lib/sizes.js
+		 * NORM: plates 116px, letters 76px) — the padding shrinks the ink to
+		 * match while the box keeps the grid rows aligned.
+		 */
+		&.royal {
+			/* no global border-box reset in the SDK — without this the padding
+			   would grow the box to 132px instead of shrinking the ink */
+			box-sizing: border-box;
+			padding: 16px;
+		}
 	}
 
 	.pays-row {
@@ -375,6 +389,10 @@
 		.symbol-img {
 			width: 70px;
 			height: 70px;
+
+			&.royal {
+				padding: 11px;
+			}
 		}
 
 		.special-img {
@@ -417,6 +435,10 @@
 		.symbol-img {
 			width: 60px;
 			height: 60px;
+
+			&.royal {
+				padding: 10px;
+			}
 		}
 
 		.special-img {

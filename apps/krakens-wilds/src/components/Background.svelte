@@ -34,7 +34,7 @@
 
 <Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />
 
-<FadeContainer label="BackgroundContainer" show={showBaseBackground} duration={SECOND} zIndex={-2} filters={bgFilters}>
+<FadeContainer label="BackgroundContainer" show={showBaseBackground} duration={0.4 * SECOND} zIndex={-2} filters={bgFilters}>
 	{#if isPortrait}
 		<Sprite key="baseGameBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} {...cover('baseGameBgPortrait', 941, 1672)} />
 	{:else}
@@ -42,7 +42,9 @@
 	{/if}
 </FadeContainer>
 
-<FadeContainer label="FeatureBackgroundContainer" show={showFeatureBackground} duration={SECOND} zIndex={-1}>
+<!-- blurred during loading, same as the base background — covers a refresh
+     mid-free-spins, where the loading screen sits on THIS container -->
+<FadeContainer label="FeatureBackgroundContainer" show={showFeatureBackground} duration={0.4 * SECOND} zIndex={-1} filters={bgFilters}>
 	{#if isPortrait}
 		<Sprite key="freeSpinBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} {...cover('freeSpinBgPortrait', 1024, 1536)} />
 	{:else}

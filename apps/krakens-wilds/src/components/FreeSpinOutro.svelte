@@ -23,7 +23,6 @@
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
-	const isLandscape = $derived(context.stateLayoutDerived.layoutType() !== 'portrait');
 
 	/**
 	 * The total win deserves a slower count than an ordinary spin. The win-level
@@ -83,22 +82,45 @@
 					{/snippet}
 					<!-- `scale` comes from WinAnimation so the amount tracks the fitted title -->
 					{#snippet children({ scale })}
+						<!--
+							The amount centres VERTICALLY between the TOTAL WIN lettering and
+							the press-anywhere bar, instead of hanging at a fixed offset under
+							the title with dead space below.
+							- title bottom: the letters are centred at spine y -40 with 300-unit
+							  tall glyphs, and the spine origin sits at canvas centre, so the
+							  bottom edge lands at cy + 190 * scale.
+							- bar top: PressToContinue's strip is 70 tall centred at
+							  layout.height - 100, bottom-aligned -> canvas.height - 135 in its
+							  layout units, mapped by the main layout scale.
+						-->
+						{@const titleBottom = cy + 190 * scale}
+						{@const barTop =
+							canvas.height - 135 * context.stateLayoutDerived.mainLayout().scale}
+						<!--
+							Portrait reads the amount small (the spine scale is width-bound
+							there), so it gets its own boost on top of the spine's scale. The
+							maxWidth stays expressed in CANVAS terms (divided by the full
+							effective scale), so ResponsiveBitmapText still shrinks any long
+							amount/currency down before it can spill off screen.
+						-->
+						{@const isPortraitOutro = context.stateLayoutDerived.layoutType() === 'portrait'}
+						<!-- matches the in-game big/mega amount boosts (Win.svelte) -->
+						{@const amountBoost = isPortraitOutro ? 1.55 : 1.35}
+						<!--
+							Landscape: dead centre of the title->bar gap. Portrait's gap is
+							much taller, so dead centre stranded the amount — it sits at 35%
+							of the gap instead, closer under the title.
+						-->
+						{@const gapFraction = isPortraitOutro ? 0.25 : 0.5}
 						<Container
 							label="TotalWinTextContainer"
 							x={cx}
-							y={cy * (isLandscape ? 0.95 : 1.0)}
-							{scale}
+							y={titleBottom + (barTop - titleBottom) * gapFraction}
+							scale={scale * amountBoost}
 						>
-							<!--
-								y is in the bigwin skeleton's own units (1500x1300). Was
-								240/280, which sat the amount tight under the TOTAL WIN
-								lettering; +50 opens the gap and lines it up with the in-game
-								big-win amount, which already sits at 300/340 in this space.
-							-->
 							<ResponsiveBitmapText
 								anchor={0.5}
-								y={isLandscape ? 290 : 330}
-								maxWidth={(canvas.width / scale) * 0.9}
+								maxWidth={(canvas.width / (scale * amountBoost)) * 0.9}
 								text={bookEventAmountToCurrencyString(countUpAmount)}
 								style={{
 									fontFamily: 'cinzel-bold-gold',

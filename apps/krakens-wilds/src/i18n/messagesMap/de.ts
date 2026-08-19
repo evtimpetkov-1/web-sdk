@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'GESAMTGEWINN',
 	// LoadingScreen
-	'SPECIAL SPIN': 'SPEZIALDREHUNG',
+	'KRAKEN SPIN': 'KRAKEN-DREHUNG',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Lande 3, 4 oder 5 Bonus-Symbole irgendwo auf den Walzen und gewinne 6, 12 oder 18 Freispiele',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'Der Kraken kann bei jedem Spin zuschlagen und bis zu 10 Wilds oder bis zu 10 Münzen auf die Walzen setzen. Jedes Freispiel ist eine Spezialdrehung.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'Der Kraken kann bei jedem Spin zuschlagen und bis zu 10 Wilds oder bis zu 10 Münzen auf die Walzen setzen. Jedes Freispiel ist eine Kraken-Drehung.',
 	// PayTable — headers
 	'Special Symbols': 'Spezialsymbole',
 	'Symbol Payouts': 'Symbolauszahlungen',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Flaschenpost',
 	'Coin': 'Münze',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Ersetzt alle Symbole außer Bonus und Münze. Bei einer Wild-Spezialdrehung werden 1 bis 10 Wilds auf die Walzen gesetzt.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Ersetzt alle Symbole außer Bonus und Münze. Bei einer Kraken-Drehung vom Typ Wild werden 1 bis 10 Wilds auf die Walzen gesetzt.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 Freispiele\n4 Bonus = 12 Freispiele\n5 Bonus = 18 Freispiele',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 feste Gewinnlinien. Gewinne werden von links nach rechts auf aufeinanderfolgenden Walzen ausgezahlt, beginnend mit der linken Walze. Bonus-Symbole gewähren Freispiele in jeder Position.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 feste Gewinnlinien. Gewinne zählen von links nach rechts auf aufeinanderfolgenden Walzen, beginnend mit der linken Walze. Bonus-Symbole gewähren Freispiele in jeder Position.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Spielmodus',
 	'Wild Symbol': 'Wild-Symbol',
 	'Coin Symbol': 'Münz-Symbol',
-	'Special Spin': 'Spezialdrehung',
+	'Kraken Spin': 'Kraken-Drehung',
 	'Bonus & Free Spins': 'Bonus & Freispiele',
 	'Buy Feature': 'Kauffunktion',
 	'General Rules': 'Allgemeine Regeln',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-Symbole irgendwo auf den Walzen vergeben 6 Freispiele.',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus-Symbole vergeben 12 Freispiele.',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus-Symbole vergeben 18 Freispiele.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Jedes Freispiel ist eine Spezialdrehung und setzt Wild- oder Münz-Symbole auf die Walzen, bevor diese zum Stillstand kommen. Jedes während der Freispiele landende Bonus-Symbol gewährt 1 zusätzliches Freispiel; die Anzahl der erneuten Auslösungen ist unbegrenzt.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Jedes Freispiel ist eine Kraken-Drehung und setzt Wild- oder Münz-Symbole auf die Walzen, bevor diese zum Stillstand kommen. Jedes während der Freispiele landende Bonus-Symbol gewährt 1 zusätzliches Freispiel; die Anzahl der erneuten Auslösungen ist unbegrenzt.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Die Freispiel-Funktion kann direkt für __0__ des Gesamt-__1__ gekauft werden. Eine gekaufte Funktion läuft genau wie eine durch Bonus-Symbole ausgelöste ab, und die Auszahlungsquote ist dieselbe.',
 	'Only the highest win per __0__ is __1__.': 'Nur der höchste Gewinn pro Gewinnlinie wird ausgezahlt.',
 	'Simultaneous wins on different __0__ are added together.': 'Gleichzeitige Gewinne auf verschiedenen Gewinnlinien werden zusammengezählt.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Fehlfunktionen machen alle Gewinne und Spiele ungültig. Eine stabile Internetverbindung ist erforderlich. Bei einer Unterbrechung laden Sie das Spiel neu, um nicht abgeschlossene Runden zu beenden. Die erwartete Rendite wird über viele Spiele berechnet. Die Spielanzeige stellt kein physisches Gerät dar und dient nur zur Veranschaulichung. Gewinne werden gemäß dem vom Remote Game Server empfangenen Betrag abgerechnet und nicht anhand von Ereignissen im Webbrowser.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Landet mit einem Wert von __0__ deines Gesamteinsatzes. Münzwerte werden summiert und zu jedem Liniengewinn addiert.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Das Münz-Symbol landet mit einem auf der Münze angezeigten Wert von __0__ deines Gesamteinsatzes. Münzen bilden keine Liniengewinne — jeder Münzwert auf den Walzen wird summiert und als zusätzliche Auszahlung vergeben.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Jede Drehung im Hauptspiel kann eine Spezialdrehung auslösen. In diesem Fall setzt der Kraken zusätzliche Symbole auf die Walzen, bevor diese zum Stillstand kommen — in einer von zwei Formen:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Jede Drehung im Hauptspiel kann eine Kraken-Drehung auslösen. In diesem Fall setzt der Kraken zusätzliche Symbole auf die Walzen, bevor diese zum Stillstand kommen — in einer von zwei Formen:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — 1 bis 10 Wild-Symbole werden auf die Walzen gesetzt. Anschließend werden die Gewinnlinien ausgewertet und ausgezahlt.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Münze — 1 bis 10 Münz-Symbole werden auf die Walzen gesetzt. Zuerst werden die Gewinnlinien ausgewertet, dann werden alle Münzwerte summiert und vergeben.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Während der Freispiele ist jede Drehung eine Spezialdrehung.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Während der Freispiele ist jede Drehung eine Kraken-Drehung.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'KAUFEN',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Löst sofort die FREISPIELE-Funktion aus, bei der jede Drehung eine Kraken-Drehung ist.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Löst für das 80-Fache deines Gesamteinsatzes sofort die FREISPIELE-Funktion aus. Jedes Freispiel ist eine Kraken-Drehung, die Wild- oder Münz-Symbole auf die Walzen setzt. Münzwerte werden zusätzlich zu Liniengewinnen ausgezahlt.',
 };

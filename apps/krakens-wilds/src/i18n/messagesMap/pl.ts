@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'ŁĄCZNA WYGRANA',
 	// LoadingScreen
-	'SPECIAL SPIN': 'SPECJALNY OBRÓT',
+	'KRAKEN SPIN': 'OBRÓT KRAKENA',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Traf 3, 4 lub 5 symboli Bonus w dowolnym miejscu na bębnach, aby wygrać 6, 12 lub 18 Darmowych Obrotów',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'Kraken może zaatakować przy każdym obrocie, dodając na bębny do 10 symboli Wild lub do 10 Monet. Każdy Darmowy Obrót jest Specjalnym Obrotem.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'Kraken może zaatakować przy każdym obrocie, dodając na bębny do 10 symboli Wild lub do 10 Monet. Każdy Darmowy Obrót jest Obrotem Krakena.',
 	// PayTable — headers
 	'Special Symbols': 'Symbole specjalne',
 	'Symbol Payouts': 'Wypłaty symboli',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Wiadomość w butelce',
 	'Coin': 'Moneta',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Zastępuje wszystkie symbole z wyjątkiem Bonusu i Monety. Podczas Specjalnego Obrotu typu Wild na bębnach umieszczanych jest od 1 do 10 symboli Wild.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Zastępuje wszystkie symbole z wyjątkiem Bonusu i Monety. Podczas Obrotu Krakena typu Wild na bębnach umieszczanych jest od 1 do 10 symboli Wild.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 Darmowych Obrotów\n4 Bonus = 12 Darmowych Obrotów\n5 Bonus = 18 Darmowych Obrotów',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 stałych linii wypłat. Wygrane są wypłacane od lewej do prawej na kolejnych bębnach, zaczynając od skrajnie lewego bębna. Symbole Bonus przyznają Darmowe Obroty na dowolnej pozycji.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 stałych linii wygranych. Wygrane liczą się od lewej do prawej na kolejnych bębnach, zaczynając od skrajnie lewego bębna. Symbole Bonus przyznają Darmowe Obroty na dowolnej pozycji.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Tryb gry',
 	'Wild Symbol': 'Symbol Wild',
 	'Coin Symbol': 'Symbol Monety',
-	'Special Spin': 'Specjalny Obrót',
+	'Kraken Spin': 'Obrót Krakena',
 	'Bonus & Free Spins': 'Bonus i Darmowe Obroty',
 	'Buy Feature': 'Zakup funkcji',
 	'General Rules': 'Zasady ogólne',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 symbole Bonus w dowolnym miejscu na bębnach przyznają 6 Darmowych Obrotów.',
 	'4 Bonus symbols award 12 Free Spins.': '4 symbole Bonus przyznają 12 Darmowych Obrotów.',
 	'5 Bonus symbols award 18 Free Spins.': '5 symboli Bonus przyznaje 18 Darmowych Obrotów.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Każdy Darmowy Obrót jest Specjalnym Obrotem i umieszcza na bębnach symbole Wild lub Monety, zanim się zatrzymają. Każdy symbol Bonus, który pojawi się podczas Darmowych Obrotów, przyznaje 1 dodatkowy Darmowy Obrót, bez ograniczeń co do ponownych uruchomień.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Każdy Darmowy Obrót jest Obrotem Krakena i umieszcza na bębnach symbole Wild lub Monety, zanim się zatrzymają. Każdy symbol Bonus, który pojawi się podczas Darmowych Obrotów, przyznaje 1 dodatkowy Darmowy Obrót, bez ograniczeń co do ponownych uruchomień.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Funkcję Darmowych Obrotów można kupić bezpośrednio za __0__ całkowitego __1__. Zakupiona funkcja przebiega dokładnie tak samo jak uruchomiona symbolami Bonus, a zwrot dla gracza jest taki sam.',
 	'Only the highest win per __0__ is __1__.': 'Wypłacana jest tylko najwyższa wygrana na linii wypłat.',
 	'Simultaneous wins on different __0__ are added together.': 'Jednoczesne wygrane na różnych liniach wypłat są sumowane.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Awaria unieważnia wszystkie wygrane i rozgrywki. Wymagane jest stabilne połączenie internetowe. W przypadku rozłączenia należy ponownie załadować grę, aby zakończyć niedokończone rundy. Oczekiwany zwrot jest obliczany na podstawie wielu rozgrywek. Wyświetlanie gry nie reprezentuje żadnego urządzenia fizycznego i służy wyłącznie celom ilustracyjnym. Wygrane są rozliczane na podstawie kwoty otrzymanej z Zdalnego Serwera Gry, a nie na podstawie zdarzeń w przeglądarce internetowej.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Pojawia się z wartością od __0__ całkowitego zakładu. Wartości Monet są sumowane i dodawane do wygranej liniowej.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Symbol Monety pojawia się z wartością widoczną na monecie, od __0__ całkowitego zakładu. Monety nie tworzą wygranych liniowych — każda wartość Monety na bębnach jest sumowana i przyznawana jako dodatkowa wypłata.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Każdy obrót w grze podstawowej może uruchomić Specjalny Obrót. W takim przypadku Kraken umieszcza na bębnach dodatkowe symbole, zanim się zatrzymają, w jednej z dwóch postaci:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Każdy obrót w grze podstawowej może uruchomić Obrót Krakena. W takim przypadku Kraken umieszcza na bębnach dodatkowe symbole, zanim się zatrzymają, w jednej z dwóch postaci:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — na bębnach umieszczanych jest od 1 do 10 symboli Wild. Następnie oceniane są linie wypłat i wypłacane są wygrane.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Moneta — na bębnach umieszczanych jest od 1 do 10 symboli Monety. Najpierw oceniane są linie wypłat, a następnie wszystkie wartości Monet są sumowane i przyznawane.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Podczas Darmowych Obrotów każdy obrót jest Specjalnym Obrotem.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Podczas Darmowych Obrotów każdy obrót jest Obrotem Krakena.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'KUP',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Natychmiast uruchamia funkcję DARMOWYCH OBROTÓW, w której każdy obrót jest Obrotem Krakena.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Natychmiast uruchamia funkcję DARMOWYCH OBROTÓW za 80x całkowitej stawki. Każdy Darmowy Obrót jest Obrotem Krakena, który dodaje na bębny symbole Wild lub Monety. Wartości monet są przyznawane dodatkowo, obok wygranych liniowych.',
 };

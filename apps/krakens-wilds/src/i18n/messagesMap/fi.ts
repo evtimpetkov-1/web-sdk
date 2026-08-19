@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'KOKONAISVOITTO',
 	// LoadingScreen
-	'SPECIAL SPIN': 'ERIKOISKIERROS',
+	'KRAKEN SPIN': 'KRAKEN-KIERROS',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Saa 3, 4 tai 5 Bonus-symbolia mihin tahansa kiekoille ja voita 6, 12 tai 18 ilmaiskierrosta',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'Kraken voi iskeä millä tahansa kierroksella ja lisätä kiekoille jopa 10 Wildiä tai jopa 10 kolikkoa. Jokainen ilmaiskierros on erikoiskierros.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'Kraken voi iskeä millä tahansa kierroksella ja lisätä kiekoille jopa 10 Wildiä tai jopa 10 kolikkoa. Jokainen ilmaiskierros on Kraken-kierros.',
 	// PayTable — headers
 	'Special Symbols': 'Erikoissymbolit',
 	'Symbol Payouts': 'Symbolimaksut',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Pulloposti',
 	'Coin': 'Kolikko',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Korvaa kaikki symbolit paitsi Bonuksen ja kolikon. Wild-erikoiskierroksella kiekoille asetetaan 1–10 Wildiä.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Korvaa kaikki symbolit paitsi Bonuksen ja kolikon. Wild-tyyppisellä Kraken-kierroksella kiekoille asetetaan 1–10 Wildiä.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 ilmaiskierrosta\n4 Bonus = 12 ilmaiskierrosta\n5 Bonus = 18 ilmaiskierrosta',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 kiinteää voittolinjaa. Voitot maksetaan vasemmalta oikealle peräkkäisillä kiekoilla, alkaen vasemmanpuoleisimmasta kiekosta. Bonus-symbolit myöntävät ilmaiskierroksia missä tahansa paikassa.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 kiinteää voittolinjaa. Voitot lasketaan vasemmalta oikealle peräkkäisillä kiekoilla, alkaen vasemmanpuoleisimmasta kiekosta. Bonus-symbolit myöntävät ilmaiskierroksia missä tahansa paikassa.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Pelitila',
 	'Wild Symbol': 'Wild-symboli',
 	'Coin Symbol': 'Kolikkosymboli',
-	'Special Spin': 'Erikoiskierros',
+	'Kraken Spin': 'Kraken-kierros',
 	'Bonus & Free Spins': 'Bonus ja ilmaiskierrokset',
 	'Buy Feature': 'Osta ominaisuus',
 	'General Rules': 'Yleiset säännöt',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-symbolia missä tahansa kiekoilla myöntävät 6 ilmaiskierrosta.',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus-symbolia myöntävät 12 ilmaiskierrosta.',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus-symbolia myöntävät 18 ilmaiskierrosta.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Jokainen ilmaiskierros on erikoiskierros ja asettaa kiekoille Wild- tai kolikkosymboleja ennen niiden pysähtymistä. Jokainen ilmaiskierrosten aikana ilmestyvä Bonus-symboli antaa 1 lisäilmaiskierroksen, eikä uudelleenlaukaisuille ole rajaa.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Jokainen ilmaiskierros on Kraken-kierros ja asettaa kiekoille Wild- tai kolikkosymboleja ennen niiden pysähtymistä. Jokainen ilmaiskierrosten aikana ilmestyvä Bonus-symboli antaa 1 lisäilmaiskierroksen, eikä uudelleenlaukaisuille ole rajaa.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Ilmaiskierrosten ominaisuuden voi ostaa suoraan hintaan __0__ kokonais__1__. Ostettu ominaisuus toimii täsmälleen kuten Bonus-symboleilla laukaistu, ja palautusprosentti on sama.',
 	'Only the highest win per __0__ is __1__.': 'Vain korkein voitto voittolinjaa kohden maksetaan.',
 	'Simultaneous wins on different __0__ are added together.': 'Samanaikaiset voitot eri voittolinjoilla lasketaan yhteen.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Toimintahäiriö mitätöi kaikki voitot ja pelaukset. Vakaa internetyhteys vaaditaan. Yhteyden katketessa lataa peli uudelleen keskeneräisten kierrosten loppuun saattamiseksi. Odotettu tuotto lasketaan useiden pelauksien perusteella. Pelinäkymä ei edusta mitään fyysistä laitetta ja on vain havainnollistamista varten. Voitot selvitetään Remote Game Serveriltä saadun summan perusteella, ei selaintapahtumien perusteella.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Ilmestyy arvolla __0__ kokonaispanoksestasi. Kolikoiden arvot lasketaan yhteen ja lisätään linjavoittoon.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Kolikkosymboli ilmestyy kolikossa näkyvällä arvolla, joka on __0__ kokonaispanoksestasi. Kolikot eivät muodosta linjavoittoja — kaikki kiekoilla olevat kolikkoarvot lasketaan yhteen ja myönnetään lisämaksuna.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Mikä tahansa peruspelin kierros voi laukaista erikoiskierroksen. Tällöin Kraken asettaa kiekoille lisäsymboleja ennen niiden pysähtymistä, jommassakummassa muodossa:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Mikä tahansa peruspelin kierros voi laukaista Kraken-kierroksen. Tällöin Kraken asettaa kiekoille lisäsymboleja ennen niiden pysähtymistä, jommassakummassa muodossa:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — kiekoille asetetaan 1–10 Wild-symbolia. Tämän jälkeen voittolinjat lasketaan ja maksetaan.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Kolikko — kiekoille asetetaan 1–10 kolikkosymbolia. Ensin lasketaan voittolinjat, minkä jälkeen kaikki kolikkoarvot lasketaan yhteen ja myönnetään.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Ilmaiskierrosten aikana jokainen kierros on erikoiskierros.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Ilmaiskierrosten aikana jokainen kierros on Kraken-kierros.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'OSTA',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Käynnistää heti ILMAISKIERROKSET-toiminnon, jossa jokainen kierros on Kraken-kierros.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Käynnistää heti ILMAISKIERROKSET-toiminnon hintaan 80x kokonaispanoksesi. Jokainen ilmaiskierros on Kraken-kierros, joka lisää kiekoille Wild- tai kolikkosymboleja. Kolikoiden arvot myönnetään linjavoittojen lisäksi.',
 };

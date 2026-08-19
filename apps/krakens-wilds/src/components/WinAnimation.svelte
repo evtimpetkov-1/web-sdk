@@ -52,6 +52,19 @@
 		}
 	});
 
+	// The out states are terminal — their complete event has already fired, so a
+	// component reused for another count-up beat (requestExit dropping back to
+	// false) could never exit again and the presentation stalled: smoke on
+	// screen, book hung. Re-enter the intro instead.
+	$effect(() => {
+		if (
+			!props.requestExit &&
+			(krakenAnim === 'big_win_out' || krakenAnim === 'mega_win_out' || krakenAnim === 'total_win_out')
+		) {
+			krakenAnim = props.isTotal ? 'total_win_in' : 'big_win_in';
+		}
+	});
+
 	function onKrakenComplete() {
 		// If exit was requested during intro/transition, go straight to out
 		if (
@@ -91,32 +104,44 @@
 	const cx = $derived(canvas.width / 2);
 	const cy = $derived(canvas.height / 2);
 
-	/**
-	 * Fit the win title inside the viewport.
-	 *
-	 * The scale has to be measured against the SKELETON'S OWN BOX, which bigwin.json
-	 * declares as 1500x1300. The old divisors (850x1100) were neither the skeleton
-	 * nor the canvas, so the art came out ~1.7x too wide at every size and BIG WIN /
-	 * TOTAL WIN ran off both edges of the screen — worst in portrait, where height
-	 * never became the binding constraint.
-	 *
-	 * Read from the loaded skeleton rather than hardcoding, so a re-authored spine
-	 * cannot silently break the fit again; the literals are only a fallback for the
-	 * frames before the asset resolves.
-	 */
 	const FIT = 0.92; // margin so the art never touches the canvas edges
-	// double cast: LoadedAsset is a union (spine | texture | audio), and only the
-	// spine member carries width/height
-	const spineData = $derived(
-		context.stateApp.loadedAssets?.['bigwin'] as unknown as
-			| { width?: number; height?: number }
-			| undefined,
+	// The hand-reworked spine (2026-08-19) authors the art LARGE within its
+	// 2246x1169 box — unlike the old slicer build, whose box was mostly glow
+	// headroom and needed a big boost (1.265/1.5) to read. Neutral 1.0 now;
+	// tune here if the new art needs a nudge per layout.
+	const winBoost = $derived(
+		context.stateLayoutDerived.layoutType() === 'portrait'
+			? // in-game big/mega reads bigger than the outro's total (user-tuned)
+				props.isTotal
+				? 1.15
+				: 1.25
+			: 1.0,
 	);
+	/*
+	 * The origin goes at canvas centre, exactly like the old spine: the rig is
+	 * unchanged (title letters centred at spine y -40, kraken above). Only the
+	 * DECLARED box differs because the reworked art's rays reach higher — do
+	 * not "re-centre the box", that pushes the composition down.
+	 *
+	 * BECAUSE the box is asymmetric around the origin (839 above, 330 below,
+	 * ±1149 wide), fitting box-width/box-height to the canvas is wrong for an
+	 * origin-at-centre placement: in landscape it let the top 839 overshoot the
+	 * upper half of the screen and the whole presentation rendered oversized
+	 * and cropped. Fit each EXTENT to its half-canvas instead. Extents come
+	 * from the skeleton declaration (x -1149.192, y -330, w 2246.376, h 1169):
+	 * update together with the skeleton.
+	 */
+	const EXTENT_X = 1149.2; // max(|x|, x + width)
+	const EXTENT_UP = 839; // y + height
+	const EXTENT_DOWN = 330; // |y|
 	const winScale = $derived(
 		Math.min(
-			canvas.width / (spineData?.width || 1500),
-			canvas.height / (spineData?.height || 1300),
-		) * FIT,
+			canvas.width / 2 / EXTENT_X,
+			canvas.height / 2 / EXTENT_UP,
+			canvas.height / 2 / EXTENT_DOWN,
+		) *
+			FIT *
+			winBoost,
 	);
 	/**
 	 * The presentation used to sit on an opaque painted background, which cut the

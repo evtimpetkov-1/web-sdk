@@ -85,6 +85,12 @@ const revealOverlayCoins = async () => {
 	const coins = stateGame.overlaySymbols.filter((symbol) => symbol.name === 'C');
 	if (coins.length === 0) return;
 	await waitForTimeout(DUST_CLEAR_MS);
+	// The landing sound belongs to THIS beat — the callers used to play it at
+	// overlay placement, a full DUST_CLEAR_MS before anything visibly landed,
+	// so coins audibly "landed" ~1.2s before wilds did on the same feature.
+	// TODO: no coin-specific sfx exists yet — sounds.json only has
+	// sfx_wild_land / sfx_wild_explode. Swap in a coin sound when one lands.
+	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
 	for (const coin of coins) coin.revealing = true;
 	await waitForTimeout(COIN_VALUE_AT_MS);
 	for (const coin of coins) coin.valueShown = true;
@@ -205,7 +211,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// The math does not set `isSpecialSpin` — every book we have carries it as
 		// false and marks the attack with `spinType` instead ('WILD' | 'COIN', set on
 		// every free-spin reveal). Keying off the flag alone meant the base game never
-		// took its special-spin path at all and free-spin coin spins were treated as
+		// took its kraken-spin path at all and free-spin coin spins were treated as
 		// ordinary spins. `spinType` leads; the flag is still honoured if it appears.
 		const isSpecialSpin = Boolean(bookEvent.spinType) || Boolean(bookEvent.isSpecialSpin);
 		stateGame.isSpecialSpin = isSpecialSpin;
@@ -224,7 +230,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				paddingBoard: config.paddingReels[bookEvent.gameType],
 			});
 
-			// Every free spin is a Special Spin (spec v2): the kraken attacks before the
+			// Every free spin is a Kraken Spin (spec v2): the kraken attacks before the
 			// reels stop and puts either Wilds or Coins on them. Wilds are placed FRESH
 			// each spin — they are not sticky and do not travel between positions, so the
 			// previous batch is dropped and the new one spawns behind the dust cloud.
@@ -267,9 +273,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				// cleared (revealOverlayCoins), and they keep their cells for the rest of
 				// the spin — the real C symbols stay hidden underneath.
 				showOverlay(coinPositions.map((coin) => ({ name: 'C' as const, ...coin })));
-				// TODO: no coin-specific sfx exists yet — sounds.json only has
-				// sfx_wild_land / sfx_wild_explode. Swap in a coin sound when one lands.
-				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+				// landing sound plays inside revealOverlayCoins, on the reveal beat
 				hold = 0; // revealOverlayCoins below paces this spin instead
 			}
 
@@ -290,7 +294,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			// the overlay stays up — it owns those cells until the next spin
 			stateGame.reelsShaded = false;
 		} else if (isSpecialSpin) {
-			// Base-game special spin: same beats as the free-spin path. The wilds and
+			// Base-game kraken spin: same beats as the free-spin path. The wilds and
 			// coins are REAL symbols already in this reveal's board, but the overlay
 			// copies are what the player sees — ReelSymbol hides a board symbol for as
 			// long as the overlay holds one of its kind, so the two never double up.
@@ -306,11 +310,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			]);
 			stateGame.reelsShaded = stateGame.overlaySymbols.length > 0;
 			// Keep spinning as the cloud thins, then play the landing/reveal in the
-			// clear. A special spin carries one kind or the other, never both.
+			// clear. A kraken spin carries one kind or the other, never both.
 			if (coinPositions.length > 0) {
-				// TODO: no coin-specific sfx exists yet — sounds.json only has
-				// sfx_wild_land / sfx_wild_explode. Swap in a coin sound when one lands.
-				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+				// landing sound plays inside revealOverlayCoins, on the reveal beat
 				await revealOverlayCoins();
 			} else if (wildPositions.length > 0) {
 				await revealOverlayWilds();
@@ -372,7 +374,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		}
 
 		// Base game: winning wilds fly into the kraken (session tension build-up).
-		// Skipped on a special spin — the kraken spawned those wilds this very spin.
+		// Skipped on a kraken spin — the kraken spawned those wilds this very spin.
 		if (stateGame.gameType === 'basegame' && !stateGame.isSpecialSpin) {
 			const board = stateGameDerived.boardRaw();
 			const wildPositions = allPositions.filter(
@@ -561,12 +563,18 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		}
 
 		if (coins.length > 0) {
-			// beat 1 — line wins only (skipped when the spin is coins-only)
+			// beat 1 — line wins only (skipped when the spin is coins-only).
+			// Never with the big-win presentation, even when the TOTAL is big-level:
+			// the spectacle belongs to the full amount in beat 3. Passing the big
+			// level here also stalled the book for good — WinAnimation's exit state
+			// machine is one-shot, so after beat 1's exit beat 3 could never exit
+			// again and the spin hung under the leftover smoke.
 			if (lineAmount > 0) {
+				const beat1LevelData = winLevelData?.type === 'big' ? winLevelMap[5] : winLevelData;
 				await eventEmitter.broadcastAsync({
 					type: 'winUpdate',
 					amount: lineAmount,
-					winLevelData,
+					winLevelData: beat1LevelData,
 				});
 			}
 			// beat 2 — coins into the kraken, total flies to the winbox

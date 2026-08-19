@@ -8,9 +8,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'GANHO TOTAL',
 	// LoadingScreen
-	'SPECIAL SPIN': 'RODADA ESPECIAL',
+	'KRAKEN SPIN': 'RODADA DO KRAKEN',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Obtenha 3, 4 ou 5 símbolos Bónus em qualquer posição nos rolos para ganhar 6, 12 ou 18 Rodadas Grátis',
-	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'O Kraken pode atacar em qualquer rodada, adicionando até 10 Wilds ou até 10 moedas aos rolos. Cada Rodada Grátis é uma Rodada Especial.',
+	'The Kraken can strike any spin adding up to 10 Wilds or Coins on the reels. Every Free Spin is a Kraken Spin.': 'O Kraken pode atacar em qualquer rodada, adicionando até 10 Wilds ou até 10 moedas aos rolos. Cada Rodada Grátis é uma Rodada do Kraken.',
 	// PayTable — headers
 	'Special Symbols': 'Símbolos especiais',
 	'Symbol Payouts': 'Pagamentos dos símbolos',
@@ -26,7 +26,7 @@ export default {
 	'Message in a Bottle': 'Mensagem numa garrafa',
 	'Coin': 'Moeda',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Substitui todos os símbolos exceto Bónus e Moeda. Numa Rodada Especial Wild, são colocados 1 a 10 Wilds nos rolos.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Substitui todos os símbolos exceto Bónus e Moeda. Numa Rodada do Kraken de tipo Wild, são colocados 1 a 10 Wilds nos rolos.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bónus = 6 Rodadas Grátis\n4 Bónus = 12 Rodadas Grátis\n5 Bónus = 18 Rodadas Grátis',
 	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 linhas de pagamento fixas. Os ganhos são pagos da esquerda para a direita em rolos consecutivos, a partir do rolo mais à esquerda. Os símbolos Bónus concedem Rodadas Grátis em qualquer posição.',
 	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 linhas de ganho fixas. Os ganhos contam da esquerda para a direita em rolos consecutivos, a partir do rolo mais à esquerda. Os símbolos Bónus concedem Rodadas Grátis em qualquer posição.',
@@ -47,7 +47,7 @@ export default {
 	'Play Mode': 'Modo de jogo',
 	'Wild Symbol': 'Símbolo Wild',
 	'Coin Symbol': 'Símbolo Moeda',
-	'Special Spin': 'Rodada Especial',
+	'Kraken Spin': 'Rodada do Kraken',
 	'Bonus & Free Spins': 'Bónus e Rodadas Grátis',
 	'Buy Feature': 'Compra de função',
 	'General Rules': 'Regras gerais',
@@ -61,7 +61,7 @@ export default {
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 símbolos Bónus em qualquer posição nos rolos concedem 6 Rodadas Grátis.',
 	'4 Bonus symbols award 12 Free Spins.': '4 símbolos Bónus concedem 12 Rodadas Grátis.',
 	'5 Bonus symbols award 18 Free Spins.': '5 símbolos Bónus concedem 18 Rodadas Grátis.',
-	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Cada Rodada Grátis é uma Rodada Especial e coloca símbolos Wild ou Moeda nos rolos antes de estes pararem. Cada símbolo Bónus que apareça durante as Rodadas Grátis concede 1 Rodada Grátis adicional, sem limite de reativações.',
+	'Every Free Spin is a Kraken Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Cada Rodada Grátis é uma Rodada do Kraken e coloca símbolos Wild ou Moeda nos rolos antes de estes pararem. Cada símbolo Bónus que apareça durante as Rodadas Grátis concede 1 Rodada Grátis adicional, sem limite de reativações.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'A função de Rodadas Grátis pode ser comprada diretamente por __0__ a __1__ total. Uma função comprada decorre exatamente como uma ativada por símbolos Bónus, e o retorno ao jogador é o mesmo.',
 	'Only the highest win per __0__ is __1__.': 'Apenas o ganho mais alto por linha de pagamento é pago.',
 	'Simultaneous wins on different __0__ are added together.': 'Ganhos simultâneos em diferentes linhas de pagamento são somados.',
@@ -88,8 +88,12 @@ export default {
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Uma avaria anula todos os ganhos e jogadas. É necessária uma ligação à internet estável. Em caso de desconexão, recarregue o jogo para concluir quaisquer rondas incompletas. O retorno esperado é calculado com base em muitas jogadas. A visualização do jogo não representa qualquer dispositivo físico e destina-se apenas a fins ilustrativos. Os ganhos são liquidados de acordo com o montante recebido do Servidor de Jogo Remoto e não com base em eventos no navegador web.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Aparece com um valor de __0__ da sua aposta total. Os valores das moedas são somados e adicionados a qualquer ganho de linha.',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'O símbolo Moeda aparece com um valor apresentado na moeda, de __0__ da sua aposta total. As moedas não formam ganhos de linha — cada valor de moeda nos rolos é somado e atribuído como um pagamento adicional.',
-	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Qualquer rodada do jogo base pode ativar uma Rodada Especial. Nesse caso, o Kraken coloca símbolos adicionais nos rolos antes de estes pararem, numa de duas formas:',
+	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Qualquer rodada do jogo base pode ativar uma Rodada do Kraken. Nesse caso, o Kraken coloca símbolos adicionais nos rolos antes de estes pararem, numa de duas formas:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — são colocados 1 a 10 símbolos Wild nos rolos. As linhas de pagamento são depois avaliadas e pagas.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Moeda — são colocados 1 a 10 símbolos Moeda nos rolos. As linhas de pagamento são avaliadas primeiro e depois todos os valores das moedas são somados e atribuídos.',
-	'Every spin during the Free Spins feature is a Special Spin.': 'Durante as Rodadas Grátis, cada rodada é uma Rodada Especial.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Durante as Rodadas Grátis, cada rodada é uma Rodada do Kraken.',
+	// buy-bonus popup + confirmation (betModeMeta)
+	'BUY': 'COMPRAR',
+	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Ativa instantaneamente a função RODADAS GRÁTIS, em que cada rodada é uma Rodada do Kraken.',
+	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Ativa instantaneamente a função RODADAS GRÁTIS por 80x a tua aposta total. Cada Rodada Grátis é uma Rodada do Kraken, que adiciona símbolos Wild ou Moeda aos rolos. Os valores das moedas são atribuídos além dos ganhos de linha.',
 };

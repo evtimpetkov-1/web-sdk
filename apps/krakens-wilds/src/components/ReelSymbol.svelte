@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Container } from 'pixi-svelte';
+	import { Container, SpineProvider, SpineTrack } from 'pixi-svelte';
 	import { ResponsiveBitmapText } from 'components-pixi';
 	import Symbol from './Symbol.svelte';
 	import SymbolWrap from './SymbolWrap.svelte';
@@ -7,7 +7,7 @@
 	import { getSymbolInfo, getSymbolX } from '../game/utils';
 	import type { ReelSymbol } from '../game/stateGame.svelte';
 	import { getContext } from '../game/context';
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { SYMBOL_SIZE, WIN_FRAME_WIDTH, WIN_FRAME_HEIGHT } from '../game/constants';
 
 	type Props = {
 		reelIndex: number;
@@ -42,6 +42,9 @@
 			? props.reelSymbol.rawSymbol.multiplier
 			: undefined
 	);
+	const showWinFrame = $derived(
+		props.reelSymbol.symbolState === 'win' && props.reelSymbol.rawSymbol.name !== 'S',
+	);
 </script>
 
 <!--
@@ -51,6 +54,26 @@
 	same way — MovingWilds owns them and the board's W is never drawn.
 -->
 {#if !(context.stateGame.gameType === 'freegame' && props.reelSymbol.rawSymbol.name === 'W') && !hiddenByOverlay}
+	<!--
+		The win frame lives in its OWN wrap at zIndex -1, not inside the symbol's:
+		every wrap is a sibling in the board layer's container, so this is what
+		puts ALL frames under ALL winning symbols. Nested inside the symbol wrap
+		(the old layout), a neighbour's frame could render on top of this symbol —
+		whichever symbol entered its win state later sat above the earlier one's
+		whole subtree, frame included.
+	-->
+	{#if showWinFrame}
+		<SymbolWrap
+			x={getSymbolX(props.reelIndex)}
+			y={props.reelSymbol.symbolY()}
+			animating={true}
+			zIndex={-1}
+		>
+			<SpineProvider key="payframe" width={WIN_FRAME_WIDTH} height={WIN_FRAME_HEIGHT}>
+				<SpineTrack trackIndex={0} animationName="idle" loop />
+			</SpineProvider>
+		</SymbolWrap>
+	{/if}
 	<!--
 		`animating` picks the board layer: true = the unmasked, un-dimmed layer.
 		A symbol that has FINISHED its win animation goes to `postWinStatic`, and it

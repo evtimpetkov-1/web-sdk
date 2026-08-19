@@ -17,7 +17,7 @@
 <script lang="ts">
 	import { Tween } from 'svelte/motion';
 	import { waitForResolve } from 'utils-shared/wait';
-	import { Rectangle } from 'pixi-svelte';
+	import { Container, Rectangle } from 'pixi-svelte';
 	import { BoardContext } from 'components-shared';
 
 	import { getContext } from '../game/context';
@@ -213,17 +213,28 @@
 		<BoardContainer>
 			<BoardMask />
 			<BoardBase />
+			<!--
+				zIndex, not mount order, keeps this above the symbols: pixi-svelte appends
+				every newly mounted node to the END of the container, and the reels keep
+				remounting symbols as they cycle — so each symbol scrolling in after the
+				shade mounted would draw ON TOP of it, and spinning reels stayed at full
+				brightness under the kraken's overlay. Symbols sit at the default zIndex 0;
+				the anticipation columns keep their place above the dim at 20.
+			-->
 			{#if dimAlpha > 0}
 				<Rectangle
 					x={-12}
 					y={-12}
+					zIndex={10}
 					width={BOARD_SIZES.width + 30}
 					height={BOARD_SIZES.height + 20}
 					backgroundColor={0x000000}
 					alpha={dimAlpha}
 				/>
 			{/if}
-			<Anticipations />
+			<Container zIndex={20}>
+				<Anticipations />
+			</Container>
 		</BoardContainer>
 	</BoardContext>
 

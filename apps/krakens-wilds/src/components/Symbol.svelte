@@ -28,7 +28,6 @@
 		{symbolInfo}
 		x={props.x}
 		y={props.y}
-		showWinFrame={props.state === 'win' && props.rawSymbol.name !== 'S'}
 		listener={{
 			complete: props.oncomplete,
 			event: (_, event) => {

@@ -9,7 +9,10 @@
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
 	const { stateXstateDerived, eventEmitter } = context;
-	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
+	// deliberately larger than the standard UI_BASE_SIZE buttons — the buy
+	// entry point earns more presence than the utility buttons around it
+	const BUY_BONUS_SCALE = 1.2;
+	const sizes = { width: UI_BASE_SIZE * BUY_BONUS_SCALE, height: UI_BASE_SIZE * BUY_BONUS_SCALE };
 	const disabled = $derived(!stateXstateDerived.isIdle());
 	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
 	const hasBonusAssets = $derived('bonusActive' in context.stateApp.loadedAssets);
