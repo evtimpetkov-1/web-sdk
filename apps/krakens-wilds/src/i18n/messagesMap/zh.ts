@@ -1,47 +1,73 @@
 export default {
 	'HOME': '主页',
+	// PressToContinue
 	'PRESS ANYWHERE TO CONTINUE': '点击任意位置继续',
+	// FreeSpinIntro
 	'CONGRATULATIONS!': '恭喜！',
 	'YOU WON': '您赢得了',
+	// BoardFrame
 	'TOTAL WIN': '总赢额',
-	'RANDOM WILDS': '随机百搭',
-	'3 or more Bonus symbols anywhere on the reels trigger Free Spins': '转轴上任意位置出现3个或更多奖励符号即可触发免费旋转',
-	'Each Free Spin guarantees 1 to 10 Random Wilds on the reels': '每次免费旋转保证在转轴上出现1至10个随机百搭',
+	// LoadingScreen
+	'SPECIAL SPIN': '特殊旋转',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': '转轴上任意位置出现3、4或5个奖励符号，即可赢得6、12或18次免费旋转',
+	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': '海怪可能在任意一次旋转中来袭，在转轴上加入最多10个百搭或最多10个金币。每次免费旋转都是特殊旋转。',
+	// PayTable — headers
 	'Special Symbols': '特殊符号',
 	'Symbol Payouts': '符号赔付',
-
+	'Symbol Wins': '符号奖金',
 	'Pay Lines': '赔付线',
-
+	'Win Lines': '中奖线',
+	// PayTable — symbol names
 	'Wild': '百搭',
 	'Bonus': '奖励',
-	'Shark': '鲨鱼',
-	'Sea Turtle': '海龟',
-	'Pearl': '珍珠',
-	'Nautilus': '鹦鹉螺',
-	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': '替代除奖励以外的所有符号。在免费旋转期间，每次旋转会在转轴上放置1、2、3、4、5、6、7、8、9或10个随机百搭。',
+	'Trident': '三叉戟',
+	'Ship': '船',
+	'Anchor': '船锚',
+	'Message in a Bottle': '漂流瓶',
+	'Coin': '金币',
+	// PayTable — descriptions
+	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': '替代除奖励和金币以外的所有符号。在百搭特殊旋转中，转轴上会放置1至10个百搭。',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3个奖励 = 6次免费旋转\n4个奖励 = 12次免费旋转\n5个奖励 = 18次免费旋转',
-	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20条固定赔付线，从左到右。仅从最左侧转轴开始的相邻转轴上的符号计入。这不适用于奖励符号。',
-	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20条固定中奖线，从左到右。仅从最左侧转轴开始的相邻转轴上的符号计入。这不适用于奖励符号。',
+	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20条固定赔付线。奖金从最左侧转轴开始，在连续转轴上从左到右赔付。奖励符号在任意位置均可触发免费旋转。',
+	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20条固定中奖线。中奖从最左侧转轴开始，在连续转轴上从左到右计算。奖励符号在任意位置均可触发免费旋转。',
+	// GameRules — social mode variable words
+	'bet': '投注',
+	'play': '游戏金额',
+	'payout': '赔付',
+	'win': '奖金',
+	'payline': '赔付线',
+	'winline': '中奖线',
+	'paylines': '赔付线',
+	'winlines': '中奖线',
+	'paid': '支付',
+	'won': '赢得',
+	// GameRules — headers
 	'Game Overview': '游戏概述',
 	'Bet Mode': '投注模式',
-
+	'Play Mode': '游戏模式',
 	'Wild Symbol': '百搭符号',
+	'Coin Symbol': '金币符号',
+	'Special Spin': '特殊旋转',
 	'Bonus & Free Spins': '奖励与免费旋转',
+	'Buy Feature': '购买功能',
 	'General Rules': '一般规则',
 	'User Interface Guide': '用户界面指南',
 	'Disclaimer': '免责声明',
-	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Wins are evaluated from left to right on each __1__, starting from the leftmost reel. Only symbols on adjacent reels count. The highest win per __1__ is __2__.': 'Kraken\'s Wilds是一款5轴3行的视频老虎机，拥有20条固定赔付线。每条赔付线上的中奖从最左侧转轴开始，从左到右进行评估。仅相邻转轴上的符号计入。每条赔付线的最高奖金为已支付。',
-	'Base game: RTP 96.50%. Maximum win: 5,000x total __0__.': '基础游戏：RTP 96.50%。最大赢额：总投注的5,000倍。',
+	// GameRules — paragraphs
+	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds是一款5轴3行的视频老虎机，拥有20条固定赔付线。中奖组合从最左侧转轴开始，在连续转轴上从左到右形成。每条赔付线仅支付最高奖金。',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': '理论玩家回报率（RTP）为96.50%。最大赢额为总投注的5,000倍。',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': '所有赔付值均显示为总投注金额的倍数。',
-	'The Wild (Kraken) substitutes for all symbols except the Bonus symbol. Wild has its own __0__ values.': '百搭（海怪）替代除奖励符号以外的所有符号。百搭有自己的赔付值。',
+	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': '百搭（海怪）替代除奖励符号和金币符号以外的所有符号。百搭组合拥有自己的赔付值。',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '转轴上任意位置出现3个奖励符号可获得6次免费旋转。',
 	'4 Bonus symbols award 12 Free Spins.': '4个奖励符号可获得12次免费旋转。',
 	'5 Bonus symbols award 18 Free Spins.': '5个奖励符号可获得18次免费旋转。',
-	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': '在免费旋转期间，每次旋转开始时会在转轴上放置1、2、3、4、5、6、7、8、9或10个随机百搭。免费旋转期间每出现一个奖励符号即额外获得+1次免费旋转。重新触发次数没有限制。',
-	'Only the highest win per __0__ is __1__.': '每条赔付线仅计最高奖金已支付。',
+	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': '每次免费旋转都是特殊旋转，会在转轴停止前放置百搭或金币符号。免费旋转期间每出现一个奖励符号即额外奖励1次免费旋转，重新触发次数不受限制。',
+	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': '免费旋转功能可以直接以总__1__的__0__购买。购买的功能与由奖励符号触发的功能完全相同，玩家回报率也相同。',
+	'Only the highest win per __0__ is __1__.': '每条赔付线仅支付最高奖金。',
 	'Simultaneous wins on different __0__ are added together.': '不同赔付线上的同时中奖将相加。',
 	'__0__ wins and Bonus wins are added together.': '赔付线奖金和奖励奖金将相加。',
-	'Bonus symbols __0__ in any position (not limited to __1__).': '奖励符号在任意位置赔付（不限于赔付线）。',
+	'Bonus symbols award Free Spins in any position; they do not need to land on a __0__.': '奖励符号在任意位置均可触发免费旋转，无需落在赔付线上。',
+	// GameRules — UI guide
 	'Spin — Start a spin at the current __0__ amount.': '旋转 — 以当前投注金额开始旋转。',
 	'Stop — Stop the reels early during a spin.': '停止 — 在旋转过程中提前停止转轴。',
 	'Auto Spin — Automatically spin a set number of times.': '自动旋转 — 自动旋转设定的次数。',
@@ -53,11 +79,17 @@ export default {
 	'Sound — Toggle game sounds on or off.': '声音 — 开启或关闭游戏声音。',
 	'Settings — Adjust game settings.': '设置 — 调整游戏设置。',
 	'Pay Table': '赔付表',
-
-	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': '故障将使所有奖金和游戏无效。需要稳定的互联网连接。如果断开连接，请重新加载游戏以完成未完成的回合。预期回报率是基于多次游戏计算的。游戏显示不代表任何实体设备，仅供说明之用。奖金根据从远程游戏服务器收到的金额结算，而非根据网页浏览器中的事件。',
-
+	'Win Table': '中奖表',
 	// Replay
 	'REPLAY': '回放',
 	'NO WIN': '未中奖',
 	'PLAY AGAIN': '再玩一次',
+	// GameRules — disclaimer
+	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': '故障将使所有奖金和游戏无效。需要稳定的互联网连接。如果断开连接，请重新加载游戏以完成未完成的回合。预期回报率是基于多次游戏计算的。游戏显示不代表任何实体设备，仅供说明之用。奖金根据从远程游戏服务器收到的金额结算，而非根据网页浏览器中的事件。',
+	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': '以您总投注的__0__值出现。金币值将被累加并计入任何连线奖金。',
+	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': '金币符号出现时会显示其面值，为您总投注的__0__。金币不构成连线奖金——转轴上所有金币的面值将被累加，并作为额外赔付发放。',
+	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': '基础游戏的任何一次旋转都可能触发特殊旋转。触发时，海怪会在转轴停止前以下列两种形式之一放置额外符号：',
+	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': '百搭 — 转轴上放置1至10个百搭符号。随后计算赔付线并进行支付。',
+	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': '金币 — 转轴上放置1至10个金币符号。先计算赔付线，然后累加并发放所有金币面值。',
+	'Every spin during the Free Spins feature is a Special Spin.': '免费旋转期间，每次旋转都是特殊旋转。',
 };

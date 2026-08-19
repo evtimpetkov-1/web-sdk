@@ -2,6 +2,7 @@
 	import { SpineProvider, SpineTrack, Container } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
+	import WildLandDust from './WildLandDust.svelte';
 	import {
 		SYMBOL_INFO_MAP,
 		SYMBOL_SIZE,
@@ -54,4 +55,11 @@
 			/>
 		</SpineProvider>
 	</Container>
+
+	<!--
+		After the wild, so the dust is thrown up IN FRONT of it. Emits only while the
+		drop plays — `landed` flips on the spine's complete — and the puffs already in
+		flight finish their own lifetime, so the cloud settles instead of being cut.
+	-->
+	<WildLandDust x={wild.x.current} y={wild.y.current} emit={!wild.landed && !isWinning} />
 {/each}

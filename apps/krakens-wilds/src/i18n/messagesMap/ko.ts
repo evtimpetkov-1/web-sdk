@@ -1,47 +1,73 @@
 export default {
 	'HOME': '홈',
+	// PressToContinue
 	'PRESS ANYWHERE TO CONTINUE': '아무 곳이나 눌러 계속하기',
+	// FreeSpinIntro
 	'CONGRATULATIONS!': '축하합니다!',
 	'YOU WON': '획득 금액',
+	// BoardFrame
 	'TOTAL WIN': '총 획득 금액',
-	'RANDOM WILDS': '랜덤 와일드',
-	'3 or more Bonus symbols anywhere on the reels trigger Free Spins': '릴의 아무 위치에 보너스 심볼이 3개 이상 나타나면 프리 스핀이 발동됩니다',
-	'Each Free Spin guarantees 1 to 10 Random Wilds on the reels': '각 프리 스핀에서 릴에 1~10개의 랜덤 와일드가 보장됩니다',
+	// LoadingScreen
+	'SPECIAL SPIN': '스페셜 스핀',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': '릴의 아무 위치에 보너스 심볼 3, 4, 5개가 나타나면 프리 스핀 6, 12, 18회를 획득합니다',
+	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': '크라켄은 어떤 스핀에서도 공격하여 최대 10개의 와일드 또는 최대 10개의 코인을 릴에 추가할 수 있습니다. 모든 프리 스핀은 스페셜 스핀입니다.',
+	// PayTable — headers
 	'Special Symbols': '특수 심볼',
 	'Symbol Payouts': '심볼 배당',
-
+	'Symbol Wins': '심볼 당첨',
 	'Pay Lines': '페이 라인',
-
+	'Win Lines': '윈 라인',
+	// PayTable — symbol names
 	'Wild': '와일드',
 	'Bonus': '보너스',
-	'Shark': '상어',
-	'Sea Turtle': '바다거북',
-	'Pearl': '진주',
-	'Nautilus': '앵무조개',
-	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': '보너스를 제외한 모든 심볼을 대체합니다. 프리 스핀 중에는 각 스핀마다 릴에 1, 2, 3, 4, 5, 6, 7, 8, 9 또는 10개의 랜덤 와일드가 배치됩니다.',
+	'Trident': '삼지창',
+	'Ship': '배',
+	'Anchor': '닻',
+	'Message in a Bottle': '병 속의 편지',
+	'Coin': '코인',
+	// PayTable — descriptions
+	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': '보너스와 코인을 제외한 모든 심볼을 대체합니다. 와일드 스페셜 스핀에서는 1~10개의 와일드가 릴에 배치됩니다.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 보너스 = 6 프리 스핀\n4 보너스 = 12 프리 스핀\n5 보너스 = 18 프리 스핀',
-	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20개의 고정 페이 라인, 왼쪽에서 오른쪽으로. 가장 왼쪽 릴부터 시작하는 인접 릴의 심볼만 인정됩니다. 보너스 심볼에는 적용되지 않습니다.',
-	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20개의 고정 윈 라인, 왼쪽에서 오른쪽으로. 가장 왼쪽 릴부터 시작하는 인접 릴의 심볼만 인정됩니다. 보너스 심볼에는 적용되지 않습니다.',
+	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20개의 고정 페이 라인. 당첨금은 가장 왼쪽 릴부터 연속된 릴에서 왼쪽에서 오른쪽으로 지급됩니다. 보너스 심볼은 어느 위치에서든 프리 스핀을 부여합니다.',
+	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20개의 고정 윈 라인. 당첨은 가장 왼쪽 릴부터 연속된 릴에서 왼쪽에서 오른쪽으로 계산됩니다. 보너스 심볼은 어느 위치에서든 프리 스핀을 부여합니다.',
+	// GameRules — social mode variable words
+	'bet': '베팅',
+	'play': '플레이',
+	'payout': '배당',
+	'win': '당첨',
+	'payline': '페이 라인',
+	'winline': '윈 라인',
+	'paylines': '페이 라인',
+	'winlines': '윈 라인',
+	'paid': '지급',
+	'won': '획득',
+	// GameRules — headers
 	'Game Overview': '게임 개요',
 	'Bet Mode': '베팅 모드',
-
+	'Play Mode': '플레이 모드',
 	'Wild Symbol': '와일드 심볼',
+	'Coin Symbol': '코인 심볼',
+	'Special Spin': '스페셜 스핀',
 	'Bonus & Free Spins': '보너스 & 프리 스핀',
+	'Buy Feature': '피처 구매',
 	'General Rules': '일반 규칙',
 	'User Interface Guide': '사용자 인터페이스 가이드',
 	'Disclaimer': '면책 조항',
-	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Wins are evaluated from left to right on each __1__, starting from the leftmost reel. Only symbols on adjacent reels count. The highest win per __1__ is __2__.': 'Kraken\'s Wilds는 5릴, 3행, 20개의 고정 페이 라인을 갖춘 비디오 슬롯입니다. 각 페이 라인에서 가장 왼쪽 릴부터 왼쪽에서 오른쪽으로 당첨이 평가됩니다. 인접 릴의 심볼만 인정됩니다. 페이 라인당 최고 당첨은 지급됨입니다.',
-	'Base game: RTP 96.50%. Maximum win: 5,000x total __0__.': '기본 게임: RTP 96.50%. 최대 당첨: 총 베팅의 5,000배.',
+	// GameRules — paragraphs
+	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds는 5릴, 3행, 20개의 고정 페이 라인을 갖춘 비디오 슬롯입니다. 당첨 조합은 가장 왼쪽 릴부터 연속된 릴에서 왼쪽에서 오른쪽으로 형성됩니다. 각 페이 라인에서 최고 당첨만 지급됩니다.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': '이론적 환원율(RTP)은 96.50%입니다. 최대 당첨금은 총 베팅의 5,000배입니다.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': '모든 배당 값은 총 베팅 금액의 배수로 표시됩니다.',
-	'The Wild (Kraken) substitutes for all symbols except the Bonus symbol. Wild has its own __0__ values.': '와일드(크라켄)는 보너스 심볼을 제외한 모든 심볼을 대체합니다. 와일드에는 고유한 배당 값이 있습니다.',
+	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': '와일드(크라켄)는 보너스 및 코인 심볼을 제외한 모든 심볼을 대체합니다. 와일드 조합은 고유한 배당 값을 지급합니다.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '릴의 아무 위치에 보너스 심볼 3개가 나타나면 프리 스핀 6회가 부여됩니다.',
 	'4 Bonus symbols award 12 Free Spins.': '보너스 심볼 4개는 프리 스핀 12회를 부여합니다.',
 	'5 Bonus symbols award 18 Free Spins.': '보너스 심볼 5개는 프리 스핀 18회를 부여합니다.',
-	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': '프리 스핀 중 각 스핀 시작 시 릴에 1, 2, 3, 4, 5, 6, 7, 8, 9 또는 10개의 랜덤 와일드가 배치됩니다. 프리 스핀 중 나타나는 보너스 심볼마다 추가 프리 스핀이 +1 부여됩니다. 재발동 횟수에 제한이 없습니다.',
-	'Only the highest win per __0__ is __1__.': '페이 라인당 최고 당첨만 지급됨됩니다.',
+	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': '모든 프리 스핀은 스페셜 스핀이며, 릴이 멈추기 전에 와일드 또는 코인 심볼이 배치됩니다. 프리 스핀 중 나타나는 각 보너스 심볼은 프리 스핀 1회를 추가로 제공하며, 재발동 횟수에 제한은 없습니다.',
+	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': '프리 스핀 기능은 총 __1__의 __0__로 직접 구매할 수 있습니다. 구매한 기능은 보너스 심볼로 발동된 것과 완전히 동일하게 진행되며, 환원율도 같습니다.',
+	'Only the highest win per __0__ is __1__.': '페이 라인당 최고 당첨만 지급됩니다.',
 	'Simultaneous wins on different __0__ are added together.': '서로 다른 페이 라인에서의 동시 당첨은 합산됩니다.',
 	'__0__ wins and Bonus wins are added together.': '페이 라인 당첨과 보너스 당첨은 합산됩니다.',
-	'Bonus symbols __0__ in any position (not limited to __1__).': '보너스 심볼은 모든 위치에서 배당됩니다(페이 라인에 한정되지 않음).',
+	'Bonus symbols award Free Spins in any position; they do not need to land on a __0__.': '보너스 심볼은 어느 위치에서든 프리 스핀을 부여하며, 페이 라인 위에 나타날 필요가 없습니다.',
+	// GameRules — UI guide
 	'Spin — Start a spin at the current __0__ amount.': '스핀 — 현재 베팅 금액으로 스핀을 시작합니다.',
 	'Stop — Stop the reels early during a spin.': '정지 — 스핀 중 릴을 일찍 정지합니다.',
 	'Auto Spin — Automatically spin a set number of times.': '오토 스핀 — 설정된 횟수만큼 자동으로 스핀합니다.',
@@ -53,11 +79,17 @@ export default {
 	'Sound — Toggle game sounds on or off.': '사운드 — 게임 사운드를 켜거나 끕니다.',
 	'Settings — Adjust game settings.': '설정 — 게임 설정을 조정합니다.',
 	'Pay Table': '페이 테이블',
-
-	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': '오류 발생 시 모든 당첨 및 플레이가 무효화됩니다. 안정적인 인터넷 연결이 필요합니다. 연결이 끊긴 경우 게임을 다시 로드하여 완료되지 않은 라운드를 마무리하십시오. 기대 수익률은 다수의 플레이를 기준으로 계산됩니다. 게임 화면은 물리적 장치를 나타내지 않으며 설명 목적으로만 사용됩니다. 당첨금은 웹 브라우저 내 이벤트가 아닌 원격 게임 서버에서 수신한 금액에 따라 정산됩니다.',
-
+	'Win Table': '윈 테이블',
 	// Replay
 	'REPLAY': '리플레이',
 	'NO WIN': '당첨 없음',
 	'PLAY AGAIN': '다시 플레이',
+	// GameRules — disclaimer
+	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': '오류 발생 시 모든 당첨 및 플레이가 무효화됩니다. 안정적인 인터넷 연결이 필요합니다. 연결이 끊긴 경우 게임을 다시 로드하여 완료되지 않은 라운드를 마무리하십시오. 기대 수익률은 다수의 플레이를 기준으로 계산됩니다. 게임 화면은 물리적 장치를 나타내지 않으며 설명 목적으로만 사용됩니다. 당첨금은 웹 브라우저 내 이벤트가 아닌 원격 게임 서버에서 수신한 금액에 따라 정산됩니다.',
+	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': '총 베팅의 __0__ 값으로 나타납니다. 코인 값은 합산되어 라인 당첨금에 더해집니다.',
+	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': '코인 심볼은 코인에 표시된 값으로 나타나며, 총 베팅의 __0__입니다. 코인은 라인 당첨을 만들지 않습니다 — 릴에 있는 모든 코인 값이 합산되어 추가 배당으로 지급됩니다.',
+	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': '기본 게임의 모든 스핀에서 스페셜 스핀이 발동될 수 있습니다. 발동되면 크라켄이 릴이 멈추기 전에 다음 두 가지 형태 중 하나로 추가 심볼을 배치합니다:',
+	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': '와일드 — 1~10개의 와일드 심볼이 릴에 배치됩니다. 이후 페이 라인이 평가되어 배당이 지급됩니다.',
+	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': '코인 — 1~10개의 코인 심볼이 릴에 배치됩니다. 먼저 페이 라인이 평가된 후, 모든 코인 값이 합산되어 지급됩니다.',
+	'Every spin during the Free Spins feature is a Special Spin.': '프리 스핀 동안에는 모든 스핀이 스페셜 스핀입니다.',
 };

@@ -67,7 +67,7 @@
 		wordWrap: true,
 		wordWrapWidth: 380 * s,
 		breakWords: true,
-		fontSize: Math.max(19 * s, 1),
+		fontSize: Math.max(16.5 * s, 1),
 	} satisfies TextStyleOptions);
 </script>
 
@@ -99,19 +99,25 @@
 					anchor={{ x: 0.5, y: 0 }}
 					y={124 * s}
 					maxWidth={380 * s}
-					maxHeight={95 * s}
+					maxHeight={76 * s}
 					style={bodyStyle}
 				/>
 			</Container>
 			<Container x={cx + 260 * s} y={cy + 55 * s}>
-				<Sprite key="w" anchor={0.5} width={145 * s} height={145 * s} />
-				<ResponsiveText text={i18nDerived.randomWilds()} anchor={{ x: 0.5, y: 0 }} y={88 * s} maxWidth={350 * s} style={headerStyle} />
+				<!--
+					The Special Spin drops either kind, so the panel shows both. Each is 124
+					wide, so the offset has to clear 62 before there is any gap at all — at
+					the original 46 the coin sat on top of the wild's edge.
+				-->
+				<Sprite key="w" anchor={0.5} x={-70 * s} width={124 * s} height={124 * s} />
+				<Sprite key="c" anchor={0.5} x={70 * s} width={124 * s} height={124 * s} />
+				<ResponsiveText text={i18nDerived.specialSpin()} anchor={{ x: 0.5, y: 0 }} y={88 * s} maxWidth={350 * s} style={headerStyle} />
 				<ResponsiveText
-					text={i18nDerived.loadingWildsDesc()}
+					text={i18nDerived.loadingSpecialDesc()}
 					anchor={{ x: 0.5, y: 0 }}
 					y={124 * s}
 					maxWidth={380 * s}
-					maxHeight={95 * s}
+					maxHeight={76 * s}
 					style={bodyStyle}
 				/>
 			</Container>
@@ -125,19 +131,25 @@
 					anchor={{ x: 0.5, y: 0 }}
 					y={108 * s}
 					maxWidth={380 * s}
-					maxHeight={95 * s}
+					maxHeight={76 * s}
 					style={bodyStyle}
 				/>
 			</Container>
-			<Container x={cx} y={cy + 260 * s}>
-				<Sprite key="w" anchor={0.5} width={145 * s} height={145 * s} />
-				<ResponsiveText text={i18nDerived.randomWilds()} anchor={{ x: 0.5, y: 0 }} y={88 * s} maxWidth={350 * s} style={headerStyle} />
+			<Container x={cx} y={cy + 240 * s}>
+				<!--
+					The Special Spin drops either kind, so the panel shows both. Each is 124
+					wide, so the offset has to clear 62 before there is any gap at all — at
+					the original 46 the coin sat on top of the wild's edge.
+				-->
+				<Sprite key="w" anchor={0.5} x={-70 * s} width={124 * s} height={124 * s} />
+				<Sprite key="c" anchor={0.5} x={70 * s} width={124 * s} height={124 * s} />
+				<ResponsiveText text={i18nDerived.specialSpin()} anchor={{ x: 0.5, y: 0 }} y={88 * s} maxWidth={350 * s} style={headerStyle} />
 				<ResponsiveText
-					text={i18nDerived.loadingWildsDesc()}
+					text={i18nDerived.loadingSpecialDesc()}
 					anchor={{ x: 0.5, y: 0 }}
 					y={124 * s}
 					maxWidth={380 * s}
-					maxHeight={95 * s}
+					maxHeight={76 * s}
 					style={bodyStyle}
 				/>
 			</Container>

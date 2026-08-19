@@ -48,7 +48,13 @@
 
 	context.eventEmitter.subscribeOnMount({
 		winShow: () => (show = true),
-		winHide: () => (show = false),
+		winHide: () => {
+			show = false;
+			// the box is gone, so the count-up loop goes with it. It was only ever
+			// stopped when the count-up finished, so a presentation cut short — a new
+			// spin, an abort — left sfx_countup looping under the game.
+			context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_countup' });
+		},
 		winUpdate: async (emitterEvent) => {
 			requestExitAnimation = false;
 			amount = emitterEvent.amount;

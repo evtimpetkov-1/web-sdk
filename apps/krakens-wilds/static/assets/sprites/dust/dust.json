@@ -1,0 +1,82 @@
+{
+ "frames": {
+  "puff0.png": {
+   "frame": {
+    "x": 2,
+    "y": 2,
+    "w": 200,
+    "h": 200
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 200
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 200
+   }
+  },
+  "puff1.png": {
+   "frame": {
+    "x": 204,
+    "y": 2,
+    "w": 200,
+    "h": 200
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 200
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 200
+   }
+  },
+  "puff2.png": {
+   "frame": {
+    "x": 406,
+    "y": 2,
+    "w": 200,
+    "h": 200
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 200,
+    "h": 200
+   },
+   "sourceSize": {
+    "w": 200,
+    "h": 200
+   }
+  }
+ },
+ "animations": {
+  "dust": [
+   "puff0.png",
+   "puff1.png",
+   "puff2.png"
+  ]
+ },
+ "meta": {
+  "app": "fsfx-puff-extract",
+  "version": "1.0",
+  "image": "dust.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 608,
+   "h": 204
+  },
+  "scale": "1"
+ }
+}

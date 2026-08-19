@@ -13,26 +13,39 @@
 
 	const blurFilter = new BlurFilter({ strength: 8, quality: 4 });
 	const bgFilters = $derived(context.stateLayout.showLoadingScreen ? [blurFilter] : []);
+
+	/**
+	 * Cover-fit a background to the canvas, measuring the texture instead of trusting
+	 * a number typed in here. Each background's native size used to be hardcoded next
+	 * to its sprite, so swapping the art for a differently-shaped file silently
+	 * stretched it — the FS art went from 1448x1086 to 1536x1024 in one such swap.
+	 * The fallbacks are only for the frames before the texture resolves.
+	 */
+	const cover = (key: string, fallbackWidth: number, fallbackHeight: number) => {
+		const texture = context.stateApp.loadedAssets?.[key] as
+			| { width?: number; height?: number }
+			| undefined;
+		const width = texture?.width || fallbackWidth;
+		const height = texture?.height || fallbackHeight;
+		const scale = Math.max(canvas.width / width, canvas.height / height);
+		return { width: width * scale, height: height * scale };
+	};
 </script>
 
 <Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />
 
 <FadeContainer label="BackgroundContainer" show={showBaseBackground} duration={SECOND} zIndex={-2} filters={bgFilters}>
 	{#if isPortrait}
-		{@const scale = Math.max(canvas.width / 941, canvas.height / 1672)}
-		<Sprite key="baseGameBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={941 * scale} height={1672 * scale} />
+		<Sprite key="baseGameBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} {...cover('baseGameBgPortrait', 941, 1672)} />
 	{:else}
-		{@const scale = Math.max(canvas.width / 1920, canvas.height / 1072)}
-		<Sprite key="baseGameBgDesktop" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={1920 * scale} height={1072 * scale} />
+		<Sprite key="baseGameBgDesktop" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} {...cover('baseGameBgDesktop', 1920, 1072)} />
 	{/if}
 </FadeContainer>
 
 <FadeContainer label="FeatureBackgroundContainer" show={showFeatureBackground} duration={SECOND} zIndex={-1}>
 	{#if isPortrait}
-		{@const scale = Math.max(canvas.width / 941, canvas.height / 1672)}
-		<Sprite key="freeSpinBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={941 * scale} height={1672 * scale} />
+		<Sprite key="freeSpinBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} {...cover('freeSpinBgPortrait', 1024, 1536)} />
 	{:else}
-		{@const scale = Math.max(canvas.width / 1448, canvas.height / 1086)}
-		<Sprite key="freeSpinBg" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} width={1448 * scale} height={1086 * scale} />
+		<Sprite key="freeSpinBg" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} {...cover('freeSpinBg', 1536, 1024)} />
 	{/if}
 </FadeContainer>

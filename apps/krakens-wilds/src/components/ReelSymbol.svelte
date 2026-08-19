@@ -25,11 +25,17 @@
 		context.stateGame.retriggerExtra > 0
 	);
 	// Coin value sits on the coin face. The coin arrives BLANK: the value is struck
-	// on only once `coin_land` has played out, so the reveal is the payoff of the
-	// landing animation rather than something the coin was already carrying.
+	// on only once the coin has finished landing, so it is never carrying a value it
+	// has not revealed. On a kraken spin this symbol is hidden anyway — the overlay
+	// copy owns the reveal — but a coin landing without one still behaves.
 	// ('land' is the animation, 'spin' is in-flight on the reel — neither shows it.)
 	const coinValueHidden = $derived(
 		props.reelSymbol.symbolState === 'spin' || props.reelSymbol.symbolState === 'land',
+	);
+	const hiddenByOverlay = $derived(
+		context.stateGame.overlaySymbols.some(
+			(symbol) => symbol.name === props.reelSymbol.rawSymbol.name,
+		),
 	);
 	const coinMultiplier = $derived(
 		props.reelSymbol.rawSymbol.name === 'C' && !coinValueHidden
@@ -38,7 +44,13 @@
 	);
 </script>
 
-{#if !(context.stateGame.gameType === 'freegame' && props.reelSymbol.rawSymbol.name === 'W')}
+<!--
+	Hidden while the kraken's overlay owns this kind of symbol: the sticky copy on top
+	is the one the player sees land, reveal and pay, and drawing the real one as well
+	would double it up and pop its value on at the reel stop. Free-spin wilds work the
+	same way — MovingWilds owns them and the board's W is never drawn.
+-->
+{#if !(context.stateGame.gameType === 'freegame' && props.reelSymbol.rawSymbol.name === 'W') && !hiddenByOverlay}
 	<!--
 		`animating` picks the board layer: true = the unmasked, un-dimmed layer.
 		A symbol that has FINISHED its win animation goes to `postWinStatic`, and it

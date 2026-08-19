@@ -4,6 +4,8 @@
 	import { stateModal, stateUrlDerived, stateBet } from 'state-shared';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { i18nDerived } from '../i18n/i18nDerived';
+	import config from '../game/config';
+	import { COIN_MULTIPLIERS } from '../game/constants';
 
 	const imgW = new URL('../../assets/paytable/w.webp', import.meta.url).href;
 	const imgS = new URL('../../assets/paytable/s.webp', import.meta.url).href;
@@ -15,18 +17,46 @@
 	const imgL2 = new URL('../../assets/paytable/l2.webp', import.meta.url).href;
 	const imgL3 = new URL('../../assets/paytable/l3.webp', import.meta.url).href;
 	const imgL4 = new URL('../../assets/paytable/l4.webp', import.meta.url).href;
+	const imgC = new URL('../../assets/paytable/c.webp', import.meta.url).href;
 
 	const social = $derived(stateUrlDerived.social());
 	const title = $derived(social ? i18nDerived.symbolWins() : i18nDerived.payLinesHeader());
+	// quoted off the one list of coin values, never retyped in prose
+	const coinValues = COIN_MULTIPLIERS.map((m) => `${m}x`);
+	const coinList = `${coinValues.slice(0, -1).join(', ')} or ${coinValues[coinValues.length - 1]}`;
 	const bet = $derived(stateBet.betAmount);
+	// social mode must not say "bet" — same swap the rules page does
+	const betLabel = $derived(social ? i18nDerived.playWord() : i18nDerived.betWord());
 	const formatWin = (multiplier: number) => numberToCurrencyString(multiplier * bet);
+
+	/**
+	 * Payouts come straight from `config.symbols`, which is the same table the math
+	 * is built from. They used to be typed out again here, and the two drifted: this
+	 * page was still showing the pre-v2 values (L1 5-OAK at 5x when the game pays 4x)
+	 * long after the math had moved on. Never hardcode a payout in this file.
+	 */
+	const paysOf = (symbolName: keyof typeof config.symbols) => {
+		const entries = (config.symbols[symbolName] as { paytable?: Record<string, number>[] })
+			.paytable;
+		return Object.fromEntries(
+			(entries ?? []).flatMap((entry) => Object.entries(entry)),
+		) as Record<string, number>;
+	};
 
 	const specialSymbols = $derived([
 		{
 			img: imgW,
 			name: i18nDerived.wild(),
-			pays: { 5: 50, 4: 10, 3: 4 },
+			pays: paysOf('W'),
 			description: i18nDerived.wildDesc(),
+		},
+		{
+			img: imgC,
+			name: i18nDerived.coin(),
+			description: i18nDerived
+				.coinDesc()
+				.replace('__0__', coinList)
+				.replace('__1__', betLabel),
 		},
 		{
 			img: imgS,
@@ -36,38 +66,18 @@
 	]);
 
 	const symbols = $derived([
-		{ img: imgH1, name: i18nDerived.trident(), pays: { 5: 50, 4: 10, 3: 4 } },
-		{ img: imgH2, name: i18nDerived.ship(), pays: { 5: 25, 4: 5, 3: 2.5 } },
-		{ img: imgH3, name: i18nDerived.anchor(), pays: { 5: 12.5, 4: 3, 3: 2 } },
-		{ img: imgH4, name: i18nDerived.bottle(), pays: { 5: 7.5, 4: 2.5, 3: 1 } },
-		{ img: imgL1, name: 'A', pays: { 5: 5, 4: 2, 3: 0.6 } },
-		{ img: imgL2, name: 'K', pays: { 5: 5, 4: 2, 3: 0.6 } },
-		{ img: imgL3, name: 'Q', pays: { 5: 4, 4: 1, 3: 0.3 } },
-		{ img: imgL4, name: 'J', pays: { 5: 4, 4: 1, 3: 0.3 } },
+		{ img: imgH1, name: i18nDerived.trident(), pays: paysOf('H1') },
+		{ img: imgH2, name: i18nDerived.ship(), pays: paysOf('H2') },
+		{ img: imgH3, name: i18nDerived.anchor(), pays: paysOf('H3') },
+		{ img: imgH4, name: i18nDerived.bottle(), pays: paysOf('H4') },
+		{ img: imgL1, name: 'A', pays: paysOf('L1') },
+		{ img: imgL2, name: 'K', pays: paysOf('L2') },
+		{ img: imgL3, name: 'Q', pays: paysOf('L3') },
+		{ img: imgL4, name: 'J', pays: paysOf('L4') },
 	]);
 
-	const paylines = [
-		[1, 1, 1, 1, 1],
-		[0, 0, 0, 0, 0],
-		[2, 2, 2, 2, 2],
-		[0, 1, 2, 1, 0],
-		[2, 1, 0, 1, 2],
-		[1, 0, 0, 0, 1],
-		[1, 2, 2, 2, 1],
-		[0, 0, 1, 2, 2],
-		[2, 2, 1, 0, 0],
-		[1, 2, 1, 0, 1],
-		[1, 0, 1, 2, 1],
-		[0, 1, 1, 1, 0],
-		[2, 1, 1, 1, 2],
-		[0, 1, 0, 1, 0],
-		[2, 1, 2, 1, 2],
-		[1, 1, 0, 1, 1],
-		[1, 1, 2, 1, 1],
-		[0, 0, 2, 0, 0],
-		[2, 2, 0, 2, 2],
-		[0, 2, 2, 2, 0],
-	];
+	// Same story as the payouts: the 20 lines live in config, not twice.
+	const paylines = Object.values(config.paylines);
 
 </script>
 
@@ -189,10 +199,10 @@
 		text-transform: uppercase;
 	}
 
-	/* Special symbols — 2 cards side by side */
+	/* Special symbols — Wild, Coin, Bonus */
 	.special-grid {
 		display: grid;
-		grid-template-columns: repeat(2, 1fr);
+		grid-template-columns: repeat(3, 1fr);
 		gap: 0.75rem;
 	}
 

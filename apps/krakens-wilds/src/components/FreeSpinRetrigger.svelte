@@ -9,7 +9,7 @@
 	import { SpineProvider, SpineTrack } from 'pixi-svelte';
 	import { Tween } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
-	import { waitForTimeout } from 'utils-shared/wait';
+	import { waitForTimeout, waitForResolve } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
 	import { CELL_W, CELL_H, SYMBOL_SIZE, REEL_PADDING, BOARD_SIZES } from '../game/constants';
@@ -34,6 +34,25 @@
 	const plusScale = new Tween(0);
 	// full-screen dim behind the splash to focus attention on it
 	const shadeAlpha = new Tween(0);
+
+	/**
+	 * The splash is driven by the spine's `complete` callbacks, which are detached
+	 * from the emitter handler. This bridges the two so `freeSpinRetriggerShow`
+	 * only resolves once the card has actually left the screen — the book event
+	 * queue is what waits on it, and without that the next free spin spun up
+	 * behind the shade (see bookEventHandlerMap.freeSpinRetrigger).
+	 */
+	let splashComplete: (() => void) | null = null;
+	const finishSplash = () => {
+		splashComplete?.();
+		splashComplete = null;
+	};
+
+	// retrigger_in 1.0s + idle hold 3.0s + retrigger_out 0.45s. Used only as a
+	// failsafe: if the skeleton ever fails to fire a `complete` the round must not
+	// hang on a splash that is already gone.
+	const SPLASH_TOTAL_MS = 1000 + 3000 + 450;
+	const SPLASH_TIMEOUT_MS = SPLASH_TOTAL_MS + 1000;
 
 	context.eventEmitter.subscribeOnMount({
 		freeSpinRetriggerShow: async (emitterEvent) => {
@@ -60,16 +79,29 @@
 				label.scale.set(1);
 			}
 
-			await waitForTimeout(400);
+			// The per-position labels play alongside the splash rather than after it,
+			// so they are run as their own sequence and both are awaited together.
+			const labelsDone = (async () => {
+				await waitForTimeout(400);
 
-			// Float up + fade out
-			for (const label of newLabels) {
-				label.y.set(-CELL_H * 0.6);
-				label.alpha.set(0);
-			}
+				// Float up + fade out
+				for (const label of newLabels) {
+					label.y.set(-CELL_H * 0.6);
+					label.alpha.set(0);
+				}
 
-			await waitForTimeout(900);
-			labels = [];
+				await waitForTimeout(900);
+				labels = [];
+			})();
+
+			await Promise.all([
+				labelsDone,
+				Promise.race([
+					waitForResolve((resolve) => (splashComplete = resolve)),
+					waitForTimeout(SPLASH_TIMEOUT_MS),
+				]),
+			]);
+			splashComplete = null;
 		},
 	});
 </script>
@@ -101,6 +133,7 @@
 							splashAnim = 'retrigger_out';
 						} else if (splashAnim === 'retrigger_out') {
 							splashAnim = null;
+							finishSplash();
 						}
 					},
 				}}

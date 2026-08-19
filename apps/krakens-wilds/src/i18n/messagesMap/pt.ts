@@ -1,47 +1,73 @@
 export default {
 	'HOME': 'INÍCIO',
+	// PressToContinue
 	'PRESS ANYWHERE TO CONTINUE': 'TOQUE EM QUALQUER LUGAR PARA CONTINUAR',
+	// FreeSpinIntro
 	'CONGRATULATIONS!': 'PARABÉNS!',
 	'YOU WON': 'VOCÊ GANHOU',
+	// BoardFrame
 	'TOTAL WIN': 'GANHO TOTAL',
-	'RANDOM WILDS': 'WILDS ALEATÓRIOS',
-	'3 or more Bonus symbols anywhere on the reels trigger Free Spins': '3 ou mais símbolos Bónus em qualquer posição nos rolos ativam Rodadas Grátis',
-	'Each Free Spin guarantees 1 to 10 Random Wilds on the reels': 'Cada Rodada Grátis garante de 1 a 10 Wilds Aleatórios nos rolos',
+	// LoadingScreen
+	'SPECIAL SPIN': 'RODADA ESPECIAL',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Obtenha 3, 4 ou 5 símbolos Bónus em qualquer posição nos rolos para ganhar 6, 12 ou 18 Rodadas Grátis',
+	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'O Kraken pode atacar em qualquer rodada, adicionando até 10 Wilds ou até 10 moedas aos rolos. Cada Rodada Grátis é uma Rodada Especial.',
+	// PayTable — headers
 	'Special Symbols': 'Símbolos especiais',
 	'Symbol Payouts': 'Pagamentos dos símbolos',
-
+	'Symbol Wins': 'Ganhos dos símbolos',
 	'Pay Lines': 'Linhas de pagamento',
-
+	'Win Lines': 'Linhas de ganho',
+	// PayTable — symbol names
 	'Wild': 'Wild',
 	'Bonus': 'Bónus',
-	'Shark': 'Tubarão',
-	'Sea Turtle': 'Tartaruga marinha',
-	'Pearl': 'Pérola',
-	'Nautilus': 'Nautilus',
-	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': 'Substitui todos os símbolos exceto o Bónus. Durante as Rodadas Grátis, 1, 2, 3, 4, 5, 6, 7, 8, 9 ou 10 Wilds Aleatórios são colocados nos rolos a cada rodada.',
+	'Trident': 'Tridente',
+	'Ship': 'Navio',
+	'Anchor': 'Âncora',
+	'Message in a Bottle': 'Mensagem numa garrafa',
+	'Coin': 'Moeda',
+	// PayTable — descriptions
+	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Substitui todos os símbolos exceto Bónus e Moeda. Numa Rodada Especial Wild, são colocados 1 a 10 Wilds nos rolos.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bónus = 6 Rodadas Grátis\n4 Bónus = 12 Rodadas Grátis\n5 Bónus = 18 Rodadas Grátis',
-	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 linhas de pagamento fixas, da esquerda para a direita. Apenas os símbolos em rolos adjacentes a partir do rolo mais à esquerda contam. Isto não se aplica aos símbolos Bónus.',
-	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 linhas de ganho fixas, da esquerda para a direita. Apenas os símbolos em rolos adjacentes a partir do rolo mais à esquerda contam. Isto não se aplica aos símbolos Bónus.',
+	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 linhas de pagamento fixas. Os ganhos são pagos da esquerda para a direita em rolos consecutivos, a partir do rolo mais à esquerda. Os símbolos Bónus concedem Rodadas Grátis em qualquer posição.',
+	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 linhas de ganho fixas. Os ganhos contam da esquerda para a direita em rolos consecutivos, a partir do rolo mais à esquerda. Os símbolos Bónus concedem Rodadas Grátis em qualquer posição.',
+	// GameRules — social mode variable words
+	'bet': 'aposta',
+	'play': 'valor de jogo',
+	'payout': 'pagamento',
+	'win': 'ganho',
+	'payline': 'linha de pagamento',
+	'winline': 'linha de ganho',
+	'paylines': 'linhas de pagamento',
+	'winlines': 'linhas de ganho',
+	'paid': 'pago',
+	'won': 'ganho',
+	// GameRules — headers
 	'Game Overview': 'Visão geral do jogo',
 	'Bet Mode': 'Modo de aposta',
-
+	'Play Mode': 'Modo de jogo',
 	'Wild Symbol': 'Símbolo Wild',
+	'Coin Symbol': 'Símbolo Moeda',
+	'Special Spin': 'Rodada Especial',
 	'Bonus & Free Spins': 'Bónus e Rodadas Grátis',
+	'Buy Feature': 'Compra de função',
 	'General Rules': 'Regras gerais',
 	'User Interface Guide': 'Guia da interface',
 	'Disclaimer': 'Aviso legal',
-	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Wins are evaluated from left to right on each __1__, starting from the leftmost reel. Only symbols on adjacent reels count. The highest win per __1__ is __2__.': 'Kraken\'s Wilds é uma slot de vídeo com 5 rolos, 3 linhas e 20 linhas de pagamento fixas. Os ganhos são avaliados da esquerda para a direita em cada linha de pagamento, a partir do rolo mais à esquerda. Apenas os símbolos em rolos adjacentes contam. O ganho mais alto por linha de pagamento é pago.',
-	'Base game: RTP 96.50%. Maximum win: 5,000x total __0__.': 'Jogo base: RTP 96,50%. Ganho máximo: 5.000x aposta total.',
+	// GameRules — paragraphs
+	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds é uma slot de vídeo com 5 rolos, 3 linhas e 20 linhas de pagamento fixas. As combinações vencedoras formam-se da esquerda para a direita em rolos consecutivos, a partir do rolo mais à esquerda. Apenas o ganho mais alto de cada linha de pagamento é pago.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'O retorno teórico ao jogador (RTP) é de 96,50%. O ganho máximo é de 5.000x a aposta total.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Todos os valores de pagamento são apresentados como multiplicadores do valor total de aposta.',
-	'The Wild (Kraken) substitutes for all symbols except the Bonus symbol. Wild has its own __0__ values.': 'O Wild (Kraken) substitui todos os símbolos exceto o símbolo Bónus. O Wild tem os seus próprios valores de pagamento.',
+	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'O Wild (Kraken) substitui todos os símbolos exceto os símbolos Bónus e Moeda. As combinações de Wild concedem os seus próprios valores de pagamento.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 símbolos Bónus em qualquer posição nos rolos concedem 6 Rodadas Grátis.',
 	'4 Bonus symbols award 12 Free Spins.': '4 símbolos Bónus concedem 12 Rodadas Grátis.',
 	'5 Bonus symbols award 18 Free Spins.': '5 símbolos Bónus concedem 18 Rodadas Grátis.',
-	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'Durante as Rodadas Grátis, 1, 2, 3, 4, 5, 6, 7, 8, 9 ou 10 Wilds Aleatórios são colocados nos rolos no início de cada rodada. Cada símbolo Bónus que aparecer durante as Rodadas Grátis concede +1 Rodada Grátis adicional. Não há limite de reativações.',
+	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Cada Rodada Grátis é uma Rodada Especial e coloca símbolos Wild ou Moeda nos rolos antes de estes pararem. Cada símbolo Bónus que apareça durante as Rodadas Grátis concede 1 Rodada Grátis adicional, sem limite de reativações.',
+	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'A função de Rodadas Grátis pode ser comprada diretamente por __0__ a __1__ total. Uma função comprada decorre exatamente como uma ativada por símbolos Bónus, e o retorno ao jogador é o mesmo.',
 	'Only the highest win per __0__ is __1__.': 'Apenas o ganho mais alto por linha de pagamento é pago.',
 	'Simultaneous wins on different __0__ are added together.': 'Ganhos simultâneos em diferentes linhas de pagamento são somados.',
-	'__0__ wins and Bonus wins are added together.': 'Ganhos de Linha de pagamento e ganhos de Bónus são somados.',
-	'Bonus symbols __0__ in any position (not limited to __1__).': 'Símbolos Bónus pagamento em qualquer posição (não limitado a linhas de pagamento).',
+	'__0__ wins and Bonus wins are added together.': 'Ganhos de linha de pagamento e ganhos de Bónus são somados.',
+	'Bonus symbols award Free Spins in any position; they do not need to land on a __0__.': 'Os símbolos Bónus concedem Rodadas Grátis em qualquer posição; não precisam de aparecer numa linha de pagamento.',
+	// GameRules — UI guide
 	'Spin — Start a spin at the current __0__ amount.': 'Girar — Iniciar uma rodada com o valor de aposta atual.',
 	'Stop — Stop the reels early during a spin.': 'Parar — Parar os rolos antecipadamente durante uma rodada.',
 	'Auto Spin — Automatically spin a set number of times.': 'Auto Spin — Girar automaticamente um número definido de vezes.',
@@ -53,11 +79,17 @@ export default {
 	'Sound — Toggle game sounds on or off.': 'Som — Ativar ou desativar os sons do jogo.',
 	'Settings — Adjust game settings.': 'Definições — Ajustar as definições do jogo.',
 	'Pay Table': 'Tabela de pagamento',
-
-	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Uma avaria anula todos os ganhos e jogadas. É necessária uma ligação à internet estável. Em caso de desconexão, recarregue o jogo para concluir quaisquer rondas incompletas. O retorno esperado é calculado com base em muitas jogadas. A visualização do jogo não representa qualquer dispositivo físico e destina-se apenas a fins ilustrativos. Os ganhos são liquidados de acordo com o montante recebido do Servidor de Jogo Remoto e não com base em eventos no navegador web.',
-
+	'Win Table': 'Tabela de ganhos',
 	// Replay
 	'REPLAY': 'REPETIÇÃO',
 	'NO WIN': 'SEM GANHO',
 	'PLAY AGAIN': 'JOGAR NOVAMENTE',
+	// GameRules — disclaimer
+	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Uma avaria anula todos os ganhos e jogadas. É necessária uma ligação à internet estável. Em caso de desconexão, recarregue o jogo para concluir quaisquer rondas incompletas. O retorno esperado é calculado com base em muitas jogadas. A visualização do jogo não representa qualquer dispositivo físico e destina-se apenas a fins ilustrativos. Os ganhos são liquidados de acordo com o montante recebido do Servidor de Jogo Remoto e não com base em eventos no navegador web.',
+	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Aparece com um valor de __0__ da sua aposta total. Os valores das moedas são somados e adicionados a qualquer ganho de linha.',
+	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'O símbolo Moeda aparece com um valor apresentado na moeda, de __0__ da sua aposta total. As moedas não formam ganhos de linha — cada valor de moeda nos rolos é somado e atribuído como um pagamento adicional.',
+	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Qualquer rodada do jogo base pode ativar uma Rodada Especial. Nesse caso, o Kraken coloca símbolos adicionais nos rolos antes de estes pararem, numa de duas formas:',
+	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — são colocados 1 a 10 símbolos Wild nos rolos. As linhas de pagamento são depois avaliadas e pagas.',
+	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Moeda — são colocados 1 a 10 símbolos Moeda nos rolos. As linhas de pagamento são avaliadas primeiro e depois todos os valores das moedas são somados e atribuídos.',
+	'Every spin during the Free Spins feature is a Special Spin.': 'Durante as Rodadas Grátis, cada rodada é uma Rodada Especial.',
 };

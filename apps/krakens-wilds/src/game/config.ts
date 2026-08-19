@@ -14,7 +14,10 @@ export default {
 			max_win: 5000.0,
 		},
 		bonus: {
-			cost: 100.0,
+			// Spec: "For 80 x total bet, a direct access to the Free Spins Feature can
+			// be purchased." The RGS charges whatever the MATH config says, so this
+			// has to stay in step with the math-sdk bet mode cost.
+			cost: 80.0,
 			feature: false,
 			buyBonus: true,
 			rtp: 0.965,
@@ -87,62 +90,62 @@ export default {
 		H3: {
 			paytable: [
 				{
-					'5': 12.5,
+					'5': 10,
 				},
 				{
 					'4': 3,
 				},
 				{
-					'3': 2,
+					'3': 1.5,
 				},
 			],
 		},
 		H4: {
 			paytable: [
 				{
-					'5': 7.5,
+					'5': 5,
 				},
 				{
 					'4': 2.5,
 				},
 				{
-					'3': 1,
+					'3': 0.7,
 				},
 			],
 		},
 		L1: {
 			paytable: [
 				{
-					'5': 5,
+					'5': 4,
 				},
 				{
-					'4': 2,
+					'4': 1.5,
 				},
 				{
-					'3': 0.6,
+					'3': 0.5,
 				},
 			],
 		},
 		L2: {
 			paytable: [
 				{
-					'5': 5,
+					'5': 4,
 				},
 				{
-					'4': 2,
+					'4': 1.5,
 				},
 				{
-					'3': 0.6,
+					'3': 0.5,
 				},
 			],
 		},
 		L3: {
 			paytable: [
 				{
-					'5': 4,
+					'5': 3,
 				},
 				{
-					'4': 1,
+					'4': 0.7,
 				},
 				{
 					'3': 0.3,
@@ -152,10 +155,10 @@ export default {
 		L4: {
 			paytable: [
 				{
-					'5': 4,
+					'5': 3,
 				},
 				{
-					'4': 1,
+					'4': 0.7,
 				},
 				{
 					'3': 0.3,

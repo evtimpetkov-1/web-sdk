@@ -72,10 +72,54 @@
 		size: Tween<number>;
 	};
 	let flyingCoins = $state<FlyingCoin[]>([]);
+	// The running total sits below the maw rather than in it, so the coins disappear
+	// into the kraken and the tally reads underneath instead of on top of them.
+	const TOTAL_AT = { x: MAW.x, y: MAW.y + 58 };
 	let coinTotal = $state(0);
+	// what the player actually reads: it counts up to `coinTotal` instead of jumping,
+	// so a x8 landing on a x14 tally is watched rather than just noticed afterwards
+	const coinTotalShown = new Tween(0, { duration: 280, easing: cubicOut });
 	let coinTotalScale = new Tween(0, { duration: 220, easing: cubicOut });
-	let coinTotalPos = new Tween({ x: MAW.x, y: MAW.y }, { duration: 500, easing: cubicIn });
+	let coinTotalPos = new Tween({ x: TOTAL_AT.x, y: TOTAL_AT.y }, { duration: 500, easing: cubicIn });
 	let showCoinTotal = $state(false);
+	/**
+	 * SOUND — both of these moments were silent.
+	 *
+	 * The attack had no sound at all: `sfx_wild_explode` is the only percussive burst
+	 * in the bank and is otherwise DEAD, since its only trigger is a `wildExplode`
+	 * spine event that the v2 wild skeleton does not emit. It fires on the slam, not on
+	 * the wind-up, hence the delay.
+	 *
+	 * The coins flew into the kraken in silence. The three scatter-stop pings are
+	 * pitched to rise, so cycling them per swallow makes the tally sound like it is
+	 * climbing rather than repeating; the run resets with each collection.
+	 *
+	 * Both are placeholders from the existing bank — swap the names here when the
+	 * custom audio lands.
+	 */
+	const SFX_ATTACK = 'sfx_wild_explode';
+	const SFX_ATTACK_DELAY = 700; // the slam lands ~0.85s into a ~1.55s wind-up
+	const SFX_SWALLOW = ['sfx_scatter_stop_1', 'sfx_scatter_stop_2', 'sfx_scatter_stop_3'] as const;
+	const SFX_TOTAL_HANDOVER = 'sfx_countup_end';
+	let swallowIndex = 0;
+
+	/**
+	 * Bumped on every swallow to REPLAY the gulp. Setting `mode` alone cannot: it is
+	 * already 'gulp' while the previous one runs, and the animation only restarts when
+	 * its name changes. The gulp is 0.75s and coins arrive every ~0.70s, so the second
+	 * coin onwards almost always landed mid-gulp and the kraken ignored it.
+	 */
+	let gulpNonce = $state(0);
+	const swallow = () => {
+		if (mode !== 'attack') mode = 'gulp';
+		gulpNonce += 1;
+		context.eventEmitter.broadcast({
+			type: 'soundOnce',
+			name: SFX_SWALLOW[swallowIndex % SFX_SWALLOW.length],
+			forcePlay: true,
+		});
+		swallowIndex += 1;
+	};
 
 	const COIN_SIZE_FROM = SYMBOL_SIZE * 0.987; // the coin at its board size
 	const COIN_SIZE_TO = SYMBOL_SIZE * 0.35;
@@ -93,8 +137,11 @@
 		c.size.set(COIN_SIZE_TO);
 		await c.y.set(MAW.y);
 		flyingCoins = flyingCoins.filter((f) => f.id !== c.id);
-		// impact: the kraken swallows it and the running total ticks up
+		// impact: the kraken reacts to THIS coin and the running total ticks up to its
+		// new value while the tally punches
+		swallow();
 		coinTotal += coin.multiplier;
+		coinTotalShown.set(coinTotal);
 		showCoinTotal = true;
 		coinTotalScale.set(1.25, { duration: 120 });
 		await coinTotalScale.set(1, { duration: 160 });
@@ -129,6 +176,9 @@
 		krakenAttack: async () => {
 			mode = 'attack';
 			width.set(KRAKEN_WIDTH); // grow while it rears up (wind-up is ~0.85s)
+			waitForTimeout(SFX_ATTACK_DELAY).then(() =>
+				context.eventEmitter.broadcast({ type: 'soundOnce', name: SFX_ATTACK, forcePlay: true }),
+			);
 			await waitForResolve((resolve) => (onReelsCovered = resolve));
 		},
 		krakenTense: (emitterEvent) => {
@@ -138,18 +188,20 @@
 			emitterEvent.positions.forEach((pos, i) => flyWild(pos, i * 180));
 		},
 		coinCollect: async (emitterEvent) => {
+			swallowIndex = 0; // the rising run starts again for each collection
 			coinTotal = 0;
+			coinTotalShown.set(0, { duration: 0 });
 			coinTotalScale.set(0, { duration: 0 });
-			coinTotalPos.set({ x: MAW.x, y: MAW.y }, { duration: 0 });
-			const modeIs = (...ms: (typeof mode)[]) => ms.includes(mode);
-			if (modeIs('idle', 'tense')) mode = 'pregulp';
-			// coins arrive one after another so the total reads as it climbs
+			coinTotalPos.set({ x: TOTAL_AT.x, y: TOTAL_AT.y }, { duration: 0 });
+			if (mode === 'idle' || mode === 'tense') mode = 'pregulp';
+			// coins arrive one after another so the total reads as it climbs; each one
+			// is swallowed on impact inside flyCoin
 			for (const coin of emitterEvent.coins) {
 				await flyCoin(coin);
-				if (modeIs('idle', 'tense', 'pregulp')) mode = 'gulp';
 			}
 			await waitForTimeout(350);
 			// the summed multiplier flies from the kraken toward the winbox
+			context.eventEmitter.broadcast({ type: 'soundOnce', name: SFX_TOTAL_HANDOVER });
 			coinTotalScale.set(1.5, { duration: 500 });
 			await coinTotalPos.set({ x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 });
 			showCoinTotal = false;
@@ -228,6 +280,13 @@
 				y={SIT_Y}
 				width={width.current * krakenBoost}
 			>
+				<!--
+					Keyed on `gulpNonce` so a swallow can REPLAY the gulp. The track only
+					restarts when the animation NAME changes, and back-to-back coins arrive
+					while it is already 'gulp' — remounting is what makes the kraken react to
+					every coin instead of ignoring any that land mid-gulp.
+				-->
+				{#key gulpNonce}
 				<SpineTrack
 					trackIndex={0}
 					animationName={ANIMATION_NAME[mode]}
@@ -248,6 +307,7 @@
 						},
 					}}
 				/>
+				{/key}
 			</SpineProvider>
 
 			<!-- running multiplier total above the kraken; flies to the winbox at the end -->
@@ -260,11 +320,11 @@
 				>
 					<ResponsiveBitmapText
 						anchor={0.5}
-						maxWidth={SYMBOL_SIZE * 2.4}
-						text={`x${coinTotal}`}
+						maxWidth={SYMBOL_SIZE * 2.1}
+						text={`x${Math.round(coinTotalShown.current)}`}
 						style={{
 							fontFamily: 'coin-tickup',
-							fontSize: SYMBOL_SIZE * 0.72,
+							fontSize: SYMBOL_SIZE * 0.62,
 							align: 'center',
 							letterSpacing: 0,
 						}}

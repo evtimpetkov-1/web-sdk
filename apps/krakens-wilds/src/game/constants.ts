@@ -105,6 +105,13 @@ export const SPIN_OPTIONS_FAST = {
 
 export const MOTION_BLUR_VELOCITY = 31;
 
+/**
+ * Every value a Coin symbol can carry, as a multiple of the total bet (spec v2).
+ * The paytable and the rules quote the range off this list rather than repeating
+ * the numbers in prose.
+ */
+export const COIN_MULTIPLIERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 50, 100] as const;
+
 // Win frame (spines/payframe) sizing, derived from the CELL PITCH so the frame
 // tiles with the grid.
 //

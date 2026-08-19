@@ -57,7 +57,23 @@
 
 		{#if !props.persistent}
 			<div class="close-button-wrap" style="--zIndex: {zIndexInternal.closeButton}">
-				<button class="close-button" data-test="close-button" onclick={closeModal}>×</button>
+				<button
+					class="close-button"
+					data-test="close-button"
+					aria-label="Close"
+					onclick={closeModal}
+				>
+					<!--
+						An SVG rather than a "×" glyph. Flex centring centres the text LINE
+						BOX, not the glyph's ink, and the multiplication sign sits on the
+						font's math axis above the baseline — so the mark rendered visibly
+						high in the circle. The path is symmetric in its own viewBox, so it
+						is centred geometrically and no font metrics are involved.
+					-->
+					<svg class="close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<path d="M6 6 L18 18 M18 6 L6 18" />
+					</svg>
+				</button>
 			</div>
 		{/if}
 		{@render props.children()}
@@ -126,13 +142,23 @@
 	.close-button {
 		cursor: pointer;
 		color: var(--modal-text, white);
-		font-size: 1.8rem;
-		font-weight: 400;
 		background: var(--modal-btn-bg, rgba(255, 255, 255, 0.1));
 		border: 1px solid var(--modal-border, rgba(255, 255, 255, 0.15));
 		border-radius: 50%;
+		/*
+		 * Chromium leaves <button> as content-box (unlike input/textarea) and the UA
+		 * sheet gives it `padding: 1px 6px`. width/height alone therefore sized the
+		 * CONTENT, and the 6px horizontal vs 1px vertical padding rendered the box
+		 * ~54x44 — so `border-radius: 50%` painted an ellipse rather than a circle.
+		 * There is no global reset in the SDK to lean on, so it is set here.
+		 * `aspect-ratio` keeps it round even if a host ever restyles the dimensions.
+		 */
+		box-sizing: border-box;
+		padding: 0;
 		width: 2.5rem;
 		height: 2.5rem;
+		aspect-ratio: 1;
+		flex: none;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -142,5 +168,16 @@
 		&:hover {
 			background: var(--modal-btn-bg-hover, rgba(255, 255, 255, 0.2));
 		}
+	}
+
+	.close-icon {
+		/* block, so no inline baseline gap creeps in under the glyph box */
+		display: block;
+		width: 42%;
+		height: 42%;
+		fill: none;
+		stroke: currentColor;
+		stroke-width: 2.5;
+		stroke-linecap: round;
 	}
 </style>

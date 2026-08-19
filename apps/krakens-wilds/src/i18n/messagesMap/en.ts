@@ -1,3 +1,6 @@
+// Keys are stable translation IDs shared with every locale file — edit only the
+// VALUES here to change English display text. Changing a key orphans it in all
+// 16 other messagesMap files.
 export default {
 	'HOME': 'HOME',
 	// PressToContinue
@@ -8,9 +11,9 @@ export default {
 	// BoardFrame
 	'TOTAL WIN': 'TOTAL WIN',
 	// LoadingScreen
-	'RANDOM WILDS': 'RANDOM WILDS',
-	'3 or more Bonus symbols anywhere on the reels trigger Free Spins': '3 or more Bonus symbols anywhere on the reels trigger Free Spins',
-	'Each Free Spin guarantees 1 to 10 Random Wilds on the reels': 'Each Free Spin guarantees 1 to 10 Random Wilds on the reels',
+	'SPECIAL SPIN': 'SPECIAL SPIN',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins',
+	'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.': 'The Kraken can strike on any spin, adding up to 10 Wilds or up to 10 Coins to the reels. Every Free Spin is a Special Spin.',
 	// PayTable — headers
 	'Special Symbols': 'Special Symbols',
 	'Symbol Payouts': 'Symbol Payouts',
@@ -20,15 +23,16 @@ export default {
 	// PayTable — symbol names
 	'Wild': 'Wild',
 	'Bonus': 'Bonus',
-	'Shark': 'Shark',
-	'Sea Turtle': 'Sea Turtle',
-	'Pearl': 'Pearl',
-	'Nautilus': 'Nautilus',
+	'Trident': 'Trident',
+	'Ship': 'Ship',
+	'Anchor': 'Anchor',
+	'Message in a Bottle': 'Message in a Bottle',
+	'Coin': 'Coin',
 	// PayTable — descriptions
-	'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.': 'Substitutes for all symbols except Bonus. During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels each spin.',
+	'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds 1 to 10 Wild symbols to the reels.': 'Substitutes for all symbols except Bonus and Coin. A Wild Special Spin adds up to 10 Wild symbols to the reels.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins',
-	'20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 fixed paylines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.',
-	'20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.': '20 fixed winlines, left to right. Only symbols on adjacent reels starting from the leftmost reel count. This does not apply to Bonus symbols.',
+	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.',
+	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.',
 	// GameRules — social mode variable words
 	'bet': 'bet',
 	'play': 'play',
@@ -45,23 +49,27 @@ export default {
 	'Bet Mode': 'Bet Mode',
 	'Play Mode': 'Play Mode',
 	'Wild Symbol': 'Wild Symbol',
+	'Coin Symbol': 'Coin Symbol',
+	'Special Spin': 'Special Spin',
 	'Bonus & Free Spins': 'Bonus & Free Spins',
+	'Buy Feature': 'Buy Feature',
 	'General Rules': 'General Rules',
 	'User Interface Guide': 'User Interface Guide',
 	'Disclaimer': 'Disclaimer',
 	// GameRules — paragraphs (use __0__, __1__, __2__ for variable substitution)
-	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Wins are evaluated from left to right on each __1__, starting from the leftmost reel. Only symbols on adjacent reels count. The highest win per __1__ is __2__.': 'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Wins are evaluated from left to right on each __1__, starting from the leftmost reel. Only symbols on adjacent reels count. The highest win per __1__ is __2__.',
-	'Base game: RTP 96.50%. Maximum win: 5,000x total __0__.': 'Base game: RTP 96.50%. Maximum win: 5,000x total __0__.',
+	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'All __0__ values are shown as multipliers of the total __1__ amount.',
-	'The Wild (Kraken) substitutes for all symbols except the Bonus symbol. Wild has its own __0__ values.': 'The Wild (Kraken) substitutes for all symbols except the Bonus symbol. Wild has its own __0__ values.',
+	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus symbols anywhere on the reels award 6 Free Spins.',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus symbols award 12 Free Spins.',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus symbols award 18 Free Spins.',
-	'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.': 'During Free Spins, 1, 2, 3, 4, 5, 6, 7, 8, 9, or 10 Random Wilds are placed on the reels at the start of each spin. Every Bonus symbol that lands during Free Spins awards +1 additional Free Spin. There is no limit on retriggers.',
+	'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Every Free Spin is a Special Spin, placing either Wild or Coin symbols on the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.',
+	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.',
 	'Only the highest win per __0__ is __1__.': 'Only the highest win per __0__ is __1__.',
 	'Simultaneous wins on different __0__ are added together.': 'Simultaneous wins on different __0__ are added together.',
 	'__0__ wins and Bonus wins are added together.': '__0__ wins and Bonus wins are added together.',
-	'Bonus symbols __0__ in any position (not limited to __1__).': 'Bonus symbols __0__ in any position (not limited to __1__).',
+	'Bonus symbols award Free Spins in any position; they do not need to land on a __0__.': 'Bonus symbols award Free Spins in any position. They do not need to land on a __0__.',
 	// GameRules — UI guide
 	'Spin — Start a spin at the current __0__ amount.': 'Spin — Start a spin at the current __0__ amount.',
 	'Stop — Stop the reels early during a spin.': 'Stop — Stop the reels early during a spin.',
@@ -81,4 +89,10 @@ export default {
 	'PLAY AGAIN': 'PLAY AGAIN',
 	// GameRules — disclaimer
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.',
+	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Carries a value of __0__ the total __1__. The values of all Coins on the reels are added together and awarded in addition to any line win.',
+	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations. Their values are added together and awarded as an additional __2__.',
+	'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:': 'Any base game spin may trigger a Special Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of two forms:',
+	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wilds — up to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.',
+	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Coins — up to 10 Coin symbols are added to the reels. __0__ are evaluated first. The values of all Coin symbols are then added together and awarded as an additional win.',
+	'Every spin during the Free Spins feature is a Special Spin.': 'Every spin during the Free Spins feature is a Special Spin.',
 };

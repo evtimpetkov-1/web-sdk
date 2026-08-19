@@ -148,11 +148,6 @@ export default {
 			scale: 1,
 		},
 	},
-	bigwinBg: {
-		type: 'sprite',
-		src: new URL('../../assets/spines/bigwin-v2/big_win_background_final.jpg', import.meta.url)
-			.href,
-	},
 	bigwin: {
 		type: 'spine',
 		src: {
@@ -173,7 +168,8 @@ export default {
 	},
 	freeSpinBg: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/free_spins/fs_bg_v2.jpg', import.meta.url).href,
+		// v3 candidate under test. Previous: free_spins/fs_bg_v2.jpg (1448x1086)
+		src: new URL('../../assets/sprites/free_spins/bg_fs_land_2.png', import.meta.url).href,
 	},
 	symbolsStatic: {
 		type: 'sprites',
@@ -193,7 +189,8 @@ export default {
 	},
 	freeSpinBgPortrait: {
 		type: 'sprite',
-		src: new URL('../../assets/sprites/free_spins/fs_bg_portrait.jpg', import.meta.url).href,
+		// v3 candidate under test. Previous: free_spins/fs_bg_portrait.jpg (941x1672)
+		src: new URL('../../assets/sprites/free_spins/bg_fs_port_2.png', import.meta.url).href,
 	},
 	// English-only baked title art for the FS intro (teal, matches the logo's
 	// WILDS lettering); other locales fall back to text
@@ -227,13 +224,22 @@ export default {
 		type: 'font',
 		src: new URL('../../assets/fonts/coinTickup/coin-tickup.xml', import.meta.url).href,
 	},
+	// v2 art. Same face name and 63-glyph charset as the v1 atlas one level up,
+	// which is kept as-is for rollback — swap this path back to switch.
 	winFont: {
 		type: 'font',
-		src: new URL('../../assets/fonts/winFont/cinzel-bold-gold.xml', import.meta.url).href,
+		src: new URL('../../assets/fonts/winFont/v2/cinzel-bold-gold.xml', import.meta.url).href,
 	},
 	coins: {
 		type: 'spriteSheet',
 		src: new URL('../../assets/sprites/coin/KW_Coin.json', import.meta.url).href,
+	},
+	// The three purple puffs lifted out of the fsfx spine atlas (puff0/1/2), packed
+	// as a sheet so the particle emitter can throw them. Same art the kraken's
+	// full-screen cloud burst is built from, so the wild's landing dust matches it.
+	dust: {
+		type: 'spriteSheet',
+		src: new URL('../../assets/sprites/dust/dust.json', import.meta.url).href,
 	},
 	sound: {
 		type: 'audio',

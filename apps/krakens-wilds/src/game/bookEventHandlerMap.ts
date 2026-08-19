@@ -10,7 +10,7 @@ import { playBookEvent } from './utils';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
 import { stateGame, stateGameDerived, winCycleState, type MovingWild } from './stateGame.svelte';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
-import type { Position } from './types';
+import type { GameType, Position } from './types';
 import { CELL_W, CELL_H, REEL_PADDING, BOARD_DIMENSIONS } from './constants';
 import config from './config';
 
@@ -51,27 +51,71 @@ const showOverlay = (
 ) => {
 	stateGame.overlaySymbols = symbols.map((symbol) => ({
 		id: overlayIdCounter++,
+		// Neither kind reveals behind the dust. The wild used to land straight away
+		// here and was finished before the cloud thinned; both now wait for a clear
+		// view (see revealOverlayWilds / revealOverlayCoins).
+		revealing: false,
+		valueShown: false,
 		landed: false,
 		...symbol,
 	}));
 };
 
 /**
- * The reels have stopped, so the overlay hands over to the real symbols underneath.
+ * The coins' reveal, paced against the kraken's attack rather than against nothing.
  *
- * Those symbols are in `land` and would play their reveal animation now — but the
- * overlay copy already played it mid-spin, and ReelSymbol hides a coin's value while
- * it is landing. Replaying it would pop the coin a second time and blink the value
- * off for 0.6s. So each covered cell is put straight into the resting state it would
- * have reached on its own (see ReelSymbol's land oncomplete), which keeps the value
- * exactly where the overlay left it.
+ * `krakenAttack` resolves on the spine's `reelsCovered` event, but the cloud stays at
+ * full coverage for ~0.6s after that and only thins away by ~1.3s. The reveal used to
+ * run inside that window, so it happened entirely behind the dust and the coins
+ * emerged with their values already on. They now sit blank until the reels are in
+ * clear view, and only then turn over.
+ *
+ * The reveal is `coin_win`, whose flip lands the coin face-on at 0.52s — that is the
+ * beat the value belongs on. Its remaining ~1.5s of glint and shine plays on while
+ * the reels stop, so the spin is not held for the full animation.
+ */
+const DUST_CLEAR_MS = 1200; // dust is all but gone, the reels are in clear view
+const COIN_VALUE_AT_MS = 520; // the flip lands face-on — the value fades in with it
+const COIN_REVEAL_TAIL_MS = 400; // the fade finishes before the reels start stopping
+// `wild_land` is 0.6s; the rest is a beat of headroom so the drop has settled
+// before the reels start stopping under it.
+const WILD_LAND_MS = 800;
+
+const revealOverlayCoins = async () => {
+	const coins = stateGame.overlaySymbols.filter((symbol) => symbol.name === 'C');
+	if (coins.length === 0) return;
+	await waitForTimeout(DUST_CLEAR_MS);
+	for (const coin of coins) coin.revealing = true;
+	await waitForTimeout(COIN_VALUE_AT_MS);
+	for (const coin of coins) coin.valueShown = true;
+	await waitForTimeout(COIN_REVEAL_TAIL_MS);
+};
+
+/**
+ * The wild's landing, paced the same way the coins' reveal is.
+ *
+ * The wilds used to be placed the moment `krakenAttack` resolved — which is full
+ * dust coverage — so the whole 0.6s `wild_land` played behind the cloud and the
+ * wilds were already looping `wild_idle` by the time it thinned. They read as
+ * having simply appeared. Holding them until the reels are back in view means the
+ * drop itself is what the player sees, and `wild_idle` takes over after it.
+ */
+const revealOverlayWilds = async () => {
+	const wilds = stateGame.overlaySymbols.filter((symbol) => symbol.name === 'W');
+	if (wilds.length === 0) return;
+	await waitForTimeout(DUST_CLEAR_MS);
+	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+	for (const wild of wilds) wild.revealing = true;
+	await waitForTimeout(WILD_LAND_MS);
+};
+
+/**
+ * Hands the cells back to the real symbols. Called at the START of a spin, not at the
+ * reel stop: the overlay copy owns its cell for the whole spin (the real one is hidden
+ * under it), so there is nothing to hand over until the next spin begins — and by then
+ * both look identical, which is what makes the swap invisible.
  */
 const clearOverlay = () => {
-	for (const symbol of stateGame.overlaySymbols) {
-		const reelSymbol = stateGame.board[symbol.reel]?.reelState.symbols[symbol.row];
-		if (reelSymbol?.symbolState !== 'land') continue;
-		reelSymbol.symbolState = symbol.name === 'W' ? 'idle' : 'static';
-	}
 	stateGame.overlaySymbols = [];
 };
 
@@ -110,9 +154,19 @@ const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) =>
 	}
 };
 
-const winLevelSoundsStop = () => {
+/**
+ * Restores the ambient track after a win presentation.
+ *
+ * `gameType` must be passed explicitly where the caller is in the middle of changing
+ * it. freeSpinEnd calls this while `stateGame.gameType` is still 'freegame' — the
+ * board and background are not switched back until later, under the transition — so
+ * reading the state here restarted bgm_freespin just as the feature ended, and the
+ * base game then ran on free-spin music until the player's next win happened to call
+ * this again.
+ */
+const winLevelSoundsStop = ({ gameType = stateGame.gameType }: { gameType?: GameType } = {}) => {
 	// sfx_countup is stopped by WinCountUpProvider.oncomplete in Win/FreeSpinOutro
-	if (stateBet.activeBetModeKey === 'SUPERSPIN' || stateGame.gameType === 'freegame') {
+	if (stateBet.activeBetModeKey === 'SUPERSPIN' || gameType === 'freegame') {
 		// check if SUPERSPIN, when finishing a bet.
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
 	} else {
@@ -170,13 +224,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				paddingBoard: config.paddingReels[bookEvent.gameType],
 			});
 
-			// Position wilds while reels spin
-			const isFirstFreeSpinReveal = stateGame.movingWilds.length === 0;
-			const spawnsWilds = isFirstFreeSpinReveal && wildPositions.length > 0;
-			// The kraken attacks when it has something NEW to put on the reels: the
-			// first batch of sticky wilds, or a coin spin. Sliding wilds that are
-			// already on screen is not an attack.
-			const attacks = spawnsWilds || coinPositions.length > 0;
+			// Every free spin is a Special Spin (spec v2): the kraken attacks before the
+			// reels stop and puts either Wilds or Coins on them. Wilds are placed FRESH
+			// each spin — they are not sticky and do not travel between positions, so the
+			// previous batch is dropped and the new one spawns behind the dust cloud.
+			const attacks = wildPositions.length > 0 || coinPositions.length > 0;
 			// how long the reels keep spinning with the bounty on top of them
 			let hold = 2000; // nothing to show — just let the reels run
 
@@ -188,75 +240,37 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				await eventEmitter.broadcastAsync({ type: 'krakenAttack' });
 			}
 
-			if (spawnsWilds) {
-				// First free spin: the sticky wilds spawn hidden behind the cloud.
-				for (const pos of wildPositions) {
-					const wild: MovingWild = {
-						id: movingWildIdCounter++,
-						x: new Tween(wildX(pos.reel)),
-						y: new Tween(wildY(pos.row)),
-						reel: pos.reel,
-						row: pos.row,
-						landed: false,
-					};
-					stateGame.movingWilds = [...stateGame.movingWilds, wild];
-				}
+			// The previous batch goes before the new one lands — wilds are not sticky.
+			stateGame.movingWilds = [];
+
+			if (wildPositions.length > 0) {
+				// Held until the cloud has thinned, for the same reason the overlay
+				// wilds are (see revealOverlayWilds): spawning at `reelsCovered` ran
+				// the entire 0.6s `wild_land` behind the dust, so the wilds surfaced
+				// already idling instead of being seen to drop.
+				await waitForTimeout(DUST_CLEAR_MS);
+				stateGame.movingWilds = wildPositions.map((pos): MovingWild => ({
+					id: movingWildIdCounter++,
+					x: new Tween(wildX(pos.reel)),
+					y: new Tween(wildY(pos.row)),
+					reel: pos.reel,
+					row: pos.row,
+					landed: false,
+				}));
 				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
-				hold = 1200; // while the cloud thins and the wilds emerge
-			} else if (wildPositions.length > 0) {
-				// Subsequent spins: move existing wilds to new positions
-				const updated = [...stateGame.movingWilds];
-				const existingCount = updated.length;
-
-				// Move existing wilds (no sound — just repositioning)
-				const keepCount = Math.min(existingCount, wildPositions.length);
-				for (let i = 0; i < keepCount; i++) {
-					updated[i].x.set(wildX(wildPositions[i].reel), { duration: 400 });
-					updated[i].y.set(wildY(wildPositions[i].row), { duration: 400 });
-					updated[i].reel = wildPositions[i].reel;
-					updated[i].row = wildPositions[i].row;
-				}
-
-				// Add new wilds if more than before
-				const newWildCount = wildPositions.length - existingCount;
-				for (let i = existingCount; i < wildPositions.length; i++) {
-					updated.push({
-						id: movingWildIdCounter++,
-						x: new Tween(wildX(wildPositions[i].reel)),
-						y: new Tween(wildY(wildPositions[i].row)),
-						reel: wildPositions[i].reel,
-						row: wildPositions[i].row,
-						landed: false,
-					});
-				}
-
-				// Remove extras if fewer
-				if (wildPositions.length < existingCount) {
-					updated.length = wildPositions.length;
-				}
-
-				stateGame.movingWilds = updated;
-				// Only play landing sound for newly added wilds
-				for (let i = 0; i < newWildCount; i++) {
-					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
-					if (i < newWildCount - 1) await waitForTimeout(150);
-				}
-				hold = 1000;
-			} else {
-				// No wilds this spin — clear all
-				stateGame.movingWilds = [];
+				hold = WILD_LAND_MS; // let the drop finish before the reels stop
 			}
 
 			if (coinPositions.length > 0) {
-				// Coin spin: blank coins appear behind the cloud on the overlay layer,
-				// ride the still-spinning reels and reveal their values there, exactly
-				// like the wilds above. The real C symbols are in this reveal's board and
-				// take over at the stop with the values already on them.
+				// Coin spin: blank coins are placed behind the cloud on the overlay layer
+				// and ride the still-spinning reels. They reveal only once the dust has
+				// cleared (revealOverlayCoins), and they keep their cells for the rest of
+				// the spin — the real C symbols stay hidden underneath.
 				showOverlay(coinPositions.map((coin) => ({ name: 'C' as const, ...coin })));
 				// TODO: no coin-specific sfx exists yet — sounds.json only has
 				// sfx_wild_land / sfx_wild_explode. Swap in a coin sound when one lands.
 				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
-				hold = 1200; // while the cloud thins and the coins emerge
+				hold = 0; // revealOverlayCoins below paces this spin instead
 			}
 
 			// Shade the reels behind whatever is sitting on top of them.
@@ -264,6 +278,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				stateGame.overlaySymbols.length > 0 || stateGame.movingWilds.length > 0;
 
 			await waitForTimeout(hold);
+			// blank coins sit through the dust, then reveal in the open
+			await revealOverlayCoins();
 
 			// Send stop targets — reels begin stopping sequence
 			await stateGameDerived.enhancedBoard.spin({
@@ -271,14 +287,13 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				paddingBoard: config.paddingReels[bookEvent.gameType],
 			});
 
-			clearOverlay();
+			// the overlay stays up — it owns those cells until the next spin
 			stateGame.reelsShaded = false;
 		} else if (isSpecialSpin) {
 			// Base-game special spin: same beats as the free-spin path. The wilds and
-			// coins are REAL symbols already in this reveal's board, so the overlay
-			// copies are what the player sees arrive mid-spin and the real ones take
-			// over at the stop (`clearOverlay`). None of the freegame-only gates
-			// (which hide board `W` so the overlay is the only wild) apply here.
+			// coins are REAL symbols already in this reveal's board, but the overlay
+			// copies are what the player sees — ReelSymbol hides a board symbol for as
+			// long as the overlay holds one of its kind, so the two never double up.
 			await stateGameDerived.enhancedBoard.preSpin({
 				paddingBoard: config.paddingReels[bookEvent.gameType],
 			});
@@ -289,17 +304,24 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				...wildPositions.map((pos) => ({ name: 'W' as const, ...pos })),
 				...coinPositions.map((coin) => ({ name: 'C' as const, ...coin })),
 			]);
-			// TODO: no coin-specific sfx exists yet — sounds.json only has
-			// sfx_wild_land / sfx_wild_explode. Swap in a coin sound when one lands.
-			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
 			stateGame.reelsShaded = stateGame.overlaySymbols.length > 0;
-			// keep spinning as the cloud thins and reveals the bounty, then stop
-			await waitForTimeout(1200);
+			// Keep spinning as the cloud thins, then play the landing/reveal in the
+			// clear. A special spin carries one kind or the other, never both.
+			if (coinPositions.length > 0) {
+				// TODO: no coin-specific sfx exists yet — sounds.json only has
+				// sfx_wild_land / sfx_wild_explode. Swap in a coin sound when one lands.
+				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+				await revealOverlayCoins();
+			} else if (wildPositions.length > 0) {
+				await revealOverlayWilds();
+			} else {
+				await waitForTimeout(DUST_CLEAR_MS);
+			}
 			await stateGameDerived.enhancedBoard.spin({
 				revealEvent: bookEvent,
 				paddingBoard: config.paddingReels[bookEvent.gameType],
 			});
-			clearOverlay();
+			// the overlay stays up — it owns those cells until the next spin
 			stateGame.reelsShaded = false;
 		} else {
 			await stateGameDerived.enhancedBoard.spin({
@@ -340,9 +362,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		);
 
 		// Winning coins stay BRIGHT while the paylines celebrate, they just don't
-		// animate: `postWinStatic` renders in the unmasked layer for as long as a win
-		// presentation is running, so the coin sits at rest above the dim overlay with
-		// its value on, waiting for the kraken.
+		// animate. On a kraken coin spin the overlay copy is the one on screen and it
+		// already sits above the dim; this covers the board symbol for any spin where
+		// the overlay is not up, by parking it in `postWinStatic` — which renders in the
+		// unmasked layer for as long as a win presentation runs.
 		for (const position of coinPositions) {
 			const reelSymbol = stateGame.board[position.reel]?.reelState.symbols[position.row];
 			if (reelSymbol) reelSymbol.symbolState = 'postWinStatic';
@@ -414,15 +437,28 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
 		// RETRIGGER splash text over the board; per-scatter "+1" labels are
 		// rendered by ReelSymbol, so no positions are passed here.
-		eventEmitter.broadcast({ type: 'freeSpinRetriggerShow', extraSpins, positions: [] });
+		//
+		// The splash holds a full-screen shade for ~4.5s. Broadcast fire-and-forget
+		// it did not hold the queue, so the round ran straight on and the next free
+		// spin spun up behind the dimmed RETRIGGER card — visible on autoplay, where
+		// nothing else gates the next spin. It is started here and awaited after the
+		// scatters animate, so the two still overlap as before.
+		const splashShown = eventEmitter.broadcastAsync({
+			type: 'freeSpinRetriggerShow',
+			extraSpins,
+			positions: [],
+		});
 		await animateSymbols({ positions: bookEvent.positions });
 		stateGame.retriggerExtra = 0;
+		// Counter ticks up to the new total while the card is still on screen — that
+		// pairing is the point of the beat, so only the queue advance waits below.
 		eventEmitter.broadcast({
 			type: 'freeSpinCounterUpdate',
 			current: undefined,
 			total: bookEvent.totalFs,
 		});
 		stateUi.freeSpinCounterTotal = bookEvent.totalFs;
+		await splashShown;
 	},
 	updateFreeSpin: async (bookEvent: BookEventOfType<'updateFreeSpin'>) => {
 		eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
@@ -451,19 +487,32 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			amount: bookEvent.amount,
 			winLevelData,
 		});
-		winLevelSoundsStop();
-
-		// Put the base game back while the outro is still opaque and covering the whole
-		// canvas: the board swaps to the trigger board, the sticky wilds go, and the
-		// frame/background revert — all of it unseen. Done after the outro starts fading
-		// (or after the transition, as it was) these would pop one by one on screen.
-		stateGame.movingWilds = [];
-		stateGame.gameType = 'basegame';
-		restoreTriggerBoard();
+		// the feature is over — the ambient goes back to the base game track even though
+		// gameType does not flip until the transition below
+		winLevelSoundsStop({ gameType: 'basegame' });
 
 		eventEmitter.broadcast({ type: 'freeSpinOutroHide' });
 		eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
 		stateUi.freeSpinCounterShow = false;
+
+		// Put the base game back: the board swaps to the trigger board, the sticky wilds
+		// and coins go, and the frame/background revert. This is timed to land under the
+		// transition — its black overlay comes up at 0.7 and the screen shakes — because
+		// the outro no longer hides it. The outro used to sit on an opaque painted
+		// background and this ran while that covered the canvas; it is a screen shade
+		// now, so the swap would have been visible straight through it.
+		//
+		// The overlay MUST be cleared here. It is otherwise only cleared at the start of
+		// the next reveal — correct while the feature is running, since the overlay copy
+		// is the visible symbol and has to hold its cell until the next spin — but the
+		// feature ending is the one exit that replaces the board without a reveal. Left
+		// alone, the last free spin's coins sat on top of the restored trigger board and
+		// stayed there until the player spun again.
+		stateGame.movingWilds = [];
+		clearOverlay();
+		stateGame.gameType = 'basegame';
+		restoreTriggerBoard();
+
 		await eventEmitter.broadcastAsync({ type: 'transition' });
 		eventEmitter.broadcast({ type: 'stopButtonEnable' });
 		await eventEmitter.broadcastAsync({ type: 'uiShow' });

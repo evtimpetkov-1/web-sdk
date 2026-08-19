@@ -45,9 +45,13 @@ const KRAKENS_WILDS_BET_MODE_META: BetModeMeta = {
 		},
 		text: {
 			title: 'FREE SPINS',
+			// Describes what the feature actually does. The previous copy promised
+			// "Sticky Wilds with win multipliers ... locked on the reels for the entire
+			// feature" — wrong on all three counts: wilds are placed per spin, they do
+			// not carry multipliers, and the values belong to the Coin symbol.
 			dialog:
-				'Instantly triggers the FREE SPINS feature for 100x your total bet. Sticky Wilds with win multipliers stay locked on the reels for the entire feature.',
-			description: 'Instantly trigger the FREE SPINS feature with Sticky Wild multipliers.',
+				'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Special Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.',
+			description: 'Instantly trigger the FREE SPINS feature, where every spin is a Special Spin.',
 			button: 'BUY',
 			betAmountLabel: 'BONUS BUY',
 			tickerIdle: 'PLACE YOUR BET',

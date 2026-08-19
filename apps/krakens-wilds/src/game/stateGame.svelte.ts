@@ -99,20 +99,29 @@ export type MovingWild = {
 
 /**
  * A symbol the kraken puts on screen DURING a spin, drawn over the still-spinning
- * reels (see SpecialOverlay.svelte). The real symbol is already in the reveal's
- * board and lands underneath when the reels stop, at which point the overlay is
- * cleared and the two swap seamlessly.
+ * reels (see SpecialOverlay.svelte). It OWNS its cell for the rest of the spin: the
+ * real symbol underneath is hidden for as long as this list holds one of its kind
+ * (see ReelSymbol), exactly as free-spin wilds hide the board's W. The list is
+ * cleared at the start of the next reveal, where the two swap unseen.
  *
- * Free-spin wilds are NOT overlay symbols — they are sticky and move between
- * spins, which is what `movingWilds` exists for.
+ * Free-spin wilds are not in this list — `movingWilds` owns those.
  */
 export type OverlaySymbol = {
 	id: number;
 	name: 'W' | 'C';
 	reel: number;
 	row: number;
-	/** Coins only. Struck onto the coin when its reveal animation completes. */
+	/** Coins only. Faded onto the coin as its reveal animation finishes. */
 	multiplier?: number;
+	/**
+	 * The kraken's dust cloud still covers the reels for ~1.3s after the symbols are
+	 * placed, so a coin holds a blank pose until the handler starts its reveal — the
+	 * whole point of the reveal is that it is watched. Wilds are placed already
+	 * revealing: they have nothing to show but themselves.
+	 */
+	revealing: boolean;
+	/** the value has started fading in (as coin_win's flip lands face-on) */
+	valueShown: boolean;
 	landed: boolean;
 };
 
@@ -126,7 +135,7 @@ export const stateGame = $state({
 	overlaySymbols: [] as OverlaySymbol[],
 	// dims the reels while overlay symbols sit on top of them, so the kraken's
 	// bounty reads as being in front of the spin rather than part of it. Cleared
-	// when the reels stop.
+	// once the reels have stopped.
 	reelsShaded: false,
 	scatterCounter: 0,
 	/**

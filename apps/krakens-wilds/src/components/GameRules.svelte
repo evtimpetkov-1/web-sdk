@@ -3,6 +3,8 @@
 	import { zIndex } from 'constants-shared/zIndex';
 	import { stateModal, stateUrlDerived } from 'state-shared';
 	import { i18nDerived } from '../i18n/i18nDerived';
+	import { COIN_MULTIPLIERS } from '../game/constants';
+	import config from '../game/config';
 	const logoImg = new URL('../../assets/sprites/logo_text.webp', import.meta.url).href;
 
 	const social = $derived(stateUrlDerived.social());
@@ -12,6 +14,11 @@
 	const linesLabel = $derived(social ? i18nDerived.winlinesWord() : i18nDerived.paylinesWord());
 	const paidLabel = $derived(social ? i18nDerived.wonWord() : i18nDerived.paidWord());
 	const payTableName = $derived(social ? i18nDerived.winTableLabel() : i18nDerived.payTableLabel());
+	// quoted off the one list of coin values, never retyped in prose
+	const coinValues = COIN_MULTIPLIERS.map((m) => `${m}x`);
+	const coinRange = `${coinValues.slice(0, -1).join(', ')} or ${coinValues[coinValues.length - 1]}`;
+	// same rule for the buy cost — it is read off the bet mode the RGS is charging
+	const buyCost = `${config.betModes.bonus.cost}x`;
 </script>
 
 {#if stateModal.modal?.name === 'gameRules'}
@@ -42,6 +49,23 @@
 			</section>
 
 			<section>
+				<h2>{i18nDerived.coinSymbol()}</h2>
+				<p>
+					{i18nDerived.coinSymbolDesc().replace('__0__', coinRange).replace('__1__', betLabel).replace('__2__', payoutLabel)}
+				</p>
+			</section>
+
+			<section>
+				<h2>{i18nDerived.specialSpinHeader()}</h2>
+				<p>{i18nDerived.specialSpinDesc()}</p>
+				<ul>
+					<li>{i18nDerived.specialSpinWild().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1)).replace('__1__', paidLabel)}</li>
+					<li>{i18nDerived.specialSpinCoin().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1))}</li>
+				</ul>
+				<p>{i18nDerived.specialSpinFs()}</p>
+			</section>
+
+			<section>
 				<h2>{i18nDerived.bonusFreeSpins()}</h2>
 				<ul>
 					<li>{i18nDerived.fs3Bonus()}</li>
@@ -54,12 +78,19 @@
 			</section>
 
 			<section>
+				<h2>{i18nDerived.buyFeature()}</h2>
+				<p>
+					{i18nDerived.buyFeatureDesc().replace('__0__', buyCost).replace('__1__', betLabel)}
+				</p>
+			</section>
+
+			<section>
 				<h2>{i18nDerived.generalRules()}</h2>
 				<ul>
 					<li>{i18nDerived.grHighestWin().replace('__0__', lineLabel).replace('__1__', paidLabel)}</li>
 					<li>{i18nDerived.grSimultaneous().replace('__0__', linesLabel)}</li>
 					<li>{i18nDerived.grLineBonus().replace('__0__', lineLabel.charAt(0).toUpperCase() + lineLabel.slice(1))}</li>
-					<li>{i18nDerived.grBonusAny().replace('__0__', social ? i18nDerived.winWord() : i18nDerived.payoutWord()).replace('__1__', linesLabel)}</li>
+					<li>{i18nDerived.grBonusAny().replace('__0__', lineLabel)}</li>
 				</ul>
 			</section>
 

@@ -9,7 +9,8 @@
 
 	type Props = {
 		blur?: boolean;
-		children: Snippet;
+		/** Receives the plate scale — everything drawn on the plate must use it. */
+		children: Snippet<[{ scale: number }]>;
 	};
 
 	const props: Props = $props();
@@ -21,11 +22,23 @@
 	const cx = $derived(canvas.width / 2);
 	const cy = $derived(canvas.height / 2);
 
-	// Plate scale — proportional to viewport, larger in portrait
-	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
-	const plateScale = $derived(Math.min(canvas.width / (isPortrait ? 700 : 840), canvas.height / 650));
 	const PLATE_W = 782;
 	const PLATE_H = PLATE_W / 1.586; // fs_intro_plate 1443x910
+
+	/**
+	 * Plate scale, expressed as the share of the viewport the plate is allowed to
+	 * take. The old divisors (width/840, height/650) were not tied to the plate's own
+	 * size, so on desktop it came out at 68% of the width and 76% of the HEIGHT —
+	 * a wall — while portrait overflowed the screen entirely at 112% of the width.
+	 * Stating the fractions directly means the panel keeps the same presence at every
+	 * size, and the numbers below are readable as what they are.
+	 */
+	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
+	const MAX_WIDTH = $derived(isPortrait ? 0.88 : 0.6);
+	const MAX_HEIGHT = $derived(isPortrait ? 0.4 : 0.5);
+	const plateScale = $derived(
+		Math.min((canvas.width * MAX_WIDTH) / PLATE_W, (canvas.height * MAX_HEIGHT) / PLATE_H),
+	);
 
 	// Blur filter for intro overlay (sharp for gameplay)
 	const blurFilter = new BlurFilter({ strength: 6, quality: 4 });
@@ -89,5 +102,5 @@
 
 <!-- Layer 3: Text content (children) -->
 <Container alpha={plateAnim.current}>
-	{@render props.children()}
+	{@render props.children({ scale: plateScale })}
 </Container>

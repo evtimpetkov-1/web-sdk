@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	import { Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { Container, Rectangle, SpineProvider, SpineTrack } from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
 
@@ -118,24 +118,64 @@
 			canvas.height / (spineData?.height || 1300),
 		) * FIT,
 	);
-	// Background is 2048x2048 (square) — use cover mode
-	const bgCover = $derived(Math.max(canvas.width, canvas.height));
+	/**
+	 * The presentation used to sit on an opaque painted background, which cut the
+	 * board out of the picture entirely. It now shades the whole screen instead, so
+	 * the reels stay faintly visible underneath and the win reads as something
+	 * happening ON the game rather than a slide shown over it.
+	 */
+	const SHADE_ALPHA = 0.78;
+	/**
+	 * Purple dust — the same fsFx smoke ring the free-spin intro sits in, stacked.
+	 *
+	 * One ring only reached across the middle of the screen. Three layers at different
+	 * sizes, offsets and drift speeds read as one much larger, denser cloud mass: the
+	 * wide pair push the dust out past the edges of the frame, the centre one keeps it
+	 * thick behind the kraken, and mirroring the second stops the pair looking like the
+	 * same picture twice. `timeScale` desynchronises them so they never drift in step.
+	 *
+	 * TO REVERT to the single ring, replace DUST_LAYERS with:
+	 *   [{ width: 0.95, x: 0, y: 0, alpha: 1, speed: 1, flip: false }]
+	 * Nothing else needs touching.
+	 *
+	 * `width` is a multiple of the long screen edge; `x`/`y` are fractions of the
+	 * canvas, measured from the centre.
+	 */
+	const DUST_LAYERS = [
+		{ width: 1.55, x: -0.2, y: 0.07, alpha: 0.8, speed: 0.75, flip: false },
+		{ width: 1.55, x: 0.2, y: -0.05, alpha: 0.8, speed: 0.95, flip: true },
+		{ width: 1.1, x: 0, y: 0.02, alpha: 1, speed: 1.2, flip: false },
+	];
+	const longEdge = $derived(Math.max(canvas.width, canvas.height));
 </script>
 
-<!-- Layer 1: Static background (full canvas, aspect-ratio preserved) -->
-<Sprite
-	key="bigwinBg"
-	anchor={0.5}
-	x={cx}
-	y={cy}
-	width={bgCover}
-	height={bgCover}
+<!-- Layer 1: full-screen shade -->
+<Rectangle
+	width={canvas.width}
+	height={canvas.height}
+	backgroundColor={0x000000}
+	backgroundAlpha={SHADE_ALPHA}
 />
 
-<!-- Layer 2: Content behind spines (coin particles) -->
+<!-- Layer 2: purple dust, drifting behind everything -->
+{#each DUST_LAYERS as layer, i (i)}
+	<Container alpha={layer.alpha}>
+		<SpineProvider
+			key="fsFx"
+			x={cx + layer.x * canvas.width}
+			y={cy + layer.y * canvas.height}
+			width={longEdge * layer.width}
+			scale={layer.flip ? { x: -1, y: 1 } : undefined}
+		>
+			<SpineTrack trackIndex={0} animationName="smoke_idle" loop timeScale={layer.speed} />
+		</SpineProvider>
+	</Container>
+{/each}
+
+<!-- Layer 3: Content behind spines (coin particles) -->
 {@render props.behindSpines?.()}
 
-<!-- Layer 3: Kraken Spine (centered, constrained by both width and height).
+<!-- Layer 4: Kraken Spine (centered, constrained by both width and height).
      Origin at canvas center keeps the kraken's head on-screen; the text sits
      at +60 world units inside the spine, the amount renders below. -->
 <SpineProvider
@@ -154,5 +194,5 @@
 	/>
 </SpineProvider>
 
-<!-- Layer 4: Win amount text (positioned below center, in the spine's own scale) -->
+<!-- Layer 5: Win amount text (positioned below center, in the spine's own scale) -->
 {@render props.children({ scale: winScale })}
