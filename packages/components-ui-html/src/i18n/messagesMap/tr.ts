@@ -1,4 +1,5 @@
 export default {
+	'COST': 'MALİYET',
 	'BET': 'BAHİS',
 	'MAX': 'MAKS',
 	'BET MENU': 'BAHİS MENÜSÜ',

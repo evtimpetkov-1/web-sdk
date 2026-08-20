@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Tuyên bố miễn trừ',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds là trò chơi slot video 5 cuộn, 3 hàng với 20 dòng thanh toán cố định. Các tổ hợp thắng hình thành từ trái sang phải trên các cuộn liên tiếp, bắt đầu từ cuộn ngoài cùng bên trái. Chỉ phần thắng cao nhất trên mỗi dòng thanh toán được trả thưởng.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'Tỷ lệ hoàn trả lý thuyết cho người chơi (RTP) là 96,50%. Mức thắng tối đa là 5.000 lần tổng cược.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'Tỷ lệ hoàn trả lý thuyết cho người chơi (RTP) là 96,50%. Mức thắng tối đa là 767,20 lần tổng cược.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Tất cả giá trị thanh toán được hiển thị dưới dạng hệ số nhân của tổng số tiền cược.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken) thay thế tất cả biểu tượng ngoại trừ biểu tượng Bonus và Đồng Xu. Các tổ hợp Wild trao giá trị thanh toán riêng.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 biểu tượng Bonus ở bất kỳ đâu trên các cuộn trao 6 Vòng Quay Miễn Phí.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Trong Vòng Quay Miễn Phí, mỗi vòng quay đều là Vòng Quay Kraken.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'MUA',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Kích hoạt ngay tính năng VÒNG QUAY MIỄN PHÍ, trong đó mỗi vòng quay là một Vòng Quay Kraken.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Kích hoạt ngay tính năng VÒNG QUAY MIỄN PHÍ với giá 80x tổng cược. Mỗi Vòng Quay Miễn Phí là một Vòng Quay Kraken, thêm biểu tượng Wild hoặc Đồng Xu lên các cuộn. Giá trị đồng xu được trao thêm ngoài các chiến thắng theo đường.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'Kích hoạt ngay 6, 12 hoặc 18 Vòng Quay Miễn Phí. Mỗi Vòng Quay Miễn Phí là một Vòng Quay Kraken, thêm tối đa 10 Wild hoặc tối đa 10 Đồng Xu lên các cuộn.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'Mua 6, 12 hoặc 18 Vòng Quay Miễn Phí với giá 80x tổng cược?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Mua Bonus (rương) — Mở menu mua Vòng Quay Miễn Phí.',
 };

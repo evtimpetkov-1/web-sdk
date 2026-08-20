@@ -27,6 +27,16 @@ const primaryMachines = createPrimaryMachines<Bet>({
 		winCycleState.cancel();
 		eventEmitter.broadcast({ type: 'boardResetSymbols' });
 
+		// The kraken's overlay owns its cells only until the next spin STARTS.
+		// It used to be cleared when the next reveal arrived — i.e. after the
+		// RGS round-trip — so its wilds/coins sat frozen on top of already
+		// spinning reels for the whole network wait. Clearing at press hands
+		// the cells back to the identical real board symbols, which then spin
+		// away like any other symbol. (The reveal handler still clears too, as
+		// the safety net for spins this callback skips.)
+		stateGame.overlaySymbols = [];
+		stateGame.reelsShaded = false;
+
 		// Reset anticipation flags immediately — the Anticipation component's
 		// 300ms fade oncomplete may not have fired yet from the previous spin.
 		for (const reel of stateGame.board) {

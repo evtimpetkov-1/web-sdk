@@ -1,4 +1,5 @@
 export default {
+	'COST': 'PRIS',
 	'BET': 'INDSATS',
 	'MAX': 'MAKS',
 	'BET MENU': 'INDSATSMENU',

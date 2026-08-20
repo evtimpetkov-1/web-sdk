@@ -2,6 +2,7 @@
 	import { Sprite } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 	import { stateModal, stateBet, stateBetDerived } from 'state-shared';
+	import { getContextLayout } from 'utils-layout';
 
 	import { UI_BASE_SIZE } from '../constants';
 	import { getContext } from '../context';
@@ -9,10 +10,15 @@
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
 	const { stateXstateDerived, eventEmitter } = context;
+	const { stateLayoutDerived } = getContextLayout();
 	// deliberately larger than the standard UI_BASE_SIZE buttons — the buy
-	// entry point earns more presence than the utility buttons around it
-	const BUY_BONUS_SCALE = 1.2;
-	const sizes = { width: UI_BASE_SIZE * BUY_BONUS_SCALE, height: UI_BASE_SIZE * BUY_BONUS_SCALE };
+	// entry point earns more presence than the utility buttons around it.
+	// Desktop's UI is already generous, so it keeps the standard size.
+	const buyBonusScale = $derived(stateLayoutDerived.layoutType() === 'desktop' ? 1.0 : 1.2);
+	const sizes = $derived({
+		width: UI_BASE_SIZE * buyBonusScale,
+		height: UI_BASE_SIZE * buyBonusScale,
+	});
 	const disabled = $derived(!stateXstateDerived.isIdle());
 	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
 	const hasBonusAssets = $derived('bonusActive' in context.stateApp.loadedAssets);

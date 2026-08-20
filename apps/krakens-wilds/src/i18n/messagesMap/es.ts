@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Aviso legal',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds es una tragamonedas de video de 5 carretes y 3 filas con 20 líneas de pago fijas. Las combinaciones ganadoras se forman de izquierda a derecha en carretes consecutivos, comenzando desde el carrete más a la izquierda. Solo se paga la ganancia más alta de cada línea de pago.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'El retorno teórico al jugador (RTP) es del 96,50%. La ganancia máxima es de 5.000x la apuesta total.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'El retorno teórico al jugador (RTP) es del 96,50%. La ganancia máxima es de 767,20x la apuesta total.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Todos los valores de pago se muestran como multiplicadores del monto total de apuesta.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'El Wild (Kraken) sustituye a todos los símbolos excepto los símbolos Bonus y Moneda. Las combinaciones de Wild otorgan sus propios valores de pago.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 símbolos Bonus en cualquier lugar de los carretes otorgan 6 giros gratis.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Durante los giros gratis, cada giro es un giro del Kraken.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'COMPRAR',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Activa al instante la función de GIROS GRATIS, donde cada giro es un giro del Kraken.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Activa al instante la función de GIROS GRATIS por 80x tu apuesta total. Cada giro gratis es un giro del Kraken, que añade símbolos Wild o Moneda a los carretes. Los valores de las monedas se otorgan además de las ganancias de línea.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'Activa al instante 6, 12 o 18 giros gratis. Cada giro gratis es un giro del Kraken, que añade hasta 10 Wilds o hasta 10 monedas a los carretes.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': '¿Comprar 6, 12 o 18 giros gratis por 80x tu apuesta total?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Compra de Bonus (cofre) — Abre el menú de compra de los giros gratis.',
 };

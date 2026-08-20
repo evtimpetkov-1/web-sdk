@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': '免責事項',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wildsは、5リール3行、20本の固定ペイラインを備えたビデオスロットです。配当の組み合わせは、最も左のリールから連続するリール上で左から右へ形成されます。各ペイラインで最も高い配当のみが支払われます。',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': '理論上のプレイヤー還元率（RTP）は96.50%です。最大獲得額は合計ベットの5,000倍です。',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': '理論上のプレイヤー還元率（RTP）は96.50%です。最大獲得額は合計ベットの767.20倍です。',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'すべての配当値は、合計ベット額の倍率として表示されます。',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'ワイルド（クラーケン）はボーナスシンボルとコインシンボルを除くすべてのシンボルの代わりになります。ワイルドの組み合わせには独自の配当値があります。',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': 'リール上の任意の位置にボーナスシンボルが3つ出現すると、6回のフリースピンが付与されます。',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'フリースピン中は、すべてのスピンがクラーケンスピンです。',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': '購入',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'フリースピン機能を即座に発動します。すべてのスピンがクラーケンスピンです。',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': '合計ベットの80倍でフリースピン機能を即座に発動します。すべてのフリースピンはクラーケンスピンで、リールにワイルドまたはコインシンボルを追加します。コインの値はライン配当に加えて付与されます。',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': '6回、12回、または18回のフリースピンを即座に発動します。すべてのフリースピンはクラーケンスピンで、リールに最大10個のワイルドまたは最大10個のコインが追加されます。',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': '合計ベットの80倍で6回、12回、または18回のフリースピンを購入しますか？',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'ボーナス購入（宝箱）— フリースピン購入メニューを開きます。',
 };

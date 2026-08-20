@@ -21,6 +21,8 @@
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
+	import Anticipations from './Anticipations.svelte';
+	import AnticipationZoom from './AnticipationZoom.svelte';
 	import MovingWilds from './MovingWilds.svelte';
 import SpecialOverlay from './SpecialOverlay.svelte';
 	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
@@ -57,6 +59,7 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 	<EnablePixiExtension />
 
 	<Background />
+	<AnticipationZoom />
 
 	{#if context.stateLayout.showLoadingScreen}
 		<LoadingScreen onloaded={() => (context.stateLayout.showLoadingScreen = false)} />
@@ -90,6 +93,17 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 		<MainContainer label="BoardFrameFrontContainer">
 			<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
 				<BoardFrame front />
+			</Container>
+		</MainContainer>
+
+		<!-- Anticipation columns render ABOVE the stone border (the front frame
+		     pass), so the energy column is not clipped by the frame; they used to
+		     live inside Board's masked layer. Still below the overlay wilds/coins. -->
+		<MainContainer label="AnticipationsContainer">
+			<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
+				<BoardContainer>
+					<Anticipations />
+				</BoardContainer>
 			</Container>
 		</MainContainer>
 
@@ -131,7 +145,9 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 
 <Modals>
 	{#snippet version()}
-		<GameVersion version="1.0.0" />
+		<!-- shown in the Pay Table + Game Rules footers. 1.0.0 was the rejected
+		     (2026-07-31) submission; 2.0.0 is the reworked resubmission. -->
+		<GameVersion version="2.0.0" />
 	{/snippet}
 </Modals>
 <PayTable />

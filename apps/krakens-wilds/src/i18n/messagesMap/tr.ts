@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Sorumluluk reddi',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds, 5 makara, 3 sıra ve 20 sabit ödeme hattına sahip bir video slot oyunudur. Kazanan kombinasyonlar, en soldaki makaradan başlayarak ardışık makaralarda soldan sağa oluşur. Her ödeme hattında yalnızca en yüksek kazanç ödenir.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'Teorik oyuncuya dönüş oranı (RTP) %96,50\'dir. Maksimum kazanç, toplam bahsin 5.000 katıdır.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'Teorik oyuncuya dönüş oranı (RTP) %96,50\'dir. Maksimum kazanç, toplam bahsin 767,20 katıdır.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Tüm ödeme değerleri, toplam bahis tutarının katları olarak gösterilir.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken), Bonus ve Madeni Para sembolleri hariç tüm sembollerin yerine geçer. Wild kombinasyonlarının kendi ödeme değerleri vardır.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': 'Makaralarda herhangi bir yerde 3 Bonus sembolü 6 Bedava Dönüş verir.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Bedava Dönüşler sırasında her dönüş bir Kraken Dönüşüdür.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'SATIN AL',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Her dönüşün bir Kraken Dönüşü olduğu BEDAVA DÖNÜŞLER özelliğini anında tetikler.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Toplam bahsinin 80 katına BEDAVA DÖNÜŞLER özelliğini anında tetikler. Her Bedava Dönüş, makaralara Wild veya Madeni Para sembolleri ekleyen bir Kraken Dönüşüdür. Madeni para değerleri, çizgi kazançlarına ek olarak verilir.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'Anında 6, 12 veya 18 Bedava Dönüş başlatır. Her Bedava Dönüş, makaralara 10 adede kadar Wild veya 10 adede kadar Madeni Para ekleyen bir Kraken Dönüşüdür.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'Toplam bahsinin 80 katına 6, 12 veya 18 Bedava Dönüş satın alınsın mı?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Bonus Satın Alma (sandık) — Bedava Dönüşler satın alma menüsünü açar.',
 };

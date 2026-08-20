@@ -25,7 +25,6 @@
 	import BoardContainer from './BoardContainer.svelte';
 	import BoardMask from './BoardMask.svelte';
 	import BoardBase from './BoardBase.svelte';
-	import Anticipations from './Anticipations.svelte';
 
 	const context = getContext();
 
@@ -218,8 +217,8 @@
 				every newly mounted node to the END of the container, and the reels keep
 				remounting symbols as they cycle — so each symbol scrolling in after the
 				shade mounted would draw ON TOP of it, and spinning reels stayed at full
-				brightness under the kraken's overlay. Symbols sit at the default zIndex 0;
-				the anticipation columns keep their place above the dim at 20.
+				brightness under the kraken's overlay. Symbols sit at the default zIndex 0.
+				(Anticipations render in their own pass in Game.svelte, above the frame.)
 			-->
 			{#if dimAlpha > 0}
 				<Rectangle
@@ -232,9 +231,6 @@
 					alpha={dimAlpha}
 				/>
 			{/if}
-			<Container zIndex={20}>
-				<Anticipations />
-			</Container>
 		</BoardContainer>
 	</BoardContext>
 

@@ -1,4 +1,5 @@
 export default {
+	'COST': 'लागत',
 	'BET': 'दांव',
 	'MAX': 'अधिकतम',
 	'BET MENU': 'दांव मेनू',

@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Vastuuvapauslauseke',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds on 5 kiekon ja 3 rivin videokolikkopeli, jossa on 20 kiinteää voittolinjaa. Voittoyhdistelmät muodostuvat vasemmalta oikealle peräkkäisillä kiekoilla, alkaen vasemmanpuoleisimmasta kiekosta. Vain kunkin voittolinjan korkein voitto maksetaan.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'Teoreettinen palautusprosentti (RTP) on 96,50 %. Suurin voitto on 5 000x kokonaispanos.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'Teoreettinen palautusprosentti (RTP) on 96,50 %. Suurin voitto on 767,20x kokonaispanos.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Kaikki voittoarvot näytetään kokonaispanoksen kerrannaisina.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken) korvaa kaikki symbolit paitsi Bonus- ja kolikkosymbolit. Wild-yhdistelmät myöntävät omat voittoarvonsa.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-symbolia missä tahansa kiekoilla myöntävät 6 ilmaiskierrosta.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Ilmaiskierrosten aikana jokainen kierros on Kraken-kierros.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'OSTA',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Käynnistää heti ILMAISKIERROKSET-toiminnon, jossa jokainen kierros on Kraken-kierros.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Käynnistää heti ILMAISKIERROKSET-toiminnon hintaan 80x kokonaispanoksesi. Jokainen ilmaiskierros on Kraken-kierros, joka lisää kiekoille Wild- tai kolikkosymboleja. Kolikoiden arvot myönnetään linjavoittojen lisäksi.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'Käynnistää heti 6, 12 tai 18 ilmaiskierrosta. Jokainen ilmaiskierros on Kraken-kierros, joka lisää kiekoille jopa 10 Wildiä tai jopa 10 kolikkoa.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'Ostatko 6, 12 tai 18 ilmaiskierrosta hintaan 80x kokonaispanoksesi?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Bonusosto (arkku) — Avaa ilmaiskierrosten ostovalikon.',
 };

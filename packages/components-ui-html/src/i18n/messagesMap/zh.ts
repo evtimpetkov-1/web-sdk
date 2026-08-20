@@ -1,4 +1,5 @@
 export default {
+	'COST': '费用',
 	'BET': '投注',
 	'MAX': '最大',
 	'BET MENU': '投注菜单',

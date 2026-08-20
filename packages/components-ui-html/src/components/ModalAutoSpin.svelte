@@ -15,7 +15,7 @@
 </script>
 
 {#if stateModal.modal?.name === 'autoSpin'}
-	<Popup zIndex={zIndex.modal} onclose={() => (stateModal.modal = null)}>
+	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
 		<BaseContent maxWidth="100%">
 			<BaseTitle>
 				{i18nDerived.autoSpins()}

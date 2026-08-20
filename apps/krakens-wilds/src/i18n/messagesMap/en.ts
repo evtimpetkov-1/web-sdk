@@ -58,7 +58,7 @@ export default {
 	'Disclaimer': 'Disclaimer',
 	// GameRules — paragraphs (use __0__, __1__, __2__ for variable substitution)
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'All __0__ values are shown as multipliers of the total __1__ amount.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus symbols anywhere on the reels award 6 Free Spins.',
@@ -97,6 +97,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Every spin during the Free Spins feature is a Kraken Spin.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'BUY',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'Buy 6, 12 or 18 Free Spins for 80x your total bet?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Bonus Buy (chest) — Opens the Free Spins buy menu.',
 };

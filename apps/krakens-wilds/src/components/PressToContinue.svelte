@@ -41,8 +41,11 @@
 	// English gets the baked text art; other locales keep the text label.
 	const useTextArt = stateUrlDerived.lang() === 'en';
 	const PATC_RATIO = 1277 / 100; // press_anywhere_en.webp
+	// deliberate Y-squash: the art's letterforms are ~4.5% taller than the old
+	// version's, so it renders slightly flattened to sit better in the bar
+	const PATC_Y_SCALE = 0.84;
 	// capped so the sprite never outgrows the backing strip on narrow layouts
-	const patcWidth = $derived(Math.min(480, layout.width * 0.8));
+	const patcWidth = $derived(Math.min(430, layout.width * 0.72));
 </script>
 
 {#if props.replay}
@@ -92,7 +95,7 @@
 					key="pressAnywhereTextEn"
 					anchor={0.5}
 					width={patcWidth}
-					height={patcWidth / PATC_RATIO}
+					height={(patcWidth / PATC_RATIO) * PATC_Y_SCALE}
 				/>
 			{:else}
 				<ResponsiveText

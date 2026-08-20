@@ -1,7 +1,7 @@
-bigwin.png
+bigwin.webp
 size:2047,1505
 filter:Linear,Linear
-pma:true
+pma:false
 big_l0
 bounds:767,105,275,293
 offsets:9,3,288,300

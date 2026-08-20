@@ -1,4 +1,5 @@
 export default {
+	'COST': 'COÛT',
 	'BET': 'MISE',
 	'MAX': 'MAX',
 	'BET MENU': 'MENU DES MISES',

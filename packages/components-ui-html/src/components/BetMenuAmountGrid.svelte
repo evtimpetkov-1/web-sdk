@@ -24,6 +24,7 @@
 <OptionsGrid
 	value={stateBet.betAmount}
 	{options}
+	wide
 	onchange={(value) => (stateBet.betAmount = value)}
 >
 	{#snippet option({ option })}

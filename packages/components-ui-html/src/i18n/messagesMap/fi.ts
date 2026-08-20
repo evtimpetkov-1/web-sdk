@@ -1,4 +1,5 @@
 export default {
+	'COST': 'HINTA',
 	'BET': 'PANOS',
 	'MAX': 'MAX',
 	'BET MENU': 'PANOSVALIKKO',

@@ -204,6 +204,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		// A spin cut short (stop button, replay teardown) can leave the overlay up
 		clearOverlay();
+		// The previous spin's kraken wilds leave at SPIN START, exactly like the
+		// overlay coins: with them gone, ReelSymbol un-hides the identical board
+		// wilds underneath, which then spin away like any other symbol. They
+		// used to be dropped only when the next attack's cloud covered the
+		// reels, so they sat frozen on top of the spin-up.
+		stateGame.movingWilds = [];
 		stateGame.reelsShaded = false;
 
 		stateGame.gameType = bookEvent.gameType;
@@ -224,11 +230,22 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// the board the free spins are entered from and the one to come back to.
 		if (bookEvent.gameType === 'basegame') stateGame.triggerBoard = bookEvent.board;
 
+		// The actor already preSpins the reels at button press (onNewGameStart),
+		// so the FIRST reveal of a bet arrives with the reels in motion. Calling
+		// preSpin again on spinning reels re-inserts padding and re-runs the
+		// per-reel stagger — a visible stutter that only kraken spins had.
+		// Free-spin reveals 2..N have no actor callback, so THEY still need it.
+		const reelsAlreadySpinning = stateGame.board.some(
+			(reel) => reel.reelState.motion === 'spinning',
+		);
+
 		if (bookEvent.gameType === 'freegame') {
 			// Start reels spinning visually
-			await stateGameDerived.enhancedBoard.preSpin({
-				paddingBoard: config.paddingReels[bookEvent.gameType],
-			});
+			if (!reelsAlreadySpinning) {
+				await stateGameDerived.enhancedBoard.preSpin({
+					paddingBoard: config.paddingReels[bookEvent.gameType],
+				});
+			}
 
 			// Every free spin is a Kraken Spin (spec v2): the kraken attacks before the
 			// reels stop and puts either Wilds or Coins on them. Wilds are placed FRESH
@@ -298,9 +315,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			// coins are REAL symbols already in this reveal's board, but the overlay
 			// copies are what the player sees — ReelSymbol hides a board symbol for as
 			// long as the overlay holds one of its kind, so the two never double up.
-			await stateGameDerived.enhancedBoard.preSpin({
-				paddingBoard: config.paddingReels[bookEvent.gameType],
-			});
+			if (!reelsAlreadySpinning) {
+				await stateGameDerived.enhancedBoard.preSpin({
+					paddingBoard: config.paddingReels[bookEvent.gameType],
+				});
+			}
 			await waitForTimeout(300);
 			// resolves on the spine's `reelsCovered` event — cloud now covers the reels
 			await eventEmitter.broadcastAsync({ type: 'krakenAttack' });
@@ -437,23 +456,24 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const extraSpins = bookEvent.totalFs - stateUi.freeSpinCounterTotal;
 		stateGame.retriggerExtra = extraSpins;
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
-		// RETRIGGER splash text over the board; per-scatter "+1" labels are
-		// rendered by ReelSymbol, so no positions are passed here.
+		// Two SEQUENTIAL beats (they used to overlap, and the splash's full-screen
+		// shade buried the bonus symbol's celebration under the RETRIGGER card):
 		//
-		// The splash holds a full-screen shade for ~4.5s. Broadcast fire-and-forget
-		// it did not hold the queue, so the round ran straight on and the next free
-		// spin spun up behind the dimmed RETRIGGER card — visible on autoplay, where
-		// nothing else gates the next spin. It is started here and awaited after the
-		// scatters animate, so the two still overlap as before.
+		// beat 1 — the landed Bonus symbol celebrates in the clear, with its "+1"
+		// chip (rendered by ReelSymbol while retriggerExtra is set).
+		await animateSymbols({ positions: bookEvent.positions });
+		stateGame.retriggerExtra = 0;
+
+		// beat 2 — the RETRIGGER splash. Awaited so the queue holds until the
+		// card has left the screen — otherwise the next free spin spins up
+		// behind the dimmed card (visible on autoplay).
 		const splashShown = eventEmitter.broadcastAsync({
 			type: 'freeSpinRetriggerShow',
 			extraSpins,
 			positions: [],
 		});
-		await animateSymbols({ positions: bookEvent.positions });
-		stateGame.retriggerExtra = 0;
-		// Counter ticks up to the new total while the card is still on screen — that
-		// pairing is the point of the beat, so only the queue advance waits below.
+		// Counter ticks up to the new total while the card is on screen — that
+		// pairing is the point of the beat.
 		eventEmitter.broadcast({
 			type: 'freeSpinCounterUpdate',
 			current: undefined,
@@ -486,7 +506,13 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		winLevelSoundsPlay({ winLevelData });
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinOutroCountUp',
-			amount: bookEvent.amount,
+			// The TOTAL WIN the outro shows must match every other total in the
+			// round: bookEvent.amount is the FREE-SPINS-SESSION sum only, but the
+			// bet's running total (set by setTotalWin, shown in the TOTAL WIN
+			// counter) also includes the base-game winnings of the triggering
+			// spin. Count to that instead; fall back to the event amount if the
+			// running total is somehow behind it.
+			amount: Math.max(stateBet.winBookEventAmount, bookEvent.amount),
 			winLevelData,
 		});
 		// the feature is over — the ambient goes back to the base game track even though

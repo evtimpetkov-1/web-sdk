@@ -13,6 +13,7 @@
 
 	import { getContext } from '../game/context';
 	import { CELL_W, CELL_H, SYMBOL_SIZE, REEL_PADDING, BOARD_SIZES } from '../game/constants';
+	import FsTextSingular from './FsTextSingular.svelte';
 
 	const context = getContext();
 
@@ -119,6 +120,9 @@
 	/>
 	<Container x={BOARD_SIZES.width / 2} y={BOARD_SIZES.height / 2 - 40} zIndex={11}>
 		<SpineProvider key="fsText" width={680}>
+			<!-- "+1" reads "FREE SPIN" — the trailing S piece is hidden and the
+			     lettering recentred for this mount -->
+			<FsTextSingular singular={extraSpins === 1} />
 			<SpineTrack
 				trackIndex={0}
 				animationName={splashAnim}

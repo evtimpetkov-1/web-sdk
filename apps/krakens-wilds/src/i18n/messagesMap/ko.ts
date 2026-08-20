@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': '면책 조항',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds는 5릴, 3행, 20개의 고정 페이 라인을 갖춘 비디오 슬롯입니다. 당첨 조합은 가장 왼쪽 릴부터 연속된 릴에서 왼쪽에서 오른쪽으로 형성됩니다. 각 페이 라인에서 최고 당첨만 지급됩니다.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': '이론적 환원율(RTP)은 96.50%입니다. 최대 당첨금은 총 베팅의 5,000배입니다.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': '이론적 환원율(RTP)은 96.50%입니다. 최대 당첨금은 총 베팅의 767.20배입니다.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': '모든 배당 값은 총 베팅 금액의 배수로 표시됩니다.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': '와일드(크라켄)는 보너스 및 코인 심볼을 제외한 모든 심볼을 대체합니다. 와일드 조합은 고유한 배당 값을 지급합니다.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '릴의 아무 위치에 보너스 심볼 3개가 나타나면 프리 스핀 6회가 부여됩니다.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': '프리 스핀 동안에는 모든 스핀이 크라켄 스핀입니다.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': '구매',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': '모든 스핀이 크라켄 스핀인 프리 스핀 기능을 즉시 발동합니다.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': '총 베팅의 80배로 프리 스핀 기능을 즉시 발동합니다. 모든 프리 스핀은 크라켄 스핀으로, 릴에 와일드 또는 코인 심볼을 추가합니다. 코인 값은 라인 당첨금과 별도로 지급됩니다.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': '6, 12 또는 18회의 프리 스핀을 즉시 발동합니다. 모든 프리 스핀은 크라켄 스핀으로, 릴에 최대 10개의 와일드 또는 최대 10개의 코인이 추가됩니다.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': '총 베팅의 80배로 6, 12 또는 18회의 프리 스핀을 구매하시겠습니까?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': '보너스 구매(보물상자) — 프리 스핀 구매 메뉴를 엽니다.',
 };

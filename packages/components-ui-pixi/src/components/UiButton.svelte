@@ -11,6 +11,8 @@
 		active?: boolean;
 		iconActive?: boolean;
 		iconRotation?: number;
+		/** multiply-tint over the icon art (e.g. green while turbo is active) */
+		iconTint?: number;
 		children?: Snippet;
 	};
 
@@ -26,7 +28,7 @@
 		menuExit: 'close.png',
 	};
 
-	const { icon, active, iconActive, iconRotation, children: childrenFromParent, ...buttonProps }: Props = $props();
+	const { icon, active, iconActive, iconRotation, iconTint, children: childrenFromParent, ...buttonProps }: Props = $props();
 
 	const spriteKey = $derived(icon === 'turbo' && iconActive ? 'turbo_on.png' : ICON_SPRITE_MAP[icon]);
 </script>
@@ -48,6 +50,7 @@
 			width={buttonProps.sizes.width * scale}
 			height={buttonProps.sizes.height * scale}
 			{alpha}
+			tint={iconTint ?? 0xffffff}
 			rotation={iconRotation ?? 0}
 		/>
 

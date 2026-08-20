@@ -1,4 +1,5 @@
 export default {
+	'COST': 'СТОИМОСТЬ',
 	'BET': 'СТАВКА',
 	'MAX': 'МАКС',
 	'BET MENU': 'МЕНЮ СТАВОК',

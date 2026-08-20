@@ -25,4 +25,15 @@
 	});
 </script>
 
-<UiButton {...props} {sizes} {active} {onpress} {disabled} icon="turbo" iconActive={persistentTurbo} />
+<!-- TEST: green bolt while turbo is on (yellow art x green tint) — to revert,
+     drop the iconTint prop -->
+<UiButton
+	{...props}
+	{sizes}
+	{active}
+	{onpress}
+	{disabled}
+	icon="turbo"
+	iconActive={persistentTurbo}
+	iconTint={persistentTurbo ? 0x55ff55 : undefined}
+/>

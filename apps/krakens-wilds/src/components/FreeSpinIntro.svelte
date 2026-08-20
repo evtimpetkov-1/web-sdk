@@ -71,6 +71,25 @@
 	let freeSpinsFromEvent = $state(0);
 	let oncomplete = $state(() => {});
 
+	/**
+	 * The press-to-continue layer arms only after the intro is actually
+	 * READABLE. `freeSpinIntroShow` fires at full cloud coverage and the
+	 * FadeContainer mounts its children from the first frame of the 900ms
+	 * crossfade — so an unarmed press layer used to be live while the player
+	 * still saw nothing but the kraken's cloud. A tap there dismissed an intro
+	 * they never saw, and the premature skip raced the trigger attack still
+	 * playing on the topper (see KrakenTopper's krakenAttack restart note).
+	 */
+	let pressArmed = $state(false);
+	$effect(() => {
+		if (!show) {
+			pressArmed = false;
+			return;
+		}
+		const timer = setTimeout(() => (pressArmed = true), 1100);
+		return () => clearTimeout(timer);
+	});
+
 	context.eventEmitter.subscribeOnMount({
 		freeSpinIntroShow: () => {
 			show = true;
@@ -171,5 +190,7 @@
 		{/snippet}
 	</FreeSpinAnimation>
 
-	<PressToContinue onpress={() => oncomplete()} />
+	{#if pressArmed}
+		<PressToContinue onpress={() => oncomplete()} />
+	{/if}
 </FadeContainer>

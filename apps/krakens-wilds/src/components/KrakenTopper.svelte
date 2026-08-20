@@ -67,7 +67,9 @@
 	let flyId = 0;
 	const MAW = { x: BOARD_SIZES.width / 2, y: SIT_Y - 40 };
 	const FLY_MS = 480; // dust reaches the maw at about the old copy's pace
-	const EMIT_MS = 260; // spawn window — the rest of the flight is the tail thinning
+	// longer spawn window = a longer object: particles spawned later trail the
+	// leaders by speed * dt, so the window length IS the stream's length
+	const EMIT_MS = 340;
 
 	// Coins in flight, plus the running multiplier total shown above the kraken.
 	type FlyingCoin = {
@@ -167,17 +169,20 @@
 			x,
 			y,
 			emit: true,
-			// WildLandDust's look (same puff art, lilac -> deep purple), but the
-			// spray is a narrow cone aimed at the maw instead of an outward puff.
+			// WildLandDust's look (same puff art, lilac -> deep purple), deformed
+			// into a LANCE: tight across the flight line (near-zero cone spread +
+			// small spawn point + smaller puffs) and stretched along it (long
+			// spawn window + wider speed jitter), so the object flies as a
+			// narrow, elongated streak rather than a round cloud.
 			// emitSpeed 0.001 = real time, see the note in WildLandDust.
 			config: {
 				alpha: { start: 1, end: 0.3 },
-				scale: { start: 0.5, end: 0.28, minimumScaleMultiplier: 0.75 },
+				scale: { start: 0.4, end: 0.22, minimumScaleMultiplier: 0.75 },
 				color: { start: '#e2ccff', end: '#7a44cc' },
-				speed: { start: speed * 1.1, end: speed * 0.9, minimumSpeedMultiplier: 0.92 },
+				speed: { start: speed * 1.1, end: speed * 0.9, minimumSpeedMultiplier: 0.86 },
 				acceleration: { x: 0, y: 0 },
 				maxSpeed: 0,
-				startRotation: { min: angle - 7, max: angle + 7 },
+				startRotation: { min: angle - 2.5, max: angle + 2.5 },
 				noRotation: false,
 				rotationSpeed: { min: -60, max: 60 },
 				lifetime: { min: (FLY_MS - 40) / 1000, max: (FLY_MS + 60) / 1000 },
@@ -188,7 +193,7 @@
 				pos: { x: 0, y: 0 },
 				addAtBack: false,
 				spawnType: 'circle',
-				spawnCircle: { x: 0, y: 0, r: SYMBOL_SIZE * 0.28 },
+				spawnCircle: { x: 0, y: 0, r: SYMBOL_SIZE * 0.08 },
 			},
 		};
 		flying = [...flying, wild];
@@ -213,6 +218,13 @@
 
 	context.eventEmitter.subscribeOnMount({
 		krakenAttack: async () => {
+			// A second attack can be requested while one is still mid-flight (the
+			// FS-trigger attack + a fast first free spin). Same-name assignment
+			// would NOT restart the animation, and its reelsCovered event may have
+			// already fired before this new resolver existed — the await below
+			// then hangs the book forever. Remount the track (gulpNonce) so the
+			// attack replays from the top and reelsCovered is guaranteed to fire.
+			if (mode === 'attack') gulpNonce += 1;
 			mode = 'attack';
 			width.set(KRAKEN_WIDTH); // grow while it rears up (wind-up is ~0.85s)
 			waitForTimeout(SFX_ATTACK_DELAY).then(() =>

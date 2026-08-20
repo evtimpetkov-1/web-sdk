@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': '免责声明',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds是一款5轴3行的视频老虎机，拥有20条固定赔付线。中奖组合从最左侧转轴开始，在连续转轴上从左到右形成。每条赔付线仅支付最高奖金。',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': '理论玩家回报率（RTP）为96.50%。最大赢额为总投注的5,000倍。',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': '理论玩家回报率（RTP）为96.50%。最大赢额为总投注的767.20倍。',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': '所有赔付值均显示为总投注金额的倍数。',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': '百搭（海怪）替代除奖励符号和金币符号以外的所有符号。百搭组合拥有自己的赔付值。',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '转轴上任意位置出现3个奖励符号可获得6次免费旋转。',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': '免费旋转期间，每次旋转都是海怪旋转。',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': '购买',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': '立即触发免费旋转功能，其中每次旋转都是海怪旋转。',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': '以总投注的80倍立即触发免费旋转功能。每次免费旋转都是海怪旋转，会在转轴上加入百搭或金币符号。金币价值将在线赢奖之外额外发放。',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': '立即触发6次、12次或18次免费旋转。每次免费旋转都是海怪旋转，会在转轴上加入最多10个百搭或最多10个金币。',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': '以总投注的80倍购买6次、12次或18次免费旋转？',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': '购买奖励（宝箱）— 打开免费旋转购买菜单。',
 };

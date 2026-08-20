@@ -1,4 +1,5 @@
 export default {
+	'COST': 'BIAYA',
 	'BET': 'TARUHAN',
 	'MAX': 'MAKS',
 	'BET MENU': 'MENU TARUHAN',

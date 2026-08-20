@@ -69,7 +69,7 @@ export const i18nDerived = {
 	disclaimer: () => t('Disclaimer'),
 	// GameRules — paragraphs
 	overviewDesc: () => t("Kraken's Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__."),
-	betModeRtp: () => t('The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.'),
+	betModeRtp: () => t('The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.'),
 	betModeMultiplier: () => t('All __0__ values are shown as multipliers of the total __1__ amount.'),
 	wildSymbolDesc: () => t('The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.'),
 	coinSymbolDesc: () => t('Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.'),
@@ -91,6 +91,7 @@ export const i18nDerived = {
 	uiStop: () => t('Stop — Stop the reels early during a spin.'),
 	uiAutoSpin: () => t('Auto Spin — Automatically spin a set number of times.'),
 	uiTurbo: () => t('Turbo — Speed up reel animations.'),
+	uiBuyBonus: () => t('Bonus Buy (chest) — Opens the Free Spins buy menu.'),
 	uiPlusMinus: () => t('+/− — Increase or decrease the __0__ amount.'),
 	uiMenu: () => t('Menu (☰) — Open the settings menu.'),
 	uiPaytable: () => t('__0__ — View symbol __1__ values and __2__.'),

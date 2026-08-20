@@ -10,6 +10,15 @@
 		children: Snippet;
 		zIndex: number;
 		persistent?: boolean;
+		/**
+		 * Where the X lives. 'screen' (default): fixed to the viewport corner —
+		 * right for fullscreen-style content and for wrappers whose children are
+		 * out of normal flow (buy-bonus layouts). 'content': riding the top-right
+		 * corner of the rendered panel, standard dialog style — use it for
+		 * centered-card modals (bet menu), where a viewport-corner X floats
+		 * detached in the dead zone beside the panel.
+		 */
+		closeAnchor?: 'screen' | 'content';
 		onclose: () => void;
 	};
 
@@ -58,28 +67,48 @@
 			style="--zIndex: {zIndexInternal.clickToCloseLayer}"
 		></div>
 
-		{#if !props.persistent}
-			<div class="close-button-wrap" style="--zIndex: {zIndexInternal.closeButton}">
-				<button
-					class="close-button"
-					data-test="close-button"
-					aria-label="Close"
-					onclick={closeModal}
-				>
-					<!--
-						An SVG rather than a "×" glyph. Flex centring centres the text LINE
-						BOX, not the glyph's ink, and the multiplication sign sits on the
-						font's math axis above the baseline — so the mark rendered visibly
-						high in the circle. The path is symmetric in its own viewBox, so it
-						is centred geometrically and no font metrics are involved.
-					-->
-					<svg class="close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path d="M6 6 L18 18 M18 6 L6 18" />
-					</svg>
-				</button>
+		{#snippet closeButton()}
+			<button
+				class="close-button"
+				data-test="close-button"
+				aria-label="Close"
+				onclick={closeModal}
+			>
+				<!--
+					An SVG rather than a "×" glyph. Flex centring centres the text LINE
+					BOX, not the glyph's ink, and the multiplication sign sits on the
+					font's math axis above the baseline — so the mark rendered visibly
+					high in the circle. The path is symmetric in its own viewBox, so it
+					is centred geometrically and no font metrics are involved.
+				-->
+				<svg class="close-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+					<path d="M6 6 L18 18 M18 6 L6 18" />
+				</svg>
+			</button>
+		{/snippet}
+
+		{#if props.closeAnchor === 'content'}
+			<!-- the anchor shrink-wraps the panel, so the X rides ITS top-right
+			     corner instead of floating at the viewport corner -->
+			<div class="content-anchor">
+				{#if !props.persistent}
+					<div
+						class="close-button-wrap content-anchored"
+						style="--zIndex: {zIndexInternal.closeButton}"
+					>
+						{@render closeButton()}
+					</div>
+				{/if}
+				{@render props.children()}
 			</div>
+		{:else}
+			{#if !props.persistent}
+				<div class="close-button-wrap" style="--zIndex: {zIndexInternal.closeButton}">
+					{@render closeButton()}
+				</div>
+			{/if}
+			{@render props.children()}
 		{/if}
-		{@render props.children()}
 	</div>
 </div>
 
@@ -140,6 +169,26 @@
 		top: 0.5rem;
 		right: 0.5rem;
 		z-index: var(--zIndex);
+	}
+
+	// content-anchored mode: the wrapper shrink-wraps the panel and the X sits
+	// on the panel's own top-right corner, aligned with its title row
+	.content-anchor {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		max-width: 100%;
+		max-height: 100%;
+		min-height: 0;
+	}
+
+	.close-button-wrap.content-anchored {
+		// snug in the panel's top-right CORNER — equal small insets, no title
+		// alignment, no scrollbar avoidance (the themed scrollbar is a thin
+		// 6px line now, an overlap with it is invisible under the button)
+		top: 0.65rem;
+		right: 0.65rem;
 	}
 
 	.close-button {

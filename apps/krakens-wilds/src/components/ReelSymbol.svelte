@@ -51,9 +51,11 @@
 	Hidden while the kraken's overlay owns this kind of symbol: the sticky copy on top
 	is the one the player sees land, reveal and pay, and drawing the real one as well
 	would double it up and pop its value on at the reel stop. Free-spin wilds work the
-	same way — MovingWilds owns them and the board's W is never drawn.
+	same way — but only WHILE MovingWilds actually holds copies: once they are dropped
+	at the next spin's start, the board's identical W takes over and spins away like
+	any other symbol (an empty condition here left a visible hole in the moving reel).
 -->
-{#if !(context.stateGame.gameType === 'freegame' && props.reelSymbol.rawSymbol.name === 'W') && !hiddenByOverlay}
+{#if !(context.stateGame.gameType === 'freegame' && props.reelSymbol.rawSymbol.name === 'W' && context.stateGame.movingWilds.length > 0) && !hiddenByOverlay}
 	<!--
 		The win frame lives in its OWN wrap at zIndex -1, not inside the symbol's:
 		every wrap is a sibling in the board layer's container, so this is what

@@ -20,18 +20,33 @@
 
 	let contentRect = $state({ width: 0, height: 0, left: 0, top: 0 } as ContentRect);
 
-	const verticalScale = $derived(stateLayoutDerived.canvasSizes().height / (270 * 2)); // 2 rows, 270 is the height benchmark
-	const horizontalScale = $derived(
-		(stateLayoutDerived.canvasSizes().width - 250) / (contentRect?.width || 0),
+	/**
+	 * The cards and the bet toggle are ONE cluster (toggle right under the
+	 * cards, same as portrait) and the whole cluster is measured unscaled and
+	 * shrunk together to fit the viewport. Earlier layouts positioned the two
+	 * independently (toggle fixed to the screen edge, then beside the scaled
+	 * cards' unscaled box) and they kept drifting apart on wide/short windows.
+	 */
+	const scale = $derived(
+		Math.min(
+			1,
+			(stateLayoutDerived.canvasSizes().height * 0.92) / (contentRect?.height || 1),
+			(stateLayoutDerived.canvasSizes().width * 0.9) / (contentRect?.width || 1),
+		),
 	);
-	const scale = $derived(Math.min(verticalScale, horizontalScale));
 </script>
 
-<!-- bare: every child here is position:absolute/fixed, so a chromed panel
-     would collapse to an empty square at screen center -->
+<!-- bare: the content is out of normal flow, so a chromed panel would
+     collapse to an empty square at screen center -->
 <BaseContent maxWidth="100%" bare>
-	<div class="bonuses-wrap" use:resizeObserver={(value) => (contentRect = value)}>
-		<div class="bonuses" style="transform: scale({Math.min(scale, 1)});">
+	<!-- outer div centers; inner div scales about its own center — the visual
+	     stays perfectly centered at any scale -->
+	<div class="center">
+		<div
+			class="cluster"
+			style="transform: scale({scale});"
+			use:resizeObserver={(value) => (contentRect = value)}
+		>
 			<BaseScrollable type="row" noScroll>
 				{@render props.bonusCardsActivate()}
 			</BaseScrollable>
@@ -39,34 +54,32 @@
 			<BaseScrollable type="row" noScroll>
 				{@render props.bonusCardsBuy()}
 			</BaseScrollable>
-		</div>
-	</div>
 
-	<div class="badge-amount-wrap">
-		{@render props.betAmount()}
+			<div class="amount">
+				{@render props.betAmount()}
+			</div>
+		</div>
 	</div>
 </BaseContent>
 
 <style lang="scss">
-	.bonuses-wrap {
+	.center {
 		position: absolute;
 		left: 50%;
 		top: 50%;
-		transform: translate(calc(-50% - 7rem), -50%);
+		transform: translate(-50%, -50%);
 	}
 
-	.bonuses {
+	.cluster {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		gap: 1rem;
 
 		transform-origin: center center;
 	}
 
-	.badge-amount-wrap {
-		position: fixed;
-		top: calc(50% + 1.2rem);
-		right: 1rem;
-		transform: translateY(-50%);
+	.amount {
+		margin-top: 0.25rem;
 	}
 </style>

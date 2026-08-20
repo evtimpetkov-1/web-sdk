@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'अस्वीकरण',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds एक 5-रील, 3-पंक्ति वीडियो स्लॉट है जिसमें 20 निश्चित पे लाइनें हैं। जीतने वाले संयोजन सबसे बाईं रील से शुरू होकर लगातार रीलों पर बाएं से दाएं बनते हैं। प्रत्येक पे लाइन पर केवल सबसे अधिक जीत का ही भुगतान किया जाता है।',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'सैद्धांतिक रिटर्न टू प्लेयर (RTP) 96.50% है। अधिकतम जीत कुल दांव का 5,000 गुना है।',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'सैद्धांतिक रिटर्न टू प्लेयर (RTP) 96.50% है। अधिकतम जीत कुल दांव का 767.20 गुना है।',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'सभी भुगतान मान कुल दांव राशि के गुणक के रूप में दिखाए जाते हैं।',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken) Bonus और सिक्का प्रतीकों को छोड़कर सभी प्रतीकों का विकल्प बनता है। Wild संयोजनों के अपने भुगतान मान होते हैं।',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': 'रीलों पर कहीं भी 3 Bonus प्रतीक 6 फ्री स्पिन प्रदान करते हैं।',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'फ्री स्पिन के दौरान हर स्पिन एक क्रैकन स्पिन होता है।',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'खरीदें',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'तुरंत फ्री स्पिन फीचर शुरू करता है, जिसमें हर स्पिन एक क्रैकन स्पिन है।',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'आपकी कुल शर्त के 80x पर तुरंत फ्री स्पिन फीचर शुरू करता है। हर फ्री स्पिन एक क्रैकन स्पिन है, जो रीलों पर Wild या सिक्का प्रतीक जोड़ता है। सिक्कों के मूल्य लाइन जीत के अतिरिक्त दिए जाते हैं।',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'तुरंत 6, 12 या 18 फ्री स्पिन शुरू करता है। हर फ्री स्पिन एक क्रैकन स्पिन है, जो रीलों पर 10 तक Wild या 10 तक सिक्के जोड़ता है।',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'अपनी कुल शर्त के 80x पर 6, 12 या 18 फ्री स्पिन खरीदें?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'बोनस खरीद (संदूक) — फ्री स्पिन खरीद मेनू खोलता है।',
 };

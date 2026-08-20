@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Zastrzeżenia',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds to automat wideo z 5 bębnami, 3 rzędami i 20 stałymi liniami wypłat. Wygrywające kombinacje tworzą się od lewej do prawej na kolejnych bębnach, zaczynając od skrajnie lewego bębna. Wypłacana jest tylko najwyższa wygrana na każdej linii wypłat.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'Teoretyczny zwrot dla gracza (RTP) wynosi 96,50%. Maksymalna wygrana to 5 000x łącznego zakładu.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'Teoretyczny zwrot dla gracza (RTP) wynosi 96,50%. Maksymalna wygrana to 767,20x łącznego zakładu.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Wszystkie wartości wypłat są wyświetlane jako mnożniki łącznej kwoty zakładu.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken) zastępuje wszystkie symbole z wyjątkiem symboli Bonus i Monety. Kombinacje Wild przyznają własne wartości wypłat.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 symbole Bonus w dowolnym miejscu na bębnach przyznają 6 Darmowych Obrotów.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Podczas Darmowych Obrotów każdy obrót jest Obrotem Krakena.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'KUP',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Natychmiast uruchamia funkcję DARMOWYCH OBROTÓW, w której każdy obrót jest Obrotem Krakena.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Natychmiast uruchamia funkcję DARMOWYCH OBROTÓW za 80x całkowitej stawki. Każdy Darmowy Obrót jest Obrotem Krakena, który dodaje na bębny symbole Wild lub Monety. Wartości monet są przyznawane dodatkowo, obok wygranych liniowych.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'Natychmiast uruchamia 6, 12 lub 18 Darmowych Obrotów. Każdy Darmowy Obrót jest Obrotem Krakena, dodającym na bębny do 10 symboli Wild lub do 10 Monet.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'Kupić 6, 12 lub 18 Darmowych Obrotów za 80x całkowitej stawki?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Zakup Bonusu (skrzynia) — Otwiera menu zakupu Darmowych Obrotów.',
 };

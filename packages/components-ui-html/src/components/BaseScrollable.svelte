@@ -6,12 +6,18 @@
 	type Props = {
 		type: 'column' | 'row';
 		noScroll?: boolean;
+		/** hands the scroll container to the parent (e.g. for scroll hints) */
+		onelement?: (element: Element) => void;
 		children: Snippet<[{ element: Element }]>;
 	};
 
 	let element = $state(null as Element);
 
 	const props: Props = $props();
+
+	$effect(() => {
+		props.onelement?.(element);
+	});
 </script>
 
 <div
@@ -29,6 +35,23 @@
 		text-align: center;
 		display: flex;
 		gap: 1rem;
+
+		// thin, theme-matched scrollbar — the default fat white one cut through
+		// the dark panels (and collided with the panel-anchored close button)
+		scrollbar-width: thin;
+		scrollbar-color: rgba(240, 208, 96, 0.35) transparent;
+
+		&::-webkit-scrollbar {
+			width: 6px;
+			height: 6px;
+		}
+		&::-webkit-scrollbar-track {
+			background: transparent;
+		}
+		&::-webkit-scrollbar-thumb {
+			background: rgba(240, 208, 96, 0.35);
+			border-radius: 3px;
+		}
 
 		&.column {
 			flex-direction: column;

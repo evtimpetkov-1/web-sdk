@@ -1,4 +1,5 @@
 export default {
+	'COST': 'CHI PHÍ',
 	'BET': 'CƯỢC',
 	'MAX': 'TỐI ĐA',
 	'BET MENU': 'MENU CƯỢC',

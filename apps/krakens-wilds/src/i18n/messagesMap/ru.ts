@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Отказ от ответственности',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds — это видеослот с 5 барабанами, 3 рядами и 20 фиксированными линиями выплат. Выигрышные комбинации формируются слева направо на соседних барабанах, начиная с крайнего левого. Выплачивается только максимальный выигрыш на каждой линии выплат.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'Теоретический возврат игроку (RTP) составляет 96,50%. Максимальный выигрыш — 5 000x от общей ставки.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'Теоретический возврат игроку (RTP) составляет 96,50%. Максимальный выигрыш — 767,20x от общей ставки.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Все значения выплат отображаются как множители общей суммы ставки.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Кракен) заменяет все символы, кроме символов Bonus и Монеты. Комбинации Wild приносят собственные выплаты.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 символа Bonus в любом месте на барабанах дают 6 Бесплатных Вращений.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Во время Бесплатных Вращений каждое вращение является Вращением Кракена.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'КУПИТЬ',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Мгновенно запускает функцию БЕСПЛАТНЫХ ВРАЩЕНИЙ, где каждое вращение — это Вращение Кракена.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Мгновенно запускает функцию БЕСПЛАТНЫХ ВРАЩЕНИЙ за 80x от общей ставки. Каждое Бесплатное Вращение является Вращением Кракена и добавляет на барабаны символы Wild или Монеты. Значения монет начисляются в дополнение к линейным выигрышам.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'Мгновенно запускает 6, 12 или 18 Бесплатных Вращений. Каждое из них — Вращение Кракена, добавляющее на барабаны до 10 символов Wild или до 10 монет.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'Купить 6, 12 или 18 Бесплатных Вращений за 80x от общей ставки?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Покупка бонуса (сундук) — Открывает меню покупки Бесплатных Вращений.',
 };

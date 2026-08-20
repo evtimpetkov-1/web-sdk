@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'إخلاء المسؤولية',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds هي لعبة سلوت فيديو من 5 بكرات و3 صفوف مع 20 خط دفع ثابتًا. تتكوّن التوليفات الرابحة من اليسار إلى اليمين على بكرات متتالية، بدءًا من البكرة اليسرى. يُدفع أعلى ربح فقط على كل خط دفع.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'العائد النظري للاعب (RTP) هو 96.50%. الحد الأقصى للربح هو 5,000x من إجمالي الرهان.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'العائد النظري للاعب (RTP) هو 96.50%. الحد الأقصى للربح هو 767.20x من إجمالي الرهان.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'تُعرض جميع قيم الدفع كمضاعفات لإجمالي مبلغ الرهان.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'يحل رمز Wild (Kraken) محل جميع الرموز باستثناء رمزي Bonus والعملة. تمنح توليفات Wild قيم دفع خاصة بها.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 رموز Bonus في أي مكان على البكرات تمنح 6 دورات مجانية.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'خلال الدورات المجانية، كل دورة هي دورة الكراكن.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'شراء',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'يُفعّل فورًا ميزة الدورات المجانية، حيث تكون كل دورة دورة الكراكن.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'يُفعّل فورًا ميزة الدورات المجانية مقابل 80x من إجمالي رهانك. كل دورة مجانية هي دورة الكراكن وتضيف رموز Wild أو العملات على البكرات. تُمنح قيم العملات إضافةً إلى أرباح الخطوط.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'يُفعّل فورًا 6 أو 12 أو 18 دورة مجانية. كل دورة مجانية هي دورة الكراكن، تضيف حتى 10 رموز Wild أو حتى 10 عملات على البكرات.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'هل تريد شراء 6 أو 12 أو 18 دورة مجانية مقابل 80x من إجمالي رهانك؟',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'شراء المكافأة (الصندوق) — يفتح قائمة شراء الدورات المجانية.',
 };

@@ -103,6 +103,7 @@
 					<li>{i18nDerived.uiStop()}</li>
 					<li>{i18nDerived.uiAutoSpin()}</li>
 					<li>{i18nDerived.uiTurbo()}</li>
+					<li>{i18nDerived.uiBuyBonus()}</li>
 					<li>{i18nDerived.uiPlusMinus().replace('__0__', betLabel)}</li>
 					<li>{i18nDerived.uiMenu()}</li>
 					<li>{i18nDerived.uiPaytable().replace('__0__', payTableName).replace('__1__', payoutLabel).replace('__2__', linesLabel)}</li>

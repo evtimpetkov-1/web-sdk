@@ -2,6 +2,16 @@ import { stateMeta, stateI18nDerived, type BetModeMeta } from 'state-shared';
 
 import config from './config';
 
+// Resolved the same way assets.ts resolves everything (relative to the module,
+// which the bundle rewrites to the script's own URL). A root-absolute string
+// ('/assets/...') worked on localhost only: on Stake Engine the client is
+// served under a subpath, and the browser resolved the leading slash against
+// the CDN origin — 404, broken image on both buy-bonus popups.
+const bonusCardImg = new URL(
+	'../../assets/sprites/betmodes/bonus_card.webp',
+	import.meta.url,
+).href;
+
 const NO_ASSETS = {
 	icon: '',
 	dialogImage: '',
@@ -47,18 +57,17 @@ const buildBetModeMeta = (): BetModeMeta => {
 		children: '',
 		assets: {
 			...NO_ASSETS,
-			dialogImage: '/assets/sprites/betmodes/bonus_card.webp',
+			dialogImage: bonusCardImg,
 		},
 		text: {
 			title: t('FREE SPINS'),
-			// Describes what the feature actually does. The previous copy promised
-			// "Sticky Wilds with win multipliers ... locked on the reels for the entire
-			// feature" — wrong on all three counts: wilds are placed per spin, they do
-			// not carry multipliers, and the values belong to the Coin symbol.
-			dialog: t(
-				'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.',
+			// The card (shop) carries the full feature explanation; the confirm
+			// dialog is a short purchase question — the modal itself restates the
+			// concrete cost next to CONFIRM.
+			dialog: t('Buy 6, 12 or 18 Free Spins for 80x your total bet?'),
+			description: t(
+				'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.',
 			),
-			description: t('Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.'),
 			button: t('BUY'),
 			betAmountLabel: 'BONUS BUY',
 			tickerIdle: 'PLACE YOUR BET',

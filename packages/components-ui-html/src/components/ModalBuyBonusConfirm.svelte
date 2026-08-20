@@ -3,6 +3,7 @@
 	import { zIndex } from 'constants-shared/zIndex';
 	import { stateBet, stateModal, stateUi, INFINITY_MARK } from 'state-shared';
 	import { getContextEventEmitter } from 'utils-event-emitter';
+	import { numberToCurrencyString } from 'utils-shared/amount';
 
 	import BaseIcon from './BaseIcon.svelte';
 	import BaseTitle from './BaseTitle.svelte';
@@ -10,11 +11,14 @@
 	import BaseScrollable from './BaseScrollable.svelte';
 	import BaseButtonWrap from './BaseButtonWrap.svelte';
 	import BaseButtonContent from './BaseButtonContent.svelte';
+	import ScrollHint from './ScrollHint.svelte';
 	import { stateBonus, stateBonusDerived } from '../stateBonus.svelte';
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import type { EmitterEventModal } from '../types';
 
 	const { eventEmitter } = getContextEventEmitter<EmitterEventModal>();
+
+	let scrollEl = $state<Element | null>(null);
 
 	const confirm = () => {
 		stateBet.activeBetModeKey = stateBonus.selectedBetModeKey;
@@ -31,12 +35,16 @@
 </script>
 
 {#if stateModal.modal?.name === 'buyBonusConfirm'}
-	<Popup zIndex={zIndex.dialog} onclose={() => (stateModal.modal = { name: 'buyBonus' })}>
+	<Popup
+		zIndex={zIndex.dialog}
+		closeAnchor="content"
+		onclose={() => (stateModal.modal = { name: 'buyBonus' })}
+	>
 		<BaseContent maxWidth="500px">
 			<BaseTitle>
 				{stateBonusDerived.selectedBetModeData().text.title}
 			</BaseTitle>
-			<BaseScrollable type="column">
+			<BaseScrollable type="column" onelement={(element) => (scrollEl = element)}>
 				{#if stateBonusDerived.selectedBetModeData().assets.dialogImage}
 					<img
 						class="dialog-image"
@@ -46,26 +54,68 @@
 				{/if}
 				{stateBonusDerived.selectedBetModeData().text.dialog}
 			</BaseScrollable>
-			<BaseButtonWrap type="max-width">
-				<Button
-					data-test="confirm-button"
-					onclick={() => {
-						confirm();
-						eventEmitter.broadcast({ type: 'soundPressGeneral' });
-						stateModal.modal = null;
-					}}
-				>
-					<BaseIcon width="100%" height="3rem" />
-					<BaseButtonContent>
-						<span style="font-size: 1rem;">{i18nDerived.confirm()}</span>
-					</BaseButtonContent>
-				</Button>
-			</BaseButtonWrap>
+			<!-- purchase confirmation must restate the concrete price: the 80x cost
+			     is otherwise only visible on the card in the previous popup -->
+			<div class="cost-row">
+				<span class="cost-label">{i18nDerived.cost()}</span>
+				<span class="cost-value">
+					{numberToCurrencyString(
+						stateBet.betAmount * stateBonusDerived.selectedBetModeData().costMultiplier,
+					)}
+				</span>
+			</div>
+			<!-- relative wrapper: the scroll hint overlays the gap above CONFIRM
+			     without shifting the layout when it appears/disappears -->
+			<div class="confirm-area">
+				<ScrollHint scrollElement={scrollEl} />
+				<BaseButtonWrap type="max-width">
+					<Button
+						data-test="confirm-button"
+						onclick={() => {
+							confirm();
+							eventEmitter.broadcast({ type: 'soundPressGeneral' });
+							stateModal.modal = null;
+						}}
+					>
+						<BaseIcon width="100%" height="3rem" />
+						<BaseButtonContent>
+							<span style="font-size: 1rem;">{i18nDerived.confirm()}</span>
+						</BaseButtonContent>
+					</Button>
+				</BaseButtonWrap>
+			</div>
 		</BaseContent>
 	</Popup>
 {/if}
 
 <style lang="scss">
+	.confirm-area {
+		position: relative;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+	}
+
+	.cost-row {
+		display: flex;
+		justify-content: center;
+		align-items: baseline;
+		gap: 0.5rem;
+		width: 100%;
+		padding: 0.25rem 0;
+	}
+
+	.cost-label {
+		font-size: 0.85rem;
+		letter-spacing: 0.1em;
+		color: rgba(240, 208, 96, 0.9);
+	}
+
+	.cost-value {
+		font-size: 1.15rem;
+		font-weight: 700;
+	}
+
 	.dialog-image {
 		display: block;
 		max-width: 240px;

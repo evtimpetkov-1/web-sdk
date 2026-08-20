@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Ansvarsfraskrivelse',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds er en videoslot med 5 hjul, 3 rækker og 20 faste betalingslinjer. Gevinstkombinationer dannes fra venstre mod højre på på hinanden følgende hjul, startende fra det venstre hjul. Kun den højeste gevinst på hver betalingslinje udbetales.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'Den teoretiske tilbagebetaling til spilleren (RTP) er 96,50 %. Den maksimale gevinst er 5.000x den samlede indsats.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'Den teoretiske tilbagebetaling til spilleren (RTP) er 96,50 %. Den maksimale gevinst er 767,20x den samlede indsats.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Alle udbetalingsværdier vises som multiplikatorer af det samlede indsatsbeløb.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken) erstatter alle symboler undtagen Bonus- og møntsymbolerne. Wild-kombinationer giver deres egne udbetalingsværdier.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-symboler hvor som helst på hjulene giver 6 gratisspins.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Under gratisspins er hvert spin et Kraken-spin.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'KØB',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Udløser straks GRATISSPINS-funktionen, hvor hvert spin er et Kraken-spin.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Udløser straks GRATISSPINS-funktionen for 80x din samlede indsats. Hvert gratisspin er et Kraken-spin, der tilføjer Wild- eller møntsymboler på hjulene. Møntværdier udbetales ud over linjegevinster.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'Udløser straks 6, 12 eller 18 gratisspins. Hvert gratisspin er et Kraken-spin, der tilføjer op til 10 Wilds eller op til 10 mønter på hjulene.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'Køb 6, 12 eller 18 gratisspins for 80x din samlede indsats?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Bonuskøb (kiste) — Åbner købsmenuen for gratisspins.',
 };

@@ -24,7 +24,7 @@
 	// Bottom bar text style
 	const labelStyle = {
 		fontFamily: 'Cinzel',
-		fontSize: 28,
+		fontSize: 34,
 		fontWeight: '700',
 		fill: 0xffd700,
 		letterSpacing: 2,

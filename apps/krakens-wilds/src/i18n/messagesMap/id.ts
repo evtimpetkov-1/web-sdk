@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Penyangkalan',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds adalah slot video 5-gulungan, 3-baris dengan 20 garis pembayaran tetap. Kombinasi kemenangan terbentuk dari kiri ke kanan pada gulungan yang berurutan, dimulai dari gulungan paling kiri. Hanya kemenangan tertinggi pada setiap garis pembayaran yang dibayarkan.',
-	'The theoretical return to player (RTP) is 96.50%. The maximum win is 5,000x the total __0__.': 'Pengembalian teoretis ke pemain (RTP) adalah 96,50%. Kemenangan maksimum adalah 5.000x total taruhan.',
+	'The theoretical return to player (RTP) is 96.50%. The maximum win is 767.20x the total __0__.': 'Pengembalian teoretis ke pemain (RTP) adalah 96,50%. Kemenangan maksimum adalah 767,20x total taruhan.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Semua nilai pembayaran ditampilkan sebagai pengali dari jumlah total taruhan.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken) menggantikan semua simbol kecuali simbol Bonus dan Koin. Kombinasi Wild memberikan nilai pembayarannya sendiri.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 simbol Bonus di mana saja pada gulungan memberikan 6 Putaran Gratis.',
@@ -94,6 +94,7 @@ export default {
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Selama Putaran Gratis, setiap putaran adalah Putaran Kraken.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'BELI',
-	'Instantly trigger the FREE SPINS feature, where every spin is a Kraken Spin.': 'Langsung memicu fitur PUTARAN GRATIS, di mana setiap putaran adalah Putaran Kraken.',
-	'Instantly triggers the FREE SPINS feature for 80x your total bet. Every Free Spin is a Kraken Spin, adding Wild or Coin symbols to the reels. Coin values are awarded in addition to any line wins.': 'Langsung memicu fitur PUTARAN GRATIS seharga 80x total taruhan Anda. Setiap Putaran Gratis adalah Putaran Kraken yang menambahkan simbol Wild atau Koin pada gulungan. Nilai koin diberikan sebagai tambahan atas kemenangan garis.',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin, adding up to 10 Wilds or up to 10 Coins to the reels.': 'Langsung memicu 6, 12, atau 18 Putaran Gratis. Setiap Putaran Gratis adalah Putaran Kraken, yang menambahkan hingga 10 Wild atau hingga 10 Koin pada gulungan.',
+	'Buy 6, 12 or 18 Free Spins for 80x your total bet?': 'Beli 6, 12, atau 18 Putaran Gratis seharga 80x total taruhan Anda?',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Beli Bonus (peti) — Membuka menu pembelian Putaran Gratis.',
 };
