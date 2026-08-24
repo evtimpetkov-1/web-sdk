@@ -32,10 +32,16 @@
 	const coinValueHidden = $derived(
 		props.reelSymbol.symbolState === 'spin' || props.reelSymbol.symbolState === 'land',
 	);
+	// NOT hidden while in-flight ('spin'): the overlay owns the SETTLED cells, but
+	// the padding strips carry the same names (W in the base strips, and a stamped
+	// symbol can be any paying symbol) — hiding those as they scroll past punched
+	// visible holes into the spinning reels. The moving symbols pass behind the
+	// shaded board; only the landed symbol under the overlay copy must not draw.
 	const hiddenByOverlay = $derived(
-		context.stateGame.overlaySymbols.some(
-			(symbol) => symbol.name === props.reelSymbol.rawSymbol.name,
-		),
+		props.reelSymbol.symbolState !== 'spin' &&
+			context.stateGame.overlaySymbols.some(
+				(symbol) => symbol.name === props.reelSymbol.rawSymbol.name,
+			),
 	);
 	const coinMultiplier = $derived(
 		props.reelSymbol.rawSymbol.name === 'C' && !coinValueHidden

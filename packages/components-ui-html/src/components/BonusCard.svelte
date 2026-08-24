@@ -15,6 +15,12 @@
 <div class="bonus-card-wrap">
 	<div class="info">
 		{@render props.title()}
+		<!--
+			Callers pass `image` only when there is one (see BonusCards) — an image
+			row that renders nothing still costs the .info gap on both sides of it.
+			The `:empty` rule below is a second line of defence for callers that
+			hand over a snippet which turns out to draw nothing.
+		-->
 		{#if props.image}
 			<div class="image">{@render props.image()}</div>
 		{/if}
@@ -39,6 +45,10 @@
 		min-width: 230px;
 		max-width: 270px;
 		gap: 0.65rem;
+	}
+
+	.image:empty {
+		display: none;
 	}
 
 	.image {

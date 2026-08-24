@@ -40,6 +40,28 @@ const readSpecials = (board: BookEventOfType<'reveal'>['board']) => {
 	return { wilds, coins };
 };
 
+/**
+ * A SYMBOL kraken spin's bounty: every visible instance of the replicated
+ * symbol. The copies are ordinary board symbols, so placed and natural ones are
+ * indistinguishable — ALL of them present as kraken-placed, exactly the way a
+ * WILD attack already claims every wild on the board. (ReelSymbol hides board
+ * symbols by NAME while the overlay holds one of their kind, so covering every
+ * instance is also what keeps the two layers from doubling up.)
+ */
+const readReplicated = (
+	board: BookEventOfType<'reveal'>['board'],
+	stampSymbol: BookEventOfType<'reveal'>['symbol'],
+) => {
+	const positions: Position[] = [];
+	if (!stampSymbol) return positions;
+	for (let reel = 0; reel < board.length; reel++) {
+		for (let row = 1; row <= BOARD_DIMENSIONS.y; row++) {
+			if (board[reel]?.[row]?.name === stampSymbol) positions.push({ reel, row });
+		}
+	}
+	return positions;
+};
+
 let overlayIdCounter = 0;
 /**
  * Puts the kraken's bounty on screen over the still-spinning reels. The reels are
@@ -47,7 +69,12 @@ let overlayIdCounter = 0;
  * and reveal their value here, mid-spin (see SpecialOverlay).
  */
 const showOverlay = (
-	symbols: { name: 'W' | 'C'; reel: number; row: number; multiplier?: number }[],
+	symbols: {
+		name: keyof typeof config.symbols;
+		reel: number;
+		row: number;
+		multiplier?: number;
+	}[],
 ) => {
 	stateGame.overlaySymbols = symbols.map((symbol) => ({
 		id: overlayIdCounter++,
@@ -115,6 +142,29 @@ const revealOverlayWilds = async () => {
 	await waitForTimeout(WILD_LAND_MS);
 };
 
+// The stamped symbols' reveal is their win animation (they have no land/idle of
+// their own); its opening punch is the beat that matters, the tail plays out
+// while the reels stop — same deal as the coins' glint.
+const SYMBOL_STAMP_MS = 800;
+
+/**
+ * A SYMBOL kraken spin's reveal: the replicated symbol's copies stamp onto the
+ * still-spinning reels, paced exactly like the wilds' drop — held until the
+ * kraken's dust has thinned so the stamping is watched, not hidden.
+ */
+const revealOverlaySymbols = async () => {
+	const stamped = stateGame.overlaySymbols.filter(
+		(symbol) => symbol.name !== 'W' && symbol.name !== 'C',
+	);
+	if (stamped.length === 0) return;
+	await waitForTimeout(DUST_CLEAR_MS);
+	// TODO: no stamp-specific sfx exists yet — sounds.json only has
+	// sfx_wild_land / sfx_wild_explode. Swap in a dedicated sound when one lands.
+	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+	for (const symbol of stamped) symbol.revealing = true;
+	await waitForTimeout(SYMBOL_STAMP_MS);
+};
+
 /**
  * Hands the cells back to the real symbols. Called at the START of a spin, not at the
  * reel stop: the overlay copy owns its cell for the whole spin (the real one is hidden
@@ -123,6 +173,22 @@ const revealOverlayWilds = async () => {
  */
 const clearOverlay = () => {
 	stateGame.overlaySymbols = [];
+};
+
+/**
+ * Stamped symbol copies (SYMBOL kraken spins) hand their cells back EARLIER — at
+ * the reel stop, not at the next spin. Wilds and coins must keep their overlay
+ * through the win presentation (the wild idles, the coin waits for the kraken to
+ * collect it), but a settled stamp is pixel-identical to the board symbol under
+ * it, so the swap is invisible — and it is what lets the winning stamps get the
+ * REGULAR win treatment: win frame, win animation, dim participation, payline
+ * cycling, exactly like naturally landed symbols.
+ */
+const clearStampOverlay = () => {
+	if (stateGame.overlaySymbols.length === 0) return;
+	stateGame.overlaySymbols = stateGame.overlaySymbols.filter(
+		(symbol) => symbol.name === 'W' || symbol.name === 'C',
+	);
 };
 
 /**
@@ -212,6 +278,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateGame.movingWilds = [];
 		stateGame.reelsShaded = false;
 
+		// The previous spin's kraken multiplier is spent — the badge (a plate in
+		// BoardFrame, rendered while this is > 1) leaves as the new spin starts.
+		stateGame.spinMultiplier = 1;
+
 		stateGame.gameType = bookEvent.gameType;
 		stateGame.spinType = bookEvent.spinType;
 		// The math does not set `isSpecialSpin` — every book we have carries it as
@@ -225,6 +295,14 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_reelspin' });
 
 		const { wilds: wildPositions, coins: coinPositions } = readSpecials(bookEvent.board);
+		// The math names the replicated symbol `symbol` on the reveal; the placed
+		// positions it also sends are ignored on purpose — see typesBookEvent.
+		const stampSymbol = bookEvent.spinType === 'SYMBOL' ? bookEvent.symbol : undefined;
+		const stampPositions = readReplicated(bookEvent.board, stampSymbol);
+		// The kraken's per-spin win multiplier (free spins only, spec v2.1) —
+		// `globalMult` on the reveal, riding on any attack kind.
+		const spinMultiplier =
+			bookEvent.gameType === 'freegame' ? Math.max(1, bookEvent.globalMult ?? 1) : 1;
 
 		// Remember the last base-game board: if this round triggers the feature, this is
 		// the board the free spins are entered from and the one to come back to.
@@ -247,11 +325,17 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				});
 			}
 
-			// Every free spin is a Kraken Spin (spec v2): the kraken attacks before the
-			// reels stop and puts either Wilds or Coins on them. Wilds are placed FRESH
-			// each spin — they are not sticky and do not travel between positions, so the
-			// previous batch is dropped and the new one spawns behind the dust cloud.
-			const attacks = wildPositions.length > 0 || coinPositions.length > 0;
+			// Every free spin is a Kraken Spin (spec v2.1): the kraken attacks before
+			// the reels stop and puts Wilds, Coins or copies of one paying Symbol on
+			// them. Wilds are placed FRESH each spin — they are not sticky and do not
+			// travel between positions, so the previous batch is dropped and the new
+			// one spawns behind the dust cloud. The kraken can also award a win
+			// multiplier for the spin — that too is presented as part of the attack.
+			const attacks =
+				wildPositions.length > 0 ||
+				coinPositions.length > 0 ||
+				stampPositions.length > 0 ||
+				spinMultiplier > 1;
 			// how long the reels keep spinning with the bounty on top of them
 			let hold = 2000; // nothing to show — just let the reels run
 
@@ -261,6 +345,13 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				// hides the reels, so whatever we place next appears behind it and is
 				// revealed as the cloud thins. Reels spin underneath throughout.
 				await eventEmitter.broadcastAsync({ type: 'krakenAttack' });
+			}
+
+			// The multiplier badge surfaces with the attack, as the kraken's award for
+			// this spin. The book's win amounts already include it — the state drives
+			// the MULTIPLIER plate in BoardFrame, presentation only.
+			if (spinMultiplier > 1) {
+				stateGame.spinMultiplier = spinMultiplier;
 			}
 
 			// The previous batch goes before the new one lands — wilds are not sticky.
@@ -294,6 +385,14 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				hold = 0; // revealOverlayCoins below paces this spin instead
 			}
 
+			if (stampPositions.length > 0 && stampSymbol) {
+				// Symbol spin: copies of the chosen paying symbol stamp onto the reels,
+				// on the overlay layer like the coins — they own their cells until the
+				// next spin, the identical board symbols stay hidden underneath.
+				showOverlay(stampPositions.map((pos) => ({ name: stampSymbol, ...pos })));
+				hold = 0; // revealOverlaySymbols below paces this spin instead
+			}
+
 			// Shade the reels behind whatever is sitting on top of them.
 			stateGame.reelsShaded =
 				stateGame.overlaySymbols.length > 0 || stateGame.movingWilds.length > 0;
@@ -301,6 +400,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			await waitForTimeout(hold);
 			// blank coins sit through the dust, then reveal in the open
 			await revealOverlayCoins();
+			// stamped symbol copies do the same (one attack kind per spin — only one
+			// of these ever has anything to do)
+			await revealOverlaySymbols();
 
 			// Send stop targets — reels begin stopping sequence
 			await stateGameDerived.enhancedBoard.spin({
@@ -311,10 +413,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			// the overlay stays up — it owns those cells until the next spin
 			stateGame.reelsShaded = false;
 		} else if (isSpecialSpin) {
-			// Base-game kraken spin: same beats as the free-spin path. The wilds and
-			// coins are REAL symbols already in this reveal's board, but the overlay
-			// copies are what the player sees — ReelSymbol hides a board symbol for as
-			// long as the overlay holds one of its kind, so the two never double up.
+			// Base-game kraken spin: same beats as the free-spin path. The wilds,
+			// coins and stamped symbol copies are REAL symbols already in this
+			// reveal's board, but the overlay copies are what the player sees —
+			// ReelSymbol hides a board symbol for as long as the overlay holds one of
+			// its kind, so the two never double up.
 			if (!reelsAlreadySpinning) {
 				await stateGameDerived.enhancedBoard.preSpin({
 					paddingBoard: config.paddingReels[bookEvent.gameType],
@@ -326,15 +429,18 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			showOverlay([
 				...wildPositions.map((pos) => ({ name: 'W' as const, ...pos })),
 				...coinPositions.map((coin) => ({ name: 'C' as const, ...coin })),
+				...(stampSymbol ? stampPositions.map((pos) => ({ name: stampSymbol, ...pos })) : []),
 			]);
 			stateGame.reelsShaded = stateGame.overlaySymbols.length > 0;
 			// Keep spinning as the cloud thins, then play the landing/reveal in the
-			// clear. A kraken spin carries one kind or the other, never both.
+			// clear. A kraken spin carries exactly one kind of bounty.
 			if (coinPositions.length > 0) {
 				// landing sound plays inside revealOverlayCoins, on the reveal beat
 				await revealOverlayCoins();
 			} else if (wildPositions.length > 0) {
 				await revealOverlayWilds();
+			} else if (stampPositions.length > 0) {
+				await revealOverlaySymbols();
 			} else {
 				await waitForTimeout(DUST_CLEAR_MS);
 			}
@@ -350,6 +456,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				paddingBoard: config.paddingReels[bookEvent.gameType],
 			});
 		}
+
+		// The reels have stopped — stamped copies give way to the identical board
+		// symbols so the win presentation can treat them like any other symbol.
+		// (No-op on WILD/COIN spins, whose overlays stay up by design.)
+		clearStampOverlay();
 
 		stateUi.reelsSpinning = false;
 		eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_reelspin' });
@@ -538,6 +649,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// stayed there until the player spun again.
 		stateGame.movingWilds = [];
 		clearOverlay();
+		// the last free spin's kraken multiplier does not survive the feature
+		stateGame.spinMultiplier = 1;
 		stateGame.gameType = 'basegame';
 		restoreTriggerBoard();
 

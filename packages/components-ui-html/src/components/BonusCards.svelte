@@ -20,13 +20,16 @@
 
 {#each props.list as betModeData}
 	{#if betModeData.type !== 'default'}
-		<BonusCard>
-			{#snippet image()}
-				{#if betModeData.assets.dialogImage}
-					<img src={betModeData.assets.dialogImage} alt={betModeData.text.title} />
-				{/if}
-			{/snippet}
-
+		<!--
+			Declared out here and passed conditionally: a snippet written inside the
+			component tag is ALWAYS passed, so a mode without a dialogImage (e.g. an
+			activate/ante card) still got the image row plus the gap on either side
+			of it. Handing over `undefined` drops the row entirely.
+		-->
+		{#snippet imageSnippet()}
+			<img src={betModeData.assets.dialogImage} alt={betModeData.text.title} />
+		{/snippet}
+		<BonusCard image={betModeData.assets.dialogImage ? imageSnippet : undefined}>
 			{#snippet title()}
 				<div class="title">
 					{betModeData.text.title}
@@ -79,7 +82,14 @@
 	.description {
 		font-size: 0.85rem;
 		text-align: center;
-		min-height: 4rem;
+		/*
+			Reserves a common height so cards sitting side by side in one row keep
+			their prices and buttons on a line. 4rem was ~2 spare lines of air on
+			every short description (most visible on an image-less activate card,
+			which has nothing else filling it); 2.5rem still covers the usual two
+			lines.
+		*/
+		min-height: 2.5rem;
 		white-space: pre-line;
 		display: inline-flex;
 		align-items: center;

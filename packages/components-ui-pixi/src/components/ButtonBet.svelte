@@ -4,7 +4,7 @@
 	import { Container, Sprite } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
 	import { OnHotkey } from 'components-shared';
-	import { stateBetDerived, stateUi } from 'state-shared';
+	import { stateBetDerived, stateUi, stateModal } from 'state-shared';
 
 	import ButtonBetProvider from './ButtonBetProvider.svelte';
 	import { UI_BASE_SIZE } from '../constants';
@@ -12,7 +12,12 @@
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
-	const disabled = $derived(!stateBetDerived.isBetCostAvailable());
+	// The Space hotkey must go DEAD while any modal is up. It used to stay armed,
+	// so Space with e.g. the buy-bonus CONFIRM open started a plain spin in the
+	// still-active mode UNDER the dialog — the machine left idle, the confirm's
+	// own bet broadcast was then dropped, and the purchase silently never
+	// happened (with the leftover BONUS mode reading as "ante turned itself off").
+	const disabled = $derived(!stateBetDerived.isBetCostAvailable() || stateModal.modal !== null);
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
 
 	// Spin icon: rotate + shrink arrows, then scale up stop button

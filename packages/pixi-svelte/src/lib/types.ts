@@ -31,7 +31,22 @@ export type RawAsset = RawSpine | RawSprite | RawSprites | RawSpriteSheet | RawA
 export type RawType = 'spine' | 'sprite' | 'sprites' | 'spriteSheet' | 'font' | 'audio';
 
 export type SpineSrc = { skeleton: string; atlas: string; scale?: number };
-export type Asset = { type: RawType; src: string | SpineSrc; preload?: boolean };
+export type Asset = {
+	type: RawType;
+	src: string | SpineSrc;
+	preload?: boolean;
+	/**
+	 * Generate mipmaps for this asset's texture(s). Fixes minification aliasing
+	 * (rough, crawling edges) when the art is drawn smaller than its source —
+	 * small windows, dpr-1 monitors. Applied right after Assets.load and BEFORE
+	 * the texture's first render: the GL texture system sizes the mip chain
+	 * once, at first bind, so a later flip is a silent no-op.
+	 *
+	 * Caveat for atlases: frames packed with little padding can bleed into each
+	 * other at deep mip levels. Standalone images are always safe.
+	 */
+	mipmap?: boolean;
+};
 export type Assets = PIXI.Dict<Asset>;
 
 export type ParticleSpawnOption =

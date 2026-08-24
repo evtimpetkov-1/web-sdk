@@ -28,6 +28,7 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import KrakenTopper from './KrakenTopper.svelte';
 	import GameLogo from './GameLogo.svelte';
+	import AnteBuyPanels from './AnteBuyPanels.svelte';
 	import BoardContainer from './BoardContainer.svelte';
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
@@ -118,6 +119,14 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 
 		<KrakenTopper />
 		<GameLogo />
+
+		<!-- Ante Bet toggle + Buy Feature price panels beside the reels (spec
+		     v2.1). Base game only; inert while a bet is running. -->
+		{#if !stateUrlDerived.replay()}
+			<MainContainer label="AnteBuyPanelsContainer">
+				<AnteBuyPanels />
+			</MainContainer>
+		{/if}
 
 		<!-- Above kraken + logo so its screen shade dims them too -->
 		<MainContainer label="RetriggerContainer">

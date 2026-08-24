@@ -14,6 +14,16 @@
 	let wrap: HTMLDivElement;
 	let initialised = $state(false);
 
+	// Never render below resolution 2: on non-retina (dpr-1) desktops a 1:1
+	// canvas minifies every texture harshly and reads rough — rendering at 2x
+	// and letting the browser downscale is cheap supersampling (what the old
+	// fork's forced-2 effectively did). Above 2, follow the real dpr, capped
+	// at 3 for performance.
+	const targetResolution = () => {
+		const raw = devicePixelRatio.current ?? 1;
+		return Math.min(Math.max(raw, 2), 3);
+	};
+
 	const initialiseApplication = async () => {
 		PIXI.Assets.reset();
 
@@ -36,7 +46,7 @@
 			useBackBuffer: true,
 			preserveDrawingBuffer: true,
 			powerPreference: 'high-performance',
-			resolution: Math.min(devicePixelRatio.current ?? 1, 3),
+			resolution: targetResolution(),
 			resizeTo: window,
 		});
 
@@ -53,6 +63,24 @@
 			initialised = true;
 		} catch (error) {
 			console.error(error);
+		}
+	});
+
+	// The init resolution is a snapshot, but devicePixelRatio MOVES: browser
+	// zoom (⌘+/-) and dragging the window to a monitor with another density
+	// both change it. The renderer used to keep its load-time resolution, so
+	// every zoom step away from it upscaled the whole canvas in CSS — the
+	// game got blurrier the further you zoomed, while a fresh load at the same
+	// zoom looked sharp (init simply re-read the current dpr). Re-resizing
+	// with the live TARGET resolution (same floor/cap as init, so this can
+	// never fight it) keeps the backing store matched to the display;
+	// autoDensity keeps the CSS size at logical pixels.
+	$effect(() => {
+		const resolution = targetResolution();
+		const app = context.stateApp.pixiApplication;
+		if (!initialised || !app) return;
+		if (app.renderer.resolution !== resolution) {
+			app.renderer.resize(window.innerWidth, window.innerHeight, resolution);
 		}
 	});
 

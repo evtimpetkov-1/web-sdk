@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Sprite } from 'pixi-svelte';
 	import { Button, type ButtonProps } from 'components-pixi';
-	import { stateModal, stateBet, stateBetDerived } from 'state-shared';
+	import { stateModal } from 'state-shared';
 	import { getContextLayout } from 'utils-layout';
 
 	import { UI_BASE_SIZE } from '../constants';
@@ -20,19 +20,15 @@
 		height: UI_BASE_SIZE * buyBonusScale,
 	});
 	const disabled = $derived(!stateXstateDerived.isIdle());
-	const active = $derived(stateBetDerived.activeBetMode()?.type === 'activate');
 	const hasBonusAssets = $derived('bonusActive' in context.stateApp.loadedAssets);
 
-	const openModal = () => (stateModal.modal = { name: 'buyBonus' });
-	const disableActiveBetMode = () => (stateBet.activeBetModeKey = 'BASE');
+	// Always opens the shop. This button used to DISABLE an active
+	// activate-mode instead of opening — with an on-screen ante toggle that
+	// read as the chest silently switching ante off; the shop's own card is
+	// where an activate mode is managed from here.
 	const onpress = () => {
 		eventEmitter.broadcast({ type: 'soundPressGeneral' });
-
-		if (active) {
-			disableActiveBetMode();
-		} else {
-			openModal();
-		}
+		stateModal.modal = { name: 'buyBonus' };
 	};
 </script>
 

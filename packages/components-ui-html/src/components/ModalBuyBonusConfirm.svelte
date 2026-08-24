@@ -21,13 +21,19 @@
 	let scrollEl = $state<Element | null>(null);
 
 	const confirm = () => {
+		// Only a buy/activate selection may take over the active mode. Applying
+		// the selection unconditionally meant a stale/default selection (e.g.
+		// 'BASE') silently switched an active ante off while confirming nothing.
+		const selected = stateBonusDerived.selectedBetModeData();
+		if (!selected || (selected.type !== 'buy' && selected.type !== 'activate')) return;
+
 		stateBet.activeBetModeKey = stateBonus.selectedBetModeKey;
 
-		if (stateBonusDerived.selectedBetModeData().type === 'buy') {
+		if (selected.type === 'buy') {
 			eventEmitter.broadcast({ type: 'bet' });
 		}
 
-		if (stateBonusDerived.selectedBetModeData().type === 'activate') {
+		if (selected.type === 'activate') {
 			stateUi.autoSpinsLossLimitText = INFINITY_MARK;
 			stateUi.autoSpinsSingleWinLimitText = INFINITY_MARK;
 		}

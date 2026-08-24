@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import { stateBet, stateBetDerived } from 'state-shared';
+	import { stateBet, stateBetDerived, stateModal } from 'state-shared';
 </script>
 
 <script lang="ts">
@@ -17,4 +17,11 @@
 	};
 </script>
 
-<OnHotkey hotkey="Space" onhold={spaceHoldOn} onholdend={spaceHoldOff} />
+<!-- Space must not arm hold-to-spin (or flip turbo) while a modal is up — same
+     guard as ButtonBet's Space hotkey. -->
+<OnHotkey
+	hotkey="Space"
+	disabled={stateModal.modal !== null}
+	onhold={spaceHoldOn}
+	onholdend={spaceHoldOff}
+/>

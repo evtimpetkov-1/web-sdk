@@ -26,3 +26,17 @@ export const uiValue = {
 	letterSpacing: 1,
 	align: 'center',
 } as const satisfies TextStyleOptions;
+
+/**
+ * Ante/Buy panel display text — white Titan One with a black stroke, matching
+ * the panel art direction (the gold BET/BUY words are baked sprites; everything
+ * dynamic on the panels uses this). Titan One is latin-only, so non-latin
+ * locales fall back to Inter from the family stack.
+ */
+export const panelText = {
+	fontFamily: 'Titan One, Inter, sans-serif',
+	fontWeight: '400',
+	fill: '#FFFFFF',
+	stroke: { color: '#000000', width: 3 },
+	align: 'center',
+} as const satisfies TextStyleOptions;

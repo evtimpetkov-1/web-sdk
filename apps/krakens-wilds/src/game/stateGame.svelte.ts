@@ -5,7 +5,7 @@ import { stateBet } from 'state-shared';
 import { createEnhanceBoard, createReelForSpinning } from 'utils-slots';
 import { createGetWinLevelDataByWinLevelAlias } from 'utils-shared/winLevel';
 
-import type { GameType, RawSymbol, SymbolState } from './types';
+import type { GameType, RawSymbol, SymbolName, SymbolState } from './types';
 import type { BookEventOfType } from './typesBookEvent';
 import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
@@ -114,7 +114,12 @@ export type MovingWild = {
  */
 export type OverlaySymbol = {
 	id: number;
-	name: 'W' | 'C';
+	/**
+	 * W and C have bespoke reveal/idle beats; any other name is a SYMBOL kraken
+	 * spin's replicated paying symbol — it reveals with its win animation and
+	 * settles to its static sprite (regular symbols have no idle).
+	 */
+	name: SymbolName;
 	reel: number;
 	row: number;
 	/** Coins only. Faded onto the coin as its reveal animation finishes. */
@@ -162,7 +167,11 @@ export const stateGame = $state({
 	// base kraken spin: the kraken has just spawned those wilds, so flying them
 	// straight back into it reads as the kraken eating its own gift.
 	isSpecialSpin: false,
-	spinType: undefined as 'WILD' | 'COIN' | undefined,
+	spinType: undefined as 'WILD' | 'COIN' | 'SYMBOL' | undefined,
+	// The kraken's per-spin win multiplier (free spins, spec v2.1). 1 = none.
+	// Set from the reveal, cleared at the next reveal / feature end. The book's
+	// win amounts already include it — this drives the badge only.
+	spinMultiplier: 1,
 });
 
 // Win cycle state — persists across book event handlers and into idle
@@ -180,9 +189,12 @@ const boardLayout = () => {
 	const w = stateLayoutDerived.mainLayout().width;
 	const h = stateLayoutDerived.mainLayout().height;
 	const layout = stateLayoutDerived.layoutType();
-	// Offset board upward in landscape/desktop to account for the bottom bar
+	// Offset board upward in landscape/desktop to account for the bottom bar.
+	// Portrait lifts the whole assembly (logo, kraken, frame, reels — they are
+	// all board-anchored) high enough that the ante/buy panels under the reels
+	// clear the spin-button cluster; -50 left them overlapping it.
 	const yOffset =
-		layout === 'portrait' ? -50 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
+		layout === 'portrait' ? -95 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
 	// Per-layout board sizing. Portrait is 1 (unscaled) — the outer MainContainer
 	// already fits the board to the screen, and the extra 1.15 was pushing the
 	// reels wider than the viewport on phones.

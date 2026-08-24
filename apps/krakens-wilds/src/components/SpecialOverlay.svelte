@@ -4,6 +4,7 @@
 	import { getContext } from '../game/context';
 	import { SYMBOL_INFO_MAP, SYMBOL_SIZE, CELL_W, CELL_H, REEL_PADDING } from '../game/constants';
 	import CoinValue from './CoinValue.svelte';
+	import Symbol from './Symbol.svelte';
 	import WildLandDust from './WildLandDust.svelte';
 
 	const context = getContext();
@@ -36,19 +37,44 @@
 	 * 0.52s, which is the coin turning over to show what it is worth. coin_land just
 	 * tilts and drops in ("slaps down square-on"), which is a landing, not a reveal.
 	 * The wild's reveal is its own drop-in.
+	 *
+	 * Any OTHER name is a SYMBOL kraken spin's stamped copy — rendered through
+	 * <Symbol> below, so this map stays W/C only.
 	 */
 	const ANIMATIONS = {
 		W: { reveal: 'wild_land', idle: 'wild_idle' },
 		C: { reveal: 'coin_win', idle: 'coin_idle' },
 	} as const;
+	const isBespoke = (name: string): name is 'W' | 'C' => name === 'W' || name === 'C';
 </script>
 
 {#each context.stateGame.overlaySymbols as symbol (symbol.id)}
-	{@const size = sizes(symbol.name)}
-	{@const anims = ANIMATIONS[symbol.name]}
 	{@const blank = SYMBOL_INFO_MAP[symbol.name].static}
 	<Container x={CELL_W * (symbol.reel + REEL_PADDING)} y={(symbol.row - 0.5) * CELL_H}>
-		{#if symbol.revealing}
+		{#if !isBespoke(symbol.name)}
+			<!--
+				A stamped paying symbol (SYMBOL kraken spin). Like the wild it draws
+				NOTHING until its reveal: the stamp is the appearance. The reveal is its
+				win animation — the only animated state a regular symbol has — and it
+				settles to the same static sprite the board draws. Unlike W/C, stamps
+				leave the overlay at the REEL STOP (see clearStampOverlay in the book
+				handlers): the settled stamp is pixel-identical to the board symbol
+				beneath, so the swap is invisible — and the winning stamps then get the
+				REGULAR win treatment (frame, win animation, dim) like any naturally
+				landed symbol. <Symbol> supplies sizing/yOffset for both.
+			-->
+			{#if symbol.revealing}
+				<Symbol
+					state={symbol.landed ? 'static' : 'win'}
+					rawSymbol={{ name: symbol.name }}
+					oncomplete={() => {
+						if (!symbol.landed) symbol.landed = true;
+					}}
+				/>
+			{/if}
+		{:else if symbol.revealing}
+			{@const size = sizes(symbol.name)}
+			{@const anims = ANIMATIONS[symbol.name]}
 			<SpineProvider key={symbol.name} width={size.width} height={size.height}>
 				<SpineTrack
 					trackIndex={0}
@@ -99,6 +125,10 @@
 				the coin sits on screen as a blank face from placement, so its dust must
 				start at placement too: it boils unseen behind the kraken's cloud, and as
 				the cloud thins the dust is the first thing over every coin.
+
+				Stamped symbol copies (SYMBOL kraken spins) take this branch too: they
+				also draw nothing until the reveal, so the dust marks their cells from
+				placement and dies out as the stamp plays in the clear.
 
 				It stops emitting the moment the flip STARTS — not when the value shows —
 				so the beats read in order: dust, then the flip plays in the clear as the

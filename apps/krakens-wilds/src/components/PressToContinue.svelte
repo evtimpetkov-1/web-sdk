@@ -41,11 +41,28 @@
 	// English gets the baked text art; other locales keep the text label.
 	const useTextArt = stateUrlDerived.lang() === 'en';
 	const PATC_RATIO = 1277 / 100; // press_anywhere_en.webp
-	// deliberate Y-squash: the art's letterforms are ~4.5% taller than the old
-	// version's, so it renders slightly flattened to sit better in the bar
-	const PATC_Y_SCALE = 0.84;
-	// capped so the sprite never outgrows the backing strip on narrow layouts
-	const patcWidth = $derived(Math.min(430, layout.width * 0.72));
+
+	// Portrait sizes the prompt on its own terms: its main box is only 800 wide,
+	// where the shared numbers left the prompt at ~54% of the width and ~14 CSS
+	// px tall on a phone — too small for the only call to action on screen. The
+	// wider landscape/desktop boxes still read well as they were.
+	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
+	// Both halves of the cap are per-layout: the width FRACTION is what actually
+	// binds in portrait (0.72 of an 800-wide box is 576, under any sane absolute
+	// cap), so raising only the absolute cap moves nothing.
+	const patcWidth = $derived(
+		isPortrait ? Math.min(700, layout.width * 0.86) : Math.min(430, layout.width * 0.72),
+	);
+	// Deliberate Y-squash: the art's letterforms are ~4.5% taller than the old
+	// version's, so it renders slightly flattened to sit better in the bar.
+	// Portrait drops the squash entirely — the art is a 12.8:1 strip, so extra
+	// width buys very little letter HEIGHT, which is what reads as "too small";
+	// un-squashing is the cheapest way to make the glyphs themselves taller.
+	const PATC_Y_SCALE = $derived(isPortrait ? 1 : 0.84);
+	// the strip grows with the prompt so the padding around it stays in proportion
+	const barHeight = $derived(isPortrait ? 104 : 70);
+	// same story for the non-English text fallback (ResponsiveText shrinks to fit)
+	const fallbackFontSize = $derived(isPortrait ? 54 : 32);
 </script>
 
 {#if props.replay}
@@ -70,7 +87,6 @@
 {:else}
 	<MainContainer alignVertical="bottom">
 		{@const textY = layout.height - 100}
-		{@const barHeight = 70}
 		<!-- dark backing strip -->
 		<Rectangle
 			x={0}
@@ -104,7 +120,7 @@
 					maxWidth={layout.width * 0.85}
 					style={{
 						...headingGold,
-						fontSize: 32,
+						fontSize: fallbackFontSize,
 					}}
 				/>
 			{/if}

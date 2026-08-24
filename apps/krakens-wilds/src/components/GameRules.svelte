@@ -61,8 +61,9 @@
 				<h2>{i18nDerived.krakenSpinHeader()}</h2>
 				<p>{i18nDerived.krakenSpinDesc()}</p>
 				<ul>
-					<li>{i18nDerived.krakenSpinWild().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1)).replace('__1__', paidLabel)}</li>
+					<li>{i18nDerived.krakenSpinSymbol().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1))}</li>
 					<li>{i18nDerived.krakenSpinCoin().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1))}</li>
+					<li>{i18nDerived.krakenSpinWild().replace('__0__', linesLabel.charAt(0).toUpperCase() + linesLabel.slice(1)).replace('__1__', paidLabel)}</li>
 				</ul>
 				<p>{i18nDerived.krakenSpinFs()}</p>
 			</section>
@@ -77,6 +78,18 @@
 				<p>
 					{i18nDerived.fsDesc()}
 				</p>
+				<p>
+					{i18nDerived.fsMultiplierDesc()}
+				</p>
+			</section>
+
+			<section>
+				<h2>{i18nDerived.anteBetHeader()}</h2>
+				<ul>
+					<li>{i18nDerived.anteBetCost().replace('__0__', betLabel)}</li>
+					<li>{i18nDerived.anteBetChance()}</li>
+					<li>{i18nDerived.anteBetWins().replace('__0__', payoutLabel).replace('__1__', betLabel)}</li>
+				</ul>
 			</section>
 
 			<section>
@@ -104,6 +117,7 @@
 					<li>{i18nDerived.uiAutoSpin()}</li>
 					<li>{i18nDerived.uiTurbo()}</li>
 					<li>{i18nDerived.uiBuyBonus()}</li>
+					<li>{i18nDerived.uiAnte()}</li>
 					<li>{i18nDerived.uiPlusMinus().replace('__0__', betLabel)}</li>
 					<li>{i18nDerived.uiMenu()}</li>
 					<li>{i18nDerived.uiPaytable().replace('__0__', payTableName).replace('__1__', payoutLabel).replace('__2__', linesLabel)}</li>

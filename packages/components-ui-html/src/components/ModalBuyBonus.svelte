@@ -8,9 +8,15 @@
 	import BonusCards from './BonusCards.svelte';
 	import BetMenuAmountToggle from './BetMenuAmountToggle.svelte';
 	import ScrollHint from './ScrollHint.svelte';
+	import { stateBonus } from '../stateBonus.svelte';
 
+	// A dedicated buy entry point (stateBonus.shopBuyOnly) narrows the shop to
+	// the purchase cards only — the activate modes stay exclusive to the
+	// regular buy-bonus button's full shop.
 	const activateList = $derived(
-		stateMetaDerived.betModeMetaList().filter((item) => item.type === 'activate'),
+		stateBonus.shopBuyOnly
+			? []
+			: stateMetaDerived.betModeMetaList().filter((item) => item.type === 'activate'),
 	);
 
 	const buyList = $derived(
@@ -31,14 +37,20 @@
 	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
 		<BaseContent maxWidth="500px">
 			<BaseScrollable type="column" onelement={(element) => (scrollEl = element)}>
-				{#if activateList.length > 0}
-					<div class="cards">
-						<BonusCards list={activateList} />
-					</div>
-				{/if}
+				<!--
+					Buy cards lead: buying the feature is the purchase this shop exists
+					for, while an activate mode (ante) is a bet-level toggle the player
+					can also reach from the reels. The scroll position matters on small
+					popouts — whichever row is first is the one that is always visible.
+				-->
 				{#if buyList.length > 0}
 					<div class="cards">
 						<BonusCards list={buyList} />
+					</div>
+				{/if}
+				{#if activateList.length > 0}
+					<div class="cards">
+						<BonusCards list={activateList} />
 					</div>
 				{/if}
 				<BetMenuAmountToggle />

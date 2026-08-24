@@ -25,6 +25,9 @@
 			document.fonts.load('700 20px Cinzel'),
 			document.fonts.load('400 20px Cinzel'),
 			document.fonts.load('400 20px "Bebas Neue"'),
+			// ante/buy panels — Pixi rasterises Text at first draw, so the face must
+			// be resident before the panels mount or they render in the fallback
+			document.fonts.load('400 20px "Titan One"'),
 		]);
 		fontsReady = true;
 	});

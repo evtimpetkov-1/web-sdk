@@ -2,6 +2,7 @@ export default {
 	// Text-only logo — used everywhere in-game
 	gameLogo: {
 		type: 'sprite',
+		mipmap: true,
 		src: new URL('../../assets/sprites/logo_text.webp', import.meta.url).href,
 		preload: true,
 	},
@@ -27,6 +28,7 @@ export default {
 	},
 	H1: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/h1.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/h1.json', import.meta.url).href,
@@ -35,6 +37,7 @@ export default {
 	},
 	H2: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/h2.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/h2.json', import.meta.url).href,
@@ -43,6 +46,7 @@ export default {
 	},
 	H3: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/h3.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/h3.json', import.meta.url).href,
@@ -51,6 +55,7 @@ export default {
 	},
 	H4: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/h4.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/h4.json', import.meta.url).href,
@@ -59,6 +64,7 @@ export default {
 	},
 	L1: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/l1.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/l1.json', import.meta.url).href,
@@ -67,6 +73,7 @@ export default {
 	},
 	L2: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/l2.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/l2.json', import.meta.url).href,
@@ -75,6 +82,7 @@ export default {
 	},
 	L3: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/l3.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/l3.json', import.meta.url).href,
@@ -83,6 +91,7 @@ export default {
 	},
 	L4: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/l4.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/l4.json', import.meta.url).href,
@@ -91,6 +100,7 @@ export default {
 	},
 	S: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/s.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/s.json', import.meta.url).href,
@@ -99,6 +109,7 @@ export default {
 	},
 	W: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/w.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/w.json', import.meta.url).href,
@@ -107,6 +118,7 @@ export default {
 	},
 	C: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/symbols-v2/coin.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols-v2/coin.json', import.meta.url).href,
@@ -115,41 +127,81 @@ export default {
 	},
 	kraken: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/kraken/kraken.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/kraken/kraken.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
+	// Ante Bet + Buy Feature side panels (spec v2.1). Decorated variants; the
+	// undecorated *_nd source art is kept in the drive's ui/ folder unused.
+	panelAnte: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_ante.webp', import.meta.url).href,
+	},
+	panelBuy: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_buy.webp', import.meta.url).href,
+	},
+	panelKnobOn: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_knob_on.webp', import.meta.url).href,
+	},
+	panelKnobOff: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_knob_off.webp', import.meta.url).href,
+	},
+	panelBetTxt: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_bet_txt.webp', import.meta.url).href,
+	},
+	panelBuyTxt: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_buy_txt.webp', import.meta.url).href,
+	},
 	bonusActive: {
 		type: 'sprite',
+		mipmap: true,
 		src: new URL('../../assets/sprites/ui/bonus_active.png', import.meta.url).href,
 	},
 	bonusHover: {
 		type: 'sprite',
+		mipmap: true,
 		src: new URL('../../assets/sprites/ui/bonus_hover.png', import.meta.url).href,
 	},
 	bonusInactive: {
 		type: 'sprite',
+		mipmap: true,
 		src: new URL('../../assets/sprites/ui/bonus_inactive.png', import.meta.url).href,
 	},
 	// UI buttons spritesheet
 	uiButtons0: {
 		type: 'sprites',
+		mipmap: true,
 		src: new URL('../../assets/sprites/uiButtons/ui_new_packed.json', import.meta.url).href,
 	},
 	frameEdgeDeep: {
 		type: 'sprite',
+		mipmap: true,
 		src: new URL('../../assets/sprites/reelsFrame/reels_frame_v2.webp', import.meta.url).href,
 	},
 	frameEdgeFs: {
 		type: 'sprite',
+		mipmap: true,
 		// v3 candidate under test (blue stone). Previous: reelsFrame/fs_frame_v2.webp —
 		// swapping back also needs FRAME_SCALE_FS restored in BoardFrame.svelte.
 		src: new URL('../../assets/sprites/free_spins/fs_frame_v3.webp', import.meta.url).href,
 	},
 	anticipation: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/anticipation/anticipation.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/anticipation/anticipation.json', import.meta.url).href,
@@ -158,6 +210,7 @@ export default {
 	},
 	payframe: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/payframe/winframe.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/payframe/winframe.json', import.meta.url).href,
@@ -189,6 +242,7 @@ export default {
 	},
 	symbolsStatic: {
 		type: 'sprites',
+		mipmap: true,
 		src: new URL('../../assets/sprites/symbols/symbols.json', import.meta.url).href,
 	},
 	winGlow: {
@@ -197,6 +251,7 @@ export default {
 	},
 	fsCounterBg: {
 		type: 'sprite',
+		mipmap: true,
 		src: new URL('../../assets/sprites/counters_plate.webp', import.meta.url).href,
 	},
 	fsIntroPlate: {
@@ -238,16 +293,19 @@ export default {
 	// Digits + , . + x for the coin multiplier tick-up
 	coinTickupFont: {
 		type: 'font',
+		mipmap: true,
 		src: new URL('../../assets/fonts/coinTickup/coin-tickup.xml', import.meta.url).href,
 	},
 	// v2 art. Same face name and 63-glyph charset as the v1 atlas one level up,
 	// which is kept as-is for rollback — swap this path back to switch.
 	winFont: {
 		type: 'font',
+		mipmap: true,
 		src: new URL('../../assets/fonts/winFont/v2/cinzel-bold-gold.xml', import.meta.url).href,
 	},
 	coins: {
 		type: 'spriteSheet',
+		mipmap: true,
 		src: new URL('../../assets/sprites/coin/KW_Coin.json', import.meta.url).href,
 	},
 	// The three purple puffs lifted out of the fsfx spine atlas (puff0/1/2), packed
@@ -255,6 +313,7 @@ export default {
 	// full-screen cloud burst is built from, so the wild's landing dust matches it.
 	dust: {
 		type: 'spriteSheet',
+		mipmap: true,
 		src: new URL('../../assets/sprites/dust/dust.json', import.meta.url).href,
 	},
 	sound: {
