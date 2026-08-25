@@ -8,6 +8,7 @@ import type { EmitterEventWin } from '../components/Win.svelte';
 import type { EmitterEventSound } from '../components/Sound.svelte';
 import type { EmitterEventTransition } from '../components/Transition.svelte';
 import type { EmitterEventKraken } from '../components/KrakenTopper.svelte';
+import type { EmitterEventSpinMultiplier } from '../components/SpinMultiplier.svelte';
 
 // The free-spin counter plates live in BoardFrame and render off stateUi; the
 // events remain the broadcast surface the book handlers drive them through.
@@ -27,4 +28,5 @@ export type EmitterEventGame =
 	| EmitterEventFsCloud
 	| EmitterEventSound
 	| EmitterEventTransition
-	| EmitterEventKraken;
+	| EmitterEventKraken
+	| EmitterEventSpinMultiplier;

@@ -117,7 +117,7 @@ const revealOverlayCoins = async () => {
 	// so coins audibly "landed" ~1.2s before wilds did on the same feature.
 	// TODO: no coin-specific sfx exists yet — sounds.json only has
 	// sfx_wild_land / sfx_wild_explode. Swap in a coin sound when one lands.
-	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_coin_reveal', forcePlay: true });
 	for (const coin of coins) coin.revealing = true;
 	await waitForTimeout(COIN_VALUE_AT_MS);
 	for (const coin of coins) coin.valueShown = true;
@@ -137,7 +137,7 @@ const revealOverlayWilds = async () => {
 	const wilds = stateGame.overlaySymbols.filter((symbol) => symbol.name === 'W');
 	if (wilds.length === 0) return;
 	await waitForTimeout(DUST_CLEAR_MS);
-	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_kw_wild_land', forcePlay: true });
 	for (const wild of wilds) wild.revealing = true;
 	await waitForTimeout(WILD_LAND_MS);
 };
@@ -160,7 +160,7 @@ const revealOverlaySymbols = async () => {
 	await waitForTimeout(DUST_CLEAR_MS);
 	// TODO: no stamp-specific sfx exists yet — sounds.json only has
 	// sfx_wild_land / sfx_wild_explode. Swap in a dedicated sound when one lands.
-	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_kw_symbol_reveal', forcePlay: true });
 	for (const symbol of stamped) symbol.revealing = true;
 	await waitForTimeout(SYMBOL_STAMP_MS);
 };
@@ -176,19 +176,34 @@ const clearOverlay = () => {
 };
 
 /**
- * Stamped symbol copies (SYMBOL kraken spins) hand their cells back EARLIER — at
- * the reel stop, not at the next spin. Wilds and coins must keep their overlay
- * through the win presentation (the wild idles, the coin waits for the kraken to
- * collect it), but a settled stamp is pixel-identical to the board symbol under
- * it, so the swap is invisible — and it is what lets the winning stamps get the
- * REGULAR win treatment: win frame, win animation, dim participation, payline
- * cycling, exactly like naturally landed symbols.
+ * Hands the reels back at the REEL STOP, keeping on the overlay only what still
+ * has a job to do — the coins, which the kraken collects from there in setWin.
+ *
+ * Everything else (stamped symbol copies, base-game wilds) gives its cell back
+ * to the identical board symbol. That is what lets them take part in the win
+ * presentation like any other symbol: win frame, win animation, dimming, and
+ * crucially an `oncomplete` the payline cycle can await.
+ *
+ * While a wild stayed on the overlay, ReelSymbol hid the board wild underneath
+ * it, so that component never mounted and never reported completion —
+ * `boardWithAnimateSymbols` then waited forever and finalWin's per-payline cycle
+ * froze on its first line. (winInfo's own animation races a 500ms timeout, which
+ * is why the first pass looked fine and only the cycling was stuck.)
+ *
+ * A released wild is settled to `idle`: its landing already played on the
+ * overlay mid-spin, and left in `land` the board copy would play `wild_land` a
+ * second time.
  */
-const clearStampOverlay = () => {
+const releaseOverlayAfterStop = () => {
 	if (stateGame.overlaySymbols.length === 0) return;
-	stateGame.overlaySymbols = stateGame.overlaySymbols.filter(
-		(symbol) => symbol.name === 'W' || symbol.name === 'C',
-	);
+
+	for (const symbol of stateGame.overlaySymbols) {
+		if (symbol.name !== 'W') continue;
+		const reelSymbol = stateGame.board[symbol.reel]?.reelState.symbols[symbol.row];
+		if (reelSymbol?.rawSymbol.name === 'W') reelSymbol.symbolState = 'idle';
+	}
+
+	stateGame.overlaySymbols = stateGame.overlaySymbols.filter((symbol) => symbol.name === 'C');
 };
 
 /**
@@ -224,6 +239,11 @@ const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) =>
 	if (winLevelData?.presentDuration) {
 		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_countup' });
 	}
+	// The coin rain is the bed for the big presentations only — under a 0.6s
+	// 'standard' win it would be cut off before it read as anything.
+	if (winLevelData?.type === 'big') {
+		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_coin_shower' });
+	}
 };
 
 /**
@@ -236,14 +256,21 @@ const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) =>
  * base game then ran on free-spin music until the player's next win happened to call
  * this again.
  */
-const winLevelSoundsStop = ({ gameType = stateGame.gameType }: { gameType?: GameType } = {}) => {
+const winLevelSoundsStop = ({
+	gameType = stateGame.gameType,
+	winLevelData,
+}: { gameType?: GameType; winLevelData?: WinLevelData } = {}) => {
 	// sfx_countup is stopped by WinCountUpProvider.oncomplete in Win/FreeSpinOutro
-	if (stateBet.activeBetModeKey === 'SUPERSPIN' || gameType === 'freegame') {
-		// check if SUPERSPIN, when finishing a bet.
-		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
-	} else {
-		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_main' });
+	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_coin_shower' });
+	// Only the big presentations get a wind-down; the small ones have nothing to
+	// wind down from.
+	if (winLevelData?.type === 'big') {
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_win_end' });
 	}
+	eventEmitter.broadcast({
+		type: 'soundMusic',
+		name: gameType === 'freegame' ? 'bgm_kw_freespin' : 'bgm_kw_main',
+	});
 	eventEmitter.broadcastAsync({ type: 'uiShow' });
 };
 
@@ -292,7 +319,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const isSpecialSpin = Boolean(bookEvent.spinType) || Boolean(bookEvent.isSpecialSpin);
 		stateGame.isSpecialSpin = isSpecialSpin;
 		stateUi.reelsSpinning = true;
-		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_reelspin' });
+		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_reel_spin' });
 
 		const { wilds: wildPositions, coins: coinPositions } = readSpecials(bookEvent.board);
 		// The math names the replicated symbol `symbol` on the reveal; the placed
@@ -371,7 +398,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 					row: pos.row,
 					landed: false,
 				}));
-				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_wild_land', forcePlay: true });
+				eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_kw_wild_land', forcePlay: true });
 				hold = WILD_LAND_MS; // let the drop finish before the reels stop
 			}
 
@@ -457,13 +484,13 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			});
 		}
 
-		// The reels have stopped — stamped copies give way to the identical board
-		// symbols so the win presentation can treat them like any other symbol.
-		// (No-op on WILD/COIN spins, whose overlays stay up by design.)
-		clearStampOverlay();
+		// The reels have stopped — everything but the coins gives way to the
+		// identical board symbols so the win presentation can treat them like any
+		// other symbol.
+		releaseOverlayAfterStop();
 
 		stateUi.reelsSpinning = false;
-		eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_reelspin' });
+		eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_reel_spin' });
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
 
 		// Breathing room for no-win free spins so player can see the board
@@ -527,10 +554,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	freeSpinTrigger: async (bookEvent: BookEventOfType<'freeSpinTrigger'>) => {
 		// animate scatters
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win' });
 		await animateSymbols({ positions: bookEvent.positions });
 		// show free spin intro
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_superfreespin' });
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bonus_trigger' });
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
 		// the kraken finally attacks — the fed-wilds tension is released
 		stateGame.krakenCollects = 0;
@@ -543,8 +570,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// the cloud dissipates
 		await eventEmitter.broadcastAsync({ type: 'fsCloudBurst' });
 		eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'jng_intro_fs' });
-		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_kw_fs_intro' });
+		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_kw_freespin' });
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinIntroUpdate',
 			totalFreeSpins: bookEvent.totalFs,
@@ -566,7 +593,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// Animate retrigger scatters with "+N" overlay on each bonus symbol
 		const extraSpins = bookEvent.totalFs - stateUi.freeSpinCounterTotal;
 		stateGame.retriggerExtra = extraSpins;
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win_v2' });
+		// Beat 1 gets the landing celebration; the award cue belongs to beat 2, with
+		// the card. Firing sfx_fs_retrigger here instead meant it played a second or
+		// more BEFORE the "+N FREE SPINS" splash it announces, leaving the card
+		// itself silent.
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_scatter_win' });
 		// Two SEQUENTIAL beats (they used to overlap, and the splash's full-screen
 		// shade buried the bonus symbol's celebration under the RETRIGGER card):
 		//
@@ -578,6 +609,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// beat 2 — the RETRIGGER splash. Awaited so the queue holds until the
 		// card has left the screen — otherwise the next free spin spins up
 		// behind the dimmed card (visible on autoplay).
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_fs_retrigger', forcePlay: true });
 		const splashShown = eventEmitter.broadcastAsync({
 			type: 'freeSpinRetriggerShow',
 			extraSpins,
@@ -594,6 +626,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		await splashShown;
 	},
 	updateFreeSpin: async (bookEvent: BookEventOfType<'updateFreeSpin'>) => {
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_fs_counter', forcePlay: true });
 		eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
 		stateUi.freeSpinCounterShow = true;
 		eventEmitter.broadcast({
@@ -610,10 +643,19 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'winHide' });
 		eventEmitter.broadcast({ type: 'boardResetSymbols' });
 		winCycleState.lastWins = null;
+		// Before the outro, not after: a multiplier awarded on the LAST free spin
+		// never strikes if that spin paid nothing, and it was still on screen —
+		// drawn over the TOTAL WIN card — because it was only cleared once the
+		// outro had finished.
+		stateGame.spinMultiplier = 1;
 		await eventEmitter.broadcastAsync({ type: 'uiHide' });
 		eventEmitter.broadcast({ type: 'boardFrameGlowHide' });
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_fs_outro' });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_totalwin_panel' });
+		// A bed of its own under the feature total, rather than leaving the free-spin
+		// track running while the round is plainly over.
+		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_totalwin' });
 		winLevelSoundsPlay({ winLevelData });
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinOutroCountUp',
@@ -628,7 +670,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		});
 		// the feature is over — the ambient goes back to the base game track even though
 		// gameType does not flip until the transition below
-		winLevelSoundsStop({ gameType: 'basegame' });
+		winLevelSoundsStop({ gameType: 'basegame', winLevelData });
 
 		eventEmitter.broadcast({ type: 'freeSpinOutroHide' });
 		eventEmitter.broadcast({ type: 'freeSpinCounterHide' });
@@ -649,8 +691,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// stayed there until the player spun again.
 		stateGame.movingWilds = [];
 		clearOverlay();
-		// the last free spin's kraken multiplier does not survive the feature
-		stateGame.spinMultiplier = 1;
 		stateGame.gameType = 'basegame';
 		restoreTriggerBoard();
 
@@ -680,7 +720,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// full spin win. The two winUpdates give exactly that because Win.svelte runs a
 		// fresh count-up per update while keeping the provider's tween — see countUpRun
 		// there; before that, the second beat silently never ran.
-		const coinWins = (winCycleState.lastWins ?? []).filter((win) => win.symbol === 'C');
+		const allWins = winCycleState.lastWins ?? [];
+		const coinWins = allWins.filter((win) => win.symbol === 'C');
+		const lineWins = allWins.filter((win) => win.symbol !== 'C');
 		const coins = coinWins.flatMap((win) =>
 			win.positions.map((pos, i) => ({
 				reel: pos.reel,
@@ -690,15 +732,41 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		);
 		const coinAmount = coinWins.reduce((sum, win) => sum + win.win, 0);
 		const lineAmount = bookEvent.amount - coinAmount;
+
+		/**
+		 * The kraken's per-spin multiplier (free spins).
+		 *
+		 * The book's amounts ALREADY include it, so the presentation counts to the
+		 * unmultiplied figures first and lets the multiplier strike at the end —
+		 * it has to be last, because a coin spin adds its coin total after the
+		 * payline wins and anything earlier would multiply half a win.
+		 *
+		 * The pre-strike figures are READ from the book (`meta.winWithoutMult`,
+		 * verified against a real book as sum(winWithoutMult) x globalMult ===
+		 * setWin.amount) rather than divided out, so nothing drifts by a cent.
+		 * Coin faces need no adjustment: they carry their raw values, which is
+		 * exactly the pre-multiplier total the kraken hands over.
+		 */
+		const hasMultiplier = stateGame.spinMultiplier > 1;
+		const baseOf = (win: (typeof allWins)[number]) => win.meta?.winWithoutMult ?? win.win;
+		const lineShown = hasMultiplier ? lineWins.reduce((sum, win) => sum + baseOf(win), 0) : lineAmount;
+		const coinShown = hasMultiplier ? coinWins.reduce((sum, win) => sum + baseOf(win), 0) : coinAmount;
+		const totalShown = hasMultiplier ? lineShown + coinShown : bookEvent.amount;
+		// The big-win spectacle belongs to the FINAL figure — a small win that the
+		// multiplier turns into a big one must not spend its reveal early. Anything
+		// shown before the strike is demoted to the highest non-big level.
+		const preStrikeLevelData =
+			hasMultiplier && winLevelData?.type === 'big' ? winLevelMap[5] : winLevelData;
+
 		// On a coins-only spin there is no beat 1, so there is no amount to show
 		// while the coins fly. Showing the winbox anyway left the PREVIOUS spin's
 		// figure on screen for the whole collect — a 29x coin spin sat behind
 		// "$0.80" from the spin before it. The box waits for its number instead.
-		const coinsOnly = coins.length > 0 && lineAmount <= 0;
+		const coinsOnly = coins.length > 0 && lineShown <= 0;
 
 		if (!coinsOnly) {
 			eventEmitter.broadcast({ type: 'winShow' });
-			winLevelSoundsPlay({ winLevelData });
+			winLevelSoundsPlay({ winLevelData: preStrikeLevelData });
 		}
 
 		if (coins.length > 0) {
@@ -708,11 +776,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			// level here also stalled the book for good — WinAnimation's exit state
 			// machine is one-shot, so after beat 1's exit beat 3 could never exit
 			// again and the spin hung under the leftover smoke.
-			if (lineAmount > 0) {
-				const beat1LevelData = winLevelData?.type === 'big' ? winLevelMap[5] : winLevelData;
+			if (lineShown > 0) {
+				const beat1LevelData =
+					preStrikeLevelData?.type === 'big' ? winLevelMap[5] : preStrikeLevelData;
 				await eventEmitter.broadcastAsync({
 					type: 'winUpdate',
-					amount: lineAmount,
+					amount: lineShown,
 					winLevelData: beat1LevelData,
 				});
 			}
@@ -723,19 +792,39 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		if (coinsOnly) {
 			// the kraken has just handed the total over — the box opens on it
 			eventEmitter.broadcast({ type: 'winShow' });
-			winLevelSoundsPlay({ winLevelData });
-		} else if (coins.length > 0 && winLevelData?.presentDuration) {
+			winLevelSoundsPlay({ winLevelData: preStrikeLevelData });
+		} else if (coins.length > 0 && preStrikeLevelData?.presentDuration) {
 			// beat 1 ended its count-up, which stopped the loop — beat 3 needs it back
 			eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_countup' });
 		}
 
-		// beat 3 (or the only beat on a normal spin) — count up to the full win
+		// beat 3 (or the only beat on a normal spin) — everything the spin paid,
+		// before the kraken's multiplier
 		await eventEmitter.broadcastAsync({
 			type: 'winUpdate',
-			amount: bookEvent.amount,
-			winLevelData,
+			amount: totalShown,
+			winLevelData: preStrikeLevelData,
 		});
-		winLevelSoundsStop();
+
+		if (hasMultiplier) {
+			// beat 4 — the multiplier dives into the box and multiplies what is in
+			// it. Only now does the real win level get its say, so a small win
+			// promoted to a big one gets the full presentation on the true figure.
+			await eventEmitter.broadcastAsync({ type: 'spinMultiplierStrike' });
+			if (winLevelData?.type === 'big') {
+				winLevelSoundsPlay({ winLevelData });
+			} else if (winLevelData?.presentDuration) {
+				// the previous beat's count-up stopped the loop on completion
+				eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_countup' });
+			}
+			await eventEmitter.broadcastAsync({
+				type: 'winUpdate',
+				amount: bookEvent.amount,
+				winLevelData,
+			});
+		}
+
+		winLevelSoundsStop({ winLevelData });
 
 		// Pause during free spins so the player can see their winnings
 		if (stateGame.gameType === 'freegame') {
@@ -790,7 +879,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				for (const win of wins) {
 					if (abortController.signal.aborted) break;
 
-					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_payline_switch' });
+					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_win_line_tick' });
 					await eventEmitter.broadcastAsync({
 						type: 'boardWithAnimateSymbols',
 						symbolPositions: win.positions,
@@ -831,7 +920,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			eventEmitter.broadcast({ type: 'boardFrameGlowShow' });
 			eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
 			stateUi.freeSpinCounterShow = true;
-			eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_freespin' });
+			eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_kw_freespin' });
 		}
 		if (lastUpdateFreeSpinEvent) playBookEvent(lastUpdateFreeSpinEvent, { bookEvents });
 		if (lastSetTotalWinEvent) playBookEvent(lastSetTotalWinEvent, { bookEvents });

@@ -60,7 +60,17 @@
 					disabled={stateBet.betAmount <= 0 ||
 						stateBet.balanceAmount < stateBet.betAmount * betModeData.costMultiplier}
 				>
-					<BaseIcon width="100%" height="2rem" border="2px solid white;" />
+					<!--
+						The card's primary action. `--modal-btn-cta-*` lets a game theme
+						its call to action; the fallbacks are the previous hardcoded look,
+						so games that do not define them are unchanged.
+					-->
+					<BaseIcon
+						width="100%"
+						height="2rem"
+						background="var(--modal-btn-cta-bg, var(--modal-btn-bg))"
+						border="var(--modal-btn-cta-border, 2px solid white)"
+					/>
 					<BaseButtonContent>
 						<span style="font-size: 1rem;">{betModeData.text.button}</span>
 					</BaseButtonContent>

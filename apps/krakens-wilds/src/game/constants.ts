@@ -151,12 +151,30 @@ const WIN_FRAME_FILL = 1;
 export const WIN_FRAME_WIDTH = (220 / WIN_FRAME_LINE_X) * CELL_W * WIN_FRAME_FILL;
 export const WIN_FRAME_HEIGHT = (220 / WIN_FRAME_LINE_Y) * CELL_H * WIN_FRAME_FILL;
 
+/**
+ * Root-level draw order.
+ *
+ * Everything else on the stage sits at the default 0, where order falls back to
+ * MOUNT order — and pixi-svelte appends on mount, so "later mounted draws on
+ * top" regardless of markup order. Anything that must beat that rule needs a
+ * layer here. (A non-zero zIndex on any child switches the parent to sorted
+ * mode, and the sort is stable, so equal-zIndex siblings keep their order.)
+ *
+ * Spaced by 10 so a layer can be slipped between two of these later.
+ */
 export const zIndexes = {
 	background: {
-		backdrop: -3,
-		normal: -2,
-		feature: -1,
+		backdrop: -40,
+		normal: -30,
+		feature: -20,
 	},
+	/**
+	 * Base-game furniture: the ante/buy panels. Below the kraken and its attack
+	 * dust (both at the default 0) but above the backgrounds. They mount at
+	 * start-up, AFTER the kraken, so by mount order alone they drew on top of
+	 * its cloud.
+	 */
+	sidePanels: -10,
 };
 
 // yOffset is in WORLD units (added straight to y): the h1/h3/h4 art is not
@@ -325,8 +343,20 @@ export const SYMBOL_INFO_MAP = {
 	},
 } as const;
 
-export const SCATTER_LAND_SOUND_MAP = {
-	1: 'sfx_scatter_stop_1',
-	2: 'sfx_scatter_stop_2',
-	3: 'sfx_scatter_stop_3',
-} as const;
+/**
+ * Pitch ladders: one cue replayed at a rising `rate`, not a set of numbered files.
+ *
+ * The classic rising reel-stop run needs five hits that are unmistakably the same
+ * sound moving up. Five separate generations are five different sounds — that is
+ * what the old sfx_scatter_stop_1/2/3 were, and they read as three unrelated
+ * dings. Resampling one take keeps the timbre identical and only moves the pitch,
+ * which is what the ear is listening for.
+ *
+ * Steps are roughly a semitone (2^(1/12) = 1.0595); the run is deliberately under
+ * an octave so the last hit still sounds like the first.
+ */
+export const REEL_STOP_RATES = [1.0, 1.06, 1.12, 1.19, 1.26] as const;
+/** Rises as scatters accumulate — the third is the one that pays. */
+export const SCATTER_LAND_RATES = [1.0, 1.12, 1.26] as const;
+/** Varies the kraken's gulp so repeated swallows do not sound copy-pasted. */
+export const KRAKEN_GULP_RATES = [0.92, 1.0, 1.09] as const;

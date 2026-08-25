@@ -13,6 +13,7 @@
 
 	import { getContext } from '../game/context';
 	import { applyBetModeMeta } from '../game/betModeMeta';
+	import { zIndexes } from '../game/constants';
 	import EnableSound from './EnableSound.svelte';
 	import EnableGameActor from './EnableGameActor.svelte';
 	import ResumeBet from './ResumeBet.svelte';
@@ -31,6 +32,7 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 	import AnteBuyPanels from './AnteBuyPanels.svelte';
 	import BoardContainer from './BoardContainer.svelte';
 	import Win from './Win.svelte';
+	import SpinMultiplier from './SpinMultiplier.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import FsCloudTransition from './FsCloudTransition.svelte';
@@ -38,6 +40,27 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 	import ReplayComplete from './ReplayComplete.svelte';
 
 	const context = getContext();
+
+	/**
+	 * Modal open / close, from one place.
+	 *
+	 * Every panel in the game — settings, rules, paytable, the buy shop, the buy
+	 * confirm — is driven by `stateModal.modal`, so watching that covers all of
+	 * them at once. Wiring the sound into each button instead would mean editing
+	 * the shared components-ui-html package and would still miss any modal opened
+	 * by something other than a click.
+	 */
+	let modalOpen = false;
+	$effect(() => {
+		const isOpen = stateModal.modal !== null;
+		if (isOpen === modalOpen) return;
+		modalOpen = isOpen;
+		context.eventEmitter.broadcast({
+			type: 'soundOnce',
+			name: isOpen ? 'sfx_ui_popup_open' : 'sfx_ui_popup_close',
+			forcePlay: true,
+		});
+	});
 	const bl = $derived(context.stateGameDerived.boardLayout());
 
 	onMount(() => {
@@ -121,9 +144,11 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 		<GameLogo />
 
 		<!-- Ante Bet toggle + Buy Feature price panels beside the reels (spec
-		     v2.1). Base game only; inert while a bet is running. -->
+		     v2.1). Base game only; inert while a bet is running. Layered under
+		     the kraken so its attack cloud rolls OVER them — by mount order
+		     alone they landed on top of the dust. -->
 		{#if !stateUrlDerived.replay()}
-			<MainContainer label="AnteBuyPanelsContainer">
+			<MainContainer label="AnteBuyPanelsContainer" zIndex={zIndexes.sidePanels}>
 				<AnteBuyPanels />
 			</MainContainer>
 		{/if}
@@ -144,6 +169,8 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 			</UI>
 		{/if}
 		<Win />
+		<!-- above Win: the multiplier dives INTO the win box, so it must draw over it -->
+		<SpinMultiplier />
 		<FreeSpinIntro />
 		<FreeSpinOutro />
 		<FsCloudTransition />

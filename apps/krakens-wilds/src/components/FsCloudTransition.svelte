@@ -19,6 +19,7 @@
 		// scenes behind it while the burst dissipates on its own
 		fsCloudBurst: async () => {
 			show = true;
+			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_kw_fs_transition', forcePlay: true }); // prettier-ignore
 			await waitForResolve((resolve) => (onCovered = resolve));
 		},
 	});

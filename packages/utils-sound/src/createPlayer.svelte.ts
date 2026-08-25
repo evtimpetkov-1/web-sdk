@@ -82,8 +82,10 @@ function createPlayer<TSoundName extends string, TPlay extends Function>(playerO
 	const volume = (volume: number) => {
 		playerVolume = volume;
 
-		//Adjust the whole player volume
-		// howl.volume(playerVolume);
+		// Deliberately NOT `howl.volume(playerVolume)`: music/loop/once share one
+		// Howl, so a player-level write would clobber the other two. The Howl is
+		// held at 0 (see createSound) and every sound gets its real volume per id,
+		// which is also what keeps newly started sounds from being born loud.
 
 		//adjust volume per sound
 		(Object.values(soundMap) as Sound[]).forEach((sound) => {

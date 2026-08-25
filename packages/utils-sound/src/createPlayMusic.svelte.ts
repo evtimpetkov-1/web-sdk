@@ -38,6 +38,10 @@ export function createPlayMusic<TSoundName extends string>(options: {
 			...sound,
 			soundState: 'playing',
 		};
+		// Resuming has to re-apply the volume for the same reason starting does:
+		// the shared Howl is held at 0 so nothing is ever born loud, which means a
+		// resumed track stays silent unless its own volume is set back here.
+		options.initSoundVolume(sound.soundName);
 	};
 
 	const soundPlayMap = {

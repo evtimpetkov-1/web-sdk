@@ -18,7 +18,8 @@ import {
 	SPIN_OPTIONS_DEFAULT,
 	SPIN_OPTIONS_FAST,
 	INITIAL_SYMBOL_STATE,
-	SCATTER_LAND_SOUND_MAP,
+	SCATTER_LAND_RATES,
+	REEL_STOP_RATES,
 } from './constants';
 
 const onSymbolLand = ({
@@ -33,19 +34,32 @@ const onSymbolLand = ({
 
 	if (rawSymbol.name === 'S') {
 		eventEmitter.broadcast({ type: 'soundScatterCounterIncrease' });
+		// One ding, pitched up as the scatters accumulate — the rising run is what
+		// tells the player the third one is coming.
 		eventEmitter.broadcast({
 			type: 'soundOnce',
-			name: SCATTER_LAND_SOUND_MAP[scatterLandIndex()],
+			name: 'sfx_scatter_land',
+			forcePlay: true,
+			rate: SCATTER_LAND_RATES[scatterLandIndex() - 1],
 		});
+		return;
 	}
 
 	if (rawSymbol.name === 'W' && stateGame.gameType !== 'freegame') {
 		eventEmitter.broadcast({
 			type: 'soundOnce',
-			name: 'sfx_wild_land',
+			name: 'sfx_kw_wild_land',
 			forcePlay: true,
 		});
+		return;
 	}
+
+	// No sound for ordinary symbols landing, high ones included. This runs once
+	// PER SYMBOL, so anything here is up to fifteen overlapping one-shots a spin
+	// stacked under the reel stops — a machine gun, not a board settling. The
+	// reel-stop run is the landing sound. (sfx_symbol_land and
+	// sfx_symbol_land_special stay in the library for a game whose symbols land
+	// one at a time; see the audio manifest.)
 };
 
 const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
@@ -65,6 +79,13 @@ const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
 				type: 'soundOnce',
 				name: 'sfx_reel_stop',
 				forcePlay: !stateBet.isTurbo,
+				// The classic rising stop run, one cue resampled per reel. Only when
+				// the cue actually restarts: in turbo it is not force-played, so a
+				// rate here would bend the pitch of the instance still ringing from
+				// the previous reel instead of pitching a new one.
+				rate: stateBet.isTurbo
+					? undefined
+					: REEL_STOP_RATES[Math.min(reelIndex, REEL_STOP_RATES.length - 1)],
 			});
 		},
 		onSymbolLand,

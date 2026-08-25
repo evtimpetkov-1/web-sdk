@@ -52,11 +52,24 @@ const primaryMachines = createPrimaryMachines<Bet>({
 			return;
 		}
 		stateBet.winBookEventAmount = 0;
+		// The loop belongs to the REELS MOVING, and they start here — at the button
+		// press — not when the book comes back. Starting it from the reveal handler
+		// meant it began a whole RGS round-trip after the reels had visibly spun up,
+		// which reads as the sound lagging the picture. The reveal handler still
+		// broadcasts it, which is a no-op while it is already playing and the real
+		// start for the paths that skip this pre-spin (turbo autoplay, space-hold).
+		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_reel_spin' });
 		await stateGameDerived.enhancedBoard.preSpin({
 			paddingBoard: config.paddingReels[stateGame.gameType],
 		});
 	},
-	onNewGameError: () => stateGameDerived.enhancedBoard.settle(),
+	onNewGameError: () => {
+		// The loop now starts at the button press, so a bet that never reaches a
+		// reveal has to stop it here — otherwise the reels settle in silence with
+		// the spin loop still running underneath.
+		eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_reel_spin' });
+		stateGameDerived.enhancedBoard.settle();
+	},
 	onPlayGame: async (bet) => {
 		await playBet(bet);
 	},

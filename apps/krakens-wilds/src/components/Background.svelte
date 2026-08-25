@@ -4,6 +4,7 @@
 	import { SECOND } from 'constants-shared/time';
 
 	import { getContext } from '../game/context';
+	import { zIndexes } from '../game/constants';
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
@@ -32,9 +33,9 @@
 	};
 </script>
 
-<Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />
+<Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={zIndexes.background.backdrop} />
 
-<FadeContainer label="BackgroundContainer" show={showBaseBackground} duration={0.4 * SECOND} zIndex={-2} filters={bgFilters}>
+<FadeContainer label="BackgroundContainer" show={showBaseBackground} duration={0.4 * SECOND} zIndex={zIndexes.background.normal} filters={bgFilters}>
 	{#if isPortrait}
 		<Sprite key="baseGameBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} {...cover('baseGameBgPortrait', 941, 1672)} />
 	{:else}
@@ -44,7 +45,7 @@
 
 <!-- blurred during loading, same as the base background — covers a refresh
      mid-free-spins, where the loading screen sits on THIS container -->
-<FadeContainer label="FeatureBackgroundContainer" show={showFeatureBackground} duration={0.4 * SECOND} zIndex={-1} filters={bgFilters}>
+<FadeContainer label="FeatureBackgroundContainer" show={showFeatureBackground} duration={0.4 * SECOND} zIndex={zIndexes.background.feature} filters={bgFilters}>
 	{#if isPortrait}
 		<Sprite key="freeSpinBgPortrait" anchor={0.5} x={canvas.width / 2} y={canvas.height / 2} {...cover('freeSpinBgPortrait', 1024, 1536)} />
 	{:else}

@@ -5,8 +5,6 @@
 </script>
 
 <script lang="ts">
-	import { Tween } from 'svelte/motion';
-	import { backOut } from 'svelte/easing';
 	import { Rectangle, Sprite, Container, Text } from 'pixi-svelte';
 	import { ResponsiveText } from 'components-pixi';
 	import type { TextStyleOptions } from 'pixi.js';
@@ -78,23 +76,6 @@
 	const counterLeftX = $derived(frameX - 280 * counterScale);
 	const counterRightX = $derived(frameX + 280 * counterScale);
 
-	// The kraken's per-spin win multiplier (spec v2.1) gets a third plate for as
-	// long as the spin it belongs to is on screen: stateGame.spinMultiplier is set
-	// when the kraken awards it mid-spin and reset at the next reveal, so the
-	// plate's lifetime needs no events of its own. Desktop keeps the left-hand
-	// stack rhythm; portrait puts it under the pair (the plates there are too
-	// tightly packed for a third in the row).
-	const spinMultiplier = $derived(context.stateGame.spinMultiplier);
-	const counterMultY = $derived(frameY + 345 * counterScale);
-	const counterMultBottomY = $derived(counterBottomY + 120 * counterScale);
-	// the plate pops as the kraken slams the award in, then settles
-	const multPop = new Tween(1);
-	$effect(() => {
-		if (spinMultiplier > 1) {
-			multPop.set(1.35, { duration: 0 });
-			multPop.set(1, { duration: 450, easing: backOut });
-		}
-	});
 
 	let glowVisible = $state(false);
 
@@ -159,13 +140,6 @@
 			<ResponsiveText text={i18nDerived.totalWin()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
 			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
-		{#if spinMultiplier > 1}
-			<Container label="MultiplierCounter" x={frameX} y={counterMultBottomY} scale={counterScale * multPop.current}>
-				<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-				<ResponsiveText text={i18nDerived.multiplierLabel()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
-				<Text text={`x${spinMultiplier}`} anchor={0.5} y={20} style={counterValueStyle} />
-			</Container>
-		{/if}
 	{:else}
 		<!-- Desktop/Landscape: left of frame, stacked vertically -->
 		<Container label="FreeSpinCounter" x={counterX} y={counterFsY} scale={counterScale}>
@@ -178,12 +152,5 @@
 			<ResponsiveText text={i18nDerived.totalWin()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
 			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
-		{#if spinMultiplier > 1}
-			<Container label="MultiplierCounter" x={counterX} y={counterMultY} scale={counterScale * multPop.current}>
-				<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
-				<ResponsiveText text={i18nDerived.multiplierLabel()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
-				<Text text={`x${spinMultiplier}`} anchor={0.5} y={20} style={counterValueStyle} />
-			</Container>
-		{/if}
 	{/if}
 {/if}

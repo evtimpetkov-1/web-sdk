@@ -7,13 +7,18 @@ export function createEnhanceBoard() {
 		type TRawSymbol = GetRawSymbolFromReel<TReel>;
 
 		const { preSpin } = createEnhanceBoardPreSpin({ board });
-		const { spin } = createEnhanceBoardSpin({ board });
+		const { spin, notifyStop } = createEnhanceBoardSpin({ board });
 		const settle = (rawBoard?: TRawSymbol[][]) =>
 			board.forEach((reel, reelIndex) => {
 				const rawSymbols = rawBoard?.[reelIndex] || [];
 				reel.setSymbolsWithRawSymbols(rawSymbols);
 			});
-		const stop = () => board.forEach((reel) => reel.stop());
+		const stop = () => {
+			// tells spin() to drop the staggered start, so a reel that has not
+			// begun yet reacts to the stop button straight away
+			notifyStop();
+			board.forEach((reel) => reel.stop());
+		};
 		const readyToSpinEffect = () => {
 			board.forEach((reel) => reel.readyToSpinEffect());
 		};

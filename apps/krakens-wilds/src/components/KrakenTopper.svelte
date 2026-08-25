@@ -23,7 +23,14 @@
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
-	import { BOARD_SIZES, CELL_W, CELL_H, REEL_PADDING, SYMBOL_SIZE } from '../game/constants';
+	import {
+		BOARD_SIZES,
+		CELL_W,
+		CELL_H,
+		REEL_PADDING,
+		SYMBOL_SIZE,
+		KRAKEN_GULP_RATES,
+	} from '../game/constants';
 	import CoinValue from './CoinValue.svelte';
 
 	const context = getContext();
@@ -91,24 +98,31 @@
 	let coinTotalPos = new Tween({ x: TOTAL_AT.x, y: TOTAL_AT.y }, { duration: 500, easing: cubicIn });
 	let showCoinTotal = $state(false);
 	/**
-	 * SOUND — both of these moments were silent.
+	 * SOUND. Both cues are the kraken's own now, rather than the borrowed
+	 * placeholders these used to be.
 	 *
-	 * The attack had no sound at all: `sfx_wild_explode` is the only percussive burst
-	 * in the bank and is otherwise DEAD, since its only trigger is a `wildExplode`
-	 * spine event that the v2 wild skeleton does not emit. It fires on the slam, not on
-	 * the wind-up, hence the delay.
+	 * The attack fires on the SLAM, not on the wind-up, hence the delay.
 	 *
-	 * The coins flew into the kraken in silence. The three scatter-stop pings are
-	 * pitched to rise, so cycling them per swallow makes the tally sound like it is
-	 * climbing rather than repeating; the run resets with each collection.
-	 *
-	 * Both are placeholders from the existing bank — swap the names here when the
-	 * custom audio lands.
+	 * The swallow is one gulp resampled up and down a semitone or so per coin
+	 * (KRAKEN_GULP_RATES), so a run of them sounds like the same creature eating
+	 * repeatedly rather than one sample pasted in a row. The run resets with each
+	 * collection.
 	 */
-	const SFX_ATTACK = 'sfx_wild_explode';
-	const SFX_ATTACK_DELAY = 700; // the slam lands ~0.85s into a ~1.55s wind-up
-	const SFX_SWALLOW = ['sfx_scatter_stop_1', 'sfx_scatter_stop_2', 'sfx_scatter_stop_3'] as const;
-	const SFX_TOTAL_HANDOVER = 'sfx_countup_end';
+	const SFX_ATTACK = 'sfx_kw_kraken_attack';
+	/**
+	 * NO DELAY, and that is the point.
+	 *
+	 * The cue used to be a 1.6s burst fired 700ms in, because it had to be dropped
+	 * somewhere near the slam by eye. It is now authored against the skeleton: 3.0s
+	 * long, matching kraken_attack's own 3.0s, with its impact measured at 1.20s —
+	 * where the slam actually peaks (37 bones at maximum extension, 0.35s before
+	 * reelsCovered). So it starts with the animation and stays in step for its
+	 * whole length, build and aftermath included.
+	 *
+	 * If the skeleton is re-exported, re-measure: the timings are recorded in
+	 * manifest-krakens-wilds.json under this cue's `moment`.
+	 */
+	const SFX_TOTAL_HANDOVER = 'sfx_coin_collect';
 	let swallowIndex = 0;
 
 	/**
@@ -123,8 +137,9 @@
 		gulpNonce += 1;
 		context.eventEmitter.broadcast({
 			type: 'soundOnce',
-			name: SFX_SWALLOW[swallowIndex % SFX_SWALLOW.length],
+			name: 'sfx_kw_kraken_gulp',
 			forcePlay: true,
+			rate: KRAKEN_GULP_RATES[swallowIndex % KRAKEN_GULP_RATES.length],
 		});
 		swallowIndex += 1;
 	};
@@ -206,6 +221,7 @@
 		// the kraken notices the incoming dust: inhale + track it, holding the
 		// ready pose the gulp starts from
 		if (modeIs('idle', 'tense')) mode = 'pregulp';
+		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_coin_fly', forcePlay: true });
 		waitForTimeout(EMIT_MS).then(() => (tracked.emit = false));
 		await waitForTimeout(FLY_MS);
 		// impact: swallow + count it (tier thresholds live on the idle name)
@@ -227,9 +243,7 @@
 			if (mode === 'attack') gulpNonce += 1;
 			mode = 'attack';
 			width.set(KRAKEN_WIDTH); // grow while it rears up (wind-up is ~0.85s)
-			waitForTimeout(SFX_ATTACK_DELAY).then(() =>
-				context.eventEmitter.broadcast({ type: 'soundOnce', name: SFX_ATTACK, forcePlay: true }),
-			);
+			context.eventEmitter.broadcast({ type: 'soundOnce', name: SFX_ATTACK, forcePlay: true });
 			await waitForResolve((resolve) => (onReelsCovered = resolve));
 		},
 		krakenTense: (emitterEvent) => {

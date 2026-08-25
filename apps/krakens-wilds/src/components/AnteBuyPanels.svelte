@@ -50,13 +50,28 @@
 	const LABEL_OFF_X = 138; // OFF sits in the free right half of the pill
 	const LABEL_ON_X = -138; // ON sits in the free left half
 	const BET_ROW_Y = -150; // BET $4.50 headline row
-	const TAGLINE_Y = -30; // DOUBLE CHANCE TO WIN FEATURES
+	const BET_ROW_H = 96; // the BET word sprite's drawn height, and the price beside it
+	// Pill rim in the box art: y 366..504 of the 540-tall panel, i.e. +96 from centre.
+	const PILL_TOP_Y = KNOB.y - KNOB.h / 2 - 5;
+	/**
+	 * DOUBLE CHANCE TO WIN FEATURES — centred in the clear band between the BET
+	 * row and the toggle pill, rather than at a hand-picked offset. It used to sit
+	 * ~28 units high, which left a thin gap above it and a wide one below.
+	 *
+	 * Derived rather than hardcoded because `anchor: 0.5` centres the whole text
+	 * BLOCK here: a locale that wraps to one line or to three stays balanced
+	 * between the same two neighbours instead of riding up into the BET row.
+	 */
+	const TAGLINE_Y = Math.round((BET_ROW_Y + BET_ROW_H / 2 + PILL_TOP_Y) / 2);
 	const BUY_WORD_Y = -95; // BUY word on the buy panel
 	const BUY_PRICE_Y = 65; // price line on the buy panel
 
-	// The stone frame is wider than the symbol grid — panels sit against ITS
-	// edge, not the grid's (BoardFrame FRAME_SCALE_BASE.width).
+	// The stone frame is bigger than the symbol grid on every side — panels sit
+	// against ITS edges, not the grid's. Mirrors BoardFrame's FRAME_SCALE_BASE
+	// (both dimensions are fractions of the board WIDTH) and FRAME_Y_OFFSET.
 	const FRAME_W = BOARD_SIZES.width * 1.137;
+	const FRAME_H = BOARD_SIZES.width * 0.805;
+	const FRAME_Y_OFFSET = 10;
 
 	// ---- placement, derived from the live board layout so resizes track ----
 	const bl = $derived(context.stateGameDerived.boardLayout());
@@ -65,6 +80,8 @@
 
 	const PORTRAIT_SCALE = 0.3;
 	const SIDE_SCALE = 0.22;
+	// Clearance between the frame's bottom edge and the portrait panel pair.
+	const PORTRAIT_FRAME_GAP = 0;
 	const EDGE = 8; // never sit flush against the canvas edge
 	const GAP = 14; // preferred breathing room between panel and frame
 	// A squeezed layout rides onto the frame's outer stone band (~40 units wide
@@ -103,18 +120,24 @@
 	const sizes = $derived<Sizes>({ width: PANEL_W * scale, height: PANEL_H * scale });
 	const positions = $derived.by(() => {
 		if (isPortrait) {
-			// Under the reels, above the spin-button cluster. The +40 deliberately
-			// rides the panels up INTO the frame's bottom stone band (~28 units of
-			// overlap) — touching the frame is by design, clearing the spin/chest
-			// buttons below is what matters.
+			// A close pair under the reels, sitting just clear of the stone band
+			// rather than tucked into it.
 			//
-			// Pushed out to the frame's own left and right edges rather than sitting
-			// together in the middle: it squares them with the reels above and opens
-			// the centre gap for the spin cluster.
-			const y = bl.y + (BOARD_SIZES.height / 2) * bl.scale + 40 + sizes.height / 2;
+			// Measured off the FRAME's bottom edge, not the grid's. The frame
+			// overhangs the grid by ~58 board units, so a gap measured from the grid
+			// is not the gap the player sees — that is why this used to read as
+			// floating too low. PORTRAIT_FRAME_GAP is the one number to tune: 0 puts
+			// the panels flush under the stone, negative tucks them into it.
+			//
+			// There is headroom below either way: the spin cluster belongs to the
+			// UI's own (standard 1080x1920) layout, bottom-aligned, which puts its
+			// top edge a good 250 canvas px below these panels.
+			const PAIR_GAP = 50; // between the two panels
+			const frameBottom = bl.y + (FRAME_Y_OFFSET + FRAME_H / 2) * bl.scale;
+			const y = frameBottom + PORTRAIT_FRAME_GAP + sizes.height / 2;
 			return {
-				buy: { x: bl.x - frameHalfWidth + sizes.width / 2, y },
-				ante: { x: bl.x + frameHalfWidth - sizes.width / 2, y },
+				buy: { x: bl.x - PAIR_GAP / 2 - sizes.width / 2, y },
+				ante: { x: bl.x + PAIR_GAP / 2 + sizes.width / 2, y },
 			};
 		}
 		// stacked left of the frame: BUY on top, ANTE below
@@ -145,12 +168,20 @@
 	});
 
 	const toggleAnte = () => {
-		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		// The switch says which way it moved — a single click for both directions
+		// gives the player no confirmation of the state they just chose.
+		context.eventEmitter.broadcast({
+			type: 'soundOnce',
+			name: anteActive ? 'sfx_ui_toggle_off' : 'sfx_ui_toggle_on',
+			forcePlay: true,
+		});
 		stateBet.activeBetModeKey = anteActive ? 'BASE' : 'ANTE';
 	};
 
 	const openBuy = () => {
-		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
+		// the shop opening is the sound here, not a button click — Game.svelte
+		// watches stateModal and fires it, so this only needs to not double up
+
 		// Explanatory shop first (free-spins card only), confirm second. The
 		// chest button opens the same shop unfiltered.
 		stateBonus.shopBuyOnly = true;
@@ -285,7 +316,11 @@
 							dropShadow: { color: '#000000', blur: 2, distance: 1, alpha: 0.8 },
 							fontSize: s(52),
 							wordWrap: true,
-							wordWrapWidth: s(660),
+							// Narrower than the panel on purpose: it puts the break after
+							// "TO" ("DOUBLE CHANCE TO" / "WIN FEATURES") instead of leaving
+							// "FEATURES" alone on a line of its own. Other locales still
+							// wrap wherever their own words happen to fall.
+							wordWrapWidth: s(540),
 							lineHeight: s(64),
 						}}
 					/>

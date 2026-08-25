@@ -4,6 +4,8 @@
 	export type EmitterEventWin =
 		| { type: 'winShow' }
 		| { type: 'winHide' }
+		/** something hit the box — knock it. Fired by SpinMultiplier on impact. */
+		| { type: 'winBoxImpact' }
 		| { type: 'winUpdate'; amount: number; winLevelData: WinLevelData };
 </script>
 
@@ -27,6 +29,11 @@
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
 	let onCountUpComplete = $state(() => {
+		// The coin rain is bound to `!countUpCompleted` on WinCoins, so its sound has
+		// to end on the same signal. Leaving it to winLevelSoundsStop meant the loop
+		// carried on after the counter had stopped and the coins had gone — audible
+		// on the free-spins outro, which waits for a press before it tears down.
+		context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_coin_shower' });
 		if (winLevelData?.presentDuration) {
 			context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_countup' });
 			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_countup_end' });
@@ -46,7 +53,51 @@
 	 */
 	let countUpRun = $state(0);
 
+	/**
+	 * The knock the box takes when the kraken's multiplier lands on it.
+	 *
+	 * Starts at full displacement and decays, because that is what being hit does
+	 * — a shake that eases IN reads as the box deciding to wobble rather than as
+	 * something striking it. x and y run at different frequencies so it rattles
+	 * instead of sliding along one diagonal.
+	 *
+	 * Deliberately scoped to this container and not the stage: playEarthquake
+	 * moves the whole scene, which is right for a scene transition and wrong for
+	 * one element being struck.
+	 */
+	const SHAKE_MS = 280;
+	const SHAKE_PX = 15;
+	let shake = $state({ x: 0, y: 0 });
+	let shakeRaf: number | undefined;
+
+	const knockWinBox = () => {
+		if (shakeRaf !== undefined) cancelAnimationFrame(shakeRaf);
+		const start = performance.now();
+		const tick = () => {
+			const t = (performance.now() - start) / SHAKE_MS;
+			if (t >= 1) {
+				shake = { x: 0, y: 0 };
+				shakeRaf = undefined;
+				return;
+			}
+			// squared falloff: most of the movement is in the first third
+			const damp = (1 - t) ** 2;
+			shake = {
+				x: Math.cos(t * Math.PI * 9) * SHAKE_PX * damp,
+				y: Math.cos(t * Math.PI * 7) * SHAKE_PX * 0.65 * damp,
+			};
+			shakeRaf = requestAnimationFrame(tick);
+		};
+		shakeRaf = requestAnimationFrame(tick);
+	};
+
+	// A shake left mid-flight would keep writing state after the box has gone.
+	$effect(() => () => {
+		if (shakeRaf !== undefined) cancelAnimationFrame(shakeRaf);
+	});
+
 	context.eventEmitter.subscribeOnMount({
+		winBoxImpact: () => knockWinBox(),
 		winShow: () => (show = true),
 		winHide: () => {
 			show = false;
@@ -54,6 +105,7 @@
 			// stopped when the count-up finished, so a presentation cut short — a new
 			// spin, an abort — left sfx_countup looping under the game.
 			context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_countup' });
+			context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_coin_shower' });
 		},
 		winUpdate: async (emitterEvent) => {
 			requestExitAnimation = false;
@@ -133,8 +185,8 @@
 					<MainContainer>
 						<Container
 							label="WinTextContainer"
-							x={context.stateGameDerived.boardLayout().x}
-							y={context.stateGameDerived.boardLayout().y - 40}
+							x={context.stateGameDerived.boardLayout().x + shake.x}
+							y={context.stateGameDerived.boardLayout().y - 40 + shake.y}
 						>
 							<Sprite key="winGlow" anchor={0.5} y={40} />
 							<ResponsiveBitmapText

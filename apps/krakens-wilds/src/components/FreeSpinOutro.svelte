@@ -28,18 +28,30 @@
 	 * The total win deserves a slower count than an ordinary spin. The win-level
 	 * table is tuned for the in-game winbox, where the same figures are shown over
 	 * and over (0.6s at level 2, 2s at level 5), and against a full-screen TOTAL WIN
-	 * panel that reads as a flicker. This is a FLOOR, not a fixed value: the big-win
-	 * levels already count for 6-32s alongside their music, and those stay as they
-	 * are. Skipped entirely for a feature that won nothing, or the outro would hold
-	 * a $0.00 counter on screen for three seconds.
+	 * panel that reads as a flicker.
+	 *
+	 * This is a FLOOR, not a fixed value. Every ordinary feature total counts for
+	 * exactly this long, because no win level below 'big' has a presentDuration
+	 * anywhere near it. The big-win levels count for their own 6-32s instead, which
+	 * is deliberate — those durations are what their music and win animation are
+	 * built around, so capping them here would leave the counter sitting still
+	 * while the celebration carried on.
+	 *
+	 * Skipped entirely for a feature that won nothing, or the outro would hold a
+	 * $0.00 counter on screen for five seconds.
 	 */
-	const MIN_COUNT_UP = 3 * SECOND;
+	const MIN_COUNT_UP = 5 * SECOND;
 
 	let show = $state(true);
 	let amount = $state(0);
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
 	let onCountUpComplete = $state(() => {
+		// The coin rain is bound to `!countUpCompleted` on WinCoins, so its sound has
+		// to end on the same signal. Leaving it to winLevelSoundsStop meant the loop
+		// carried on after the counter had stopped and the coins had gone — audible
+		// on the free-spins outro, which waits for a press before it tears down.
+		context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_coin_shower' });
 		if (winLevelData?.presentDuration) {
 			context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_countup' });
 			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_countup_end' });
@@ -53,6 +65,7 @@
 			show = false;
 			// same as Win.svelte: never leave the count-up loop running behind the game
 			context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_countup' });
+			context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_coin_shower' });
 		},
 		freeSpinOutroCountUp: async (emitterEvent) => {
 			requestExitAnimation = false;

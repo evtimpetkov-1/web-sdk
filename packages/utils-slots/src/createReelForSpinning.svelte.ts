@@ -82,6 +82,8 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 	let targetPaddingPosition = reelLength - 1;
 	let prevSymbols: ReelSymbol[] = createReelSymbols(reelOptions.initialSymbols);
 	let targetSymbols: ReelSymbol[] = createReelSymbols(reelOptions.initialSymbols);
+	/** landing symbols from prepareToSpin, applied by spin() — see prepareToSpin */
+	let pendingTargetSymbols: ReelSymbol[] | null = null;
 	let paddingRawReel: TRawSymbol[] = reelOptions.initialSymbols;
 	let onSpinFinishing: () => void = () => {};
 	let noStop = false;
@@ -162,11 +164,50 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 		setSymbolsWithReelSymbols(targetSymbols);
 	};
 
+	/**
+	 * Pre-spin recycles TWO symbol sets instead of allocating a fresh one every
+	 * cycle.
+	 *
+	 * While the bet is in flight the reel loops roughly every 230ms and used to
+	 * build `reelLength` brand-new reactive symbols each pass — on a 5-reel board
+	 * that is ~110 `$state` proxies and their closures created and thrown away
+	 * per second, purely to show blurred filler, which is GC pressure that shows
+	 * up as stutter on phones. Rendering was never the issue (the symbol
+	 * `{#each}` is unkeyed and the array length is constant here, so components
+	 * are reused by index either way); this is about allocation.
+	 *
+	 * The two sets alternate strictly, so the set being rewritten is never the
+	 * one still on screen as `prevSymbols`.
+	 */
+	const preSpinPool: ReelSymbol[][] = [];
+	let preSpinCycle = 0;
+	const getPreSpinSymbols = (rawSymbols: TRawSymbol[]) => {
+		const slot = preSpinCycle % 2;
+		preSpinCycle += 1;
+
+		const pooled = preSpinPool[slot];
+		if (!pooled) {
+			preSpinPool[slot] = createReelSymbols(rawSymbols);
+			return preSpinPool[slot];
+		}
+
+		pooled.forEach((reelSymbol, index) => {
+			reelSymbol.rawSymbol = rawSymbols[index];
+			reelSymbol.oncomplete = () => {};
+		});
+		return pooled;
+	};
+
 	const preSpinPadding = async ({
 		preSpinPaddingRawReel,
 	}: {
 		preSpinPaddingRawReel: TRawSymbol[];
 	}) => {
+		// Once spin() has taken the reel over, an in-flight filler cycle must not
+		// swap the real landing symbols back out for filler — it would decide what
+		// the reel comes to rest on (and what removePaddingAndBounceBack lands).
+		if (!isPreSpinning) return;
+
 		const randomStart = Math.floor(Math.random() * preSpinPaddingRawReel.length);
 		prevSymbols = targetSymbols;
 		const targetRawSymbols = getPaddingRawSymbols({
@@ -174,7 +215,7 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 			start: randomStart,
 			length: reelLength,
 		});
-		targetSymbols = createReelSymbols(targetRawSymbols);
+		targetSymbols = getPreSpinSymbols(targetRawSymbols);
 		const topY = await addPadding(0);
 		await placeY(topY);
 	};
@@ -309,9 +350,12 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 		reelState.spinType = prepareToSpinOptions.spinType;
 
 		noStop = prepareToSpinOptions.noStop;
-		prevSymbols = targetSymbols;
 		targetPaddingPosition = prepareToSpinOptions.paddingPosition;
-		targetSymbols = createReelSymbols(prepareToSpinOptions.symbols);
+		// HELD, not applied: the reel keeps pre-spinning until its own staggered
+		// turn to build the spin strip, and the filler loop rewrites
+		// target/prevSymbols on every pass. spin() swaps these in at the instant
+		// it takes over, so the landing symbols cannot be overwritten in between.
+		pendingTargetSymbols = createReelSymbols(prepareToSpinOptions.symbols);
 		paddingRawReel = prepareToSpinOptions.paddingReel;
 		onSpinFinishing = prepareToSpinOptions.onSpinFinishing;
 
@@ -327,7 +371,16 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 	};
 
 	const spin = async () => {
+		// Stops the filler loop FIRST, then swaps in the landing symbols. Both
+		// happen before the strip is built below, with no await in between, so a
+		// filler cycle cannot interleave and take the reel back over.
 		isPreSpinning = false;
+
+		if (pendingTargetSymbols) {
+			prevSymbols = targetSymbols;
+			targetSymbols = pendingTargetSymbols;
+			pendingTargetSymbols = null;
+		}
 
 		await SPIN_MAP[reelState.spinType]();
 
@@ -337,6 +390,10 @@ export function createReelForSpinning<TRawSymbol extends object, TSymbolState ex
 	const setSymbolsWithReelSymbols = (reelSymbols?: ReelSymbol[]) => {
 		reelState.motion = 'stopped';
 		placeY(defaultY);
+		// A settle overrides the board outright (resume, error recovery), so any
+		// prepared-but-unspun landing symbols are stale and must not be applied
+		// by a later spin().
+		pendingTargetSymbols = null;
 		if (reelSymbols) {
 			prevSymbols = [...reelSymbols];
 			targetSymbols = [...reelSymbols];

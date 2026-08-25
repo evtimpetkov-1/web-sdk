@@ -30,7 +30,15 @@ function createSound<TSoundName extends string>() {
 		const howl = new Howl({
 			src: loadedAudio.src,
 			sprite: loadedAudio.sprite,
-			volume: 1,
+			// Sounds are BORN SILENT and raised to their real volume by
+			// `initSoundVolume` in the same tick (see createPlayer). Every play path
+			// here is play-then-set-volume, so with the Howl at 1 each new instance
+			// started at FULL volume for an instant — while muted that gave an
+			// abrupt 1 -> 0 gain step on every new sound, which is a click/pop, not
+			// a quiet sound. Starting at 0 makes the same race inaudible in both
+			// directions. NOTE the player-level `volume()` cannot lower this value
+			// instead: all three players share this one Howl.
+			volume: 0,
 		});
 		// players
 		players = {
@@ -102,7 +110,16 @@ function createSound<TSoundName extends string>() {
 
 	const enableEffect = () => {
 		$effect(() => {
-			if (audioContextState === 'running' && visibilityState === 'visible') {
+			// Master volume joins the audio-context/visibility checks so ONE place
+			// owns Howler's global mute. A muted game now really is globally muted,
+			// rather than relying on every individual sound being turned down after
+			// it has already started.
+			const audible =
+				audioContextState === 'running' &&
+				visibilityState === 'visible' &&
+				stateSoundDerived.volumeMaster() > 0;
+
+			if (audible) {
 				enable();
 			} else {
 				disable();

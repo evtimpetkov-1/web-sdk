@@ -9,8 +9,20 @@
 		alignHorizontal?: 'center' | 'left' | 'right';
 	};
 
-	const { debug, alignVertical, alignHorizontal, children, standard, ...containerProps }: Props =
-		$props();
+	const {
+		debug,
+		alignVertical,
+		alignHorizontal,
+		children,
+		standard,
+		// Taken off the inner container on purpose: the OUTER one is the root-level
+		// sibling of every other MainContainer, so that is the only place a zIndex
+		// can decide draw order between them. On the inner container it would sort
+		// a single child against nothing. (Pixi enables sorting on the parent
+		// automatically as soon as a child carries a non-zero zIndex.)
+		zIndex,
+		...containerProps
+	}: Props = $props();
 	const context = getContextLayout();
 
 	const mainLayout = $derived.by(
@@ -34,7 +46,12 @@
 	const x = $derived.by(getX);
 </script>
 
-<Container {x} {y} label={containerProps.label ? `${containerProps.label}_outer` : undefined}>
+<Container
+	{x}
+	{y}
+	{zIndex}
+	label={containerProps.label ? `${containerProps.label}_outer` : undefined}
+>
 	<Container
 		{...containerProps}
 		x={mainLayout.x}

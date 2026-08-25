@@ -83,7 +83,13 @@
 							stateModal.modal = null;
 						}}
 					>
-						<BaseIcon width="100%" height="3rem" />
+						<!-- same themeable call-to-action surface as the shop card's BUY -->
+					<BaseIcon
+						width="100%"
+						height="3rem"
+						background="var(--modal-btn-cta-bg, var(--modal-btn-bg))"
+						border="var(--modal-btn-cta-border, 1px solid var(--modal-border))"
+					/>
 						<BaseButtonContent>
 							<span style="font-size: 1rem;">{i18nDerived.confirm()}</span>
 						</BaseButtonContent>

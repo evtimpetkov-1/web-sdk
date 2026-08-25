@@ -38,8 +38,17 @@
 	};
 
 	const onpress = () => {
-		if (context.stateXstateDerived.isIdle()) {
+		const starting = context.stateXstateDerived.isIdle();
+		// Sounded BEFORE branching, so a handler can still tell the two presses
+		// apart by reading isIdle() itself: pressing stop used to be silent in every
+		// game, because the event only ever fired on the idle path.
+		//
+		// Not while the stop button is inert, though (turbo, or a stop already in
+		// flight) — confirming a press that does nothing reads as a bug.
+		if (starting || !stopDisabled) {
 			context.eventEmitter.broadcast({ type: 'soundPressBet' });
+		}
+		if (starting) {
 			bet();
 		} else {
 			stop();

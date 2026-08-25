@@ -18,6 +18,18 @@
 	 * first version's 0.4-0.7s puffs were alive for 0.17-0.30s and read as a faint
 	 * flicker. 0.001 makes one tick one real millisecond, so the lifetimes below are
 	 * the ones actually seen.
+	 *
+	 * This is also the kraken's IMPACT cloud (see SpinMultiplier) — same art, same
+	 * component, at a larger `spread` and with a much shorter `emit` window. Reusing
+	 * this one rather than writing a bespoke burst is deliberate: `emitterLifetime`
+	 * is -1 and the CALLER owns `emit`, which is the only way this emitter can be
+	 * stopped. A config that tries to self-terminate via `emitterLifetime` never
+	 * expires — ParticleEmitter re-arms it on every tick.
+	 *
+	 * Two rules for callers:
+	 * - Drop `emit` to false to end the cloud; never unmount to end it.
+	 * - Keep the component MOUNTED for `lifetime.max` (0.9s) after that, or the live
+	 *   particles are destroyed mid-flight and the cloud visibly snaps off.
 	 */
 	type Props = {
 		x: number;
@@ -30,20 +42,26 @@
 		 * over the dust — markup order alone does not decide the stacking.
 		 */
 		zIndex?: number;
+		/**
+		 * Cloud size, as a multiple of a symbol-sized puff. 1 is a wild landing on
+		 * a cell; the multiplier's impact on the win box uses ~2.5.
+		 */
+		spread?: number;
 	};
 
 	const props: Props = $props();
+	const spread = $derived(props.spread ?? 1);
 
 	// Tuning lives here rather than in constants-shared — this is game-specific and
 	// wants to be adjusted against the animation, not shared with other games.
 	// The puff source frames are 200px, so scale 0.5 ≈ 100px against a 128px symbol.
 	const config = $derived({
 		alpha: { start: 1, end: 0 },
-		scale: { start: 0.5, end: 1.0, minimumScaleMultiplier: 0.7 },
+		scale: { start: 0.5 * spread, end: 1.0 * spread, minimumScaleMultiplier: 0.7 },
 		// bright lilac at the moment of impact, settling into the kraken's deep purple
 		color: { start: '#e2ccff', end: '#7a44cc' },
 		// slow enough to hang around the symbol rather than shooting off the board
-		speed: { start: 170, end: 15, minimumSpeedMultiplier: 0.5 },
+		speed: { start: 170 * spread, end: 15, minimumSpeedMultiplier: 0.5 },
 		// a gentle lift so the cloud rises and thins rather than dropping
 		acceleration: { x: 0, y: -70 },
 		maxSpeed: 0,
@@ -59,7 +77,7 @@
 		// in front of the wild, not behind it
 		addAtBack: false,
 		spawnType: 'circle',
-		spawnCircle: { x: 0, y: SYMBOL_SIZE * 0.12, r: SYMBOL_SIZE * 0.42 },
+		spawnCircle: { x: 0, y: SYMBOL_SIZE * 0.12 * spread, r: SYMBOL_SIZE * 0.42 * spread },
 	});
 </script>
 

@@ -64,6 +64,15 @@
 			}
 		}
 	};
+	/**
+	 * A symbol sitting under one of the kraken's overlay copies is not rendered at
+	 * all (see ReelSymbol), so it can never report its win animation as complete.
+	 * Awaiting one hangs the whole presentation — that is what froze finalWin's
+	 * payline cycle on its first line. Mirrors ReelSymbol's own hide rule.
+	 */
+	const isHiddenByOverlay = (reelSymbol: { rawSymbol: { name: string } }) =>
+		context.stateGame.overlaySymbols.some((symbol) => symbol.name === reelSymbol.rawSymbol.name);
+
 	const restoreIdleAnimations = () => {
 		const isFreegame = context.stateGame.gameType === 'freegame';
 		for (const reel of context.stateGame.board) {
@@ -123,9 +132,12 @@
 			const getPromises = () =>
 				symbolPositions
 					.filter((pos) => {
+						const reelSymbol = context.stateGame.board[pos.reel].reelState.symbols[pos.row];
+						// never await a symbol that is not on screen — it cannot complete
+						if (isHiddenByOverlay(reelSymbol)) return false;
 						// During free spins, skip W — moving wilds handle their win animation
 						if (hasMovingWilds) {
-							return context.stateGame.board[pos.reel].reelState.symbols[pos.row].rawSymbol.name !== 'W';
+							return reelSymbol.rawSymbol.name !== 'W';
 						}
 						return true;
 					})
