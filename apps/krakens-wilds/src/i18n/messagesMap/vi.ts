@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': 'TỔNG THẮNG',
 	// LoadingScreen
 	'KRAKEN SPIN': 'VÒNG QUAY KRAKEN',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Nhận 3, 4 hoặc 5 biểu tượng Bonus ở bất kỳ đâu trên các cuộn để thắng 6, 12 hoặc 18 Vòng Quay Miễn Phí',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'Kraken có thể tấn công ở bất kỳ vòng quay nào, thêm Wild, Đồng Xu hoặc các biểu tượng trả thưởng bổ sung lên cuộn. Mỗi Vòng Quay Miễn Phí đều là Vòng Quay Kraken.',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'Nhận 3, 4 hoặc 5 biểu tượng Bonus ở bất kỳ đâu trên các cuộn để thắng 6, 12 hoặc 18 Vòng Quay Miễn Phí. Mỗi Vòng Quay Miễn Phí đều là Vòng Quay Kraken.',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'Kraken có thể tấn công ở bất kỳ vòng quay nào, thêm Wild, Đồng Xu hoặc các biểu tượng trả thưởng bổ sung lên cuộn.',
 	// PayTable — headers
 	'Special Symbols': 'Biểu tượng đặc biệt',
 	'Symbol Payouts': 'Thanh toán biểu tượng',

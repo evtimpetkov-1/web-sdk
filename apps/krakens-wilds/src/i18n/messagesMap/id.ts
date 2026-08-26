@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': 'TOTAL KEMENANGAN',
 	// LoadingScreen
 	'KRAKEN SPIN': 'PUTARAN KRAKEN',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Dapatkan 3, 4, atau 5 simbol Bonus di mana saja pada gulungan untuk memenangkan 6, 12, atau 18 Putaran Gratis',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'Kraken dapat menyerang pada putaran mana pun, menambahkan Wild, Koin, atau simbol pembayar ekstra pada gulungan. Setiap Putaran Gratis adalah Putaran Kraken.',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'Dapatkan 3, 4, atau 5 simbol Bonus di mana saja pada gulungan untuk memenangkan 6, 12, atau 18 Putaran Gratis. Setiap Putaran Gratis adalah Putaran Kraken.',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'Kraken dapat menyerang pada putaran mana pun, menambahkan Wild, Koin, atau simbol pembayar ekstra pada gulungan.',
 	// PayTable — headers
 	'Special Symbols': 'Simbol Khusus',
 	'Symbol Payouts': 'Pembayaran Simbol',

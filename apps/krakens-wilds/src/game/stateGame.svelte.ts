@@ -211,11 +211,13 @@ const boardLayout = () => {
 	const h = stateLayoutDerived.mainLayout().height;
 	const layout = stateLayoutDerived.layoutType();
 	// Offset board upward in landscape/desktop to account for the bottom bar.
-	// Portrait lifts the whole assembly (logo, kraken, frame, reels — they are
-	// all board-anchored) high enough that the ante/buy panels under the reels
-	// clear the spin-button cluster; -50 left them overlapping it.
+	// Portrait lifts the whole assembly (kraken, frame, reels — all
+	// board-anchored) high enough that the ante/buy panels under the reels
+	// clear the spin-button cluster; -50 left them overlapping it, and -95
+	// still put them within a whisker of the spin button (2026-08-26), so the
+	// assembly rides up toward the logo instead.
 	const yOffset =
-		layout === 'portrait' ? -95 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
+		layout === 'portrait' ? -112 : layout === 'landscape' ? -20 : layout === 'desktop' ? -30 : 0;
 	// Per-layout board sizing. Portrait is 1 (unscaled) — the outer MainContainer
 	// already fits the board to the screen, and the extra 1.15 was pushing the
 	// reels wider than the viewport on phones.

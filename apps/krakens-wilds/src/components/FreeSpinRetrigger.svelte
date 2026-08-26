@@ -4,16 +4,17 @@
 </script>
 
 <script lang="ts">
-	import { Container, Rectangle } from 'pixi-svelte';
-	import { ResponsiveBitmapText } from 'components-pixi';
-	import { SpineProvider, SpineTrack } from 'pixi-svelte';
+	import { gsap } from 'gsap';
+	import { BaseSprite, Container, PixiRectangle, Rectangle, SpineProvider, SpineTrack, Texture } from 'pixi-svelte';
+	import { ResponsiveBitmapText, ResponsiveText } from 'components-pixi';
+	import { stateUrlDerived } from 'state-shared';
 	import { Tween } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
 	import { waitForTimeout, waitForResolve } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
 	import { CELL_W, CELL_H, SYMBOL_SIZE, REEL_PADDING, BOARD_SIZES } from '../game/constants';
-	import FsTextSingular from './FsTextSingular.svelte';
+	import { headingGold } from '../game/textStyles';
 
 	const context = getContext();
 
@@ -35,6 +36,71 @@
 	const plusScale = new Tween(0);
 	// full-screen dim behind the splash to focus attention on it
 	const shadeAlpha = new Tween(0);
+
+	/**
+	 * The FREE SPIN(S) line under the +N (2026-08-26 rework).
+	 *
+	 * The lettering used to live INSIDE the fsText spine as six per-letter
+	 * pieces; recutting them for the new font chopped glyphs at the seams, so
+	 * the letters were stripped from the skeleton altogether (it now draws only
+	 * the puffs, glow and flash) and the line is drawn here as a layer of its
+	 * own: the baked loading-screen art for English, translated headingGold
+	 * text for every other locale — which the spine's baked-English letters
+	 * could never offer. Grammar still holds on a +1: English crops the art at
+	 * the S (the seam is the art's own ink valley; anchor 0.5 recentres the
+	 * crop for free); other locales keep their plural label, as no singular
+	 * translation key exists.
+	 */
+	const useBakedArt = stateUrlDerived.lang() === 'en';
+	/**
+	 * Where the spine letters actually SAT. Their setup pose is at skeleton
+	 * origin, but every retrigger_* animation holds fs_grp translated to spine
+	 * y -227.83 at scale 0.9 — i.e. 227.83 su BELOW the origin (spine y is up),
+	 * at 90% size. The first cut of this layer used the setup pose and the line
+	 * landed on top of the +N. All in skeleton units x the provider's fit
+	 * (width 680 / skeleton 1600).
+	 */
+	const SPINE_FIT = 680 / 1600;
+	const TEXT_Y = 227.83 * SPINE_FIT; // 96.8 board units below the container origin
+	const TEXT_W = 1346.6 * 0.9 * SPINE_FIT; // the letters' animated footprint, 515
+	const TEXT_SRC_W = 582; // free_spins_text_en.webp is 582x94
+	const TEXT_AR = 582 / 94;
+	const S_CUT = 518; // source px where the trailing S begins (ink valley)
+	/**
+	 * The line's entrance/exit, driven by gsap on a $state target (gsap writes
+	 * through the proxy, so every frame is reactive). It POPS instead of fading:
+	 * in on the same 250ms delay as the +N so the pair arrives as one unit, with
+	 * a back.out overshoot and a slow breathe while the card idles; out by
+	 * scaling to 0 with the SAME duration, easing and moment as the +N's
+	 * plusScale — the two leave together, the same way.
+	 */
+	const textAnim = $state({ scale: 0 });
+	const killTextAnim = () => gsap.killTweensOf(textAnim);
+	const textIn = () => {
+		killTextAnim();
+		textAnim.scale = 0;
+		gsap
+			.timeline()
+			.to(textAnim, { scale: 1, duration: 0.45, delay: 0.25, ease: 'back.out(1.6)' })
+			.to(textAnim, { scale: 1.04, duration: 0.9, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+	};
+	const textOut = () => {
+		killTextAnim();
+		// mirrors plusScale.set(0, { duration: 300, easing: cubicOut })
+		gsap.to(textAnim, { scale: 0, duration: 0.3, ease: 'power2.out' });
+	};
+	// the component lives for the whole session — never leave a repeating tween
+	$effect(() => () => killTextAnim());
+	const fullTexture = $derived(
+		context.stateApp.loadedAssets?.loadingFreeSpinsTextEn as Texture | undefined,
+	);
+	const singularTexture = $derived(
+		fullTexture &&
+			new Texture({
+				source: fullTexture.source,
+				frame: new PixiRectangle(0, 0, S_CUT, fullTexture.height),
+			}),
+	);
 
 	/**
 	 * The splash is driven by the spine's `complete` callbacks, which are detached
@@ -62,6 +128,7 @@
 			plusScale.set(0, { duration: 0 });
 			plusScale.set(1, { duration: 450, easing: cubicOut, delay: 250 });
 			shadeAlpha.set(0.65, { duration: 300 });
+			textIn();
 
 			// Create a floating "+N" label for each bonus position
 			const newLabels: RetriggerLabel[] = emitterEvent.positions.map((pos) => ({
@@ -120,9 +187,6 @@
 	/>
 	<Container x={BOARD_SIZES.width / 2} y={BOARD_SIZES.height / 2 - 40} zIndex={11}>
 		<SpineProvider key="fsText" width={680}>
-			<!-- "+1" reads "FREE SPIN" — the trailing S piece is hidden and the
-			     lettering recentred for this mount -->
-			<FsTextSingular singular={extraSpins === 1} />
 			<SpineTrack
 				trackIndex={0}
 				animationName={splashAnim}
@@ -134,6 +198,7 @@
 							await waitForTimeout(3000);
 							plusScale.set(0, { duration: 300, easing: cubicOut });
 							shadeAlpha.set(0, { duration: 400 });
+							textOut();
 							splashAnim = 'retrigger_out';
 						} else if (splashAnim === 'retrigger_out') {
 							splashAnim = null;
@@ -143,7 +208,24 @@
 				}}
 			/>
 		</SpineProvider>
-		<!-- big +N above the spine's FREE SPINS line -->
+		<!-- FREE SPIN(S), at the spine letters' ANIMATED position (see TEXT_Y) -->
+		<Container y={TEXT_Y} scale={textAnim.scale}>
+			{#if useBakedArt}
+				{@const texture = extraSpins === 1 ? singularTexture : fullTexture}
+				{@const width = TEXT_W * ((extraSpins === 1 ? S_CUT : TEXT_SRC_W) / TEXT_SRC_W)}
+				{#if texture}
+					<BaseSprite {texture} anchor={0.5} {width} height={TEXT_W / TEXT_AR} />
+				{/if}
+			{:else}
+				<ResponsiveText
+					anchor={0.5}
+					maxWidth={TEXT_W}
+					text={context.i18nDerived.freeSpins()}
+					style={{ ...headingGold, fontSize: 72 }}
+				/>
+			{/if}
+		</Container>
+		<!-- big +N above the FREE SPINS line -->
 		<Container y={-60} scale={plusScale.current}>
 			<ResponsiveBitmapText
 				anchor={0.5}

@@ -1,5 +1,8 @@
 <script lang="ts" module>
-	export type EmitterEventFsCloud = { type: 'fsCloudBurst' };
+	export type EmitterEventFsCloud =
+		/** `hold: true` freezes the burst at full coverage until fsCloudRelease. */
+		| { type: 'fsCloudBurst'; hold?: boolean }
+		| { type: 'fsCloudRelease' };
 </script>
 
 <script lang="ts">
@@ -13,14 +16,30 @@
 
 	let show = $state(false);
 	let onCovered = $state(() => {});
+	/**
+	 * The free-spins intro plays ON the cloud (2026-08-26 rework): the burst is
+	 * frozen at its `covered` frame — timeScale 0 on the track — so the smoke
+	 * stays up as the intro's backdrop instead of dissipating behind an opaque
+	 * plate. `fsCloudRelease` lets it run on to completion, which is what
+	 * reveals the free-spins board. A track at timeScale 0 can never fire
+	 * `complete`, so the component cannot tear itself down while held.
+	 */
+	let holdRequested = $state(false);
+	let held = $state(false);
 
 	context.eventEmitter.subscribeOnMount({
 		// resolves when the cloud fully covers the screen — the caller swaps
-		// scenes behind it while the burst dissipates on its own
-		fsCloudBurst: async () => {
+		// scenes behind it while the burst dissipates (or holds, see above)
+		fsCloudBurst: async (emitterEvent) => {
+			holdRequested = emitterEvent.hold ?? false;
+			held = false;
 			show = true;
 			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_kw_fs_transition', forcePlay: true }); // prettier-ignore
 			await waitForResolve((resolve) => (onCovered = resolve));
+		},
+		fsCloudRelease: () => {
+			held = false;
+			holdRequested = false;
 		},
 	});
 </script>
@@ -37,9 +56,13 @@
 			trackIndex={0}
 			animationName="cloud_burst"
 			loop={false}
+			timeScale={held ? 0 : 1}
 			listener={{
 				event: (_, event) => {
-					if (event.data?.name === 'covered') onCovered();
+					if (event.data?.name === 'covered') {
+						if (holdRequested) held = true;
+						onCovered();
+					}
 				},
 				complete: () => (show = false),
 			}}

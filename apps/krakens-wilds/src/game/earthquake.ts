@@ -18,6 +18,16 @@ const SHAKE_OFFSETS = [
 ];
 
 /**
+ * One shake at a time. The shake restores stage.position from a snapshot taken
+ * at its start, so a second one beginning mid-shake would snapshot the OFFSET
+ * position as its origin and leave the stage drifted when it restored. Callers
+ * now fire shakes from repeating beats (every kraken attack, every multiplier
+ * hit), so overlap is a real schedule, not a corner case — the newcomer is
+ * simply skipped and the running shake plays out.
+ */
+const shaking = new WeakSet<PIXI.Container>();
+
+/**
  * Shakes the PixiJS stage with an earthquake effect.
  * Offsets stage.position rapidly; no scale (avoids pivot issues).
  */
@@ -26,7 +36,8 @@ export function playEarthquake(
 	duration: EarthquakeDuration = 'short',
 ): Promise<void> {
 	const stage = app.stage;
-	if (!stage) return Promise.resolve();
+	if (!stage || shaking.has(stage)) return Promise.resolve();
+	shaking.add(stage);
 
 	const totalDuration = duration === 'short' ? 1200 : 2000;
 	const stepDuration = duration === 'short' ? 40 : 50;
@@ -43,6 +54,7 @@ export function playEarthquake(
 			if (elapsed >= totalDuration) {
 				stage.position.x = origX;
 				stage.position.y = origY;
+				shaking.delete(stage);
 				resolve();
 				return;
 			}

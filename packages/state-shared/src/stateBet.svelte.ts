@@ -1,5 +1,6 @@
 import type { BaseBet } from 'utils-bet';
 import { stateMeta } from './stateMeta.svelte';
+import { stateConfig } from './stateConfig.svelte';
 
 export type Currency = string;
 export type BetToResume = BaseBet | null;
@@ -26,7 +27,20 @@ const correctBetAmount = (value: number) => {
 	const costMultiplier = betCostMultiplier();
 	if (costMultiplier === 0) return 0;
 	const max = stateBet.balanceAmount / costMultiplier;
-	if (value >= max) return max;
+	if (value >= max) {
+		/**
+		 * Snap DOWN to the largest LEGAL bet level the balance covers — never to
+		 * the raw division. Clamping to `max` itself minted bet amounts that
+		 * exist nowhere in betAmountOptions (balance 14.9 + "+" -> bet 14.9),
+		 * which the RGS would refuse. If even the smallest level is out of
+		 * reach, return that smallest level: the bet stays valid and the
+		 * affordability gates are what stop the spin.
+		 */
+		const options = [...stateConfig.betAmountOptions].sort((a, b) => a - b);
+		const affordable = options.filter((option) => option <= max);
+		if (affordable.length > 0) return affordable[affordable.length - 1];
+		return options[0] ?? 0;
+	}
 	return value;
 };
 

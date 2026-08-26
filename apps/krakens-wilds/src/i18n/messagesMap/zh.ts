@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': '总赢额',
 	// LoadingScreen
 	'KRAKEN SPIN': '海怪旋转',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': '转轴上任意位置出现3、4或5个奖励符号，即可赢得6、12或18次免费旋转',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': '海怪可能在任意一次旋转中出击，向转轴添加百搭、金币或额外的赔付符号。每次免费旋转都是海怪旋转。',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': '转轴上任意位置出现3、4或5个奖励符号，即可赢得6、12或18次免费旋转。每次免费旋转都是海怪旋转。',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': '海怪可能在任意一次旋转中出击，向转轴添加百搭、金币或额外的赔付符号。',
 	// PayTable — headers
 	'Special Symbols': '特殊符号',
 	'Symbol Payouts': '符号赔付',

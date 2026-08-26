@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': 'إجمالي الربح',
 	// LoadingScreen
 	'KRAKEN SPIN': 'دورة الكراكن',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'يمنحك ظهور 3 أو 4 أو 5 رموز Bonus في أي مكان على البكرات 6 أو 12 أو 18 دورة مجانية',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'يمكن للكراكن أن يهاجم في أي دورة، مضيفًا رموز Wild أو عملات أو رموزًا دافعة إضافية على البكرات. كل دورة مجانية هي دورة الكراكن.',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'يمنحك ظهور 3 أو 4 أو 5 رموز Bonus في أي مكان على البكرات 6 أو 12 أو 18 دورة مجانية. كل دورة مجانية هي دورة الكراكن.',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'يمكن للكراكن أن يهاجم في أي دورة، مضيفًا رموز Wild أو عملات أو رموزًا دافعة إضافية على البكرات.',
 	// PayTable — headers
 	'Special Symbols': 'رموز خاصة',
 	'Symbol Payouts': 'مدفوعات الرموز',

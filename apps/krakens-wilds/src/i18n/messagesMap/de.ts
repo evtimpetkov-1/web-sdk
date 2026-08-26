@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': 'GESAMTGEWINN',
 	// LoadingScreen
 	'KRAKEN SPIN': 'KRAKEN-DREHUNG',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Lande 3, 4 oder 5 Bonus-Symbole irgendwo auf den Walzen und gewinne 6, 12 oder 18 Freispiele',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'Der Kraken kann bei jedem Spin zuschlagen und Wilds, Münzen oder zusätzliche Gewinnsymbole auf die Walzen setzen. Jedes Freispiel ist eine Kraken-Drehung.',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'Lande 3, 4 oder 5 Bonus-Symbole irgendwo auf den Walzen und gewinne 6, 12 oder 18 Freispiele. Jedes Freispiel ist eine Kraken-Drehung.',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'Der Kraken kann bei jedem Spin zuschlagen und Wilds, Münzen oder zusätzliche Gewinnsymbole auf die Walzen setzen.',
 	// PayTable — headers
 	'Special Symbols': 'Spezialsymbole',
 	'Symbol Payouts': 'Symbolauszahlungen',

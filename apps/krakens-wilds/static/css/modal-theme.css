@@ -129,3 +129,26 @@
 	filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.5))
 		drop-shadow(0 0 18px rgba(94, 214, 255, 0.22)) !important;
 }
+
+/* ============================================================
+   Game-drawn buy screens (BuyShop/BuyConfirm, 2026-08-26): the shared
+   ModalBuyBonus/-Confirm are NOT mounted any more (Game.svelte
+   composes the modal set without them), so nothing hides here.
+
+   These root font-size rules lived in the shared <Modals> component,
+   which the game no longer renders — every rem-sized modal (shared
+   and game-drawn alike) depends on them.
+   ============================================================ */
+html {
+	font-size: 16px;
+}
+@media screen and (max-width: 500px) {
+	html {
+		font-size: 110%;
+	}
+}
+@media screen and (orientation: landscape) and (max-height: 450px) {
+	html {
+		font-size: 75%;
+	}
+}

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { type Snippet } from 'svelte';
 	import { GlobalStyle } from 'components-ui-html';
-	import { Authenticate, LoaderStakeEngine, LoadI18n } from 'components-shared';
+	import { Authenticate, LoadI18n } from 'components-shared';
 	import LoaderGame from '../components/LoaderGame.svelte';
 	import DevMenu from '../components/DevMenu.svelte';
 	import { stateUrlDerived, stateBet } from 'state-shared';
@@ -13,10 +13,6 @@
 	type Props = { children: Snippet };
 
 	const props: Props = $props();
-
-	let showYourLoader = $state(false);
-
-	const loaderUrlStakeEngine = new URL('../../stake-engine-loader.gif', import.meta.url).href;
 
 	// Dev mode: skip RGS auth and set mock balance when no rgs_url is provided
 	const isDevMode = !stateUrlDerived.rgsUrl();
@@ -42,10 +38,13 @@
 	{/if}
 </GlobalStyle>
 
-<LoaderStakeEngine src={loaderUrlStakeEngine} oncomplete={() => (showYourLoader = true)} />
-
-{#if showYourLoader}
-	<LoaderGame />
-{/if}
+<!--
+	The game's own loader, shown from the first frame. There used to be a
+	Stake Engine GIF in front of it for a fixed 2s: dropped because the approval
+	rules bar Stake branding in game assets ("Game assets cannot include material
+	with Stake / Kick branding or themes" — /docs/approval), and it cost 1.24MB
+	and two seconds of dead boot time for a screen the player did not need.
+-->
+<LoaderGame />
 
 {@render props.children()}

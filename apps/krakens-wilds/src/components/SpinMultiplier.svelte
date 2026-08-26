@@ -12,6 +12,7 @@
 	import { waitForTimeout } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
+	import { playEarthquake } from '../game/earthquake';
 	import { BOARD_SIZES } from '../game/constants';
 	import WildLandDust from './WildLandDust.svelte';
 
@@ -82,9 +83,16 @@
 	// how long smoke is thrown, and how long the emitter lingers to drain
 	const BURST_EMIT_MS = 160;
 	const BURST_DRAIN_MS = 900; // WildLandDust lifetime.max
-	// how long the strike itself blocks the presentation — the cloud finishes on
-	// its own after this, so the big-win sequence is not held for the full drain
-	const BURST_HOLD_MS = 620;
+	/**
+	 * How long the strike blocks the presentation after the visible impact —
+	 * this is the delay between the badge hitting the box and the winbox
+	 * starting to count the multiplied figure (setWin's next winUpdate waits on
+	 * spinMultiplierStrike). It used to be 620ms, which read as the box sitting
+	 * on its hands after being hit; the cloud never needed the wait (it drains
+	 * on its own clocks) and the badge is already invisible by impact
+	 * (strikeFade), so 200ms is purely the beat between punch and reaction.
+	 */
+	const STRIKE_SETTLE_MS = 200;
 	/**
 	 * The dive, and the cue that has to finish on it.
 	 *
@@ -204,8 +212,14 @@
 		// to the badge's (now invisible) one
 		void burst();
 		context.eventEmitter.broadcast({ type: 'winBoxImpact' });
+		// the box knock rattles the box; this rattles everything else — fired
+		// with the impact, never awaited, so the 200ms settle stays 200ms
+		{
+			const app = context.stateApp.pixiApplication;
+			if (app) void playEarthquake(app, 'short');
+		}
 		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_kw_mult_hit', forcePlay: true });
-		await waitForTimeout(BURST_HOLD_MS);
+		await waitForTimeout(STRIKE_SETTLE_MS);
 		if (token !== sequence) return; // a new award arrived mid-strike
 		phase = 'hidden';
 	};

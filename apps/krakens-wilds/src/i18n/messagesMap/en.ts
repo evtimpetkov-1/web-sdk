@@ -12,8 +12,8 @@ export default {
 	'TOTAL WIN': 'TOTAL WIN',
 	// LoadingScreen
 	'KRAKEN SPIN': 'KRAKEN SPIN',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.',
 	// PayTable — headers
 	'Special Symbols': 'Special Symbols',
 	'Symbol Payouts': 'Symbol Payouts',
@@ -108,7 +108,7 @@ export default {
 	'ACTIVATE': 'ACTIVATE',
 	'ON': 'ON',
 	'OFF': 'OFF',
-	'DOUBLE CHANCE TO WIN FEATURES': 'DOUBLE CHANCE TO WIN FEATURES',
+	'DOUBLE CHANCE TO WIN FEATURES': 'DOUBLE CHANCE TO\nWIN ALL FEATURES',
 	'MULTIPLIER': 'MULTIPLIER',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.',

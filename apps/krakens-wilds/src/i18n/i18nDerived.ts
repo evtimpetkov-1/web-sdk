@@ -18,8 +18,8 @@ export const i18nDerived = {
 	totalWin: () => t('TOTAL WIN'),
 	// LoadingScreen
 	krakenSpin: () => t('KRAKEN SPIN'),
-	loadingFsDesc: () => t('Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins'),
-	loadingKrakenDesc: () => t('The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.'),
+	loadingFsDesc: () => t('Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.'),
+	loadingKrakenDesc: () => t('The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.'),
 	// AnteBuyPanels
 	buyWord: () => t('BUY'),
 	onWord: () => t('ON'),

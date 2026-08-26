@@ -7,8 +7,14 @@ import config from './config';
 // ('/assets/...') worked on localhost only: on Stake Engine the client is
 // served under a subpath, and the browser resolved the leading slash against
 // the CDN origin — 404, broken image on both buy-bonus popups.
-const bonusCardImg = new URL(
-	'../../assets/sprites/betmodes/bonus_card.webp',
+// 840x360 full-bleed panels (2026-08-26 shop rework): the cards and the
+// confirm dialog lead with these, art-panel-on-top. buy_bonus_x3 is the bonus
+// symbol three times over a quiet navy gradient (the trigger, literally);
+// ante_card is the kraken clutching the symbols. bonus_card.webp (the old
+// chest badge) is retired from the shop but kept on disk.
+const buyCardImg = new URL('../../assets/sprites/betmodes/buy_bonus_x3.webp', import.meta.url).href;
+const anteCardImg = new URL(
+	'../../assets/sprites/betmodes/ante_card.webp',
 	import.meta.url,
 ).href;
 
@@ -59,7 +65,10 @@ const buildBetModeMeta = (): BetModeMeta => {
 		type: 'activate',
 		parent: '',
 		children: '',
-		assets: NO_ASSETS,
+		assets: {
+			...NO_ASSETS,
+			dialogImage: anteCardImg,
+		},
 		text: {
 			title: t('ANTE BET'),
 			dialog: t(
@@ -81,20 +90,21 @@ const buildBetModeMeta = (): BetModeMeta => {
 		children: '',
 		assets: {
 			...NO_ASSETS,
-			dialogImage: bonusCardImg,
+			dialogImage: buyCardImg,
 		},
 		text: {
 			title: t('FREE SPINS'),
-			// The card (shop) carries the full feature explanation; the confirm
-			// dialog is a short purchase question — the modal itself restates the
-			// concrete cost next to CONFIRM. The cost is spliced in from config so
-			// the copy can never drift from what the RGS charges.
-			dialog: t('Buy 6, 12 or 18 Free Spins for __0__x your total bet?').replace(
+			// Swapped 2026-08-26: the SHOP card is the hero now — big art, title,
+			// price, one short line — and the CONFIRM carries the full feature
+			// explanation before the player commits. Same two translation keys as
+			// before, exchanged, so no locale churn. The cost is spliced in from
+			// config so the copy can never drift from what the RGS charges.
+			dialog: t(
+				'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.',
+			),
+			description: t('Buy 6, 12 or 18 Free Spins for __0__x your total bet?').replace(
 				'__0__',
 				`${config.betModes.bonus.cost}`,
-			),
-			description: t(
-				'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.',
 			),
 			button: t('BUY'),
 			betAmountLabel: 'BONUS BUY',

@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': '合計獲得額',
 	// LoadingScreen
 	'KRAKEN SPIN': 'クラーケンスピン',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'リール上の任意の位置にボーナスシンボルが3、4、5個出現すると、6、12、18回のフリースピンを獲得できます',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'クラーケンはどのスピンでも襲いかかる可能性があり、ワイルド、コイン、または追加の配当シンボルをリールに追加します。すべてのフリースピンはクラーケンスピンです。',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'リール上の任意の位置にボーナスシンボルが3、4、5個出現すると、6、12、18回のフリースピンを獲得できます。すべてのフリースピンはクラーケンスピンです。',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'クラーケンはどのスピンでも襲いかかる可能性があり、ワイルド、コイン、または追加の配当シンボルをリールに追加します。',
 	// PayTable — headers
 	'Special Symbols': '特殊シンボル',
 	'Symbol Payouts': 'シンボル配当',

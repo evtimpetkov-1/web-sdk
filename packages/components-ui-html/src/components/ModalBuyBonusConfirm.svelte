@@ -47,17 +47,19 @@
 		onclose={() => (stateModal.modal = { name: 'buyBonus' })}
 	>
 		<BaseContent maxWidth="500px">
+			<!-- the art leads the dialog, card-style — title and copy sit under it.
+			     Games bleed it to the panel edges via their modal theme css. -->
+			{#if stateBonusDerived.selectedBetModeData().assets.dialogImage}
+				<img
+					class="dialog-image"
+					src={stateBonusDerived.selectedBetModeData().assets.dialogImage}
+					alt={stateBonusDerived.selectedBetModeData().text.title}
+				/>
+			{/if}
 			<BaseTitle>
 				{stateBonusDerived.selectedBetModeData().text.title}
 			</BaseTitle>
 			<BaseScrollable type="column" onelement={(element) => (scrollEl = element)}>
-				{#if stateBonusDerived.selectedBetModeData().assets.dialogImage}
-					<img
-						class="dialog-image"
-						src={stateBonusDerived.selectedBetModeData().assets.dialogImage}
-						alt={stateBonusDerived.selectedBetModeData().text.title}
-					/>
-				{/if}
 				{stateBonusDerived.selectedBetModeData().text.dialog}
 			</BaseScrollable>
 			<!-- purchase confirmation must restate the concrete price: the 80x cost
@@ -130,10 +132,10 @@
 
 	.dialog-image {
 		display: block;
-		max-width: 240px;
-		max-height: 200px;
-		object-fit: contain;
-		margin: 0 auto 0.75rem;
-		filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5));
+		width: 100%;
+		max-height: 220px;
+		object-fit: cover;
+		border-radius: 10px;
+		margin: 0 auto;
 	}
 </style>

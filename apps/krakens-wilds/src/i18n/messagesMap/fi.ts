@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': 'KOKONAISVOITTO',
 	// LoadingScreen
 	'KRAKEN SPIN': 'KRAKEN-KIERROS',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Saa 3, 4 tai 5 Bonus-symbolia mihin tahansa kiekoille ja voita 6, 12 tai 18 ilmaiskierrosta',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'Kraken voi iskeä millä tahansa kierroksella ja lisätä kiekoille Wild-symboleja, kolikoita tai ylimääräisiä maksavia symboleja. Jokainen ilmaiskierros on Kraken-kierros.',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'Saa 3, 4 tai 5 Bonus-symbolia mihin tahansa kiekoille ja voita 6, 12 tai 18 ilmaiskierrosta. Jokainen ilmaiskierros on Kraken-kierros.',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'Kraken voi iskeä millä tahansa kierroksella ja lisätä kiekoille Wild-symboleja, kolikoita tai ylimääräisiä maksavia symboleja.',
 	// PayTable — headers
 	'Special Symbols': 'Erikoissymbolit',
 	'Symbol Payouts': 'Symbolimaksut',

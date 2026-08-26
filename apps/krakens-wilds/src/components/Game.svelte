@@ -7,9 +7,20 @@
 	import { App, REM, Container } from 'pixi-svelte';
 	import { UI } from 'components-ui-pixi';
 	import { stateUrlDerived, stateModal } from 'state-shared';
-	import { GameVersion, Modals } from 'components-ui-html';
+	import {
+		GameVersion,
+		ModalError,
+		ModalBetMenu,
+		ModalAutoSpin,
+		ModalAutoSpinMessage,
+		ModalPayTable,
+		ModalGameRules,
+		ModalSettings,
+	} from 'components-ui-html';
 	import PayTable from './PayTable.svelte';
 	import GameRules from './GameRules.svelte';
+	import BuyShop from './BuyShop.svelte';
+	import BuyConfirm from './BuyConfirm.svelte';
 
 	import { getContext } from '../game/context';
 	import { applyBetModeMeta } from '../game/betModeMeta';
@@ -26,6 +37,7 @@
 	import AnticipationZoom from './AnticipationZoom.svelte';
 	import MovingWilds from './MovingWilds.svelte';
 import SpecialOverlay from './SpecialOverlay.svelte';
+	import LineWinLabels from './LineWinLabels.svelte';
 	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import KrakenTopper from './KrakenTopper.svelte';
 	import GameLogo from './GameLogo.svelte';
@@ -140,6 +152,17 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 			</Container>
 		</MainContainer>
 
+		<!-- Per-winline amounts, above every board layer (reels, front frame,
+		     anticipations and the kraken's overlay symbols) so a plate is never
+		     clipped or drawn under the symbol it belongs to. -->
+		<MainContainer label="LineWinLabelsContainer">
+			<Container x={bl.x} y={bl.y} pivot={{ x: bl.x, y: bl.y }} scale={bl.scale}>
+				<BoardContainer>
+					<LineWinLabels />
+				</BoardContainer>
+			</Container>
+		</MainContainer>
+
 		<KrakenTopper />
 		<GameLogo />
 
@@ -171,20 +194,43 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 		<Win />
 		<!-- above Win: the multiplier dives INTO the win box, so it must draw over it -->
 		<SpinMultiplier />
-		<FreeSpinIntro />
 		<FreeSpinOutro />
 		<FsCloudTransition />
+		<!-- ABOVE the cloud (mount order = draw order): since the 2026-08-26
+		     intro rework the burst is HELD at full coverage while the intro is
+		     up, so the texts and the press bar must draw on top of it — below
+		     it they would never be seen at all. -->
+		<FreeSpinIntro />
 		<Transition />
 		<ReplayComplete />
 	{/if}
 </App>
 
-<Modals>
-	{#snippet version()}
-		<!-- shown in the Pay Table + Game Rules footers. 1.0.0 was the rejected
-		     (2026-07-31) submission; 2.0.0 is the reworked resubmission. -->
-		<GameVersion version="2.0.0" />
-	{/snippet}
-</Modals>
+{#snippet version()}
+	<!-- shown in the Pay Table + Game Rules footers. 1.0.0 was the rejected
+	     (2026-07-31) submission; 2.0.0 is the reworked resubmission. -->
+	<GameVersion version="2.0.0" />
+{/snippet}
+<!--
+	The shared modal set, composed HERE rather than via <Modals> so the two BUY
+	popups are simply never mounted — the game draws its own (BuyShop/BuyConfirm).
+	Hiding them with CSS instead left them ghosting through the new screens'
+	semi-transparent overlays. <Modals>' global font-size rules moved to
+	modal-theme.css.
+-->
+<ModalError />
+<ModalBetMenu />
+<ModalAutoSpin />
+<ModalAutoSpinMessage />
+<ModalPayTable>
+	{@render version()}
+</ModalPayTable>
+<ModalGameRules>
+	{@render version()}
+</ModalGameRules>
+<ModalSettings />
 <PayTable />
 <GameRules />
+<!-- from-scratch buy screens, drawn over the shared modals (PayTable pattern) -->
+<BuyShop />
+<BuyConfirm />

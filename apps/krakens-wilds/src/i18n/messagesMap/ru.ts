@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': 'ОБЩИЙ ВЫИГРЫШ',
 	// LoadingScreen
 	'KRAKEN SPIN': 'ВРАЩЕНИЕ КРАКЕНА',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Соберите 3, 4 или 5 символов Bonus в любом месте на барабанах, чтобы выиграть 6, 12 или 18 Бесплатных Вращений',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'Кракен может атаковать при любом вращении, добавляя на барабаны символы Wild, Монеты или дополнительные оплачиваемые символы. Каждое Бесплатное Вращение — это Вращение Кракена.',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'Соберите 3, 4 или 5 символов Bonus в любом месте на барабанах, чтобы выиграть 6, 12 или 18 Бесплатных Вращений. Каждое Бесплатное Вращение — это Вращение Кракена.',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'Кракен может атаковать при любом вращении, добавляя на барабаны символы Wild, Монеты или дополнительные оплачиваемые символы.',
 	// PayTable — headers
 	'Special Symbols': 'Специальные символы',
 	'Symbol Payouts': 'Выплаты символов',

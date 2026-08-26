@@ -12,8 +12,7 @@ export default {
 		src: new URL('../../assets/sprites/loading/kraken_intro.webp', import.meta.url).href,
 	},
 	// English-only baked text art for the loading screen headers and the
-	// press-anywhere bar; other locales fall back to the text labels
-	// (same pattern as youWonTextEn/freeSpinsTextEn on the FS intro).
+	// press-anywhere bar; other locales fall back to the text labels.
 	loadingKrakenSpinTextEn: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/loading/kraken_spin_text_en.webp', import.meta.url).href,
@@ -146,6 +145,45 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/sprites/panels/panel_buy.webp', import.meta.url).href,
 	},
+	// 2026-08-26 TEST art (ChatGPT panels, bg knocked out) — old panels kept
+	// above until the swap is signed off.
+	panelBuyV2: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_buy_v3.webp', import.meta.url).href,
+	},
+	// The combined side panel's art (2026-08-26): the shop cards' transparent
+	// pieces, drawn on the plate above/below the controls.
+	buyCardArt: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/betmodes/buy_bonus_x3.webp', import.meta.url).href,
+	},
+	anteCardArt: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/betmodes/ante_card.webp', import.meta.url).href,
+	},
+	// The combined side panel's plate: the purple->teal gradient art, mid-band
+	// excised (not scaled) to the layout's 881:1560 — the seam is matched to
+	// the border-tile period and feathered, so nothing is deformed.
+	panelCombined: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_combined.webp', import.meta.url).href,
+	},
+	// ...and its wide portrait variant: same art rotated 90 (purple left, teal
+	// right), rows excised in the constant-gradient direction.
+	panelCombinedH: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_combined_h.webp', import.meta.url).href,
+	},
+	panelAnteV2: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_ante_v3.webp', import.meta.url).href,
+	},
 	panelKnobOn: {
 		type: 'sprite',
 		mipmap: true,
@@ -254,10 +292,6 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/sprites/counters_plate.webp', import.meta.url).href,
 	},
-	fsIntroPlate: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/fs_intro_plate.webp', import.meta.url).href,
-	},
 	freeSpinBgPortrait: {
 		type: 'sprite',
 		// v4 candidate under test. Previous: free_spins/bg_fs_port_2.png, fs_bg_portrait.jpg
@@ -265,14 +299,6 @@ export default {
 	},
 	// English-only baked title art for the FS intro (teal, matches the logo's
 	// WILDS lettering); other locales fall back to text
-	youWonTextEn: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/free_spins/you_won_en.webp', import.meta.url).href,
-	},
-	freeSpinsTextEn: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/free_spins/free_spins_en.webp', import.meta.url).href,
-	},
 	fsText: {
 		type: 'spine',
 		src: {

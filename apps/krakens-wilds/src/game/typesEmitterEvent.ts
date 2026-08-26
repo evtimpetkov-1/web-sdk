@@ -8,6 +8,7 @@ import type { EmitterEventWin } from '../components/Win.svelte';
 import type { EmitterEventSound } from '../components/Sound.svelte';
 import type { EmitterEventTransition } from '../components/Transition.svelte';
 import type { EmitterEventKraken } from '../components/KrakenTopper.svelte';
+import type { EmitterEventLineWinLabels } from '../components/LineWinLabels.svelte';
 import type { EmitterEventSpinMultiplier } from '../components/SpinMultiplier.svelte';
 
 // The free-spin counter plates live in BoardFrame and render off stateUi; the
@@ -29,4 +30,5 @@ export type EmitterEventGame =
 	| EmitterEventSound
 	| EmitterEventTransition
 	| EmitterEventKraken
+	| EmitterEventLineWinLabels
 	| EmitterEventSpinMultiplier;

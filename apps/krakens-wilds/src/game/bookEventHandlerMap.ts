@@ -8,6 +8,7 @@ import { waitForTimeout } from 'utils-shared/wait';
 import { eventEmitter } from './eventEmitter';
 import { playBookEvent } from './utils';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
+import { lineWinLabelCell } from './lineWinLabels';
 import { stateGame, stateGameDerived, winCycleState, type MovingWild } from './stateGame.svelte';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { GameType, Position } from './types';
@@ -542,6 +543,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			}
 		}
 
+		// No per-line amounts on this beat. Every winning line lights up at once
+		// here, and a plate on each of them reads as clutter the moment a spin hits
+		// more than a couple — they belong to finalWin's cycle, where one line is
+		// walked at a time and the figure has something to attach to.
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_win_line' });
 		// Nothing to animate on a coins-only spin — skip it rather than dimming the
 		// board for an empty position list, so the coins are collected off a clean board
@@ -566,9 +571,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// slam dust into one continuous eruption
 		eventEmitter.broadcast({ type: 'krakenAttack' });
 		await waitForTimeout(1200);
-		// resolves at full coverage; the intro then fades in underneath while
-		// the cloud dissipates
-		await eventEmitter.broadcastAsync({ type: 'fsCloudBurst' });
+		// resolves at full coverage — and STAYS there: the cloud is the intro's
+		// backdrop (2026-08-26 rework), held frozen until the player presses
+		// through the intro. fsCloudRelease below is what lets it dissipate.
+		await eventEmitter.broadcastAsync({ type: 'fsCloudBurst', hold: true });
 		eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_kw_fs_intro' });
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_kw_freespin' });
@@ -578,6 +584,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		});
 		stateGame.gameType = 'freegame';
 		eventEmitter.broadcast({ type: 'freeSpinIntroHide' });
+		// the intro fades out while the held cloud runs on to dissipation,
+		// revealing the free-spins board underneath
+		eventEmitter.broadcast({ type: 'fsCloudRelease' });
 		eventEmitter.broadcast({ type: 'boardFrameGlowShow' });
 		eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
 		stateUi.freeSpinCounterShow = true;
@@ -850,6 +859,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		}
 
 		const wins = lineWins;
+		// The settled board decides which symbol on each line carries its amount.
+		const labelBoard = stateGameDerived.boardRaw();
 		const abortController = new AbortController();
 		winCycleState.abortController = abortController;
 
@@ -880,6 +891,14 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 					if (abortController.signal.aborted) break;
 
 					eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_win_line_tick' });
+					// the line being walked is the only one carrying a plate, at its
+					// full value — the multiplier has already struck by now
+					const cell = lineWinLabelCell(win, labelBoard);
+					eventEmitter.broadcast(
+						cell
+							? { type: 'lineWinLabelsShow', labels: [{ ...cell, amount: win.win }] }
+							: { type: 'lineWinLabelsHide' },
+					);
 					await eventEmitter.broadcastAsync({
 						type: 'boardWithAnimateSymbols',
 						symbolPositions: win.positions,

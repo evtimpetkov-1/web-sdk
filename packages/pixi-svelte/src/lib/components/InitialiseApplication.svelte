@@ -66,24 +66,6 @@
 		}
 	});
 
-	// The init resolution is a snapshot, but devicePixelRatio MOVES: browser
-	// zoom (⌘+/-) and dragging the window to a monitor with another density
-	// both change it. The renderer used to keep its load-time resolution, so
-	// every zoom step away from it upscaled the whole canvas in CSS — the
-	// game got blurrier the further you zoomed, while a fresh load at the same
-	// zoom looked sharp (init simply re-read the current dpr). Re-resizing
-	// with the live TARGET resolution (same floor/cap as init, so this can
-	// never fight it) keeps the backing store matched to the display;
-	// autoDensity keeps the CSS size at logical pixels.
-	$effect(() => {
-		const resolution = targetResolution();
-		const app = context.stateApp.pixiApplication;
-		if (!initialised || !app) return;
-		if (app.renderer.resolution !== resolution) {
-			app.renderer.resize(window.innerWidth, window.innerHeight, resolution);
-		}
-	});
-
 	onDestroy(() => {
 		if (context.stateApp.pixiApplication) {
 			context.stateApp.pixiApplication.destroy();

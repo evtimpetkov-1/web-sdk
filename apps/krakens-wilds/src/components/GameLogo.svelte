@@ -26,11 +26,15 @@
 	// masks MainContainer, so it stays visible as long as it is inside the canvas,
 	// and tablet ratios leave canvas above the box. Tune these by eye per layout.
 	const logoWidth = $derived(isPortrait ? 360 : layout === 'tablet' ? 280 : 280);
-	// Desktop/landscape offset matches the FS counters' center-line in
-	// BoardFrame.svelte (frame half-width + 215 * counterScale ≈ 166) so the
-	// logo and both counter panels stack on one vertical axis.
-	const logoX = $derived(bl.x + (isStacked ? 0 : -FRAME_HALF_W - 166));
-	const logoY = $derived(bl.y + (isPortrait ? -510 : layout === 'tablet' ? -475 : -220));
+	// Desktop/landscape: centred over the combined side PANEL's column (the old
+	// -166 tracked the FS counters' axis, which left the logo hanging out over
+	// the ruins once the panel became the column's anchor) and raised so its
+	// bottom clears the panel's top by a real gap instead of ~15 units.
+	const logoX = $derived(bl.x + (isStacked ? 0 : -FRAME_HALF_W - 125));
+	// portrait -510 -> -493: the board rose 17 units (boardLayout yOffset -95
+	// -> -112) and the logo is board-anchored — this keeps it where it was on
+	// screen while the reels close part of the gap beneath it
+	const logoY = $derived(bl.y + (isPortrait ? -493 : layout === 'tablet' ? -475 : -280));
 </script>
 
 <MainContainer label="GameLogoContainer">

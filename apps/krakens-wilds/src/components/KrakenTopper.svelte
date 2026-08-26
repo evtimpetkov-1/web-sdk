@@ -23,6 +23,7 @@
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
 	import { getContext } from '../game/context';
+	import { playEarthquake } from '../game/earthquake';
 	import {
 		BOARD_SIZES,
 		CELL_W,
@@ -244,6 +245,14 @@
 			mode = 'attack';
 			width.set(KRAKEN_WIDTH); // grow while it rears up (wind-up is ~0.85s)
 			context.eventEmitter.broadcast({ type: 'soundOnce', name: SFX_ATTACK, forcePlay: true });
+			// The whole canvas takes the hit ON THE SLAM, not on the wind-up:
+			// 1.20s in is where the skeleton's impact peaks — the same measured
+			// beat SFX_ATTACK is authored against (see that comment). Detached,
+			// so the cover-wait below is not delayed by the shake.
+			setTimeout(() => {
+				const app = context.stateApp.pixiApplication;
+				if (app) void playEarthquake(app, 'short');
+			}, 1200);
 			await waitForResolve((resolve) => (onReelsCovered = resolve));
 		},
 		krakenTense: (emitterEvent) => {
@@ -299,6 +308,23 @@
 			introPlayed = true;
 			if (mode === 'idle') mode = 'introTense';
 		}
+	});
+
+	/**
+	 * Idle life sign (2026-08-26): every 15-20s of uninterrupted idle the
+	 * kraken stirs once — the same tense stretch the reel anticipation plays,
+	 * via the existing play-once path ('introTense' completes back into idle).
+	 * The effect depends on `mode`, so ANY real activity (attack, gulp,
+	 * anticipation, the stretch itself) cancels the pending timer and idle
+	 * re-arms it fresh afterwards — it can never fire mid-presentation.
+	 */
+	$effect(() => {
+		if (mode !== 'idle') return;
+		const delay = 15000 + Math.random() * 5000;
+		const timer = setTimeout(() => {
+			if (mode === 'idle') mode = 'introTense';
+		}, delay);
+		return () => clearTimeout(timer);
 	});
 
 	// The kraken tenses exactly while reel anticipation runs — same per-reel

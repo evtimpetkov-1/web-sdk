@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': 'कुल जीत',
 	// LoadingScreen
 	'KRAKEN SPIN': 'क्रैकन स्पिन',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'रीलों पर कहीं भी 3, 4 या 5 Bonus प्रतीक लाकर 6, 12 या 18 फ्री स्पिन जीतें',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'क्रैकन किसी भी स्पिन पर हमला कर सकता है और रीलों पर Wild, सिक्के या अतिरिक्त भुगतान प्रतीक जोड़ सकता है। हर फ्री स्पिन एक क्रैकन स्पिन होता है।',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'रीलों पर कहीं भी 3, 4 या 5 Bonus प्रतीक लाकर 6, 12 या 18 फ्री स्पिन जीतें। हर फ्री स्पिन एक क्रैकन स्पिन होता है।',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'क्रैकन किसी भी स्पिन पर हमला कर सकता है और रीलों पर Wild, सिक्के या अतिरिक्त भुगतान प्रतीक जोड़ सकता है।',
 	// PayTable — headers
 	'Special Symbols': 'विशेष प्रतीक',
 	'Symbol Payouts': 'प्रतीक भुगतान',

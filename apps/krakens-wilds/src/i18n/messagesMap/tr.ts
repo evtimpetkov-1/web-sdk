@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': 'TOPLAM KAZANÇ',
 	// LoadingScreen
 	'KRAKEN SPIN': 'KRAKEN DÖNÜŞÜ',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': 'Makaralarda herhangi bir yere 3, 4 veya 5 Bonus sembolü getirerek 6, 12 veya 18 Bedava Dönüş kazanın',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': 'Kraken her dönüşte saldırabilir; makaralara Wild, Madeni Para veya ekstra ödeme yapan semboller ekler. Her Bedava Dönüş bir Kraken Dönüşüdür.',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'Makaralarda herhangi bir yere 3, 4 veya 5 Bonus sembolü getirerek 6, 12 veya 18 Bedava Dönüş kazanın. Her Bedava Dönüş bir Kraken Dönüşüdür.',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': 'Kraken her dönüşte saldırabilir; makaralara Wild, Madeni Para veya ekstra ödeme yapan semboller ekler.',
 	// PayTable — headers
 	'Special Symbols': 'Özel semboller',
 	'Symbol Payouts': 'Sembol ödemeleri',

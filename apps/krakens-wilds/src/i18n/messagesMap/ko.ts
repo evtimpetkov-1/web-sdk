@@ -9,8 +9,8 @@ export default {
 	'TOTAL WIN': '총 획득 금액',
 	// LoadingScreen
 	'KRAKEN SPIN': '크라켄 스핀',
-	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins': '릴의 아무 위치에 보너스 심볼 3, 4, 5개가 나타나면 프리 스핀 6, 12, 18회를 획득합니다',
-	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels. Every Free Spin is a Kraken Spin.': '크라켄은 어떤 스핀에서도 공격하여 릴에 와일드, 코인 또는 추가 배당 심볼을 더할 수 있습니다. 모든 프리 스핀은 크라켄 스핀입니다.',
+	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': '릴의 아무 위치에 보너스 심볼 3, 4, 5개가 나타나면 프리 스핀 6, 12, 18회를 획득합니다. 모든 프리 스핀은 크라켄 스핀입니다.',
+	'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.': '크라켄은 어떤 스핀에서도 공격하여 릴에 와일드, 코인 또는 추가 배당 심볼을 더할 수 있습니다.',
 	// PayTable — headers
 	'Special Symbols': '특수 심볼',
 	'Symbol Payouts': '심볼 배당',
