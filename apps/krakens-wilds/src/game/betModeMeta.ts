@@ -7,14 +7,14 @@ import config from './config';
 // ('/assets/...') worked on localhost only: on Stake Engine the client is
 // served under a subpath, and the browser resolved the leading slash against
 // the CDN origin — 404, broken image on both buy-bonus popups.
-// 840x360 full-bleed panels (2026-08-26 shop rework): the cards and the
-// confirm dialog lead with these, art-panel-on-top. buy_bonus_x3 is the bonus
-// symbol three times over a quiet navy gradient (the trigger, literally);
-// ante_card is the kraken clutching the symbols. bonus_card.webp (the old
-// chest badge) is retired from the shop but kept on disk.
+// The cards and the confirm dialog lead with these, art-panel-on-top.
+// buy_bonus_x3 is the bonus symbol three times over a quiet navy gradient
+// (the trigger, literally); the ante card is the full loading-screen kraken.
 const buyCardImg = new URL('../../assets/sprites/betmodes/buy_bonus_x3.webp', import.meta.url).href;
+// the ante card leads with the SAME full kraken art as the loading screen —
+// one asset, no per-surface crop (the 840x360 ante_card band is retired)
 const anteCardImg = new URL(
-	'../../assets/sprites/betmodes/ante_card.webp',
+	'../../assets/sprites/loading/kraken_intro.webp',
 	import.meta.url,
 ).href;
 

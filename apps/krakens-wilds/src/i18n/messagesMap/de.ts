@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'DOPPELTE CHANCE AUF FEATURES',
 	'MULTIPLIER': 'MULTIPLIKATOR',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbol — ein reguläres Gewinnsymbol wird gewählt und Kopien davon werden auf die Walzen gesetzt. Alle __0__ werden ausgewertet, sobald die Kopien platziert sind.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Bei jedem Freispiel kann der Kraken zusätzlich einen Gewinnmultiplikator für diese Drehung vergeben. Er gilt für alle Gewinne dieser Drehung, einschließlich Münzgewinnen.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Bei jedem Freispiel kann der Kraken zusätzlich einen Gewinnmultiplikator für diese Drehung vergeben. Er gilt für alle Gewinne dieser Drehung, einschließlich Münzgewinnen. Der Gewinnmultiplikator kann bis zu x10 betragen.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Der Ante-Einsatz verdoppelt den gesamten __0__ (x2). Er kann jederzeit ein- oder ausgeschaltet werden, solange das Spiel im Ruhezustand ist.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Solange der Ante-Einsatz aktiv ist, verdoppelt sich die Chance auf eine Kraken-Drehung und die Chance, Freispiele auszulösen.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Alle __0__-Werte bleiben Vielfache des einfachen (nicht verdoppelten) __1__-Betrags.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Ante-Einsatz (Schalter) — Ante-Einsatz ein- oder ausschalten.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'JEDE DREHUNG IST EINE KRAKEN-DREHUNG',
+	'MULTIPLIERS UP TO x10': 'MULTIPLIKATOREN BIS x10',
+	'EACH BONUS AWARDS +1 SPIN': 'JEDES BONUS GIBT +1 DREHUNG',
 };

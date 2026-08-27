@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': '赢得特色功能的几率翻倍',
 	'MULTIPLIER': '倍数',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': '符号 — 选中一个普通赔付符号并将其复制放置到转轴上。放置完成后计算所有__0__。',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': '在任意一次免费旋转中，海怪还可能为该次旋转发放赢奖倍数。该倍数适用于该次旋转的所有赢奖，包括金币赢奖。',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': '在任意一次免费旋转中，海怪还可能为该次旋转发放赢奖倍数。该倍数适用于该次旋转的所有赢奖，包括金币赢奖。赢奖倍数最高可达x10。',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': '底注投注使总__0__翻倍（x2）。游戏处于空闲状态时可随时开启或关闭。',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': '底注投注启用时，触发海怪旋转的几率翻倍，触发免费旋转的几率也翻倍。',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': '所有__0__值仍为基础（未翻倍）__1__金额的倍数。',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': '底注投注（开关） — 开启或关闭底注投注。',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': '每次旋转都是海怪旋转',
+	'MULTIPLIERS UP TO x10': '倍数最高x10',
+	'EACH BONUS AWARDS +1 SPIN': '每个奖励符号+1次旋转',
 };

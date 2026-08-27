@@ -32,6 +32,24 @@
 	const context = getContext();
 
 	const open = $derived(stateModal.modal?.name === 'buyBonus');
+
+	/**
+	 * Ghost-click guard. The reel-side BUY panel is a PIXI button: it opens
+	 * this shop on pointerup, and the browser then delivers the same tap's
+	 * `click` to whatever DOM now sits under the finger — on portrait that is
+	 * this overlay's own CTA/stepper zone, so one tap on the panel landed
+	 * straight on the confirm dialog. Handlers stay dead until the tap that
+	 * opened the shop has fully settled.
+	 */
+	let armed = $state(false);
+	$effect(() => {
+		if (!open) {
+			armed = false;
+			return;
+		}
+		const t = setTimeout(() => (armed = true), 150);
+		return () => clearTimeout(t);
+	});
 	const buyMode = $derived(stateMeta.betModeMeta.BONUS);
 	const anteMode = $derived(stateMeta.betModeMeta.ANTE);
 	const showAnte = $derived(!stateBonus.shopBuyOnly);
@@ -50,8 +68,12 @@
 		numberToCurrencyString(stateBet.betAmount * (anteMode?.costMultiplier ?? 0)),
 	);
 
-	const close = () => (stateModal.modal = null);
+	const close = () => {
+		if (!armed) return;
+		stateModal.modal = null;
+	};
 	const choose = (key: 'BONUS' | 'ANTE') => {
+		if (!armed) return;
 		// an ACTIVE ante's CTA reads OFF — it deactivates right here, no
 		// confirm ceremony for switching a toggle off
 		if (key === 'ANTE' && anteActive) {
@@ -124,6 +146,7 @@
 				value={stateBet.betAmount}
 				options={stateConfig.betAmountOptions}
 				onchange={(value) => {
+					if (!armed) return;
 					stateBet.betAmount = value;
 					context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
 				}}
@@ -173,13 +196,21 @@
 		scrollbar-width: none;
 	}
 
-	/* the big gradient-gold display title */
+	/* the big gradient-gold display title — the non-EN fallback. Sized well under
+	   the English art: translations run long ("БЕСПЛАТНЫЕ ВРАЩЕНИЯ"), wrap to
+	   two lines and were colliding with the close button at art-scale sizes. */
 	.screen-title {
 		margin: 0;
+		/* 68vw, same as the art: keeps the wrapped title clear of the close
+		   button's corner on narrow phones */
+		max-width: min(68vw, 640px);
+		text-align: center;
+		line-height: 1.15;
+		text-wrap: balance;
 		font-family: 'Cinzel', serif;
 		font-weight: 700;
-		font-size: clamp(2rem, 5.2vw, 3.4rem);
-		letter-spacing: 0.1em;
+		font-size: clamp(1.3rem, 3.4vw, 2.2rem);
+		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		background: linear-gradient(180deg, #fff6cf 0%, #ffd94e 38%, #e8a41f 62%, #9c6206 100%);
 		-webkit-background-clip: text;
@@ -189,8 +220,12 @@
 	}
 
 	.screen-title-art {
-		height: clamp(46px, 7.5vh, 80px);
-		width: auto;
+		/* sized by WIDTH, not vh: the art is a 6.2:1 strip, so a vh height made
+		   its box grow WIDE on short screens and slide under the close button,
+		   eating its taps. 68vw leaves the close button's corner clear on any
+		   phone; 495px reproduces the old 80px height on desktop. */
+		width: min(68vw, 495px);
+		height: auto;
 		filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.7));
 		user-select: none;
 	}
@@ -417,6 +452,9 @@
 		border: none;
 		cursor: pointer;
 		position: absolute;
+		/* above .content, which paints later in the DOM — without this the
+		   title/card boxes overlap the button on small screens and eat its taps */
+		z-index: 1;
 		top: clamp(0.8rem, 3vh, 1.6rem);
 		right: clamp(0.8rem, 3vw, 1.8rem);
 		width: 2.9rem;
@@ -452,6 +490,21 @@
 	}
 
 	@media (orientation: portrait) {
+		/* breathing room above the title and under the stepper. On the OVERLAY,
+		   not the scrolling .content: padding inside a scroller only shows at
+		   the scroll ends, so the column still sat glued to both screen edges
+		   (and under the phone's notch). Insetting the scroller itself keeps a
+		   permanent gap — safe areas included — and .content caps to what's
+		   left instead of the full 100dvh. */
+		.overlay {
+			/* top inset clears the CLOSE button's row entirely (its circle ends
+			   ~4.4rem down), so the title can never share a line with the X */
+			padding-top: max(clamp(4.5rem, 9vh, 6rem), env(safe-area-inset-top));
+			padding-bottom: max(clamp(2rem, 4.5vh, 3.2rem), env(safe-area-inset-bottom));
+		}
+		.content {
+			max-height: 100%;
+		}
 		.offers {
 			flex-direction: column;
 			align-items: center;

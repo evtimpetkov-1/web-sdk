@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'फीचर जीतने का दोगुना मौका',
 	'MULTIPLIER': 'गुणक',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'प्रतीक — एक सामान्य भुगतान प्रतीक चुना जाता है और उसकी प्रतियां रीलों पर रखी जाती हैं। प्रतियां रखने के बाद सभी __0__ की गणना होती है।',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'किसी भी फ्री स्पिन पर क्रैकन उस स्पिन के लिए जीत गुणक भी दे सकता है। यह उस स्पिन की सभी जीतों पर लागू होता है, सिक्का जीत सहित।',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'किसी भी फ्री स्पिन पर क्रैकन उस स्पिन के लिए जीत गुणक भी दे सकता है। यह उस स्पिन की सभी जीतों पर लागू होता है, सिक्का जीत सहित। जीत गुणक x10 तक हो सकता है।',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'एंटे बेट कुल __0__ को दोगुना (x2) कर देता है। खेल के निष्क्रिय रहने के दौरान इसे कभी भी चालू या बंद किया जा सकता है।',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'एंटे बेट सक्रिय रहने पर क्रैकन स्पिन शुरू होने की संभावना दोगुनी हो जाती है, और फ्री स्पिन शुरू होने की संभावना दोगुनी हो जाती है।',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'सभी __0__ मान आधार (गैर-दोगुने) __1__ राशि के गुणज बने रहते हैं।',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'एंटे बेट (टॉगल) — एंटे बेट चालू या बंद करें।',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'हर स्पिन एक क्रैकन स्पिन है',
+	'MULTIPLIERS UP TO x10': 'x10 तक गुणक',
+	'EACH BONUS AWARDS +1 SPIN': 'हर Bonus से +1 स्पिन',
 };

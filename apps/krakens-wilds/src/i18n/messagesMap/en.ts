@@ -111,9 +111,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'DOUBLE CHANCE TO\nWIN ALL FEATURES',
 	'MULTIPLIER': 'MULTIPLIER',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins. The win multiplier can be up to x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'All __0__ values remain multiples of the base (non-doubled) __1__ amount.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Ante Bet (toggle) — Turn Ante Bet on or off.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'EVERY SPIN IS A KRAKEN SPIN',
+	'MULTIPLIERS UP TO x10': 'MULTIPLIERS UP TO x10',
+	'EACH BONUS AWARDS +1 SPIN': 'EACH BONUS AWARDS +1 SPIN',
 };

@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'DOBBELT CHANCE FOR AT VINDE FUNKTIONER',
 	'MULTIPLIER': 'MULTIPLIKATOR',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbol — ét almindeligt betalende symbol vælges, og kopier af det placeres på hjulene. Alle __0__ beregnes, når kopierne er på plads.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Ved ethvert gratisspin kan Kraken også tildele en gevinstmultiplikator for det pågældende spin. Den gælder alle gevinster fra spinnet, inklusive møntgevinster.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Ved ethvert gratisspin kan Kraken også tildele en gevinstmultiplikator for det pågældende spin. Den gælder alle gevinster fra spinnet, inklusive møntgevinster. Gevinstmultiplikatoren kan være op til x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Ante-indsatsen fordobler den samlede __0__ (x2). Den kan slås til eller fra når som helst, mens spillet er i ro.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Når Ante-indsatsen er aktiv, fordobles chancen for at udløse et Kraken-spin, og chancen for at udløse gratisspins fordobles.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Alle __0__-værdier forbliver multipla af det basale (ikke-fordoblede) __1__-beløb.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Ante-indsats (kontakt) — Slå Ante-indsatsen til eller fra.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'HVERT SPIN ER ET KRAKEN-SPIN',
+	'MULTIPLIERS UP TO x10': 'MULTIPLIKATORER OP TIL x10',
+	'EACH BONUS AWARDS +1 SPIN': 'HVERT BONUS GIVER +1 SPIN',
 };

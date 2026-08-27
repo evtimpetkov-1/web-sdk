@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'PELUANG GANDA MEMENANGKAN FITUR',
 	'MULTIPLIER': 'PENGGANDA',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Simbol — satu simbol pembayar biasa dipilih dan salinannya ditempatkan pada gulungan. Semua __0__ dievaluasi setelah salinan terpasang.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Pada Putaran Gratis mana pun, Kraken juga dapat memberikan pengganda kemenangan untuk putaran itu. Pengganda berlaku untuk semua kemenangan dari putaran tersebut, termasuk kemenangan Koin.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Pada Putaran Gratis mana pun, Kraken juga dapat memberikan pengganda kemenangan untuk putaran itu. Pengganda berlaku untuk semua kemenangan dari putaran tersebut, termasuk kemenangan Koin. Pengganda kemenangan bisa mencapai x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Taruhan Ante menggandakan total __0__ (x2). Dapat diaktifkan atau dinonaktifkan kapan saja saat permainan sedang diam.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Saat Taruhan Ante aktif, peluang memicu Putaran Kraken menjadi dua kali lipat, dan peluang memicu Putaran Gratis menjadi dua kali lipat.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Semua nilai __0__ tetap merupakan kelipatan dari jumlah __1__ dasar (yang tidak digandakan).',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Taruhan Ante (sakelar) — Mengaktifkan atau menonaktifkan Taruhan Ante.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'SETIAP PUTARAN ADALAH PUTARAN KRAKEN',
+	'MULTIPLIERS UP TO x10': 'PENGGANDA HINGGA x10',
+	'EACH BONUS AWARDS +1 SPIN': 'SETIAP BONUS MEMBERI +1 PUTARAN',
 };

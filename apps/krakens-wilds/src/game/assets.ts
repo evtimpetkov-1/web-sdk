@@ -25,6 +25,38 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/loading/press_anywhere_en.webp', import.meta.url).href,
 	},
+	// FS intro card (v4, 2026-08-28): stone frame + baked EN titles + the
+	// three feature badges. Non-EN locales draw the titles as text.
+	fsIntroFrame: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/fs_intro/frame.webp', import.meta.url).href,
+	},
+	fsIntroYouWonEn: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/fs_intro/you_won_en.webp', import.meta.url).href,
+	},
+	fsIntroFreeSpinsEn: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/fs_intro/free_spins_en.webp', import.meta.url).href,
+	},
+	fsIntroBadgeKraken: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/fs_intro/badge_kraken.webp', import.meta.url).href,
+	},
+	fsIntroBadgeMult: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/fs_intro/badge_mult.webp', import.meta.url).href,
+	},
+	fsIntroBadgeBonus: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/fs_intro/badge_bonus.webp', import.meta.url).href,
+	},
 	H1: {
 		type: 'spine',
 		mipmap: true,
@@ -135,22 +167,13 @@ export default {
 	},
 	// Ante Bet + Buy Feature side panels (spec v2.1). Decorated variants; the
 	// undecorated *_nd source art is kept in the drive's ui/ folder unused.
-	panelAnte: {
-		type: 'sprite',
-		mipmap: true,
-		src: new URL('../../assets/sprites/panels/panel_ante.webp', import.meta.url).href,
-	},
-	panelBuy: {
-		type: 'sprite',
-		mipmap: true,
-		src: new URL('../../assets/sprites/panels/panel_buy.webp', import.meta.url).href,
-	},
-	// 2026-08-26 TEST art (ChatGPT panels, bg knocked out) — old panels kept
-	// above until the swap is signed off.
+	// v4 stone-frame plates (2026-08-28). To revert: `git restore` the v3
+	// webps (removed from disk pre-submission), point back to them, and
+	// restore the v3 numbers noted in AnteBuyPanels' P layout.
 	panelBuyV2: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/sprites/panels/panel_buy_v3.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/panels/panel_buy_v4.webp', import.meta.url).href,
 	},
 	// The combined side panel's art (2026-08-26): the shop cards' transparent
 	// pieces, drawn on the plate above/below the controls.
@@ -159,10 +182,11 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/sprites/betmodes/buy_bonus_x3.webp', import.meta.url).href,
 	},
+	// same file as loadingKraken: the panel draws the full art, not a crop
 	anteCardArt: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/sprites/betmodes/ante_card.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/loading/kraken_intro.webp', import.meta.url).href,
 	},
 	// The combined side panel's plate: the purple->teal gradient art, mid-band
 	// excised (not scaled) to the layout's 881:1560 — the seam is matched to
@@ -174,15 +198,10 @@ export default {
 	},
 	// ...and its wide portrait variant: same art rotated 90 (purple left, teal
 	// right), rows excised in the constant-gradient direction.
-	panelCombinedH: {
-		type: 'sprite',
-		mipmap: true,
-		src: new URL('../../assets/sprites/panels/panel_combined_h.webp', import.meta.url).href,
-	},
 	panelAnteV2: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/sprites/panels/panel_ante_v3.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/panels/panel_ante_v4.webp', import.meta.url).href,
 	},
 	panelKnobOn: {
 		type: 'sprite',
@@ -194,15 +213,17 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/sprites/panels/panel_knob_off.webp', import.meta.url).href,
 	},
+	// v4 word art (2026-08-28) — to revert: `git restore` the non-_v4 files
+	// (removed from disk pre-submission) and point back to them
 	panelBetTxt: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/sprites/panels/panel_bet_txt.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/panels/panel_bet_txt_v4.webp', import.meta.url).href,
 	},
 	panelBuyTxt: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/sprites/panels/panel_buy_txt.webp', import.meta.url).href,
+		src: new URL('../../assets/sprites/panels/panel_buy_txt_v4.webp', import.meta.url).href,
 	},
 	bonusActive: {
 		type: 'sprite',

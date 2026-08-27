@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'DOBRO DE HIPÓTESES DE GANHAR FUNCIONALIDADES',
 	'MULTIPLIER': 'MULTIPLICADOR',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Símbolo — é escolhido um símbolo pagante normal e cópias dele são colocadas nos rolos. Todas as __0__ são avaliadas assim que as cópias estão no lugar.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Em qualquer Rodada Grátis, o Kraken também pode atribuir um multiplicador de ganhos a essa rodada. Aplica-se a todos os ganhos dessa rodada, incluindo os ganhos das Moedas.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Em qualquer Rodada Grátis, o Kraken também pode atribuir um multiplicador de ganhos a essa rodada. Aplica-se a todos os ganhos dessa rodada, incluindo os ganhos das Moedas. O multiplicador de ganhos pode ir até x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'A aposta Ante duplica a __0__ total (x2). Pode ser ativada ou desativada a qualquer momento enquanto o jogo está parado.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Enquanto a aposta Ante está ativa, a probabilidade de ativar uma Rodada do Kraken é duplicada, e a probabilidade de ativar Rodadas Grátis é duplicada.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Todos os valores de __0__ continuam a ser múltiplos do valor de __1__ base (não duplicado).',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Aposta Ante (interruptor) — Liga ou desliga a aposta Ante.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'CADA RODADA É UMA RODADA DO KRAKEN',
+	'MULTIPLIERS UP TO x10': 'MULTIPLICADORES ATÉ x10',
+	'EACH BONUS AWARDS +1 SPIN': 'CADA BÓNUS ATRIBUI +1 RODADA',
 };

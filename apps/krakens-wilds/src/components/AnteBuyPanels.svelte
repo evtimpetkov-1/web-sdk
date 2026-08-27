@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Tween } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
-	import { Button, FadeContainer } from 'components-pixi';
+	import { Button, FadeContainer, ResponsiveText } from 'components-pixi';
 	import { Container, Rectangle, Sprite, Text, type Sizes } from 'pixi-svelte';
 	import { stateBet, stateModal, stateUrlDerived } from 'state-shared';
 	import { stateBonus } from 'components-ui-html';
@@ -32,8 +32,11 @@
 	const social = $derived(stateUrlDerived.social());
 
 	const CARD_ART_AR = 840 / 360;
-	const BUY_WORD_AR = 480 / 153; // panelBuyTxt drawn ratio
-	const BET_WORD_AR = 321 / 116; // panelBetTxt source ratio
+	// the ante zone draws the FULL loading-screen kraken (kraken_intro.webp),
+	// not a band crop — its own 4:3 ratio, fitted whole into the zone's height
+	const KRAKEN_ART_AR = 1448 / 1086;
+	const BUY_WORD_AR = 810 / 291; // panel_buy_txt_v4 source ratio
+	const BET_WORD_AR = 902 / 311; // panel_bet_txt_v4 source ratio
 	const PILL = { w: 419, h: 140 };
 	const KNOB = { offX: -89, onX: 89, w: 208, h: 108 };
 	const LABEL_OFF_X = 104;
@@ -60,8 +63,11 @@
 		bet: { left: -290, y: 28 },
 		tagline: { x: 0, y: 185, maxW: 760 },
 		// the kraken is the toggle's BACKDROP, the pill sat low on it
-		pill: { x: 0, y: 680 },
-		kraken: { x: 0, y: 505, w: 881 }, // 377 tall, 316..694
+		pill: { x: 0, y: 705 },
+		// the whole 4:3 art, big — it owns the lower half of the ante zone,
+		// riding under the tagline down to the inner border; the art's own
+		// soft smoke edges do the framing, the pill seats on its lower third
+		kraken: { x: 0, y: 515, w: 620 }, // 465 tall, 283..748
 		buyZone: { x: 0, y: -467.5, w: 881, h: 785 },
 		anteZone: { x: 0, y: 392.5, w: 881, h: 935 },
 	};
@@ -73,21 +79,28 @@
 	 */
 	const P = {
 		W: 881,
-		buyH: 649, // panel_buy_v3 (1448x1066)
-		anteH: 641, // panel_ante_v3 (1437x1046)
-		wordY: -115,
-		priceY: 85,
-		// -160 left ~60 units of dead air under the top rim while the rows
-		// below squeezed ~29 each; raising BET and the tagline spreads it even
-		betY: -185,
-		// v3 teal pill measured at x 383..1084, y 716..944 of 1437x1046:
-		// centre (+9, +188) in 881-wide units, half-width 215, height 140
-		pillX: 9,
-		knobY: 188,
-		// seat = halfW 215 - even 16 padding - knob half 104 (the landscape
-		// DRAWN pill is narrower and keeps the shared 89)
-		knobSeat: 95,
-		taglineY: -15,
+		// v4 stone-frame plates (2026-08-28). v3 values for revert:
+		// buyH 649, anteH 641, pillX 9, knobY 188, knobSeat 95
+		buyH: 564, // panel_buy_v4 (1037x664)
+		anteH: 564, // panel_ante_v4 (1038x664)
+		// the v4 plate's bottom border reads thicker than the top (baked drop
+		// shadow), so the word+price pair centres a touch ABOVE the geometric
+		// middle; price raised per review of the first cut
+		wordY: -100,
+		priceY: 80,
+		// centred in the strip between the v4 rim (~-225) and the tagline's
+		// top (~-101): BET spans -211..-115, even ~14 gap to both
+		betY: -163,
+		// v4 baked channel: x 269..756; interior rim-to-rim y 407..521 of
+		// 1038x664 (rim profile at the centre column — the first cut's 118
+		// had the channel's under-shadow in the measurement and sat the knob
+		// visibly low). Centre (-6, +112) in 881-wide units, half-width 207.
+		pillX: -6,
+		knobY: 112,
+		// seat = halfW 207 - 6 padding - knob half 104: the knob parks nearly
+		// flush with the channel's rounded ends (16 padding read as a gap)
+		knobSeat: 150,
+		taglineY: -35,
 		pairGap: 50,
 	};
 
@@ -100,8 +113,10 @@
 	const layoutType = $derived(context.stateLayoutDerived.layoutType());
 	const isPortrait = $derived(layoutType === 'portrait');
 
-	// 0.3 ran the pair into the spin-button cluster below — 0.24 clears it
-	const PORTRAIT_SCALE = 0.24;
+	// 0.3 ran the pair into the spin-button cluster below with the old 649-tall
+	// plates; the flatter v4 plates at 0.27 are still SHORTER than those were
+	// at 0.24, so the clearance holds
+	const PORTRAIT_SCALE = 0.27;
 	const SIDE_SCALE = 0.22;
 	// negative tucks the pair toward the frame's stone band
 	const PORTRAIT_FRAME_GAP = -10;
@@ -263,8 +278,8 @@
 	</Container>
 {/snippet}
 
-{#snippet taglineText(x: number, y: number, maxW: number)}
-	{@const fit = Math.min(1, s(maxW) / (taglineSizes.width || 1))}
+{#snippet taglineText(x: number, y: number, maxW: number, sizeFactor: number = 1)}
+	{@const fit = Math.min(1, s(maxW) / (taglineSizes.width || 1)) * sizeFactor}
 	<!-- Inter — Titan One is unreadable this small. Two rows by construction:
 	     wordWrap off, the break is baked into the text, overlong locales
 	     shrink instead of re-flowing. -->
@@ -295,10 +310,13 @@
 		width={s(KNOB.w)}
 		height={s(KNOB.h)}
 	/>
-	<Text
+	<!-- width-capped: EN ON/OFF fits at full size, longer locales (ВЫКЛ,
+	     KAPALI...) shrink instead of running past the pill's end -->
+	<ResponsiveText
 		anchor={0.5}
 		x={pillCX + s(anteActive ? LABEL_ON_X : LABEL_OFF_X)}
 		y={pillCY}
+		maxWidth={s(150)}
 		text={anteActive ? context.i18nDerived.onWord() : context.i18nDerived.offWord()}
 		resolution={textResolution}
 		style={pStyle(s(64))}
@@ -392,7 +410,7 @@
 							tint={hovered ? 0xffffff : 0xf2f2f2}
 						/>
 						{@render betRow(s(-290), s(P.betY))}
-						{@render taglineText(0, s(P.taglineY), 700)}
+						{@render taglineText(0, s(P.taglineY), 700, 0.85)}
 						{@render toggleParts(s(P.pillX), s(P.knobY))}
 					</Container>
 				{/snippet}
@@ -418,7 +436,7 @@
 					x={s(L.kraken.x)}
 					y={s(L.kraken.y)}
 					width={s(L.kraken.w)}
-					height={s(L.kraken.w / CARD_ART_AR)}
+					height={s(L.kraken.w / KRAKEN_ART_AR)}
 				/>
 				<!-- gold rule between the offers. zIndex, not mount order: keeps
 				     these above the art even if the art ever re-mounts. -->

@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'PODWÓJNA SZANSA NA WYGRANIE FUNKCJI',
 	'MULTIPLIER': 'MNOŻNIK',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbol — wybierany jest jeden zwykły symbol wypłacający, a jego kopie trafiają na bębny. Wszystkie __0__ są oceniane po umieszczeniu kopii.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Przy każdym Darmowym Obrocie Kraken może dodatkowo przyznać mnożnik wygranej dla tego obrotu. Dotyczy on wszystkich wygranych z tego obrotu, łącznie z wygranymi z Monet.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Przy każdym Darmowym Obrocie Kraken może dodatkowo przyznać mnożnik wygranej dla tego obrotu. Dotyczy on wszystkich wygranych z tego obrotu, łącznie z wygranymi z Monet. Mnożnik wygranej może wynosić maksymalnie x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Zakład Ante podwaja łączny __0__ (x2). Można go włączyć lub wyłączyć w dowolnym momencie, gdy gra jest bezczynna.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Gdy Zakład Ante jest aktywny, szansa na uruchomienie Obrotu Krakena jest podwojona, a szansa na uruchomienie Darmowych Obrotów jest podwojona.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Wszystkie wartości __0__ pozostają wielokrotnościami podstawowej (niepodwojonej) kwoty __1__.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Zakład Ante (przełącznik) — Włącza lub wyłącza Zakład Ante.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'KAŻDY OBRÓT TO OBRÓT KRAKENA',
+	'MULTIPLIERS UP TO x10': 'MNOŻNIKI DO x10',
+	'EACH BONUS AWARDS +1 SPIN': 'KAŻDY BONUS DAJE +1 OBRÓT',
 };

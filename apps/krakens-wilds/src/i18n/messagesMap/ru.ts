@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'ДВОЙНОЙ ШАНС ВЫИГРАТЬ ФУНКЦИИ',
 	'MULTIPLIER': 'МНОЖИТЕЛЬ',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Символ — выбирается один обычный оплачиваемый символ, и его копии размещаются на барабанах. Все __0__ рассчитываются после размещения копий.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'На любом Бесплатном Вращении Кракен может дополнительно назначить множитель выигрыша для этого вращения. Он применяется ко всем выигрышам этого вращения, включая выигрыши Монет.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'На любом Бесплатном Вращении Кракен может дополнительно назначить множитель выигрыша для этого вращения. Он применяется ко всем выигрышам этого вращения, включая выигрыши Монет. Множитель выигрыша может достигать x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Анте-ставка удваивает общую сумму: __0__ x2. Её можно включить или выключить в любой момент, пока игра находится в режиме ожидания.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Пока Анте-ставка активна, шанс запуска Вращения Кракена удваивается, и шанс запуска Бесплатных Вращений удваивается.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Все значения __0__ остаются кратными базовой (неудвоенной) сумме __1__.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Анте-ставка (переключатель) — Включает или выключает Анте-ставку.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'КАЖДОЕ ВРАЩЕНИЕ — ВРАЩЕНИЕ КРАКЕНА',
+	'MULTIPLIERS UP TO x10': 'МНОЖИТЕЛИ ДО x10',
+	'EACH BONUS AWARDS +1 SPIN': 'КАЖДЫЙ BONUS ДАЁТ +1 ВРАЩЕНИЕ',
 };

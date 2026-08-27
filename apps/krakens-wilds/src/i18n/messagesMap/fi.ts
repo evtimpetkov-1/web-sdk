@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'TUPLAMAHDOLLISUUS VOITTAA TOIMINTOJA',
 	'MULTIPLIER': 'KERROIN',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symboli — valitaan yksi tavallinen maksava symboli, ja sen kopioita lisätään kiekoille. Kaikki __0__ lasketaan, kun kopiot ovat paikoillaan.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Millä tahansa ilmaiskierroksella Kraken voi lisäksi myöntää kierrokselle voittokertoimen. Se koskee kaikkia kierroksen voittoja, myös kolikkovoittoja.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Millä tahansa ilmaiskierroksella Kraken voi lisäksi myöntää kierrokselle voittokertoimen. Se koskee kaikkia kierroksen voittoja, myös kolikkovoittoja. Voittokerroin voi olla jopa x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Ante-panos kaksinkertaistaa __0__-summan (x2). Sen voi kytkeä päälle tai pois milloin tahansa pelin ollessa vapaana.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Kun Ante-panos on käytössä, Kraken-kierroksen laukeamisen mahdollisuus kaksinkertaistuu ja ilmaiskierrosten laukeamisen mahdollisuus kaksinkertaistuu.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Kaikki __0__-arvot ovat edelleen kerrannaisia perustason (ei-kaksinkertaistetusta) __1__-summasta.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Ante-panos (kytkin) — Kytke Ante-panos päälle tai pois.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'JOKAINEN KIERROS ON KRAKEN-KIERROS',
+	'MULTIPLIERS UP TO x10': 'KERTOIMET JOPA x10',
+	'EACH BONUS AWARDS +1 SPIN': 'JOKAINEN BONUS ANTAA +1 KIERROKSEN',
 };

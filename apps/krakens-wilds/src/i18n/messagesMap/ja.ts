@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': '機能獲得のチャンスが2倍',
 	'MULTIPLIER': 'マルチプライヤー',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'シンボル — 通常の配当シンボルが1種類選ばれ、そのコピーがリールに配置されます。配置後にすべての__0__が判定されます。',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'どのフリースピンでも、クラーケンはそのスピンの勝利マルチプライヤーを付与することがあります。マルチプライヤーはコインの勝利を含む、そのスピンのすべての勝利に適用されます。',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'どのフリースピンでも、クラーケンはそのスピンの勝利マルチプライヤーを付与することがあります。マルチプライヤーはコインの勝利を含む、そのスピンのすべての勝利に適用されます。勝利マルチプライヤーは最大x10です。',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'アンティベットは合計__0__を2倍（x2）にします。ゲームが待機中であれば、いつでもオンまたはオフにできます。',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'アンティベットが有効な間、クラーケンスピンの発動確率が2倍になり、フリースピンの発動確率も2倍になります。',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'すべての__0__の値は、基本（2倍前）の__1__額の倍数のままです。',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'アンティベット（切替） — アンティベットのオン/オフを切り替えます。',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': '毎スピンがクラーケンスピン',
+	'MULTIPLIERS UP TO x10': 'マルチプライヤー最大x10',
+	'EACH BONUS AWARDS +1 SPIN': 'ボーナスごとに+1スピン',
 };

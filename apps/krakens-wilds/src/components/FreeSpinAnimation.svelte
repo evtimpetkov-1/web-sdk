@@ -34,19 +34,21 @@
 	 * fsCloudBurst). The texts and the press bar sit straight on the smoke.
 	 *
 	 * What survives from the old layout:
-	 * - the SIZE basis. Text sizes and offsets throughout the intro were
-	 *   authored in units of the old plate's fitted scale, so that scale is
-	 *   still computed from the same box (PLATE_W x PLATE_H fitted to the same
-	 *   viewport shares) and handed down unchanged — nothing drifts or needs
-	 *   retuning just because the plate art is not drawn any more.
+	 * - the SIZE basis: PLATE_W x PLATE_H is the v4 stone card's box
+	 *   (fs_intro/frame.webp, 1200x1089), fitted to the viewport shares below;
+	 *   FreeSpinIntro draws the card at exactly this box x the handed scale.
 	 * - the drifting smoke_idle layer. Over the FROZEN burst it is what keeps
 	 *   the screen alive; without it the held cloud reads as a painted still.
 	 */
 	const PLATE_W = 782;
-	const PLATE_H = PLATE_W / 1.586;
+	const PLATE_H = PLATE_W / (1200 / 1089);
 	const isPortrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
+	// landscape is height-bound: 0.5 left the near-square card floating small
+	// in a sea of smoke. The intro draws its frame at 1.075x this basis
+	// (FRAME_SCALE), so these shares are trimmed to keep the finished card
+	// within ~0.95 width (portrait) / ~0.66 height (landscape).
 	const MAX_WIDTH = $derived(isPortrait ? 0.88 : 0.6);
-	const MAX_HEIGHT = $derived(isPortrait ? 0.4 : 0.5);
+	const MAX_HEIGHT = $derived(isPortrait ? 0.44 : 0.61);
 	const plateScale = $derived(
 		Math.min((canvas.width * MAX_WIDTH) / PLATE_W, (canvas.height * MAX_HEIGHT) / PLATE_H),
 	);

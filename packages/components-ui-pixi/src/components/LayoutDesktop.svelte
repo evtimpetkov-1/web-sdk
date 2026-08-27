@@ -2,7 +2,7 @@
 	import { stateUi, stateConfig, stateModal } from 'state-shared';
 	import { BLACK, WHITE } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
-	import { Container, Rectangle, Text, Sprite } from 'pixi-svelte';
+	import { Circle, Container, Rectangle, Text, Sprite } from 'pixi-svelte';
 	import { ResponsiveText } from 'components-pixi';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { stateBet, stateBetDerived } from 'state-shared';
@@ -75,6 +75,13 @@
 		stateBetDerived.setBetAmount(nextBigger || biggest);
 	};
 
+	/**
+	 * 2026-08-28 stepper redesign: the -/+ render as code-drawn chips (navy
+	 * fill, gold rim and glyph — the buy-shop stepper's voice) instead of the
+	 * grey minus.png/plus.png sprites. Set true to revert to the sprites.
+	 */
+	const CLASSIC_STEPPER_SPRITES = false;
+
 	// BET label + amount press → bet menu (same behavior as LabelBet)
 	const betMenuDisabled = $derived(!context.stateXstateDerived.isIdle());
 	const onBetMenu = () => {
@@ -140,7 +147,46 @@
 	</Container>
 
 	<!-- -/+ bet buttons -->
-	<Container x={w * 0.67 - 80} y={rowY - 20}>
+	{#snippet betChip(kind: 'minus' | 'plus', hovered: boolean, disabled: boolean)}
+		<!-- navy chip, gold rim + glyph — the buy-shop stepper's voice in pixi -->
+		<Container alpha={disabled ? 0.35 : 1} scale={hovered && !disabled ? 1.08 : 1}>
+			<Circle
+				anchor={0.5}
+				diameter={46}
+				backgroundColor={0x0d2c44}
+				backgroundAlpha={0.95}
+				borderColor={hovered && !disabled ? 0xffe282 : 0xc8a24a}
+				borderWidth={2.5}
+				borderAlpha={0.95}
+			/>
+			<!-- soft inner top-light so the chip reads dome-shaped, not flat -->
+			<Circle
+				anchor={0.5}
+				y={-7}
+				diameter={30}
+				backgroundColor={0x3a6b8f}
+				backgroundAlpha={0.35}
+			/>
+			<Rectangle
+				anchor={0.5}
+				width={20}
+				height={4.5}
+				borderRadius={2}
+				backgroundColor={hovered && !disabled ? 0xffe282 : 0xffd700}
+			/>
+			{#if kind === 'plus'}
+				<Rectangle
+					anchor={0.5}
+					width={4.5}
+					height={20}
+					borderRadius={2}
+					backgroundColor={hovered && !disabled ? 0xffe282 : 0xffd700}
+				/>
+			{/if}
+		</Container>
+	{/snippet}
+
+	<Container x={w * 0.67 - 80} y={rowY - 26}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}
@@ -148,19 +194,25 @@
 			onpress={onDecrease}
 		>
 			{#snippet children({ center, hovered })}
-				<Sprite
-					{...center}
-					key="minus.png"
-					anchor={0.5}
-					width={50}
-					height={50}
-					alpha={decDisabled ? 0.3 : hovered ? 1 : 0.7}
-				/>
+				{#if CLASSIC_STEPPER_SPRITES}
+					<Sprite
+						{...center}
+						key="minus.png"
+						anchor={0.5}
+						width={50}
+						height={50}
+						alpha={decDisabled ? 0.3 : hovered ? 1 : 0.7}
+					/>
+				{:else}
+					<Container {...center}>
+						{@render betChip('minus', hovered, decDisabled)}
+					</Container>
+				{/if}
 			{/snippet}
 		</Button>
 	</Container>
 
-	<Container x={w * 0.67 + 80} y={rowY - 20}>
+	<Container x={w * 0.67 + 80} y={rowY - 26}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}
@@ -168,14 +220,20 @@
 			onpress={onIncrease}
 		>
 			{#snippet children({ center, hovered })}
-				<Sprite
-					{...center}
-					key="plus.png"
-					anchor={0.5}
-					width={50}
-					height={50}
-					alpha={incDisabled ? 0.3 : hovered ? 1 : 0.7}
-				/>
+				{#if CLASSIC_STEPPER_SPRITES}
+					<Sprite
+						{...center}
+						key="plus.png"
+						anchor={0.5}
+						width={50}
+						height={50}
+						alpha={incDisabled ? 0.3 : hovered ? 1 : 0.7}
+					/>
+				{:else}
+					<Container {...center}>
+						{@render betChip('plus', hovered, incDisabled)}
+					</Container>
+				{/if}
 			{/snippet}
 		</Button>
 	</Container>

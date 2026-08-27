@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'DOUBLE CHANCE D\'OBTENIR DES FONCTIONNALITÉS',
 	'MULTIPLIER': 'MULTIPLICATEUR',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbole — un symbole payant normal est choisi et des copies en sont placées sur les rouleaux. Toutes les __0__ sont évaluées une fois les copies en place.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'À chaque tour gratuit, le Kraken peut également accorder un multiplicateur de gains pour ce tour. Il s\'applique à tous les gains de ce tour, y compris les gains des Pièces.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'À chaque tour gratuit, le Kraken peut également accorder un multiplicateur de gains pour ce tour. Il s\'applique à tous les gains de ce tour, y compris les gains des Pièces. Le multiplicateur de gains peut atteindre x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'La mise Ante double la __0__ totale (x2). Elle peut être activée ou désactivée à tout moment lorsque le jeu est au repos.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Lorsque la mise Ante est active, la probabilité de déclencher un tour du Kraken est doublée, et la probabilité de déclencher les tours gratuits est doublée.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Toutes les valeurs de __0__ restent des multiples du montant de __1__ de base (non doublé).',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Mise Ante (interrupteur) — Active ou désactive la mise Ante.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'CHAQUE TOUR EST UN TOUR DU KRAKEN',
+	'MULTIPLIERS UP TO x10': 'MULTIPLICATEURS JUSQU\'À x10',
+	'EACH BONUS AWARDS +1 SPIN': 'CHAQUE BONUS ACCORDE +1 TOUR',
 };

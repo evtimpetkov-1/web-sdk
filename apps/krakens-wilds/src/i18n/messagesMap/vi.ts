@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'CƠ HỘI THẮNG TÍNH NĂNG NHÂN ĐÔI',
 	'MULTIPLIER': 'HỆ SỐ NHÂN',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Biểu tượng — một biểu tượng trả thưởng thường được chọn và các bản sao của nó được đặt lên cuộn. Tất cả __0__ được tính sau khi các bản sao vào vị trí.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Ở bất kỳ Vòng Quay Miễn Phí nào, Kraken cũng có thể trao hệ số nhân thắng cho vòng quay đó. Hệ số áp dụng cho mọi phần thắng của vòng quay đó, kể cả thắng từ Đồng Xu.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Ở bất kỳ Vòng Quay Miễn Phí nào, Kraken cũng có thể trao hệ số nhân thắng cho vòng quay đó. Hệ số áp dụng cho mọi phần thắng của vòng quay đó, kể cả thắng từ Đồng Xu. Hệ số nhân thắng có thể lên đến x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Cược Ante nhân đôi tổng __0__ (x2). Có thể bật hoặc tắt bất cứ lúc nào khi trò chơi đang ở trạng thái chờ.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Khi Cược Ante đang bật, cơ hội kích hoạt Vòng Quay Kraken tăng gấp đôi, và cơ hội kích hoạt Vòng Quay Miễn Phí tăng gấp đôi.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Mọi giá trị __0__ vẫn là bội số của số tiền __1__ cơ bản (chưa nhân đôi).',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Cược Ante (công tắc) — Bật hoặc tắt Cược Ante.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'MỖI VÒNG QUAY LÀ VÒNG QUAY KRAKEN',
+	'MULTIPLIERS UP TO x10': 'HỆ SỐ NHÂN ĐẾN x10',
+	'EACH BONUS AWARDS +1 SPIN': 'MỖI BONUS TẶNG +1 VÒNG QUAY',
 };

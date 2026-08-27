@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'ÖZELLİK KAZANMA ŞANSI 2 KAT',
 	'MULTIPLIER': 'ÇARPAN',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Sembol — normal bir ödeme sembolü seçilir ve kopyaları makaralara yerleştirilir. Kopyalar yerleştikten sonra tüm __0__ değerlendirilir.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Herhangi bir Bedava Dönüşte Kraken o dönüş için ayrıca bir kazanç çarpanı verebilir. Çarpan, Madeni Para kazançları dahil o dönüşteki tüm kazançlara uygulanır.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Herhangi bir Bedava Dönüşte Kraken o dönüş için ayrıca bir kazanç çarpanı verebilir. Çarpan, Madeni Para kazançları dahil o dönüşteki tüm kazançlara uygulanır. Kazanç çarpanı en fazla x10 olabilir.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Ante bahsi toplam __0__ tutarını iki katına (x2) çıkarır. Oyun boştayken istediğiniz an açılıp kapatılabilir.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Ante bahsi etkinken Kraken Dönüşü tetiklenme olasılığı iki katına çıkar ve Bedava Dönüşlerin tetiklenme olasılığı iki katına çıkar.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Tüm __0__ değerleri, temel (iki katına çıkarılmamış) __1__ tutarının katları olarak kalır.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Ante Bahsi (anahtar) — Ante bahsini açar veya kapatır.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'HER DÖNÜŞ BİR KRAKEN DÖNÜŞÜDÜR',
+	'MULTIPLIERS UP TO x10': 'EN FAZLA x10 ÇARPAN',
+	'EACH BONUS AWARDS +1 SPIN': 'HER BONUS +1 DÖNÜŞ VERİR',
 };

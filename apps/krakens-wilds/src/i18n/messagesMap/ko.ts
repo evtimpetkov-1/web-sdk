@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': '기능 당첨 확률 2배',
 	'MULTIPLIER': '배수',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': '심볼 — 일반 배당 심볼 하나가 선택되어 그 복사본이 릴에 배치됩니다. 복사본이 배치된 후 모든 __0__이 평가됩니다.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': '어떤 프리 스핀에서든 크라켄은 해당 스핀에 승리 배수를 부여할 수 있습니다. 배수는 코인 상금을 포함해 그 스핀의 모든 상금에 적용됩니다.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': '어떤 프리 스핀에서든 크라켄은 해당 스핀에 승리 배수를 부여할 수 있습니다. 배수는 코인 상금을 포함해 그 스핀의 모든 상금에 적용됩니다. 승리 배수는 최대 x10입니다.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': '안테 베팅은 총 __0__을 두 배(x2)로 만듭니다. 게임이 대기 상태일 때 언제든지 켜거나 끌 수 있습니다.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': '안테 베팅이 활성화된 동안 크라켄 스핀 발동 확률이 두 배가 되고, 프리 스핀 발동 확률도 두 배가 됩니다.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': '모든 __0__ 값은 기본(두 배가 아닌) __1__ 금액의 배수로 유지됩니다.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': '안테 베팅(토글) — 안테 베팅을 켜거나 끕니다.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': '모든 스핀은 크라켄 스핀',
+	'MULTIPLIERS UP TO x10': '최대 x10 배수',
+	'EACH BONUS AWARDS +1 SPIN': '보너스마다 +1 스핀',
 };

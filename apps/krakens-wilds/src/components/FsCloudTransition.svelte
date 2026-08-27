@@ -45,12 +45,16 @@
 </script>
 
 {#if show}
-	<!-- origin sits up near the kraken so the eruption reads as coming from it -->
+	<!-- origin sits up near the kraken so the eruption reads as coming from it.
+	     Portrait runs bigger: with the origin at 0.38h, 1.15x left the burst's
+	     lowest puffs short of the bottom edge on tall phones — a strip of open
+	     water stayed visible under the held cloud. -->
 	<SpineProvider
 		key="fsFx"
 		x={canvas.width / 2}
 		y={canvas.height * 0.38}
-		width={Math.max(canvas.width, canvas.height) * 1.15}
+		width={Math.max(canvas.width, canvas.height) *
+			(context.stateLayoutDerived.layoutType() === 'portrait' ? 1.4 : 1.15)}
 	>
 		<SpineTrack
 			trackIndex={0}

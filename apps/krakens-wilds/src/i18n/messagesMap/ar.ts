@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'فرصة مضاعفة للفوز بالميزات',
 	'MULTIPLIER': 'المضاعف',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'رمز — يُختار رمز دافع عادي واحد وتوضع نسخ منه على البكرات. تُحتسب كل __0__ بعد وضع النسخ.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'في أي دورة مجانية، يمكن للكراكن أيضًا منح مضاعف ربح لتلك الدورة. يُطبّق على جميع أرباح الدورة، بما فيها أرباح العملات.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'في أي دورة مجانية، يمكن للكراكن أيضًا منح مضاعف ربح لتلك الدورة. يُطبّق على جميع أرباح الدورة، بما فيها أرباح العملات. يمكن أن يصل مضاعف الربح إلى x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'يضاعف رهان أنتي إجمالي __0__ (x2). يمكن تفعيله أو إيقافه في أي وقت أثناء خمول اللعبة.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'عند تفعيل رهان أنتي، تتضاعف فرصة تفعيل دورة الكراكن، وتتضاعف فرصة تفعيل الدورات المجانية.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'تبقى جميع قيم __0__ مضاعفات لمبلغ __1__ الأساسي (غير المضاعف).',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'رهان أنتي (مفتاح) — تشغيل رهان أنتي أو إيقافه.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'كل دورة هي دورة الكراكن',
+	'MULTIPLIERS UP TO x10': 'مضاعفات حتى x10',
+	'EACH BONUS AWARDS +1 SPIN': 'كل رمز Bonus يمنح +1 دورة',
 };

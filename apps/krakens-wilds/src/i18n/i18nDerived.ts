@@ -14,6 +14,10 @@ export const i18nDerived = {
 	// FreeSpinIntro
 	congratulations: () => t('CONGRATULATIONS!'),
 	youWon: () => t('YOU WON'),
+	// FS intro card (v4) — badge captions
+	fsIntroKraken: () => t('EVERY SPIN IS A KRAKEN SPIN'),
+	fsIntroMult: () => t('MULTIPLIERS UP TO x10'),
+	fsIntroBonus: () => t('EACH BONUS AWARDS +1 SPIN'),
 	// BoardFrame
 	totalWin: () => t('TOTAL WIN'),
 	// LoadingScreen

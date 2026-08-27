@@ -108,9 +108,13 @@ export default {
 	'DOUBLE CHANCE TO WIN FEATURES': 'DOBLE PROBABILIDAD DE GANAR FUNCIONES',
 	'MULTIPLIER': 'MULTIPLICADOR',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Símbolo — se elige un símbolo de pago normal y se colocan copias de él en los carretes. Todas las __0__ se evalúan una vez colocadas las copias.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'En cualquier giro gratis, el Kraken también puede otorgar un multiplicador de ganancias para ese giro. Se aplica a todas las ganancias de ese giro, incluidas las de las Monedas.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'En cualquier giro gratis, el Kraken también puede otorgar un multiplicador de ganancias para ese giro. Se aplica a todas las ganancias de ese giro, incluidas las de las Monedas. El multiplicador de ganancias puede ser de hasta x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'La apuesta Ante duplica el __0__ total (x2). Puede activarse o desactivarse en cualquier momento mientras el juego está inactivo.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Mientras la apuesta Ante está activa, la probabilidad de activar un giro del Kraken se duplica, y la probabilidad de activar los giros gratis se duplica.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Todos los valores de __0__ siguen siendo múltiplos del importe de __1__ base (sin duplicar).',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Apuesta Ante (interruptor) — Activa o desactiva la apuesta Ante.',
+	// FS intro card (v4, 2026-08-28) — badge captions
+	'EVERY SPIN IS A KRAKEN SPIN': 'CADA GIRO ES UN GIRO DEL KRAKEN',
+	'MULTIPLIERS UP TO x10': 'MULTIPLICADORES HASTA x10',
+	'EACH BONUS AWARDS +1 SPIN': 'CADA BONUS OTORGA +1 GIRO',
 };

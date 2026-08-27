@@ -40,7 +40,9 @@
 	// title sprites); every other locale falls back to the text labels.
 	const useTextArt = stateUrlDerived.lang() === 'en';
 	const KRAKEN_SPIN_RATIO = 705 / 100; // kraken_spin_text_en.webp
-	const KRAKEN_INTRO_RATIO = 1621 / 927; // kraken_intro.webp (2026-08-26 art)
+	// v4 art (2026-08-27) is 4:3 — much taller than the old 1.75:1, so both
+	// layouts run it narrower to hold the same height budget over the headers
+	const KRAKEN_INTRO_RATIO = 1448 / 1086; // kraken_spin_image v4
 	const FREE_SPINS_RATIO = 582 / 94; // free_spins_text_en.webp
 	// both arts are ~100px tall from the same lettering, so one display height
 	// keeps the two headers matched
@@ -85,21 +87,6 @@
 		fontSize: Math.max(30 * s, 1),
 	} satisfies TextStyleOptions);
 
-	const bodyStyle = $derived({
-		fontFamily: 'Cinzel',
-		fontWeight: '700',
-		fill: '#FFFFFF',
-		dropShadow: { color: '#000000', blur: 3 * s, distance: 2 * s, alpha: 0.6 },
-		letterSpacing: 1 * s,
-		align: 'center' as const,
-		wordWrap: true,
-		// portrait wraps at the same width ResponsiveText allows — the old shared
-		// 380*s bound first on phones and squeezed every line to ~2/3 of the screen
-		wordWrapWidth: wide ? 380 * s : canvas.width * 0.9,
-		breakWords: true,
-		// portrait ran the same 16.5 as desktop and was barely legible on phones
-		fontSize: Math.max((wide ? 16.5 : 28) * s, 1),
-	} satisfies TextStyleOptions);
 </script>
 
 <!-- overlay + logo (visible during loading) -->
@@ -121,89 +108,54 @@
 <FadeContainer show={loadingType === 'start' && context.stateApp.loaded && fontsReady}>
 	{#if !isReplay}
 		{#if wide}
-			<!-- WIDE: side by side — Kraken Spin first, Free Spins second -->
+			<!-- WIDE: side by side — Kraken Spin first, Free Spins second.
+			     Art-led (2026-08-27 rework): the descriptions are gone, so each
+			     column is just a big hero with its header as the caption. The
+			     old text block reached +200; the enlarged art + header stop at
+			     +170, still clear of the logo's -84 bottom above. -->
 			<Container x={cx - 260 * s} y={cy + (55 - LIFT) * s}>
-				<!-- height follows the art's aspect so nothing is squashed;
-					y nudged down so the image top stays clear of the logo above -->
-				<Sprite key="loadingKraken" anchor={0.5} y={6 * s} width={235 * s} height={(235 / KRAKEN_INTRO_RATIO) * s} />
+				<Sprite key="loadingKraken" anchor={0.5} y={25 * s} width={260 * s} height={(260 / KRAKEN_INTRO_RATIO) * s} />
 				{#if useTextArt}
-					<Sprite key="loadingKrakenSpinTextEn" anchor={{ x: 0.5, y: 0 }} y={78 * s} width={HEADER_H * KRAKEN_SPIN_RATIO * s} height={HEADER_H * s} />
+					<Sprite key="loadingKrakenSpinTextEn" anchor={{ x: 0.5, y: 0 }} y={130 * s} width={HEADER_H * KRAKEN_SPIN_RATIO * s} height={HEADER_H * s} />
 				{:else}
-					<ResponsiveText text={i18nDerived.krakenSpin()} anchor={{ x: 0.5, y: 0 }} y={88 * s} maxWidth={350 * s} style={headerStyle} />
+					<ResponsiveText text={i18nDerived.krakenSpin()} anchor={{ x: 0.5, y: 0 }} y={140 * s} maxWidth={350 * s} style={headerStyle} />
 				{/if}
-				<ResponsiveText
-					text={i18nDerived.loadingKrakenDesc()}
-					anchor={{ x: 0.5, y: 0 }}
-					y={124 * s}
-					maxWidth={380 * s}
-					maxHeight={76 * s}
-					style={bodyStyle}
-				/>
 			</Container>
 			<Container x={cx + 260 * s} y={cy + (55 - LIFT) * s}>
-				<Sprite key="s" anchor={0.5} width={130 * s} height={130 * s} />
+				<Sprite key="s" anchor={0.5} y={25 * s} width={185 * s} height={185 * s} />
 				{#if useTextArt}
-					<Sprite key="loadingFreeSpinsTextEn" anchor={{ x: 0.5, y: 0 }} y={78 * s} width={HEADER_H * FREE_SPINS_RATIO * s} height={HEADER_H * s} />
+					<Sprite key="loadingFreeSpinsTextEn" anchor={{ x: 0.5, y: 0 }} y={130 * s} width={HEADER_H * FREE_SPINS_RATIO * s} height={HEADER_H * s} />
 				{:else}
-					<ResponsiveText text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={88 * s} maxWidth={350 * s} style={headerStyle} />
+					<ResponsiveText text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={140 * s} maxWidth={350 * s} style={headerStyle} />
 				{/if}
-				<ResponsiveText
-					text={i18nDerived.loadingFsDesc()}
-					anchor={{ x: 0.5, y: 0 }}
-					y={124 * s}
-					maxWidth={380 * s}
-					maxHeight={76 * s}
-					style={bodyStyle}
-				/>
 			</Container>
 		{:else}
 			<!-- TALL: stacked — Kraken Spin first, Free Spins second.
-			     Budgeted against the REAL fixed edges: the logo's bottom (-243
-			     rel cy, LIFT included) and the press bar's top (~+365). Text
-			     wraps at 90% of the canvas (bodyStyle matches — see
-			     wordWrapWidth) so the EN descriptions hold 3-4 lines at font 28
-			     without tripping their maxHeight clamps; wordier locales clamp
-			     a few percent instead of a third. Rows are absolute (no LIFT on
-			     this container); the wider wrap freed the vertical room the
-			     bigger art spends. The press bar's +365 was measured lax:
-			     portrait is width-bound, so the bar really sits ~+434 — the
-			     rows ride low to spend that slack instead of pooling it all
-			     above the bar. -->
+			     Art-led (2026-08-27 rework): no descriptions, each card is a
+			     big hero with its header as the caption. Budgeted against the
+			     REAL fixed edges: the logo's bottom (-243 rel cy) and the press
+			     bar's top (~+434 — portrait is width-bound, so the bar sits
+			     lower than the 850-unit budget suggests). Rows are absolute
+			     (no LIFT on this container). -->
 			<Container x={cx} y={cy}>
 				<Sprite
 					key="loadingKraken"
 					anchor={0.5}
-					y={-150 * s}
-					width={215 * s}
-					height={(215 / KRAKEN_INTRO_RATIO) * s}
+					y={-100 * s}
+					width={280 * s}
+					height={(280 / KRAKEN_INTRO_RATIO) * s}
 				/>
 				{#if useTextArt}
-					<Sprite key="loadingKrakenSpinTextEn" anchor={{ x: 0.5, y: 0 }} y={-81 * s} width={HEADER_H * KRAKEN_SPIN_RATIO * s} height={HEADER_H * s} />
+					<Sprite key="loadingKrakenSpinTextEn" anchor={{ x: 0.5, y: 0 }} y={14 * s} width={HEADER_H * KRAKEN_SPIN_RATIO * s} height={HEADER_H * s} />
 				{:else}
-					<ResponsiveText text={i18nDerived.krakenSpin()} anchor={{ x: 0.5, y: 0 }} y={-81 * s} maxWidth={350 * s} style={headerStyle} />
+					<ResponsiveText text={i18nDerived.krakenSpin()} anchor={{ x: 0.5, y: 0 }} y={14 * s} maxWidth={350 * s} style={headerStyle} />
 				{/if}
-				<ResponsiveText
-					text={i18nDerived.loadingKrakenDesc()}
-					anchor={0.5}
-					y={22 * s}
-					maxWidth={canvas.width * 0.9}
-					maxHeight={120 * s}
-					style={bodyStyle}
-				/>
-				<Sprite key="s" anchor={0.5} y={175 * s} width={110 * s} height={110 * s} />
+				<Sprite key="s" anchor={0.5} y={200 * s} width={190 * s} height={190 * s} />
 				{#if useTextArt}
-					<Sprite key="loadingFreeSpinsTextEn" anchor={{ x: 0.5, y: 0 }} y={237 * s} width={HEADER_H * FREE_SPINS_RATIO * s} height={HEADER_H * s} />
+					<Sprite key="loadingFreeSpinsTextEn" anchor={{ x: 0.5, y: 0 }} y={303 * s} width={HEADER_H * FREE_SPINS_RATIO * s} height={HEADER_H * s} />
 				{:else}
-					<ResponsiveText text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={237 * s} maxWidth={350 * s} style={headerStyle} />
+					<ResponsiveText text={i18nDerived.freeSpins()} anchor={{ x: 0.5, y: 0 }} y={303 * s} maxWidth={350 * s} style={headerStyle} />
 				{/if}
-				<ResponsiveText
-					text={i18nDerived.loadingFsDesc()}
-					anchor={0.5}
-					y={347 * s}
-					maxWidth={canvas.width * 0.9}
-					maxHeight={132 * s}
-					style={bodyStyle}
-				/>
 			</Container>
 		{/if}
 	{/if}
