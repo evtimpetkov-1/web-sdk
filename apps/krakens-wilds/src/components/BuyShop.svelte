@@ -20,6 +20,16 @@
 		'../../assets/sprites/betmodes/ante_chance_x2_en.png',
 		import.meta.url,
 	).href;
+	/*
+	 * The other three images on this screen (free_spins_text_en, buy_bonus_x3,
+	 * kraken_intro) sit in the Pixi preload manifest, so they are already in the
+	 * HTTP cache by the time the shop opens. This one is referenced ONLY here,
+	 * so it was fetched cold on first open and visibly arrived after the rest of
+	 * the card on a phone. Warmed at import (ssr is false — see
+	 * routes/+layout.ts); deliberately NOT added to assets.ts, which would make
+	 * Pixi upload a GPU texture it never draws.
+	 */
+	new Image().src = anteChanceImg;
 	const useTitleArt = (stateUrlDerived.social() || stateUrlDerived.lang() === 'en');
 
 	/**
@@ -204,7 +214,7 @@
 		max-height: 100dvh;
 		overflow-y: auto;
 		padding: 1.2rem;
-		animation: content-in 320ms cubic-bezier(0.2, 1.4, 0.4, 1);
+		animation: content-in 320ms ease-out;
 		scrollbar-width: none;
 	}
 
@@ -524,8 +534,15 @@
 	@keyframes overlay-in {
 		from { opacity: 0; }
 	}
+	/*
+	 * Fade only. This used to run scale(0.92) -> 1 on a cubic-bezier whose 1.4
+	 * control point overshoots past 100% and settles back, so the cards, the
+	 * price plates, the CTAs and the stepper all drifted as the screen opened.
+	 * The shared Popup the bet and auto-play menus use has no transform at all
+	 * (a svelte `blur` transition), and these now match it.
+	 */
 	@keyframes content-in {
-		from { opacity: 0; transform: scale(0.92); }
+		from { opacity: 0; }
 	}
 	@keyframes halo-pulse {
 		0%, 100% { opacity: 0.75; transform: scale(1); }

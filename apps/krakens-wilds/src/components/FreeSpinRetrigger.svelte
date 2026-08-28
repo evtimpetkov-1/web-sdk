@@ -5,7 +5,7 @@
 
 <script lang="ts">
 	import { gsap } from 'gsap';
-	import { BaseSprite, Container, PixiRectangle, Rectangle, SpineProvider, SpineTrack, Texture } from 'pixi-svelte';
+	import { BaseSprite, Container, Rectangle, SpineProvider, SpineTrack, Texture } from 'pixi-svelte';
 	import { ResponsiveBitmapText, ResponsiveText } from 'components-pixi';
 	import { stateUrlDerived } from 'state-shared';
 	import { Tween } from 'svelte/motion';
@@ -46,10 +46,13 @@
 	 * the puffs, glow and flash) and the line is drawn here as a layer of its
 	 * own: the baked loading-screen art for English, translated headingGold
 	 * text for every other locale — which the spine's baked-English letters
-	 * could never offer. Grammar still holds on a +1: English crops the art at
-	 * the S (the seam is the art's own ink valley; anchor 0.5 recentres the
-	 * crop for free); other locales keep their plural label, as no singular
-	 * translation key exists.
+	 * could never offer.
+	 *
+	 * A +1 retrigger reads "+1 FREE SPINS", plural, in every language. English
+	 * used to crop the art before the trailing S, but the letters' dark
+	 * outlines merge into one opaque slab inside a word (the only transparent
+	 * gap in the art is between the two words), so a straight cut left a hard
+	 * dark stub after the N. Non-English never had a singular label either.
 	 */
 	const useBakedArt = (stateUrlDerived.social() || stateUrlDerived.lang() === 'en');
 	/**
@@ -63,9 +66,7 @@
 	const SPINE_FIT = 680 / 1600;
 	const TEXT_Y = 227.83 * SPINE_FIT; // 96.8 board units below the container origin
 	const TEXT_W = 1346.6 * 0.9 * SPINE_FIT; // the letters' animated footprint, 515
-	const TEXT_SRC_W = 582; // free_spins_text_en.webp is 582x94
-	const TEXT_AR = 582 / 94;
-	const S_CUT = 518; // source px where the trailing S begins (ink valley)
+	const TEXT_AR = 582 / 94; // free_spins_text_en.webp is 582x94
 	/**
 	 * The line's entrance/exit, driven by gsap on a $state target (gsap writes
 	 * through the proxy, so every frame is reactive). It POPS instead of fading:
@@ -93,13 +94,6 @@
 	$effect(() => () => killTextAnim());
 	const fullTexture = $derived(
 		context.stateApp.loadedAssets?.loadingFreeSpinsTextEn as Texture | undefined,
-	);
-	const singularTexture = $derived(
-		fullTexture &&
-			new Texture({
-				source: fullTexture.source,
-				frame: new PixiRectangle(0, 0, S_CUT, fullTexture.height),
-			}),
 	);
 
 	/**
@@ -208,13 +202,11 @@
 				}}
 			/>
 		</SpineProvider>
-		<!-- FREE SPIN(S), at the spine letters' ANIMATED position (see TEXT_Y) -->
+		<!-- FREE SPINS, at the spine letters' ANIMATED position (see TEXT_Y) -->
 		<Container y={TEXT_Y} scale={textAnim.scale}>
 			{#if useBakedArt}
-				{@const texture = extraSpins === 1 ? singularTexture : fullTexture}
-				{@const width = TEXT_W * ((extraSpins === 1 ? S_CUT : TEXT_SRC_W) / TEXT_SRC_W)}
-				{#if texture}
-					<BaseSprite {texture} anchor={0.5} {width} height={TEXT_W / TEXT_AR} />
+				{#if fullTexture}
+					<BaseSprite texture={fullTexture} anchor={0.5} width={TEXT_W} height={TEXT_W / TEXT_AR} />
 				{/if}
 			{:else}
 				<ResponsiveText

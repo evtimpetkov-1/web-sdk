@@ -132,7 +132,7 @@
 			inset 0 1px 0 rgba(255, 255, 255, 0.09),
 			inset 0 0 34px rgba(30, 90, 140, 0.25),
 			0 12px 32px rgba(0, 0, 0, 0.45);
-		animation: content-in 300ms cubic-bezier(0.2, 1.4, 0.4, 1);
+		animation: content-in 300ms ease-out;
 		scrollbar-width: none;
 	}
 
@@ -299,8 +299,15 @@
 	@keyframes overlay-in {
 		from { opacity: 0; }
 	}
+	/*
+	 * Fade only. This used to run scale(0.92) -> 1 on a cubic-bezier whose 1.4
+	 * control point overshoots past 100% and settles back, so the cards, the
+	 * price plates, the CTAs and the stepper all drifted as the screen opened.
+	 * The shared Popup the bet and auto-play menus use has no transform at all
+	 * (a svelte `blur` transition), and these now match it.
+	 */
 	@keyframes content-in {
-		from { opacity: 0; transform: scale(0.92); }
+		from { opacity: 0; }
 	}
 	@keyframes halo-pulse {
 		0%, 100% { opacity: 0.75; transform: scale(1); }
