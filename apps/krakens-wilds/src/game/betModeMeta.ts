@@ -1,4 +1,4 @@
-import { stateMeta, stateI18nDerived, type BetModeMeta } from 'state-shared';
+import { stateMeta, stateI18nDerived, stateUrlDerived, type BetModeMeta } from 'state-shared';
 
 import config from './config';
 
@@ -37,6 +37,13 @@ const NO_ASSETS = {
  */
 const buildBetModeMeta = (): BetModeMeta => {
 	const t = (key: string) => stateI18nDerived.translate(key);
+	// social mode (stake.us) bans bet/buy/bought/purchase/"place your bets" and
+	// is English-only, so the replacements are plain strings — see
+	// stake-engine.com/docs/reference/social-mode. betAmountLabel lands in the
+	// SDK's bottom bar (LabelBet) whenever the mode is active, so it counts too.
+	const social = (socialText: string, key: string) =>
+		stateUrlDerived.social() ? socialText : t(key);
+	const isSocial = stateUrlDerived.social();
 	return {
 	BASE: {
 		mode: 'BASE',
@@ -70,14 +77,15 @@ const buildBetModeMeta = (): BetModeMeta => {
 			dialogImage: anteCardImg,
 		},
 		text: {
-			title: t('ANTE BET'),
-			dialog: t(
+			title: social('ANTE PLAY', 'ANTE BET'),
+			dialog: social(
+				'Double your total play for double the chance of triggering Kraken Spins and Free Spins. Ante Play stays active until you turn it off.',
 				'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.',
 			),
 			description: t('Doubles the chance of Kraken Spins and Free Spins.'),
 			button: t('ACTIVATE'),
-			betAmountLabel: 'ANTE BET',
-			tickerIdle: 'ANTE BET IS ACTIVE',
+			betAmountLabel: isSocial ? 'ANTE PLAY' : 'ANTE BET',
+			tickerIdle: isSocial ? 'ANTE PLAY IS ACTIVE' : 'ANTE BET IS ACTIVE',
 			tickerSpin: 'GOOD LUCK',
 		},
 		maxWin: config.betModes.ante.max_win,
@@ -102,14 +110,14 @@ const buildBetModeMeta = (): BetModeMeta => {
 			dialog: t(
 				'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.',
 			),
-			description: t('Buy 6, 12 or 18 Free Spins for __0__x your total bet?').replace(
-				'__0__',
-				`${config.betModes.bonus.cost}`,
-			),
-			button: t('BUY'),
-			betAmountLabel: 'BONUS BUY',
-			tickerIdle: 'PLACE YOUR BET',
-			tickerSpin: 'BONUS BUY ACTIVATED',
+			description: social(
+				'Play the Free Spins Feature for __0__x your total play.\nThe Bonus trigger spin awards 6, 12 or 18 Free Spins.',
+				'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.',
+			).replace('__0__', `${config.betModes.bonus.cost}`),
+			button: social('PLAY', 'BUY'),
+			betAmountLabel: isSocial ? 'FEATURE' : 'BONUS BUY',
+			tickerIdle: isSocial ? 'COME AND PLAY' : 'PLACE YOUR BET',
+			tickerSpin: isSocial ? 'FEATURE ACTIVATED' : 'BONUS BUY ACTIVATED',
 		},
 		maxWin: config.betModes.bonus.max_win,
 	},

@@ -1,7 +1,7 @@
 export default {
 	'HOME': 'HJEM',
 	// PressToContinue
-	'PRESS ANYWHERE TO CONTINUE': 'TRYK HVOR SOM HELST FOR AT FORTSÆTTE',
+	'PRESS ANYWHERE TO CONTINUE': 'TRYK FOR AT FORTSÆTTE',
 	// FreeSpinIntro
 	'CONGRATULATIONS!': 'TILLYKKE!',
 	'YOU WON': 'DU VANDT',
@@ -28,8 +28,8 @@ export default {
 	// PayTable — descriptions
 	'Substitutes for all symbols except Bonus and Coin. A Wild Kraken Spin adds 1 to 10 Wild symbols to the reels.': 'Erstatter alle symboler undtagen Bonus og mønt. Ved et Kraken-spin af typen Wild placeres 1 til 10 Wilds på hjulene.',
 	'3 Bonus = 6 Free Spins\n4 Bonus = 12 Free Spins\n5 Bonus = 18 Free Spins': '3 Bonus = 6 gratisspins\n4 Bonus = 12 gratisspins\n5 Bonus = 18 gratisspins',
-	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 faste betalingslinjer. Gevinster udbetales fra venstre mod højre på på hinanden følgende hjul, startende fra det venstre hjul. Bonus-symboler giver gratisspins i enhver position.',
-	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 faste gevinstlinjer. Gevinster tæller fra venstre mod højre på på hinanden følgende hjul, startende fra det venstre hjul. Bonus-symboler giver gratisspins i enhver position.',
+	'20 fixed paylines. Wins pay from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 faste betalingslinjer. Gevinster udbetales fra venstre mod højre på fortløbende hjul, startende fra det yderste venstre hjul. Bonus-symboler giver gratisspins i enhver position.',
+	'20 fixed winlines. Wins count from left to right on consecutive reels, starting from the leftmost reel. Bonus symbols award Free Spins in any position.': '20 faste gevinstlinjer. Gevinster tæller fra venstre mod højre på fortløbende hjul, startende fra det yderste venstre hjul. Bonus-symboler giver gratisspins i enhver position.',
 	// GameRules — social mode variable words
 	'bet': 'indsats',
 	'play': 'spilbeløb',
@@ -54,8 +54,8 @@ export default {
 	'User Interface Guide': 'Brugerfladevejledning',
 	'Disclaimer': 'Ansvarsfraskrivelse',
 	// GameRules — paragraphs
-	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds er en videoslot med 5 hjul, 3 rækker og 20 faste betalingslinjer. Gevinstkombinationer dannes fra venstre mod højre på på hinanden følgende hjul, startende fra det venstre hjul. Kun den højeste gevinst på hver betalingslinje udbetales.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Den teoretiske tilbagebetaling til spilleren (RTP) i basisspillet er 96,52 %. Med Ante-indsats aktiv er RTP 96,46 %. RTP for Køb funktion er 96,42 %. Den maksimale gevinst er 1.890,60x den samlede indsats.',
+	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds er en videoslot med 5 hjul, 3 rækker og 20 faste betalingslinjer. Gevinstkombinationer dannes fra venstre mod højre på fortløbende hjul, startende fra det yderste venstre hjul. Kun den højeste gevinst på hver betalingslinje udbetales.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Den teoretiske tilbagebetaling til spilleren (RTP) i basisspillet er 96,52 %. Med Ante-indsats aktiv er RTP 96,46 %. RTP for Køb funktion er 96,42 %. Den maksimale gevinst er 1.890,60x den samlede indsats i basisspillet, 1.978,00x med Ante-indsats aktiv og 2.536,70x i Køb funktion.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Alle udbetalingsværdier vises som multiplikatorer af det samlede indsatsbeløb.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken) erstatter alle symboler undtagen Bonus- og møntsymbolerne. Wild-kombinationer giver deres egne udbetalingsværdier.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-symboler hvor som helst på hjulene giver 6 gratisspins.',
@@ -95,26 +95,28 @@ export default {
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'KØB',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': 'Udløser straks 6, 12 eller 18 gratisspins. Hvert gratisspin er et Kraken-spin: Kraken tilføjer Wilds, mønter eller kopier af ét betalende symbol på hjulene og kan tildele en gevinstmultiplikator for spinnet.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': 'Køb 6, 12 eller 18 gratisspins for __0__x din samlede indsats?',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': 'Køb gratisspins-funktionen for __0__x din samlede indsats.\nUdløsningsspinnet giver 6, 12 eller 18 gratisspins.',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Bonuskøb (kiste) — Åbner købsmenuen for gratisspins.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'ANTE-INDSATS',
 	'Ante Bet': 'Ante-indsats',
 	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Fordobl din samlede indsats for dobbelt chance for at udløse Kraken-spins og gratisspins. Ante-indsatsen forbliver aktiv, indtil du slår den fra.',
-	'Doubles the chance of Kraken Spins and Free Spins.': 'Fordobler chancen for Kraken-spins og gratisspins.',
+	'Doubles the chance of Kraken Spins and Free Spins.': 'Fordobler chancen for Kraken-spin og gratisspins.',
 	'ACTIVATE': 'AKTIVÉR',
 	'ON': 'TIL',
 	'OFF': 'FRA',
-	'DOUBLE CHANCE TO WIN FEATURES': 'DOBBELT CHANCE FOR AT VINDE FUNKTIONER',
+	'DOUBLE CHANCE TO WIN FEATURES': 'DOBBELT CHANCE PÅ\nALLE FUNKTIONER',
 	'MULTIPLIER': 'MULTIPLIKATOR',
-	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbol — ét almindeligt betalende symbol vælges, og kopier af det placeres på hjulene. Alle __0__ beregnes, når kopierne er på plads.',
+	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbol — ét almindeligt betalende symbol vælges, og kopier af det placeres på hjulene. Alle betalingslinjer beregnes, når kopierne er på plads.',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Ved ethvert gratisspin kan Kraken også tildele en gevinstmultiplikator for det pågældende spin. Den gælder alle gevinster fra spinnet, inklusive møntgevinster. Gevinstmultiplikatoren kan være op til x10.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Ante-indsatsen fordobler den samlede __0__ (x2). Den kan slås til eller fra når som helst, mens spillet er i ro.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Når Ante-indsatsen er aktiv, fordobles chancen for at udløse et Kraken-spin, og chancen for at udløse gratisspins fordobles.',
-	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Alle __0__-værdier forbliver multipla af det basale (ikke-fordoblede) __1__-beløb.',
+	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Alle udbetalingsværdier forbliver multipla af det basale (ikke-fordoblede) indsatsbeløb.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Ante-indsats (kontakt) — Slå Ante-indsatsen til eller fra.',
 	// FS intro card (v4, 2026-08-28) — badge captions
 	'EVERY SPIN IS A KRAKEN SPIN': 'HVERT SPIN ER ET KRAKEN-SPIN',
 	'MULTIPLIERS UP TO x10': 'MULTIPLIKATORER OP TIL x10',
-	'EACH BONUS AWARDS +1 SPIN': 'HVERT BONUS GIVER +1 SPIN',
+	'EACH BONUS AWARDS +1 SPIN': 'HVER BONUS GIVER +1 SPIN',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'CHANCE X2',
 };

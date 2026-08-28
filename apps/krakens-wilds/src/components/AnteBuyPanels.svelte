@@ -30,6 +30,9 @@
 
 	const context = getContext();
 	const social = $derived(stateUrlDerived.social());
+	// the BUY / BET word art is English lettering — every other locale draws
+	// the translated word as text in the same slot (social already did)
+	const isEn = $derived((stateUrlDerived.social() || stateUrlDerived.lang() === 'en'));
 
 	const CARD_ART_AR = 840 / 360;
 	// the ante zone draws the FULL loading-screen kraken (kraken_intro.webp),
@@ -37,6 +40,7 @@
 	const KRAKEN_ART_AR = 1448 / 1086;
 	const BUY_WORD_AR = 810 / 291; // panel_buy_txt_v4 source ratio
 	const BET_WORD_AR = 902 / 311; // panel_bet_txt_v4 source ratio
+	const PLAY_WORD_AR = 877 / 288; // panel_play_txt_v4 — social's BUY and BET
 	const PILL = { w: 419, h: 140 };
 	const KNOB = { offX: -89, onX: 89, w: 208, h: 108 };
 	const LABEL_OFF_X = 104;
@@ -61,7 +65,7 @@
 		price: { x: 0, y: -185 },
 		divider: { x: 0, y: -75, w: 600, h: 3 },
 		bet: { left: -290, y: 28 },
-		tagline: { x: 0, y: 185, maxW: 760 },
+		tagline: { x: 0, y: 185, maxW: 700 },
 		// the kraken is the toggle's BACKDROP, the pill sat low on it
 		pill: { x: 0, y: 705 },
 		// the whole 4:3 art, big — it owns the lower half of the ante zone,
@@ -237,7 +241,17 @@
 		}
 		return best === -1 ? raw : raw.slice(0, best) + '\n' + raw.slice(best + 1);
 	});
-	const amountFit = $derived(Math.min(1, s(BET_AMOUNT_MAX) / (betAmountSizes.width || 1)));
+	// the word art in the BET row (PLAY is wider than BET); the amount cap
+	// shrinks by the difference so the row's right edge stays where the BET
+	// layout put it instead of spilling past the plate rim
+	// non-EN text (EINSATZ, APUESTA, TARUHAN...) gets a 1.3x wider slot than the
+	// BET art: at the art's width those words shrank to ~55%. The amount's cap
+	// gives up the same 30%, so the row still ends at the plate rim.
+	const betWordAr = $derived(
+		social && isEn ? PLAY_WORD_AR : !isEn ? BET_WORD_AR * 1.3 : BET_WORD_AR,
+	);
+	const betAmountMax = $derived(BET_AMOUNT_MAX - (betWordAr - BET_WORD_AR) * BET_WORD_H);
+	const amountFit = $derived(Math.min(1, s(betAmountMax) / (betAmountSizes.width || 1)));
 	const buyPriceFit = $derived(Math.min(1, s(PRICE_MAX_W) / (buyPriceSizes.width || 1)));
 
 	const pStyle = (fontSize: number) => ({
@@ -253,10 +267,21 @@
 {#snippet betRow(rowLeftX: number, rowY: number)}
 	<!-- BET is pinned; only the amount adapts -->
 	<Container x={rowLeftX} y={rowY}>
-		{#if social}
-			<Text
+		{#if social && isEn}
+			<!-- social EN: the PLAY art in place of BET -->
+			<Sprite
+				key="panelPlayTxt"
 				anchor={{ x: 0, y: 0.5 }}
-				text={context.i18nDerived.playWord().toUpperCase()}
+				width={s(PLAY_WORD_AR * BET_WORD_H)}
+				height={s(BET_WORD_H)}
+			/>
+		{:else if social || !isEn}
+			<!-- capped to the art's slot so the amount's fixed offset still clears
+			     long words (СТАВКА, EINSATZ...) -->
+			<ResponsiveText
+				anchor={{ x: 0, y: 0.5 }}
+				maxWidth={s(betWordAr * BET_WORD_H)}
+				text={(social ? context.i18nDerived.playWord() : context.i18nDerived.bet()).toUpperCase()}
 				resolution={textResolution}
 				style={pStyle(s(BET_WORD_H))}
 			/>
@@ -270,7 +295,7 @@
 		{/if}
 		<Text
 			anchor={{ x: 0, y: 0.5 }}
-			x={s(BET_WORD_AR * BET_WORD_H + BET_ROW_GAP)}
+			x={s(betWordAr * BET_WORD_H + BET_ROW_GAP)}
 			text={anteBetCost}
 			resolution={textResolution}
 			style={pStyle(s(BET_WORD_H) * amountFit)}
@@ -324,11 +349,22 @@
 {/snippet}
 
 {#snippet buyTexts(wordX: number, wordY: number, wordW: number, socialSize: number, priceX: number, priceY: number)}
-	{#if social}
-		<Text
+	{#if social && isEn}
+		<!-- social EN: the PLAY art in place of BUY -->
+		<Sprite
+			key="panelPlayTxt"
 			anchor={0.5}
 			x={wordX}
 			y={wordY}
+			width={s(wordW)}
+			height={s(wordW / PLAY_WORD_AR)}
+		/>
+	{:else if social || !isEn}
+		<ResponsiveText
+			anchor={0.5}
+			x={wordX}
+			y={wordY}
+			maxWidth={s(wordW)}
 			text={context.i18nDerived.buyWord().toUpperCase()}
 			resolution={textResolution}
 			style={pStyle(s(socialSize))}

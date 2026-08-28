@@ -70,8 +70,17 @@
 	 * Awaiting one hangs the whole presentation — that is what froze finalWin's
 	 * payline cycle on its first line. Mirrors ReelSymbol's own hide rule.
 	 */
-	const isHiddenByOverlay = (reelSymbol: { rawSymbol: { name: string } }) =>
-		context.stateGame.overlaySymbols.some((symbol) => symbol.name === reelSymbol.rawSymbol.name);
+	const isHiddenByOverlay = (
+		reelSymbol: { rawSymbol: { name: string } },
+		pos: { reel: number; row: number },
+	) =>
+		context.stateGame.overlaySymbols.some(
+			(symbol) =>
+				symbol.name === reelSymbol.rawSymbol.name &&
+				(symbol.name === 'W' ||
+					symbol.name === 'C' ||
+					(symbol.reel === pos.reel && symbol.row === pos.row)),
+		);
 
 	const restoreIdleAnimations = () => {
 		const isFreegame = context.stateGame.gameType === 'freegame';
@@ -134,7 +143,7 @@
 					.filter((pos) => {
 						const reelSymbol = context.stateGame.board[pos.reel].reelState.symbols[pos.row];
 						// never await a symbol that is not on screen — it cannot complete
-						if (isHiddenByOverlay(reelSymbol)) return false;
+						if (isHiddenByOverlay(reelSymbol, pos)) return false;
 						// During free spins, skip W — moving wilds handle their win animation
 						if (hasMovingWilds) {
 							return reelSymbol.rawSymbol.name !== 'W';

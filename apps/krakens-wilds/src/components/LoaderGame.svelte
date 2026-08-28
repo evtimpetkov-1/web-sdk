@@ -192,7 +192,7 @@
 		width: 100%;
 		height: auto;
 		/* belt-and-braces: no inherited rule may ever stretch the lockup */
-		aspect-ratio: 999 / 639;
+		aspect-ratio: 1536 / 1024;
 		object-fit: contain;
 		filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.65));
 		animation: breathe 4.5s ease-in-out infinite;

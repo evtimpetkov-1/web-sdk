@@ -6,7 +6,7 @@ export default {
 	'STOP': 'DUR',
 	'BUY BONUS': 'BONUS SATIN AL',
 	'DISABLE': 'DEVRE DIŞI',
-	'FREE SPINS': 'BEDAVA DÖNÜŞLER',
+	'FREE SPINS': 'BEDAVA DÖNÜŞ',
 	'MENU': 'MENÜ',
 	'TURBO': 'TURBO',
 	'AUTO SPIN': 'OTOMATİK DÖNÜŞ',

@@ -4,7 +4,7 @@ export default {
 	'PRESS ANYWHERE TO CONTINUE': '画面をタップして続ける',
 	// FreeSpinIntro
 	'CONGRATULATIONS!': 'おめでとうございます！',
-	'YOU WON': '獲得額',
+	'YOU WON': '獲得',
 	// BoardFrame
 	'TOTAL WIN': '合計獲得額',
 	// LoadingScreen
@@ -55,14 +55,14 @@ export default {
 	'Disclaimer': '免責事項',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wildsは、5リール3行、20本の固定ペイラインを備えたビデオスロットです。配当の組み合わせは、最も左のリールから連続するリール上で左から右へ形成されます。各ペイラインで最も高い配当のみが支払われます。',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'ベースゲームの理論上のプレイヤー還元率（RTP）は96.52%です。アンティベット有効時のRTPは96.46%です。フィーチャー購入のRTPは96.42%です。最大獲得額は合計ベットの1,890.60倍です。',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'ベースゲームの理論上のプレイヤー還元率（RTP）は96.52%です。アンティベット有効時のRTPは96.46%です。フィーチャー購入のRTPは96.42%です。最大獲得額は、ベースゲームでは合計ベットの1,890.60倍、アンティベット有効時は1,978.00倍、フィーチャー購入時は2,536.70倍です。',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'すべての配当値は、合計ベット額の倍率として表示されます。',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'ワイルド（クラーケン）はボーナスシンボルとコインシンボルを除くすべてのシンボルの代わりになります。ワイルドの組み合わせには独自の配当値があります。',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': 'リール上の任意の位置にボーナスシンボルが3つ出現すると、6回のフリースピンが付与されます。',
 	'4 Bonus symbols award 12 Free Spins.': 'ボーナスシンボルが4つで12回のフリースピンが付与されます。',
 	'5 Bonus symbols award 18 Free Spins.': 'ボーナスシンボルが5つで18回のフリースピンが付与されます。',
 	'Every Free Spin is a Kraken Spin, adding Wild, Coin or paying-symbol copies to the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'すべてのフリースピンはクラーケンスピンであり、リールが停止する前にワイルド、コイン、または配当シンボルのコピーが追加されます。フリースピン中に出現したボーナスシンボル1つにつきフリースピンが1回追加され、再発動の回数に制限はありません。',
-	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'フリースピン機能は合計__1__の__0__で直接購入できます。購入した機能はボーナスシンボルで発動した場合とまったく同じように進行し、プレイヤー還元率も同じです。',
+	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'フリースピンフィーチャーは合計__1__の__0__で直接購入できます。購入したフィーチャーはボーナスシンボルで発動した場合とまったく同じように進行し、プレイヤー還元率も同じです。',
 	'Only the highest win per __0__ is __1__.': 'ペイラインごとに最も高い配当のみが支払われます。',
 	'Simultaneous wins on different __0__ are added together.': '異なるペイラインでの同時配当は合算されます。',
 	'__0__ wins and Bonus wins are added together.': 'ペイラインの配当とボーナスの配当は合算されます。',
@@ -91,12 +91,12 @@ export default {
 	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of three forms:': 'ベースゲームのスピンでは、クラーケンスピンが発動することがあります。発動すると、リールが停止する前にクラーケンが次の3つのいずれかの形で追加シンボルを配置します：',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'ワイルド — 1〜10個のワイルドシンボルがリールに配置されます。その後ペイラインが判定され、配当が支払われます。',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'コイン — 1〜10個のコインシンボルがリールに配置されます。まずペイラインが判定され、その後すべてのコインの値が合計されて付与されます。',
-	'Every spin during the Free Spins feature is a Kraken Spin.': 'フリースピン中は、すべてのスピンがクラーケンスピンです。',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'フリースピンフィーチャー中は、すべてのスピンがクラーケンスピンです。',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': '購入',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': '6回、12回、または18回のフリースピンを即座に発動します。すべてのフリースピンはクラーケンスピンです。クラーケンはワイルド、コイン、または1種類の配当シンボルのコピーをリールに追加し、そのスピンの勝利マルチプライヤーを付与することもあります。',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': '合計ベットの__0__倍で6回、12回、または18回のフリースピンを購入しますか？',
-	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'ボーナス購入（宝箱）— フリースピン購入メニューを開きます。',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': '合計ベットの__0__倍でフリースピンフィーチャーを購入。\nトリガースピンで6回、12回、または18回のフリースピンを獲得できます。',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'ボーナス購入（宝箱） — フリースピン購入メニューを開きます。',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'アンティベット',
 	'Ante Bet': 'アンティベット',
@@ -105,7 +105,7 @@ export default {
 	'ACTIVATE': '有効にする',
 	'ON': 'オン',
 	'OFF': 'オフ',
-	'DOUBLE CHANCE TO WIN FEATURES': '機能獲得のチャンスが2倍',
+	'DOUBLE CHANCE TO WIN FEATURES': '全フィーチャー\n獲得チャンス2倍',
 	'MULTIPLIER': 'マルチプライヤー',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'シンボル — 通常の配当シンボルが1種類選ばれ、そのコピーがリールに配置されます。配置後にすべての__0__が判定されます。',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'どのフリースピンでも、クラーケンはそのスピンの勝利マルチプライヤーを付与することがあります。マルチプライヤーはコインの勝利を含む、そのスピンのすべての勝利に適用されます。勝利マルチプライヤーは最大x10です。',
@@ -114,7 +114,9 @@ export default {
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'すべての__0__の値は、基本（2倍前）の__1__額の倍数のままです。',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'アンティベット（切替） — アンティベットのオン/オフを切り替えます。',
 	// FS intro card (v4, 2026-08-28) — badge captions
-	'EVERY SPIN IS A KRAKEN SPIN': '毎スピンがクラーケンスピン',
-	'MULTIPLIERS UP TO x10': 'マルチプライヤー最大x10',
-	'EACH BONUS AWARDS +1 SPIN': 'ボーナスごとに+1スピン',
+	'EVERY SPIN IS A KRAKEN SPIN': '毎スピンが\nクラーケンスピン',
+	'MULTIPLIERS UP TO x10': '倍率最大x10',
+	'EACH BONUS AWARDS +1 SPIN': 'ボーナスごとに\n+1スピン',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'チャンス X2',
 };

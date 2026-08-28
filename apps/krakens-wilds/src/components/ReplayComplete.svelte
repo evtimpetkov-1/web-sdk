@@ -61,17 +61,21 @@
 		style={{
 			...headingGold,
 			fontSize: Math.max(48 * s, 16),
-			letterSpacing: 12 * s,
+			// was 12*s: WIEDERHOLUNG / REDIFFUSION / PUTAR ULANG shrank to half
+			// size on a 390px portrait canvas from the tracking alone
+			letterSpacing: 6 * s,
 		}}
 	/>
 
-	<!-- Win or No Win -->
+	<!-- Win or No Win — width-capped: TOTAL KEMENANGAN / BRAK WYGRANEJ /
+	     НЕТ ВЫИГРЫША ran past a 390px portrait canvas as plain Text -->
 	{#if hasWin}
-		<Text
+		<ResponsiveText
 			text={i18nDerived.totalWin()}
 			anchor={0.5}
 			x={cx}
 			y={cy - 55 * s}
+			maxWidth={canvas.width * 0.9}
 			style={{
 				fontFamily: 'Cinzel',
 				fontWeight: '700',
@@ -98,11 +102,12 @@
 			}}
 		/>
 	{:else}
-		<Text
+		<ResponsiveText
 			text={i18nDerived.noWin()}
 			anchor={0.5}
 			x={cx}
 			y={cy - 20 * s}
+			maxWidth={canvas.width * 0.9}
 			style={{
 				fontFamily: 'Cinzel',
 				fontWeight: '700',
@@ -132,7 +137,7 @@
 
 	<!-- Play Again -->
 	<ResponsiveText
-		text={`▶  ${i18nDerived.playAgain()}`}
+		text={`▶ ${i18nDerived.playAgain()}`}
 		anchor={0.5}
 		x={cx}
 		y={cy + (hasWin ? 155 : 130) * s}

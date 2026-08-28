@@ -1,7 +1,7 @@
 export default {
 	'HOME': 'INÍCIO',
 	// PressToContinue
-	'PRESS ANYWHERE TO CONTINUE': 'TOQUE EM QUALQUER LUGAR PARA CONTINUAR',
+	'PRESS ANYWHERE TO CONTINUE': 'TOQUE PARA CONTINUAR',
 	// FreeSpinIntro
 	'CONGRATULATIONS!': 'PARABÉNS!',
 	'YOU WON': 'VOCÊ GANHOU',
@@ -55,13 +55,13 @@ export default {
 	'Disclaimer': 'Aviso legal',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds é uma slot de vídeo com 5 rolos, 3 linhas e 20 linhas de pagamento fixas. As combinações vencedoras formam-se da esquerda para a direita em rolos consecutivos, a partir do rolo mais à esquerda. Apenas o ganho mais alto de cada linha de pagamento é pago.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'O retorno teórico ao jogador (RTP) do jogo base é de 96,52%. Com a Aposta Ante ativa, o RTP é de 96,46%. O RTP da Compra de função é de 96,42%. O ganho máximo é de 1.890,60x a aposta total.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'O retorno teórico ao jogador (RTP) do jogo base é de 96,52%. Com a Aposta Ante ativa, o RTP é de 96,46%. O RTP da Compra de função é de 96,42%. O ganho máximo é de 1.890,60x a aposta total no jogo base, de 1.978,00x com a Aposta Ante ativa e de 2.536,70x na Compra de função.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Todos os valores de pagamento são apresentados como multiplicadores do valor total de aposta.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'O Wild (Kraken) substitui todos os símbolos exceto os símbolos Bónus e Moeda. As combinações de Wild concedem os seus próprios valores de pagamento.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 símbolos Bónus em qualquer posição nos rolos concedem 6 Rodadas Grátis.',
 	'4 Bonus symbols award 12 Free Spins.': '4 símbolos Bónus concedem 12 Rodadas Grátis.',
 	'5 Bonus symbols award 18 Free Spins.': '5 símbolos Bónus concedem 18 Rodadas Grátis.',
-	'Every Free Spin is a Kraken Spin, adding Wild, Coin or paying-symbol copies to the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Cada Rodada Grátis é uma Rodada do Kraken, que adiciona Wilds, Moedas ou cópias de um símbolo pagante aos rolos antes de estes pararem. Cada símbolo Bonus que aterra durante as Rodadas Grátis concede 1 Rodada Grátis adicional, sem limite de reativações.',
+	'Every Free Spin is a Kraken Spin, adding Wild, Coin or paying-symbol copies to the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Cada Rodada Grátis é uma Rodada do Kraken, que adiciona Wilds, Moedas ou cópias de um símbolo pagante aos rolos antes de estes pararem. Cada símbolo Bónus que aterra durante as Rodadas Grátis concede 1 Rodada Grátis adicional, sem limite de reativações.',
 	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'A função de Rodadas Grátis pode ser comprada diretamente por __0__ a __1__ total. Uma função comprada decorre exatamente como uma ativada por símbolos Bónus, e o retorno ao jogador é o mesmo.',
 	'Only the highest win per __0__ is __1__.': 'Apenas o ganho mais alto por linha de pagamento é pago.',
 	'Simultaneous wins on different __0__ are added together.': 'Ganhos simultâneos em diferentes linhas de pagamento são somados.',
@@ -70,7 +70,7 @@ export default {
 	// GameRules — UI guide
 	'Spin — Start a spin at the current __0__ amount.': 'Girar — Iniciar uma rodada com o valor de aposta atual.',
 	'Stop — Stop the reels early during a spin.': 'Parar — Parar os rolos antecipadamente durante uma rodada.',
-	'Auto Spin — Automatically spin a set number of times.': 'Auto Spin — Girar automaticamente um número definido de vezes.',
+	'Auto Spin — Automatically spin a set number of times.': 'Rodada automática — Girar automaticamente um número definido de vezes.',
 	'Turbo — Speed up reel animations.': 'Turbo — Acelerar as animações dos rolos.',
 	'+/− — Increase or decrease the __0__ amount.': '+/− — Aumentar ou diminuir o valor de aposta.',
 	'Menu (☰) — Open the settings menu.': 'Menu (☰) — Abrir o menu de definições.',
@@ -83,7 +83,7 @@ export default {
 	// Replay
 	'REPLAY': 'REPETIÇÃO',
 	'NO WIN': 'SEM GANHO',
-	'PLAY AGAIN': 'JOGAR NOVAMENTE',
+	'PLAY AGAIN': 'JOGAR DE NOVO',
 	// GameRules — disclaimer
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Uma avaria anula todos os ganhos e jogadas. É necessária uma ligação à internet estável. Em caso de desconexão, recarregue o jogo para concluir quaisquer rondas incompletas. O retorno esperado é calculado com base em muitas jogadas. A visualização do jogo não representa qualquer dispositivo físico e destina-se apenas a fins ilustrativos. Os ganhos são liquidados de acordo com o montante recebido do Servidor de Jogo Remoto e não com base em eventos no navegador web.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Aparece com um valor de __0__ da sua aposta total. Os valores das moedas são somados e adicionados a qualquer ganho de linha.',
@@ -93,28 +93,30 @@ export default {
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Moeda — são colocados 1 a 10 símbolos Moeda nos rolos. As linhas de pagamento são avaliadas primeiro e depois todos os valores das moedas são somados e atribuídos.',
 	'Every spin during the Free Spins feature is a Kraken Spin.': 'Durante as Rodadas Grátis, cada rodada é uma Rodada do Kraken.',
 	// buy-bonus popup + confirmation (betModeMeta)
-	'BUY': 'COMPRAR',
+	'BUY': 'COMPRA',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': 'Ativa de imediato 6, 12 ou 18 Rodadas Grátis. Cada Rodada Grátis é uma Rodada do Kraken: o Kraken adiciona Wilds, Moedas ou cópias de um símbolo pagante aos rolos e pode atribuir um multiplicador de ganhos à rodada.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': 'Comprar 6, 12 ou 18 Rodadas Grátis por __0__x a tua aposta total?',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': 'Compre a função de Rodadas Grátis por __0__x a sua aposta total.\nA rodada de ativação atribui 6, 12 ou 18 Rodadas Grátis.',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Compra de Bónus (baú) — Abre o menu de compra das Rodadas Grátis.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'APOSTA ANTE',
 	'Ante Bet': 'Aposta Ante',
-	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Duplica a tua aposta total para o dobro da probabilidade de ativar Rodadas do Kraken e Rodadas Grátis. A aposta Ante permanece ativa até a desligares.',
-	'Doubles the chance of Kraken Spins and Free Spins.': 'Duplica a probabilidade de Rodadas do Kraken e Rodadas Grátis.',
+	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Duplique a sua aposta total para o dobro da probabilidade de ativar Rodadas do Kraken e Rodadas Grátis. A Aposta Ante permanece ativa até a desativar.',
+	'Doubles the chance of Kraken Spins and Free Spins.': 'Duplica a probabilidade de Rodada do Kraken e Rodadas Grátis.',
 	'ACTIVATE': 'ATIVAR',
-	'ON': 'ON',
-	'OFF': 'OFF',
-	'DOUBLE CHANCE TO WIN FEATURES': 'DOBRO DE HIPÓTESES DE GANHAR FUNCIONALIDADES',
+	'ON': 'SIM',
+	'OFF': 'NÃO',
+	'DOUBLE CHANCE TO WIN FEATURES': 'DUPLA HIPÓTESE\nDE GANHAR FUNÇÕES',
 	'MULTIPLIER': 'MULTIPLICADOR',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Símbolo — é escolhido um símbolo pagante normal e cópias dele são colocadas nos rolos. Todas as __0__ são avaliadas assim que as cópias estão no lugar.',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Em qualquer Rodada Grátis, o Kraken também pode atribuir um multiplicador de ganhos a essa rodada. Aplica-se a todos os ganhos dessa rodada, incluindo os ganhos das Moedas. O multiplicador de ganhos pode ir até x10.',
-	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'A aposta Ante duplica a __0__ total (x2). Pode ser ativada ou desativada a qualquer momento enquanto o jogo está parado.',
-	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Enquanto a aposta Ante está ativa, a probabilidade de ativar uma Rodada do Kraken é duplicada, e a probabilidade de ativar Rodadas Grátis é duplicada.',
+	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'A Aposta Ante duplica a __0__ total (x2). Pode ser ativada ou desativada a qualquer momento enquanto o jogo está parado.',
+	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Enquanto a Aposta Ante está ativa, a probabilidade de ativar uma Rodada do Kraken é duplicada, e a probabilidade de ativar Rodadas Grátis é duplicada.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Todos os valores de __0__ continuam a ser múltiplos do valor de __1__ base (não duplicado).',
-	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Aposta Ante (interruptor) — Liga ou desliga a aposta Ante.',
+	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Aposta Ante (interruptor) — Liga ou desliga a Aposta Ante.',
 	// FS intro card (v4, 2026-08-28) — badge captions
 	'EVERY SPIN IS A KRAKEN SPIN': 'CADA RODADA É UMA RODADA DO KRAKEN',
 	'MULTIPLIERS UP TO x10': 'MULTIPLICADORES ATÉ x10',
 	'EACH BONUS AWARDS +1 SPIN': 'CADA BÓNUS ATRIBUI +1 RODADA',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'CHANCE X2',
 };

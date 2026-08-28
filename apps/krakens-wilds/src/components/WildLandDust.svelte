@@ -47,6 +47,11 @@
 		 * a cell; the multiplier's impact on the win box uses ~2.5.
 		 */
 		spread?: number;
+		/**
+		 * Particle lifetime multiplier. 1 is the wild-landing cloud (0.5-0.9s);
+		 * the stamp echoes use ~0.5 for a quick puff that clears with the reel.
+		 */
+		lifetimeScale?: number;
 	};
 
 	const props: Props = $props();
@@ -68,7 +73,7 @@
 		startRotation: { min: 0, max: 360 },
 		noRotation: false,
 		rotationSpeed: { min: -70, max: 70 },
-		lifetime: { min: 0.5, max: 0.9 },
+		lifetime: { min: 0.5 * (props.lifetimeScale ?? 1), max: 0.9 * (props.lifetimeScale ?? 1) },
 		blendMode: 'normal',
 		frequency: 0.008,
 		emitterLifetime: -1,

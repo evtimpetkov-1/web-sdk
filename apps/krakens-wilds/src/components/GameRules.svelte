@@ -18,7 +18,11 @@
 	const payTableName = $derived(social ? i18nDerived.winTableLabel() : i18nDerived.payTableLabel());
 	// quoted off the one list of coin values, never retyped in prose
 	const coinValues = COIN_MULTIPLIERS.map((m) => `${m}x`);
-	const coinRange = `${coinValues.slice(0, -1).join(', ')} or ${coinValues[coinValues.length - 1]}`;
+	// "1x, 2x or 5x" in the player's language — Intl.ListFormat supplies the
+	// locale's own "or" (social is English-only, LoadI18n forces en there)
+	const coinRange = new Intl.ListFormat(stateUrlDerived.social() ? 'en' : stateUrlDerived.lang(), {
+		type: 'disjunction',
+	}).format(coinValues);
 	// same rule for the buy cost — it is read off the bet mode the RGS is charging
 	const buyCost = `${config.betModes.bonus.cost}x`;
 </script>

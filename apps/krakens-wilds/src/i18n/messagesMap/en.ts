@@ -58,7 +58,7 @@ export default {
 	'Disclaimer': 'Disclaimer',
 	// GameRules — paragraphs (use __0__, __1__, __2__ for variable substitution)
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__ in the base game, 1,978.00x with Ante Bet active and 2,536.70x in the Buy Feature.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'All __0__ values are shown as multipliers of the total __1__ amount.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus symbols anywhere on the reels award 6 Free Spins.',
@@ -98,13 +98,13 @@ export default {
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'BUY',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': 'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': 'Buy 6, 12 or 18 Free Spins for __0__x your total bet?',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': 'Buy the Free Spins Feature for __0__x your total bet.\nThe Bonus trigger spin awards 6, 12 or 18 Free Spins.',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Bonus Buy (chest) — Opens the Free Spins buy menu.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'ANTE BET',
 	'Ante Bet': 'Ante Bet',
 	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.',
-	'Doubles the chance of Kraken Spins and Free Spins.': 'Doubles the chance of Kraken Spins and Free Spins.',
+	'Doubles the chance of Kraken Spins and Free Spins.': 'Doubles the chance of Kraken Spin and Free Spins.',
 	'ACTIVATE': 'ACTIVATE',
 	'ON': 'ON',
 	'OFF': 'OFF',
@@ -120,4 +120,6 @@ export default {
 	'EVERY SPIN IS A KRAKEN SPIN': 'EVERY SPIN IS A KRAKEN SPIN',
 	'MULTIPLIERS UP TO x10': 'MULTIPLIERS UP TO x10',
 	'EACH BONUS AWARDS +1 SPIN': 'EACH BONUS AWARDS +1 SPIN',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'CHANCE X2',
 };

@@ -37,10 +37,20 @@
 	// symbol can be any paying symbol) — hiding those as they scroll past punched
 	// visible holes into the spinning reels. The moving symbols pass behind the
 	// shaded board; only the landed symbol under the overlay copy must not draw.
+	// W/C overlay copies claim every board symbol of their kind (the board is the
+	// source of those). A stamped paying symbol (SYMBOL kraken spin) claims only
+	// ITS cell: the book lists the stamped positions, and natural copies of the
+	// same symbol elsewhere on the board must land in the open with the reel
+	// stop — hiding them by name punched holes into the settled reels until the
+	// overlay was released.
 	const hiddenByOverlay = $derived(
 		props.reelSymbol.symbolState !== 'spin' &&
 			context.stateGame.overlaySymbols.some(
-				(symbol) => symbol.name === props.reelSymbol.rawSymbol.name,
+				(symbol) =>
+					symbol.name === props.reelSymbol.rawSymbol.name &&
+					(symbol.name === 'W' ||
+						symbol.name === 'C' ||
+						(symbol.reel === props.reelIndex && symbol.row === props.reelSymbol.symbolIndex)),
 			),
 	);
 	const coinMultiplier = $derived(

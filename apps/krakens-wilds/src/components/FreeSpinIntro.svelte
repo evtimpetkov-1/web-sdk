@@ -22,7 +22,7 @@
 
 	// English draws the baked title art (you_won/free_spins strips); every
 	// other locale falls back to headingGold text on the same rows.
-	const useArtTitles = stateUrlDerived.lang() === 'en';
+	const useArtTitles = (stateUrlDerived.social() || stateUrlDerived.lang() === 'en');
 
 	/**
 	 * v4 card layout (2026-08-28, per the mockup): the stone frame is drawn

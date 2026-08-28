@@ -28,18 +28,18 @@ type BookEventReveal = {
 	 * SYMBOL kraken spins only: the regular paying symbol the kraken chose and
 	 * replicated (measured off a real RGS book, 2026-08-24 — the math names the
 	 * field `symbol`). The copies are ordinary board symbols, so this field is
-	 * the only way to know which symbol the attack stamped — the FE presents
-	 * EVERY visible board instance of it as kraken-placed (natural and placed
-	 * copies are indistinguishable, which is also how WILD attacks already
-	 * read). A SYMBOL reveal without this field plays as a normal spin.
+	 * the only way to know which symbol the attack stamped. A SYMBOL reveal
+	 * without this field plays as a normal spin.
 	 */
 	symbol?: SymbolName;
 	/**
-	 * WILD and SYMBOL kraken spins: where the kraken placed its copies. The FE
-	 * deliberately IGNORES this and scans the board instead — ReelSymbol hides
-	 * board symbols by NAME while the overlay holds one of their kind, so every
-	 * visible instance needs an overlay twin, including natural ones this list
-	 * does not cover (a real SYMBOL book showed 9 board instances vs 6 listed).
+	 * WILD and SYMBOL kraken spins: where the kraken placed its copies (padded
+	 * rows 1..3, as in winInfo). SYMBOL spins present exactly these cells as
+	 * kraken-placed mid-spin; natural copies of the same symbol elsewhere land
+	 * with the reel stop (a real book: 6 listed of 9 on the board), so the
+	 * outcome is not fully shown before the reels stop. WILD spins still read
+	 * the board (every wild is a real `wild: true` symbol). Missing or empty on
+	 * a SYMBOL spin -> every visible instance is presented, as before.
 	 */
 	positions?: Position[];
 	/**

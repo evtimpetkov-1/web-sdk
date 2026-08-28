@@ -1,7 +1,7 @@
 export default {
 	'HOME': 'ГЛАВНАЯ',
 	// PressToContinue
-	'PRESS ANYWHERE TO CONTINUE': 'НАЖМИТЕ В ЛЮБОМ МЕСТЕ, ЧТОБЫ ПРОДОЛЖИТЬ',
+	'PRESS ANYWHERE TO CONTINUE': 'НАЖМИТЕ, ЧТОБЫ ПРОДОЛЖИТЬ',
 	// FreeSpinIntro
 	'CONGRATULATIONS!': 'ПОЗДРАВЛЯЕМ!',
 	'YOU WON': 'ВЫ ВЫИГРАЛИ',
@@ -55,14 +55,14 @@ export default {
 	'Disclaimer': 'Отказ от ответственности',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds — это видеослот с 5 барабанами, 3 рядами и 20 фиксированными линиями выплат. Выигрышные комбинации формируются слева направо на соседних барабанах, начиная с крайнего левого. Выплачивается только максимальный выигрыш на каждой линии выплат.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Теоретический возврат игроку (RTP) основной игры составляет 96,52%. При активной Анте-ставке RTP составляет 96,46%. RTP Покупки функции — 96,42%. Максимальный выигрыш — 1 890,60x от общей ставки.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Теоретический возврат игроку (RTP) основной игры составляет 96,52%. При активной Анте-ставке RTP составляет 96,46%. RTP Покупки функции — 96,42%. Максимальный выигрыш — 1 890,60x от общей ставки в основной игре, 1 978,00x при активной Анте-ставке и 2 536,70x в Покупке функции.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Все значения выплат отображаются как множители общей суммы ставки.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Кракен) заменяет все символы, кроме символов Bonus и Монеты. Комбинации Wild приносят собственные выплаты.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 символа Bonus в любом месте на барабанах дают 6 Бесплатных Вращений.',
 	'4 Bonus symbols award 12 Free Spins.': '4 символа Bonus дают 12 Бесплатных Вращений.',
 	'5 Bonus symbols award 18 Free Spins.': '5 символов Bonus дают 18 Бесплатных Вращений.',
 	'Every Free Spin is a Kraken Spin, adding Wild, Coin or paying-symbol copies to the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Каждое Бесплатное Вращение — это Вращение Кракена: до остановки барабанов на них добавляются символы Wild, Монеты или копии оплачиваемого символа. Каждый символ Bonus, выпавший во время Бесплатных Вращений, даёт 1 дополнительное вращение — без ограничения повторных запусков.',
-	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Функцию Бесплатных Вращений можно купить напрямую за __0__ от общей __1__. Купленная функция проходит точно так же, как запущенная символами Bonus, и возврат игроку не меняется.',
+	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Функцию Бесплатных Вращений можно купить напрямую за __0__ от общей ставки. Купленная функция проходит точно так же, как запущенная символами Bonus, и возврат игроку не меняется.',
 	'Only the highest win per __0__ is __1__.': 'Выплачивается только максимальный выигрыш на линии выплат.',
 	'Simultaneous wins on different __0__ are added together.': 'Одновременные выигрыши на разных линиях выплат суммируются.',
 	'__0__ wins and Bonus wins are added together.': 'Выигрыши по линиям и выигрыши Bonus суммируются.',
@@ -95,26 +95,28 @@ export default {
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'КУПИТЬ',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': 'Мгновенно запускает 6, 12 или 18 Бесплатных Вращений. Каждое Бесплатное Вращение — это Вращение Кракена: Кракен добавляет на барабаны символы Wild, Монеты или копии одного оплачиваемого символа и может назначить множитель выигрыша для вращения.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': 'Купить 6, 12 или 18 Бесплатных Вращений за __0__x от общей ставки?',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': 'Купите функцию Бесплатных Вращений за __0__x от общей ставки.\nЗапускающее вращение даёт 6, 12 или 18 Бесплатных Вращений.',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Покупка бонуса (сундук) — Открывает меню покупки Бесплатных Вращений.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'АНТЕ-СТАВКА',
 	'Ante Bet': 'Анте-ставка',
 	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Удвойте общую ставку ради удвоенного шанса запуска Вращений Кракена и Бесплатных Вращений. Анте-ставка остаётся активной, пока вы её не выключите.',
-	'Doubles the chance of Kraken Spins and Free Spins.': 'Удваивает шанс Вращений Кракена и Бесплатных Вращений.',
-	'ACTIVATE': 'АКТИВИРОВАТЬ',
+	'Doubles the chance of Kraken Spins and Free Spins.': 'Удваивает шанс Вращения Кракена и Бесплатных Вращений.',
+	'ACTIVATE': 'ВКЛЮЧИТЬ',
 	'ON': 'ВКЛ',
 	'OFF': 'ВЫКЛ',
-	'DOUBLE CHANCE TO WIN FEATURES': 'ДВОЙНОЙ ШАНС ВЫИГРАТЬ ФУНКЦИИ',
+	'DOUBLE CHANCE TO WIN FEATURES': 'ДВОЙНОЙ ШАНС\nНА ВСЕ ФУНКЦИИ',
 	'MULTIPLIER': 'МНОЖИТЕЛЬ',
-	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Символ — выбирается один обычный оплачиваемый символ, и его копии размещаются на барабанах. Все __0__ рассчитываются после размещения копий.',
+	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Символ — выбирается один обычный оплачиваемый символ, и его копии размещаются на барабанах. Все линии выплат рассчитываются после размещения копий.',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'На любом Бесплатном Вращении Кракен может дополнительно назначить множитель выигрыша для этого вращения. Он применяется ко всем выигрышам этого вращения, включая выигрыши Монет. Множитель выигрыша может достигать x10.',
-	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Анте-ставка удваивает общую сумму: __0__ x2. Её можно включить или выключить в любой момент, пока игра находится в режиме ожидания.',
+	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Анте-ставка удваивает общую ставку (x2). Её можно включить или выключить в любой момент, пока игра находится в режиме ожидания.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Пока Анте-ставка активна, шанс запуска Вращения Кракена удваивается, и шанс запуска Бесплатных Вращений удваивается.',
-	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Все значения __0__ остаются кратными базовой (неудвоенной) сумме __1__.',
+	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Все значения выплат остаются кратными базовой (неудвоенной) сумме ставки.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Анте-ставка (переключатель) — Включает или выключает Анте-ставку.',
 	// FS intro card (v4, 2026-08-28) — badge captions
-	'EVERY SPIN IS A KRAKEN SPIN': 'КАЖДОЕ ВРАЩЕНИЕ — ВРАЩЕНИЕ КРАКЕНА',
+	'EVERY SPIN IS A KRAKEN SPIN': 'КАЖДЫЙ СПИН —\nСПИН КРАКЕНА',
 	'MULTIPLIERS UP TO x10': 'МНОЖИТЕЛИ ДО x10',
-	'EACH BONUS AWARDS +1 SPIN': 'КАЖДЫЙ BONUS ДАЁТ +1 ВРАЩЕНИЕ',
+	'EACH BONUS AWARDS +1 SPIN': 'КАЖДЫЙ BONUS\nДАЁТ +1 СПИН',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'ШАНС X2',
 };

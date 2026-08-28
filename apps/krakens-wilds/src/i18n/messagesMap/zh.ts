@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': '免责声明',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds是一款5轴3行的视频老虎机，拥有20条固定赔付线。中奖组合从最左侧转轴开始，在连续转轴上从左到右形成。每条赔付线仅支付最高奖金。',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': '基础游戏的理论玩家回报率（RTP）为96.52%。启用底注投注时RTP为96.46%。购买功能的RTP为96.42%。最大赢额为总投注的1,890.60倍。',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': '基础游戏的理论玩家回报率（RTP）为96.52%。启用底注投注时RTP为96.46%。购买功能的RTP为96.42%。最大赢额为：基础游戏中总投注的1,890.60倍，启用底注投注时为1,978.00倍，购买功能中为2,536.70倍。',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': '所有赔付值均显示为总投注金额的倍数。',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': '百搭（海怪）替代除奖励符号和金币符号以外的所有符号。百搭组合拥有自己的赔付值。',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '转轴上任意位置出现3个奖励符号可获得6次免费旋转。',
@@ -86,16 +86,16 @@ export default {
 	'PLAY AGAIN': '再玩一次',
 	// GameRules — disclaimer
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': '故障将使所有奖金和游戏无效。需要稳定的互联网连接。如果断开连接，请重新加载游戏以完成未完成的回合。预期回报率是基于多次游戏计算的。游戏显示不代表任何实体设备，仅供说明之用。奖金根据从远程游戏服务器收到的金额结算，而非根据网页浏览器中的事件。',
-	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': '以您总投注的__0__值出现。金币值将被累加并计入任何连线奖金。',
+	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': '以您总投注的__0__值出现。所有金币面值将被累加，并在任何连线奖金之外额外发放。',
 	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': '金币符号出现时会显示其面值，为您总投注的__0__。金币不构成连线奖金——转轴上所有金币的面值将被累加，并作为额外赔付发放。',
 	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of three forms:': '基础游戏的任何一次旋转都可能触发海怪旋转。触发时，海怪会在转轴停止前以下列三种形式之一放置额外符号：',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': '百搭 — 转轴上放置1至10个百搭符号。随后计算赔付线并进行支付。',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': '金币 — 转轴上放置1至10个金币符号。先计算赔付线，然后累加并发放所有金币面值。',
-	'Every spin during the Free Spins feature is a Kraken Spin.': '免费旋转期间，每次旋转都是海怪旋转。',
+	'Every spin during the Free Spins feature is a Kraken Spin.': '免费旋转功能期间，每次旋转都是海怪旋转。',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': '购买',
-	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': '立即触发6次、12次或18次免费旋转。每次免费旋转都是海怪旋转：海怪会向转轴添加百搭、金币或某一个赔付符号的复制，并可能为该次旋转发放赢奖倍数。',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': '以总投注的__0__倍购买6次、12次或18次免费旋转？',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': '立即触发6次、12次或18次免费旋转。每次免费旋转都是海怪旋转：海怪会向转轴添加百搭、金币或某一个赔付符号的复制，并可能为该次旋转发放奖金倍数。',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': '以总投注的__0__倍购买免费旋转功能。\n触发旋转将奖励6次、12次或18次免费旋转。',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': '购买奖励（宝箱）— 打开免费旋转购买菜单。',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': '底注投注',
@@ -105,16 +105,18 @@ export default {
 	'ACTIVATE': '启用',
 	'ON': '开',
 	'OFF': '关',
-	'DOUBLE CHANCE TO WIN FEATURES': '赢得特色功能的几率翻倍',
+	'DOUBLE CHANCE TO WIN FEATURES': '赢得所有功能\n几率翻倍',
 	'MULTIPLIER': '倍数',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': '符号 — 选中一个普通赔付符号并将其复制放置到转轴上。放置完成后计算所有__0__。',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': '在任意一次免费旋转中，海怪还可能为该次旋转发放赢奖倍数。该倍数适用于该次旋转的所有赢奖，包括金币赢奖。赢奖倍数最高可达x10。',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': '在任意一次免费旋转中，海怪还可能为该次旋转发放奖金倍数。该倍数适用于该次旋转的所有奖金，包括金币奖金。奖金倍数最高可达x10。',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': '底注投注使总__0__翻倍（x2）。游戏处于空闲状态时可随时开启或关闭。',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': '底注投注启用时，触发海怪旋转的几率翻倍，触发免费旋转的几率也翻倍。',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': '所有__0__值仍为基础（未翻倍）__1__金额的倍数。',
-	'Ante Bet (toggle) — Turn Ante Bet on or off.': '底注投注（开关） — 开启或关闭底注投注。',
+	'Ante Bet (toggle) — Turn Ante Bet on or off.': '底注投注（开关）— 开启或关闭底注投注。',
 	// FS intro card (v4, 2026-08-28) — badge captions
 	'EVERY SPIN IS A KRAKEN SPIN': '每次旋转都是海怪旋转',
 	'MULTIPLIERS UP TO x10': '倍数最高x10',
 	'EACH BONUS AWARDS +1 SPIN': '每个奖励符号+1次旋转',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': '机会 X2',
 };

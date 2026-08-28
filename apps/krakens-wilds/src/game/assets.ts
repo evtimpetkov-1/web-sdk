@@ -225,6 +225,12 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/sprites/panels/panel_buy_txt_v4.webp', import.meta.url).href,
 	},
+	// social mode (EN): PLAY replaces both the BUY and the BET word art
+	panelPlayTxt: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/panels/panel_play_txt_v4.webp', import.meta.url).href,
+	},
 	bonusActive: {
 		type: 'sprite',
 		mipmap: true,

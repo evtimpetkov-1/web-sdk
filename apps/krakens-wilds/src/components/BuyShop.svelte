@@ -14,7 +14,13 @@
 		'../../assets/sprites/loading/free_spins_text_en.webp',
 		import.meta.url,
 	).href;
-	const useTitleArt = stateUrlDerived.lang() === 'en';
+	// the ante card's header art — CHANCE X2 gold lettering (original PNG,
+	// untouched: the webp round-trip mangled it)
+	const anteChanceImg = new URL(
+		'../../assets/sprites/betmodes/ante_chance_x2_en.png',
+		import.meta.url,
+	).href;
+	const useTitleArt = (stateUrlDerived.social() || stateUrlDerived.lang() === 'en');
 
 	/**
 	 * The feature-buy screen, built from scratch (2026-08-26) as a fullscreen
@@ -101,15 +107,15 @@
 		<button class="close" aria-label="Close" onclick={close}><span></span><span></span></button>
 
 		<div class="content">
-			{#if useTitleArt}
-				<img class="screen-title-art" src={freeSpinsTextImg} alt={buyMode?.text?.title} draggable="false" />
-			{:else}
-				<h1 class="screen-title">{buyMode?.text?.title}</h1>
-			{/if}
-
 			<div class="offers" class:single={!showAnte}>
-				<!-- FEATURE BUY offer -->
+				<!-- FEATURE BUY offer — the FREE SPINS title is the card's own
+				     header (2026-08-28), not a screen-level banner -->
 				<div class="offer">
+					{#if useTitleArt}
+						<img class="card-title-art" src={freeSpinsTextImg} alt={buyMode?.text?.title} draggable="false" />
+					{:else}
+						<h2 class="offer-title">{buyMode?.text?.title}</h2>
+					{/if}
 					<div class="art-halo">
 						<img class="art" src={buyMode?.assets?.dialogImage} alt="" draggable="false" />
 					</div>
@@ -122,14 +128,20 @@
 
 				{#if showAnte}
 					<div class="offer">
+						<!-- CHANCE X2 header art, top of the card — same row as the
+						     buy card's FREE SPINS header -->
+						{#if useTitleArt}
+							<img class="card-title-art chance" src={anteChanceImg} alt={context.i18nDerived.chanceX2()} draggable="false" />
+						{:else}
+							<h2 class="offer-title">{context.i18nDerived.chanceX2()}</h2>
+						{/if}
 						<div class="art-halo teal">
 							<img class="art" src={anteMode?.assets?.dialogImage} alt="" draggable="false" />
 						</div>
-						<h2 class="offer-title">{anteMode?.text?.title}</h2>
 						<p class="pitch">{anteMode?.text?.description}</p>
 						<div class="price-plate">{antePrice}</div>
 						<button
-							class="cta teal"
+							class="cta gold"
 							disabled={!anteActive && !anteAffordable}
 							onclick={() => choose('ANTE')}
 						>
@@ -153,12 +165,12 @@
 			>
 				{#snippet children({ disabledDown, disabledUp, toggleDown, toggleUp })}
 					<div class="stepper">
-						<button class="chip down" disabled={disabledDown} onclick={toggleDown} aria-label="Lower bet"></button>
+						<button class="chip down" disabled={disabledDown} onclick={toggleDown} aria-label="Lower"></button>
 						<div class="stake">
-							<span class="stake-label">{context.i18nDerived.betWord?.() ?? 'BET'}</span>
+							<span class="stake-label">{stateUrlDerived.social() ? context.i18nDerived.playWord() : context.i18nDerived.betWord()}</span>
 							<span class="stake-value">{numberToCurrencyString(stateBet.betAmount)}</span>
 						</div>
-						<button class="chip up" disabled={disabledUp} onclick={toggleUp} aria-label="Raise bet"></button>
+						<button class="chip up" disabled={disabledUp} onclick={toggleUp} aria-label="Raise"></button>
 					</div>
 				{/snippet}
 			</OptionsToggle>
@@ -196,38 +208,23 @@
 		scrollbar-width: none;
 	}
 
-	/* the big gradient-gold display title — the non-EN fallback. Sized well under
-	   the English art: translations run long ("БЕСПЛАТНЫЕ ВРАЩЕНИЯ"), wrap to
-	   two lines and were colliding with the close button at art-scale sizes. */
-	.screen-title {
-		margin: 0;
-		/* 68vw, same as the art: keeps the wrapped title clear of the close
-		   button's corner on narrow phones */
-		max-width: min(68vw, 640px);
-		text-align: center;
-		line-height: 1.15;
-		text-wrap: balance;
-		font-family: 'Cinzel', serif;
-		font-weight: 700;
-		font-size: clamp(1.3rem, 3.4vw, 2.2rem);
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		background: linear-gradient(180deg, #fff6cf 0%, #ffd94e 38%, #e8a41f 62%, #9c6206 100%);
-		-webkit-background-clip: text;
-		background-clip: text;
-		color: transparent;
-		filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 22px rgba(255, 200, 60, 0.3));
-	}
-
-	.screen-title-art {
-		/* sized by WIDTH, not vh: the art is a 6.2:1 strip, so a vh height made
-		   its box grow WIDE on short screens and slide under the close button,
-		   eating its taps. 68vw leaves the close button's corner clear on any
-		   phone; 495px reproduces the old 80px height on desktop. */
-		width: min(68vw, 495px);
-		height: auto;
+	/* the baked card headers (EN art): FREE SPINS on the buy card, CHANCE X2
+	   on the ante card. Sized by a SHARED height so the two strips sit on one
+	   line across the cards; contain keeps narrow cards from squashing them. */
+	.card-title-art {
+		--title-h: clamp(34px, 6vh, 46px);
+		height: var(--title-h);
+		width: auto;
+		max-width: 94%;
+		object-fit: contain;
 		filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.7));
 		user-select: none;
+	}
+	/* CHANCE X2 runs a touch smaller than FREE SPINS; the margins keep its
+	   row exactly --title-h tall so the two headers stay on one line */
+	.card-title-art.chance {
+		height: calc(var(--title-h) * 0.85);
+		margin-block: calc(var(--title-h) * 0.075);
 	}
 
 	.offers {
@@ -285,6 +282,10 @@
 
 	.offer-title {
 		margin: 0;
+		/* long translations wrap — keep them a centred block, not rag-left */
+		text-align: center;
+		text-wrap: balance;
+		line-height: 1.2;
 		font-family: 'Cinzel', serif;
 		font-weight: 700;
 		font-size: clamp(1.05rem, 2vw, 1.4rem);
@@ -297,6 +298,8 @@
 		margin: 0;
 		max-width: 34ch;
 		text-align: center;
+		/* the buy copy carries a deliberate \n between its two sentences */
+		white-space: pre-line;
 		font-size: clamp(1.05rem, 1.9vw, 1.35rem);
 		font-weight: 600;
 		line-height: 1.4;
@@ -304,8 +307,11 @@
 		text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
 	}
 
-	/* gold, so the price separates from the white description above it */
+	/* gold, so the price separates from the white description above it.
+	   margin-top auto pins the price+CTA pair to the card bottoms — the two
+	   cards stretch to equal height, so BUY and ACTIVATE land on one line. */
 	.price-plate {
+		margin-top: auto;
 		font-family: 'Cinzel', serif;
 		font-weight: 700;
 		font-size: clamp(1.35rem, 2.6vw, 1.9rem);

@@ -1,7 +1,7 @@
 export default {
 	'HOME': 'ACCUEIL',
 	// PressToContinue
-	'PRESS ANYWHERE TO CONTINUE': 'APPUYEZ N\'IMPORTE OÙ POUR CONTINUER',
+	'PRESS ANYWHERE TO CONTINUE': 'APPUYEZ POUR CONTINUER',
 	// FreeSpinIntro
 	'CONGRATULATIONS!': 'FÉLICITATIONS !',
 	'YOU WON': 'VOUS AVEZ GAGNÉ',
@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Avertissement',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds est une machine à sous vidéo à 5 rouleaux et 3 rangées avec 20 lignes de paiement fixes. Les combinaisons gagnantes se forment de gauche à droite sur des rouleaux consécutifs, en commençant par le rouleau le plus à gauche. Seul le gain le plus élevé de chaque ligne de paiement est payé.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Le taux de retour au joueur (RTP) théorique du jeu de base est de 96,52 %. Avec la Mise Ante active, le RTP est de 96,46 %. Le RTP de l\'Achat de fonctionnalité est de 96,42 %. Le gain maximum est de 1 890,60x la mise totale.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Le taux de retour au joueur (RTP) théorique du jeu de base est de 96,52 %. Avec la Mise Ante active, le RTP est de 96,46 %. Le RTP de l\'Achat de fonctionnalité est de 96,42 %. Le gain maximum est de 1 890,60x la mise totale dans le jeu de base, de 1 978,00x avec la Mise Ante active et de 2 536,70x dans l\'Achat de fonctionnalité.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Toutes les valeurs de paiement sont affichées comme multiplicateurs du montant total de mise.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Le Wild (Kraken) remplace tous les symboles sauf les symboles Bonus et Pièce. Les combinaisons de Wilds accordent leurs propres valeurs de paiement.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 symboles Bonus n\'importe où sur les rouleaux attribuent 6 tours gratuits.',
@@ -69,7 +69,7 @@ export default {
 	'Bonus symbols award Free Spins in any position; they do not need to land on a __0__.': 'Les symboles Bonus accordent des tours gratuits dans n\'importe quelle position ; ils n\'ont pas besoin d\'apparaître sur une ligne de paiement.',
 	// GameRules — UI guide
 	'Spin — Start a spin at the current __0__ amount.': 'Tourner — Lancer un tour avec le montant actuel de mise.',
-	'Stop — Stop the reels early during a spin.': 'Arrêter — Arrêter les rouleaux en avance pendant un tour.',
+	'Stop — Stop the reels early during a spin.': 'Arrêter — Arrêter les rouleaux plus tôt pendant un tour.',
 	'Auto Spin — Automatically spin a set number of times.': 'Tour automatique — Tourner automatiquement un nombre défini de fois.',
 	'Turbo — Speed up reel animations.': 'Turbo — Accélérer les animations des rouleaux.',
 	'+/− — Increase or decrease the __0__ amount.': '+/− — Augmenter ou diminuer le montant de mise.',
@@ -82,7 +82,7 @@ export default {
 	'Win Table': 'Table des gains',
 	// Replay
 	'REPLAY': 'REDIFFUSION',
-	'NO WIN': 'PAS DE GAIN',
+	'NO WIN': 'AUCUN GAIN',
 	'PLAY AGAIN': 'REJOUER',
 	// GameRules — disclaimer
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Tout dysfonctionnement annule tous les gains et parties. Une connexion internet stable est requise. En cas de déconnexion, rechargez le jeu pour terminer les tours incomplets. Le rendement attendu est calculé sur de nombreuses parties. L\'affichage du jeu ne représente aucun appareil physique et est uniquement à titre illustratif. Les gains sont réglés selon le montant reçu du serveur de jeu distant et non selon les événements du navigateur web.',
@@ -91,30 +91,32 @@ export default {
 	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of three forms:': 'Chaque tour du jeu de base peut déclencher un tour du Kraken. Le cas échéant, le Kraken place des symboles supplémentaires sur les rouleaux avant leur arrêt, sous l\'une de trois formes :',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — 1 à 10 symboles Wild sont placés sur les rouleaux. Les lignes de paiement sont ensuite évaluées et payées.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Pièce — 1 à 10 symboles Pièce sont placés sur les rouleaux. Les lignes de paiement sont évaluées en premier, puis toutes les valeurs des pièces sont additionnées et accordées.',
-	'Every spin during the Free Spins feature is a Kraken Spin.': 'Pendant les tours gratuits, chaque tour est un tour du Kraken.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': 'Pendant la fonctionnalité de tours gratuits, chaque tour est un tour du Kraken.',
 	// buy-bonus popup + confirmation (betModeMeta)
-	'BUY': 'ACHETER',
+	'BUY': 'ACHAT',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': 'Déclenche instantanément 6, 12 ou 18 tours gratuits. Chaque tour gratuit est un tour du Kraken : le Kraken ajoute des Wild, des Pièces ou des copies d\'un symbole payant sur les rouleaux, et peut accorder un multiplicateur de gains pour le tour.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': 'Acheter 6, 12 ou 18 tours gratuits pour __0__x votre mise totale ?',
-	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Achat de Bonus (coffre) — Ouvre le menu d’achat des tours gratuits.',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': 'Achetez la fonctionnalité tours gratuits pour __0__x votre mise totale.\nLe tour déclencheur accorde 6, 12 ou 18 tours gratuits.',
+	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Achat de Bonus (coffre) — Ouvre le menu d\'achat des tours gratuits.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'MISE ANTE',
 	'Ante Bet': 'Mise Ante',
-	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Doublez votre mise totale pour doubler la probabilité de déclencher des tours du Kraken et des tours gratuits. La mise Ante reste active jusqu\'à ce que vous la désactiviez.',
-	'Doubles the chance of Kraken Spins and Free Spins.': 'Double la probabilité de tours du Kraken et de tours gratuits.',
+	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Doublez votre mise totale pour doubler la probabilité de déclencher des tours du Kraken et des tours gratuits. La Mise Ante reste active jusqu\'à ce que vous la désactiviez.',
+	'Doubles the chance of Kraken Spins and Free Spins.': 'Double la probabilité de tour du Kraken et de tours gratuits.',
 	'ACTIVATE': 'ACTIVER',
-	'ON': 'ON',
-	'OFF': 'OFF',
-	'DOUBLE CHANCE TO WIN FEATURES': 'DOUBLE CHANCE D\'OBTENIR DES FONCTIONNALITÉS',
+	'ON': 'OUI',
+	'OFF': 'NON',
+	'DOUBLE CHANCE TO WIN FEATURES': 'CHANCES DOUBLÉES\nSUR LES FONCTIONS',
 	'MULTIPLIER': 'MULTIPLICATEUR',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbole — un symbole payant normal est choisi et des copies en sont placées sur les rouleaux. Toutes les __0__ sont évaluées une fois les copies en place.',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'À chaque tour gratuit, le Kraken peut également accorder un multiplicateur de gains pour ce tour. Il s\'applique à tous les gains de ce tour, y compris les gains des Pièces. Le multiplicateur de gains peut atteindre x10.',
-	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'La mise Ante double la __0__ totale (x2). Elle peut être activée ou désactivée à tout moment lorsque le jeu est au repos.',
-	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Lorsque la mise Ante est active, la probabilité de déclencher un tour du Kraken est doublée, et la probabilité de déclencher les tours gratuits est doublée.',
+	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'La Mise Ante double la __0__ totale (x2). Elle peut être activée ou désactivée à tout moment lorsque le jeu est au repos.',
+	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Lorsque la Mise Ante est active, la probabilité de déclencher un tour du Kraken est doublée, et la probabilité de déclencher les tours gratuits est doublée.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Toutes les valeurs de __0__ restent des multiples du montant de __1__ de base (non doublé).',
-	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Mise Ante (interrupteur) — Active ou désactive la mise Ante.',
+	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Mise Ante (interrupteur) — Active ou désactive la Mise Ante.',
 	// FS intro card (v4, 2026-08-28) — badge captions
 	'EVERY SPIN IS A KRAKEN SPIN': 'CHAQUE TOUR EST UN TOUR DU KRAKEN',
 	'MULTIPLIERS UP TO x10': 'MULTIPLICATEURS JUSQU\'À x10',
 	'EACH BONUS AWARDS +1 SPIN': 'CHAQUE BONUS ACCORDE +1 TOUR',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'CHANCE X2',
 };

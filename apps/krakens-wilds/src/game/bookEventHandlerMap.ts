@@ -42,19 +42,30 @@ const readSpecials = (board: BookEventOfType<'reveal'>['board']) => {
 };
 
 /**
- * A SYMBOL kraken spin's bounty: every visible instance of the replicated
- * symbol. The copies are ordinary board symbols, so placed and natural ones are
- * indistinguishable — ALL of them present as kraken-placed, exactly the way a
- * WILD attack already claims every wild on the board. (ReelSymbol hides board
- * symbols by NAME while the overlay holds one of their kind, so covering every
- * instance is also what keeps the two layers from doubling up.)
+ * A SYMBOL kraken spin's bounty: the cells the kraken actually stamped, read
+ * off the reveal's `positions` (padded rows 1..3, same convention as winInfo).
+ * Only THOSE present as kraken-placed mid-spin; any natural copies of the same
+ * symbol land with the reel stop like any other symbol — presenting every
+ * board instance as placed (the previous behaviour) read as rigged, because
+ * the result was fully known before the reels stopped. Each listed cell is
+ * checked against the board; a book without a usable list (hand-authored
+ * preview books) falls back to every visible instance.
  */
 const readReplicated = (
 	board: BookEventOfType<'reveal'>['board'],
 	stampSymbol: BookEventOfType<'reveal'>['symbol'],
+	listed: BookEventOfType<'reveal'>['positions'],
 ) => {
 	const positions: Position[] = [];
 	if (!stampSymbol) return positions;
+	for (const pos of listed ?? []) {
+		const onBoard =
+			pos.row >= 1 && pos.row <= BOARD_DIMENSIONS.y && board[pos.reel]?.[pos.row]?.name === stampSymbol;
+		if (onBoard && !positions.some((p) => p.reel === pos.reel && p.row === pos.row)) {
+			positions.push({ reel: pos.reel, row: pos.row });
+		}
+	}
+	if (positions.length > 0) return positions;
 	for (let reel = 0; reel < board.length; reel++) {
 		for (let row = 1; row <= BOARD_DIMENSIONS.y; row++) {
 			if (board[reel]?.[row]?.name === stampSymbol) positions.push({ reel, row });
@@ -174,6 +185,8 @@ const revealOverlaySymbols = async () => {
  */
 const clearOverlay = () => {
 	stateGame.overlaySymbols = [];
+	stateGame.naturalStampCells = [];
+	stateGame.stampEchoes = [];
 };
 
 /**
@@ -323,10 +336,15 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_reel_spin' });
 
 		const { wilds: wildPositions, coins: coinPositions } = readSpecials(bookEvent.board);
-		// The math names the replicated symbol `symbol` on the reveal; the placed
-		// positions it also sends are ignored on purpose — see typesBookEvent.
+		// The math names the replicated symbol `symbol` on the reveal and lists the
+		// cells it stamped in `positions` — see typesBookEvent.
 		const stampSymbol = bookEvent.spinType === 'SYMBOL' ? bookEvent.symbol : undefined;
-		const stampPositions = readReplicated(bookEvent.board, stampSymbol);
+		const stampPositions = readReplicated(bookEvent.board, stampSymbol, bookEvent.positions);
+		// the stamped symbol's natural copies — every visible instance the list
+		// left out. They land with the reels and puff the kraken's dust on landing.
+		stateGame.naturalStampCells = readReplicated(bookEvent.board, stampSymbol, undefined).filter(
+			(cell) => !stampPositions.some((p) => p.reel === cell.reel && p.row === cell.row),
+		);
 		// The kraken's per-spin win multiplier (free spins only, spec v2.1) —
 		// `globalMult` on the reveal, riding on any attack kind.
 		const spinMultiplier =

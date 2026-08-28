@@ -39,7 +39,7 @@
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
 
 	// English gets the baked text art; other locales keep the text label.
-	const useTextArt = stateUrlDerived.lang() === 'en';
+	const useTextArt = (stateUrlDerived.social() || stateUrlDerived.lang() === 'en');
 	const PATC_RATIO = 1277 / 100; // press_anywhere_en.webp
 
 	// Portrait sizes the prompt on its own terms: its main box is only 800 wide,

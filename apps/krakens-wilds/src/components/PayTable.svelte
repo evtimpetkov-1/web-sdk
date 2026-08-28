@@ -23,7 +23,11 @@
 	const title = $derived(social ? i18nDerived.symbolWins() : i18nDerived.payLinesHeader());
 	// quoted off the one list of coin values, never retyped in prose
 	const coinValues = COIN_MULTIPLIERS.map((m) => `${m}x`);
-	const coinList = `${coinValues.slice(0, -1).join(', ')} or ${coinValues[coinValues.length - 1]}`;
+	// "1x, 2x or 5x" in the player's language — Intl.ListFormat supplies the
+	// locale's own "or" (social is English-only, LoadI18n forces en there)
+	const coinList = new Intl.ListFormat(stateUrlDerived.social() ? 'en' : stateUrlDerived.lang(), {
+		type: 'disjunction',
+	}).format(coinValues);
 	const bet = $derived(stateBet.betAmount);
 	// social mode must not say "bet" — same swap the rules page does
 	const betLabel = $derived(social ? i18nDerived.playWord() : i18nDerived.betWord());
@@ -151,7 +155,7 @@
 			</section>
 
 			<div class="version-wrap">
-				v1.0.0
+				v1.0.3
 			</div>
 		</div>
 	</Popup>

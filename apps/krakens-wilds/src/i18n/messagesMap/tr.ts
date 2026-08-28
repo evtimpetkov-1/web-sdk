@@ -1,7 +1,7 @@
 export default {
 	'HOME': 'ANA SAYFA',
 	// PressToContinue
-	'PRESS ANYWHERE TO CONTINUE': 'DEVAM ETMEK İÇİN HERHANGİ BİR YERE BASIN',
+	'PRESS ANYWHERE TO CONTINUE': 'DEVAM İÇİN DOKUNUN',
 	// FreeSpinIntro
 	'CONGRATULATIONS!': 'TEBRİKLER!',
 	'YOU WON': 'KAZANDINIZ',
@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Sorumluluk reddi',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds, 5 makara, 3 sıra ve 20 sabit ödeme hattına sahip bir video slot oyunudur. Kazanan kombinasyonlar, en soldaki makaradan başlayarak ardışık makaralarda soldan sağa oluşur. Her ödeme hattında yalnızca en yüksek kazanç ödenir.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Ana oyunun teorik oyuncuya dönüş oranı (RTP) %96,52\'dir. Ante Bahsi etkinken RTP %96,46\'dır. Özellik Satın Al RTP\'si %96,42\'dir. Maksimum kazanç, toplam bahsin 1.890,60 katıdır.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Ana oyunun teorik oyuncuya dönüş oranı (RTP) %96,52\'dir. Ante Bahsi etkinken RTP %96,46\'dır. Özellik Satın Al RTP\'si %96,42\'dir. Maksimum kazanç ana oyunda toplam bahsin 1.890,60 katı, Ante Bahsi etkinken 1.978,00 katı ve Özellik Satın Al\'da 2.536,70 katıdır.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Tüm ödeme değerleri, toplam bahis tutarının katları olarak gösterilir.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken), Bonus ve Madeni Para sembolleri hariç tüm sembollerin yerine geçer. Wild kombinasyonlarının kendi ödeme değerleri vardır.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': 'Makaralarda herhangi bir yerde 3 Bonus sembolü 6 Bedava Dönüş verir.',
@@ -86,8 +86,8 @@ export default {
 	'PLAY AGAIN': 'TEKRAR OYNA',
 	// GameRules — disclaimer
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Arıza, tüm kazançları ve oyunları geçersiz kılar. Kararlı bir internet bağlantısı gereklidir. Bağlantı kesilmesi durumunda, tamamlanmamış turları bitirmek için oyunu yeniden yükleyin. Beklenen getiri birçok oyun üzerinden hesaplanır. Oyun ekranı herhangi bir fiziksel cihazı temsil etmez ve yalnızca açıklama amaçlıdır. Kazançlar, web tarayıcısındaki olaylara göre değil, Uzak Oyun Sunucusundan alınan tutara göre belirlenir.',
-	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Toplam bahsinizin __0__ değeriyle gelir. Madeni Para değerleri toplanır ve her çizgi kazancına eklenir.',
-	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Madeni Para sembolü, üzerinde gösterilen bir değerle gelir; bu değer toplam bahsinizin __0__ kadarıdır. Madeni Paralar çizgi kazancı oluşturmaz — makaralardaki tüm Madeni Para değerleri toplanır ve ek ödeme olarak verilir.',
+	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Toplam bahsinizin __0__ değeriyle gelir. Madeni Para değerleri toplanır ve her ödeme hattı kazancına eklenir.',
+	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Madeni Para sembolü, üzerinde gösterilen bir değerle gelir; bu değer toplam bahsinizin __0__ kadarıdır. Madeni Paralar ödeme hattı kazancı oluşturmaz — makaralardaki tüm Madeni Para değerleri toplanır ve ek ödeme olarak verilir.',
 	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of three forms:': 'Ana oyundaki her dönüş bir Kraken Dönüşü tetikleyebilir. Bu durumda Kraken, makaralar durmadan önce onlara üç biçimden birinde ek semboller yerleştirir:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — makaralara 1 ila 10 Wild sembolü yerleştirilir. Ardından ödeme hatları değerlendirilir ve ödenir.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Madeni Para — makaralara 1 ila 10 Madeni Para sembolü yerleştirilir. Önce ödeme hatları değerlendirilir, ardından tüm Madeni Para değerleri toplanır ve verilir.',
@@ -95,26 +95,28 @@ export default {
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'SATIN AL',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': 'Anında 6, 12 veya 18 Bedava Dönüş başlatır. Her Bedava Dönüş bir Kraken Dönüşüdür: Kraken makaralara Wild, Madeni Para veya tek bir ödeme sembolünün kopyalarını ekler ve o dönüş için kazanç çarpanı verebilir.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': 'Toplam bahsinin __0__ katına 6, 12 veya 18 Bedava Dönüş satın alınsın mı?',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': 'Bedava Dönüş özelliğini toplam bahsinizin __0__ katına satın alın.\nTetikleyen dönüş 6, 12 veya 18 Bedava Dönüş verir.',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Bonus Satın Alma (sandık) — Bedava Dönüşler satın alma menüsünü açar.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'ANTE BAHSİ',
 	'Ante Bet': 'Ante Bahsi',
-	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Kraken Dönüşlerini ve Bedava Dönüşleri tetikleme şansını iki katına çıkarmak için toplam bahsinizi iki katına çıkarın. Ante bahsi siz kapatana kadar etkin kalır.',
-	'Doubles the chance of Kraken Spins and Free Spins.': 'Kraken Dönüşleri ve Bedava Dönüş şansını iki katına çıkarır.',
+	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Kraken Dönüşlerini ve Bedava Dönüşleri tetikleme şansını iki katına çıkarmak için toplam bahsinizi iki katına çıkarın. Ante Bahsi siz kapatana kadar etkin kalır.',
+	'Doubles the chance of Kraken Spins and Free Spins.': 'Kraken Dönüşü ve Bedava Dönüş şansını iki katına çıkarır.',
 	'ACTIVATE': 'ETKİNLEŞTİR',
 	'ON': 'AÇIK',
 	'OFF': 'KAPALI',
-	'DOUBLE CHANCE TO WIN FEATURES': 'ÖZELLİK KAZANMA ŞANSI 2 KAT',
+	'DOUBLE CHANCE TO WIN FEATURES': 'TÜM ÖZELLİKLERDE\n2 KAT ŞANS',
 	'MULTIPLIER': 'ÇARPAN',
-	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Sembol — normal bir ödeme sembolü seçilir ve kopyaları makaralara yerleştirilir. Kopyalar yerleştikten sonra tüm __0__ değerlendirilir.',
+	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Sembol — normal bir ödeme sembolü seçilir ve kopyaları makaralara yerleştirilir. Kopyalar yerleştikten sonra tüm ödeme hatları değerlendirilir.',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Herhangi bir Bedava Dönüşte Kraken o dönüş için ayrıca bir kazanç çarpanı verebilir. Çarpan, Madeni Para kazançları dahil o dönüşteki tüm kazançlara uygulanır. Kazanç çarpanı en fazla x10 olabilir.',
-	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Ante bahsi toplam __0__ tutarını iki katına (x2) çıkarır. Oyun boştayken istediğiniz an açılıp kapatılabilir.',
-	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Ante bahsi etkinken Kraken Dönüşü tetiklenme olasılığı iki katına çıkar ve Bedava Dönüşlerin tetiklenme olasılığı iki katına çıkar.',
+	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': 'Ante Bahsi toplam __0__ tutarını iki katına (x2) çıkarır. Oyun boştayken istediğiniz an açılıp kapatılabilir.',
+	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': 'Ante Bahsi etkinken Kraken Dönüşü tetiklenme olasılığı iki katına çıkar ve Bedava Dönüşlerin tetiklenme olasılığı iki katına çıkar.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Tüm __0__ değerleri, temel (iki katına çıkarılmamış) __1__ tutarının katları olarak kalır.',
-	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Ante Bahsi (anahtar) — Ante bahsini açar veya kapatır.',
+	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Ante Bahsi (anahtar) — Ante Bahsini açar veya kapatır.',
 	// FS intro card (v4, 2026-08-28) — badge captions
 	'EVERY SPIN IS A KRAKEN SPIN': 'HER DÖNÜŞ BİR KRAKEN DÖNÜŞÜDÜR',
 	'MULTIPLIERS UP TO x10': 'EN FAZLA x10 ÇARPAN',
 	'EACH BONUS AWARDS +1 SPIN': 'HER BONUS +1 DÖNÜŞ VERİR',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'ŞANS X2',
 };

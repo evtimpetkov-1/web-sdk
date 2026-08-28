@@ -14,7 +14,7 @@
 	).href;
 	// the baked art is the FREE SPINS lettering — only the buy mode's title
 	const useTitleArt = $derived(
-		stateUrlDerived.lang() === 'en' && stateBonus.selectedBetModeKey === 'BONUS',
+		(stateUrlDerived.social() || stateUrlDerived.lang() === 'en') && stateBonus.selectedBetModeKey === 'BONUS',
 	);
 
 	/**
@@ -138,6 +138,9 @@
 
 	.screen-title {
 		margin: 0;
+		text-align: center;
+		text-wrap: balance;
+		line-height: 1.15;
 		font-family: 'Cinzel', serif;
 		font-weight: 700;
 		font-size: clamp(1.7rem, 4.4vw, 2.8rem);

@@ -1,12 +1,12 @@
 export default {
 	'HOME': 'BERANDA',
 	// PressToContinue
-	'PRESS ANYWHERE TO CONTINUE': 'TEKAN DI MANA SAJA UNTUK MELANJUTKAN',
+	'PRESS ANYWHERE TO CONTINUE': 'KETUK UNTUK LANJUT',
 	// FreeSpinIntro
 	'CONGRATULATIONS!': 'SELAMAT!',
 	'YOU WON': 'ANDA MENANG',
 	// BoardFrame
-	'TOTAL WIN': 'TOTAL KEMENANGAN',
+	'TOTAL WIN': 'TOTAL MENANG',
 	// LoadingScreen
 	'KRAKEN SPIN': 'PUTARAN KRAKEN',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': 'Dapatkan 3, 4, atau 5 simbol Bonus di mana saja pada gulungan untuk memenangkan 6, 12, atau 18 Putaran Gratis. Setiap Putaran Gratis adalah Putaran Kraken.',
@@ -52,10 +52,10 @@ export default {
 	'Buy Feature': 'Beli Fitur',
 	'General Rules': 'Aturan Umum',
 	'User Interface Guide': 'Panduan Antarmuka Pengguna',
-	'Disclaimer': 'Penyangkalan',
+	'Disclaimer': 'Penafian',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds adalah slot video 5-gulungan, 3-baris dengan 20 garis pembayaran tetap. Kombinasi kemenangan terbentuk dari kiri ke kanan pada gulungan yang berurutan, dimulai dari gulungan paling kiri. Hanya kemenangan tertinggi pada setiap garis pembayaran yang dibayarkan.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Pengembalian teoretis ke pemain (RTP) permainan dasar adalah 96,52%. Dengan Taruhan Ante aktif, RTP adalah 96,46%. RTP Beli Fitur adalah 96,42%. Kemenangan maksimum adalah 1.890,60x total taruhan.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Pengembalian teoretis ke pemain (RTP) permainan dasar adalah 96,52%. Dengan Taruhan Ante aktif, RTP adalah 96,46%. RTP Beli Fitur adalah 96,42%. Kemenangan maksimum adalah 1.890,60x total taruhan di permainan dasar, 1.978,00x dengan Taruhan Ante aktif, dan 2.536,70x di Beli Fitur.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Semua nilai pembayaran ditampilkan sebagai pengali dari jumlah total taruhan.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken) menggantikan semua simbol kecuali simbol Bonus dan Koin. Kombinasi Wild memberikan nilai pembayarannya sendiri.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 simbol Bonus di mana saja pada gulungan memberikan 6 Putaran Gratis.',
@@ -75,7 +75,7 @@ export default {
 	'+/− — Increase or decrease the __0__ amount.': '+/− — Tingkatkan atau kurangi jumlah taruhan.',
 	'Menu (☰) — Open the settings menu.': 'Menu (☰) — Buka menu pengaturan.',
 	'__0__ — View symbol __1__ values and __2__.': 'Tabel Pembayaran — Lihat nilai pembayaran simbol dan garis pembayaran.',
-	'Game Rules — View the game rules and disclaimer.': 'Aturan Permainan — Lihat aturan permainan dan penyangkalan.',
+	'Game Rules — View the game rules and disclaimer.': 'Aturan Permainan — Lihat aturan permainan dan penafian.',
 	'Sound — Toggle game sounds on or off.': 'Suara — Aktifkan atau nonaktifkan suara permainan.',
 	'Settings — Adjust game settings.': 'Pengaturan — Sesuaikan pengaturan permainan.',
 	'Pay Table': 'Tabel Pembayaran',
@@ -95,7 +95,7 @@ export default {
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'BELI',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': 'Langsung memicu 6, 12, atau 18 Putaran Gratis. Setiap Putaran Gratis adalah Putaran Kraken: Kraken menambahkan Wild, Koin, atau salinan satu simbol pembayar pada gulungan, dan dapat memberikan pengganda kemenangan untuk putaran itu.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': 'Beli 6, 12, atau 18 Putaran Gratis seharga __0__x total taruhan Anda?',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': 'Beli Fitur Putaran Gratis seharga __0__x total taruhan Anda.\nPutaran pemicu Bonus memberikan 6, 12, atau 18 Putaran Gratis.',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Beli Bonus (peti) — Membuka menu pembelian Putaran Gratis.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'TARUHAN ANTE',
@@ -105,7 +105,7 @@ export default {
 	'ACTIVATE': 'AKTIFKAN',
 	'ON': 'AKTIF',
 	'OFF': 'MATI',
-	'DOUBLE CHANCE TO WIN FEATURES': 'PELUANG GANDA MEMENANGKAN FITUR',
+	'DOUBLE CHANCE TO WIN FEATURES': 'PELUANG GANDA\nUNTUK SEMUA FITUR',
 	'MULTIPLIER': 'PENGGANDA',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Simbol — satu simbol pembayar biasa dipilih dan salinannya ditempatkan pada gulungan. Semua __0__ dievaluasi setelah salinan terpasang.',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Pada Putaran Gratis mana pun, Kraken juga dapat memberikan pengganda kemenangan untuk putaran itu. Pengganda berlaku untuk semua kemenangan dari putaran tersebut, termasuk kemenangan Koin. Pengganda kemenangan bisa mencapai x10.',
@@ -114,7 +114,9 @@ export default {
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Semua nilai __0__ tetap merupakan kelipatan dari jumlah __1__ dasar (yang tidak digandakan).',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Taruhan Ante (sakelar) — Mengaktifkan atau menonaktifkan Taruhan Ante.',
 	// FS intro card (v4, 2026-08-28) — badge captions
-	'EVERY SPIN IS A KRAKEN SPIN': 'SETIAP PUTARAN ADALAH PUTARAN KRAKEN',
+	'EVERY SPIN IS A KRAKEN SPIN': 'SETIAP SPIN ADALAH KRAKEN SPIN',
 	'MULTIPLIERS UP TO x10': 'PENGGANDA HINGGA x10',
-	'EACH BONUS AWARDS +1 SPIN': 'SETIAP BONUS MEMBERI +1 PUTARAN',
+	'EACH BONUS AWARDS +1 SPIN': 'TIAP BONUS +1 SPIN',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'PELUANG X2',
 };

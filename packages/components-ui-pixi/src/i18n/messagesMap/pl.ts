@@ -6,7 +6,7 @@ export default {
 	'STOP': 'STOP',
 	'BUY BONUS': 'KUP BONUS',
 	'DISABLE': 'WYŁĄCZ',
-	'FREE SPINS': 'DARMOWE OBROTY',
+	'FREE SPINS': 'DARMOWE SPINY',
 	'MENU': 'MENU',
 	'TURBO': 'TURBO',
 	'AUTO SPIN': 'AUTOOBRÓT',

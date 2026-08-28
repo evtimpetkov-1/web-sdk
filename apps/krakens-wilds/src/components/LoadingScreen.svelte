@@ -38,7 +38,7 @@
 
 	// English gets the baked gold header art (same pattern as the FS intro's
 	// title sprites); every other locale falls back to the text labels.
-	const useTextArt = stateUrlDerived.lang() === 'en';
+	const useTextArt = (stateUrlDerived.social() || stateUrlDerived.lang() === 'en');
 	const KRAKEN_SPIN_RATIO = 705 / 100; // kraken_spin_text_en.webp
 	// v4 art (2026-08-27) is 4:3 — much taller than the old 1.75:1, so both
 	// layouts run it narrower to hold the same height budget over the headers

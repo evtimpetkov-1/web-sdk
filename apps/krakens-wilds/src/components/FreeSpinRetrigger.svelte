@@ -51,7 +51,7 @@
 	 * crop for free); other locales keep their plural label, as no singular
 	 * translation key exists.
 	 */
-	const useBakedArt = stateUrlDerived.lang() === 'en';
+	const useBakedArt = (stateUrlDerived.social() || stateUrlDerived.lang() === 'en');
 	/**
 	 * Where the spine letters actually SAT. Their setup pose is at skeleton
 	 * origin, but every retrigger_* animation holds fs_grp translated to spine

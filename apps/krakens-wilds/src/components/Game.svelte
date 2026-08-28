@@ -209,7 +209,7 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 {#snippet version()}
 	<!-- shown in the Pay Table + Game Rules footers. 1.0.0 was the rejected
 	     (2026-07-31) submission; 2.0.0 is the reworked resubmission. -->
-	<GameVersion version="2.0.0" />
+	<GameVersion version="1.0.3" />
 {/snippet}
 <!--
 	The shared modal set, composed HERE rather than via <Modals> so the two BUY

@@ -1,10 +1,10 @@
 export default {
 	'HOME': 'STARTSEITE',
 	// PressToContinue
-	'PRESS ANYWHERE TO CONTINUE': 'DRÜCKE IRGENDWO UM FORTZUFAHREN',
+	'PRESS ANYWHERE TO CONTINUE': 'DRÜCKE IRGENDWO, UM FORTZUFAHREN',
 	// FreeSpinIntro
 	'CONGRATULATIONS!': 'HERZLICHEN GLÜCKWUNSCH!',
-	'YOU WON': 'DU HAST GEWONNEN',
+	'YOU WON': 'GEWONNEN',
 	// BoardFrame
 	'TOTAL WIN': 'GESAMTGEWINN',
 	// LoadingScreen
@@ -55,14 +55,14 @@ export default {
 	'Disclaimer': 'Haftungsausschluss',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds ist ein Video-Slot mit 5 Walzen, 3 Reihen und 20 festen Gewinnlinien. Gewinnkombinationen bilden sich von links nach rechts auf aufeinanderfolgenden Walzen, beginnend mit der linken Walze. Nur der höchste Gewinn pro Gewinnlinie wird ausgezahlt.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Die theoretische Auszahlungsquote (RTP) des Hauptspiels beträgt 96,52 %. Mit aktivem Ante-Einsatz beträgt die RTP 96,46 %. Die RTP der Kauffunktion beträgt 96,42 %. Der maximale Gewinn beträgt das 1.890,60-Fache des Gesamteinsatzes.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Die theoretische Auszahlungsquote (RTP) des Hauptspiels beträgt 96,52 %. Mit aktivem Ante-Einsatz beträgt die RTP 96,46 %. Die RTP der Kauffunktion beträgt 96,42 %. Der maximale Gewinn beträgt das 1.890,60-Fache des Gesamteinsatzes im Hauptspiel, das 1.978,00-Fache mit aktivem Ante-Einsatz und das 2.536,70-Fache in der Kauffunktion.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Alle Auszahlungswerte werden als Vielfache des Gesamteinsatzes angezeigt.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Das Wild (Kraken) ersetzt alle Symbole außer dem Bonus- und dem Münz-Symbol. Wild-Kombinationen gewähren eigene Auszahlungswerte.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 Bonus-Symbole irgendwo auf den Walzen vergeben 6 Freispiele.',
 	'4 Bonus symbols award 12 Free Spins.': '4 Bonus-Symbole vergeben 12 Freispiele.',
 	'5 Bonus symbols award 18 Free Spins.': '5 Bonus-Symbole vergeben 18 Freispiele.',
 	'Every Free Spin is a Kraken Spin, adding Wild, Coin or paying-symbol copies to the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': 'Jedes Freispiel ist eine Kraken-Drehung und setzt Wilds, Münzen oder Kopien eines Gewinnsymbols auf die Walzen, bevor diese zum Stillstand kommen. Jedes während der Freispiele landende Bonus-Symbol gewährt 1 zusätzliches Freispiel; die Anzahl der erneuten Auslösungen ist unbegrenzt.',
-	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Die Freispiel-Funktion kann direkt für __0__ des Gesamt-__1__ gekauft werden. Eine gekaufte Funktion läuft genau wie eine durch Bonus-Symbole ausgelöste ab, und die Auszahlungsquote ist dieselbe.',
+	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': 'Die Freispiel-Funktion kann direkt für __0__ den Gesamteinsatz gekauft werden. Eine gekaufte Funktion läuft genau wie eine durch Bonus-Symbole ausgelöste ab, und die Auszahlungsquote ist dieselbe.',
 	'Only the highest win per __0__ is __1__.': 'Nur der höchste Gewinn pro Gewinnlinie wird ausgezahlt.',
 	'Simultaneous wins on different __0__ are added together.': 'Gleichzeitige Gewinne auf verschiedenen Gewinnlinien werden zusammengezählt.',
 	'__0__ wins and Bonus wins are added together.': 'Gewinnlinien-Gewinne und Bonus-Gewinne werden zusammengezählt.',
@@ -83,7 +83,7 @@ export default {
 	// Replay
 	'REPLAY': 'WIEDERHOLUNG',
 	'NO WIN': 'KEIN GEWINN',
-	'PLAY AGAIN': 'NOCHMAL SPIELEN',
+	'PLAY AGAIN': 'ERNEUT SPIELEN',
 	// GameRules — disclaimer
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Fehlfunktionen machen alle Gewinne und Spiele ungültig. Eine stabile Internetverbindung ist erforderlich. Bei einer Unterbrechung laden Sie das Spiel neu, um nicht abgeschlossene Runden zu beenden. Die erwartete Rendite wird über viele Spiele berechnet. Die Spielanzeige stellt kein physisches Gerät dar und dient nur zur Veranschaulichung. Gewinne werden gemäß dem vom Remote Game Server empfangenen Betrag abgerechnet und nicht anhand von Ereignissen im Webbrowser.',
 	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Landet mit einem Wert von __0__ deines Gesamteinsatzes. Münzwerte werden summiert und zu jedem Liniengewinn addiert.',
@@ -95,17 +95,17 @@ export default {
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'KAUFEN',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': 'Löst sofort 6, 12 oder 18 Freispiele aus. Jedes Freispiel ist eine Kraken-Drehung: Der Kraken setzt Wilds, Münzen oder Kopien eines Gewinnsymbols auf die Walzen und kann einen Gewinnmultiplikator für die Drehung vergeben.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': '6, 12 oder 18 Freispiele für das __0__-Fache deines Gesamteinsatzes kaufen?',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': 'Kaufe die Freispiel-Funktion für das __0__-Fache deines Gesamteinsatzes.\nDie auslösende Drehung vergibt 6, 12 oder 18 Freispiele.',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Bonuskauf (Truhe) — Öffnet das Kaufmenü für die Freispiele.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'ANTE-EINSATZ',
 	'Ante Bet': 'Ante-Einsatz',
 	'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.': 'Verdopple deinen Gesamteinsatz für die doppelte Chance auf Kraken-Drehungen und Freispiele. Der Ante-Einsatz bleibt aktiv, bis du ihn ausschaltest.',
-	'Doubles the chance of Kraken Spins and Free Spins.': 'Verdoppelt die Chance auf Kraken-Drehungen und Freispiele.',
+	'Doubles the chance of Kraken Spins and Free Spins.': 'Verdoppelt die Chance auf Kraken-Drehung und Freispiele.',
 	'ACTIVATE': 'AKTIVIEREN',
 	'ON': 'AN',
 	'OFF': 'AUS',
-	'DOUBLE CHANCE TO WIN FEATURES': 'DOPPELTE CHANCE AUF FEATURES',
+	'DOUBLE CHANCE TO WIN FEATURES': 'DOPPELTE CHANCE AUF\nALLE FEATURES',
 	'MULTIPLIER': 'MULTIPLIKATOR',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Symbol — ein reguläres Gewinnsymbol wird gewählt und Kopien davon werden auf die Walzen gesetzt. Alle __0__ werden ausgewertet, sobald die Kopien platziert sind.',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Bei jedem Freispiel kann der Kraken zusätzlich einen Gewinnmultiplikator für diese Drehung vergeben. Er gilt für alle Gewinne dieser Drehung, einschließlich Münzgewinnen. Der Gewinnmultiplikator kann bis zu x10 betragen.',
@@ -114,7 +114,9 @@ export default {
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': 'Alle __0__-Werte bleiben Vielfache des einfachen (nicht verdoppelten) __1__-Betrags.',
 	'Ante Bet (toggle) — Turn Ante Bet on or off.': 'Ante-Einsatz (Schalter) — Ante-Einsatz ein- oder ausschalten.',
 	// FS intro card (v4, 2026-08-28) — badge captions
-	'EVERY SPIN IS A KRAKEN SPIN': 'JEDE DREHUNG IST EINE KRAKEN-DREHUNG',
+	'EVERY SPIN IS A KRAKEN SPIN': 'JEDER SPIN IST\nEIN KRAKEN-SPIN',
 	'MULTIPLIERS UP TO x10': 'MULTIPLIKATOREN BIS x10',
-	'EACH BONUS AWARDS +1 SPIN': 'JEDES BONUS GIBT +1 DREHUNG',
+	'EACH BONUS AWARDS +1 SPIN': 'PRO BONUS +1 SPIN',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'CHANCE X2',
 };

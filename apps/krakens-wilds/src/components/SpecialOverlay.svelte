@@ -139,3 +139,16 @@
 		{/if}
 	</Container>
 {/each}
+
+<!--
+	A SYMBOL kraken spin's NATURAL copies (the board instances the book did not
+	list as stamped) land with the reels, in the open. Each gets the same puff
+	of the kraken's dust the stamped copies had, at the moment it lands, so the
+	full set reads as the kraken's doing. Entries are dropped by onSymbolLand
+	once the dust has drained; the container stays mounted until then.
+-->
+{#each context.stateGame.stampEchoes as echo (echo.id)}
+	<Container x={CELL_W * (echo.reel + REEL_PADDING)} y={(echo.row - 0.5) * CELL_H}>
+		<WildLandDust x={0} y={0} emit={echo.emit} lifetimeScale={0.5} zIndex={10} />
+	</Container>
+{/each}

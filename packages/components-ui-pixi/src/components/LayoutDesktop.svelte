@@ -142,7 +142,10 @@
 		onpointerup={onBetMenu}
 	>
 		<Rectangle anchor={0.5} width={110} height={90} backgroundColor={0xffffff} backgroundAlpha={0} />
-		<ResponsiveText text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} maxWidth={100} />
+		<!-- 140 not 100: EINSATZ / APUESTA / TARUHAN shrank to 2/3; the -/+ chips
+		     sit at ±80 (chip edge at ±55), so 140 still clears them -->
+		<ResponsiveText text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} maxWidth={140} />
+
 		<ResponsiveText text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
 
@@ -158,14 +161,6 @@
 				borderColor={hovered && !disabled ? 0xffe282 : 0xc8a24a}
 				borderWidth={2.5}
 				borderAlpha={0.95}
-			/>
-			<!-- soft inner top-light so the chip reads dome-shaped, not flat -->
-			<Circle
-				anchor={0.5}
-				y={-7}
-				diameter={30}
-				backgroundColor={0x3a6b8f}
-				backgroundAlpha={0.35}
 			/>
 			<Rectangle
 				anchor={0.5}

@@ -4,9 +4,9 @@ export default {
 	'PRESS ANYWHERE TO CONTINUE': '아무 곳이나 눌러 계속하기',
 	// FreeSpinIntro
 	'CONGRATULATIONS!': '축하합니다!',
-	'YOU WON': '획득 금액',
+	'YOU WON': '획득',
 	// BoardFrame
-	'TOTAL WIN': '총 획득 금액',
+	'TOTAL WIN': '총 당첨금',
 	// LoadingScreen
 	'KRAKEN SPIN': '크라켄 스핀',
 	'Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.': '릴의 아무 위치에 보너스 심볼 3, 4, 5개가 나타나면 프리 스핀 6, 12, 18회를 획득합니다. 모든 프리 스핀은 크라켄 스핀입니다.',
@@ -55,14 +55,14 @@ export default {
 	'Disclaimer': '면책 조항',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds는 5릴, 3행, 20개의 고정 페이 라인을 갖춘 비디오 슬롯입니다. 당첨 조합은 가장 왼쪽 릴부터 연속된 릴에서 왼쪽에서 오른쪽으로 형성됩니다. 각 페이 라인에서 최고 당첨만 지급됩니다.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': '기본 게임의 이론적 환원율(RTP)은 96.52%입니다. 안테 베팅 활성화 시 RTP는 96.46%입니다. 피처 구매의 RTP는 96.42%입니다. 최대 당첨금은 총 베팅의 1,890.60배입니다.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': '기본 게임의 이론적 환원율(RTP)은 96.52%입니다. 안테 베팅 활성화 시 RTP는 96.46%입니다. 피처 구매의 RTP는 96.42%입니다. 최대 당첨금은 기본 게임에서 총 베팅의 1,890.60배, 안테 베팅 활성화 시 1,978.00배, 피처 구매 시 2,536.70배입니다.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': '모든 배당 값은 총 베팅 금액의 배수로 표시됩니다.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': '와일드(크라켄)는 보너스 및 코인 심볼을 제외한 모든 심볼을 대체합니다. 와일드 조합은 고유한 배당 값을 지급합니다.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '릴의 아무 위치에 보너스 심볼 3개가 나타나면 프리 스핀 6회가 부여됩니다.',
 	'4 Bonus symbols award 12 Free Spins.': '보너스 심볼 4개는 프리 스핀 12회를 부여합니다.',
 	'5 Bonus symbols award 18 Free Spins.': '보너스 심볼 5개는 프리 스핀 18회를 부여합니다.',
 	'Every Free Spin is a Kraken Spin, adding Wild, Coin or paying-symbol copies to the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.': '모든 프리 스핀은 크라켄 스핀으로, 릴이 멈추기 전에 와일드, 코인 또는 배당 심볼 복사본이 추가됩니다. 프리 스핀 중 착지하는 보너스 심볼 하나마다 프리 스핀 1회가 추가되며, 재발동 횟수에는 제한이 없습니다.',
-	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': '프리 스핀 기능은 총 __1__의 __0__로 직접 구매할 수 있습니다. 구매한 기능은 보너스 심볼로 발동된 것과 완전히 동일하게 진행되며, 환원율도 같습니다.',
+	'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.': '프리 스핀 피처는 총 __1__의 __0__로 직접 구매할 수 있습니다. 구매한 피처는 보너스 심볼로 발동된 것과 완전히 동일하게 진행되며, 환원율도 같습니다.',
 	'Only the highest win per __0__ is __1__.': '페이 라인당 최고 당첨만 지급됩니다.',
 	'Simultaneous wins on different __0__ are added together.': '서로 다른 페이 라인에서의 동시 당첨은 합산됩니다.',
 	'__0__ wins and Bonus wins are added together.': '페이 라인 당첨과 보너스 당첨은 합산됩니다.',
@@ -91,11 +91,11 @@ export default {
 	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of three forms:': '기본 게임의 모든 스핀에서 크라켄 스핀이 발동될 수 있습니다. 발동되면 크라켄이 릴이 멈추기 전에 다음 세 가지 형태 중 하나로 추가 심볼을 배치합니다:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': '와일드 — 1~10개의 와일드 심볼이 릴에 배치됩니다. 이후 페이 라인이 평가되어 배당이 지급됩니다.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': '코인 — 1~10개의 코인 심볼이 릴에 배치됩니다. 먼저 페이 라인이 평가된 후, 모든 코인 값이 합산되어 지급됩니다.',
-	'Every spin during the Free Spins feature is a Kraken Spin.': '프리 스핀 동안에는 모든 스핀이 크라켄 스핀입니다.',
+	'Every spin during the Free Spins feature is a Kraken Spin.': '프리 스핀 피처 동안에는 모든 스핀이 크라켄 스핀입니다.',
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': '구매',
-	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': '6회, 12회 또는 18회의 프리 스핀을 즉시 발동합니다. 모든 프리 스핀은 크라켄 스핀입니다: 크라켄이 릴에 와일드, 코인 또는 하나의 배당 심볼 복사본을 추가하며, 해당 스핀에 승리 배수를 부여할 수도 있습니다.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': '총 베팅의 __0__배로 6, 12 또는 18회의 프리 스핀을 구매하시겠습니까?',
+	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': '6회, 12회 또는 18회의 프리 스핀을 즉시 발동합니다. 모든 프리 스핀은 크라켄 스핀입니다: 크라켄이 릴에 와일드, 코인 또는 하나의 배당 심볼 복사본을 추가하며, 해당 스핀에 당첨 배수를 부여할 수도 있습니다.',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': '총 베팅의 __0__배로 프리 스핀 피처를 구매하세요.\n트리거 스핀에서 프리 스핀 6, 12 또는 18회가 지급됩니다.',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': '보너스 구매(보물상자) — 프리 스핀 구매 메뉴를 엽니다.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': '안테 베팅',
@@ -105,10 +105,10 @@ export default {
 	'ACTIVATE': '활성화',
 	'ON': '켜짐',
 	'OFF': '꺼짐',
-	'DOUBLE CHANCE TO WIN FEATURES': '기능 당첨 확률 2배',
+	'DOUBLE CHANCE TO WIN FEATURES': '모든 피처 당첨 확률\n2배',
 	'MULTIPLIER': '배수',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': '심볼 — 일반 배당 심볼 하나가 선택되어 그 복사본이 릴에 배치됩니다. 복사본이 배치된 후 모든 __0__이 평가됩니다.',
-	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': '어떤 프리 스핀에서든 크라켄은 해당 스핀에 승리 배수를 부여할 수 있습니다. 배수는 코인 상금을 포함해 그 스핀의 모든 상금에 적용됩니다. 승리 배수는 최대 x10입니다.',
+	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': '어떤 프리 스핀에서든 크라켄은 해당 스핀에 당첨 배수를 부여할 수 있습니다. 배수는 코인 당첨금을 포함해 그 스핀의 모든 당첨금에 적용됩니다. 당첨 배수는 최대 x10입니다.',
 	'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.': '안테 베팅은 총 __0__을 두 배(x2)로 만듭니다. 게임이 대기 상태일 때 언제든지 켜거나 끌 수 있습니다.',
 	'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.': '안테 베팅이 활성화된 동안 크라켄 스핀 발동 확률이 두 배가 되고, 프리 스핀 발동 확률도 두 배가 됩니다.',
 	'All __0__ values remain multiples of the base (non-doubled) __1__ amount.': '모든 __0__ 값은 기본(두 배가 아닌) __1__ 금액의 배수로 유지됩니다.',
@@ -117,4 +117,6 @@ export default {
 	'EVERY SPIN IS A KRAKEN SPIN': '모든 스핀은 크라켄 스핀',
 	'MULTIPLIERS UP TO x10': '최대 x10 배수',
 	'EACH BONUS AWARDS +1 SPIN': '보너스마다 +1 스핀',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': '찬스 X2',
 };

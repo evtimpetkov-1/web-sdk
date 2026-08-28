@@ -22,15 +22,43 @@ import {
 	REEL_STOP_RATES,
 } from './constants';
 
+// how long a natural copy's landing puff emits; the dust then drains for
+// its (halved) particle lifetime before the entry is dropped — see the
+// lifetimeScale the echo passes to WildLandDust in SpecialOverlay
+const STAMP_ECHO_EMIT_MS = 120;
+const STAMP_ECHO_DRAIN_MS = 450; // lifetime.max at the echo's 0.5 lifetimeScale
+let stampEchoIdCounter = 0;
+
 const onSymbolLand = ({
 	rawSymbol,
 	symbolIndex,
+	reelIndex,
 }: {
 	rawSymbol: RawSymbol;
 	symbolIndex: number;
+	reelIndex: number;
 }) => {
 	// Skip padding rows (index 0 = top padding, index BOARD_DIMENSIONS.y + 1 = bottom padding)
 	if (symbolIndex === 0 || symbolIndex > BOARD_DIMENSIONS.y) return;
+
+	// A natural copy of a SYMBOL kraken spin's stamped symbol: it lands with the
+	// reel like any other symbol, and gets the same puff of the kraken's dust
+	// the stamped copies had, so the whole set reads as the kraken's doing.
+	if (
+		stateGame.naturalStampCells.some(
+			(cell) => cell.reel === reelIndex && cell.row === symbolIndex,
+		)
+	) {
+		const id = stampEchoIdCounter++;
+		stateGame.stampEchoes.push({ id, reel: reelIndex, row: symbolIndex, emit: true });
+		setTimeout(() => {
+			const echo = stateGame.stampEchoes.find((e) => e.id === id);
+			if (echo) echo.emit = false;
+		}, STAMP_ECHO_EMIT_MS);
+		setTimeout(() => {
+			stateGame.stampEchoes = stateGame.stampEchoes.filter((e) => e.id !== id);
+		}, STAMP_ECHO_EMIT_MS + STAMP_ECHO_DRAIN_MS);
+	}
 
 	if (rawSymbol.name === 'S') {
 		eventEmitter.broadcast({ type: 'soundScatterCounterIncrease' });
@@ -88,7 +116,7 @@ const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
 					: REEL_STOP_RATES[Math.min(reelIndex, REEL_STOP_RATES.length - 1)],
 			});
 		},
-		onSymbolLand,
+		onSymbolLand: (args) => onSymbolLand({ ...args, reelIndex }),
 	});
 
 	reel.reelState.spinOptions = () => {
@@ -165,6 +193,13 @@ export const stateGame = $state({
 	movingWildWinSet: new Set<number>() as Set<number>,
 	// symbols the kraken drops onto the spinning reels (see OverlaySymbol)
 	overlaySymbols: [] as OverlaySymbol[],
+	// SYMBOL kraken spin: the board's NATURAL copies of the stamped symbol (the
+	// ones the book's `positions` did not list). They land with the reels; each
+	// gets a puff of the kraken's dust as it does (see onSymbolLand / stampEchoes).
+	// Set at the reveal, cleared at the next spin's start.
+	naturalStampCells: [] as { reel: number; row: number }[],
+	// the puffs themselves, one per natural copy that has landed (SpecialOverlay)
+	stampEchoes: [] as { id: number; reel: number; row: number; emit: boolean }[],
 	// dims the reels while overlay symbols sit on top of them, so the kraken's
 	// bounty reads as being in front of the spin rather than part of it. Cleared
 	// once the reels have stopped.

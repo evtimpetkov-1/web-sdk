@@ -55,7 +55,7 @@ export default {
 	'Disclaimer': 'Tuyên bố miễn trừ',
 	// GameRules — paragraphs
 	'Kraken\'s Wilds is a 5-reel, 3-row video slot with 20 fixed __0__. Winning combinations form from left to right on consecutive reels, starting from the leftmost reel. Only the highest win on each __1__ is __2__.': 'Kraken\'s Wilds là trò chơi slot video 5 cuộn, 3 hàng với 20 dòng thanh toán cố định. Các tổ hợp thắng hình thành từ trái sang phải trên các cuộn liên tiếp, bắt đầu từ cuộn ngoài cùng bên trái. Chỉ phần thắng cao nhất trên mỗi dòng thanh toán được trả thưởng.',
-	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Tỷ lệ hoàn trả lý thuyết cho người chơi (RTP) của trò chơi cơ bản là 96,52%. Khi Cược Ante đang bật, RTP là 96,46%. RTP của Mua tính năng là 96,42%. Mức thắng tối đa là 1.890,60 lần tổng cược.',
+	'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.': 'Tỷ lệ hoàn trả lý thuyết cho người chơi (RTP) của trò chơi cơ bản là 96,52%. Khi Cược Ante đang bật, RTP là 96,46%. RTP của Mua tính năng là 96,42%. Mức thắng tối đa là 1.890,60 lần tổng cược trong trò chơi cơ bản, 1.978,00 lần khi Cược Ante đang bật và 2.536,70 lần trong Mua tính năng.',
 	'All __0__ values are shown as multipliers of the total __1__ amount.': 'Tất cả giá trị thanh toán được hiển thị dưới dạng hệ số nhân của tổng số tiền cược.',
 	'The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.': 'Wild (Kraken) thay thế tất cả biểu tượng ngoại trừ biểu tượng Bonus và Đồng Xu. Các tổ hợp Wild trao giá trị thanh toán riêng.',
 	'3 Bonus symbols anywhere on the reels award 6 Free Spins.': '3 biểu tượng Bonus ở bất kỳ đâu trên các cuộn trao 6 Vòng Quay Miễn Phí.',
@@ -86,8 +86,8 @@ export default {
 	'PLAY AGAIN': 'CHƠI LẠI',
 	// GameRules — disclaimer
 	'Malfunction voids all wins and plays. A consistent internet connection is required. In the event of a disconnection, reload the game to finish any uncompleted rounds. The expected return is calculated over many plays. The game display is not representative of any physical device and is for illustrative purposes only. Winnings are settled according to the amount received from the Remote Game Server and not from events within the web browser.': 'Sự cố kỹ thuật sẽ hủy tất cả các thắng và lượt chơi. Cần có kết nối internet ổn định. Trong trường hợp mất kết nối, hãy tải lại trò chơi để hoàn thành các vòng chưa hoàn tất. Tỷ lệ hoàn trả dự kiến được tính dựa trên nhiều lượt chơi. Màn hình trò chơi không đại diện cho bất kỳ thiết bị vật lý nào và chỉ nhằm mục đích minh họa. Tiền thắng được thanh toán theo số tiền nhận từ Máy Chủ Trò Chơi Từ Xa chứ không phải từ các sự kiện trong trình duyệt web.',
-	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Xuất hiện với giá trị từ __0__ tổng cược của bạn. Giá trị Đồng Xu được cộng lại và thêm vào mọi phần thắng theo hàng.',
-	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Biểu tượng Đồng Xu xuất hiện với giá trị hiển thị trên đồng xu, từ __0__ tổng cược của bạn. Đồng Xu không tạo thành phần thắng theo hàng — mọi giá trị Đồng Xu trên các cuộn được cộng lại và trao dưới dạng khoản thanh toán bổ sung.',
+	'Carries a value of __0__ the total __1__. All Coin values on the reels are totalled and awarded in addition to any line win.': 'Xuất hiện với giá trị từ __0__ tổng cược của bạn. Giá trị Đồng Xu được cộng lại và thêm vào mọi phần thắng theo dòng.',
+	'Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.': 'Biểu tượng Đồng Xu xuất hiện với giá trị hiển thị trên đồng xu, từ __0__ tổng cược của bạn. Đồng Xu không tạo thành phần thắng theo dòng — mọi giá trị Đồng Xu trên các cuộn được cộng lại và trao dưới dạng khoản thanh toán bổ sung.',
 	'Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of three forms:': 'Bất kỳ vòng quay nào của trò chơi cơ bản đều có thể kích hoạt Vòng Quay Kraken. Khi đó, Kraken đặt thêm biểu tượng lên các cuộn trước khi chúng dừng lại, theo một trong ba hình thức:',
 	'Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.': 'Wild — 1 đến 10 biểu tượng Wild được đặt lên các cuộn. Sau đó các dòng thanh toán được tính và chi trả.',
 	'Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.': 'Đồng Xu — 1 đến 10 biểu tượng Đồng Xu được đặt lên các cuộn. Các dòng thanh toán được tính trước, sau đó mọi giá trị Đồng Xu được cộng lại và trao thưởng.',
@@ -95,7 +95,7 @@ export default {
 	// buy-bonus popup + confirmation (betModeMeta)
 	'BUY': 'MUA',
 	'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.': 'Kích hoạt ngay 6, 12 hoặc 18 Vòng Quay Miễn Phí. Mỗi Vòng Quay Miễn Phí đều là Vòng Quay Kraken: Kraken thêm Wild, Đồng Xu hoặc bản sao của một biểu tượng trả thưởng lên cuộn, và có thể trao hệ số nhân thắng cho vòng quay đó.',
-	'Buy 6, 12 or 18 Free Spins for __0__x your total bet?': 'Mua 6, 12 hoặc 18 Vòng Quay Miễn Phí với giá __0__x tổng cược?',
+	'Buy the Free Spins Feature for __0__x your total bet. The Bonus trigger spin awards 6, 12 or 18 Free Spins.': 'Mua tính năng Vòng Quay Miễn Phí với giá __0__x tổng cược.\nVòng quay kích hoạt trao 6, 12 hoặc 18 Vòng Quay Miễn Phí.',
 	'Bonus Buy (chest) — Opens the Free Spins buy menu.': 'Mua Bonus (rương) — Mở menu mua Vòng Quay Miễn Phí.',
 	// v2.1 — Ante Bet, Symbol kraken spins, spin win multiplier
 	'ANTE BET': 'CƯỢC ANTE',
@@ -105,7 +105,7 @@ export default {
 	'ACTIVATE': 'KÍCH HOẠT',
 	'ON': 'BẬT',
 	'OFF': 'TẮT',
-	'DOUBLE CHANCE TO WIN FEATURES': 'CƠ HỘI THẮNG TÍNH NĂNG NHÂN ĐÔI',
+	'DOUBLE CHANCE TO WIN FEATURES': 'NHÂN ĐÔI CƠ HỘI\nTHẮNG MỌI TÍNH NĂNG',
 	'MULTIPLIER': 'HỆ SỐ NHÂN',
 	'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.': 'Biểu tượng — một biểu tượng trả thưởng thường được chọn và các bản sao của nó được đặt lên cuộn. Tất cả __0__ được tính sau khi các bản sao vào vị trí.',
 	'On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.': 'Ở bất kỳ Vòng Quay Miễn Phí nào, Kraken cũng có thể trao hệ số nhân thắng cho vòng quay đó. Hệ số áp dụng cho mọi phần thắng của vòng quay đó, kể cả thắng từ Đồng Xu. Hệ số nhân thắng có thể lên đến x10.',
@@ -117,4 +117,6 @@ export default {
 	'EVERY SPIN IS A KRAKEN SPIN': 'MỖI VÒNG QUAY LÀ VÒNG QUAY KRAKEN',
 	'MULTIPLIERS UP TO x10': 'HỆ SỐ NHÂN ĐẾN x10',
 	'EACH BONUS AWARDS +1 SPIN': 'MỖI BONUS TẶNG +1 VÒNG QUAY',
+	// buy shop — ante card header (EN draws the CHANCE X2 art)
+	'CHANCE X2': 'CƠ HỘI X2',
 };
