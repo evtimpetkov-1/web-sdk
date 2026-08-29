@@ -2,10 +2,10 @@
 	import { Popup } from 'components-shared';
 	import { zIndex } from 'constants-shared/zIndex';
 	import { stateModal, stateUrlDerived, stateBet } from 'state-shared';
-	import { numberToCurrencyString } from 'utils-shared/amount';
+	import { numberToWinCurrencyString } from 'utils-shared/amount';
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import config from '../game/config';
-	import { COIN_MULTIPLIERS } from '../game/constants';
+	import { COIN_MULTIPLIERS, GAME_VERSION } from '../game/constants';
 
 	const imgW = new URL('../../assets/paytable/w.webp', import.meta.url).href;
 	const imgS = new URL('../../assets/paytable/s.webp', import.meta.url).href;
@@ -31,7 +31,7 @@
 	const bet = $derived(stateBet.betAmount);
 	// social mode must not say "bet" — same swap the rules page does
 	const betLabel = $derived(social ? i18nDerived.playWord() : i18nDerived.betWord());
-	const formatWin = (multiplier: number) => numberToCurrencyString(multiplier * bet);
+	const formatWin = (multiplier: number) => numberToWinCurrencyString(multiplier * bet);
 
 	/**
 	 * Payouts come straight from `config.symbols`, which is the same table the math
@@ -155,7 +155,7 @@
 			</section>
 
 			<div class="version-wrap">
-				v1.0.3
+				v{GAME_VERSION}
 			</div>
 		</div>
 	</Popup>

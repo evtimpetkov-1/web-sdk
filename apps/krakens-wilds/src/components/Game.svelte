@@ -24,7 +24,7 @@
 
 	import { getContext } from '../game/context';
 	import { applyBetModeMeta } from '../game/betModeMeta';
-	import { zIndexes } from '../game/constants';
+	import { GAME_VERSION, zIndexes } from '../game/constants';
 	import EnableSound from './EnableSound.svelte';
 	import EnableGameActor from './EnableGameActor.svelte';
 	import ResumeBet from './ResumeBet.svelte';
@@ -49,7 +49,8 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import FsCloudTransition from './FsCloudTransition.svelte';
 	import Transition from './Transition.svelte';
-	import ReplayComplete from './ReplayComplete.svelte';
+	import ReplayHud from './ReplayHud.svelte';
+	import ReplayOverlay from './ReplayOverlay.svelte';
 
 	const context = getContext();
 
@@ -185,7 +186,11 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 			</Container>
 		</MainContainer>
 
-		{#if !stateUrlDerived.replay()}
+		{#if stateUrlDerived.replay()}
+			<!-- replay keeps only the readouts the approval docs ask to stay
+			     visible (win, bet cost, currency) — no controls -->
+			<ReplayHud />
+		{:else}
 			<UI>
 				{#snippet gameName()}{/snippet}
 				{#snippet logo()}{/snippet}
@@ -202,14 +207,15 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 		     it they would never be seen at all. -->
 		<FreeSpinIntro />
 		<Transition />
-		<ReplayComplete />
 	{/if}
 </App>
 
 {#snippet version()}
-	<!-- shown in the Pay Table + Game Rules footers. 1.0.0 was the rejected
-	     (2026-07-31) submission; 2.0.0 is the reworked resubmission. -->
-	<GameVersion version="1.0.3" />
+	<!-- Footer of the SHARED paytable/rules modals. The game draws its own
+	     PayTable/GameRules over these, so what the player actually reads is
+	     PayTable.svelte's footer — both take the same constant so they cannot
+	     drift. -->
+	<GameVersion version={GAME_VERSION} />
 {/snippet}
 <!--
 	The shared modal set, composed HERE rather than via <Modals> so the two BUY
@@ -234,3 +240,9 @@ import SpecialOverlay from './SpecialOverlay.svelte';
 <!-- from-scratch buy screens, drawn over the shared modals (PayTable pattern) -->
 <BuyShop />
 <BuyConfirm />
+<!--
+	Replay mode's round card — the Start Replay panel before playback and the
+	Replay Again panel after it. HTML, so it lives out here with the modals
+	rather than inside <App>.
+-->
+<ReplayOverlay />

@@ -6,7 +6,7 @@
 	import { ResponsiveText } from 'components-pixi';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { stateBet, stateBetDerived } from 'state-shared';
-	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
+	import { bookEventAmountToWinCurrencyString } from 'utils-shared/amount';
 	import { Button } from 'components-pixi';
 
 	import type { LayoutUiProps } from '../types';
@@ -45,7 +45,7 @@
 
 	// Reactive values for bottom bar
 	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
-	const winValue = $derived(bookEventAmountToCurrencyString(stateBet.winBookEventAmount));
+	const winValue = $derived(bookEventAmountToWinCurrencyString(stateBet.winBookEventAmount));
 	const betValue = $derived(numberToCurrencyString(stateBetDerived.betCost()));
 	const labelMaxWidth = $derived(w * 0.15);
 
@@ -66,6 +66,22 @@
 			.find((o) => o < stateBet.betAmount);
 		stateBetDerived.setBetAmount(nextSmaller || smallest);
 	};
+
+	/**
+	 * Bet stepper geometry. The BET caption sits BETWEEN the two chips, so its
+	 * width budget is DERIVED from the gap between them instead of guessed.
+	 *
+	 * It used to be a hardcoded `maxWidth={140}`, reasoned about as if that were
+	 * a half-width. It is the FULL width: the caption spanned +/-70 while the
+	 * chip rims start at +/-57, so every locale with a long word for BET
+	 * (APUESTA, EINSATZ, TARUHAN, INDSATS) rendered underneath the - and +
+	 * glyphs. Widening the stance as well keeps those words at full size rather
+	 * than shrinking them to fit.
+	 */
+	const STEPPER_OFFSET = 100; // chip centre, +/- from the bet column centre
+	const STEPPER_DIAMETER = 46;
+	const STEPPER_CLEARANCE = 10; // gap between caption edge and chip rim
+	const betLabelMaxWidth = STEPPER_OFFSET * 2 - STEPPER_DIAMETER - STEPPER_CLEARANCE * 2;
 
 	const onIncrease = () => {
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
@@ -141,10 +157,23 @@
 		cursor={betMenuDisabled ? 'not-allowed' : 'pointer'}
 		onpointerup={onBetMenu}
 	>
-		<Rectangle anchor={0.5} width={110} height={90} backgroundColor={0xffffff} backgroundAlpha={0} />
-		<!-- 140 not 100: EINSATZ / APUESTA / TARUHAN shrank to 2/3; the -/+ chips
-		     sit at ±80 (chip edge at ±55), so 140 still clears them -->
-		<ResponsiveText text={i18nDerived.bet()} style={labelStyle} anchor={{ x: 0.5, y: 1 }} y={-6} maxWidth={140} />
+		<!-- the hit area matches the caption budget, so the whole caption opens
+		     the bet menu; it still stops short of the chips, which are drawn
+		     after this and keep press priority -->
+		<Rectangle
+			anchor={0.5}
+			width={betLabelMaxWidth}
+			height={90}
+			backgroundColor={0xffffff}
+			backgroundAlpha={0}
+		/>
+		<ResponsiveText
+			text={i18nDerived.bet()}
+			style={labelStyle}
+			anchor={{ x: 0.5, y: 1 }}
+			y={-6}
+			maxWidth={betLabelMaxWidth}
+		/>
 
 		<ResponsiveText text={betValue} style={valueStyle} anchor={{ x: 0.5, y: 0 }} y={4} maxWidth={labelMaxWidth} />
 	</Container>
@@ -155,7 +184,7 @@
 		<Container alpha={disabled ? 0.35 : 1} scale={hovered && !disabled ? 1.08 : 1}>
 			<Circle
 				anchor={0.5}
-				diameter={46}
+				diameter={STEPPER_DIAMETER}
 				backgroundColor={0x0d2c44}
 				backgroundAlpha={0.95}
 				borderColor={hovered && !disabled ? 0xffe282 : 0xc8a24a}
@@ -181,7 +210,7 @@
 		</Container>
 	{/snippet}
 
-	<Container x={w * 0.67 - 80} y={rowY - 26}>
+	<Container x={w * 0.67 - STEPPER_OFFSET} y={rowY - 26}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}
@@ -207,7 +236,7 @@
 		</Button>
 	</Container>
 
-	<Container x={w * 0.67 + 80} y={rowY - 26}>
+	<Container x={w * 0.67 + STEPPER_OFFSET} y={rowY - 26}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}

@@ -109,14 +109,24 @@
 	};
 
 	const handleReplay = async () => {
-		stateBet.betAmount = (stateUrlDerived.amount() / API_AMOUNT_MULTIPLIER) || 0;
-		stateBet.wageredBetAmount = (stateUrlDerived.amount() / API_AMOUNT_MULTIPLIER) || 0;
+		/**
+		 * `amount` and `currency` are OPTIONAL replay parameters. When they are
+		 * absent the platform asks for a 1 USD bet — 1 SC in social mode — to be
+		 * shown rather than a zeroed-out round, so the replay card still reads as
+		 * a real round. https://stake-engine.com/changelog/replay-mode
+		 */
+		const replayBetAmount = stateUrlDerived.amount() / API_AMOUNT_MULTIPLIER || 1;
+		stateBet.betAmount = replayBetAmount;
+		stateBet.wageredBetAmount = replayBetAmount;
 		stateBet.activeBetModeKey = stateUrlDerived.mode();
 
 		// Set currency from URL if provided
 		const currencyParam = new URLSearchParams(window.location.search).get('currency');
 		if (currencyParam) {
 			stateBet.currency = currencyParam;
+		} else if (stateUrlDerived.social()) {
+			// XSC formats as "1.00 SC" — see CurrencyMeta in utils-shared/amount
+			stateBet.currency = 'XSC';
 		}
 
 		try {

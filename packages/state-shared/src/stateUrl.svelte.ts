@@ -24,8 +24,35 @@ export type Key =
 const getUrlSearchParam = (key: Key) => page.url.searchParams.get(key) as string;
 
 // params for play
-const lang = () =>
-	getUrlSearchParam('lang') === 'br' ? 'pt' : (getUrlSearchParam('lang') as Language) || 'en';
+/**
+ * The url `lang` is operator-supplied and is NOT guaranteed to be a locale we
+ * ship — or even a valid BCP 47 tag. Anything unrecognised resolves to English.
+ *
+ * This has to be filtered HERE rather than at each reader: an unknown tag used
+ * to reach `new Intl.ListFormat(lang)` (paytable / game rules), which throws
+ * `RangeError: Invalid language tag` and took the whole game down before it
+ * could render. The lingui catalog load has its own fallback, so the crash was
+ * the only symptom of a bad tag.
+ */
+/**
+ * Platform spellings that are not the ISO 639-1 code we ship the catalog under.
+ * `br` for Brazilian Portuguese was already handled; `po` is what Stake's
+ * supported-languages table lists for Polish
+ * (stake-engine.com/docs/reference/languages), even though ISO 639-1 Polish is
+ * `pl` and their own URL spec calls the parameter an ISO 639-1 code. Accepting
+ * both costs nothing and is the difference between a Polish player getting the
+ * Polish catalog and getting the English fallback.
+ */
+const LANG_ALIASES: Record<string, Language> = {
+	br: 'pt',
+	po: 'pl',
+};
+
+const lang = (): Language => {
+	const raw = getUrlSearchParam('lang');
+	const normalised = LANG_ALIASES[raw] ?? raw;
+	return (locales as readonly string[]).includes(normalised) ? (normalised as Language) : 'en';
+};
 const sessionID = () => getUrlSearchParam('sessionID') || '';
 const rgsUrl = () => getUrlSearchParam('rgs_url') || '';
 const social = () => getUrlSearchParam('social') === 'true';

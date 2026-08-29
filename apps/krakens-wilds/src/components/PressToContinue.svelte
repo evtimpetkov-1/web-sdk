@@ -40,7 +40,7 @@
 
 	// English gets the baked text art; other locales keep the text label.
 	const useTextArt = (stateUrlDerived.social() || stateUrlDerived.lang() === 'en');
-	const PATC_RATIO = 1277 / 100; // press_anywhere_en.webp
+	const PATC_RATIO = 1971 / 169; // press_anywhere_en.webp (v5 art)
 
 	// Portrait sizes the prompt on its own terms: its main box is only 800 wide,
 	// where the shared numbers left the prompt at ~54% of the width and ~14 CSS
@@ -53,12 +53,16 @@
 	const patcWidth = $derived(
 		isPortrait ? Math.min(700, layout.width * 0.86) : Math.min(430, layout.width * 0.72),
 	);
-	// Deliberate Y-squash: the art's letterforms are ~4.5% taller than the old
-	// version's, so it renders slightly flattened to sit better in the bar.
-	// Portrait drops the squash entirely — the art is a 12.8:1 strip, so extra
-	// width buys very little letter HEIGHT, which is what reads as "too small";
-	// un-squashing is the cheapest way to make the glyphs themselves taller.
-	const PATC_Y_SCALE = $derived(isPortrait ? 1 : 0.84);
+	/**
+	 * The v5 art renders at its TRUE aspect ratio.
+	 *
+	 * Landscape/desktop used to squash it to 0.84 — a correction hand-tuned to
+	 * the previous strip's letterforms, which this art replaces. Carrying that
+	 * number over would distort new lettering by 16% for no reason, and the
+	 * 70px bar has room for the un-squashed height either way (~37px at the
+	 * 430px width cap). Set this back to 0.84 if the flattened look is wanted.
+	 */
+	const PATC_Y_SCALE = 1;
 	// the strip grows with the prompt so the padding around it stays in proportion
 	const barHeight = $derived(isPortrait ? 104 : 70);
 	// same story for the non-English text fallback (ResponsiveText shrinks to fit)

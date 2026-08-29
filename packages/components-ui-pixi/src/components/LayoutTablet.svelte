@@ -6,7 +6,7 @@
 	import { ResponsiveText } from 'components-pixi';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 	import { stateBet, stateBetDerived } from 'state-shared';
-	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
+	import { bookEventAmountToWinCurrencyString } from 'utils-shared/amount';
 	import { Button } from 'components-pixi';
 
 	import { getContext } from '../context';
@@ -40,7 +40,7 @@
 	} as const;
 
 	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
-	const winValue = $derived(bookEventAmountToCurrencyString(stateBet.winBookEventAmount));
+	const winValue = $derived(bookEventAmountToWinCurrencyString(stateBet.winBookEventAmount));
 	const betValue = $derived(numberToCurrencyString(stateBetDerived.betCost()));
 
 	// BET label + amount press → bet menu (same behavior as LabelBet)

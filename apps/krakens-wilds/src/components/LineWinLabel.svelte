@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { BitmapText, Container, type BitmapTextProps } from 'pixi-svelte';
-	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
+	import { bookEventAmountToWinCurrencyString } from 'utils-shared/amount';
 
 	import { CELL_W, CELL_H } from '../game/constants';
 
@@ -68,7 +68,7 @@
 	 */
 	const Y_INK_CENTRE = (FONT_BASELINE_OFFSET + FONT_LINE_HEIGHT / 2) / FONT_LINE_HEIGHT;
 
-	const text = $derived(bookEventAmountToCurrencyString(props.amount));
+	const text = $derived(bookEventAmountToWinCurrencyString(props.amount));
 	const style: BitmapTextProps['style'] = {
 		fontFamily: 'cinzel-bold-gold',
 		fontSize: FONT_SIZE,

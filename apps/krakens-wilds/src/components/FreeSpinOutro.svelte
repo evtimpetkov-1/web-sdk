@@ -10,7 +10,7 @@
 <script lang="ts">
 	import { Container } from 'pixi-svelte';
 	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
-	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
+	import { bookEventAmountToWinCurrencyString } from 'utils-shared/amount';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { OnMount } from 'components-shared';
 
@@ -134,7 +134,7 @@
 							<ResponsiveBitmapText
 								anchor={0.5}
 								maxWidth={(canvas.width / (scale * amountBoost)) * 0.9}
-								text={bookEventAmountToCurrencyString(countUpAmount)}
+								text={bookEventAmountToWinCurrencyString(countUpAmount)}
 								style={{
 									fontFamily: 'cinzel-bold-gold',
 									fontSize: 160,

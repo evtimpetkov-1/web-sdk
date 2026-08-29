@@ -77,15 +77,16 @@ const buildBetModeMeta = (): BetModeMeta => {
 			dialogImage: anteCardImg,
 		},
 		text: {
-			title: social('ANTE PLAY', 'ANTE BET'),
+			// 'ANTE BET' is only the translation id; its value is now CHANCE X2
+			title: t('ANTE BET'),
 			dialog: social(
-				'Double your total play for double the chance of triggering Kraken Spins and Free Spins. Ante Play stays active until you turn it off.',
+				'Double your total play for double the chance of triggering Krakos Spins and Free Spins. Chance X2 stays active until you turn it off.',
 				'Double your total bet for double the chance of triggering Kraken Spins and Free Spins. Ante Bet stays active until you turn it off.',
 			),
 			description: t('Doubles the chance of Kraken Spins and Free Spins.'),
 			button: t('ACTIVATE'),
-			betAmountLabel: isSocial ? 'ANTE PLAY' : 'ANTE BET',
-			tickerIdle: isSocial ? 'ANTE PLAY IS ACTIVE' : 'ANTE BET IS ACTIVE',
+			betAmountLabel: 'CHANCE X2',
+			tickerIdle: 'CHANCE X2 IS ACTIVE',
 			tickerSpin: 'GOOD LUCK',
 		},
 		maxWin: config.betModes.ante.max_win,
@@ -107,7 +108,10 @@ const buildBetModeMeta = (): BetModeMeta => {
 			// explanation before the player commits. Same two translation keys as
 			// before, exchanged, so no locale churn. The cost is spliced in from
 			// config so the copy can never drift from what the RGS charges.
-			dialog: t(
+			// rendered by BuyConfirm; "paying" is restricted in social mode (pay ->
+			// win), so that branch says "winning symbol" — same swap as the rules
+			dialog: social(
+				'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Krakos Spin: the Krakos adds Wilds, Coins or copies of one winning symbol to the reels, and can award a win multiplier for the spin.',
 				'Instantly triggers 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin: the Kraken adds Wilds, Coins or copies of one paying symbol to the reels, and can award a win multiplier for the spin.',
 			),
 			description: social(

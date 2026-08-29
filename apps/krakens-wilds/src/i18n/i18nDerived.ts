@@ -31,7 +31,10 @@ export const i18nDerived = {
 	// LoadingScreen
 	krakenSpin: () => t('KRAKEN SPIN'),
 	loadingFsDesc: () => t('Land 3, 4 or 5 Bonus symbols anywhere on the reels to win 6, 12 or 18 Free Spins. Every Free Spin is a Kraken Spin.'),
-	loadingKrakenDesc: () => t('The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.'),
+	loadingKrakenDesc: () => social(
+		'The Krakos can strike any spin, adding Wilds, Coins or extra winning symbols to the reels.',
+		'The Kraken can strike any spin, adding Wilds, Coins or extra paying symbols to the reels.',
+	),
 	// AnteBuyPanels
 	buyWord: () => social('PLAY', 'BUY'),
 	onWord: () => t('ON'),
@@ -66,6 +69,32 @@ export const i18nDerived = {
 	replay: () => t('REPLAY'),
 	noWin: () => t('NO WIN'),
 	playAgain: () => t('PLAY AGAIN'),
+	/**
+	 * Replay intro/outro card (ReplayOverlay). The three social replacements
+	 * below were named by the reviewer verbatim: Base Bet -> Base Play, Cost
+	 * Multiplier -> Feature Multiplier, Payout Multiplier -> Final Multiplier.
+	 * The title and the cost row follow the same bet -> play swap the rest of
+	 * the game already uses in social mode.
+	 */
+	replayTitle: () => social('Play Replay', 'Bet Replay'),
+	/**
+	 * Mode row. Only BASE needs its own string; ANTE and BONUS reuse the
+	 * accessors the rest of the game names those modes with (chanceX2 and
+	 * buyFeature), so they can never drift apart.
+	 */
+	replayModeBase: () => t('BASE GAME'),
+	replayMode: () => t('Mode'),
+	replayBaseBet: () => social('Base Play', 'Base Bet'),
+	replayCostMultiplier: () => social('Feature Multiplier', 'Cost Multiplier'),
+	replayTotalCost: () => social('Total Play Cost', 'Total Bet Cost'),
+	replayPayoutMultiplier: () => social('Final Multiplier', 'Payout Multiplier'),
+	replayTotalWin: () => t('Total Win'),
+	replayStart: () => t('Start Replay'),
+	replayAgain: () => t('Replay Again'),
+	replayDisclaimer: () => social(
+		'This is a replay of a previous round. No plays will be placed.',
+		'This is a replay of a previous bet round. No bets will be placed.',
+	),
 	// GameRules — social mode words
 	betWord: () => t('bet'),
 	playWord: () => t('play'),
@@ -85,7 +114,10 @@ export const i18nDerived = {
 	coinSymbol: () => t('Coin Symbol'),
 	krakenSpinHeader: () => t('Kraken Spin'),
 	bonusFreeSpins: () => t('Bonus & Free Spins'),
-	anteBetHeader: () => social('Ante Play', 'Ante Bet'),
+	// The ante mode is called "Chance X2" now. The strings below stay as the
+	// stable translation IDs — every locale's VALUE for them is the Chance X2
+	// wording (see messagesMap).
+	anteBetHeader: () => t('Ante Bet'),
 	buyFeature: () => social('Free Spins Feature', 'Buy Feature'),
 	generalRules: () => t('General Rules'),
 	uiGuide: () => t('User Interface Guide'),
@@ -96,33 +128,42 @@ export const i18nDerived = {
 	// config.betModes). Numbers are baked into each locale's translation in its
 	// own number format — a math retune means rotating this key in all 17 files.
 	betModeRtp: () => social(
-		'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Play active the RTP is 96.46%. The RTP of the Free Spins Feature is 96.42%. The maximum win is 1,890.60x the total __0__ in the base game, 1,978.00x with Ante Play active and 2,536.70x in the Free Spins Feature.',
+		'The theoretical return to player (RTP) of the base game is 96.52%. With Chance X2 active the RTP is 96.46%. The RTP of the Free Spins Feature is 96.42%. The maximum win is 1,890.60x the total __0__ in the base game, 1,978.00x with Chance X2 active and 2,536.70x in the Free Spins Feature.',
 		'The theoretical return to player (RTP) of the base game is 96.52%. With Ante Bet active the RTP is 96.46%. The RTP of the Buy Feature is 96.42%. The maximum win is 1,890.60x the total __0__.',
 	),
 	betModeMultiplier: () => t('All __0__ values are shown as multipliers of the total __1__ amount.'),
 	wildSymbolDesc: () => t('The Wild (Kraken) substitutes for all symbols except the Bonus and Coin symbols. Wild combinations award their own __0__ values.'),
 	coinSymbolDesc: () => t('Each Coin symbol carries a value of __0__ the total __1__, shown on the coin. Coin symbols do not form line combinations; their values are totalled and awarded as an additional __2__.'),
 	krakenSpinDesc: () => t('Any base game spin may trigger a Kraken Spin. When it does, the Kraken places additional symbols on the reels before they come to rest, in one of three forms:'),
-	krakenSpinSymbol: () => t('Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.'),
+	// "paying" is the -ing form of a restricted term (pay -> win), so social mode
+	// takes the same swap the rest of the copy uses: paylines -> winlines,
+	// paying symbol -> winning symbol.
+	krakenSpinSymbol: () => social(
+		'Symbol — one regular winning symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.',
+		'Symbol — one regular paying symbol is chosen and its copies are added to the reels. All __0__ are evaluated once the copies are in place.',
+	),
 	krakenSpinWild: () => t('Wild — 1 to 10 Wild symbols are added to the reels. All __0__ are evaluated once they are in place, and any win is __1__.'),
 	krakenSpinCoin: () => t('Coin — 1 to 10 Coin symbols are added to the reels. __0__ are evaluated first; the values of all Coin symbols are then totalled and awarded in addition.'),
 	krakenSpinFs: () => t('Every spin during the Free Spins feature is a Kraken Spin.'),
 	fs3Bonus: () => t('3 Bonus symbols anywhere on the reels award 6 Free Spins.'),
 	fs4Bonus: () => t('4 Bonus symbols award 12 Free Spins.'),
 	fs5Bonus: () => t('5 Bonus symbols award 18 Free Spins.'),
-	fsDesc: () => t('Every Free Spin is a Kraken Spin, adding Wild, Coin or paying-symbol copies to the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.'),
+	fsDesc: () => social(
+		'Every Free Spin is a Krakos Spin, adding Wild, Coin or winning-symbol copies to the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.',
+		'Every Free Spin is a Kraken Spin, adding Wild, Coin or paying-symbol copies to the reels before they come to rest. Each Bonus symbol landing during Free Spins awards 1 additional Free Spin, with no limit on retriggers.',
+	),
 	fsMultiplierDesc: () => t('On any Free Spin, the Kraken can also award a win multiplier for that spin. It applies to all wins from that spin, including Coin wins.'),
 	anteBetCost: () => social(
-		'Ante Play doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.',
+		'Chance X2 doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.',
 		'Ante Bet doubles the total __0__ (x2). It can be turned on or off at any time while the game is idle.',
 	),
 	anteBetChance: () => social(
-		'While Ante Play is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.',
+		'While Chance X2 is active, the chance of triggering a Krakos Spin is doubled, and the chance of triggering Free Spins is doubled.',
 		'While Ante Bet is active, the chance of triggering a Kraken Spin is doubled, and the chance of triggering Free Spins is doubled.',
 	),
 	anteBetWins: () => t('All __0__ values remain multiples of the base (non-doubled) __1__ amount.'),
 	buyFeatureDesc: () => social(
-		'The Free Spins feature can be instantly triggered for __0__ the total __1__. An instantly triggered feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.',
+		'The Free Spins feature can be instantly triggered for __0__ the total __1__. An instantly triggered feature plays exactly as one triggered by Bonus symbols.',
 		'The Free Spins feature can be bought directly for __0__ the total __1__. A purchased feature plays exactly as one triggered by Bonus symbols, and the return to player is the same.',
 	),
 	grHighestWin: () => t('Only the highest win per __0__ is __1__.'),
@@ -139,7 +180,7 @@ export const i18nDerived = {
 		'Bonus Buy (chest) — Opens the Free Spins buy menu.',
 	),
 	uiAnte: () => social(
-		'Ante Play (toggle) — Turn Ante Play on or off.',
+		'Chance X2 (toggle) — Turn Chance X2 on or off.',
 		'Ante Bet (toggle) — Turn Ante Bet on or off.',
 	),
 	uiPlusMinus: () => t('+/− — Increase or decrease the __0__ amount.'),

@@ -30,7 +30,7 @@
 {#if stateModal.modal?.name === 'gameRules'}
 	<Popup zIndex={zIndex.modal + 1} onclose={() => (stateModal.modal = null)}>
 		<div class="game-rules">
-			<img src={logoImg} alt="Kraken's Wilds" class="logo" />
+			<img src={logoImg} alt="Krakos Wilds" class="logo" />
 
 			<section>
 				<h2>{i18nDerived.gameOverview()}</h2>

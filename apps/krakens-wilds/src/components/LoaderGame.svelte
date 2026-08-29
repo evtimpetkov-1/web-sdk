@@ -91,7 +91,7 @@
 		{/each}
 
 		<div class="loader-content">
-			<img class="logo" src={logoImg} alt="Kraken's Wilds" />
+			<img class="logo" src={logoImg} alt="Krakos Wilds" />
 
 			<div
 				class="bar"

@@ -10,7 +10,7 @@
 	import { ResponsiveText } from 'components-pixi';
 	import { waitForResolve } from 'utils-shared/wait';
 	import { numberToCurrencyString } from 'utils-shared/amount';
-	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
+	import { bookEventAmountToWinCurrencyString } from 'utils-shared/amount';
 
 
 	import ButtonDrawer from './ButtonDrawer.svelte';
@@ -45,7 +45,7 @@
 
 	// Reactive values for bottom bar
 	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
-	const winValue = $derived(bookEventAmountToCurrencyString(stateBet.winBookEventAmount));
+	const winValue = $derived(bookEventAmountToWinCurrencyString(stateBet.winBookEventAmount));
 	const betValue = $derived(numberToCurrencyString(stateBetDerived.betCost()));
 
 	// BET label + amount press → bet menu (same behavior as LabelBet)

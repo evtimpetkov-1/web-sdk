@@ -2,6 +2,19 @@ import _ from 'lodash';
 
 import type { RawSymbol, SymbolState } from './types';
 
+/**
+ * Displayed game version — the string reviewers see in the Pay Table footer.
+ *
+ * 1.0.0 was the rejected submission (2026-07-31); 1.0.3 was the build approved
+ * on 2026-08-28. 1.0.4 carries the post-approval review fixes: the replay
+ * round card + in-replay readouts, the Krakos rename, Ante Bet -> Chance X2,
+ * and the social-mode wording corrections.
+ *
+ * Kept HERE and imported, not typed out per component — it used to be
+ * hardcoded in two places that had already drifted from this comment.
+ */
+export const GAME_VERSION = '1.0.4';
+
 export const SYMBOL_SIZE = 128;
 // Grid pitch (cell spacing) — wider than the symbol display size so the 5x3
 // grid fills the frame opening with real gaps between symbols.

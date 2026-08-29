@@ -7,6 +7,7 @@
 	import { stateUrlDerived } from 'state-shared';
 	import { waitForTimeout } from 'utils-shared/wait';
 	import { getContext } from '../game/context';
+	import { stateReplay, setReplayStartHandler } from '../game/stateReplay.svelte';
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -33,17 +34,41 @@
 	});
 
 	let loadingType = $state<'start' | 'transition'>('start');
+
+	/**
+	 * Fade out and hand over to the board. Shared by the two ways in: the
+	 * press-anywhere bar in normal play, and the HTML replay card's Start
+	 * Replay button in replay mode (registered below, called via startReplay).
+	 */
+	const startGame = async () => {
+		loadingType = 'transition';
+		await waitForTimeout(400);
+		props.onloaded();
+	};
+
+	$effect(() => {
+		if (!isReplay) return;
+		setReplayStartHandler(startGame);
+		return () => setReplayStartHandler(null);
+	});
+
+	// gates the replay card: only once there is something to show and nothing
+	// has started yet
+	$effect(() => {
+		stateReplay.introReady =
+			isReplay && loadingType === 'start' && context.stateApp.loaded && fontsReady;
+	});
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
 	const wide = $derived(canvas.width >= canvas.height);
 
 	// English gets the baked gold header art (same pattern as the FS intro's
 	// title sprites); every other locale falls back to the text labels.
 	const useTextArt = (stateUrlDerived.social() || stateUrlDerived.lang() === 'en');
-	const KRAKEN_SPIN_RATIO = 705 / 100; // kraken_spin_text_en.webp
+	const KRAKEN_SPIN_RATIO = 700 / 117; // kraken_spin_text_en.webp (v5 art)
 	// v4 art (2026-08-27) is 4:3 — much taller than the old 1.75:1, so both
 	// layouts run it narrower to hold the same height budget over the headers
 	const KRAKEN_INTRO_RATIO = 1448 / 1086; // kraken_spin_image v4
-	const FREE_SPINS_RATIO = 582 / 94; // free_spins_text_en.webp
+	const FREE_SPINS_RATIO = 588 / 102; // free_spins_text_en.webp (v5 art)
 	// both arts are ~100px tall from the same lettering, so one display height
 	// keeps the two headers matched
 	const HEADER_H = 40;
@@ -93,13 +118,13 @@
 <FadeContainer show={loadingType === 'start'}>
 	<Rectangle width={canvas.width} height={canvas.height} backgroundColor={0x000000} alpha={0.7} />
 	<Container x={cx} y={cy}>
-		<!-- logo_text.webp is 800x282 — height follows the aspect ratio -->
+		<!-- logo_text.webp is 800x308 (v5 art) — height follows the aspect ratio -->
 		<Sprite
 			key="gameLogo"
 			anchor={0.5}
 			y={((wide ? -110 : -250) - LIFT) * s}
 			width={(wide ? 460 : 435) * s}
-			height={((wide ? 460 : 435) * s * 282) / 800}
+			height={((wide ? 460 : 435) * s * 308) / 800}
 		/>
 	</Container>
 </FadeContainer>
@@ -168,12 +193,7 @@
 		calling it immediately would hard-cut instead. The earthquake still plays
 		where it belongs: the free-spins-end transition (Transition.svelte).
 	-->
-	<PressToContinue
-		onpress={async () => {
-			loadingType = 'transition';
-			await waitForTimeout(400);
-			props.onloaded();
-		}}
-		replay={isReplay}
-	/>
+	{#if !isReplay}
+		<PressToContinue onpress={startGame} />
+	{/if}
 </FadeContainer>

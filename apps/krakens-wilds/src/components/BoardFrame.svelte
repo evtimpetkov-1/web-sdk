@@ -9,7 +9,7 @@
 	import { ResponsiveText } from 'components-pixi';
 	import type { TextStyleOptions } from 'pixi.js';
 	import { stateBet, stateUi } from 'state-shared';
-	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
+	import { bookEventAmountToWinCurrencyString } from 'utils-shared/amount';
 
 	import { getContext } from '../game/context';
 	import { headingGold, uiValue } from '../game/textStyles';
@@ -138,7 +138,7 @@
 		<Container label="TotalWinCounter" x={counterRightX} y={counterBottomY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
 			<ResponsiveText text={i18nDerived.totalWin()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
-			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
+			<Text text={bookEventAmountToWinCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 	{:else}
 		<!-- Desktop/Landscape: left of frame, stacked vertically -->
@@ -150,7 +150,7 @@
 		<Container label="TotalWinCounter" x={counterX} y={counterWinY} scale={counterScale}>
 			<Sprite key="fsCounterBg" anchor={0.5} width={PANEL_WIDTH} height={PANEL_HEIGHT} />
 			<ResponsiveText text={i18nDerived.totalWin()} anchor={0.5} y={-20} maxWidth={270} style={counterHeaderStyle} />
-			<Text text={bookEventAmountToCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
+			<Text text={bookEventAmountToWinCurrencyString(stateBet.winBookEventAmount)} anchor={0.5} y={20} style={counterValueStyle} />
 		</Container>
 	{/if}
 {/if}
