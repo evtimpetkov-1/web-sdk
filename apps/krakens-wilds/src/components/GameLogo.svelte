@@ -9,8 +9,8 @@
 	const layout = $derived(context.stateLayoutDerived.layoutType());
 	const isPortrait = $derived(layout === 'portrait');
 
-	// logo_text.webp is 800x282
-	const LOGO_RATIO = 800 / 282;
+	// logo_text.webp is 800x308 (v5 art)
+	const LOGO_RATIO = 800 / 308;
 
 	// Desktop/landscape: left of the frame (above the FS counters column).
 	// Portrait/tablet: centered above the frame, over the kraken.

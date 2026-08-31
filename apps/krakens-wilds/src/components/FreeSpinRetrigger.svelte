@@ -66,7 +66,7 @@
 	const SPINE_FIT = 680 / 1600;
 	const TEXT_Y = 227.83 * SPINE_FIT; // 96.8 board units below the container origin
 	const TEXT_W = 1346.6 * 0.9 * SPINE_FIT; // the letters' animated footprint, 515
-	const TEXT_AR = 582 / 94; // free_spins_text_en.webp is 582x94
+	const TEXT_AR = 588 / 102; // free_spins_text_en.webp is 588x102 (v5 art)
 	/**
 	 * The line's entrance/exit, driven by gsap on a $state target (gsap writes
 	 * through the proxy, so every frame is reactive). It POPS instead of fading:

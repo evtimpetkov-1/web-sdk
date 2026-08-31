@@ -12,9 +12,23 @@
 		'../../assets/sprites/loading/free_spins_text_en.webp',
 		import.meta.url,
 	).href;
-	// the baked art is the FREE SPINS lettering — only the buy mode's title
+	// same CHANCE X2 lettering the shop's ante card is headed with
+	const anteChanceImg = new URL(
+		'../../assets/sprites/betmodes/ante_chance_x2_en.png',
+		import.meta.url,
+	).href;
+	/**
+	 * Baked header lettering, per mode. EN and social get the art (social is
+	 * English-only); every other locale keeps the text heading. An unknown mode
+	 * has no art, so it falls through to the text too.
+	 */
+	const TITLE_ART: Record<string, string> = {
+		BONUS: freeSpinsTextImg,
+		ANTE: anteChanceImg,
+	};
+	const titleArt = $derived(TITLE_ART[stateBonus.selectedBetModeKey]);
 	const useTitleArt = $derived(
-		(stateUrlDerived.social() || stateUrlDerived.lang() === 'en') && stateBonus.selectedBetModeKey === 'BONUS',
+		(stateUrlDerived.social() || stateUrlDerived.lang() === 'en') && Boolean(titleArt),
 	);
 
 	/**
@@ -66,7 +80,13 @@
 		style="z-index: {zIndex.dialog + 2};" role="dialog" aria-modal="true">
 		<div class="content">
 			{#if useTitleArt}
-				<img class="screen-title-art" src={freeSpinsTextImg} alt={mode?.text?.title} draggable="false" />
+				<img
+					class="screen-title-art"
+					class:chance={stateBonus.selectedBetModeKey === 'ANTE'}
+					src={titleArt}
+					alt={mode?.text?.title}
+					draggable="false"
+				/>
 			{:else}
 				<h1 class="screen-title">{mode?.text?.title}</h1>
 			{/if}
@@ -78,7 +98,6 @@
 			<p class="pitch">{mode?.text?.dialog}</p>
 
 			<div class="cost-row">
-				<span class="cost-label">{context.i18nDerived.cost()}</span>
 				<span class="cost-value">{cost}</span>
 			</div>
 
@@ -154,10 +173,19 @@
 	}
 
 	.screen-title-art {
-		height: clamp(40px, 6.5vh, 70px);
+		--title-h: clamp(40px, 6.5vh, 70px);
+		height: var(--title-h);
 		width: auto;
+		max-width: 94%;
+		object-fit: contain;
 		filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.7));
 		user-select: none;
+	}
+	/* CHANCE X2 runs a touch smaller than FREE SPINS — same ratio the shop's
+	   ante card header uses, so the two surfaces read as one set */
+	.screen-title-art.chance {
+		height: calc(var(--title-h) * 0.85);
+		margin-block: calc(var(--title-h) * 0.075);
 	}
 
 	.art-halo {
@@ -197,13 +225,6 @@
 		display: flex;
 		align-items: baseline;
 		gap: 0.7rem;
-	}
-	.cost-label {
-		font-family: 'Cinzel', serif;
-		font-size: 0.85rem;
-		letter-spacing: 0.2em;
-		color: #ffd700;
-		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
 	}
 	.cost-value {
 		font-family: 'Cinzel', serif;
