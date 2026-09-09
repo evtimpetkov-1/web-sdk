@@ -7,4 +7,12 @@ export * from './context.svelte';
 // on pixi.js themselves (type-only imports are fine — they compile away).
 // PIXI's Rectangle is aliased: pixi-svelte's own <Rectangle> component owns
 // the bare name.
-export { BlurFilter, FillGradient, Texture, Rectangle as PixiRectangle } from 'pixi.js';
+export {
+	BlurFilter,
+	FillGradient,
+	Geometry,
+	Mesh,
+	Shader,
+	Texture,
+	Rectangle as PixiRectangle,
+} from 'pixi.js';

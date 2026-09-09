@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { ButtonProps } from 'components-pixi';
+	import { stateUiTheme } from '../stateUiTheme.svelte';
 	import { stateBet, stateBetDerived } from 'state-shared';
 
 	import UiButton from './UiButton.svelte';
@@ -35,5 +36,5 @@
 	{disabled}
 	icon="turbo"
 	iconActive={persistentTurbo}
-	iconTint={persistentTurbo ? 0x55ff55 : undefined}
+	iconTint={persistentTurbo ? stateUiTheme.turboActiveTint : undefined}
 />

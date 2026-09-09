@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { stateUi, stateModal } from 'state-shared';
-	import { BLACK, WHITE } from 'constants-shared/colors';
+	import { BLACK } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
 	import { Container, Rectangle, Text, Sprite } from 'pixi-svelte';
 	import { ResponsiveText } from 'components-pixi';
@@ -12,6 +12,7 @@
 	import type { LayoutUiProps } from '../types';
 	import { getContext } from '../context';
 	import { i18nDerived } from '../i18n/i18nDerived';
+	import { stateUiTheme } from '../stateUiTheme.svelte';
 
 
 	const props: LayoutUiProps = $props();
@@ -27,22 +28,23 @@
 	const spinY = $derived((h - 100) * 0.5);
 
 	// Bottom bar text style
-	const labelStyle = {
-		fontFamily: 'Cinzel',
+	// fonts/colours come from stateUiTheme (defaults = the former hardcoded look)
+	const labelStyle = $derived({
+		fontFamily: stateUiTheme.labelFont,
 		fontSize: 34,
-		fontWeight: '700',
-		fill: 0xffd700,
-		letterSpacing: 2,
-	} as const;
+		fontWeight: stateUiTheme.labelWeight,
+		fill: stateUiTheme.labelFill,
+		letterSpacing: stateUiTheme.labelLetterSpacing,
+	} as const);
 
-	const valueStyle = {
-		fontFamily: 'Inter',
+	const valueStyle = $derived({
+		fontFamily: stateUiTheme.valueFont,
 		fontSize: 44,
 		fontWeight: '700',
-		fill: WHITE,
+		fill: stateUiTheme.valueFill,
 		letterSpacing: 1,
 		dropShadow: { color: 0x000000, blur: 3, distance: 2, alpha: 0.5 },
-	} as const;
+	} as const);
 
 	// Reactive values for bottom bar
 	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
@@ -88,8 +90,8 @@
 		anchor={{ x: 0.5, y: 0 }}
 		width={w + 20}
 		height={140}
-		backgroundColor={0x000000}
-		backgroundAlpha={0.7}
+		backgroundColor={stateUiTheme.barFill}
+		backgroundAlpha={stateUiTheme.barAlpha}
 		borderRadius={14}
 	/>
 

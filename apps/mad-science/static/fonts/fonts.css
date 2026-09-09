@@ -1,0 +1,40 @@
+/* Self-hosted game fonts (Stake: no external font loading beyond the platform Typekit). */
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./inter-latin-400.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('./inter-latin-700.woff2') format('woff2');
+}
+/* Creepster (OFL, Sideshow) — the logo's voice: labels, headings, titles. Latin only. */
+@font-face {
+	font-family: 'Creepster';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./creepster.woff2') format('woff2');
+}
+/* Nosifer (OFL, Typomondo) — dripping display face for big celebration headings only. */
+@font-face {
+	font-family: 'Nosifer';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./nosifer.woff2') format('woff2');
+}
+/* Black Ops One (OFL, Sorkin Type; licence in black-ops-one.OFL.txt) — the in-game
+   counters (free spins, total win) and the cascade win amounts on the board. */
+@font-face {
+	font-family: 'Black Ops One';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./black-ops-one.woff2') format('woff2');
+}

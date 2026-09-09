@@ -1,0 +1,10 @@
+h1.png
+size:512,1024
+filter:Linear,Linear
+scale:1
+base
+bounds:0,0,311,322
+jar_empty
+bounds:0,326,270,293
+brain
+bounds:274,326,160,139

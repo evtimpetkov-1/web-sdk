@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { stateUi, stateConfig, stateModal } from 'state-shared';
-	import { BLACK, WHITE } from 'constants-shared/colors';
+	import { BLACK } from 'constants-shared/colors';
 	import { MainContainer } from 'components-layout';
 	import { Circle, Container, Rectangle, Text, Sprite } from 'pixi-svelte';
 	import { ResponsiveText } from 'components-pixi';
@@ -12,6 +12,7 @@
 	import type { LayoutUiProps } from '../types';
 	import { getContext } from '../context';
 	import { i18nDerived } from '../i18n/i18nDerived';
+	import { stateUiTheme } from '../stateUiTheme.svelte';
 
 
 	const props: LayoutUiProps = $props();
@@ -26,22 +27,23 @@
 	const rowY = $derived(h - 58);
 
 	// Bottom bar text style
-	const labelStyle = {
-		fontFamily: 'Cinzel',
+	// fonts/colours come from stateUiTheme (defaults = the former hardcoded look)
+	const labelStyle = $derived({
+		fontFamily: stateUiTheme.labelFont,
 		fontSize: 26,
-		fontWeight: '700',
-		fill: 0xffd700,
-		letterSpacing: 2,
-	} as const;
+		fontWeight: stateUiTheme.labelWeight,
+		fill: stateUiTheme.labelFill,
+		letterSpacing: stateUiTheme.labelLetterSpacing,
+	} as const);
 
-	const valueStyle = {
-		fontFamily: 'Inter',
+	const valueStyle = $derived({
+		fontFamily: stateUiTheme.valueFont,
 		fontSize: 33,
 		fontWeight: '700',
-		fill: WHITE,
+		fill: stateUiTheme.valueFill,
 		letterSpacing: 1,
 		dropShadow: { color: 0x000000, blur: 3, distance: 2, alpha: 0.5 },
-	} as const;
+	} as const);
 
 	// Reactive values for bottom bar
 	const balanceValue = $derived(numberToCurrencyString(stateBet.balanceAmount));
@@ -123,8 +125,8 @@
 		anchor={{ x: 0.5, y: 0 }}
 		width={w + 20}
 		height={115}
-		backgroundColor={0x000000}
-		backgroundAlpha={0.7}
+		backgroundColor={stateUiTheme.barFill}
+		backgroundAlpha={stateUiTheme.barAlpha}
 		borderRadius={14}
 	/>
 
@@ -185,9 +187,9 @@
 			<Circle
 				anchor={0.5}
 				diameter={STEPPER_DIAMETER}
-				backgroundColor={0x0d2c44}
+				backgroundColor={stateUiTheme.stepperFill}
 				backgroundAlpha={0.95}
-				borderColor={hovered && !disabled ? 0xffe282 : 0xc8a24a}
+				borderColor={hovered && !disabled ? stateUiTheme.stepperRimHover : stateUiTheme.stepperRim}
 				borderWidth={2.5}
 				borderAlpha={0.95}
 			/>
@@ -196,7 +198,7 @@
 				width={20}
 				height={4.5}
 				borderRadius={2}
-				backgroundColor={hovered && !disabled ? 0xffe282 : 0xffd700}
+				backgroundColor={hovered && !disabled ? stateUiTheme.stepperGlyphHover : stateUiTheme.stepperGlyph}
 			/>
 			{#if kind === 'plus'}
 				<Rectangle
@@ -204,7 +206,7 @@
 					width={4.5}
 					height={20}
 					borderRadius={2}
-					backgroundColor={hovered && !disabled ? 0xffe282 : 0xffd700}
+					backgroundColor={hovered && !disabled ? stateUiTheme.stepperGlyphHover : stateUiTheme.stepperGlyph}
 				/>
 			{/if}
 		</Container>

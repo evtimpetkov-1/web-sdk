@@ -1,0 +1,14 @@
+winfx.png
+size:256,512
+filter:Linear,Linear
+scale:1
+glow
+bounds:0,0,128,128
+arc_a
+bounds:0,132,128,40
+arc_b
+bounds:0,176,128,40
+arc_c
+bounds:0,220,128,40
+spark
+bounds:132,220,32,32

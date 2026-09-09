@@ -3,7 +3,8 @@ import UiGameName from './src/components/UiGameName.svelte';
 
 import messagesMap from './src/i18n/messagesMap';
 import { i18nDerived } from './src/i18n/i18nDerived';
+import { stateUiTheme } from './src/stateUiTheme.svelte';
 
 export * from './src/types';
 
-export { messagesMap, i18nDerived, UI, UiGameName };
+export { messagesMap, i18nDerived, stateUiTheme, UI, UiGameName };

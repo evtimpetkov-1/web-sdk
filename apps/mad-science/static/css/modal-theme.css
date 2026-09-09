@@ -1,0 +1,70 @@
+/* Mad Science modal theme — charcoal lab glass, acid green (#abea10, sampled
+   from the logo) as the single accent, a violet undertone in the glow. Themes
+   the SDK's bet menu, autoplay and settings popups; the buy screens are the
+   game's own (BuyShop/BuyConfirm) and share this vocabulary.
+   `:root:root` outranks the package's `:root` defaults, which are injected
+   after this stylesheet. */
+:root:root {
+	/* panel */
+	--modal-panel-bg: linear-gradient(180deg, rgba(30, 36, 30, 0.96) 0%, rgba(12, 16, 12, 0.98) 100%);
+	--modal-panel-border: 1px solid rgba(171, 234, 16, 0.4);
+	--modal-panel-radius: 20px;
+	--modal-panel-shadow:
+		0 0 30px rgba(171, 234, 16, 0.14),
+		0 24px 60px rgba(0, 0, 0, 0.7),
+		inset 0 1px 0 rgba(255, 255, 255, 0.08);
+	--modal-panel-padding: 1.5rem 1.8rem;
+
+	/* type */
+	--modal-title-font: 'Creepster', 'Inter', sans-serif;
+	--modal-title-size: 1.7rem;
+	--modal-text: #f2f6ea;
+	--modal-text-dim: rgba(242, 246, 234, 0.6);
+
+	/* accents */
+	--modal-accent: #abea10;
+	--modal-accent-selected: #abea10;
+	--modal-border: rgba(171, 234, 16, 0.28);
+	--modal-border-selected: rgba(171, 234, 16, 0.95);
+	--modal-divider: linear-gradient(90deg, transparent, rgba(171, 234, 16, 0.9), transparent);
+
+	/* interactive surfaces */
+	--modal-bg: rgba(40, 50, 36, 0.45);
+	--modal-bg-hover: rgba(171, 234, 16, 0.14);
+	--modal-bg-active: rgba(171, 234, 16, 0.22);
+	--modal-btn-bg: rgba(24, 30, 22, 0.75);
+	--modal-btn-bg-hover: rgba(171, 234, 16, 0.22);
+	--modal-btn-confirm-bg: linear-gradient(180deg, rgba(199, 245, 58, 0.4) 0%, rgba(121, 181, 6, 0.55) 100%);
+	--modal-btn-confirm-border: rgba(171, 234, 16, 0.85);
+	--modal-btn-radius: 12px;
+
+	/* sliders */
+	--modal-slider-track: rgba(255, 255, 255, 0.14);
+	--modal-slider-thumb: #abea10;
+	--modal-slider-fill: rgba(171, 234, 16, 0.5);
+}
+
+/* titles read in acid green, uppercase, spaced like the buy screens */
+.ui-modal-title-wrap {
+	--modal-text: #abea10;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-weight: 400;
+	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.9), 0 0 16px rgba(171, 234, 16, 0.3);
+}
+
+/* the SDK popup's backdrop is a flat black blur; tint it with the lab's
+   green-over-charcoal so the panels sit in the same air as the buy shop */
+.pop-up-wrap .blur-layer {
+	background:
+		radial-gradient(ellipse 80% 60% at 50% 30%, rgba(90, 140, 20, 0.2) 0%, rgba(6, 10, 6, 0) 60%),
+		rgba(4, 6, 4, 0.6);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+}
+
+/* the close X matches the buy screens' green-ringed chip */
+.pop-up-wrap .close-button {
+	color: #abea10;
+	box-shadow: 0 0 0 2px rgba(171, 234, 16, 0.5), 0 4px 10px rgba(0, 0, 0, 0.5);
+}
