@@ -14,7 +14,7 @@ import { eventEmitter } from './eventEmitter';
 import { stateGame } from './stateGame.svelte';
 import type { Bet, BookEventOfType } from './typesBookEvent';
 import { bookEventHandlerMap } from './bookEventHandlerMap';
-import type { RawSymbol, SymbolState } from './types';
+import type { Position, RawSymbol, SymbolState } from './types';
 
 // general utils
 export const { getEmptyBoard } = createGetEmptyPaddedBoard({ reelsDimensions: BOARD_DIMENSIONS });
@@ -64,6 +64,11 @@ export const convertTorResumableBet = (betToResume: Bet) => {
 // other utils
 export const getSymbolX = (reelIndex: number) => SYMBOL_WIDTH * (reelIndex + REEL_PADDING);
 export const getSymbolY = (symbolIndexOfBoard: number) => (symbolIndexOfBoard + 0.5) * SYMBOL_SIZE;
+
+// stateGame.cloneFx key. Book positions index the PADDED reel (rows 1..5 are the
+// visible cells, like every other position in the book), so the reel board's
+// symbols array index is the row itself.
+export const getCloneFxKey = (position: Position) => `${position.reel}-${position.row}`;
 
 // the multiplier's value is drawn at runtime, so one 'M' entry serves every value
 export const getSymbolKey = ({ rawSymbol }: { rawSymbol: RawSymbol }) =>

@@ -356,4 +356,82 @@ export default {
 		type: 'finalWin',
 		amount: 4380,
 	},
+	// --- bomb / cloner features (proposed contract, 2026-09-09) ---
+	// a settled board with the bomb at reel 2 row 2 (rows are padded indices: 1..5 visible)
+	revealBomb: {
+		type: 'reveal',
+		board: [
+			[{ name: 'L1' }, { name: 'H4' }, { name: 'L3' }, { name: 'H2' }, { name: 'L1' }, { name: 'L4' }, { name: 'H3' }],
+			[{ name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H4' }, { name: 'L3' }, { name: 'H2' }, { name: 'L4' }],
+			[{ name: 'H1' }, { name: 'L4' }, { name: 'B' }, { name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H2' }],
+			[{ name: 'L3' }, { name: 'H2' }, { name: 'L4' }, { name: 'H1' }, { name: 'L2' }, { name: 'H4' }, { name: 'L1' }],
+			[{ name: 'H4' }, { name: 'L1' }, { name: 'H2' }, { name: 'L3' }, { name: 'H1' }, { name: 'L2' }, { name: 'H3' }],
+			[{ name: 'L4' }, { name: 'H1' }, { name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H2' }, { name: 'L4' }],
+		],
+		paddingPositions: [98, 155, 195, 101, 98, 41],
+		gameType: 'basegame',
+		anticipation: [0, 0, 0, 0, 0, 0],
+	},
+	bombExplode: {
+		type: 'bombExplode',
+		position: { reel: 2, row: 2 },
+		destroyed: [
+			{ reel: 1, row: 1 },
+			{ reel: 1, row: 2 },
+			{ reel: 1, row: 3 },
+			{ reel: 2, row: 1 },
+			{ reel: 2, row: 3 },
+			{ reel: 3, row: 1 },
+			{ reel: 3, row: 2 },
+			{ reel: 3, row: 3 },
+		],
+	},
+	// the tumble that draws the blast: the 3x3 ring explodes, reels 1-3 refill with three each
+	tumbleBoardBomb: {
+		type: 'tumbleBoard',
+		newSymbols: [
+			[],
+			[{ name: 'H1' }, { name: 'L2' }, { name: 'H4' }],
+			[{ name: 'L3' }, { name: 'H2' }, { name: 'L1' }],
+			[{ name: 'H3' }, { name: 'L4' }, { name: 'H1' }],
+			[],
+			[],
+		],
+		explodingSymbols: [
+			{ reel: 1, row: 1 },
+			{ reel: 1, row: 2 },
+			{ reel: 1, row: 3 },
+			{ reel: 2, row: 1 },
+			{ reel: 2, row: 2 },
+			{ reel: 2, row: 3 },
+			{ reel: 3, row: 1 },
+			{ reel: 3, row: 2 },
+			{ reel: 3, row: 3 },
+		],
+	},
+	// a settled board with the cloner at reel 3 row 2
+	revealCloner: {
+		type: 'reveal',
+		board: [
+			[{ name: 'L1' }, { name: 'H4' }, { name: 'L3' }, { name: 'H2' }, { name: 'L1' }, { name: 'L4' }, { name: 'H3' }],
+			[{ name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H4' }, { name: 'L3' }, { name: 'H2' }, { name: 'L4' }],
+			[{ name: 'H1' }, { name: 'L4' }, { name: 'H3' }, { name: 'L2' }, { name: 'H4' }, { name: 'L1' }, { name: 'H2' }],
+			[{ name: 'L3' }, { name: 'H2' }, { name: 'C' }, { name: 'H1' }, { name: 'L2' }, { name: 'H4' }, { name: 'L1' }],
+			[{ name: 'H4' }, { name: 'L1' }, { name: 'H2' }, { name: 'L3' }, { name: 'H1' }, { name: 'L2' }, { name: 'H3' }],
+			[{ name: 'L4' }, { name: 'H1' }, { name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H2' }, { name: 'L4' }],
+		],
+		paddingPositions: [98, 155, 195, 101, 98, 41],
+		gameType: 'basegame',
+		anticipation: [0, 0, 0, 0, 0, 0],
+	},
+	clonerTransform: {
+		type: 'clonerTransform',
+		position: { reel: 3, row: 2 },
+		clones: [
+			{ reel: 0, row: 1 },
+			{ reel: 5, row: 5 },
+			{ reel: 1, row: 4 },
+		],
+		symbol: 'H1',
+	},
 };

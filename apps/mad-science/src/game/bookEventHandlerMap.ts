@@ -1,10 +1,11 @@
 import _ from 'lodash';
 
 import { recordBookEvent, checkIsMultipleRevealEvents, type BookEventHandlerMap } from 'utils-book';
-import { stateBet } from 'state-shared';
+import { stateBet, stateBetDerived } from 'state-shared';
+import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
 import { eventEmitter } from './eventEmitter';
-import { playBookEvent } from './utils';
+import { getCloneFxKey, playBookEvent } from './utils';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
 import { stateGame, stateGameDerived } from './stateGame.svelte';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
@@ -242,7 +243,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'boardHide' });
 		eventEmitter.broadcast({ type: 'tumbleBoardShow' });
 		eventEmitter.broadcast({ type: 'tumbleBoardInit', addingBoard: bookEvent.newSymbols });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_explosion_b' });
+		// a bomb tumble bangs on the rig's `detonate` event instead (Symbol.svelte)
+		if (!stateGame.bombPending) {
+			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_explosion_b' });
+		}
 		await eventEmitter.broadcastAsync({
 			type: 'tumbleBoardExplode',
 			explodingPositions: bookEvent.explodingSymbols,
@@ -258,6 +262,85 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'tumbleBoardReset' });
 		eventEmitter.broadcast({ type: 'tumbleBoardHide' });
 		eventEmitter.broadcast({ type: 'boardShow' });
+	},
+	// Bomb: nothing is drawn here. The blast IS the tumbleBoard that always follows
+	// (its explodingSymbols are the ring): TumbleBoard consumes bombPending and gives
+	// the bomb cell its explode rig and the ring the blast in place of the goo.
+	bombExplode: async (bookEvent: BookEventOfType<'bombExplode'>) => {
+		stateGame.bombPending = { position: bookEvent.position, destroyed: bookEvent.destroyed };
+	},
+	// Cloner, on the settled reel board: the original casts and its ghosts fly to
+	// the clone cells; each landing splats the cell into a cloner; then every
+	// cloner (original + clones) drains out under the flood and the book's symbol
+	// lands in its place. Afterwards the reel board matches the math's board.
+	clonerTransform: async (bookEvent: BookEventOfType<'clonerTransform'>) => {
+		const CAST_RELEASE_MS = 200; // the ghosts peel off ~0.15-0.30s into `cast`
+		const BEAT_MS = 250;
+		const timeScale = stateBetDerived.timeScale();
+		const getReelSymbol = (position: Position) =>
+			stateGame.board[position.reel].reelState.symbols[position.row];
+
+		eventEmitter.broadcast({ type: 'boardShow' });
+		const origin = getReelSymbol(bookEvent.position);
+
+		// 1. cast + flights run together: the flights start CAST_RELEASE_MS into the cast
+		const cast = async () => {
+			origin.symbolState = 'cast';
+			await waitForResolve((resolve) => (origin.oncomplete = resolve));
+		};
+		// 2. per clone, a promise released by that cell's splat; registered on arrival
+		const splats = bookEvent.clones.map((clone) => {
+			let resolve = () => {};
+			const done = new Promise<void>((r) => (resolve = r));
+			return { clone, resolve, done };
+		});
+		const onArrive = (to: Position) => {
+			const splat = splats.find(({ clone }) => clone.reel === to.reel && clone.row === to.row);
+			if (!splat) return;
+			const reelSymbol = getReelSymbol(to);
+			stateGame.cloneFx[getCloneFxKey(to)] = {
+				kind: 'splat',
+				onSwap: () => {
+					reelSymbol.rawSymbol = { name: 'C' };
+					reelSymbol.symbolState = 'in'; // completes to 'static' (ReelSymbol)
+				},
+				oncomplete: splat.resolve,
+			};
+		};
+		const flights = async () => {
+			await waitForTimeout(CAST_RELEASE_MS / timeScale);
+			await eventEmitter.broadcastAsync({
+				type: 'clonesFly',
+				from: bookEvent.position,
+				to: bookEvent.clones,
+				onArrive,
+			});
+		};
+		await Promise.all([cast(), flights(), ...splats.map(({ done }) => done)]);
+		bookEvent.clones.forEach((clone) => delete stateGame.cloneFx[getCloneFxKey(clone)]);
+
+		// 3. a beat with every cloner on the board
+		await waitForTimeout(BEAT_MS / timeScale);
+
+		// 4. flood: signs drain out, the covered cells swap to the paying symbol, which lands
+		const cloners = [bookEvent.position, ...bookEvent.clones];
+		await Promise.all(
+			cloners.map((position) =>
+				waitForResolve((resolve) => {
+					const reelSymbol = getReelSymbol(position);
+					reelSymbol.symbolState = 'out'; // holds its last frame until the swap
+					stateGame.cloneFx[getCloneFxKey(position)] = {
+						kind: 'flood',
+						onSwap: () => {
+							reelSymbol.rawSymbol = { name: bookEvent.symbol };
+							reelSymbol.symbolState = 'land'; // completes to 'static' (ReelSymbol)
+						},
+						oncomplete: resolve,
+					};
+				}),
+			),
+		);
+		cloners.forEach((position) => delete stateGame.cloneFx[getCloneFxKey(position)]);
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];

@@ -308,6 +308,35 @@ export default {
 			scale: 1,
 		},
 	},
+	// Bomb blast for the 3x3 ring: one-cell box like msGoo, hit_00..hit_11 red
+	// fire bursts (0.5s one-shots, end empty), drawn over the neighbour's plate
+	// while it pops (BlastBurst / TumbleSymbol 'blasted').
+	msBlast: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/blast/blast.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/blast/blast.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	// Cloner goo covers, one-cell box: `splat` (a ghost lands, the cell becomes a
+	// cloner) and `flood` (every cloner turns into the paying symbol). Both fire
+	// the Spine event `swap` when the cell is fully covered — the moment the
+	// symbol underneath is exchanged (CloneFx / ReelSymbol) — and end empty.
+	msCloneFx: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/clonefx/clonefx.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/clonefx/clonefx.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	// the cloner's slime copy-frames without the plate (219x269): the ghosts that
+	// fly from the cloner to the cells it clones onto (MovingClones)
+	msClonerGhost: {
+		type: 'sprite',
+		src: new URL('../../assets/madscience/fx/cloner_ghost.png', import.meta.url).href,
+	},
 	msWinFx: {
 		type: 'spine',
 		src: {

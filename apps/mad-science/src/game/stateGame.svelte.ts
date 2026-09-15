@@ -5,7 +5,7 @@ import { stateBet } from 'state-shared';
 import { createEnhanceBoard, createReelForCascading } from 'utils-slots';
 import { createGetWinLevelDataByWinLevelAlias } from 'utils-shared/winLevel';
 
-import type { GameType, RawSymbol, SymbolState } from './types';
+import type { GameType, Position, RawSymbol, SymbolState } from './types';
 import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
 import { eventEmitter } from './eventEmitter';
@@ -68,6 +68,29 @@ export type TumbleSymbol = {
 	rawSymbol: RawSymbol;
 	symbolState: SymbolState;
 	oncomplete: () => void;
+	/** 'blasted' only: ms (at 1x) after the tumble starts before the blast ring reaches this cell */
+	blastDelay?: number;
+};
+
+// bombExplode parked until the tumbleBoard that always follows draws it
+export type BombPending = { position: Position; destroyed: Position[] };
+
+// A goo cover over one reel cell (CloneFx in ReelSymbol), keyed by
+// `${reel}-${row}` where row is the book's padded index (getCloneFxKey).
+// `onSwap` fires on the rig's `swap` event — the cell is fully covered, exchange
+// the symbol underneath; `oncomplete` when the cover has drained away.
+export type CloneFx = {
+	kind: 'splat' | 'flood';
+	onSwap: () => void;
+	oncomplete: () => void;
+};
+
+// a cloner ghost in flight (MovingClones), board-local coords
+export type MovingClone = {
+	id: number;
+	x: Tween<number>;
+	y: Tween<number>;
+	scale: Tween<number>;
 };
 
 export type MultiplierSymbol = {
@@ -96,6 +119,11 @@ export const stateGame = $state({
 	// updateTumbleWin / boardMultiplierInfo, zeroed by reveal and by setTotalWin,
 	// which folds it into stateBet.winBookEventAmount. FreeSpinTotalWin adds the two.
 	tumbleWin: 0,
+	// bomb feature: set by bombExplode, consumed by the next tumbleBoardExplode
+	bombPending: undefined as BombPending | undefined,
+	// cloner feature: goo covers over reel cells and the ghosts flying between them
+	cloneFx: {} as Record<string, CloneFx>,
+	movingClones: [] as MovingClone[],
 });
 
 const boardLayout = () => ({

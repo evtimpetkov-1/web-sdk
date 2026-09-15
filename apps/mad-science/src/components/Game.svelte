@@ -34,6 +34,7 @@
 	import TumbleWinAmount from './TumbleWinAmount.svelte';
 	import GlobalMultiplier from './GlobalMultiplier.svelte';
 	import MultiplierBoard from './MultiplierBoard.svelte';
+	import MovingClones from './MovingClones.svelte';
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinCounter from './FreeSpinCounter.svelte';
@@ -117,6 +118,7 @@
 
 		<MainContainer>
 			<MultiplierBoard />
+			<MovingClones />
 		</MainContainer>
 
 		<VideoMascot />

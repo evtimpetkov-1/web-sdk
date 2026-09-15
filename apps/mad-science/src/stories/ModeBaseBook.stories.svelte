@@ -51,3 +51,24 @@
 	})}
 	{template}
 />
+
+<!-- feature flows end to end (playBet, so the bomb idles while its round is in play) -->
+<Story
+	name="bomb"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: books.find((book) => book.id === 51),
+		action: async (data) => await playBet({ ...data, state: data.events }),
+	})}
+	{template}
+/>
+
+<Story
+	name="cloner"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: books.find((book) => book.id === 52),
+		action: async (data) => await playBet({ ...data, state: data.events }),
+	})}
+	{template}
+/>

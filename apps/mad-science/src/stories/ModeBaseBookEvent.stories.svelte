@@ -16,7 +16,7 @@
 
 	import Game from '../components/Game.svelte';
 	import { setContext } from '../game/context';
-	import { playBookEvent } from '../game/utils';
+	import { playBookEvent, playBookEvents } from '../game/utils';
 	import events from './data/base_events';
 
 	
@@ -102,6 +102,27 @@
 		skipLoadingScreen: true,
 		data: events.tumbleBoard,
 		action: async (data) => await playBookEvent(data, { bookEvents: [] }),
+	})}
+	{template}
+/>
+
+<!-- the bomb and cloner act on a settled board: a reveal that places them comes first -->
+<Story
+	name="bombExplode"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: [events.revealBomb, events.bombExplode, events.tumbleBoardBomb],
+		action: async (data) => await playBookEvents(data),
+	})}
+	{template}
+/>
+
+<Story
+	name="clonerTransform"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: [events.revealCloner, events.clonerTransform],
+		action: async (data) => await playBookEvents(data),
 	})}
 	{template}
 />

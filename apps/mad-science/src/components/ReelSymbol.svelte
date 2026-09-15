@@ -2,7 +2,8 @@
 	import Symbol from './Symbol.svelte';
 	import SymbolWrap from './SymbolWrap.svelte';
 	import WinCharge from './WinCharge.svelte';
-	import { getSymbolInfo, getSymbolX, getSymbolZIndex } from '../game/utils';
+	import CloneFx from './CloneFx.svelte';
+	import { getCloneFxKey, getSymbolInfo, getSymbolX, getSymbolZIndex } from '../game/utils';
 	import { WIN_CHARGE_EXCLUDED } from '../game/constants';
 	import { getContext } from '../game/context';
 	import type { ReelSymbol } from '../game/stateGame.svelte';
@@ -10,6 +11,8 @@
 
 	type Props = {
 		reelIndex: number;
+		/** index in the reel's padded symbols array — the book's row for this cell */
+		symbolIndex: number;
 		reelSymbol: ReelSymbol;
 	};
 
@@ -17,21 +20,23 @@
 	const context = getContext();
 
 	/**
-	 * The scatter's pending loop. While a round is in play (reveal through the
-	 * last cascade) a landed scatter idles — lamp swaying, bulbs breathing —
-	 * instead of sitting on its static plate. The reel state itself stays
-	 * 'static'; only what is DRAWN changes. When the round ends the loop is
-	 * released at its next loop boundary (the rig's rest pose, see oncomplete),
-	 * so the swap back to the sprite never jumps mid-swing.
+	 * The pending loop. While a round is in play (reveal through the last cascade)
+	 * a landed symbol with an idle rig — the scatter's lamp sway, the bomb's
+	 * armed fuse — idles instead of sitting on its static plate. The reel state
+	 * itself stays 'static'; only what is DRAWN changes. When the round ends the
+	 * loop is released at its next loop boundary (the rig's rest pose, see
+	 * oncomplete), so the swap back to the sprite never jumps mid-swing.
 	 */
-	const isScatter = $derived(props.reelSymbol.rawSymbol.name === 'S');
+	const hasIdle = $derived(
+		getSymbolInfo({ rawSymbol: props.reelSymbol.rawSymbol, state: 'idle' }).type === 'spine',
+	);
 	let idleHold = $state(false);
 	$effect(() => {
 		if (props.reelSymbol.symbolState !== 'static') idleHold = false;
-		else if (isScatter && context.stateGame.roundActive) idleHold = true;
+		else if (hasIdle && context.stateGame.roundActive) idleHold = true;
 	});
 	const displayState = $derived<SymbolState>(
-		isScatter &&
+		hasIdle &&
 			props.reelSymbol.symbolState === 'static' &&
 			(context.stateGame.roundActive || idleHold)
 			? 'idle'
@@ -65,6 +70,11 @@
 		return undefined;
 	});
 
+	// Cloner goo cover registered for this cell by the clonerTransform handler
+	// (splat: the cell becomes a cloner; flood: the cloner becomes the paying symbol)
+	const cloneFx = $derived(
+		context.stateGame.cloneFx[getCloneFxKey({ reel: props.reelIndex, row: props.symbolIndex })],
+	);
 </script>
 
 <!--
@@ -80,26 +90,32 @@
 {/if}
 
 <!--
-	`animating` picks the unmasked board layer. A winning or held symbol stays
-	there so its halo is not clipped by the board mask and sorts under it.
+	`animating` picks the unmasked board layer. Every rig state (land, win, idle,
+	the cloner's cast/in/out) lives there, as does a held symbol (its halo is not
+	clipped by the board mask and sorts under it) and a cell under a goo cover
+	(symbol and cover must share one container to sort against each other).
 -->
 <SymbolWrap
 	{x}
 	{y}
 	{zIndex}
-	animating={(symbolInfo.type === 'spine' &&
-		(displayState === 'land' || displayState === 'win' || displayState === 'idle')) ||
-		fxPhase !== undefined}
+	animating={symbolInfo.type === 'spine' || fxPhase !== undefined || cloneFx !== undefined}
 >
 	<Symbol
 		state={displayState}
 		loop={displayState === 'idle'}
 		rawSymbol={props.reelSymbol.rawSymbol}
 		oncomplete={() => {
-			// a loop boundary: the round is over, let the scatter go static here
+			const { symbolState } = props.reelSymbol;
+			// a loop boundary: the round is over, let the idle rig go static here
 			if (displayState === 'idle' && !context.stateGame.roundActive) idleHold = false;
-			if (props.reelSymbol.symbolState === 'win') props.reelSymbol.oncomplete();
-			if (props.reelSymbol.symbolState === 'land') props.reelSymbol.symbolState = 'static';
+			// win and the cloner's cast are awaited by their handlers
+			if (symbolState === 'win' || symbolState === 'cast') props.reelSymbol.oncomplete();
+			// rest-pose one-shots settle onto the static plate; 'out' holds its last
+			// frame (sign gone, plate intact) until the flood swaps the symbol
+			if (symbolState === 'land' || symbolState === 'cast' || symbolState === 'in') {
+				props.reelSymbol.symbolState = 'static';
+			}
 		}}
 	/>
 </SymbolWrap>
@@ -111,5 +127,12 @@
 			phase={fxPhase}
 			oncomplete={() => (chargeDone = true)}
 		/>
+	</SymbolWrap>
+{/if}
+
+<!-- over the symbol: the swap underneath happens while the cell is fully covered -->
+{#if cloneFx}
+	<SymbolWrap {x} {y} animating={true} zIndex={3}>
+		<CloneFx kind={cloneFx.kind} onswap={cloneFx.onSwap} oncomplete={cloneFx.oncomplete} />
 	</SymbolWrap>
 {/if}

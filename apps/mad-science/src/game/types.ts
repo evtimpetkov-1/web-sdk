@@ -13,10 +13,19 @@ export const SYMBOL_STATES = [
 	'win',
 	'postWinStatic',
 	'explosion',
-	// pending loop while a round is in play (only the scatter has one; the rest
-	// show their static plate) — derived in ReelSymbol/TumbleSymbol, never set
-	// on the reel state itself
+	// pending loop while a round is in play (the scatter and the armed bomb have
+	// one; the rest show their static plate) — derived in ReelSymbol/TumbleSymbol,
+	// never set on the reel state itself
 	'idle',
+	// bomb feature (tumble board): the bomb blows itself up, its neighbours keep
+	// their plate under a red blast overlay before both are removed
+	'explode',
+	'blasted',
+	// cloner feature (reel board): the original casts its ghosts, a clone's sign
+	// grows in under the goo splat, every cloner's sign drains out under the flood
+	'cast',
+	'in',
+	'out',
 ] as const;
 
 export type SymbolState = CascadingReelSymbolState | (typeof SYMBOL_STATES)[number];

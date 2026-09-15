@@ -27,10 +27,21 @@
 	import BoardMask from './BoardMask.svelte';
 	import { getSymbolY } from '../game/utils';
 	import { getContext } from '../game/context';
+	import type { SymbolState } from '../game/types';
 
 	const context = getContext();
 
 	let show = $state(false);
+
+	// Bomb ring timing (ms at 1x, TumbleSymbol scales them): the bomb rig fires
+	// `detonate` at 0.38s, the ring then reaches its neighbours at 70ms per cell of
+	// distance so the corners burst after the sides.
+	const BOMB_DETONATE_MS = 380;
+	const BLAST_MS_PER_CELL = 70;
+	const isSamePosition = (a: Position, b: Position) => a.reel === b.reel && a.row === b.row;
+	const cellDistance = (a: Position, b: Position) => Math.hypot(a.reel - b.reel, a.row - b.row);
+	// every state a cell leaves the board in (tumbleBoardRemoveExploded)
+	const REMOVED_STATES: SymbolState[] = ['explosion', 'explode', 'blasted'];
 
 	const createTumbleSymbol = ({ initY, rawSymbol }: { initY: number; rawSymbol: RawSymbol }) => {
 		const symbolY = new Tween(initY);
@@ -82,10 +93,23 @@
 			context.stateGame.tumbleBoardBase = [];
 		},
 		tumbleBoardExplode: async ({ explodingPositions }) => {
+			// a pending bombExplode is drawn by this tumble: the bomb cell plays its
+			// explode rig, the rest of the ring takes the blast instead of the goo
+			const bomb = context.stateGame.bombPending;
+			context.stateGame.bombPending = undefined;
+
 			const getPromises = () =>
 				explodingPositions.map(async (position) => {
 					const tumbleSymbol = context.stateGame.tumbleBoardBase[position.reel][position.row];
-					tumbleSymbol.symbolState = 'explosion';
+					if (bomb && isSamePosition(position, bomb.position)) {
+						tumbleSymbol.symbolState = 'explode';
+					} else if (bomb) {
+						tumbleSymbol.blastDelay =
+							BOMB_DETONATE_MS + BLAST_MS_PER_CELL * cellDistance(position, bomb.position);
+						tumbleSymbol.symbolState = 'blasted';
+					} else {
+						tumbleSymbol.symbolState = 'explosion';
+					}
 					await waitForResolve((resolve) => (tumbleSymbol.oncomplete = resolve));
 				});
 
@@ -94,7 +118,7 @@
 		tumbleBoardRemoveExploded: () => {
 			context.stateGame.tumbleBoardBase.forEach((tumbleReel, reelIndex) => {
 				context.stateGame.tumbleBoardBase[reelIndex] = tumbleReel.filter(
-					(tumbleSymbol) => tumbleSymbol.symbolState !== 'explosion',
+					(tumbleSymbol) => !REMOVED_STATES.includes(tumbleSymbol.symbolState),
 				);
 			});
 		},

@@ -90,6 +90,29 @@ type BookEventTumbleBoard = {
 	newSymbols: RawSymbol[][];
 };
 
+// Bomb (proposed Mad Science contract, 2026-09-09): runs after the cascade chain
+// has settled. ALWAYS followed by a normal `tumbleBoard` whose explodingSymbols
+// are `destroyed` plus `position` and whose newSymbols refill the holes — the
+// blast is drawn by that tumble (TumbleBoard consumes stateGame.bombPending).
+type BookEventBombExplode = {
+	index: number;
+	type: 'bombExplode';
+	position: Position;
+	/** the 3x3 ring around the bomb, clipped to the board */
+	destroyed: Position[];
+};
+
+// Cloner (same contract): ghosts fly from the cloner to `clones`, those cells
+// become cloners, then every cloner (original + clones) turns into `symbol`.
+// Reel board raw symbols equal the math's board afterwards; winInfo/tumbles follow.
+type BookEventClonerTransform = {
+	index: number;
+	type: 'clonerTransform';
+	position: Position;
+	clones: Position[];
+	symbol: SymbolName;
+};
+
 type BookEventFinalWin = {
 	index: number;
 	type: 'finalWin';
@@ -120,6 +143,8 @@ export type BookEvent =
 	| BookEventUpdateFreeSpin
 	| BookEventUpdateGlobalMult
 	| BookEventTumbleBoard
+	| BookEventBombExplode
+	| BookEventClonerTransform
 	| BookEventCreateBonusSnapshot
 	| BookEventFinalWin
 	| BookEventSetWin

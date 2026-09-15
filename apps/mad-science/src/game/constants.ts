@@ -138,35 +138,45 @@ const sprite = (assetKey: string, art: ArtSize, scale = 1) => ({
 	assetKey,
 	sizeRatios: fitSymbol(art, scale),
 });
-const spine = (
-	assetKey: string,
-	animationName: 'land' | 'prewin' | 'idle',
-	art: ArtSize,
-	scale = 1,
-) => ({
+type RigAnimation = 'land' | 'prewin' | 'idle' | 'explode' | 'cast' | 'in' | 'out';
+const spine = (assetKey: string, animationName: RigAnimation, art: ArtSize, scale = 1) => ({
 	type: 'spine' as const,
 	assetKey,
 	animationName,
 	sizeRatios: fitSymbol(art, scale),
 });
 // static plate + land/prewin rig; `idle` is the rig's pending loop where the
-// symbol has one (the scatter), the static plate otherwise. `scale` applies to
-// sprite and spine alike so the swap never jumps.
+// symbol has one (scatter, bomb), the static plate otherwise; `explode` is the
+// bomb's self-destruct (ends empty); `transform` maps the cloner's cast/in/out.
+// Every other state falls back to the static plate — `blasted` always does, the
+// red burst over a bomb's neighbour is a separate overlay (BlastBurst). `scale`
+// applies to sprite and spine alike so the swap never jumps.
 const rigged = (
 	staticKey: string,
 	animKey: string,
 	art: ArtSize,
-	{ scale = 1, idle = false }: { scale?: number; idle?: boolean } = {},
+	{
+		scale = 1,
+		idle = false,
+		explode = false,
+		transform = false,
+	}: { scale?: number; idle?: boolean; explode?: boolean; transform?: boolean } = {},
 ) => {
 	const still = sprite(staticKey, art, scale);
+	const anim = (name: RigAnimation) => spine(animKey, name, art, scale);
 	return {
 		explosion: still,
-		win: spine(animKey, 'prewin', art, scale),
+		win: anim('prewin'),
 		postWinStatic: still,
 		static: still,
 		spin: still,
-		land: spine(animKey, 'land', art, scale),
-		idle: idle ? spine(animKey, 'idle', art, scale) : still,
+		land: anim('land'),
+		idle: idle ? anim('idle') : still,
+		explode: explode ? anim('explode') : still,
+		blasted: still,
+		cast: transform ? anim('cast') : still,
+		in: transform ? anim('in') : still,
+		out: transform ? anim('out') : still,
 	};
 };
 const allStates = <T>(info: T) => ({
@@ -177,6 +187,11 @@ const allStates = <T>(info: T) => ({
 	spin: info,
 	land: info,
 	idle: info,
+	explode: info,
+	blasted: info,
+	cast: info,
+	in: info,
+	out: info,
 });
 
 export const SYMBOL_INFO_MAP = {
@@ -190,8 +205,14 @@ export const SYMBOL_INFO_MAP = {
 	L3: rigged('J.png', 'msJAnim', ART.plate),
 	L4: rigged('ten.png', 'msTenAnim', ART.plate),
 	W: allStates(sprite('wild.png', ART.wild)),
-	C: rigged('cloner.png', 'msClonerAnim', ART.plate),
-	B: rigged('bomb.png', 'msBombAnim', ART.plate),
+	// Cloner: cast = the sign flares and its ghosts peel off towards the cells
+	// they turn into cloners, in = a fresh clone's sign grows in, out = the sign
+	// drains away (plate intact) before the flood swaps in the paying symbol.
+	C: rigged('cloner.png', 'msClonerAnim', ART.plate, { transform: true }),
+	// Bomb: armed idle loop while a round waits for its cascades (same rule as the
+	// scatter), explode = the bomb blows itself up and ends empty; the tumble
+	// board then drops the cell like any exploded symbol.
+	B: rigged('bomb.png', 'msBombAnim', ART.plate, { idle: true, explode: true }),
 	// Scatter: the operating-theatre disc, drawn BONUS_SCALE larger than its cell.
 	// land = the sign slams in, prewin = the lamp switches on over the table,
 	// idle = lamp sway + breathing bulbs while a round waits for its cascades
