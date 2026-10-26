@@ -3,8 +3,8 @@
 	import SymbolWrap from './SymbolWrap.svelte';
 	import WinCharge from './WinCharge.svelte';
 	import CloneFx from './CloneFx.svelte';
-	import { getCloneFxKey, getSymbolInfo, getSymbolX, getSymbolZIndex } from '../game/utils';
-	import { WIN_CHARGE_EXCLUDED } from '../game/constants';
+	import { getCellKey, getSymbolInfo, getSymbolX, getSymbolZIndex } from '../game/utils';
+	import { BOARD_DIMENSIONS, WIN_CHARGE_EXCLUDED } from '../game/constants';
 	import { getContext } from '../game/context';
 	import type { ReelSymbol } from '../game/stateGame.svelte';
 	import type { SymbolState } from '../game/types';
@@ -20,28 +20,56 @@
 	const context = getContext();
 
 	/**
-	 * The pending loop. While a round is in play (reveal through the last cascade)
+	 * The idle loop. While a round is in play (reveal through the last cascade)
 	 * a landed symbol with an idle rig — the scatter's lamp sway, the bomb's
 	 * armed fuse — idles instead of sitting on its static plate. The reel state
 	 * itself stays 'static'; only what is DRAWN changes. When the round ends the
 	 * loop is released at its next loop boundary (the rig's rest pose, see
 	 * oncomplete), so the swap back to the sprite never jumps mid-swing.
+	 *
+	 * The hold is shared per cell (stateGame.idleHold): this component is mounted
+	 * once per board layer, and only the layer drawing the rig gets its oncomplete.
+	 * With a local flag the other copy kept 'idle' forever — each layer left the
+	 * cell to the other and the symbol vanished once the round ended.
 	 */
+	const cellKey = $derived(getCellKey({ reel: props.reelIndex, row: props.symbolIndex }));
 	const hasIdle = $derived(
 		getSymbolInfo({ rawSymbol: props.reelSymbol.rawSymbol, state: 'idle' }).type === 'spine',
 	);
-	let idleHold = $state(false);
-	$effect(() => {
-		if (props.reelSymbol.symbolState !== 'static') idleHold = false;
-		else if (hasIdle && context.stateGame.roundActive) idleHold = true;
-	});
-	const displayState = $derived<SymbolState>(
-		hasIdle &&
-			props.reelSymbol.symbolState === 'static' &&
-			(context.stateGame.roundActive || idleHold)
-			? 'idle'
-			: props.reelSymbol.symbolState,
+	// the Scatters' anticipation loop while anticipated columns fall in, one
+	// Scatter short of a trigger (stateGame.scatterPending; same rule as TumbleSymbol)
+	const hasPending = $derived(
+		getSymbolInfo({ rawSymbol: props.reelSymbol.rawSymbol, state: 'pending' }).type === 'spine',
 	);
+	$effect(() => {
+		if (props.reelSymbol.symbolState !== 'static') context.stateGame.idleHold[cellKey] = false;
+		else if (hasIdle && context.stateGame.roundActive) context.stateGame.idleHold[cellKey] = true;
+	});
+
+	/**
+	 * The padding cells above and below the window are never on screen as
+	 * themselves (the bottom one only passes through while falling in), yet the
+	 * shared reel lands them like any cell. A rig mounts in the unmasked layer, and
+	 * the bottom cell's land fires right on the board's bottom edge (y = 550 minus
+	 * the 50-unit bounce): it flashed over the frame's bottom pipe on every spin.
+	 * Padding cells keep the plate, and their land settles straight away (the reel
+	 * never waits for it).
+	 */
+	const isPadding = $derived(props.symbolIndex === 0 || props.symbolIndex > BOARD_DIMENSIONS.y);
+	$effect(() => {
+		if (isPadding && props.reelSymbol.symbolState === 'land') props.reelSymbol.symbolState = 'static';
+	});
+
+	const displayState = $derived.by<SymbolState>(() => {
+		const { symbolState } = props.reelSymbol;
+		if (isPadding) return symbolState === 'spin' ? 'spin' : 'static';
+		if (hasPending && symbolState === 'static' && context.stateGame.scatterPending) return 'pending';
+		return hasIdle &&
+			symbolState === 'static' &&
+			(context.stateGame.roundActive || context.stateGame.idleHold[cellKey])
+			? 'idle'
+			: symbolState;
+	});
 
 	const symbolInfo = $derived(
 		getSymbolInfo({ rawSymbol: props.reelSymbol.rawSymbol, state: displayState }),
@@ -70,11 +98,9 @@
 		return undefined;
 	});
 
-	// Cloner goo cover registered for this cell by the clonerTransform handler
+	// Cloner goo cover registered for this cell by the clonerActivate handler
 	// (splat: the cell becomes a cloner; flood: the cloner becomes the paying symbol)
-	const cloneFx = $derived(
-		context.stateGame.cloneFx[getCloneFxKey({ reel: props.reelIndex, row: props.symbolIndex })],
-	);
+	const cloneFx = $derived(context.stateGame.cloneFx[cellKey]);
 </script>
 
 <!--
@@ -103,17 +129,23 @@
 >
 	<Symbol
 		state={displayState}
-		loop={displayState === 'idle'}
+		loop={displayState === 'idle' || displayState === 'pending'}
 		rawSymbol={props.reelSymbol.rawSymbol}
 		oncomplete={() => {
 			const { symbolState } = props.reelSymbol;
 			// a loop boundary: the round is over, let the idle rig go static here
-			if (displayState === 'idle' && !context.stateGame.roundActive) idleHold = false;
+			if (displayState === 'idle' && !context.stateGame.roundActive) {
+				context.stateGame.idleHold[cellKey] = false;
+			}
 			// win and the cloner's cast are awaited by their handlers
 			if (symbolState === 'win' || symbolState === 'cast') props.reelSymbol.oncomplete();
 			// rest-pose one-shots settle onto the static plate; 'out' holds its last
 			// frame (sign gone, plate intact) until the flood swaps the symbol
 			if (symbolState === 'land' || symbolState === 'cast' || symbolState === 'in') {
+				// a landed rig with an idle loop always gets one full pass of it: a
+				// no-win spin ends before the later reels finish landing, and only
+				// the first bonus used to light up (the rest landed after the round)
+				if (symbolState === 'land' && hasIdle) context.stateGame.idleHold[cellKey] = true;
 				props.reelSymbol.symbolState = 'static';
 			}
 		}}

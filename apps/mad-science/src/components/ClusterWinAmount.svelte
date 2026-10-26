@@ -45,11 +45,17 @@
 		showMultiplier = false;
 	});
 
-	// update scale
+	// the amount pops up over its cluster (several clusters share one play)
+	onMount(() => {
+		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_cluster_amount' });
+	});
+
+	// update scale: a multiplied win shows "win x mult" for a second, then collapses
+	// into the result — the plate's payoff, so it lands on the apply hit
 	onMount(async () => {
 		if (showMultiplier) {
-			await waitForTimeout(SECOND);
-			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_combine_a' });
+			await waitForTimeout(SECOND / stateBetDerived.timeScale());
+			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_mult_apply' });
 			await scale.set(0.1, { duration: 200 / stateBetDerived.timeScale() });
 			await scale.set(1, { duration: 200 / stateBetDerived.timeScale() });
 		}

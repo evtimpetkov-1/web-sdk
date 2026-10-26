@@ -32,8 +32,20 @@
 	const props: Props = $props();
 	const context = getContext();
 
-	/** the rig is 1600 world px wide; the board width times this is what it spans on screen */
-	const WIN_SCALE = 1.15;
+	/**
+	 * On-screen width of the rig's 1600 x 1000 box (bigwin.json skeleton bounds):
+	 * WIN_SCALE x the board width — 1.15 until Evtim asked for bigger
+	 * (2026-10-24) — capped so the whole box stays inside the main layout.
+	 * Portrait (800 wide) is the one the cap binds: there it grows 638 -> 784.
+	 */
+	const WIN_SCALE = 1.75;
+	const RIG_RATIO = 1000 / 1600;
+	const FIT = 0.98;
+	const width = $derived.by(() => {
+		const main = context.stateLayoutDerived.mainLayout();
+		const board = context.stateGameDerived.boardLayout();
+		return Math.min(board.width * WIN_SCALE, main.width * FIT, (main.height * FIT) / RIG_RATIO);
+	});
 
 	let shown = $state<WinTier>('big');
 	let phase = $state<Phase>('in');
@@ -48,11 +60,17 @@
 		if (phase === 'out') return;
 		if (props.requestExit) {
 			phase = 'out';
+			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_win_end' });
 			return;
 		}
 		if (idx(props.tier) > idx(shown)) {
 			shown = WIN_TIERS[idx(shown) + 1];
 			phase = 'to';
+			// BIG's stinger opened the presentation (winLevelMap); each upgrade stamps its own
+			context.eventEmitter.broadcast({
+				type: 'soundOnce',
+				name: shown === 'epic' ? 'sfx_ms_win_epic' : 'sfx_ms_win_mega',
+			});
 			return;
 		}
 		phase = 'idle';
@@ -65,10 +83,7 @@
 	});
 </script>
 
-<SpineProvider
-	key="msBigwin"
-	width={context.stateGameDerived.boardLayout().width * WIN_SCALE}
->
+<SpineProvider key="msBigwin" {width}>
 	<SpineTrack
 		trackIndex={0}
 		{animationName}

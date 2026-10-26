@@ -1,22 +1,23 @@
 <script lang="ts">
-	import { stateBet, stateConfig, stateModal, stateUrlDerived } from 'state-shared';
-	import { stateBonus } from 'components-ui-html';
+	import { stateBet, stateConfig, stateModal, stateUi, stateUrlDerived, INFINITY_MARK } from 'state-shared';
 	import { OptionsToggle } from 'components-shared';
 	import { zIndex } from 'constants-shared/zIndex';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 
 	import { getContext } from '../game/context';
-	import { BUY_OPTIONS, type BuyOption } from '../game/buyOptions';
+	import { ANTE_OPTIONS, BUY_OPTIONS, type ShopOffer } from '../game/buyOptions';
 	import { stateBuy } from '../game/stateBuy.svelte';
 	import BuyVolatility from './BuyVolatility.svelte';
+	import ScrollHint from './ScrollHint.svelte';
 
 	/**
-	 * Feature-buy shop (design scaffold, 2026-09-03): a fullscreen takeover
-	 * with 4-6 offer cards from buyOptions.ts and a bet stepper. It stays
-	 * mounted — blurred and dimmed — while BuyConfirm sits on top, so the
-	 * confirmation reads as a dialog over the shop rather than a new screen.
-	 * Renders above the SDK modal layer (which never mounts the shared buy
-	 * popups here — Game.svelte composes the modal set without them).
+	 * Feature shop: a fullscreen takeover with the two ante switches (Chaos
+	 * Mode, Free Spins Boost) first, the three free spins cards under them, and
+	 * a bet stepper. It stays mounted — blurred and dimmed — while BuyConfirm
+	 * sits on top, so the confirmation reads as a dialog over the shop rather
+	 * than a new screen. Renders above
+	 * the SDK modal layer (which never mounts the shared buy popups here —
+	 * Game.svelte composes the modal set without them).
 	 */
 	const context = getContext();
 
@@ -25,6 +26,11 @@
 	);
 	const confirming = $derived(stateModal.modal?.name === 'buyBonusConfirm');
 	const social = $derived(stateUrlDerived.social());
+	// a jurisdiction can switch feature buying off (authenticate config); the
+	// antes are bet options, not buys, so they stay
+	const buyEnabled = $derived(!stateConfig.jurisdiction?.disabledBuyFeature);
+	// the RGS reports modes uppercase, a replay URL may not
+	const activeKey = $derived(stateBet.activeBetModeKey.toUpperCase());
 
 	/**
 	 * Ghost-click guard (from Kraken's Wilds): the PIXI button opening this
@@ -42,24 +48,42 @@
 		return () => clearTimeout(t);
 	});
 
-	const price = (option: BuyOption) =>
+	const price = (option: ShopOffer) =>
 		numberToCurrencyString(stateBet.betAmount * option.costMultiplier);
-	const affordable = (option: BuyOption) =>
+	const affordable = (option: ShopOffer) =>
 		stateBet.betAmount > 0 && stateBet.balanceAmount >= stateBet.betAmount * option.costMultiplier;
 
-	// 4 offers read best as 2x2; 5-6 as a 3-wide grid (portrait forces 2 columns)
-	const columns = $derived(BUY_OPTIONS.length <= 4 ? 2 : 3);
+	const columns = Math.min(3, BUY_OPTIONS.length);
+	// phones scroll the column (the antes sit below the fold in landscape)
+	let contentEl = $state<HTMLElement | null>(null);
 
 	const close = () => {
 		if (!armed) return;
 		stateModal.modal = null;
 	};
-	const choose = (option: BuyOption) => {
+	const choose = (option: ShopOffer) => {
 		if (!armed || confirming) return;
 		stateBuy.selectedOptionKey = option.key;
-		stateBonus.selectedBetModeKey = option.betModeKey ?? 'BASE';
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
 		stateModal.modal = { name: 'buyBonusConfirm' };
+	};
+	/**
+	 * One active mode key, so the two antes switch each other off by
+	 * construction; tapping the active one returns to the main game. At 2x and
+	 * 1.5x neither needs a confirmation step (Stake asks for one above 2x).
+	 */
+	const toggleAnte = (option: ShopOffer) => {
+		if (!armed || confirming) return;
+		const on = activeKey === option.key;
+		if (!on && !affordable(option)) return;
+		stateBet.activeBetModeKey = on ? 'BASE' : option.key;
+		if (!on) {
+			// the autoplay loss/win limits lock under an 'activate' mode — clear
+			// them, as the SDK's own confirm does
+			stateUi.autoSpinsLossLimitText = INFINITY_MARK;
+			stateUi.autoSpinsSingleWinLimitText = INFINITY_MARK;
+		}
+		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
 	};
 </script>
 
@@ -67,7 +91,7 @@
 	<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_noninteractive_element_interactions -->
 	<!-- any tap on the backdrop closes: the overlay, the scrolling column
 	     (which spans the full width, so the sides of the cards land on it)
-	     and the gaps of the grid all carry data-dismiss -->
+	     and the gaps of the grids all carry data-dismiss -->
 	<div
 		class="overlay"
 		class:confirming
@@ -83,25 +107,64 @@
 			<span></span><span></span>
 		</button>
 
-		<div class="content" data-dismiss style="--cols: {columns};">
-			<h1 class="screen-title">{social ? 'FEATURE PLAY' : 'BUY FEATURE'}</h1>
+		<div class="content" data-dismiss style="--cols: {columns};" bind:this={contentEl}>
+			<h1 class="screen-title">
+				{#if buyEnabled}
+					{social ? 'FEATURE PLAY' : 'BUY FEATURE'}
+				{:else}
+					BOOST MODES
+				{/if}
+			</h1>
 
-			<div class="cards" data-dismiss>
-				{#each BUY_OPTIONS as option (option.key)}
-					<article class="card" class:placeholder={!option.betModeKey}>
-						<div class="art">
-							<img src={option.image} alt="" draggable="false" />
-						</div>
-						<BuyVolatility level={option.volatility} />
-						<h2 class="title">{option.title}</h2>
-						<p class="pitch">{option.description}</p>
-						<div class="price">{price(option)}</div>
-						<button class="cta" disabled={!affordable(option)} onclick={() => choose(option)}>
-							{social ? 'PLAY' : 'BUY'}
-						</button>
-					</article>
+			<!-- the antes first, the buy cards under them (Evtim, 2026-10-24); one
+			     switch each, the whole card is the hit area -->
+			<div class="antes" data-dismiss>
+				{#each ANTE_OPTIONS as option (option.key)}
+					{@const on = activeKey === option.key}
+					<button
+						class="ante"
+						class:on
+						role="switch"
+						aria-checked={on}
+						disabled={!on && !affordable(option)}
+						onclick={() => toggleAnte(option)}
+					>
+						<img class="ante-art" src={option.image} alt="" draggable="false" />
+						<span class="ante-info">
+							<span class="ante-title">{option.title}</span>
+							<span class="ante-pitch">{option.description}</span>
+						</span>
+						<span class="ante-side">
+							<span class="ante-cost">{price(option)}</span>
+							<span class="ante-cost-label">PER SPIN</span>
+							<span class="switch" aria-hidden="true"><span class="knob"></span></span>
+							<span class="switch-label">{on ? 'ON' : 'OFF'}</span>
+						</span>
+					</button>
 				{/each}
 			</div>
+
+			{#if buyEnabled}
+				<div class="divider" data-dismiss></div>
+				<div class="cards" data-dismiss>
+					{#each BUY_OPTIONS as option (option.key)}
+						<article class="card">
+							<div class="art">
+								<img src={option.image} alt="" draggable="false" />
+							</div>
+							{#if option.volatility}
+								<BuyVolatility level={option.volatility} />
+							{/if}
+							<h2 class="title">{option.title}</h2>
+							<p class="pitch">{option.description}</p>
+							<div class="price">{price(option)}</div>
+							<button class="cta" disabled={!affordable(option)} onclick={() => choose(option)}>
+								{social ? 'PLAY' : 'BUY'}
+							</button>
+						</article>
+					{/each}
+				</div>
+			{/if}
 
 			<!-- bet stepper: every price follows the chosen bet -->
 			<OptionsToggle
@@ -125,6 +188,10 @@
 				{/snippet}
 			</OptionsToggle>
 		</div>
+
+		{#if !confirming}
+			<ScrollHint scrollElement={contentEl} />
+		{/if}
 	</div>
 {/if}
 
@@ -152,12 +219,17 @@
 		flex-direction: column;
 		align-items: center;
 		gap: clamp(0.7rem, 2vh, 1.2rem);
+		/* border-box: the padding counts inside the max-height, so a tall
+		   column scrolls instead of overflowing the (clipping) overlay */
+		box-sizing: border-box;
 		max-height: 100dvh;
 		width: 100%;
 		overflow-y: auto;
 		padding: clamp(3.4rem, 8vh, 4.5rem) 1.2rem 1.4rem;
 		scrollbar-width: none;
 		transition: filter 220ms ease, opacity 220ms ease;
+		/* the cards and the ante row share one width */
+		--shop-width: min(96vw, calc(var(--cols) * 250px + (var(--cols) - 1) * 1.2rem));
 	}
 	/* the confirm dialog sits on top: the shop recedes but stays in view */
 	.overlay.confirming .content {
@@ -183,7 +255,7 @@
 		display: grid;
 		grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
 		gap: clamp(0.7rem, 1.6vw, 1.2rem);
-		width: min(96vw, calc(var(--cols) * 250px + (var(--cols) - 1) * 1.2rem));
+		width: var(--shop-width);
 	}
 
 	.card {
@@ -212,12 +284,13 @@
 			0 14px 32px rgba(0, 0, 0, 0.55);
 	}
 
-	/* image slot — each option gets its own generated image later; the art
-	   floats on a violet/green radial so any silhouette sits well */
+	/* the art floats on a violet/green radial (the cut-outs carry no backdrop) */
 	.art {
 		width: calc(100% + 1.6rem);
 		margin: 0 -0.8rem 0.2rem;
-		aspect-ratio: 16 / 10;
+		/* follows the viewport height, so the whole shop fits common desktop
+		   sizes (768-1080 tall) without scrolling */
+		height: clamp(7rem, 25vh, 14rem);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -227,9 +300,9 @@
 		border-bottom: 1px solid rgba(171, 234, 16, 0.18);
 	}
 	.art img {
-		height: 78%;
+		height: 88%;
 		width: auto;
-		max-width: 70%;
+		max-width: 88%;
 		object-fit: contain;
 		filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.7));
 		user-select: none;
@@ -240,10 +313,16 @@
 		font-family: 'Creepster', 'Inter', sans-serif;
 		font-size: clamp(1.2rem, 1.9vw, 1.5rem);
 		font-weight: 400;
+		line-height: 1.1;
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
 		text-align: center;
 		text-wrap: balance;
+		/* two lines reserved: every free spins title wraps, so they align */
+		min-height: calc(2 * 1.1em);
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	.pitch {
 		margin: 0;
@@ -251,8 +330,8 @@
 		line-height: 1.35;
 		text-align: center;
 		color: rgba(255, 255, 255, 0.78);
-		/* two lines reserved so the price and CTA rows line up across the grid */
-		min-height: calc(2 * 1.35em);
+		/* lines reserved so the price and CTA rows line up across the grid */
+		min-height: calc(3 * 1.35em);
 		display: -webkit-box;
 		-webkit-line-clamp: 3;
 		-webkit-box-orient: vertical;
@@ -300,6 +379,151 @@
 		opacity: 0.4;
 		cursor: default;
 		filter: grayscale(0.5);
+	}
+
+	.divider {
+		width: var(--shop-width);
+		height: 1px;
+		background: linear-gradient(90deg, transparent 0%, rgba(171, 234, 16, 0.45) 50%, transparent 100%);
+	}
+
+	/* ---- antes ---- */
+	.antes {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: clamp(0.7rem, 1.6vw, 1.2rem);
+		width: var(--shop-width);
+	}
+	.ante {
+		appearance: none;
+		cursor: pointer;
+		display: grid;
+		grid-template-columns: 4.6rem minmax(0, 1fr) auto;
+		align-items: center;
+		gap: 0.7rem;
+		min-width: 0;
+		padding: 0.55rem 0.9rem 0.55rem 0.5rem;
+		border-radius: 16px;
+		font: inherit;
+		color: inherit;
+		text-align: left;
+		background: linear-gradient(180deg, rgba(30, 36, 30, 0.82) 0%, rgba(12, 16, 12, 0.9) 100%);
+		border: 1px solid rgba(171, 234, 16, 0.22);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.07),
+			0 10px 24px rgba(0, 0, 0, 0.45);
+		transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+	}
+	.ante:hover:not(:disabled) {
+		border-color: rgba(171, 234, 16, 0.6);
+	}
+	.ante.on {
+		border-color: rgba(171, 234, 16, 0.95);
+		background: linear-gradient(180deg, rgba(48, 66, 24, 0.9) 0%, rgba(16, 24, 10, 0.94) 100%);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.1),
+			inset 0 0 26px rgba(171, 234, 16, 0.14),
+			0 0 20px rgba(171, 234, 16, 0.28),
+			0 10px 24px rgba(0, 0, 0, 0.45);
+	}
+	.ante:disabled {
+		cursor: default;
+		opacity: 0.45;
+		filter: grayscale(0.5);
+	}
+	.ante-art {
+		width: 100%;
+		aspect-ratio: 1;
+		object-fit: contain;
+		filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.7));
+		user-select: none;
+	}
+	.ante-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.2rem;
+		min-width: 0;
+	}
+	.ante-title {
+		font-family: 'Creepster', 'Inter', sans-serif;
+		font-size: clamp(1.1rem, 1.7vw, 1.35rem);
+		letter-spacing: 0.06em;
+		color: #ffffff;
+	}
+	.ante.on .ante-title {
+		color: #abea10;
+	}
+	.ante-pitch {
+		font-size: clamp(0.68rem, 0.95vw, 0.78rem);
+		line-height: 1.3;
+		color: rgba(255, 255, 255, 0.75);
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+	.ante-side {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.15rem;
+	}
+	.ante-cost {
+		font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+		font-weight: 800;
+		color: #abea10;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+		white-space: nowrap;
+	}
+	.ante-cost-label {
+		font-size: 0.58rem;
+		letter-spacing: 0.18em;
+		color: rgba(220, 240, 190, 0.6);
+		white-space: nowrap;
+	}
+	.switch {
+		position: relative;
+		margin-top: 0.3rem;
+		width: 3.1rem;
+		height: 1.65rem;
+		border-radius: 999px;
+		background: radial-gradient(circle at 50% 60%, #1e281a 0%, #0f150c 100%);
+		box-shadow:
+			inset 0 2px 4px rgba(0, 0, 0, 0.6),
+			0 0 0 2px rgba(171, 234, 16, 0.4);
+		transition: background 0.18s ease, box-shadow 0.18s ease;
+	}
+	.knob {
+		position: absolute;
+		top: 50%;
+		left: 0.2rem;
+		width: 1.25rem;
+		height: 1.25rem;
+		border-radius: 50%;
+		transform: translateY(-50%);
+		background: radial-gradient(circle at 40% 35%, #8a9584 0%, #4a5446 70%);
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+		transition: left 0.18s cubic-bezier(0.3, 0.9, 0.4, 1.2), background 0.18s ease;
+	}
+	.ante.on .switch {
+		background: linear-gradient(180deg, #c7f53a 0%, #abea10 55%, #79b506 100%);
+		box-shadow:
+			inset 0 1px 0 rgba(255, 255, 255, 0.4),
+			0 0 0 2px rgba(223, 246, 105, 0.9),
+			0 0 14px rgba(171, 234, 16, 0.45);
+	}
+	.ante.on .knob {
+		left: calc(100% - 1.45rem);
+		background: radial-gradient(circle at 40% 35%, #ffffff 0%, #d8e8c8 70%);
+	}
+	.switch-label {
+		font-size: 0.6rem;
+		font-weight: 800;
+		letter-spacing: 0.2em;
+		color: rgba(255, 255, 255, 0.5);
+	}
+	.ante.on .switch-label {
+		color: #abea10;
 	}
 
 	/* ---- stepper ---- */
@@ -417,6 +641,15 @@
 		transform: translate(-50%, -50%) rotate(-45deg);
 	}
 
+	/* short landscape (phones): two-line pitches so the antes come into view sooner */
+	@media (orientation: landscape) and (max-height: 500px) {
+		.pitch {
+			min-height: calc(2 * 1.35em);
+			-webkit-line-clamp: 2;
+		}
+	}
+
+	/* portrait: every offer becomes a row — art left, text and price right */
 	@media (orientation: portrait) {
 		.overlay {
 			padding-top: env(safe-area-inset-top);
@@ -425,13 +658,68 @@
 		.content {
 			justify-content: flex-start;
 			max-height: 100%;
+			--shop-width: min(94vw, 520px);
 		}
 		.cards {
-			--cols: 2;
-			width: min(94vw, 520px);
+			grid-template-columns: minmax(0, 1fr);
+			gap: 0.6rem;
+		}
+		.card {
+			display: grid;
+			grid-template-columns: 6.4rem minmax(0, 1fr) auto;
+			grid-template-areas:
+				'art title title'
+				'art pitch pitch'
+				'art price cta';
+			align-items: center;
+			column-gap: 0.7rem;
+			row-gap: 0.3rem;
+			padding: 0.5rem 0.7rem 0.55rem 0;
+		}
+		.art {
+			grid-area: art;
+			align-self: stretch;
+			width: auto;
+			height: auto;
+			margin: 0;
+			border-bottom: none;
+			border-right: 1px solid rgba(171, 234, 16, 0.18);
+		}
+		.art img {
+			height: auto;
+			max-height: 6rem;
+			max-width: 90%;
+		}
+		.title {
+			grid-area: title;
+			min-height: 0;
+			font-size: 1.05rem;
+			text-align: left;
+			justify-content: flex-start;
 		}
 		.pitch {
-			-webkit-line-clamp: 2;
+			grid-area: pitch;
+			min-height: 0;
+			font-size: 0.72rem;
+			text-align: left;
+			-webkit-line-clamp: 3;
+		}
+		.price {
+			grid-area: price;
+			margin-top: 0;
+			font-size: 1.15rem;
+		}
+		.cta {
+			grid-area: cta;
+			width: auto;
+			padding: 0.45rem 1.3rem 0.4rem;
+		}
+		.antes {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 0.6rem;
+		}
+		.ante {
+			grid-template-columns: 4rem minmax(0, 1fr) auto;
 		}
 	}
 

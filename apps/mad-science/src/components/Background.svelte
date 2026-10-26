@@ -6,7 +6,11 @@
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
-	const isFreeSpins = $derived(context.stateGame.gameType === 'freeSpins');
+	const isFreeSpins = $derived(context.stateGame.gameType === 'freegame');
+	// portrait-shaped canvases (phones upright, tablets upright) get the portrait
+	// lab: it crops far less than the landscape art there. Decided by the canvas,
+	// not the layout type, because it is purely about which art covers best.
+	const isPortrait = $derived(canvas.height > canvas.width);
 
 	/**
 	 * Cover-fit the background to the canvas, measuring the texture instead of
@@ -25,9 +29,12 @@
 	};
 
 	// base lab and the free-spins operating theatre cross-fade on gameType; the
-	// switch happens under the FS intro / outro, which cover the board
-	const BACKGROUNDS = [
-		{ key: 'msBg', freeSpins: false },
+	// switch happens under the FS intro / outro, which cover the board. The base
+	// lab has a portrait cut; free spins has no portrait art yet, so its landscape
+	// art cover-fits every shape (`portrait` unset = any orientation).
+	const BACKGROUNDS: { key: string; freeSpins: boolean; portrait?: boolean }[] = [
+		{ key: 'msBg', freeSpins: false, portrait: false },
+		{ key: 'msBgPortrait', freeSpins: false, portrait: true },
 		{ key: 'msBgFs', freeSpins: true },
 	];
 </script>
@@ -35,7 +42,11 @@
 <Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />
 
 {#each BACKGROUNDS as bg (bg.key)}
-	<FadeContainer show={bg.freeSpins === isFreeSpins} duration={500} zIndex={-2}>
+	<FadeContainer
+		show={bg.freeSpins === isFreeSpins && (bg.portrait === undefined || bg.portrait === isPortrait)}
+		duration={500}
+		zIndex={-2}
+	>
 		<Sprite
 			key={bg.key}
 			anchor={0.5}

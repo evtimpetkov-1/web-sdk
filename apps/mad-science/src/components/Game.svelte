@@ -1,21 +1,18 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
 	import { App } from 'pixi-svelte';
-	import { stateModal } from 'state-shared';
+	import { stateModal, stateUrlDerived } from 'state-shared';
 
 	import { UI, stateUiTheme } from 'components-ui-pixi';
 	import {
-		GameVersion,
 		ModalError,
 		ModalBetMenu,
 		ModalAutoSpin,
 		ModalAutoSpinMessage,
-		ModalPayTable,
-		ModalGameRules,
 		ModalSettings,
 	} from 'components-ui-html';
 
@@ -28,7 +25,7 @@
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
-	import Anticipations from './Anticipations.svelte';
+	import BoardBacking from './BoardBacking.svelte';
 	import ClusterWinAmounts from './ClusterWinAmounts.svelte';
 	import TumbleBoard from './TumbleBoard.svelte';
 	import TumbleWinAmount from './TumbleWinAmount.svelte';
@@ -45,9 +42,27 @@
 	import GameLogo from './GameLogo.svelte';
 	import BuyShop from './BuyShop.svelte';
 	import BuyConfirm from './BuyConfirm.svelte';
+	import PayTable from './PayTable.svelte';
+	import GameRules from './GameRules.svelte';
+	import ReplayHud from './ReplayHud.svelte';
+	import ReplayOverlay from './ReplayOverlay.svelte';
 	import { applyBetModeMeta } from '../game/betModeMeta';
 
 	const context = getContext();
+
+	// Popup open / close: the shared bet menu, autoplay, settings, rules and the buy
+	// shop all run on stateModal. A new card (shop -> confirm) opens again; a
+	// confirmed purchase closes under its own sound (BuyConfirm), so that is silent.
+	let lastModal: string | undefined;
+	$effect(() => {
+		const name = stateModal.modal?.name;
+		if (name && name !== lastModal) {
+			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_ui_popup_open' });
+		} else if (!name && lastModal && lastModal !== 'buyBonusConfirm') {
+			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_ui_popup_close' });
+		}
+		lastModal = name;
+	});
 
 	onMount(() => {
 		context.stateLayout.showLoadingScreen = true;
@@ -81,6 +96,24 @@
 			stateModal.modal = { name: 'buyBonusConfirm' };
 		},
 	});
+
+	/**
+	 * The press on the intro. It is the user gesture browsers want before audio
+	 * (https://developer.chrome.com/blog/autoplay), so <Sound /> mounts right
+	 * here and the start sound and the curtains are heard (before, it mounted
+	 * with the game and the start sound was dropped). The intro fades out while
+	 * the curtains fade in already shut; the game mounts behind them; they part.
+	 */
+	let soundReady = $state(false);
+	const startGame = async () => {
+		soundReady = true;
+		await tick();
+		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_game_start' });
+		await context.eventEmitter.broadcastAsync({ type: 'transitionShowClosed' });
+		context.stateLayout.showLoadingScreen = false;
+		await tick();
+		await context.eventEmitter.broadcastAsync({ type: 'transitionOpen' });
+	};
 </script>
 
 <App>
@@ -91,28 +124,34 @@
 
 	<Background />
 
+	<!-- sound waits for the loading screen's press (startGame); a story that
+	     skips the loading screen has no press, so it mounts with the game -->
+	{#if soundReady || !context.stateLayout.showLoadingScreen}
+		<Sound />
+	{/if}
+
 	{#if context.stateLayout.showLoadingScreen}
-		<LoadingScreen onloaded={() => (context.stateLayout.showLoadingScreen = false)} />
+		<LoadingScreen onstart={startGame} />
 	{:else}
 		<ResumeBet />
-		<!--
-			The reason why <Sound /> is rendered after clicking the loading screen:
-			"Autoplay with sound is allowed if: The user has interacted with the domain (click, tap, etc.)."
-			Ref: https://developer.chrome.com/blog/autoplay
-		-->
-		<Sound />
 
 		<MainContainer>
+			<!-- zIndex -2: under the FS glow fill (-1) and the board -->
+			<BoardBacking />
 			<Board />
 			<BoardFrame />
-			<Anticipations />
 			<TumbleWinAmount />
 			<GlobalMultiplier />
+			<!-- both free-spin counters sit on the frame's top pipe either side of the
+			     plate, in the same board-local units, so they belong in the plate's
+			     MainContainer: outside it their board coordinates were read as raw
+			     canvas pixels and drifted with every window resize -->
+			<FreeSpinCounter />
+			<FreeSpinTotalWin />
 		</MainContainer>
 
 		<MainContainer>
 			<TumbleBoard />
-			<!-- <TumbleAnticipations /> -->
 			<ClusterWinAmounts />
 		</MainContainer>
 
@@ -125,50 +164,59 @@
 
 		<GameLogo />
 
-		<UI>
-			<!-- the logo is the GameLogo sprite (top-left / above the plate); the
-			     SDK's text slots stay empty -->
-			{#snippet gameName()}{/snippet}
-			{#snippet logo()}{/snippet}
-		</UI>
+		{#if stateUrlDerived.replay()}
+			<!-- replay keeps only the readouts the approval docs ask to stay
+			     visible (win, bet cost, currency) — no controls (Kraken's pattern) -->
+			<ReplayHud />
+		{:else}
+			<UI>
+				<!-- the logo is the GameLogo sprite (top-left / above the plate); the
+				     SDK's text slots stay empty -->
+				{#snippet gameName()}{/snippet}
+				{#snippet logo()}{/snippet}
+			</UI>
+		{/if}
 		<Win />
 		<FreeSpinIntro />
-		<!-- both counters sit on the frame's top pipe either side of the multiplier
-		     plate, so they have a home on every layout -->
-		<FreeSpinCounter />
-		<FreeSpinTotalWin />
 		<FreeSpinOutro />
-		<Transition />
-
 	{/if}
+
+	<!-- the curtains: over everything (zIndex); the intro's exit and every
+	     base <-> free spins switch run through them -->
+	<Transition />
 </App>
 
-{#snippet version()}
-	<GameVersion version="0.0.0" />
-{/snippet}
 <!--
 	The shared modal set, composed here rather than via <Modals> so the SDK's
 	two BUY popups are never mounted — the game draws its own (BuyShop /
-	BuyConfirm, HTML, so they live out here with the modals). <Modals>' global
-	font-size rules are carried below.
+	BuyConfirm, HTML, so they live out here with the modals). The paytable and
+	rules are the game's own too (the SDK's are template placeholders), and
+	they carry the version footer. <Modals>' global font-size rules are carried
+	below.
 -->
 <ModalError />
 <ModalBetMenu />
 <ModalAutoSpin />
 <ModalAutoSpinMessage />
-<ModalPayTable>
-	{@render version()}
-</ModalPayTable>
-<ModalGameRules>
-	{@render version()}
-</ModalGameRules>
+<PayTable />
+<GameRules />
 <ModalSettings />
 <BuyShop />
 <BuyConfirm />
+<!--
+	Replay mode's round card — the Start Replay panel before playback and the
+	Replay Again panel after it. HTML, so it lives out here with the modals
+	(ported from Kraken's Wilds, where it passed review).
+-->
+<ReplayOverlay />
 
 <style lang="scss">
 	:global(html) {
 		font-size: 16px;
+		/* iOS Safari enlarges long text blocks in landscape (text autosizing):
+		   the rules' paragraphs rendered at ~18px against 11px headings */
+		-webkit-text-size-adjust: 100%;
+		text-size-adjust: 100%;
 		@media screen and (max-width: 500px) {
 			font-size: 110%;
 		}

@@ -118,10 +118,10 @@
 />
 
 <Story
-	name="clonerTransform"
+	name="clonerActivate"
 	args={templateArgs({
 		skipLoadingScreen: true,
-		data: [events.revealCloner, events.clonerTransform],
+		data: [events.revealCloner, events.clonerActivate],
 		action: async (data) => await playBookEvents(data),
 	})}
 	{template}

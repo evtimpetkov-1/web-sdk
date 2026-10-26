@@ -17,25 +17,40 @@ import {
 	BOARD_DIMENSIONS,
 	SPIN_OPTIONS_DEFAULT,
 	SPIN_OPTIONS_FAST,
+	SPIN_OPTIONS_ANTICIPATED,
 	INITIAL_SYMBOL_STATE,
-	SCATTER_LAND_SOUND_MAP,
+	REEL_LAND_RATES,
+	BONUS_LAND_RATES,
+	ladderRate,
 } from './constants';
+import type { SoundEffectName } from './sound';
 
-const onSymbolLand = ({ rawSymbol }: { rawSymbol: RawSymbol }) => {
+// feature symbols sting over the column thud; paying symbols have no landing
+// sound by decision (30 rigs land at once — reel_land / tumble_drop carry it),
+// and the Wild never lands: it is made by a bomb (TumbleBoard plays its sting)
+const LAND_SFX: Partial<Record<RawSymbol['name'], SoundEffectName>> = {
+	M: 'sfx_ms_mult_land',
+	B: 'sfx_ms_bomb_land',
+	C: 'sfx_ms_cloner_land',
+};
+
+// symbolIndex: the padded strip index when a reel lands it (the tumble board only
+// lands visible cells and passes none). The padding cells above and below the
+// window land with their reel but are never seen: no scatter sound or count.
+const onSymbolLand = ({ rawSymbol, symbolIndex }: { rawSymbol: RawSymbol; symbolIndex?: number }) => {
+	if (symbolIndex !== undefined && (symbolIndex === 0 || symbolIndex > BOARD_DIMENSIONS.y)) return;
+
 	if (rawSymbol.name === 'S') {
 		eventEmitter.broadcast({ type: 'soundScatterCounterIncrease' });
 		eventEmitter.broadcast({
 			type: 'soundOnce',
-			name: SCATTER_LAND_SOUND_MAP[scatterLandIndex()],
+			name: 'sfx_ms_bonus_land',
+			forcePlay: true,
+			rate: ladderRate(BONUS_LAND_RATES, stateGame.scatterCounter - 1),
 		});
 	}
-
-	if (rawSymbol.name === 'M') {
-		eventEmitter.broadcast({
-			type: 'soundOnce',
-			name: 'sfx_multiplier_landing',
-		});
-	}
+	const landSfx = LAND_SFX[rawSymbol.name];
+	if (landSfx) eventEmitter.broadcast({ type: 'soundOnce', name: landSfx, forcePlay: true });
 };
 
 const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
@@ -47,15 +62,22 @@ const board = _.range(BOARD_DIMENSIONS.x).map((reelIndex) => {
 		onReelStopping: () => {
 			eventEmitter.broadcast({
 				type: 'soundOnce',
-				name: 'sfx_reel_stop_1',
+				name: 'sfx_ms_reel_land',
 				forcePlay: !stateBet.isTurbo,
+				rate: ladderRate(REEL_LAND_RATES, reelIndex),
 			});
+			// the next column is anticipated: the landed Scatters start their
+			// pending loop (ended by the reveal handler once the spin has landed)
+			if (stateGame.spinAnticipation[reelIndex + 1]) scatterPendingStart();
 		},
 		onSymbolLand,
 	});
 
-	reel.reelState.spinOptions = () =>
-		reel.reelState.spinType === 'fast' ? SPIN_OPTIONS_FAST : SPIN_OPTIONS_DEFAULT;
+	reel.reelState.spinOptions = () => {
+		if (reel.reelState.spinType === 'fast') return SPIN_OPTIONS_FAST;
+		if (reel.reelState.spinType === 'anticipated') return SPIN_OPTIONS_ANTICIPATED;
+		return SPIN_OPTIONS_DEFAULT;
+	};
 
 	return reel;
 });
@@ -73,10 +95,10 @@ export type TumbleSymbol = {
 };
 
 // bombExplode parked until the tumbleBoard that always follows draws it
-export type BombPending = { position: Position; destroyed: Position[] };
+export type BombPending = { bombs: Position[]; wilds: Position[] };
 
 // A goo cover over one reel cell (CloneFx in ReelSymbol), keyed by
-// `${reel}-${row}` where row is the book's padded index (getCloneFxKey).
+// `${reel}-${row}` where row is the book's padded index (getCellKey).
 // `onSwap` fires on the rig's `swap` event — the cell is fully covered, exchange
 // the symbol underneath; `oncomplete` when the cover has drained away.
 export type CloneFx = {
@@ -113,8 +135,19 @@ export const stateGame = $state({
 	multiplierBoard: [] as (MultiplierSymbol | undefined)[][],
 	scatterCounter: 0,
 	// true while a bet's book is playing (playBet). Landed scatters run their
-	// pending loop for as long as this holds — they are "waiting for the cascade".
+	// idle loop for as long as this holds — they are "waiting for the cascade".
 	roundActive: false,
+	// true while a spin's anticipated columns fall in, or a tumble drops, one
+	// Scatter short of a trigger: the Scatters switch from idle to their
+	// `pending` loop (scatterPendingStart / scatterPendingEnd)
+	scatterPending: false,
+	// the spin in progress's anticipated columns (1 = anticipated), set by the
+	// reveal handler; onReelStopping starts the pending loop off it
+	spinAnticipation: [] as number[],
+	// per cell (getCellKey): a landed idle rig keeps looping past the round's end
+	// until its next loop boundary. Shared state, not a ReelSymbol local: every cell
+	// is mounted in both board layers and only the drawing layer hears the loop end.
+	idleHold: {} as Record<string, boolean>,
 	// the spin in progress's cascade win (book units, cumulative per spin): set by
 	// updateTumbleWin / boardMultiplierInfo, zeroed by reveal and by setTotalWin,
 	// which folds it into stateBet.winBookEventAmount. FreeSpinTotalWin adds the two.
@@ -184,15 +217,27 @@ const tumbleBoardCombined = () => {
 
 	return tumbleBoardCombined;
 };
-
-const scatterLandIndex = () => {
-	if (stateGame.scatterCounter > 5) return 5;
-	if (stateGame.scatterCounter < 1) return 1;
-	return stateGame.scatterCounter as 1 | 2 | 3 | 4 | 5;
-};
-
 const { enhanceBoard } = createEnhanceBoard();
 const enhancedBoard = enhanceBoard({ board: stateGame.board });
+
+/**
+ * The Scatters' anticipation, one short of a trigger: their `pending` loop
+ * under the anticipation sound. Started by a cascade (tumbleBoard handler) or
+ * by the spin's first anticipated column (onReelStopping); ended once the drop
+ * has landed. Both are no-ops when already in that state.
+ */
+export const scatterPendingStart = () => {
+	if (stateGame.scatterPending) return;
+	stateGame.scatterPending = true;
+	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_anticipation_start' });
+	eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_ms_anticipation' });
+};
+export const scatterPendingEnd = () => {
+	if (!stateGame.scatterPending) return;
+	stateGame.scatterPending = false;
+	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_ms_anticipation' });
+	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_anticipation_end' });
+};
 
 // win levels
 
@@ -207,7 +252,6 @@ export const stateGameDerived = {
 	multiplierPlateLayout,
 	boardRaw,
 	tumbleBoardCombined,
-	scatterLandIndex,
 	enhancedBoard,
 	getWinLevelDataByWinLevelAlias,
 };

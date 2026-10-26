@@ -44022,8 +44022,9 @@ export default [
 			{
 				index: 1,
 				type: 'bombExplode',
-				position: { reel: 2, row: 2 },
-				destroyed: [
+				bombs: [{ reel: 2, row: 2 }],
+				wilds: [{ reel: 2, row: 2 }],
+				cleared: [
 					{ reel: 1, row: 1 },
 					{ reel: 1, row: 2 },
 					{ reel: 1, row: 3 },
@@ -44040,7 +44041,7 @@ export default [
 				newSymbols: [
 					[],
 					[{ name: 'H1' }, { name: 'L2' }, { name: 'H4' }],
-					[{ name: 'L3' }, { name: 'H2' }, { name: 'L1' }],
+					[{ name: 'L3' }, { name: 'H2' }],
 					[{ name: 'H3' }, { name: 'L4' }, { name: 'H1' }],
 					[],
 					[],
@@ -44050,7 +44051,6 @@ export default [
 					{ reel: 1, row: 2 },
 					{ reel: 1, row: 3 },
 					{ reel: 2, row: 1 },
-					{ reel: 2, row: 2 },
 					{ reel: 2, row: 3 },
 					{ reel: 3, row: 1 },
 					{ reel: 3, row: 2 },
@@ -44093,9 +44093,9 @@ export default [
 			},
 			{
 				index: 1,
-				type: 'clonerTransform',
-				position: { reel: 3, row: 2 },
-				clones: [
+				type: 'clonerActivate',
+				cloner: { reel: 3, row: 2 },
+				cloned: [
 					{ reel: 0, row: 1 },
 					{ reel: 5, row: 5 },
 					{ reel: 1, row: 4 },

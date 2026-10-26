@@ -1,0 +1,3 @@
+export default {
+	'PRESS ANYWHERE TO CONTINUE': 'DEVAM ETMEK İÇİN HERHANGİ BİR YERE BASIN',
+};

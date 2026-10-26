@@ -21,16 +21,21 @@
 	const props: Props = $props();
 	const context = getContext();
 	// a symbol with an idle rig (scatter, armed bomb) waiting out the cascade runs its
-	// pending loop (same rule as ReelSymbol; the tumble board only exists mid-round,
-	// so no release hold is needed here)
+	// idle loop (same rule as ReelSymbol; the tumble board only exists mid-round,
+	// so no release hold is needed here). One Scatter short of a trigger, the
+	// scatters swap it for their `pending` loop (stateGame.scatterPending).
 	const hasIdle = $derived(
 		getSymbolInfo({ rawSymbol: props.tumbleSymbol.rawSymbol, state: 'idle' }).type === 'spine',
 	);
-	const displayState = $derived<SymbolState>(
-		hasIdle && props.tumbleSymbol.symbolState === 'static' && context.stateGame.roundActive
-			? 'idle'
-			: props.tumbleSymbol.symbolState,
+	const hasPending = $derived(
+		getSymbolInfo({ rawSymbol: props.tumbleSymbol.rawSymbol, state: 'pending' }).type === 'spine',
 	);
+	const displayState = $derived.by<SymbolState>(() => {
+		if (props.tumbleSymbol.symbolState !== 'static') return props.tumbleSymbol.symbolState;
+		if (hasPending && context.stateGame.scatterPending) return 'pending';
+		if (hasIdle && context.stateGame.roundActive) return 'idle';
+		return 'static';
+	});
 	const symbolInfo = $derived(
 		getSymbolInfo({
 			rawSymbol: props.tumbleSymbol.rawSymbol,
@@ -83,7 +88,7 @@
 		<!-- explode: the bomb rig completes the state itself (it ends empty) -->
 		<Symbol
 			state={displayState}
-			loop={displayState === 'idle'}
+			loop={displayState === 'idle' || displayState === 'pending'}
 			rawSymbol={props.tumbleSymbol.rawSymbol}
 			oncomplete={popping ? undefined : props.tumbleSymbol.oncomplete}
 		/>

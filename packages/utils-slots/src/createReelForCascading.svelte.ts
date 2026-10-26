@@ -162,7 +162,13 @@ export function createReelForCascading<TRawSymbol extends object, TSymbolState e
 				delay,
 			});
 			reelSymbol.symbolState = 'land' as TSymbolState;
-			reelOptions.onSymbolLand({ rawSymbol: reelSymbol.rawSymbol, symbolIndex: reelSymbol.symbolIndex });
+			// symbolIndex = the padded strip index (0 = top padding), as the spinning
+			// reel passes it, so a game can skip the off-screen padding cells.
+			// (It read reelSymbol.symbolIndex, which a cascading symbol does not have.)
+			reelOptions.onSymbolLand({
+				rawSymbol: reelSymbol.rawSymbol,
+				symbolIndex: reelSymbol.symbolIndexOfBoard + 1,
+			});
 			if (reelSymbol.symbolIndexOfBoard === reelLengthInBoard - 1) {
 				onSpinFinishing();
 			}

@@ -2,7 +2,7 @@
 	// The ring reaches its eight cells within ~100ms of each other: one bang per
 	// wave, not eight. Placeholder sfx until a custom blast is produced.
 	let lastBangAt = 0;
-	const BANG_SFX = 'sfx_multiplier_explosion_c';
+	const BANG_SFX = 'sfx_ms_blast_hit';
 </script>
 
 <script lang="ts">

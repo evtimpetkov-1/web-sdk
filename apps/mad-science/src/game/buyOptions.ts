@@ -1,83 +1,91 @@
 import config from './config';
 
 /**
- * The feature-buy shop's offers (BuyShop / BuyConfirm).
+ * The feature shop's offers (BuyShop / BuyConfirm) — one per non-base RGS
+ * mode of the Game Rules Specification. Cost and max win come from
+ * config.betModes, so the shop can never drift from what the RGS charges.
  *
- * DESIGN SCAFFOLD (2026-09-03): the final feature set comes from the math, so
- * only FREE SPINS is a real, purchasable mode (RGS 'BONUS'). The rest are
- * PLACEHOLDERS that exercise the 4-6 card layout and the confirm flow; their
- * CONFIRM closes the dialog without betting. Each option will get its own
- * generated image once the features are known — the symbol art stands in.
+ * - BUY_OPTIONS: Operation / Mutant / Overcharged Free Spins ('buy' modes, one
+ *   round each, behind a confirmation step — Stake requires one for modes
+ *   above 2x).
+ * - ANTE_OPTIONS: Chaos Mode (2x) and Free Spins Boost (1.5x), 'activate' modes
+ *   that stay on until switched off. Each has its own switch; there is only
+ *   one active mode key, so turning one on turns the other off.
+ *
+ * Player-facing names are Evtim's (2026-10-24); the RGS mode names stay the
+ * math's. Titles and pitches avoid every social-mode restricted word, so they
+ * render as-is in both modes.
  */
-export type BuyOption = {
+type RgsMode = keyof typeof config.betModes;
+
+export type ShopOffer = {
+	/** RGS bet mode, uppercase like every mode the FE sends (betModeMeta key) */
 	key: string;
-	/** RGS bet mode this option buys; undefined = placeholder, cannot be bought */
-	betModeKey?: 'BONUS';
 	title: string;
 	/** one-liner under the title */
 	description: string;
-	/** 1-5, drawn as lightning bolts */
-	volatility: number;
-	/** x total bet */
+	/** x base bet */
 	costMultiplier: number;
+	maxWin: number;
 	image: string;
+	/** 1-5 radiation trefoils; unset until the math states a volatility per mode */
+	volatility?: number;
 };
 
 // URL-relative like assets.ts (the static folder is served at the root; a
-// root-absolute path breaks under Stake Engine's subpath — see Kraken's notes)
-const symbol = (file: string) =>
-	new URL(`../../assets/madscience/symbols/raw/${file}`, import.meta.url).href;
+// root-absolute path breaks under Stake Engine's subpath — see Kraken's notes).
+// Each path must be a string LITERAL: Vite rewrites a template-literal
+// `new URL` into a glob lookup, which matches nothing here and yields
+// 'undefined' (the cards requested /src/game/undefined).
+const ART = {
+	operation: new URL('../../assets/madscience/buy/operation.webp', import.meta.url).href,
+	mutant: new URL('../../assets/madscience/buy/mutant.webp', import.meta.url).href,
+	overcharged: new URL('../../assets/madscience/buy/overcharged.webp', import.meta.url).href,
+	chaos: new URL('../../assets/madscience/buy/chaos.webp', import.meta.url).href,
+	boost: new URL('../../assets/madscience/buy/boost.webp', import.meta.url).href,
+};
 
-export const BUY_OPTIONS: BuyOption[] = [
-	{
-		key: 'FREE_SPINS',
-		betModeKey: 'BONUS',
-		title: 'FREE SPINS',
-		description: 'Instantly triggers the Free Spins feature. The multiplier plate keeps every collected multiplier for the whole feature.',
-		volatility: 3,
-		costMultiplier: config.betModes.bonus.cost,
-		image: symbol('bonus.png'),
-	},
-	{
-		key: 'EXTRA_CHANCE',
-		title: 'EXTRA CHANCE',
-		description: 'Spins trigger Free Spins more often while active.',
-		volatility: 2,
-		costMultiplier: 3,
-		image: symbol('wild.png'),
-	},
-	{
-		key: 'CLONER_LAB',
-		title: 'CLONER LAB',
-		description: 'A guaranteed Cloner on the trigger spin.',
-		volatility: 3,
-		costMultiplier: 120,
-		image: symbol('cloner.png'),
-	},
-	{
-		key: 'DETONATION',
-		title: 'DETONATION',
-		description: 'Free Spins with a Bomb on every cascade.',
-		volatility: 4,
-		costMultiplier: 300,
-		image: symbol('bomb.png'),
-	},
-	{
-		key: 'OVERCHARGED',
-		title: 'OVERCHARGED',
-		description: 'Free Spins starting at a x10 plate multiplier.',
-		volatility: 5,
-		costMultiplier: 500,
-		image: symbol('mult_symbol_plate.png'),
-	},
-	{
-		key: 'BRAIN_BONUS',
-		title: 'BRAIN BONUS',
-		description: 'Free Spins with high symbols only.',
-		volatility: 5,
-		costMultiplier: 1000,
-		image: symbol('h1.png'),
-	},
+const offer = (
+	mode: RgsMode,
+	fields: Pick<ShopOffer, 'title' | 'description' | 'image'>,
+): ShopOffer => ({
+	key: mode.toUpperCase(),
+	costMultiplier: config.betModes[mode].cost,
+	maxWin: config.betModes[mode].max_win,
+	...fields,
+});
+
+export const BUY_OPTIONS: ShopOffer[] = [
+	offer('lucky_draw_free_spins', {
+		title: 'OPERATION FREE SPINS',
+		description: 'Straight into Free Spins. The number of spins is drawn at random: 10, 15 or 20.',
+		image: ART.operation,
+	}),
+	offer('lucky_draw_feature_heavy', {
+		title: 'MUTANT FREE SPINS',
+		description:
+			'Free Spins with far more Multipliers, Cloners and Bombs. 10, 15 or 20 spins at random.',
+		image: ART.mutant,
+	}),
+	offer('super_lucky_draw_free_spins', {
+		title: 'OVERCHARGED FREE SPINS',
+		description:
+			'Free Spins that start with a total multiplier of ×2 to ×100. 10, 15 or 20 spins at random.',
+		image: ART.overcharged,
+	}),
+];
+
+export const ANTE_OPTIONS: ShopOffer[] = [
+	offer('ante_1', {
+		title: 'CHAOS MODE',
+		description: 'Multipliers, Cloners & Bombs appear 2.6× more often.',
+		image: ART.chaos,
+	}),
+	offer('ante_2', {
+		title: 'FREE SPINS BOOST',
+		description: 'Free Spins trigger 2× more often.',
+		image: ART.boost,
+	}),
 ];
 
 export const getBuyOption = (key: string) => BUY_OPTIONS.find((option) => option.key === key);

@@ -60,7 +60,9 @@
 
 	// a press during the entrance skips straight to the exit
 	const onpress = () => {
-		if (phase !== 'out') phase = 'out';
+		if (phase === 'out') return;
+		phase = 'out';
+		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_popup_out' });
 	};
 </script>
 
@@ -85,7 +87,7 @@
 					x={textWidth / 2}
 					anchor={0.5}
 					text={String(total)}
-					style={{ fontFamily: 'fsintro-digits', fontSize: DIGIT_SIZE }}
+					style={{ fontFamily: 'fsintro-digits', fontSize: DIGIT_SIZE, fill: 0xffffff }}
 				/>
 				<Sprite
 					key="fsIntroFreeSpinsTxt"

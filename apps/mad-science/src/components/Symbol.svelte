@@ -46,12 +46,9 @@
 		listener={{
 			complete: props.oncomplete,
 			event: (_, event) => {
-				if (event.data?.name === 'wildExplode') {
-					context.eventEmitter?.broadcast({ type: 'soundOnce', name: 'sfx_wild_explode' });
-				}
-				// the bomb rig's bang (0.38s into `explode`); placeholder sfx until a custom one is produced
+				// the bomb rig's bang (0.38s into `explode`)
 				if (event.data?.name === 'detonate') {
-					context.eventEmitter?.broadcast({ type: 'soundOnce', name: 'sfx_multiplier_explosion_a' });
+					context.eventEmitter?.broadcast({ type: 'soundOnce', name: 'sfx_ms_bomb_explode', forcePlay: true });
 				}
 			},
 		}}

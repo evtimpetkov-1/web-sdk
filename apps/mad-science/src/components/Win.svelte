@@ -8,7 +8,10 @@
 </script>
 
 <script lang="ts">
-	import { Container } from 'pixi-svelte';
+	import { Tween } from 'svelte/motion';
+	import { backOut } from 'svelte/easing';
+
+	import { Container, Rectangle, Sprite } from 'pixi-svelte';
 	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 	import { bookEventAmountToWinCurrencyString } from 'utils-shared/amount';
@@ -20,6 +23,7 @@
 	import PressToContinue from './PressToContinue.svelte';
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { getContext } from '../game/context';
+	import { reachesTotalBet } from '../game/utils';
 
 	const context = getContext();
 
@@ -44,6 +48,20 @@
 	 * rendered them as $0.00 (Stake raised this against Kraken's shipped build).
 	 */
 	const WIN_FONT = 'tickup-win';
+	// the final figure stays up this long before the box leaves (a press skips it)
+	const FINAL_AMOUNT_HOLD_MS = 2000;
+
+	/**
+	 * Readability of the (non-big) winbox: its stone glyphs share the royals'
+	 * look, so on a board of low symbols the amount melted into them. The reel
+	 * window dims, the amount sits on a soft black ellipse (msWinShadow), and
+	 * it pops in with an overshoot instead of just fading up.
+	 */
+	const WIN_DIM_ALPHA = 0.45;
+	const POP_FROM = 0.4;
+	const POP_MS = 420;
+	const popScale = new Tween(1);
+	const board = $derived(context.stateGameDerived.boardLayout());
 
 	let show = $state(false);
 	let amount = $state(0);
@@ -63,6 +81,8 @@
 			winRun += 1;
 			amount = emitterEvent.amount;
 			winLevelData = emitterEvent.winLevelData;
+			popScale.set(POP_FROM, { duration: 0 });
+			popScale.set(1, { duration: POP_MS, easing: backOut });
 			await waitForResolve((resolve) => (oncomplete = resolve));
 		},
 	});
@@ -81,15 +101,19 @@
 
 				<OnMount
 					onmount={async () => {
+						const run = winRun;
 						await startCountUp();
-						if (isBigWin) {
-							// hold the final figure a beat, then the titles play out (onexit -> oncomplete)
-							await waitForTimeout(600);
-							requestExitAnimation = true;
-						} else {
-							await waitForTimeout(300);
-							oncomplete();
+						// the final figure lands (or was skipped to): the tickup ends on its hit
+						if (duration) {
+							context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_ms_tickup' });
+							context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_tickup_end' });
 						}
+						await waitForTimeout(FINAL_AMOUNT_HOLD_MS);
+						// skipped by a press meanwhile: this timer must not close a later win
+						if (run !== winRun) return;
+						// big wins: the titles play out next (onexit -> oncomplete)
+						if (isBigWin) requestExitAnimation = true;
+						else oncomplete();
 					}}
 				/>
 
@@ -119,30 +143,53 @@
 											fontSize: SYMBOL_SIZE * 2.0,
 											align: 'center',
 											letterSpacing: 0,
+											fill: 0xffffff,
 										}}
 									/>
 								</WinAnimation>
 							{/key}
 						{:else}
-							<ResponsiveBitmapText
+							<Rectangle
 								anchor={0.5}
-								maxWidth={context.stateLayoutDerived.canvasSizes().width /
-									context.stateLayoutDerived.mainLayout().scale}
-								text={bookEventAmountToWinCurrencyString(countUpAmount)}
-								style={{
-									fontFamily: WIN_FONT,
-									fontSize: SYMBOL_SIZE,
-									align: 'center',
-									letterSpacing: 0,
-								}}
+								width={board.width}
+								height={board.height}
+								backgroundColor={0x000000}
+								backgroundAlpha={WIN_DIM_ALPHA}
 							/>
+							<Container scale={popScale.current}>
+								<Sprite
+									key="msWinShadow"
+									anchor={0.5}
+									width={board.width * 1.05}
+									height={SYMBOL_SIZE * 2}
+								/>
+								<!-- held inside the reel window, on the shadow -->
+								<ResponsiveBitmapText
+									anchor={0.5}
+									maxWidth={board.width * 0.92}
+									text={bookEventAmountToWinCurrencyString(countUpAmount)}
+									style={{
+										fontFamily: WIN_FONT,
+										fontSize: SYMBOL_SIZE,
+										align: 'center',
+										letterSpacing: 0,
+										fill: 0xffffff,
+									}}
+								/>
+							</Container>
 						{/if}
 					</Container>
 				</MainContainer>
 
-				<WinCoins emit={!countUpCompleted} levelAlias={winLevelData?.alias} />
+				<!-- no coins for a win below the total bet (Evtim, 2026-10-24) -->
+				{#if reachesTotalBet(amount)}
+					<WinCoins emit={!countUpCompleted} levelAlias={winLevelData?.alias} />
+				{/if}
 
+				<!-- tap anywhere still skips the count-up / closes the box, but no
+				     prompt: it read as clutter over a counting win -->
 				<PressToContinue
+					showText={false}
 					onpress={() => {
 						if (!countUpCompleted) finishCountUp();
 						else if (isBigWin) requestExitAnimation = true;

@@ -2,9 +2,17 @@ import { type CascadingReelSymbolState } from 'utils-slots';
 import type config from './config';
 
 export type SymbolName = keyof typeof config.symbols;
-export type RawSymbol = { name: SymbolName; multiplier?: number; scatter?: boolean };
+// M_TAKEN: FE-only, the bare plate a collected multiplier leaves behind
+export type RawSymbol = {
+	name: SymbolName | 'M_TAKEN';
+	multiplier?: number;
+	scatter?: boolean;
+	bomb?: boolean;
+	cloner?: boolean;
+};
 export type BetMode = keyof typeof config.betModes;
-export type GameType = keyof typeof config.paddingReels;
+// the book's values (reveal.gameType); the presentation flips at the curtains
+export type GameType = 'basegame' | 'freegame';
 
 export const SYMBOL_STATES = [
 	'static',
@@ -13,10 +21,14 @@ export const SYMBOL_STATES = [
 	'win',
 	'postWinStatic',
 	'explosion',
-	// pending loop while a round is in play (the scatter and the armed bomb have
+	// idle loop while a round is in play (the scatter and the armed bomb have
 	// one; the rest show their static plate) — derived in ReelSymbol/TumbleSymbol,
 	// never set on the reel state itself
 	'idle',
+	// scatter anticipation: the Scatters' tension loop while a cascade drops with
+	// one Scatter short of a trigger (stateGame.scatterPending) — derived in
+	// TumbleSymbol like idle; the rest show their static plate
+	'pending',
 	// bomb feature (tumble board): the bomb blows itself up, its neighbours keep
 	// their plate under a red blast overlay before both are removed
 	'explode',

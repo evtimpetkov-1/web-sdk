@@ -90,26 +90,58 @@ type BookEventTumbleBoard = {
 	newSymbols: RawSymbol[][];
 };
 
-// Bomb (proposed Mad Science contract, 2026-09-09): runs after the cascade chain
-// has settled. ALWAYS followed by a normal `tumbleBoard` whose explodingSymbols
-// are `destroyed` plus `position` and whose newSymbols refill the holes — the
-// blast is drawn by that tumble (TumbleBoard consumes stateGame.bombPending).
+// Bomb (math contract, measured off RGS books 2026-10-23): fires when a step has
+// no win; every bomb on the board explodes at once. ALWAYS followed by a normal
+// `tumbleBoard` whose explodingSymbols are `cleared` — the bombs are NOT in it,
+// each stays in place as a Wild (`wilds` = the bomb cells). The blast is drawn by
+// that tumble (TumbleBoard consumes stateGame.bombPending).
 type BookEventBombExplode = {
 	index: number;
 	type: 'bombExplode';
-	position: Position;
-	/** the 3x3 ring around the bomb, clipped to the board */
-	destroyed: Position[];
+	bombs: Position[];
+	/** paying symbols in each bomb's 3x3, clipped to the board */
+	cleared: Position[];
+	wilds: Position[];
 };
 
-// Cloner (same contract): ghosts fly from the cloner to `clones`, those cells
-// become cloners, then every cloner (original + clones) turns into `symbol`.
-// Reel board raw symbols equal the math's board afterwards; winInfo/tumbles follow.
-type BookEventClonerTransform = {
+// Multipliers (same source): every multiplier on the board is collected before the
+// step's wins pay. `totalMultiplier` is the plate's new value; the `tumbleBoard`
+// that follows clears the collected cells.
+type BookEventCollectMultipliers = {
 	index: number;
-	type: 'clonerTransform';
-	position: Position;
-	clones: Position[];
+	type: 'collectMultipliers';
+	multipliers: (Position & { multiplier: number })[];
+	totalMultiplier: number;
+};
+
+// A bought round (Operation / Mutant / Overcharged Free Spins) opens with this instead of a base reveal + freeSpinTrigger
+// (MEASURED, betID 274417160, LUCKY_DRAW_FEATURE_HEAVY: { totalFs: 15,
+// initialMultiplier: 0 }). initialMultiplier is Overcharged Free Spins' starting
+// plate value, 0 when there is none — the Overcharged case is not yet seen in a book.
+type BookEventBuyFreeSpins = {
+	index: number;
+	type: 'buyFreeSpins';
+	totalFs: number;
+	initialMultiplier: number;
+};
+
+// 3+ scatters at the end of a free spin: +5 spins (updateFreeSpin follows)
+type BookEventFreeSpinRetrigger = {
+	index: number;
+	type: 'freeSpinRetrigger';
+	totalFs: number;
+	positions: Position[];
+};
+
+// Cloner (math contract, measured 2026-10-23): fires when a step has no win and
+// no bomb. Ghosts fly from `cloner` to the `cloned` paying symbols, those cells
+// become cloners, then every cloner (original + cloned) turns into `symbol`. The
+// board changes in place (no tumble); winInfo or the spin's end follows.
+type BookEventClonerActivate = {
+	index: number;
+	type: 'clonerActivate';
+	cloner: Position;
+	cloned: Position[];
 	symbol: SymbolName;
 };
 
@@ -140,11 +172,14 @@ export type BookEvent =
 	| BookEventSetTumbleWin
 	| BookEventSetTotalWin
 	| BookEventFreeSpinTrigger
+	| BookEventBuyFreeSpins
 	| BookEventUpdateFreeSpin
 	| BookEventUpdateGlobalMult
 	| BookEventTumbleBoard
 	| BookEventBombExplode
-	| BookEventClonerTransform
+	| BookEventCollectMultipliers
+	| BookEventFreeSpinRetrigger
+	| BookEventClonerActivate
 	| BookEventCreateBonusSnapshot
 	| BookEventFinalWin
 	| BookEventSetWin

@@ -1,0 +1,293 @@
+{
+	"frames": {
+		"coin_front.png": {
+			"frame": {
+				"x": 4,
+				"y": 4,
+				"w": 487,
+				"h": 486
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 487,
+				"h": 486
+			},
+			"sourceSize": {
+				"w": 487,
+				"h": 486
+			}
+		},
+		"coin_front_b.png": {
+			"frame": {
+				"x": 4,
+				"y": 4,
+				"w": 487,
+				"h": 486
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 487,
+				"h": 486
+			},
+			"sourceSize": {
+				"w": 487,
+				"h": 486
+			}
+		},
+		"coin_35.png": {
+			"frame": {
+				"x": 495,
+				"y": 4,
+				"w": 437,
+				"h": 455
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 437,
+				"h": 455
+			},
+			"sourceSize": {
+				"w": 437,
+				"h": 455
+			}
+		},
+		"coin_35_b.png": {
+			"frame": {
+				"x": 495,
+				"y": 4,
+				"w": 437,
+				"h": 455
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 437,
+				"h": 455
+			},
+			"sourceSize": {
+				"w": 437,
+				"h": 455
+			}
+		},
+		"coin_65.png": {
+			"frame": {
+				"x": 936,
+				"y": 4,
+				"w": 343,
+				"h": 484
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 343,
+				"h": 484
+			},
+			"sourceSize": {
+				"w": 343,
+				"h": 484
+			}
+		},
+		"coin_65_b.png": {
+			"frame": {
+				"x": 936,
+				"y": 4,
+				"w": 343,
+				"h": 484
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 343,
+				"h": 484
+			},
+			"sourceSize": {
+				"w": 343,
+				"h": 484
+			}
+		},
+		"coin_edge.png": {
+			"frame": {
+				"x": 1283,
+				"y": 4,
+				"w": 188,
+				"h": 480
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 188,
+				"h": 480
+			},
+			"sourceSize": {
+				"w": 188,
+				"h": 480
+			}
+		},
+		"coin_edge_b.png": {
+			"frame": {
+				"x": 1283,
+				"y": 4,
+				"w": 188,
+				"h": 480
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 188,
+				"h": 480
+			},
+			"sourceSize": {
+				"w": 188,
+				"h": 480
+			}
+		},
+		"coin_back.png": {
+			"frame": {
+				"x": 1475,
+				"y": 4,
+				"w": 488,
+				"h": 488
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 488,
+				"h": 488
+			},
+			"sourceSize": {
+				"w": 488,
+				"h": 488
+			}
+		},
+		"coin_back_b.png": {
+			"frame": {
+				"x": 1475,
+				"y": 4,
+				"w": 488,
+				"h": 488
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 488,
+				"h": 488
+			},
+			"sourceSize": {
+				"w": 488,
+				"h": 488
+			}
+		},
+		"vial.png": {
+			"frame": {
+				"x": 4,
+				"y": 496,
+				"w": 340,
+				"h": 448
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 340,
+				"h": 448
+			},
+			"sourceSize": {
+				"w": 340,
+				"h": 448
+			}
+		},
+		"flask.png": {
+			"frame": {
+				"x": 348,
+				"y": 496,
+				"w": 342,
+				"h": 457
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 342,
+				"h": 457
+			},
+			"sourceSize": {
+				"w": 342,
+				"h": 457
+			}
+		},
+		"goo.png": {
+			"frame": {
+				"x": 694,
+				"y": 496,
+				"w": 388,
+				"h": 452
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 388,
+				"h": 452
+			},
+			"sourceSize": {
+				"w": 388,
+				"h": 452
+			}
+		},
+		"drop.png": {
+			"frame": {
+				"x": 1086,
+				"y": 496,
+				"w": 206,
+				"h": 326
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 206,
+				"h": 326
+			},
+			"sourceSize": {
+				"w": 206,
+				"h": 326
+			}
+		}
+	},
+	"meta": {
+		"image": "particles.webp",
+		"format": "RGBA8888",
+		"size": {
+			"w": 2048,
+			"h": 957
+		},
+		"scale": "2"
+	}
+}

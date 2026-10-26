@@ -22,6 +22,18 @@ export const counterText = (fontSize: number): TextStyleOptions => ({
 	fontSize,
 });
 
+/**
+ * "Press anywhere to continue" (loading screen, free-spins intro/outro, big
+ * win): the counters' voice. Black Ops One is Latin-only, so the stack falls
+ * back per glyph for Cyrillic, Arabic, Devanagari and CJK.
+ */
+export const promptText = (fontSize: number): TextStyleOptions => ({
+	...OUTLINE,
+	fontFamily: ['Black Ops One', 'Inter', 'sans-serif'],
+	fill: '#aaea06',
+	fontSize,
+});
+
 /** The cascade win amounts that float up over the paid symbols. */
 export const cascadeWinText = (fontSize: number): TextStyleOptions => ({
 	...OUTLINE,

@@ -1,7 +1,7 @@
 <script lang="ts" module>
 	// Every winner fires `zap` on the same frame: play the crack once per board-wide flash.
 	let lastZapAt = 0;
-	const ZAP_SFX = 'sfx_wild_explode'; // placeholder until a custom electric crack is produced
+	const ZAP_SFX = 'sfx_ms_win_zap';
 </script>
 
 <script lang="ts">

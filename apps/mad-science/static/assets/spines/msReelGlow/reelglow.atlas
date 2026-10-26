@@ -1,0 +1,16 @@
+reelglow.webp
+size:512,1024
+filter:Linear,Linear
+scale:1
+rim
+bounds:0,0,496,453
+halo
+bounds:0,457,369,333
+fill
+bounds:0,794,212,184
+glint
+bounds:373,457,64,64
+bubble
+bounds:441,457,40,40
+spark
+bounds:0,982,32,32

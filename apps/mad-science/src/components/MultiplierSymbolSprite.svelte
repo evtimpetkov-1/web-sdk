@@ -17,6 +17,8 @@
 		y?: number;
 		multiplier: number;
 		symbolInfo: ReturnType<typeof getSymbolInfo>;
+		/** false = the value alone (the collect flight: the plate stays in its cell) */
+		plate?: boolean;
 		oncomplete?: () => void;
 	};
 
@@ -42,11 +44,13 @@
 </script>
 
 <Container x={props.x} y={props.y}>
-	<Sprite key={props.symbolInfo.assetKey} anchor={0.5} width={plate.width} height={plate.height} />
+	{#if props.plate !== false}
+		<Sprite key={props.symbolInfo.assetKey} anchor={0.5} width={plate.width} height={plate.height} />
+	{/if}
 	<ResponsiveBitmapText
 		anchor={0.5}
 		text={`x${Math.round(props.multiplier)}`}
 		maxWidth={plate.width * MAX_ROW}
-		style={{ fontFamily: 'tickup-multipliers', fontSize: plate.height * GLYPH_HEIGHT }}
+		style={{ fontFamily: 'tickup-multipliers', fontSize: plate.height * GLYPH_HEIGHT, fill: 0xffffff }}
 	/>
 </Container>

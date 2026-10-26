@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { stateBet, stateMeta, stateModal, stateUrlDerived } from 'state-shared';
+	import { stateBet, stateBetDerived, stateMeta, stateModal } from 'state-shared';
 	import { zIndex } from 'constants-shared/zIndex';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 
@@ -9,15 +9,15 @@
 	import BuyVolatility from './BuyVolatility.svelte';
 
 	/**
-	 * Purchase confirmation: one card over the blurred shop (BuyShop stays
-	 * mounted underneath) — the option's art on top, volatility bolts, title,
-	 * pitch, price, CONFIRM. The X and the dim both return to the shop.
+	 * Purchase confirmation for a bought free spins mode: one card over the blurred shop
+	 * (BuyShop stays mounted underneath) — the option's art on top, title,
+	 * pitch, price, CONFIRM. The X and the dim both return to the shop. No
+	 * "buy"/"bet" wording anywhere, so it passes social mode as-is.
 	 */
 	const context = getContext();
 
 	const open = $derived(stateModal.modal?.name === 'buyBonusConfirm');
 	const option = $derived(getBuyOption(stateBuy.selectedOptionKey));
-	const social = $derived(stateUrlDerived.social());
 	const cost = $derived(
 		numberToCurrencyString(stateBet.betAmount * (option?.costMultiplier ?? 0)),
 	);
@@ -29,16 +29,31 @@
 
 	const back = () => (stateModal.modal = { name: 'buyBonus' });
 	const confirm = () => {
-		if (!option || !affordable) return;
-		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
-		const mode = option.betModeKey ? stateMeta.betModeMeta[option.betModeKey] : undefined;
-		// placeholder offers (no RGS mode yet) only exercise the flow
-		if (mode?.type === 'buy') {
-			stateBet.activeBetModeKey = mode.mode;
-			context.eventEmitter.broadcast({ type: 'bet' });
-		}
+		const mode = option ? stateMeta.betModeMeta[option.key] : undefined;
+		if (!affordable || mode?.type !== 'buy') return;
+		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_buy_confirm' });
+		const current = stateBetDerived.activeBetMode();
+		stateBuy.anteAfterBuy = current?.type === 'activate' ? current.mode : '';
+		stateBet.activeBetModeKey = mode.mode;
+		context.eventEmitter.broadcast({ type: 'bet' });
 		stateModal.modal = null;
 	};
+
+	// The bought round ends back on the ante the player had on. Restoring it
+	// at the round's end means every SDK path that drops a 'buy' mode to BASE
+	// (spin press, autoplay start, space hold) finds an 'activate' mode and
+	// leaves it alone.
+	let wasIdle = true;
+	$effect(() => {
+		const idle = context.stateXstateDerived.isIdle();
+		if (idle && !wasIdle && stateBuy.anteAfterBuy) {
+			if (stateBetDerived.activeBetMode()?.type === 'buy') {
+				stateBet.activeBetModeKey = stateBuy.anteAfterBuy;
+			}
+			stateBuy.anteAfterBuy = '';
+		}
+		wasIdle = idle;
+	});
 </script>
 
 {#if open && option}
@@ -59,16 +74,15 @@
 				<img src={option.image} alt="" draggable="false" />
 			</div>
 			<div class="body">
-				<BuyVolatility level={option.volatility} size="1.4rem" />
+				{#if option.volatility}
+					<BuyVolatility level={option.volatility} size="1.4rem" />
+				{/if}
 				<h1 class="title">{option.title}</h1>
 				<p class="pitch">{option.description}</p>
 				<div class="cost">{cost}</div>
 				<button class="cta" data-test="confirm-button" disabled={!affordable} onclick={confirm}>
 					CONFIRM
 				</button>
-				{#if !option.betModeKey}
-					<span class="note">{social ? 'Preview only' : 'Preview only — not purchasable yet'}</span>
-				{/if}
 			</div>
 		</div>
 	</div>
@@ -190,12 +204,6 @@
 		cursor: default;
 		filter: grayscale(0.5);
 	}
-	.note {
-		font-size: 0.7rem;
-		letter-spacing: 0.1em;
-		color: rgba(255, 255, 255, 0.45);
-	}
-
 	.close {
 		appearance: none;
 		border: none;

@@ -15,6 +15,7 @@
 	import { CanvasSizeRectangle } from 'components-layout';
 
 	import { getContext } from '../game/context';
+	import { reachesTotalBet } from '../game/utils';
 	import PressToContinue from './PressToContinue.svelte';
 	import WinCoins from './WinCoins.svelte';
 
@@ -60,7 +61,15 @@
 <FadeContainer {show}>
 	{#if winLevelData}
 		{@const duration = winLevelData.presentDuration}
-		<WinCountUpProvider {amount} {duration} oncomplete={() => {}}>
+		<WinCountUpProvider
+			{amount}
+			{duration}
+			oncomplete={() => {
+				// the total lands (or was skipped to): the tickup ends on its hit
+				context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_ms_tickup' });
+				context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_tickup_end' });
+			}}
+		>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
 				<CanvasSizeRectangle backgroundColor={0x000000} backgroundAlpha={0.7} />
 
@@ -86,18 +95,24 @@
 							anchor={0.5}
 							maxWidth={AMOUNT_MAX_WIDTH}
 							text={bookEventAmountToWinCurrencyString(countUpAmount)}
-							style={{ fontFamily: 'tickup-win', fontSize: AMOUNT_SIZE, align: 'center', letterSpacing: 0 }}
+							style={{ fontFamily: 'tickup-win', fontSize: AMOUNT_SIZE, align: 'center', letterSpacing: 0, fill: 0xffffff }}
 						/>
 					</SpineSlot>
 				</SpineProvider>
 
-				<WinCoins emit={phase === 'idle' && !countUpCompleted} levelAlias={winLevelData?.alias} />
+				<!-- no coins for a free-spins total below the total bet (Evtim, 2026-10-24) -->
+				{#if reachesTotalBet(amount)}
+					<WinCoins emit={phase === 'idle' && !countUpCompleted} levelAlias={winLevelData?.alias} />
+				{/if}
 
 				<PressToContinue
 					onpress={() => {
 						if (phase === 'in') return;
 						if (!countUpCompleted) finishCountUp();
-						else if (phase === 'idle') phase = 'out';
+						else if (phase === 'idle') {
+							phase = 'out';
+							context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_popup_out' });
+						}
 					}}
 				/>
 			{/snippet}

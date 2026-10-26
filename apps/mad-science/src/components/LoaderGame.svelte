@@ -22,7 +22,7 @@
 	 * component is mounted by +layout.svelte as a sibling of <Game>, so the Pixi
 	 * context does not reach it — but the state module is a singleton.
 	 */
-	const bgImg = new URL('../../assets/madscience/bg_v1.png', import.meta.url).href;
+	const bgImg = new URL('../../assets/madscience/bg_v1.webp', import.meta.url).href;
 	const baseImg = new URL('../../assets/madscience/loader/loader_base.webp', import.meta.url).href;
 	const fillImg = new URL('../../assets/madscience/loader/loader_fill.webp', import.meta.url).href;
 

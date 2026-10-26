@@ -2,6 +2,10 @@ import _ from 'lodash';
 
 import type { RawSymbol, SymbolState } from './types';
 
+// Shown in the paytable and rules footers. 1.0.0 = first submission (Kraken's
+// numbering: it submitted as 1.0.0 and bumped on each resubmission).
+export const GAME_VERSION = '1.0.0';
+
 // Cell height (row pitch). Also the unit every size ratio is expressed in.
 export const SYMBOL_SIZE = 100;
 
@@ -41,15 +45,18 @@ export const FRAME_ART = {
 
 // initial board (padded top and bottom)
 export const INITIAL_BOARD: RawSymbol[][] = [
-	// laid out after Evtim's board mockup (2026-09-02): wilds, bonus, cloner, bomb and two
-	// multipliers (x5, x10 — placeholders until the math emits them) mixed in;
+	// laid out after Evtim's board mockup (2026-09-02): 3 Scatters (one short of a
+	// trigger), a Cloner, a Bomb and two multipliers (x5, x10) mixed in. NO Wilds:
+	// the rules say a Wild only comes from a Bomb, so a reviewer would read one
+	// here as a mismatch (the mockup's four were swapped for paying symbols,
+	// 2026-10-24). No paying symbol shows more than 3 times, far from a win (8).
 	// each reel = [top padding, rows 1-5, bottom padding]
-	[{ name: 'H2' }, { name: 'W' }, { name: 'H1' }, { name: 'H4' }, { name: 'H2' }, { name: 'W' }, { name: 'L1' }],
-	[{ name: 'L3' }, { name: 'H3' }, { name: 'S', scatter: true }, { name: 'L4' }, { name: 'S', scatter: true }, { name: 'L2' }, { name: 'H3' }],
-	[{ name: 'H1' }, { name: 'H4' }, { name: 'L4' }, { name: 'B' }, { name: 'H1' }, { name: 'L3' }, { name: 'L2' }],
-	[{ name: 'L2' }, { name: 'L1' }, { name: 'C' }, { name: 'L3' }, { name: 'W' }, { name: 'H3' }, { name: 'H4' }],
-	[{ name: 'H4' }, { name: 'H2' }, { name: 'H3' }, { name: 'M', multiplier: 5 }, { name: 'S', scatter: true }, { name: 'H5' }, { name: 'L1' }],
-	[{ name: 'L2' }, { name: 'W' }, { name: 'M', multiplier: 10 }, { name: 'H5' }, { name: 'H2' }, { name: 'H4' }, { name: 'H1' }],
+	[{ name: 'H2' }, { name: 'L3' }, { name: 'H1' }, { name: 'H4' }, { name: 'H2' }, { name: 'L1' }, { name: 'L2' }],
+	[{ name: 'L4' }, { name: 'H3' }, { name: 'S', scatter: true }, { name: 'L5' }, { name: 'S', scatter: true }, { name: 'L3' }, { name: 'H3' }],
+	[{ name: 'H1' }, { name: 'H4' }, { name: 'L5' }, { name: 'B' }, { name: 'H1' }, { name: 'L4' }, { name: 'L3' }],
+	[{ name: 'L3' }, { name: 'L2' }, { name: 'C' }, { name: 'L4' }, { name: 'H1' }, { name: 'H3' }, { name: 'H4' }],
+	[{ name: 'H4' }, { name: 'H2' }, { name: 'H3' }, { name: 'M', multiplier: 5 }, { name: 'S', scatter: true }, { name: 'L1' }, { name: 'L2' }],
+	[{ name: 'L3' }, { name: 'L4' }, { name: 'M', multiplier: 10 }, { name: 'L1' }, { name: 'H2' }, { name: 'H4' }, { name: 'H1' }],
 ];
 
 export const BOARD_DIMENSIONS = { x: INITIAL_BOARD.length, y: INITIAL_BOARD[0].length - 2 };
@@ -78,7 +85,7 @@ export const PORTRAIT_MAIN_SIZES = {
 	height: PORTRAIT_HEIGHT,
 };
 
-export const HIGH_SYMBOLS = ['H1', 'H2', 'H3', 'H4', 'H5'];
+export const HIGH_SYMBOLS = ['H1', 'H2', 'H3', 'H4'];
 
 // Symbols that skip the generic win FX (overload charge): scatters have their own
 // trigger celebration, multipliers are collected by the multiplier board.
@@ -89,9 +96,24 @@ export const INITIAL_SYMBOL_STATE: SymbolState = 'static';
 const SPIN_OPTIONS_SHARED = {
 	reelFallInDelay: 80,
 	reelPaddingMultiplierNormal: 1.25,
-	reelPaddingMultiplierAnticipated: 18,
+	// an anticipated column waits reelFallInDelay x this before it falls in (the
+	// shared reel's padding maths): 12 = ~1s per column on top of its slow fall
+	reelPaddingMultiplierAnticipated: 12,
 	reelFallOutDelay: 145,
 };
+
+// Scatter anticipation (Evtim, 2026-10-24), one Scatter short of a trigger (4
+// trigger in the base game, 3 retrigger in free spins), the Scatters playing
+// their `pending` loop under the anticipation sound:
+// - on the spin: the columns that fall in after that point are anticipated
+//   (SPIN_OPTIONS_ANTICIPATED; the math sends no anticipation, the reveal
+//   handler counts it); turbo skips it;
+// - in a cascade: the refilling columns drop one by one and slower. Durations
+//   at 1x; turbo halves them (stateBetDerived.timeScale).
+export const SCATTERS_TO_TRIGGER = { basegame: 4, freegame: 3 } as const;
+export const TUMBLE_DROP_MS = 200;
+export const ANTICIPATION_DROP_MS = 550;
+export const ANTICIPATION_REEL_STAGGER_MS = 260;
 
 export const SPIN_OPTIONS_DEFAULT = {
 	...SPIN_OPTIONS_SHARED,
@@ -103,6 +125,14 @@ export const SPIN_OPTIONS_DEFAULT = {
 	symbolFallOutInterval: 20,
 };
 
+// a column that falls in under scatter anticipation (spinType 'anticipated'):
+// its symbols drop at half speed and further apart, so the column comes in
+// slowly, one symbol after another
+export const SPIN_OPTIONS_ANTICIPATED = {
+	...SPIN_OPTIONS_DEFAULT,
+	symbolFallInSpeed: 1.75,
+	symbolFallInInterval: 60,
+};
 export const SPIN_OPTIONS_FAST = {
 	...SPIN_OPTIONS_SHARED,
 	symbolFallInSpeed: 7,
@@ -138,15 +168,16 @@ const sprite = (assetKey: string, art: ArtSize, scale = 1) => ({
 	assetKey,
 	sizeRatios: fitSymbol(art, scale),
 });
-type RigAnimation = 'land' | 'prewin' | 'idle' | 'explode' | 'cast' | 'in' | 'out';
+type RigAnimation = 'land' | 'prewin' | 'idle' | 'pending' | 'explode' | 'cast' | 'in' | 'out';
 const spine = (assetKey: string, animationName: RigAnimation, art: ArtSize, scale = 1) => ({
 	type: 'spine' as const,
 	assetKey,
 	animationName,
 	sizeRatios: fitSymbol(art, scale),
 });
-// static plate + land/prewin rig; `idle` is the rig's pending loop where the
-// symbol has one (scatter, bomb), the static plate otherwise; `explode` is the
+// static plate + land/prewin rig; `idle` is the rig's in-round loop where the
+// symbol has one (scatter, bomb), the static plate otherwise; `pending` is the
+// scatter's anticipation loop (one short of a trigger); `explode` is the
 // bomb's self-destruct (ends empty); `transform` maps the cloner's cast/in/out.
 // Every other state falls back to the static plate — `blasted` always does, the
 // red burst over a bomb's neighbour is a separate overlay (BlastBurst). `scale`
@@ -158,9 +189,10 @@ const rigged = (
 	{
 		scale = 1,
 		idle = false,
+		pending = false,
 		explode = false,
 		transform = false,
-	}: { scale?: number; idle?: boolean; explode?: boolean; transform?: boolean } = {},
+	}: { scale?: number; idle?: boolean; pending?: boolean; explode?: boolean; transform?: boolean } = {},
 ) => {
 	const still = sprite(staticKey, art, scale);
 	const anim = (name: RigAnimation) => spine(animKey, name, art, scale);
@@ -172,6 +204,7 @@ const rigged = (
 		spin: still,
 		land: anim('land'),
 		idle: idle ? anim('idle') : still,
+		pending: pending ? anim('pending') : still,
 		explode: explode ? anim('explode') : still,
 		blasted: still,
 		cast: transform ? anim('cast') : still,
@@ -187,6 +220,7 @@ const allStates = <T>(info: T) => ({
 	spin: info,
 	land: info,
 	idle: info,
+	pending: info,
 	explode: info,
 	blasted: info,
 	cast: info,
@@ -195,15 +229,16 @@ const allStates = <T>(info: T) => ({
 });
 
 export const SYMBOL_INFO_MAP = {
+	// math codes: H1-H4 = the four lab symbols, L1-L5 = the royals A K Q J 10
 	H1: rigged('h1.png', 'msH1Anim', ART.h1),
 	H2: rigged('h2.png', 'msH2Anim', ART.h2),
 	H3: rigged('h3.png', 'msH3Anim', ART.h3),
 	H4: rigged('h4.png', 'msH4Anim', ART.h4),
-	H5: rigged('A.png', 'msAAnim', ART.plate),
-	L1: rigged('K.png', 'msKAnim', ART.plate),
-	L2: rigged('Q.png', 'msQAnim', ART.plate),
-	L3: rigged('J.png', 'msJAnim', ART.plate),
-	L4: rigged('ten.png', 'msTenAnim', ART.plate),
+	L1: rigged('A.png', 'msAAnim', ART.plate),
+	L2: rigged('K.png', 'msKAnim', ART.plate),
+	L3: rigged('Q.png', 'msQAnim', ART.plate),
+	L4: rigged('J.png', 'msJAnim', ART.plate),
+	L5: rigged('ten.png', 'msTenAnim', ART.plate),
 	W: allStates(sprite('wild.png', ART.wild)),
 	// Cloner: cast = the sign flares and its ghosts peel off towards the cells
 	// they turn into cloners, in = a fresh clone's sign grows in, out = the sign
@@ -217,7 +252,8 @@ export const SYMBOL_INFO_MAP = {
 	// land = the sign slams in, prewin = the lamp switches on over the table,
 	// idle = lamp sway + breathing bulbs while a round waits for its cascades
 	// (ReelSymbol/TumbleSymbol derive that state from stateGame.roundActive).
-	S: rigged('bonus.png', 'msBonusAnim', ART.bonus, { scale: BONUS_SCALE, idle: true }),
+	// pending = the heartbeat while a cascade drops one Scatter short of a trigger.
+	S: rigged('bonus.png', 'msBonusAnim', ART.bonus, { scale: BONUS_SCALE, idle: true, pending: true }),
 	// Multiplier symbol: riveted plate + the value in the tickup-multipliers
 	// bitmap font, composed at runtime (MultiplierSymbolSprite) so any value
 	// works. Once collected onto the plate above the reels the cell keeps the
@@ -231,10 +267,13 @@ export const SYMBOL_INFO_MAP = {
 } as const;
 
 
-export const SCATTER_LAND_SOUND_MAP = {
-	1: 'sfx_scatter_stop_1',
-	2: 'sfx_scatter_stop_2',
-	3: 'sfx_scatter_stop_3',
-	4: 'sfx_scatter_stop_4',
-	5: 'sfx_scatter_stop_5',
-} as const;
+// Pitch ladders: ONE file replayed at a rising Howler rate (soundOnce `rate`),
+// never numbered files — five generations would never share a timbre.
+/** sfx_ms_reel_land, one step per column left to right */
+export const REEL_LAND_RATES = [1.0, 1.04, 1.08, 1.12, 1.16, 1.2] as const;
+/** sfx_ms_bonus_land, rising with each bonus landed this spin (the 4th triggers) */
+export const BONUS_LAND_RATES = [1.0, 1.08, 1.16, 1.26, 1.36, 1.46] as const;
+/** sfx_ms_cascade_step, rising with each cascade win of a spin */
+export const CASCADE_STEP_RATES = [1.0, 1.06, 1.12, 1.19, 1.26, 1.33, 1.41, 1.5] as const;
+export const ladderRate = (rates: readonly number[], step: number) =>
+	rates[Math.max(0, Math.min(step, rates.length - 1))];

@@ -36,10 +36,6 @@
 
 	const { mode = 'stacked', ...props }: Props = $props();
 
-	// a couple of engine/decoder lines in the console, for support
-	const T0 = performance.now();
-	const log = (...args: unknown[]) =>
-		console.info(`[mascot ${((performance.now() - T0) / 1000).toFixed(2)}s]`, ...args);
 
 	const w = props.halfWidth;
 	const h = props.halfHeight;
@@ -272,8 +268,7 @@
 					{ offset: frameW * frameH + halfW * halfH, stride: halfW },
 				],
 			});
-		} catch (error) {
-			log('copyTo failed', String(error));
+		} catch {
 			frame.close();
 			copying = false;
 			return;
@@ -290,7 +285,9 @@
 	};
 
 	const startWebCodecs = async () => {
-		player = new WebCodecsPlayer(log);
+		// silent: Stake checks the console. To debug the decoder, pass a logger
+		// here, e.g. new WebCodecsPlayer(console.info)
+		player = new WebCodecsPlayer();
 		await player.load(props.srcs);
 		player.start();
 		const frameLoop = (now: number) => {
@@ -301,7 +298,6 @@
 				// software frames come as I420 (CPU memory): take the planar path;
 				// anything else (hardware surfaces) goes straight in as RGBA
 				planar = frame.format === 'I420' && frame.codedWidth === frameW && frame.codedHeight === frameH;
-				log('frame format', frame.format, `${frame.codedWidth}x${frame.codedHeight}`, planar ? 'planar upload' : 'rgba upload');
 			}
 			if (planar) void presentPlanar(frame);
 			else presentRgba(frame);
@@ -402,12 +398,8 @@
 	});
 
 	onMount(() => {
-		log('engine', useWebCodecs ? 'webcodecs' : 'video element', `secureContext=${window.isSecureContext}`, `VideoDecoder=${typeof VideoDecoder}`);
 		if (useWebCodecs) {
-			startWebCodecs().catch((error) => {
-				log('webcodecs failed', String(error));
-				stopWebCodecs();
-			});
+			startWebCodecs().catch(() => stopWebCodecs());
 		} else {
 			startElement();
 		}
