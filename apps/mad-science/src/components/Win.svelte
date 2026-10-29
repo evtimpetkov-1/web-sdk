@@ -4,7 +4,13 @@
 	export type EmitterEventWin =
 		| { type: 'winShow' }
 		| { type: 'winHide' }
-		| { type: 'winUpdate'; amount: number; winLevelData: WinLevelData };
+		| {
+				type: 'winUpdate';
+				amount: number;
+				winLevelData: WinLevelData;
+				/** the count's figure has landed (or was skipped to): its sounds end (setWin) */
+				oncountend?: () => void;
+		  };
 </script>
 
 <script lang="ts">
@@ -50,6 +56,10 @@
 	const WIN_FONT = 'tickup-win';
 	// the final figure stays up this long before the box leaves (a press skips it)
 	const FINAL_AMOUNT_HOLD_MS = 2000;
+	// ...but a press closes the box only once the final figure has been up this long:
+	// a held Space or a spammed spin button are presses too, and in turbo the amount
+	// was gone the moment the count was skipped (Evtim, 2026-10-26)
+	const MIN_FINAL_AMOUNT_MS = 600;
 
 	/**
 	 * Readability of the (non-big) winbox: its stone glyphs share the royals'
@@ -67,11 +77,30 @@
 	let amount = $state(0);
 	let winLevelData = $state<WinLevelData>();
 	let oncomplete = $state(() => {});
-	let onCountUpComplete = $state(() => {});
+	let oncountend = () => {};
 	/** big wins: set once the count-up is done (or the player presses) — the titles play out, then oncomplete */
 	let requestExitAnimation = $state(false);
 	/** bumped per win so each big win gets a fresh WinAnimation (its phases are one-way) */
 	let winRun = $state(0);
+	/** when the final figure landed (count-up done or skipped) */
+	let finalShownAt = 0;
+	let closeQueued = false;
+
+	const close = (isBigWin: boolean) => {
+		// big wins: the titles play out first (onexit -> oncomplete)
+		if (isBigWin) requestExitAnimation = true;
+		else oncomplete();
+	};
+	// a press after the final figure: close now, or once it has been up MIN_FINAL_AMOUNT_MS
+	const closeOnPress = async (isBigWin: boolean) => {
+		if (closeQueued) return;
+		closeQueued = true;
+		const run = winRun;
+		const remaining = MIN_FINAL_AMOUNT_MS - (performance.now() - finalShownAt);
+		if (remaining > 0) await waitForTimeout(remaining);
+		closeQueued = false;
+		if (run === winRun) close(isBigWin);
+	};
 
 	context.eventEmitter.subscribeOnMount({
 		winShow: () => (show = true),
@@ -79,6 +108,10 @@
 		winUpdate: async (emitterEvent) => {
 			requestExitAnimation = false;
 			winRun += 1;
+			closeQueued = false;
+			// until this win's figure lands, a stray press waits the full minimum
+			finalShownAt = performance.now();
+			oncountend = emitterEvent.oncountend ?? (() => {});
 			amount = emitterEvent.amount;
 			winLevelData = emitterEvent.winLevelData;
 			popScale.set(POP_FROM, { duration: 0 });
@@ -92,7 +125,7 @@
 	{#if winLevelData}
 		{@const isBigWin = winLevelData.type === 'big'}
 		{@const duration = winLevelData.presentDuration}
-		<WinCountUpProvider {amount} {duration} oncomplete={() => onCountUpComplete()}>
+		<WinCountUpProvider {amount} {duration} oncomplete={() => (finalShownAt = performance.now())}>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
 				{#if isBigWin}
 					<!-- dark enough for the additive rays to read; the board stays faintly visible -->
@@ -103,17 +136,13 @@
 					onmount={async () => {
 						const run = winRun;
 						await startCountUp();
-						// the final figure lands (or was skipped to): the tickup ends on its hit
-						if (duration) {
-							context.eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_ms_tickup' });
-							context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_tickup_end' });
-						}
+						// the final figure lands (or was skipped to): the tickup ends on its hit,
+						// the shower stops and a big win's bed fades back into the game's music
+						if (run === winRun) oncountend();
 						await waitForTimeout(FINAL_AMOUNT_HOLD_MS);
 						// skipped by a press meanwhile: this timer must not close a later win
 						if (run !== winRun) return;
-						// big wins: the titles play out next (onexit -> oncomplete)
-						if (isBigWin) requestExitAnimation = true;
-						else oncomplete();
+						close(isBigWin);
 					}}
 				/>
 
@@ -132,50 +161,55 @@
 									<!--
 										Sits in the rig's slot_win_count bone (1600 world px wide rig,
 										amount 250 below the origin). maxWidth keeps long amounts
-										narrower than the titles.
+										narrower than the titles (and on screen in portrait).
 									-->
+									{#snippet children({ amountMaxWidth })}
+										<ResponsiveBitmapText
+											anchor={0.5}
+											maxWidth={amountMaxWidth}
+											text={bookEventAmountToWinCurrencyString(countUpAmount)}
+											style={{
+												fontFamily: WIN_FONT,
+												fontSize: SYMBOL_SIZE * 2.0,
+												align: 'center',
+												letterSpacing: 0,
+												fill: 0xffffff,
+											}}
+										/>
+									{/snippet}
+								</WinAnimation>
+							{/key}
+						{:else}
+							<!-- board-local sizes: the board group is scaled up in portrait -->
+							<Container scale={board.scale}>
+								<Rectangle
+									anchor={0.5}
+									width={board.width}
+									height={board.height}
+									backgroundColor={0x000000}
+									backgroundAlpha={WIN_DIM_ALPHA}
+								/>
+								<Container scale={popScale.current}>
+									<Sprite
+										key="msWinShadow"
+										anchor={0.5}
+										width={board.width * 1.05}
+										height={SYMBOL_SIZE * 2}
+									/>
+									<!-- held inside the reel window, on the shadow -->
 									<ResponsiveBitmapText
 										anchor={0.5}
-										maxWidth={1200}
+										maxWidth={board.width * 0.92}
 										text={bookEventAmountToWinCurrencyString(countUpAmount)}
 										style={{
 											fontFamily: WIN_FONT,
-											fontSize: SYMBOL_SIZE * 2.0,
+											fontSize: SYMBOL_SIZE,
 											align: 'center',
 											letterSpacing: 0,
 											fill: 0xffffff,
 										}}
 									/>
-								</WinAnimation>
-							{/key}
-						{:else}
-							<Rectangle
-								anchor={0.5}
-								width={board.width}
-								height={board.height}
-								backgroundColor={0x000000}
-								backgroundAlpha={WIN_DIM_ALPHA}
-							/>
-							<Container scale={popScale.current}>
-								<Sprite
-									key="msWinShadow"
-									anchor={0.5}
-									width={board.width * 1.05}
-									height={SYMBOL_SIZE * 2}
-								/>
-								<!-- held inside the reel window, on the shadow -->
-								<ResponsiveBitmapText
-									anchor={0.5}
-									maxWidth={board.width * 0.92}
-									text={bookEventAmountToWinCurrencyString(countUpAmount)}
-									style={{
-										fontFamily: WIN_FONT,
-										fontSize: SYMBOL_SIZE,
-										align: 'center',
-										letterSpacing: 0,
-										fill: 0xffffff,
-									}}
-								/>
+								</Container>
 							</Container>
 						{/if}
 					</Container>
@@ -192,8 +226,7 @@
 					showText={false}
 					onpress={() => {
 						if (!countUpCompleted) finishCountUp();
-						else if (isBigWin) requestExitAnimation = true;
-						else oncomplete();
+						else closeOnPress(isBigWin);
 					}}
 				/>
 			{/snippet}

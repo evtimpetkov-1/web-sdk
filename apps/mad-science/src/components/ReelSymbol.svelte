@@ -47,13 +47,13 @@
 	});
 
 	/**
-	 * The padding cells above and below the window are never on screen as
-	 * themselves (the bottom one only passes through while falling in), yet the
-	 * shared reel lands them like any cell. A rig mounts in the unmasked layer, and
-	 * the bottom cell's land fires right on the board's bottom edge (y = 550 minus
-	 * the 50-unit bounce): it flashed over the frame's bottom pipe on every spin.
-	 * Padding cells keep the plate, and their land settles straight away (the reel
-	 * never waits for it).
+	 * The padding cells above and below the window are not part of the board the
+	 * player sees, but the shared reel moves them with the column: the top one
+	 * slid out from under the pipe behind row 1 as the reel fell out, and the
+	 * bottom one dropped through the whole window ahead of the new symbols as the
+	 * reel fell in (Evtim, 2026-10-26). They are never drawn. The reel still lands
+	 * them like any cell, so their land settles straight away (the reel never
+	 * waits for it).
 	 */
 	const isPadding = $derived(props.symbolIndex === 0 || props.symbolIndex > BOARD_DIMENSIONS.y);
 	$effect(() => {
@@ -62,7 +62,6 @@
 
 	const displayState = $derived.by<SymbolState>(() => {
 		const { symbolState } = props.reelSymbol;
-		if (isPadding) return symbolState === 'spin' ? 'spin' : 'static';
 		if (hasPending && symbolState === 'static' && context.stateGame.scatterPending) return 'pending';
 		return hasIdle &&
 			symbolState === 'static' &&
@@ -103,68 +102,79 @@
 	const cloneFx = $derived(context.stateGame.cloneFx[cellKey]);
 </script>
 
-<!--
-	The FX lives in its OWN wraps, not inside the symbol's: every wrap is a sibling
-	in the board layer's container, so zIndex -1 puts ALL halos under ALL winning
-	symbols and zIndex 1 puts ALL arcs over them, whatever order the cells entered
-	their win state (the same reason Kraken's win frame is hoisted).
--->
-{#if fxPhase}
-	<SymbolWrap {x} {y} animating={true} zIndex={-1}>
-		<WinCharge layer="under" phase={fxPhase} />
-	</SymbolWrap>
-{/if}
+{#if !isPadding}
+	<!--
+		The FX lives in its OWN wraps, not inside the symbol's: every wrap is a sibling
+		in the board layer's container, so zIndex -1 puts ALL halos under ALL winning
+		symbols and zIndex 1 puts ALL arcs over them, whatever order the cells entered
+		their win state (the same reason Kraken's win frame is hoisted).
+	-->
+	{#if fxPhase}
+		<SymbolWrap {x} {y} animating={true} zIndex={-1}>
+			<WinCharge layer="under" phase={fxPhase} />
+		</SymbolWrap>
+	{/if}
 
-<!--
-	`animating` picks the unmasked board layer. Every rig state (land, win, idle,
-	the cloner's cast/in/out) lives there, as does a held symbol (its halo is not
-	clipped by the board mask and sorts under it) and a cell under a goo cover
-	(symbol and cover must share one container to sort against each other).
--->
-<SymbolWrap
-	{x}
-	{y}
-	{zIndex}
-	animating={symbolInfo.type === 'spine' || fxPhase !== undefined || cloneFx !== undefined}
->
-	<Symbol
-		state={displayState}
-		loop={displayState === 'idle' || displayState === 'pending'}
-		rawSymbol={props.reelSymbol.rawSymbol}
-		oncomplete={() => {
-			const { symbolState } = props.reelSymbol;
-			// a loop boundary: the round is over, let the idle rig go static here
-			if (displayState === 'idle' && !context.stateGame.roundActive) {
-				context.stateGame.idleHold[cellKey] = false;
-			}
-			// win and the cloner's cast are awaited by their handlers
-			if (symbolState === 'win' || symbolState === 'cast') props.reelSymbol.oncomplete();
-			// rest-pose one-shots settle onto the static plate; 'out' holds its last
-			// frame (sign gone, plate intact) until the flood swaps the symbol
-			if (symbolState === 'land' || symbolState === 'cast' || symbolState === 'in') {
-				// a landed rig with an idle loop always gets one full pass of it: a
-				// no-win spin ends before the later reels finish landing, and only
-				// the first bonus used to light up (the rest landed after the round)
-				if (symbolState === 'land' && hasIdle) context.stateGame.idleHold[cellKey] = true;
-				props.reelSymbol.symbolState = 'static';
-			}
-		}}
-	/>
-</SymbolWrap>
-
-{#if fxPhase}
-	<SymbolWrap {x} {y} animating={true} zIndex={1}>
-		<WinCharge
-			layer="over"
-			phase={fxPhase}
-			oncomplete={() => (chargeDone = true)}
+	<!--
+		`animating` picks the unmasked board layer. Every rig state (win, idle, the
+		cloner's cast/in/out) lives there, as does a held symbol (its halo is not
+		clipped by the board mask and sorts under it) and a cell under a goo cover
+		(symbol and cover must share one container to sort against each other).
+		`land` is the exception: the spin's bounce starts it half a row above the
+		cell, and unmasked the top row's plate rose over the top pipe (Evtim,
+		2026-10-26). Land rigs stay within about a cell, so the mask, which sits under
+		the pipes, cuts nothing visible at rest. That includes the land after a
+		cloner flood, so dropping the cover mid-land never moves (and restarts) it.
+	-->
+	<SymbolWrap
+		{x}
+		{y}
+		{zIndex}
+		animating={displayState !== 'land' &&
+			(symbolInfo.type === 'spine' || fxPhase !== undefined || cloneFx !== undefined)}
+	>
+		<Symbol
+			state={displayState}
+			loop={displayState === 'idle' || displayState === 'pending'}
+			rawSymbol={props.reelSymbol.rawSymbol}
+			oncomplete={() => {
+				const { symbolState } = props.reelSymbol;
+				// a loop boundary: the round is over, let the idle rig go static here
+				if (displayState === 'idle' && !context.stateGame.roundActive) {
+					context.stateGame.idleHold[cellKey] = false;
+				}
+				// win, the cloner's cast and the land after a cloner flood are awaited by
+				// their handlers (a spin's own land calls an already-spent resolver: harmless)
+				if (symbolState === 'win' || symbolState === 'cast' || symbolState === 'land') {
+					props.reelSymbol.oncomplete();
+				}
+				// rest-pose one-shots settle onto the static plate; 'out' holds its last
+				// frame (sign gone, plate intact) until the flood swaps the symbol
+				if (symbolState === 'land' || symbolState === 'cast' || symbolState === 'in') {
+					// a landed rig with an idle loop always gets one full pass of it: a
+					// no-win spin ends before the later reels finish landing, and only
+					// the first bonus used to light up (the rest landed after the round)
+					if (symbolState === 'land' && hasIdle) context.stateGame.idleHold[cellKey] = true;
+					props.reelSymbol.symbolState = 'static';
+				}
+			}}
 		/>
 	</SymbolWrap>
-{/if}
 
-<!-- over the symbol: the swap underneath happens while the cell is fully covered -->
-{#if cloneFx}
-	<SymbolWrap {x} {y} animating={true} zIndex={3}>
-		<CloneFx kind={cloneFx.kind} onswap={cloneFx.onSwap} oncomplete={cloneFx.oncomplete} />
-	</SymbolWrap>
+	{#if fxPhase}
+		<SymbolWrap {x} {y} animating={true} zIndex={1}>
+			<WinCharge
+				layer="over"
+				phase={fxPhase}
+				oncomplete={() => (chargeDone = true)}
+			/>
+		</SymbolWrap>
+	{/if}
+
+	<!-- over the symbol: the swap underneath happens while the cell is fully covered -->
+	{#if cloneFx}
+		<SymbolWrap {x} {y} animating={true} zIndex={3}>
+			<CloneFx kind={cloneFx.kind} onswap={cloneFx.onSwap} oncomplete={cloneFx.oncomplete} />
+		</SymbolWrap>
+	{/if}
 {/if}

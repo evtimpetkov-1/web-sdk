@@ -20,6 +20,21 @@ export const stateBet = $state({
 	autoSpinsSingleWinLimitAmount: Infinity,
 	isSpaceHold: false,
 	isTurbo: false,
+	/**
+	 * The player's turbo setting: what the turbo button shows and toggles, and what
+	 * isTurbo returns to after a slam-stopped spin (a temporary turbo). Reactive so
+	 * the button can display it: it used to keep a private copy, which a Space-hold
+	 * release (it forced turbo off) left lit with turbo off (2026-10-26).
+	 */
+	isTurboPersistent: false,
+	/**
+	 * Opt-in hook for a spin press (button or Space) while the active mode is a
+	 * 'buy'. Unset, the press drops the mode to BASE and spins, as it always has.
+	 * A game that keeps a bought mode armed between rounds sets it and returns
+	 * true when it handled the press itself (Mad Science opens its confirm card:
+	 * Stake wants a buy confirmed again after every round).
+	 */
+	onBuyModeBet: null as null | (() => boolean),
 });
 
 const correctBetAmount = (value: number) => {
@@ -52,13 +67,13 @@ const updateBetAmount = (update: (value: number) => number) => {
 	stateBet.betAmount = correctBetAmount(update(stateBet.betAmount));
 };
 
-let isTurboLocked = false;
-
 const updateIsTurbo = (value: boolean, options: { persistent: boolean }) => {
 	const { persistent } = options;
 
-	if (!persistent && isTurboLocked) return;
-	if (persistent) isTurboLocked = value;
+	// a temporary change (a slam stop, its reset at the round's end) never
+	// overrides turbo the player switched on
+	if (!persistent && stateBet.isTurboPersistent) return;
+	if (persistent) stateBet.isTurboPersistent = value;
 
 	stateBet.isTurbo = value;
 };

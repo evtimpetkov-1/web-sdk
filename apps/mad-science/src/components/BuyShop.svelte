@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { stateBet, stateConfig, stateModal, stateUi, stateUrlDerived, INFINITY_MARK } from 'state-shared';
+	import { stateBet, stateConfig, stateModal, stateUi, INFINITY_MARK } from 'state-shared';
 	import { OptionsToggle } from 'components-shared';
 	import { zIndex } from 'constants-shared/zIndex';
 	import { numberToCurrencyString } from 'utils-shared/amount';
@@ -7,8 +7,11 @@
 	import { getContext } from '../game/context';
 	import { ANTE_OPTIONS, BUY_OPTIONS, type ShopOffer } from '../game/buyOptions';
 	import { stateBuy } from '../game/stateBuy.svelte';
+	import { i18nDerived } from '../i18n/i18nDerived';
+	import { drawnOrder } from '../i18n/format';
 	import BuyVolatility from './BuyVolatility.svelte';
 	import ScrollHint from './ScrollHint.svelte';
+	import { fitText } from './fitText';
 
 	/**
 	 * Feature shop: a fullscreen takeover with the two ante switches (Chaos
@@ -21,11 +24,12 @@
 	 */
 	const context = getContext();
 
+	// not under the card the spin press opens over an armed buy (BuyConfirm)
 	const open = $derived(
-		stateModal.modal?.name === 'buyBonus' || stateModal.modal?.name === 'buyBonusConfirm',
+		stateModal.modal?.name === 'buyBonus' ||
+			(stateModal.modal?.name === 'buyBonusConfirm' && !stateBuy.confirmFromSpin),
 	);
 	const confirming = $derived(stateModal.modal?.name === 'buyBonusConfirm');
-	const social = $derived(stateUrlDerived.social());
 	// a jurisdiction can switch feature buying off (authenticate config); the
 	// antes are bet options, not buys, so they stay
 	const buyEnabled = $derived(!stateConfig.jurisdiction?.disabledBuyFeature);
@@ -49,7 +53,7 @@
 	});
 
 	const price = (option: ShopOffer) =>
-		numberToCurrencyString(stateBet.betAmount * option.costMultiplier);
+		drawnOrder(numberToCurrencyString(stateBet.betAmount * option.costMultiplier));
 	const affordable = (option: ShopOffer) =>
 		stateBet.betAmount > 0 && stateBet.balanceAmount >= stateBet.betAmount * option.costMultiplier;
 
@@ -69,8 +73,8 @@
 	};
 	/**
 	 * One active mode key, so the two antes switch each other off by
-	 * construction; tapping the active one returns to the main game. At 2x and
-	 * 1.5x neither needs a confirmation step (Stake asks for one above 2x).
+	 * construction; tapping the active one returns to the main game. At 2x
+	 * neither needs a confirmation step (Stake asks for one above 2x).
 	 */
 	const toggleAnte = (option: ShopOffer) => {
 		if (!armed || confirming) return;
@@ -109,11 +113,7 @@
 
 		<div class="content" data-dismiss style="--cols: {columns};" bind:this={contentEl}>
 			<h1 class="screen-title">
-				{#if buyEnabled}
-					{social ? 'FEATURE PLAY' : 'BUY FEATURE'}
-				{:else}
-					BOOST MODES
-				{/if}
+				{buyEnabled ? i18nDerived.shopTitle() : i18nDerived.shopBoostModes()}
 			</h1>
 
 			<!-- the antes first, the buy cards under them (Evtim, 2026-10-24); one
@@ -131,14 +131,14 @@
 					>
 						<img class="ante-art" src={option.image} alt="" draggable="false" />
 						<span class="ante-info">
-							<span class="ante-title">{option.title}</span>
-							<span class="ante-pitch">{option.description}</span>
+							<span class="ante-title">{option.title()}</span>
+							<span class="ante-pitch">{option.description()}</span>
 						</span>
 						<span class="ante-side">
-							<span class="ante-cost">{price(option)}</span>
-							<span class="ante-cost-label">PER SPIN</span>
+							<span class="ante-cost" use:fitText={price(option)}>{price(option)}</span>
+							<span class="ante-cost-label">{i18nDerived.perSpin()}</span>
 							<span class="switch" aria-hidden="true"><span class="knob"></span></span>
-							<span class="switch-label">{on ? 'ON' : 'OFF'}</span>
+							<span class="switch-label">{on ? i18nDerived.on() : i18nDerived.off()}</span>
 						</span>
 					</button>
 				{/each}
@@ -155,12 +155,15 @@
 							{#if option.volatility}
 								<BuyVolatility level={option.volatility} />
 							{/if}
-							<h2 class="title">{option.title}</h2>
-							<p class="pitch">{option.description}</p>
-							<div class="price">{price(option)}</div>
-							<button class="cta" disabled={!affordable(option)} onclick={() => choose(option)}>
-								{social ? 'PLAY' : 'BUY'}
-							</button>
+							<h2 class="title">{option.title()}</h2>
+							<p class="pitch">{option.description()}</p>
+							<!-- portrait: one wrapping row, the CTA drops under a long price -->
+							<div class="buy-row">
+								<div class="price" use:fitText={price(option)}>{price(option)}</div>
+								<button class="cta" disabled={!affordable(option)} onclick={() => choose(option)}>
+									{i18nDerived.buyWord()}
+								</button>
+							</div>
 						</article>
 					{/each}
 				</div>
@@ -180,8 +183,8 @@
 					<div class="stepper">
 						<button class="chip down" disabled={disabledDown} onclick={toggleDown} aria-label="Lower"></button>
 						<div class="stake">
-							<span class="stake-label">{social ? 'PLAY' : 'BET'}</span>
-							<span class="stake-value">{numberToCurrencyString(stateBet.betAmount)}</span>
+							<span class="stake-label">{i18nDerived.bet()}</span>
+							<span class="stake-value">{drawnOrder(numberToCurrencyString(stateBet.betAmount))}</span>
 						</div>
 						<button class="chip up" disabled={disabledUp} onclick={toggleUp} aria-label="Raise"></button>
 					</div>
@@ -211,6 +214,9 @@
 		backdrop-filter: blur(5px);
 		animation: fade-in 220ms ease-out;
 		color: #ffffff;
+		/* a drag on the backdrop must not pan or bounce the page under it */
+		touch-action: none;
+		overscroll-behavior: none;
 	}
 
 	.content {
@@ -224,12 +230,20 @@
 		box-sizing: border-box;
 		max-height: 100dvh;
 		width: 100%;
+		/* vertical scrolling only, and no iOS rubber band: the shop could be
+		   dragged sideways and around, then sprang back (Evtim, 2026-10-26).
+		   overflow-y alone makes overflow-x auto too, and the rows were wider
+		   than this padded column on phones (96vw / 94vw vs 100% - 2.4rem) */
+		overflow-x: hidden;
 		overflow-y: auto;
+		overscroll-behavior: none;
+		touch-action: pan-y;
 		padding: clamp(3.4rem, 8vh, 4.5rem) 1.2rem 1.4rem;
 		scrollbar-width: none;
 		transition: filter 220ms ease, opacity 220ms ease;
-		/* the cards and the ante row share one width */
-		--shop-width: min(96vw, calc(var(--cols) * 250px + (var(--cols) - 1) * 1.2rem));
+		/* the cards and the ante row share one width, at most this column's
+		   (a % of it: these rows are its children) */
+		--shop-width: min(100%, calc(var(--cols) * 250px + (var(--cols) - 1) * 1.2rem));
 	}
 	/* the confirm dialog sits on top: the shop recedes but stays in view */
 	.overlay.confirming .content {
@@ -240,7 +254,7 @@
 
 	.screen-title {
 		margin: 0;
-		font-family: 'Creepster', 'Inter', sans-serif;
+		font-family: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
 		font-size: clamp(1.8rem, 3.6vw, 2.5rem);
 		font-weight: 400;
 		letter-spacing: 0.1em;
@@ -310,7 +324,7 @@
 
 	.title {
 		margin: 0;
-		font-family: 'Creepster', 'Inter', sans-serif;
+		font-family: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
 		font-size: clamp(1.2rem, 1.9vw, 1.5rem);
 		font-weight: 400;
 		line-height: 1.1;
@@ -318,6 +332,9 @@
 		text-transform: uppercase;
 		text-align: center;
 		text-wrap: balance;
+		/* a translated title can be one word wider than the card (СВЕРХЗАРЯЖЕННЫЕ
+		   on a phone); no auto hyphens: with balance they split words that fit */
+		overflow-wrap: anywhere;
 		/* two lines reserved: every free spins title wraps, so they align */
 		min-height: calc(2 * 1.1em);
 		display: flex;
@@ -330,15 +347,21 @@
 		line-height: 1.35;
 		text-align: center;
 		color: rgba(255, 255, 255, 0.78);
-		/* lines reserved so the price and CTA rows line up across the grid */
+		/* lines reserved so the price and CTA rows line up across the grid. Never
+		   clamped: the pitch carries the spin counts and the multiplier range, and
+		   translations run up to ~40% longer than the English */
 		min-height: calc(3 * 1.35em);
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
+	}
+	/* price + CTA stack in the card's column; portrait makes them a wrapping row */
+	.buy-row {
+		display: contents;
 	}
 	.price {
 		margin-top: auto;
+		/* one line, shrunk to the card by fitText (a long currency's price) */
+		max-width: 100%;
+		min-width: 0;
+		white-space: nowrap;
 		font-size: clamp(1.15rem, 2vw, 1.5rem);
 		font-weight: 800;
 		color: #abea10;
@@ -445,10 +468,12 @@
 		min-width: 0;
 	}
 	.ante-title {
-		font-family: 'Creepster', 'Inter', sans-serif;
+		font-family: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
 		font-size: clamp(1.1rem, 1.7vw, 1.35rem);
 		letter-spacing: 0.06em;
 		color: #ffffff;
+		/* ILMAISKIERROSBUUSTI */
+		overflow-wrap: anywhere;
 	}
 	.ante.on .ante-title {
 		color: #abea10;
@@ -457,18 +482,17 @@
 		font-size: clamp(0.68rem, 0.95vw, 0.78rem);
 		line-height: 1.3;
 		color: rgba(255, 255, 255, 0.75);
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
 	}
 	.ante-side {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		gap: 0.15rem;
+		/* bounded, so a long price shrinks (fitText) instead of squeezing the pitch */
+		max-width: 7.5rem;
 	}
 	.ante-cost {
+		max-width: 100%;
 		font-size: clamp(0.95rem, 1.4vw, 1.1rem);
 		font-weight: 800;
 		color: #abea10;
@@ -641,11 +665,10 @@
 		transform: translate(-50%, -50%) rotate(-45deg);
 	}
 
-	/* short landscape (phones): two-line pitches so the antes come into view sooner */
+	/* short landscape (phones): two lines reserved instead of three */
 	@media (orientation: landscape) and (max-height: 500px) {
 		.pitch {
 			min-height: calc(2 * 1.35em);
-			-webkit-line-clamp: 2;
 		}
 	}
 
@@ -658,7 +681,7 @@
 		.content {
 			justify-content: flex-start;
 			max-height: 100%;
-			--shop-width: min(94vw, 520px);
+			--shop-width: min(100%, 520px);
 		}
 		.cards {
 			grid-template-columns: minmax(0, 1fr);
@@ -666,11 +689,11 @@
 		}
 		.card {
 			display: grid;
-			grid-template-columns: 6.4rem minmax(0, 1fr) auto;
+			grid-template-columns: 6.4rem minmax(0, 1fr);
 			grid-template-areas:
-				'art title title'
-				'art pitch pitch'
-				'art price cta';
+				'art title'
+				'art pitch'
+				'art buy';
 			align-items: center;
 			column-gap: 0.7rem;
 			row-gap: 0.3rem;
@@ -702,16 +725,24 @@
 			min-height: 0;
 			font-size: 0.72rem;
 			text-align: left;
-			-webkit-line-clamp: 3;
+		}
+		/* the price keeps its size beside the CTA while both fit; a longer one
+		   (Rp3500000000) sends the CTA to the next line, and only a price wider
+		   than the whole row shrinks (fitText) */
+		.buy-row {
+			grid-area: buy;
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			gap: 0.3rem 0.7rem;
 		}
 		.price {
-			grid-area: price;
 			margin-top: 0;
 			font-size: 1.15rem;
 		}
 		.cta {
-			grid-area: cta;
 			width: auto;
+			margin-left: auto;
 			padding: 0.45rem 1.3rem 0.4rem;
 		}
 		.antes {

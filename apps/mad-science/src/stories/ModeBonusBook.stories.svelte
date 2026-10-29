@@ -27,6 +27,8 @@
 	// real Mutant Free Spins round (LUCKY_DRAW_FEATURE_HEAVY, betID 274417160): opens with buyFreeSpins;
 	// free spin 4's event 52 pays two wins sharing a bomb's Wild (the round that hung)
 	const rgsFeatureHeavy = rgsRounds[1] as unknown as Bet;
+	// real Operation Free Spins round (LUCKY_DRAW_FREE_SPINS, betID 291105104): Evtim's reload during free spin 2
+	const rgsOperation = rgsRounds[2] as unknown as Bet;
 
 	
 	setContext();
@@ -99,6 +101,28 @@
 		skipLoadingScreen: true,
 		data: {},
 		action: async () => await playBet(convertTorResumableBet(rgsFeatureHeavy)),
+	})}
+	{template}
+/>
+
+<Story
+	name="rgs operation buy"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => await playBet(rgsOperation),
+	})}
+	{template}
+/>
+
+<!-- Evtim's reload (event 11 = free spin 2's reveal): must open straight on spin 2,
+     counter 2 / 10, total win 40, with no base game, curtains or intro -->
+<Story
+	name="rgs operation resume"
+	args={templateArgs({
+		skipLoadingScreen: true,
+		data: {},
+		action: async () => await playBet(convertTorResumableBet(rgsOperation)),
 	})}
 	{template}
 />

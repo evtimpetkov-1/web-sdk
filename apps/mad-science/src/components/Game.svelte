@@ -5,7 +5,8 @@
 	import { EnableHotkey } from 'components-shared';
 	import { MainContainer } from 'components-layout';
 	import { App } from 'pixi-svelte';
-	import { stateModal, stateUrlDerived } from 'state-shared';
+	import { stateBet, stateModal, stateUrlDerived } from 'state-shared';
+	import { waitForTimeout } from 'utils-shared/wait';
 
 	import { UI, stateUiTheme } from 'components-ui-pixi';
 	import {
@@ -26,6 +27,8 @@
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
 	import BoardBacking from './BoardBacking.svelte';
+	import AnticipationField from './AnticipationField.svelte';
+	import BuySlot from './BuySlot.svelte';
 	import ClusterWinAmounts from './ClusterWinAmounts.svelte';
 	import TumbleBoard from './TumbleBoard.svelte';
 	import TumbleWinAmount from './TumbleWinAmount.svelte';
@@ -37,6 +40,7 @@
 	import FreeSpinCounter from './FreeSpinCounter.svelte';
 	import FreeSpinTotalWin from './FreeSpinTotalWin.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
+	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import Transition from './Transition.svelte';
 	import VideoMascot from './VideoMascot.svelte';
 	import GameLogo from './GameLogo.svelte';
@@ -47,6 +51,9 @@
 	import ReplayHud from './ReplayHud.svelte';
 	import ReplayOverlay from './ReplayOverlay.svelte';
 	import { applyBetModeMeta } from '../game/betModeMeta';
+	import { displayFont } from '../game/textStyles';
+	import { getResumedFreeSpinsEntry } from '../game/utils';
+	import type { Bet } from '../game/typesBookEvent';
 
 	const context = getContext();
 
@@ -68,9 +75,15 @@
 		context.stateLayout.showLoadingScreen = true;
 		applyBetModeMeta();
 		// bottom bar in the logo's voice: Creepster captions in acid green, white
-		// Inter amounts, charcoal plate, green-rimmed stepper chips
+		// Inter amounts, charcoal plate, green-rimmed stepper chips. The display
+		// face follows the language (displayFont), here and in the HTML popups,
+		// which read it as --ms-display-font
+		document.documentElement.style.setProperty('--ms-display-font', displayFont());
+		// app.html says en: the popups' uppercase (Turkish i -> İ) and the rules
+		// table's hyphenation follow the html lang. Social mode is English.
+		document.documentElement.lang = stateUrlDerived.social() ? 'en' : stateUrlDerived.lang();
 		Object.assign(stateUiTheme, {
-			labelFont: 'Creepster',
+			labelFont: displayFont(),
 			labelWeight: '400',
 			labelFill: 0xabea10,
 			labelLetterSpacing: 1,
@@ -103,13 +116,27 @@
 	 * here and the start sound and the curtains are heard (before, it mounted
 	 * with the game and the start sound was dropped). The intro fades out while
 	 * the curtains fade in already shut; the game mounts behind them; they part.
+	 * The curtains only show one start in five (Evtim, 2026-10-26); otherwise the
+	 * same swap happens behind a plain black fade.
+	 * A round reloaded inside its free spins opens on the free-spins theatre: it
+	 * is dressed while the transition is shut, and the lab -> theatre cross-fade
+	 * (Background, 500 ms) runs out before it opens, so the base game never shows.
+	 * The resume snapshot (createBonusSnapshot) restores the rest.
 	 */
+	const INTRO_CURTAIN_CHANCE = 0.2;
+	const BACKGROUND_FADE_MS = 500;
 	let soundReady = $state(false);
 	const startGame = async () => {
 		soundReady = true;
 		await tick();
 		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_game_start' });
-		await context.eventEmitter.broadcastAsync({ type: 'transitionShowClosed' });
+		await context.eventEmitter.broadcastAsync({
+			type: Math.random() < INTRO_CURTAIN_CHANCE ? 'transitionShowClosed' : 'transitionShowVeil',
+		});
+		if (getResumedFreeSpinsEntry(stateBet.betToResume as Bet | null)) {
+			context.stateGame.gameType = 'freegame';
+			await waitForTimeout(BACKGROUND_FADE_MS);
+		}
 		context.stateLayout.showLoadingScreen = false;
 		await tick();
 		await context.eventEmitter.broadcastAsync({ type: 'transitionOpen' });
@@ -138,16 +165,11 @@
 		<MainContainer>
 			<!-- zIndex -2: under the FS glow fill (-1) and the board -->
 			<BoardBacking />
+			<!-- scatter anticipation: under every symbol layer, so only empty cells show it -->
+			<AnticipationField />
 			<Board />
 			<BoardFrame />
-			<TumbleWinAmount />
 			<GlobalMultiplier />
-			<!-- both free-spin counters sit on the frame's top pipe either side of the
-			     plate, in the same board-local units, so they belong in the plate's
-			     MainContainer: outside it their board coordinates were read as raw
-			     canvas pixels and drifted with every window resize -->
-			<FreeSpinCounter />
-			<FreeSpinTotalWin />
 		</MainContainer>
 
 		<MainContainer>
@@ -158,6 +180,15 @@
 		<MainContainer>
 			<MultiplierBoard />
 			<MovingClones />
+			<!-- the counters (FREE SPINS, TOTAL WIN, the base game's WIN): on the top
+			     pipe beside the plate, or in portrait on plates hanging from the reel
+			     window's bottom edge, where symbols spill (bonus disc, landings), so
+			     they draw above the symbol layers. Board-local units, so inside a
+			     MainContainer: outside one their board coordinates were read as raw
+			     canvas pixels and drifted with every window resize -->
+			<TumbleWinAmount />
+			<FreeSpinCounter />
+			<FreeSpinTotalWin />
 		</MainContainer>
 
 		<VideoMascot />
@@ -175,7 +206,11 @@
 				{#snippet gameName()}{/snippet}
 				{#snippet logo()}{/snippet}
 			</UI>
+			<!-- the game's own buy button + an active ante / armed buy around the
+			     spin button (halo, rim, cost chip), all over the bar (BuySlot) -->
+			<BuySlot />
 		{/if}
+		<FreeSpinRetrigger />
 		<Win />
 		<FreeSpinIntro />
 		<FreeSpinOutro />

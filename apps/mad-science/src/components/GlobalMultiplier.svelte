@@ -2,7 +2,8 @@
 	export type EmitterEventGlobalMultiplier =
 		| { type: 'globalMultiplierShow' }
 		| { type: 'globalMultiplierHide' }
-		| { type: 'globalMultiplierUpdate'; multiplier: number };
+		/** `instant`: no animation or sound (behind the closed curtains) */
+		| { type: 'globalMultiplierUpdate'; multiplier: number; instant?: boolean };
 </script>
 
 <script lang="ts">
@@ -18,10 +19,11 @@
 	// The multiplier plate above the reels. Always on screen, and EMPTY until a
 	// multiplier is collected (Evtim, 2026-10-24; the rules: "the total multiplier
 	// starts empty"). Every Multiplier is worth x2 or more, so a total of 1 (or the
-	// 0 a buy sends for "no starting multiplier") means nothing collected yet. In
-	// the base game it empties on every spin and accumulates that spin's
-	// collects; in free spins it carries over per the book's updateGlobalMult
-	// events. Layout lives in stateGameDerived.multiplierPlateLayout
+	// 0 a buy sends for "no starting multiplier") means nothing collected yet. It
+	// empties on the spin press (actor.ts) and accumulates that spin's collects;
+	// in free spins it carries over per the book's updateGlobalMult events, and
+	// the curtains into and out of free spins clear it unseen (Evtim, 2026-10-28).
+	// Layout lives in stateGameDerived.multiplierPlateLayout
 	// so MultiplierBoard can fly the collected symbols onto the same spot.
 	const context = getContext();
 	const plate = $derived(context.stateGameDerived.multiplierPlateLayout());
@@ -36,6 +38,12 @@
 		globalMultiplierHide: () => (show = false),
 		globalMultiplierUpdate: async (emitterEvent) => {
 			const next = emitterEvent.multiplier;
+
+			if (emitterEvent.instant) {
+				multiplier = next;
+				textScale.set(1, { duration: 0 });
+				return;
+			}
 
 			if (next === 1 && multiplier !== 1) {
 				// reset: the old value shrinks away and the plate is left empty

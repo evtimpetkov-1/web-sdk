@@ -1,12 +1,16 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { stateBet, stateBetDerived, stateMeta, stateModal } from 'state-shared';
 	import { zIndex } from 'constants-shared/zIndex';
 	import { numberToCurrencyString } from 'utils-shared/amount';
 
 	import { getContext } from '../game/context';
 	import { getBuyOption } from '../game/buyOptions';
+	import { i18nDerived } from '../i18n/i18nDerived';
+	import { drawnOrder } from '../i18n/format';
 	import { stateBuy } from '../game/stateBuy.svelte';
 	import BuyVolatility from './BuyVolatility.svelte';
+	import { fitText } from './fitText';
 
 	/**
 	 * Purchase confirmation for a bought free spins mode: one card over the blurred shop
@@ -19,7 +23,7 @@
 	const open = $derived(stateModal.modal?.name === 'buyBonusConfirm');
 	const option = $derived(getBuyOption(stateBuy.selectedOptionKey));
 	const cost = $derived(
-		numberToCurrencyString(stateBet.betAmount * (option?.costMultiplier ?? 0)),
+		drawnOrder(numberToCurrencyString(stateBet.betAmount * (option?.costMultiplier ?? 0))),
 	);
 	const affordable = $derived(
 		!!option &&
@@ -27,32 +31,82 @@
 			stateBet.balanceAmount >= stateBet.betAmount * option.costMultiplier,
 	);
 
-	const back = () => (stateModal.modal = { name: 'buyBonus' });
+	/**
+	 * Ghost-click guard, as the shop's: the spin press opens this card on
+	 * pointerup and the browser then delivers that tap's `click` to whatever
+	 * sits under the finger. On CONFIRM that would be a one-tap buy, so nothing
+	 * here acts until the opening tap has settled.
+	 */
+	let settled = $state(false);
+	$effect(() => {
+		if (!open) {
+			settled = false;
+			stateBuy.confirmFromSpin = false;
+			return;
+		}
+		const t = setTimeout(() => (settled = true), 300);
+		return () => clearTimeout(t);
+	});
+
+	// opened by the spin press over an armed buy: back/X return to the game
+	const back = () => {
+		if (!settled) return;
+		if (stateBuy.confirmFromSpin) {
+			stateBuy.confirmFromSpin = false;
+			stateModal.modal = null;
+			return;
+		}
+		stateModal.modal = { name: 'buyBonus' };
+	};
 	const confirm = () => {
 		const mode = option ? stateMeta.betModeMeta[option.key] : undefined;
-		if (!affordable || mode?.type !== 'buy') return;
+		if (!settled || !affordable || mode?.type !== 'buy') return;
 		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_buy_confirm' });
 		const current = stateBetDerived.activeBetMode();
-		stateBuy.anteAfterBuy = current?.type === 'activate' ? current.mode : '';
+		// buying again from an armed buy keeps the ante noted at the first buy
+		if (current?.type !== 'buy') {
+			stateBuy.anteAfterBuy = current?.type === 'activate' ? current.mode : '';
+		}
+		stateBuy.armedKey = '';
+		stateBuy.confirmFromSpin = false;
 		stateBet.activeBetModeKey = mode.mode;
 		context.eventEmitter.broadcast({ type: 'bet' });
 		stateModal.modal = null;
 	};
 
-	// The bought round ends back on the ante the player had on. Restoring it
-	// at the round's end means every SDK path that drops a 'buy' mode to BASE
-	// (spin press, autoplay start, space hold) finds an 'activate' mode and
-	// leaves it alone.
+	/**
+	 * Repeat buy (Evtim, 2026-10-27): the bought mode stays selected when its
+	 * round ends, so the bar's BET shows its real cost and the buy slot + spin
+	 * ring show it armed. A spin press (button or Space) then opens this card
+	 * straight away through the shared ButtonBetProvider hook, never a silent
+	 * buy: Stake wants a bought mode confirmed again after every round. The ante
+	 * the player had comes back when they leave the buy (disarmBuy, the slot's X).
+	 */
 	let wasIdle = true;
 	$effect(() => {
 		const idle = context.stateXstateDerived.isIdle();
-		if (idle && !wasIdle && stateBuy.anteAfterBuy) {
-			if (stateBetDerived.activeBetMode()?.type === 'buy') {
-				stateBet.activeBetModeKey = stateBuy.anteAfterBuy;
-			}
-			stateBuy.anteAfterBuy = '';
+		if (idle && !wasIdle && stateBetDerived.activeBetMode()?.type === 'buy') {
+			stateBuy.armedKey = stateBet.activeBetModeKey;
 		}
 		wasIdle = idle;
+	});
+	// any other way out of the buy mode (a shop ante switch, autoplay start, a
+	// Space hold's base spin) ends the armed state with it
+	$effect(() => {
+		if (stateBuy.armedKey && stateBet.activeBetModeKey !== stateBuy.armedKey) {
+			stateBuy.armedKey = '';
+			stateBuy.anteAfterBuy = '';
+		}
+	});
+	onMount(() => {
+		stateBet.onBuyModeBet = () => {
+			if (!stateBuy.armedKey || stateBet.activeBetModeKey !== stateBuy.armedKey) return false;
+			stateBuy.selectedOptionKey = stateBuy.armedKey;
+			stateBuy.confirmFromSpin = true;
+			stateModal.modal = { name: 'buyBonusConfirm' };
+			return true;
+		};
+		return () => (stateBet.onBuyModeBet = null);
 	});
 </script>
 
@@ -77,11 +131,11 @@
 				{#if option.volatility}
 					<BuyVolatility level={option.volatility} size="1.4rem" />
 				{/if}
-				<h1 class="title">{option.title}</h1>
-				<p class="pitch">{option.description}</p>
-				<div class="cost">{cost}</div>
+				<h1 class="title">{option.title()}</h1>
+				<p class="pitch">{option.description()}</p>
+				<div class="cost" use:fitText={cost}>{cost}</div>
 				<button class="cta" data-test="confirm-button" disabled={!affordable} onclick={confirm}>
-					CONFIRM
+					{i18nDerived.confirm()}
 				</button>
 			</div>
 		</div>
@@ -100,6 +154,9 @@
 		background: rgba(2, 4, 2, 0.35);
 		animation: fade-in 200ms ease-out;
 		color: #ffffff;
+		/* as the shop: no page pan or bounce under a drag */
+		touch-action: none;
+		overscroll-behavior: none;
 	}
 
 	.card {
@@ -107,7 +164,10 @@
 		flex-direction: column;
 		width: min(92vw, 430px);
 		max-height: 94dvh;
+		overflow-x: hidden;
 		overflow-y: auto;
+		overscroll-behavior: none;
+		touch-action: pan-y;
 		border-radius: 20px;
 		background: linear-gradient(180deg, rgba(30, 36, 30, 0.96) 0%, rgba(12, 16, 12, 0.98) 100%);
 		border: 1px solid rgba(171, 234, 16, 0.45);
@@ -147,12 +207,14 @@
 	}
 	.title {
 		margin: 0;
-		font-family: 'Creepster', 'Inter', sans-serif;
+		font-family: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
 		font-size: clamp(1.7rem, 3.8vw, 2.2rem);
 		font-weight: 400;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		text-align: center;
+		/* a translated title can be one long word */
+		overflow-wrap: anywhere;
 	}
 	.pitch {
 		margin: 0;
@@ -164,6 +226,9 @@
 	}
 	.cost {
 		margin-top: 0.3rem;
+		/* one line, shrunk to the card by fitText (a long currency's price) */
+		max-width: 100%;
+		white-space: nowrap;
 		font-size: clamp(1.7rem, 4vw, 2.3rem);
 		font-weight: 800;
 		color: #abea10;

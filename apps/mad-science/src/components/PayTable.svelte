@@ -5,10 +5,11 @@
 	import { numberToWinCurrencyString } from 'utils-shared/amount';
 
 	import { i18nDerived } from '../i18n/i18nDerived';
-	import { fill, formatOrList, formatTimes } from '../i18n/format';
+	import { drawnOrder, fill, formatOrList, formatTimes } from '../i18n/format';
 	import config from '../game/config';
 	import { GAME_VERSION } from '../game/constants';
 	import { MULTIPLIER_VALUES } from '../game/rulesData';
+	import { fitColumns } from './fitColumns';
 
 	/**
 	 * Paytable, drawn in place of the SDK's ModalPayTable. Images are the game's
@@ -88,7 +89,12 @@
 	]);
 
 	// pays are base-bet multiples, shown in currency at the current base bet
-	const formatWin = (multiplier: number) => numberToWinCurrencyString(multiplier * stateBet.betAmount);
+	const formatWin = (multiplier: number) =>
+		drawnOrder(numberToWinCurrencyString(multiplier * stateBet.betAmount));
+	// every value on show: a new bet re-fits the symbol grid's columns
+	const shownValues = $derived(
+		symbols.map((symbol) => symbol.tiers.map((tier) => formatWin(tier.value)).join()).join(),
+	);
 </script>
 
 {#if stateModal.modal?.name === 'payTable'}
@@ -114,7 +120,7 @@
 
 			<section>
 				<h2>{i18nDerived.ptSymbolPayouts()}</h2>
-				<div class="symbols">
+				<div class="symbols" use:fitColumns={shownValues}>
 					{#each symbols as symbol}
 						<div class="symbol">
 							<img src={symbol.img} alt={symbol.name} />
@@ -161,7 +167,7 @@
 	h2 {
 		margin: 0 0 0.6rem;
 		text-align: center;
-		font-family: 'Creepster', 'Inter', sans-serif;
+		font-family: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
 		font-weight: 400;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
@@ -227,11 +233,28 @@
 		}
 	}
 
-	/* paying symbols: 3 x 3 */
+	/* paying symbols: 3 x 3, or fewer columns where the values do not fit a card
+	   (a long currency at a high bet); fitColumns sets --cols / data-cols */
 	.symbols {
+		--cols-max: 3;
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(var(--cols, var(--cols-max)), minmax(0, 1fr));
 		gap: 0.6rem;
+	}
+
+	/* two columns: the ninth card sits centred under the others */
+	.symbols[data-cols='2'] .symbol:last-child:nth-child(odd) {
+		grid-column: 1 / -1;
+		justify-self: center;
+		width: calc(50% - 0.3rem);
+		box-sizing: border-box;
+	}
+
+	/* one column: the art beside its pays */
+	.symbols[data-cols='1'] .symbol {
+		flex-direction: row;
+		justify-content: center;
+		gap: 1rem;
 	}
 
 	.symbol {
@@ -261,11 +284,13 @@
 
 	.count {
 		text-align: right;
+		white-space: nowrap;
 		font-size: 0.8rem;
 		color: rgba(242, 246, 234, 0.55);
 	}
 
 	.value {
+		white-space: nowrap;
 		font-size: 0.9rem;
 		font-weight: 700;
 		color: var(--modal-accent);
@@ -337,7 +362,7 @@
 		}
 
 		.symbols {
-			grid-template-columns: repeat(5, minmax(0, 1fr));
+			--cols-max: 5;
 		}
 
 		.symbol img {

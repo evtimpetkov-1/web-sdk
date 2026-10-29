@@ -32,6 +32,9 @@ export const SYMBOL_STATES = [
 	// bomb feature (tumble board): the bomb blows itself up, its neighbours keep
 	// their plate under a red blast overlay before both are removed
 	'explode',
+	// ... and, when the book leaves a Wild in its cell (every bomb, by the rules),
+	// the longer charge, the bang and the Wild forming where it stood (ends on the W)
+	'explodeWild',
 	'blasted',
 	// cloner feature (reel board): the original casts its ghosts, a clone's sign
 	// grows in under the goo splat, every cloner's sign drains out under the flood

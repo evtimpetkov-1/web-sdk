@@ -11,62 +11,63 @@ export default {
 	providerName: 'royal_cat_gaming',
 	gameName: 'mad_science',
 	gameID: 'mad-science',
-	rtp: 0.9609,
+	rtp: 0.9622,
 	numReels: 6,
 	numRows: [5, 5, 5, 5, 5, 5],
 	// The six RGS modes (names as the math uploads them). The FE sends them
 	// uppercase — Kraken's ANTE/BONUS against lowercase math names, and the RGS
 	// reports this game's base spins back as 'BASE'.
-	// cost/rtp from the Game Rules Specification. max_win (x base bet) off the
-	// Stake dashboard for the uploaded math (2026-10-24): the largest win in
-	// each mode's books, so the highest win that mode can award.
+	// cost/rtp from the Game Rules Specification (rebalanced math, 2026-10-27).
+	// max_win (x base bet) off the Stake dashboard's Top win for the rebalanced
+	// math (2026-10-28): the largest win in each mode's books, so the highest
+	// win that mode can award.
 	betModes: {
 		base: {
 			cost: 1.0,
 			feature: true,
 			buyBonus: false,
-			rtp: 0.9609,
-			max_win: 12962.7,
+			rtp: 0.9622,
+			max_win: 14587,
 			description: 'main game',
 		},
 		ante_1: {
 			cost: 2.0,
 			feature: true,
 			buyBonus: false,
-			rtp: 0.9615,
-			max_win: 17976.7,
-			description: 'base game features 2.6x more frequent',
+			rtp: 0.9625,
+			max_win: 15389,
+			description: 'base game features 2.7x more frequent, free spins 1.3x more often',
 		},
 		ante_2: {
-			cost: 1.5,
+			cost: 2.0,
 			feature: true,
 			buyBonus: false,
-			rtp: 0.96,
-			max_win: 14793.0,
-			description: 'free spins trigger 2x more often',
+			rtp: 0.9651,
+			max_win: 13200,
+			description: 'free spins trigger 3.7x more often',
 		},
 		lucky_draw_free_spins: {
 			cost: 100,
 			feature: false,
 			buyBonus: true,
-			rtp: 0.9637,
-			max_win: 11421.1,
+			rtp: 0.9625,
+			max_win: 14701,
 			description: 'free spins, random 10/15/20 spins',
 		},
 		lucky_draw_feature_heavy: {
 			cost: 250,
 			feature: false,
 			buyBonus: true,
-			rtp: 0.9627,
-			max_win: 11384.8,
+			rtp: 0.9623,
+			max_win: 18657,
 			description: 'feature-heavy free spins, random 10/15/20 spins',
 		},
 		super_lucky_draw_free_spins: {
 			cost: 350,
 			feature: false,
 			buyBonus: true,
-			rtp: 0.9634,
-			max_win: 12661.6,
+			rtp: 0.9627,
+			max_win: 22924,
 			description: 'free spins with a starting multiplier, random 10/15/20 spins',
 		},
 	},

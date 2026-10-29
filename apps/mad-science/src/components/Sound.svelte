@@ -60,7 +60,12 @@
 		if (!stateGame.roundActive) return false;
 		if (stateGame.tumbleBoardBase.length) {
 			return stateGame.tumbleBoardBase.some((reel) =>
-				reel.some((cell) => cell.rawSymbol.name === 'B' && cell.symbolState !== 'explode'),
+				reel.some(
+					(cell) =>
+						cell.rawSymbol.name === 'B' &&
+						cell.symbolState !== 'explode' &&
+						cell.symbolState !== 'explodeWild',
+				),
 			);
 		}
 		return stateGame.board.some(
@@ -71,9 +76,13 @@
 				),
 		);
 	});
+	// runs on each change of bombArmed, so a true run is the fuse starting: the armed
+	// bombs' heartbeat loop locks to that moment (BombHeartbeatLock)
 	$effect(() => {
-		if (bombArmed) sound.players?.loop.play({ name: 'sfx_ms_bomb_fuse' });
-		else if (sound.players) sound.stop({ name: 'sfx_ms_bomb_fuse' });
+		if (bombArmed) {
+			sound.players?.loop.play({ name: 'sfx_ms_bomb_fuse' });
+			context.stateGame.bombFuseStartedAt = performance.now();
+		} else if (sound.players) sound.stop({ name: 'sfx_ms_bomb_fuse' });
 	});
 
 	onMount(() => {

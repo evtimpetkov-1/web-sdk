@@ -43,6 +43,21 @@ export const FRAME_ART = {
 	window: { x: 69, y: 64, width: 824, height: 707 },
 };
 
+// The mascot clips (static/assets/mascot/hybrid_0x.mp4): one stacked half is
+// 832x1104. Character landmarks in clip px, measured on the idle loop: hair top
+// and waist rows, the head's centre and half width. The flask glass's leftmost
+// edge is from the win reaction, which swings it forward to ~100 (idle: 175;
+// only thin splash wisps reach further)
+export const MASCOT_CLIP = {
+	width: 832,
+	height: 1104,
+	headTop: 204,
+	waist: 560,
+	headX: 430,
+	headHalfWidth: 65,
+	flaskLeft: 100,
+};
+
 // initial board (padded top and bottom)
 export const INITIAL_BOARD: RawSymbol[][] = [
 	// laid out after Evtim's board mockup (2026-09-02): 3 Scatters (one short of a
@@ -111,6 +126,25 @@ const SPIN_OPTIONS_SHARED = {
 // - in a cascade: the refilling columns drop one by one and slower. Durations
 //   at 1x; turbo halves them (stateBetDerived.timeScale).
 export const SCATTERS_TO_TRIGGER = { basegame: 4, freegame: 3 } as const;
+
+// Turbo free spins drop every column at once (no per-reel stagger), so a board
+// with no win was gone the moment it landed (Evtim, 2026-10-26). The next free
+// spin waits until the last board has been up this long; a win's presentation
+// already takes longer, so only non-winning boards are held.
+export const TURBO_FS_MIN_BOARD_MS = 450;
+
+// The armed bomb's idle loop is the fuse sound's heartbeat (rig_bomb idle in
+// art-review/madscience/symbol_layers/build_rigs_v2.py, keyed to sfx_ms_bomb_fuse,
+// 2026-10-26): the loop period (= the sound's), the sound time at the rig's t = 0,
+// and the rig's rest points between beats (s). BombHeartbeatLock starts every armed
+// bomb from one of them, in phase with the sound. Keep in step with the rig.
+export const BOMB_HEARTBEAT = {
+	assetKey: 'msBombAnim',
+	animation: 'idle',
+	period: 2.25,
+	offset: 0.52,
+	quiet: [0, 0.6, 1.2],
+} as const;
 export const TUMBLE_DROP_MS = 200;
 export const ANTICIPATION_DROP_MS = 550;
 export const ANTICIPATION_REEL_STAGGER_MS = 260;
@@ -168,7 +202,16 @@ const sprite = (assetKey: string, art: ArtSize, scale = 1) => ({
 	assetKey,
 	sizeRatios: fitSymbol(art, scale),
 });
-type RigAnimation = 'land' | 'prewin' | 'idle' | 'pending' | 'explode' | 'cast' | 'in' | 'out';
+type RigAnimation =
+	| 'land'
+	| 'prewin'
+	| 'idle'
+	| 'pending'
+	| 'explode'
+	| 'explode_wild'
+	| 'cast'
+	| 'in'
+	| 'out';
 const spine = (assetKey: string, animationName: RigAnimation, art: ArtSize, scale = 1) => ({
 	type: 'spine' as const,
 	assetKey,
@@ -178,7 +221,8 @@ const spine = (assetKey: string, animationName: RigAnimation, art: ArtSize, scal
 // static plate + land/prewin rig; `idle` is the rig's in-round loop where the
 // symbol has one (scatter, bomb), the static plate otherwise; `pending` is the
 // scatter's anticipation loop (one short of a trigger); `explode` is the
-// bomb's self-destruct (ends empty); `transform` maps the cloner's cast/in/out.
+// bomb's self-destruct (ends empty), `explodeWild` the same with the Wild forming
+// in its cell (ends on the W at rest); `transform` maps the cloner's cast/in/out.
 // Every other state falls back to the static plate — `blasted` always does, the
 // red burst over a bomb's neighbour is a separate overlay (BlastBurst). `scale`
 // applies to sprite and spine alike so the swap never jumps.
@@ -206,6 +250,7 @@ const rigged = (
 		idle: idle ? anim('idle') : still,
 		pending: pending ? anim('pending') : still,
 		explode: explode ? anim('explode') : still,
+		explodeWild: explode ? anim('explode_wild') : still,
 		blasted: still,
 		cast: transform ? anim('cast') : still,
 		in: transform ? anim('in') : still,
@@ -222,6 +267,7 @@ const allStates = <T>(info: T) => ({
 	idle: info,
 	pending: info,
 	explode: info,
+	explodeWild: info,
 	blasted: info,
 	cast: info,
 	in: info,

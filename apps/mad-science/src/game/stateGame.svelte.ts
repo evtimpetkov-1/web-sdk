@@ -9,10 +9,12 @@ import type { GameType, Position, RawSymbol, SymbolState } from './types';
 import { stateLayoutDerived } from './stateLayout';
 import { winLevelMap } from './winLevelMap';
 import { eventEmitter } from './eventEmitter';
+import { BLACK_OPS_CAP_OFFSET } from './textStyles';
 import {
 	SYMBOL_SIZE,
 	BOARD_SIZES,
 	FRAME_ART,
+	MASCOT_CLIP,
 	INITIAL_BOARD,
 	BOARD_DIMENSIONS,
 	SPIN_OPTIONS_DEFAULT,
@@ -144,6 +146,12 @@ export const stateGame = $state({
 	// the spin in progress's anticipated columns (1 = anticipated), set by the
 	// reveal handler; onReelStopping starts the pending loop off it
 	spinAnticipation: [] as number[],
+	// a cascade under anticipation: per column, the visible rows its cleared
+	// symbols left empty, set by the tumbleBoard handler once they are removed
+	// and emptied column by column as TumbleBoard lands each drop.
+	// AnticipationField electrifies exactly those cells (the spin's columns come
+	// from spinAnticipation and each reel's motion)
+	tumbleAnticipation: [] as number[][],
 	// per cell (getCellKey): a landed idle rig keeps looping past the round's end
 	// until its next loop boundary. Shared state, not a ReelSymbol local: every cell
 	// is mounted in both board layers and only the drawing layer hears the loop end.
@@ -154,34 +162,139 @@ export const stateGame = $state({
 	tumbleWin: 0,
 	// bomb feature: set by bombExplode, consumed by the next tumbleBoardExplode
 	bombPending: undefined as BombPending | undefined,
+	// performance.now() when the fuse loop (sfx_ms_bomb_fuse) last started (Sound.svelte):
+	// the armed bombs' heartbeat is phase-locked to it (BombHeartbeatLock)
+	bombFuseStartedAt: undefined as number | undefined,
 	// cloner feature: goo covers over reel cells and the ghosts flying between them
 	cloneFx: {} as Record<string, CloneFx>,
 	movingClones: [] as MovingClone[],
 });
 
-const boardLayout = () => ({
-	x: stateLayoutDerived.mainLayout().width * 0.5,
-	y: stateLayoutDerived.mainLayout().height * 0.5,
-	anchor: { x: 0.5, y: 0.5 },
-	pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
-	...BOARD_SIZES,
-});
-
 // Riveted pipe plate centred above the reel frame (Evtim's mockup, 2026-09-02): ~38% of
 // the board width, its bottom pipe sunk into the frame's top pipe. Board-local coords
 // (origin = board top-left), shared by GlobalMultiplier (draws it) and MultiplierBoard
-// (flies collected multiplier symbols onto it).
+// (flies collected multiplier symbols onto it). Portrait drew it 1.28x until the board
+// itself grew there (2026-10-26); the extra size cost the logo its room.
 const MULT_PLATE_RATIO = 318 / 146; // mult_plate.png
 const MULT_PLATE_WIDTH = 0.38; // of board width
 const MULT_PLATE_OVERLAP = 0.06; // of plate height, sunk into the frame's top pipe
+const plateSize = () => {
+	const width = BOARD_SIZES.width * MULT_PLATE_WIDTH;
+	return { width, height: width / MULT_PLATE_RATIO };
+};
+// board-local units per frame-art px, vertically (the window maps onto the board)
+const FRAME_UNIT_Y = BOARD_SIZES.height / FRAME_ART.window.height;
+const FRAME_WIDTH = (BOARD_SIZES.width / FRAME_ART.window.width) * FRAME_ART.width;
+
+/**
+ * Portrait stage (Evtim, 2026-10-26): the reel frame spans the canvas width,
+ * its bottom pipe just above the shared bottom bar, and the band above the
+ * plate holds the logo and the mascot, who stands behind the board. The board
+ * group (BoardContainer, frame, plate) scales by `scale` about the board
+ * centre; board-local units are unchanged. A wide portrait canvas (tablet
+ * upright) runs out of height first: the frame narrows to keep a band for the
+ * logo. Main-layout units; `top`/`left` are the canvas edges in them.
+ */
+// frame_resized.png's pipes are opaque over x 5..955, so this lets them touch the edges
+const PORTRAIT_FRAME_FILL = FRAME_ART.width / 950;
+// components-ui-pixi LayoutPortrait: the buy disc's top sits h - 536 (standard layout)
+const PORTRAIT_UI_TOP = 540;
+const PORTRAIT_UI_GAP = 12;
+// x visible width: the band kept above the plate when the height binds
+const PORTRAIT_MIN_TOP = 0.11;
+// frame_resized.png row where the bottom pipe ends (only drips below)
+const FRAME_PIPE_BOTTOM = 832;
+
+const portraitStage = () => {
+	const main = stateLayoutDerived.mainLayout();
+	const canvas = stateLayoutDerived.canvasSizes();
+	const visibleWidth = canvas.width / main.scale;
+	const visibleHeight = canvas.height / main.scale;
+	const top = (main.height - visibleHeight) / 2;
+	const left = (main.width - visibleWidth) / 2;
+	const uiTop =
+		top +
+		(canvas.height - PORTRAIT_UI_TOP * stateLayoutDerived.mainLayoutStandard().scale) / main.scale;
+	// at scale 1: frame top -> end of its bottom pipe, and the plate's height above the frame top
+	const below = FRAME_PIPE_BOTTOM * FRAME_UNIT_Y;
+	const above = plateSize().height * (1 - MULT_PLATE_OVERLAP);
+	const scale = Math.min(
+		(visibleWidth * PORTRAIT_FRAME_FILL) / FRAME_WIDTH,
+		(uiTop - PORTRAIT_UI_GAP - top - visibleWidth * PORTRAIT_MIN_TOP) / (below + above),
+	);
+	const frameTop = uiTop - PORTRAIT_UI_GAP - below * scale;
+	const { window: win } = FRAME_ART;
+	return {
+		scale,
+		top,
+		left,
+		visibleWidth,
+		frameTop,
+		plateTop: frameTop - above * scale,
+		boardY: frameTop + (win.y + win.height / 2) * FRAME_UNIT_Y * scale,
+	};
+};
+
+/**
+ * Portrait mascot (Evtim, 2026-10-26): he stands BEHIND the board, right of the
+ * plate, upper body above the frame's top pipe. Sized so his hair sits just
+ * under the canvas top and his waist just under the pipe (the smoke runs off
+ * the top). Main-layout units; x/y = the clip's bottom centre, as
+ * StackedAlphaVideo anchors it. The plate keeps clear of `flaskLeft`, the logo
+ * of `headLeft`.
+ */
+// main units: hair below the canvas top; board-local units: waist below the frame top
+const PORTRAIT_MASCOT_TOP_MARGIN = 16;
+const PORTRAIT_MASCOT_WAIST_TUCK = 20;
+// head centre, a share of the visible width
+const PORTRAIT_MASCOT_HEAD_POS = 0.79;
+// tall phones: the clip stops growing at this x the (scaled) board height and
+// sinks behind the frame instead (the 1104-px source starts to soften)
+const PORTRAIT_MASCOT_MAX_HEIGHT = 1.8;
+
+const portraitMascot = () => {
+	const stage = portraitStage();
+	const clip = MASCOT_CLIP;
+	const waistY = stage.frameTop + PORTRAIT_MASCOT_WAIST_TUCK * stage.scale;
+	const targetHeight = Math.min(
+		((waistY - stage.top - PORTRAIT_MASCOT_TOP_MARGIN) * clip.height) / (clip.waist - clip.headTop),
+		PORTRAIT_MASCOT_MAX_HEIGHT * BOARD_SIZES.height * stage.scale,
+	);
+	const width = (targetHeight * clip.width) / clip.height;
+	const headX = stage.left + stage.visibleWidth * PORTRAIT_MASCOT_HEAD_POS;
+	// a clip column -> main x
+	const at = (clipX: number) => headX + ((clipX - clip.headX) / clip.width) * width;
+	return {
+		targetHeight,
+		x: at(clip.width / 2),
+		y: waistY + (1 - clip.waist / clip.height) * targetHeight,
+		headLeft: at(clip.headX - clip.headHalfWidth),
+		flaskLeft: at(clip.flaskLeft),
+	};
+};
+
+const boardLayout = () => {
+	const main = stateLayoutDerived.mainLayout();
+	const portrait = stateLayoutDerived.layoutType() === 'portrait' ? portraitStage() : undefined;
+	return {
+		x: main.width * 0.5,
+		y: portrait?.boardY ?? main.height * 0.5,
+		// width/height stay the board-local BOARD_SIZES; `scale` maps them to main units
+		scale: portrait?.scale ?? 1,
+		anchor: { x: 0.5, y: 0.5 },
+		pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
+		...BOARD_SIZES,
+	};
+};
+
 // Pipe frame sprite (centre anchored, main-layout coords): scaled per axis so its
 // transparent window covers the board exactly — the window is not the board's aspect,
 // so the pipes deform slightly rather than the symbols.
 const frameLayout = () => {
 	const board = boardLayout();
 	const { window: win } = FRAME_ART;
-	const scaleX = board.width / win.width;
-	const scaleY = board.height / win.height;
+	const scaleX = (board.width * board.scale) / win.width;
+	const scaleY = (board.height * board.scale) / win.height;
 	return {
 		x: board.x + (FRAME_ART.width / 2 - (win.x + win.width / 2)) * scaleX,
 		y: board.y + (FRAME_ART.height / 2 - (win.y + win.height / 2)) * scaleY,
@@ -190,21 +303,67 @@ const frameLayout = () => {
 	};
 };
 
+// portrait: the plate slides left until it clears the mascot's flask, as far as
+// his win reaction swings it (Evtim, 2026-10-26: it hid his flask and arm), by
+// this gap in board-local units, but no further than the board's left edge (tall
+// phones draw the mascot bigger). The counters left the top pipe there
+// (portraitCounterLayout), so nothing else needs the room.
+const PORTRAIT_PLATE_FLASK_GAP = 8;
+
 const multiplierPlateLayout = () => {
-	const board = boardLayout();
-	const frame = frameLayout();
+	const { width, height } = plateSize();
 	// frame sprite top edge in board-local coords
-	const frameTop = frame.y - frame.height / 2 - (board.y - board.height / 2);
-	const scale = stateLayoutDerived.isStacked() ? 1.28 : 1;
-	const width = board.width * MULT_PLATE_WIDTH * scale;
-	const height = width / MULT_PLATE_RATIO;
+	const frameTop = -FRAME_ART.window.y * FRAME_UNIT_Y;
+	let x = BOARD_SIZES.width * 0.5;
+	if (stateLayoutDerived.layoutType() === 'portrait') {
+		const board = boardLayout();
+		const flask = (portraitMascot().flaskLeft - board.x) / board.scale + board.pivot.x;
+		x = Math.max(width / 2, Math.min(x, flask - PORTRAIT_PLATE_FLASK_GAP - width / 2));
+	}
 	return {
-		x: board.width * 0.5,
+		x,
 		y: frameTop + height * (MULT_PLATE_OVERLAP - 0.5),
 		width,
 		height,
 	};
 };
+
+/**
+ * Portrait counters (Evtim, 2026-10-26: beside the plate they were squeezed on
+ * the left and sat over the mascot on the right): one line each on the frame's
+ * BOTTOM pipe, FREE SPINS centred in the left half, TOTAL WIN (the base game's
+ * WIN) in the right half, each on a long pipe plate (msCounterPlate, the
+ * multiplier plate's style) so it reads over the pipe. The plates hang from
+ * the reel window's bottom edge (centred on the pipe they covered the bottom
+ * row), and the text is centred on the plate's dark panel. Board-local coords:
+ * `y` = the plates' centre, `textY` = the lines'; `size` is the font size, and
+ * a line wider than `maxWidth` shrinks to fit.
+ */
+const PORTRAIT_COUNTER_SIZE = SYMBOL_SIZE * 0.28;
+const COUNTER_PLATE_RATIO = 1200 / 267; // counter_plate.webp
+// between the two plates (half of it to the window's sides)
+const COUNTER_PLATE_GAP = 16;
+// the text's room, of the plate width: inside the side pipes and corner bolts
+const COUNTER_PLATE_INNER = 0.86;
+// the dark panel's middle (rows 30-229 of 267: the bottom pipe is the thicker),
+// of the plate height from its centre
+const COUNTER_PLATE_PANEL_Y = -0.015;
+const portraitCounterLayout = () => {
+	const half = BOARD_SIZES.width / 2;
+	const plateWidth = half - COUNTER_PLATE_GAP;
+	const plateHeight = plateWidth / COUNTER_PLATE_RATIO;
+	const y = BOARD_SIZES.height + plateHeight / 2;
+	return {
+		y,
+		textY: y + plateHeight * COUNTER_PLATE_PANEL_Y - PORTRAIT_COUNTER_SIZE * BLACK_OPS_CAP_OFFSET,
+		left: half / 2,
+		right: half * 1.5,
+		maxWidth: plateWidth * COUNTER_PLATE_INNER,
+		size: PORTRAIT_COUNTER_SIZE,
+		plate: { width: plateWidth, height: plateHeight },
+	};
+};
+export type PortraitCounterLayout = ReturnType<typeof portraitCounterLayout>;
 
 const boardRaw = () =>
 	board.map((reel) => reel.reelState.symbols.map((reelSymbol) => reelSymbol.rawSymbol));
@@ -247,9 +406,12 @@ export const { getWinLevelDataByWinLevelAlias } = createGetWinLevelDataByWinLeve
 
 export const stateGameDerived = {
 	onSymbolLand,
+	portraitStage,
+	portraitMascot,
 	boardLayout,
 	frameLayout,
 	multiplierPlateLayout,
+	portraitCounterLayout,
 	boardRaw,
 	tumbleBoardCombined,
 	enhancedBoard,

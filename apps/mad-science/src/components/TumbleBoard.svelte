@@ -19,6 +19,7 @@
 	import { Tween } from 'svelte/motion';
 	import { backOut } from 'svelte/easing';
 
+	import { Container } from 'pixi-svelte';
 	import { BoardContext } from 'components-shared';
 	import { stateBetDerived } from 'state-shared';
 	import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
@@ -40,9 +41,11 @@
 	let show = $state(false);
 
 	// Bomb ring timing (ms at 1x, TumbleSymbol scales them): the bomb rig fires
-	// `detonate` at 0.38s, the ring then reaches its neighbours at 70ms per cell of
-	// distance so the corners burst after the sides.
+	// `detonate` at 0.38s into `explode` and 0.72s into `explode_wild` (its longer
+	// charge), the ring then reaches its neighbours at 70ms per cell of distance so
+	// the corners burst after the sides.
 	const BOMB_DETONATE_MS = 380;
+	const BOMB_WILD_DETONATE_MS = 720;
 	const BLAST_MS_PER_CELL = 70;
 	const isSamePosition = (a: Position, b: Position) => a.reel === b.reel && a.row === b.row;
 	const cellDistance = (a: Position, b: Position) => Math.hypot(a.reel - b.reel, a.row - b.row);
@@ -108,25 +111,26 @@
 			const getTumbleSymbol = (position: Position) =>
 				context.stateGame.tumbleBoardBase[position.reel][position.row];
 
-			// sounds once per wave, however many bombs: the ARM pulses as the rigs start
-			// (the boom itself is the rig's `detonate` event, Symbol.svelte), the Wild's
-			// sting as the first one takes its cell
+			// sounds once per wave, however many bombs: the ARM pulses as the rigs start;
+			// the boom is the rig's `detonate` event and the Wild's sting its `wild`
+			// event (Symbol.svelte), which the once player never doubles
 			if (bomb?.bombs.length) {
 				context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_bomb_arm' });
 			}
-			let wildStung = false;
+			const leavesWild = (position: Position) =>
+				!!bomb?.wilds.some((wild) => isSamePosition(wild, position));
+			const detonateMs = (position: Position) =>
+				leavesWild(position) ? BOMB_WILD_DETONATE_MS : BOMB_DETONATE_MS;
 			const detonations = (bomb?.bombs ?? []).map(async (position) => {
 				const tumbleSymbol = getTumbleSymbol(position);
-				tumbleSymbol.symbolState = 'explode';
+				// explode_wild forms the Wild in the cell and ends on it; explode ends empty
+				const wild = leavesWild(position);
+				tumbleSymbol.symbolState = wild ? 'explodeWild' : 'explode';
 				await waitForResolve((resolve) => (tumbleSymbol.oncomplete = resolve));
-				// the rig ends empty: the Wild takes the cell before the slide
-				if (bomb!.wilds.some((wild) => isSamePosition(wild, position))) {
+				// the static Wild takes over from the rig's last frame before the slide
+				if (wild) {
 					tumbleSymbol.rawSymbol = { name: 'W' };
 					tumbleSymbol.symbolState = 'static';
-					if (!wildStung) {
-						wildStung = true;
-						context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_wild_land' });
-					}
 				}
 			});
 			// one removal per cell, for the same reason as boardWithAnimateSymbols (the
@@ -134,8 +138,10 @@
 			const removals = _.uniqBy(explodingPositions, getCellKey).map(async (position) => {
 				const tumbleSymbol = getTumbleSymbol(position);
 				if (bomb?.bombs.length) {
-					const distance = Math.min(...bomb.bombs.map((b) => cellDistance(position, b)));
-					tumbleSymbol.blastDelay = BOMB_DETONATE_MS + BLAST_MS_PER_CELL * distance;
+					// the first ring to arrive: each bomb's own detonation plus its travel
+					tumbleSymbol.blastDelay = Math.min(
+						...bomb.bombs.map((b) => detonateMs(b) + BLAST_MS_PER_CELL * cellDistance(position, b)),
+					);
 					tumbleSymbol.symbolState = 'blasted';
 				} else {
 					tumbleSymbol.symbolState = 'explosion';
@@ -166,8 +172,16 @@
 			let turn = 0;
 			const getPromises = () =>
 				_.flatten(
-					context.stateGameDerived.tumbleBoardCombined().map((tumbleReel) => {
-						const delay = tumbleReel.some(isMoving) ? turn++ * stagger : 0;
+					context.stateGameDerived.tumbleBoardCombined().map((tumbleReel, reelIndex) => {
+						const moving = tumbleReel.some(isMoving);
+						const delay = moving ? turn++ * stagger : 0;
+						// the column is full once its drop arrives (every symbol in it moves
+						// with the same delay and duration): its anticipation field goes out
+						if (moving && context.stateGame.tumbleAnticipation[reelIndex]?.length) {
+							waitForTimeout(delay + duration).then(() => {
+								context.stateGame.tumbleAnticipation[reelIndex] = [];
+							});
+						}
 						return tumbleReel.map(async (tumbleSymbol, symbolIndex) => {
 							const targetY = getSymbolY(symbolIndex - 1);
 							if (targetY !== tumbleSymbol.symbolY.current) {
@@ -197,17 +211,26 @@
 	});
 </script>
 
-{#if show}
-	<BoardContext animate={false}>
-		<BoardContainer>
-			<BoardMask />
-			<TumbleBoardBase />
-		</BoardContainer>
-	</BoardContext>
+<!--
+	The wrapper never unmounts, so the tumble board keeps its slot UNDER the
+	cascade win amounts (ClusterWinAmounts, next in Game.svelte's container).
+	pixi-svelte appends a (re)mounted child at the end of its parent: without it,
+	every tumble re-added both layers after the amounts, and the floating amounts
+	slid behind the goo bursts and the dropping symbols (Evtim, 2026-10-26).
+-->
+<Container>
+	{#if show}
+		<BoardContext animate={false}>
+			<BoardContainer>
+				<BoardMask />
+				<TumbleBoardBase />
+			</BoardContainer>
+		</BoardContext>
 
-	<BoardContext animate={true}>
-		<BoardContainer>
-			<TumbleBoardBase />
-		</BoardContainer>
-	</BoardContext>
-{/if}
+		<BoardContext animate={true}>
+			<BoardContainer>
+				<TumbleBoardBase />
+			</BoardContainer>
+		</BoardContext>
+	{/if}
+</Container>

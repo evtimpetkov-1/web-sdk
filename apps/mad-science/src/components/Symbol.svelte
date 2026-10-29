@@ -46,9 +46,13 @@
 		listener={{
 			complete: props.oncomplete,
 			event: (_, event) => {
-				// the bomb rig's bang (0.38s into `explode`)
+				// the bomb rig's bang (0.38s into `explode`, 0.72s into `explode_wild`)
 				if (event.data?.name === 'detonate') {
 					context.eventEmitter?.broadcast({ type: 'soundOnce', name: 'sfx_ms_bomb_explode', forcePlay: true });
+				}
+				// the Wild slamming into the bomb's cell (1.45s into `explode_wild`)
+				if (event.data?.name === 'wild') {
+					context.eventEmitter?.broadcast({ type: 'soundOnce', name: 'sfx_ms_wild_land' });
 				}
 			},
 		}}

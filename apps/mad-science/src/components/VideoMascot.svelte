@@ -6,6 +6,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
+	import { MASCOT_CLIP } from '../game/constants';
 	import StackedAlphaVideo from './StackedAlphaVideo.svelte';
 
 	// hybrid stacked mp4s: 1664x1104 = raw frame (all baked effects) | character
@@ -19,8 +20,8 @@
 		new URL('../../assets/mascot/hybrid_02.mp4', import.meta.url).href,
 	];
 	const WIN_CLIP = 1;
-	const HALF_W = 832;
-	const HALF_H = 1104;
+	const HALF_W = MASCOT_CLIP.width;
+	const HALF_H = MASCOT_CLIP.height;
 
 	const context = getContext();
 
@@ -32,35 +33,39 @@
 
 	const board = $derived(context.stateGameDerived.boardLayout());
 	const main = $derived(context.stateLayoutDerived.mainLayout());
-	// 'tablet' (near-square window) and 'portrait' are stacked layouts with little
-	// side room — keep the mascot mounted on every layout, just smaller and
-	// clamped to the canvas edge.
-	const stacked = $derived(
-		['tablet', 'portrait'].includes(context.stateLayoutDerived.layoutType()),
-	);
-	const targetHeight = $derived(board.height * (stacked ? 0.95 : 1.3));
-	const width = $derived(targetHeight * (HALF_W / HALF_H));
-	// right side of the reels, flask just clear of the frame's right pipe and boots
-	// just below its bottom pipe (Evtim, 2026-09-02); clamped to the main-layout
-	// right edge
-	const position = $derived({
-		x: Math.min(
-			board.x + board.width * 0.5 + width * 0.38,
-			main.width - width * 0.08,
-		),
-		y: board.y + board.height * 0.5 + targetHeight * 0.08,
+	// portrait: behind the board, above its top pipe (stateGame portraitMascot)
+	const portrait = $derived(context.stateLayoutDerived.layoutType() === 'portrait');
+	// 'tablet' (near-square window) is a stacked layout with little side room —
+	// the mascot stays beside the reels there, just smaller and clamped to the
+	// canvas edge.
+	const stacked = $derived(context.stateLayoutDerived.layoutType() === 'tablet');
+	const layout = $derived.by(() => {
+		if (portrait) return context.stateGameDerived.portraitMascot();
+		const targetHeight = board.height * (stacked ? 0.95 : 1.3);
+		const width = targetHeight * (HALF_W / HALF_H);
+		// right side of the reels, flask just clear of the frame's right pipe and boots
+		// just below its bottom pipe (Evtim, 2026-09-02); clamped to the main-layout
+		// right edge
+		return {
+			targetHeight,
+			x: Math.min(board.x + board.width * 0.5 + width * 0.38, main.width - width * 0.08),
+			y: board.y + board.height * 0.5 + targetHeight * 0.08,
+		};
 	});
 </script>
 
-<MainContainer>
+<!-- portrait: behind the board — zIndex -1 sorts this root-level container above
+     the backgrounds (-2) and under every zIndex-0 layer (board, frame, UI); the
+     mascot stays mounted, so a rotation never restarts the video decoder -->
+<MainContainer zIndex={portrait ? -1 : 0}>
 	<StackedAlphaVideo
 		bind:this={video}
 		srcs={SRCS}
 		mode="hybrid"
 		halfWidth={HALF_W}
 		halfHeight={HALF_H}
-		x={position.x}
-		y={position.y}
-		{targetHeight}
+		x={layout.x}
+		y={layout.y}
+		targetHeight={layout.targetHeight}
 	/>
 </MainContainer>

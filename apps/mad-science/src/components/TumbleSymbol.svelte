@@ -45,7 +45,9 @@
 	// three ways out of the board: the goo burst (a paid symbol), the bomb's own
 	// explode rig, and the blast ring over a bomb's neighbour
 	const exploding = $derived(props.tumbleSymbol.symbolState === 'explosion');
-	const detonating = $derived(props.tumbleSymbol.symbolState === 'explode');
+	const detonating = $derived(
+		props.tumbleSymbol.symbolState === 'explode' || props.tumbleSymbol.symbolState === 'explodeWild',
+	);
 	const blasted = $derived(props.tumbleSymbol.symbolState === 'blasted');
 	const popping = $derived(exploding || blasted);
 
@@ -85,7 +87,7 @@
 	animating={symbolInfo.type === 'spine' || popping}
 >
 	<Container scale={plateScale.current} alpha={plateAlpha.current}>
-		<!-- explode: the bomb rig completes the state itself (it ends empty) -->
+		<!-- explode / explodeWild: the bomb rig completes the state itself (it ends empty / on the Wild) -->
 		<Symbol
 			state={displayState}
 			loop={displayState === 'idle' || displayState === 'pending'}

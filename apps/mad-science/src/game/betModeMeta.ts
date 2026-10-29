@@ -30,7 +30,7 @@ const buildBetModeMeta = (): BetModeMeta => {
 			parent: '',
 			children: '',
 			assets: { ...NO_ASSETS, dialogImage: option.image },
-			text: { ...NO_TEXT, title: option.title, description: option.description, ...text },
+			text: { ...NO_TEXT, title: option.title(), description: option.description(), ...text },
 			maxWin: option.maxWin,
 		},
 	];
@@ -50,7 +50,7 @@ const buildBetModeMeta = (): BetModeMeta => {
 		// (stateBetDerived.betCost), the real per-spin cost Stake wants on screen
 		...Object.fromEntries(
 			ANTE_OPTIONS.map((option) =>
-				mode(option, 'activate', { betAmountLabel: option.title }),
+				mode(option, 'activate', { betAmountLabel: option.title() }),
 			),
 		),
 		...Object.fromEntries(

@@ -6,8 +6,12 @@
 	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
 	import { stateI18nDerived, stateUrlDerived } from 'state-shared';
 
+	import config from '../game/config';
 	import { getContext } from '../game/context';
+	import { displayFont, winUpToText } from '../game/textStyles';
 	import { stateReplay, setReplayStartHandler } from '../game/stateReplay.svelte';
+	import { fill, formatTimes } from '../i18n/format';
+	import { i18nDerived, showsBakedArt } from '../i18n/i18nDerived';
 	import { CURTAIN_Z } from './Transition.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -64,7 +68,7 @@
 	let fontsReady = $state(false);
 	onMount(() => {
 		Promise.all(
-			['32px Creepster', '400 32px Inter', '700 32px Inter'].map((face) =>
+			['32px Creepster', '32px "Black Ops One"', '400 32px Inter', '700 32px Inter'].map((face) =>
 				document.fonts?.load(face).catch(() => undefined),
 			),
 		).then(() => (fontsReady = true));
@@ -94,12 +98,13 @@
 	// Phones (portrait, landscape) draw a main-layout unit at ~0.43-0.49 px, so
 	// their copy is sized up to stay ~12-13 px on screen; desktop is ~1:1.
 	// Bands are fractions of the main height: logo centre + height, the panel
-	// block between top and bottom, the prompt below (PressToContinue).
+	// block between top and bottom, the WIN UP TO banner (winH tall) centred
+	// between the block and the prompt (PressToContinue).
 	const LAYOUTS = {
-		desktop: { cols: 4, maxW: 300, title: 36, text: 19, logoY: 0.15, logoH: 0.23, top: 0.31, bottom: 0.865 },
-		landscape: { cols: 4, maxW: 350, title: 44, text: 27, logoY: 0.12, logoH: 0.2, top: 0.25, bottom: 0.88 },
-		tablet: { cols: 2, maxW: 380, title: 38, text: 21, logoY: 0.11, logoH: 0.15, top: 0.21, bottom: 0.885 },
-		portrait: { cols: 2, maxW: 370, title: 44, text: 27, logoY: 0.09, logoH: 0.13, top: 0.18, bottom: 0.9 },
+		desktop: { cols: 4, maxW: 300, title: 36, text: 19, logoY: 0.14, logoH: 0.22, top: 0.28, bottom: 0.76, winH: 0.1 },
+		landscape: { cols: 4, maxW: 350, title: 44, text: 27, logoY: 0.11, logoH: 0.18, top: 0.225, bottom: 0.755, winH: 0.12 },
+		tablet: { cols: 2, maxW: 380, title: 38, text: 21, logoY: 0.1, logoH: 0.14, top: 0.19, bottom: 0.81, winH: 0.08 },
+		portrait: { cols: 2, maxW: 370, title: 44, text: 27, logoY: 0.085, logoH: 0.12, top: 0.165, bottom: 0.825, winH: 0.08 },
 	};
 	const main = $derived(context.stateLayoutDerived.mainLayout());
 	const spec = $derived(LAYOUTS[context.stateLayoutDerived.layoutType()] ?? LAYOUTS.desktop);
@@ -110,9 +115,19 @@
 	const LOGO_ROW_WIDTH = 0.6;
 	const oneRowLogo = $derived(['portrait', 'tablet'].includes(context.stateLayoutDerived.layoutType()));
 	const GAP = 22;
+	// "WIN UP TO 22 924 X" (win_up_to.webp): the Overcharged Free Spins top win.
+	// Languages without the art (showsBakedArt) draw it as text in the same box,
+	// the figure the top max win of all modes in config.
+	const WIN_RATIO = 2101 / 374;
+	const bakedArt = showsBakedArt();
+	const topMaxWin = Math.max(...Object.values(config.betModes).map((mode) => mode.max_win));
+	// main units the prompt's line takes above the bottom (PressToContinue: 46-unit
+	// text, 28 margin). Its container is bottom-aligned, so on a canvas taller than
+	// the main layout the prompt sits lower by the letterbox, and the banner follows.
+	const PROMPT_BAND = 82;
 
 	const layout = $derived.by(() => {
-		const { width: W, height: H } = main;
+		const { width: W, height: H, scale } = main;
 		const cols = spec.cols;
 		const rows = PANELS.length / cols;
 		const top = H * spec.top;
@@ -125,6 +140,9 @@
 		const y0 = top + (bottom - top - blockH) / 2;
 		const logoH = H * spec.logoH;
 		const rowW = Math.min(W * LOGO_ROW_WIDTH, logoH * LOGO_ROW_RATIO);
+		const letterbox = (context.stateLayoutDerived.canvasSizes().height - H * scale) / 2 / scale;
+		const promptTop = H - PROMPT_BAND + Math.max(0, letterbox);
+		const winH = Math.min(H * spec.winH, (W * 0.9) / WIN_RATIO);
 		return {
 			logo: {
 				x: W / 2,
@@ -132,6 +150,7 @@
 				width: oneRowLogo ? rowW : logoH * LOGO_RATIO,
 				height: oneRowLogo ? rowW / LOGO_ROW_RATIO : logoH,
 			},
+			win: { x: W / 2, y: (y0 + blockH + promptTop) / 2, width: winH * WIN_RATIO, height: winH },
 			panelW,
 			panelH,
 			panels: PANELS.map((panel, i) => ({
@@ -147,10 +166,61 @@
 	const artH = $derived(Math.min(layout.panelH * 0.34, layout.panelW * 0.5));
 	const titleY = $derived(layout.panelH * 0.53);
 	const titleSize = $derived(spec.title);
-	const textSize = $derived(spec.text);
+
+	/**
+	 * The copy's size: the layout's, or smaller where a translation's wrapped
+	 * lines would run past the panel's bottom (translations run up to ~40%
+	 * longer than the English the panels were sized for; English keeps its
+	 * size on every layout). One size for all four panels, found by wrapping
+	 * the way Pixi does: at spaces, and per character where a word is wider
+	 * than the line (breakWords: a CJK sentence has no spaces at all).
+	 */
+	const LINE_HEIGHT = 1.32;
+	const measure = document.createElement('canvas').getContext('2d');
+	const wrappedLines = (text: string, width: number) => {
+		if (!measure) return 1;
+		const space = measure.measureText(' ').width;
+		let lines = 1;
+		let line = 0;
+		for (const word of text.split(' ')) {
+			const wordWidth = measure.measureText(word).width;
+			if (wordWidth > width) {
+				if (line > 0) lines++;
+				line = 0;
+				for (const char of word) {
+					const charWidth = measure.measureText(char).width;
+					if (line + charWidth > width) {
+						lines++;
+						line = 0;
+					}
+					line += charWidth;
+				}
+			} else if (line > 0 && line + wordWidth > width) {
+				lines++;
+				line = wordWidth;
+			} else {
+				line += wordWidth;
+			}
+			line += space;
+		}
+		return lines;
+	};
+	const textSize = $derived.by(() => {
+		if (!fontsReady || !measure) return spec.text;
+		const width = layout.panelW * 0.86;
+		const room = layout.panelH - titleY - titleSize * 1.35 - 4;
+		const texts = PANELS.map((panel) => stateI18nDerived.translate(panel.text));
+		for (let size = spec.text; size > spec.text * 0.7; size -= 0.5) {
+			measure.font = `400 ${size}px Inter, sans-serif`;
+			if (texts.every((text) => wrappedLines(text, width) * size * LINE_HEIGHT <= room)) {
+				return size;
+			}
+		}
+		return spec.text * 0.7;
+	});
 
 	const titleStyle = $derived({
-		fontFamily: ['Creepster', 'Inter', 'sans-serif'],
+		fontFamily: displayFont(),
 		fontSize: titleSize,
 		fill: '#abea10',
 		letterSpacing: 1,
@@ -162,9 +232,10 @@
 		fontSize: textSize,
 		fill: '#e8eedf',
 		align: 'center' as const,
-		lineHeight: textSize * 1.32,
+		lineHeight: textSize * LINE_HEIGHT,
 		wordWrap: true,
 		wordWrapWidth: layout.panelW * 0.86,
+		breakWords: true,
 	});
 
 	// symbol art keeps each PNG's own aspect (symbols.json frame sizes)
@@ -231,6 +302,19 @@
 					/>
 				</Container>
 			{/each}
+
+			{#if !isReplay && bakedArt}
+				<Sprite key="msWinUpTo" anchor={0.5} {...layout.win} />
+			{:else if !isReplay}
+				<ResponsiveText
+					anchor={0.5}
+					x={layout.win.x}
+					y={layout.win.y}
+					maxWidth={layout.win.width}
+					text={fill(i18nDerived.winUpTo(), formatTimes(topMaxWin))}
+					style={winUpToText(layout.win.height * 0.75)}
+				/>
+			{/if}
 		</MainContainer>
 
 		{#if !isReplay}

@@ -14,12 +14,61 @@ const t = (key: string) => stateI18nDerived.translate(key);
 const social = (socialText: string, key: string) =>
 	stateUrlDerived.social() ? socialText : t(key);
 
+/**
+ * English and social draw the baked English title art (the FS popup's titles,
+ * the FREE SPINS word, the intro's WIN UP TO banner); every other language
+ * draws the matching key as text in its place (Kraken's pattern). The big win
+ * titles stay art in every language, as Kraken's did.
+ */
+export const showsBakedArt = () => stateUrlDerived.social() || stateUrlDerived.lang() === 'en';
+
 export const i18nDerived = {
 	...i18nDerivedUiPixi,
 	...i18nDerivedUiHtml,
-	home: () => t('HOME'),
-	notTranslated: () => t('NOT TRANSLATED'),
 	pressToContinue: () => t('PRESS ANYWHERE TO CONTINUE'),
+
+	/**
+	 * In-game texts. FREE SPINS, WIN, BET and CONFIRM are the SDK's keys
+	 * (freeSpins / win / bet / confirm, spread in above), already translated
+	 * there; the SDK's catalogs merge last, so the game never redefines them.
+	 */
+	// the art's words, for the languages without the art (showsBakedArt)
+	congratulations: () => t('CONGRATULATIONS!'),
+	youWon: () => t('YOU WON'),
+	// __0__ = the top max win of all modes, formatted per locale
+	winUpTo: () => t('WIN UP TO __0__'),
+	// FreeSpinTotalWin + the FS outro
+	totalWin: () => t('TOTAL WIN'),
+
+	/**
+	 * BuyShop + BuyConfirm. Titles and pitches carry no restricted word, so
+	 * they render as-is in social mode; figures are __n__ placeholders filled
+	 * from config / rulesData / buyOptions.
+	 */
+	shopTitle: () => social('FEATURE PLAY', 'BUY FEATURE'),
+	// the title when the jurisdiction switches feature buying off
+	shopBoostModes: () => t('BOOST MODES'),
+	perSpin: () => t('PER SPIN'),
+	on: () => t('ON'),
+	off: () => t('OFF'),
+	buyWord: () => social('PLAY', 'BUY'),
+	offerOperation: () => t('OPERATION FREE SPINS'),
+	offerMutant: () => t('MUTANT FREE SPINS'),
+	offerOvercharged: () => t('OVERCHARGED FREE SPINS'),
+	offerChaos: () => t('CHAOS MODE'),
+	offerBoost: () => t('FREE SPINS BOOST'),
+	// __0__ = the free spins counts ("10, 15 or 20")
+	offerOperationText: () =>
+		t('Straight into Free Spins. The number of spins is drawn at random: __0__.'),
+	offerMutantText: () =>
+		t('Free Spins with far more Multipliers, Cloners and Bombs. __0__ spins at random.'),
+	// __0__ / __1__ = the lowest / highest starting multiplier, __2__ = the counts
+	offerOverchargedText: () =>
+		t('Free Spins that start with a total multiplier of __0__ to __1__. __2__ spins at random.'),
+	// __0__ / __1__ = "2.7×" / "1.3×" (buyOptions.ts)
+	offerChaosText: () =>
+		t('Multipliers, Cloners & Bombs appear __0__ more often. Free Spins trigger __1__ more often.'),
+	offerBoostText: () => t('Free Spins trigger __0__ more often.'),
 
 	/**
 	 * GameRules + PayTable. English sentences are the keys. Every figure is a
@@ -78,7 +127,7 @@ export const i18nDerived = {
 			'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.',
 		),
 	rulesTumblesText: () =>
-		t('After every win, the winning symbols are removed. The remaining symbols fall down and new symbols drop in from above to fill the empty positions. This repeats for as long as new wins appear.'),
+		t('After every win, the winning symbols and all Wilds are removed. The remaining symbols fall down and new symbols drop in from above to fill the empty positions. This repeats for as long as new wins appear.'),
 	// Wild
 	rulesWildText: () =>
 		social(
@@ -123,8 +172,8 @@ export const i18nDerived = {
 	// Cloner
 	rulesClonerText: () =>
 		social(
-			'The Cloner turns itself and 4 to 11 regular symbols on the screen into one regular symbol.',
-			'The Cloner turns itself and 4 to 11 paying symbols on the screen into one paying symbol.',
+			'The Cloner turns itself and 4 to 11 regular symbols on the screen into one regular symbol, to create or grow a win.',
+			'The Cloner turns itself and 4 to 11 paying symbols on the screen into one paying symbol, to create or grow a win.',
 		),
 	rulesClonerWhen: () =>
 		t('When it activates: only when there is no winning combination on the screen and no Bomb is left to explode.'),
@@ -159,7 +208,7 @@ export const i18nDerived = {
 	rulesSwitchModesText: () =>
 		t('Chaos Mode and Free Spins Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.'),
 	rulesChaos: () =>
-		t('Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game.'),
+		t('Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and free spins trigger more often.'),
 	rulesBoost: () =>
 		t('Free Spins Boost: __0__ the base __1__ per spin. Free spins trigger more often, and triggers with 5 or more Scatters, which award more free spins, become more likely. The base game is otherwise the same as the main game.'),
 	// the three bought free spins modes: __0__ = cost, __1__ = betWord; the

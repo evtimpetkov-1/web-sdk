@@ -89,6 +89,20 @@ export const convertTorResumableBet = (betToResume: Bet) => {
 	return { ...betToResume, state: stateToResume };
 };
 
+/**
+ * The free spins entry (freeSpinTrigger, or buyFreeSpins for a bought round) of
+ * a bet being resumed, when the player left it inside the free spins: the entry
+ * lies before the server's event cursor. Undefined otherwise.
+ */
+export const getResumedFreeSpinsEntry = (bet: Bet | null) => {
+	if (!bet?.active) return undefined;
+	const bookEventsBeforeResume = bet.state.filter((_, eventIndex) => eventIndex < Number(bet.event));
+	return _.findLast(
+		bookEventsBeforeResume,
+		(bookEvent) => bookEvent.type === 'freeSpinTrigger' || bookEvent.type === 'buyFreeSpins',
+	) as BookEventOfType<'freeSpinTrigger' | 'buyFreeSpins'> | undefined;
+};
+
 // other utils
 export const getSymbolX = (reelIndex: number) => SYMBOL_WIDTH * (reelIndex + REEL_PADDING);
 export const getSymbolY = (symbolIndexOfBoard: number) => (symbolIndexOfBoard + 0.5) * SYMBOL_SIZE;

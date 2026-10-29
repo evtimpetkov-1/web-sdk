@@ -13,6 +13,7 @@
 	} from '../game/replayRound';
 	import { modeName } from '../game/modeNames';
 	import { i18nDerived } from '../i18n/i18nDerived';
+	import { drawnOrder } from '../i18n/format';
 
 	/**
 	 * The replay round card — shown BEFORE the round plays back (with a Start
@@ -101,7 +102,7 @@
 
 				<div class="row">
 					<dt>{i18nDerived.replayBaseBet()}</dt>
-					<dd class="value gold strong">{numberToCurrencyString(baseBet)}</dd>
+					<dd class="value gold strong">{drawnOrder(numberToCurrencyString(baseBet))}</dd>
 				</div>
 				<div class="row">
 					<dt>{i18nDerived.replayCostMultiplier()}</dt>
@@ -111,7 +112,7 @@
 				     player actually spent on this round -->
 				<div class="row highlight cost">
 					<dt>{i18nDerived.replayTotalCost()}</dt>
-					<dd class="value gold strong">{numberToCurrencyString(totalCost)}</dd>
+					<dd class="value gold strong">{drawnOrder(numberToCurrencyString(totalCost))}</dd>
 				</div>
 
 				<div class="divider"></div>
@@ -122,7 +123,7 @@
 				</div>
 				<div class="row highlight win">
 					<dt>{i18nDerived.replayTotalWin()}</dt>
-					<dd class="value green strong">{numberToWinCurrencyString(totalWin)}</dd>
+					<dd class="value green strong">{drawnOrder(numberToWinCurrencyString(totalWin))}</dd>
 				</div>
 			</dl>
 

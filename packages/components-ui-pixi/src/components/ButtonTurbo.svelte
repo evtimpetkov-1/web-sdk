@@ -10,14 +10,17 @@
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
 	const sizes = { width: UI_BASE_SIZE, height: UI_BASE_SIZE };
-	const active = $derived(persistentTurbo);
-	let persistentTurbo = $state(stateBet.isTurbo);
+	// the player's turbo setting itself, never a private copy: the copy was taken
+	// at mount and only flipped by presses, so a Space-hold release (turbo forced
+	// off) or a remount during a slam-stopped spin (a temporary turbo) left the
+	// button lit with turbo off (2026-10-26)
+	const active = $derived(stateBet.isTurboPersistent);
 	const disabled = $derived(stateBet.isSpaceHold);
 
 	const onpress = () => {
 		context.eventEmitter.broadcast({ type: 'soundPressGeneral' });
-		persistentTurbo = !stateBet.isTurbo;
-		stateBetDerived.updateIsTurbo(persistentTurbo, { persistent: true });
+		// toggle the setting, not isTurbo: that is also true during a slam-stopped spin
+		stateBetDerived.updateIsTurbo(!stateBet.isTurboPersistent, { persistent: true });
 	};
 
 	context.eventEmitter.subscribeOnMount({
@@ -35,6 +38,6 @@
 	{onpress}
 	{disabled}
 	icon="turbo"
-	iconActive={persistentTurbo}
-	iconTint={persistentTurbo ? stateUiTheme.turboActiveTint : undefined}
+	iconActive={active}
+	iconTint={active ? stateUiTheme.turboActiveTint : undefined}
 />

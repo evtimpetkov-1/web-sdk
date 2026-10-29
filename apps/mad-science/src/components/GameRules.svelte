@@ -278,7 +278,7 @@
 	h2 {
 		margin: 0 0 0.5rem;
 		text-align: center;
-		font-family: 'Creepster', 'Inter', sans-serif;
+		font-family: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
 		font-size: 1.4rem;
 		font-weight: 400;
 		letter-spacing: 0.08em;
@@ -362,10 +362,16 @@
 		color: var(--modal-accent);
 	}
 
-	/* figures and headers stay on one line; only the mode names wrap */
-	thead th,
+	/* figures stay on one line. Headers and mode names wrap, and hyphenate (the
+	   html lang is the player's language) or break mid-word as a last resort:
+	   Finnish, Russian and Indonesian ran the table wider than a phone panel */
 	td {
 		white-space: nowrap;
+	}
+
+	th {
+		hyphens: auto;
+		overflow-wrap: anywhere;
 	}
 
 	th:first-child,

@@ -242,26 +242,58 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/madscience/frame_resized_fs.png', import.meta.url).href,
 	},
-	// feature-buy button in the SDK bottom bar (ButtonBuyBonus hides without
-	// these keys): the bonus disc, padded square (no resampling); hover is the
-	// same disc slightly brighter, inactive is a grey dimmed copy.
-	// the bottom bar's buy button (Evtim's cart disc, 2026-10-24): three states
-	// built by art-review/madscience/buy_button/make_buy_button.py; the bonus
-	// disc set it replaced is in art-review/static-leftovers/buy_button_old/
-	bonusActive: {
+	// the buy slot (BuySlot.svelte, the game's own button: the SDK's
+	// ButtonBuyBonus draws only when a 'bonusActive' key exists, so these keys
+	// keep it hidden). Cart disc = Evtim's art (2026-10-24); its three states
+	// come from art-review/madscience/buy_button/make_buy_button.py, the bonus
+	// disc set it replaced is in art-review/static-leftovers/buy_button_old/.
+	msBuyActive: {
 		type: 'sprite',
 		mipmap: true,
 		src: new URL('../../assets/sprites/ui/buy_active.webp', import.meta.url).href,
 	},
-	bonusHover: {
+	msBuyHover: {
 		type: 'sprite',
 		mipmap: true,
 		src: new URL('../../assets/sprites/ui/buy_hover.webp', import.meta.url).href,
 	},
-	bonusInactive: {
+	msBuyInactive: {
 		type: 'sprite',
 		mipmap: true,
 		src: new URL('../../assets/sprites/ui/buy_inactive.webp', import.meta.url).href,
+	},
+	// the buy slot while Chaos Mode / Free Spins Boost is on: the cart disc's
+	// siblings (Scenario, 2026-10-27), same three states, built by
+	// art-review/madscience/ante_buttons/make_ante_buttons.py
+	msAnteChaosActive: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/ui/ante_chaos_active.webp', import.meta.url).href,
+	},
+	msAnteChaosHover: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/ui/ante_chaos_hover.webp', import.meta.url).href,
+	},
+	msAnteChaosInactive: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/ui/ante_chaos_inactive.webp', import.meta.url).href,
+	},
+	msAnteBoostActive: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/ui/ante_boost_active.webp', import.meta.url).href,
+	},
+	msAnteBoostHover: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/ui/ante_boost_hover.webp', import.meta.url).href,
+	},
+	msAnteBoostInactive: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/sprites/ui/ante_boost_inactive.webp', import.meta.url).href,
 	},
 	msLogo: {
 		type: 'sprite',
@@ -275,9 +307,24 @@ export default {
 		src: new URL('../../assets/madscience/logo_one_row.webp', import.meta.url).href,
 		preload: true,
 	},
+	// the intro's "WIN UP TO 22 924 X" banner (2101x374, Overcharged Free Spins'
+	// top win; art-review/madscience/win_up_to/make_win_up_to.py)
+	msWinUpTo: {
+		type: 'sprite',
+		src: new URL('../../assets/madscience/win_up_to.webp', import.meta.url).href,
+		preload: true,
+	},
 	msMultPlate: {
 		type: 'sprite',
 		src: new URL('../../assets/madscience/mult_plate.png', import.meta.url).href,
+		preload: true,
+	},
+	// the multiplier plate's long cousin (1200x267) behind the portrait counters on
+	// the bottom pipe: Nano Banana 2.1 off mult_plate.png + Photoroom cut
+	// (art-review/madscience/counter_plate)
+	msCounterPlate: {
+		type: 'sprite',
+		src: new URL('../../assets/madscience/counter_plate.webp', import.meta.url).href,
 		preload: true,
 	},
 	// TexturePacker sheet of every static symbol + the multiplier plate. Frames
@@ -343,6 +390,14 @@ export default {
 		type: 'sprite',
 		mipmap: true,
 		src: new URL('../../assets/madscience/fsintro/free_spins.png', import.meta.url).href,
+	},
+	// the retrigger's '+' (FreeSpinRetrigger), drawn beside the fsintro-digits count:
+	// Nano Banana 2.1 off the digit sheet, Photoroom cut, 200 px tall = 0.65 of a
+	// digit at the atlas's own scale (2026-10-26; sources in art-review/madscience/retrigger/)
+	fsRetriggerPlus: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/madscience/fsintro/plus.png', import.meta.url).href,
 	},
 	// orange riveted digits 0-9 for the intro's spin count; packed by
 	// tools/bitmap-font-generator/pack-fsintro-digits.js from art-review/static-sources/fsintro-digits/raw/

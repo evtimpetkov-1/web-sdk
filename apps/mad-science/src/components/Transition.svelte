@@ -6,7 +6,9 @@
 		| { type: 'transitionClose' }
 		| { type: 'transitionOpen' }
 		/** the curtains fade in already shut, no slide and no sound (the intro's exit) */
-		| { type: 'transitionShowClosed' };
+		| { type: 'transitionShowClosed' }
+		/** the intro's exit without the curtains: the black shade alone fades in; transitionOpen fades it out */
+		| { type: 'transitionShowVeil' };
 
 	/**
 	 * Above everything on the stage. pixi-svelte appends a (re)mounted child at
@@ -160,10 +162,16 @@
 
 	// ---- the requests ----
 	const fade = new Tween(1);
+	// shut with no panels, the shade alone: open() fades it instead of drawing the curtains
+	let veil = $state(false);
 	const showClosed = async () => {
 		fade.set(0, { duration: 0 });
 		phase = 'closed';
 		await fade.set(1, { duration: SHOW_CLOSED_MS });
+	};
+	const showVeil = async () => {
+		veil = true;
+		await showClosed();
 	};
 	const close = async () => {
 		if (phase === 'closed') return;
@@ -174,6 +182,13 @@
 	};
 	const open = async () => {
 		if (phase === 'open') return;
+		if (veil) {
+			await fade.set(0, { duration: SHOW_CLOSED_MS });
+			phase = 'open';
+			veil = false;
+			fade.set(1, { duration: 0 });
+			return;
+		}
 		phase = 'opening';
 		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_curtain_open' });
 		await run(OPEN_S);
@@ -195,6 +210,7 @@
 		transitionClose: () => enqueue(close),
 		transitionOpen: () => enqueue(open),
 		transitionShowClosed: () => enqueue(showClosed),
+		transitionShowVeil: () => enqueue(showVeil),
 	});
 </script>
 
@@ -206,7 +222,7 @@
 			backgroundColor={0x000000}
 			alpha={shadeAlpha}
 		/>
-		{#each panels as panel (panel.id)}
+		{#each veil ? [] : panels as panel (panel.id)}
 			{@const pose = poseOf(panel.side, panel.index, panel.innerX)}
 			<Container
 				x={pose.x}

@@ -1,7 +1,13 @@
+/**
+ * The game's own strings: the English sentence is the key in all 17 files,
+ * which carry the same key set. FREE SPINS, WIN, BET and CONFIRM are the SDK's
+ * keys (components-ui-pixi / components-ui-html catalogs, merged after these),
+ * so no file here defines them. Figures are __n__ placeholders, never typed in.
+ */
 export default {
-	HOME: 'HOME',
 	'PRESS ANYWHERE TO CONTINUE': 'PRESS ANYWHERE TO CONTINUE',
-	// intro panels (LoadingScreen) — other locales fall back to these until translated
+	// intro (LoadingScreen): the panels, and the WIN UP TO banner as text where
+	// the language has no art (__0__ = the top max win)
 	'WIN ANYWHERE': 'WIN ANYWHERE',
 	'8 or more of a symbol anywhere win. Winners tumble away and new symbols drop in.':
 		'8 or more of a symbol anywhere win. Winners tumble away and new symbols drop in.',
@@ -11,11 +17,36 @@ export default {
 	'BOMBS & CLONERS': 'BOMBS & CLONERS',
 	'Bombs blast their area and leave a Wild. Cloners turn symbols into copies of one.':
 		'Bombs blast their area and leave a Wild. Cloners turn symbols into copies of one.',
-	'FREE SPINS': 'FREE SPINS',
 	'4 or more Scatters award 10 to 20 Free Spins. The multiplier keeps growing.':
 		'4 or more Scatters award 10 to 20 Free Spins. The multiplier keeps growing.',
-	// GameRules + PayTable (i18nDerived). ENGLISH ONLY so far: the other 16
-	// locales fall back to these keys until the i18n pass translates them.
+	'WIN UP TO __0__': 'WIN UP TO __0__',
+	// FS intro / outro titles (as text where the language has no art) + counters
+	'CONGRATULATIONS!': 'CONGRATULATIONS!',
+	'YOU WON': 'YOU WON',
+	'TOTAL WIN': 'TOTAL WIN',
+	// BuyShop + BuyConfirm
+	'BUY FEATURE': 'BUY FEATURE',
+	'BOOST MODES': 'BOOST MODES',
+	'PER SPIN': 'PER SPIN',
+	ON: 'ON',
+	OFF: 'OFF',
+	BUY: 'BUY',
+	'OPERATION FREE SPINS': 'OPERATION FREE SPINS',
+	'MUTANT FREE SPINS': 'MUTANT FREE SPINS',
+	'OVERCHARGED FREE SPINS': 'OVERCHARGED FREE SPINS',
+	'CHAOS MODE': 'CHAOS MODE',
+	'FREE SPINS BOOST': 'FREE SPINS BOOST',
+	'Straight into Free Spins. The number of spins is drawn at random: __0__.':
+		'Straight into Free Spins. The number of spins is drawn at random: __0__.',
+	'Free Spins with far more Multipliers, Cloners and Bombs. __0__ spins at random.':
+		'Free Spins with far more Multipliers, Cloners and Bombs. __0__ spins at random.',
+	'Free Spins that start with a total multiplier of __0__ to __1__. __2__ spins at random.':
+		'Free Spins that start with a total multiplier of __0__ to __1__. __2__ spins at random.',
+	'Multipliers, Cloners & Bombs appear __0__ more often. Free Spins trigger __1__ more often.':
+		'Multipliers, Cloners & Bombs appear __0__ more often. Free Spins trigger __1__ more often.',
+	'Free Spins trigger __0__ more often.': 'Free Spins trigger __0__ more often.',
+	// GameRules + PayTable (i18nDerived). __n__ = figures from config / rulesData,
+	// or the bet word (betWord); translations bake their own word for it.
 	bet: 'bet',
 	'Game Overview': 'Game Overview',
 	'Game Modes': 'Game Modes',
@@ -49,8 +80,8 @@ export default {
 		'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':
 		'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.',
-	'After every win, the winning symbols are removed. The remaining symbols fall down and new symbols drop in from above to fill the empty positions. This repeats for as long as new wins appear.':
-		'After every win, the winning symbols are removed. The remaining symbols fall down and new symbols drop in from above to fill the empty positions. This repeats for as long as new wins appear.',
+	'After every win, the winning symbols and all Wilds are removed. The remaining symbols fall down and new symbols drop in from above to fill the empty positions. This repeats for as long as new wins appear.':
+		'After every win, the winning symbols and all Wilds are removed. The remaining symbols fall down and new symbols drop in from above to fill the empty positions. This repeats for as long as new wins appear.',
 	'A Wild is created only when a Bomb explodes. It substitutes for every paying symbol at the same time and counts toward each of them, so one Wild can be part of several wins. Wilds alone do not form a win.':
 		'A Wild is created only when a Bomb explodes. It substitutes for every paying symbol at the same time and counts toward each of them, so one Wild can be part of several wins. Wilds alone do not form a win.',
 	'Scatters do not form wins and are never removed during a spin. The number of Scatters on the screen when the spin ends decides the free spins, including Scatters that dropped in during tumbles:':
@@ -81,8 +112,8 @@ export default {
 		'What it clears: every paying symbol in the 3×3 area centred on the Bomb. At the edges of the screen the area is smaller. Scatters, Wilds, Cloners and other Bombs in the area are not cleared.',
 	'After it explodes: each Bomb stays in place as a Wild. The remaining symbols fall down, new symbols drop in, and the spin continues in the order of play.':
 		'After it explodes: each Bomb stays in place as a Wild. The remaining symbols fall down, new symbols drop in, and the spin continues in the order of play.',
-	'The Cloner turns itself and 4 to 11 paying symbols on the screen into one paying symbol.':
-		'The Cloner turns itself and 4 to 11 paying symbols on the screen into one paying symbol.',
+	'The Cloner turns itself and 4 to 11 paying symbols on the screen into one paying symbol, to create or grow a win.':
+		'The Cloner turns itself and 4 to 11 paying symbols on the screen into one paying symbol, to create or grow a win.',
 	'When it activates: only when there is no winning combination on the screen and no Bomb is left to explode.':
 		'When it activates: only when there is no winning combination on the screen and no Bomb is left to explode.',
 	'What it does: one paying symbol is chosen at random. The Cloner and 4 to 11 randomly selected paying symbols on the screen all turn into that symbol.':
@@ -113,8 +144,8 @@ export default {
 		'Retrigger: 3 or more Scatters at the end of a free spin award 5 extra free spins. There is no limit on retriggers.',
 	'Chaos Mode and Free Spins Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
 		'Chaos Mode and Free Spins Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.',
-	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game.':
-		'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game.',
+	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and free spins trigger more often.':
+		'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and free spins trigger more often.',
 	'Free Spins Boost: __0__ the base __1__ per spin. Free spins trigger more often, and triggers with 5 or more Scatters, which award more free spins, become more likely. The base game is otherwise the same as the main game.':
 		'Free Spins Boost: __0__ the base __1__ per spin. Free spins trigger more often, and triggers with 5 or more Scatters, which award more free spins, become more likely. The base game is otherwise the same as the main game.',
 	'Each of these three modes goes straight into free spins, without a base game spin, and asks for confirmation before it starts. The number of free spins is drawn at random: __0__.':

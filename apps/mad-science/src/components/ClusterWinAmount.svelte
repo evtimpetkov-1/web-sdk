@@ -22,6 +22,7 @@
 
 	import { SYMBOL_SIZE } from '../game/constants';
 	import { cascadeWinText } from '../game/textStyles';
+	import { drawnOrder } from '../i18n/format';
 	import { getSymbolX } from '../game/utils';
 	import { getContext } from '../game/context';
 
@@ -79,8 +80,8 @@
 		y={SYMBOL_SIZE * (props.win.row - 0.5) + y.current}
 		scale={scale.current}
 		text={showMultiplier
-			? `${bookEventAmountToWinCurrencyString(props.win.win)} X ${props.win.mult}`
-			: bookEventAmountToWinCurrencyString(props.win.result)}
+			? `${drawnOrder(bookEventAmountToWinCurrencyString(props.win.win))} X ${props.win.mult}`
+			: drawnOrder(bookEventAmountToWinCurrencyString(props.win.result))}
 		anchor={0.5}
 		style={cascadeWinText(FONT_SIZE)}
 	/>

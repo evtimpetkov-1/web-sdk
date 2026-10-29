@@ -2,8 +2,9 @@
 	import { SpineProvider, SpineTrack, type SpineTrackProps } from 'pixi-svelte';
 	import { stateBetDerived } from 'state-shared';
 
+	import BombHeartbeatLock from './BombHeartbeatLock.svelte';
 	import { getSymbolInfo } from '../game/utils';
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { BOMB_HEARTBEAT, SYMBOL_SIZE } from '../game/constants';
 
 	type Props = {
 		symbolInfo: ReturnType<typeof getSymbolInfo>;
@@ -14,6 +15,12 @@
 	};
 
 	const props: Props = $props();
+	// the armed bomb's idle is the fuse sound's heartbeat: phase-locked to it and never
+	// sped up by turbo (the sound plays at 1x)
+	const heartbeat = $derived(
+		props.symbolInfo.assetKey === BOMB_HEARTBEAT.assetKey &&
+			props.symbolInfo.animationName === BOMB_HEARTBEAT.animation,
+	);
 </script>
 
 <SpineProvider
@@ -27,7 +34,10 @@
 		loop={props.loop}
 		trackIndex={0}
 		animationName={props.symbolInfo.animationName}
-		timeScale={stateBetDerived.timeScale()}
+		timeScale={heartbeat ? 1 : stateBetDerived.timeScale()}
 		listener={props.listener}
 	/>
+	{#if heartbeat}
+		<BombHeartbeatLock />
+	{/if}
 </SpineProvider>
