@@ -1,0 +1,16 @@
+h3.png
+size:512,1024
+filter:Linear,Linear
+scale:1
+base
+bounds:0,0,304,323
+eyeball_sphere
+bounds:0,327,265,266
+iris_pupil_glow
+bounds:308,0,158,167
+blob
+bounds:308,171,128,128
+iris_pupil
+bounds:269,327,118,127
+glint
+bounds:440,171,64,64

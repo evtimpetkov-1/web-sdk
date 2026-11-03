@@ -1,0 +1,10 @@
+fscurtain.webp
+size:512,1024
+filter:Linear,Linear
+scale:1
+curtain
+bounds:0,0,323,502
+curtain_m
+bounds:0,506,323,502
+shade
+bounds:0,1012,4,4

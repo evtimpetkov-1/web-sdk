@@ -26,13 +26,28 @@
 	const rotationTween = new Tween(0, { easing: cubicInOut, duration: 250 });
 	const arrowScale = new Tween(1, { easing: cubicInOut, duration: 250 });
 	let showStop = $state(false);
+	// the press's arrows -> STOP morph; a reset cancels one still in flight
+	let morph = 0;
 
+	const resetIcon = () => {
+		morph++;
+		showStop = false;
+		rotationTween.set(0, { duration: 0 });
+		arrowScale.set(1, { duration: 0 });
+	};
+
+	// the spin is over
 	$effect(() => {
-		if (!stateUi.reelsSpinning) {
-			showStop = false;
-			rotationTween.set(0, { duration: 0 });
-			arrowScale.set(1, { duration: 0 });
-		}
+		if (!stateUi.reelsSpinning) resetIcon();
+	});
+	// A press that opened a popup started no spin: the buy-confirm card of an
+	// armed buy mode (Chaos Lab 2 keeps a bought mode armed and Spin re-opens its
+	// confirm), insufficient funds. Nothing then toggles reelsSpinning, so STOP
+	// stuck for good — and a bought round with no base reveal (Cash Respins)
+	// never toggles it either (Evtim, 2026-11-03). A popup opened during a real
+	// spin (the menu) leaves its STOP alone.
+	$effect(() => {
+		if (stateModal.modal && !stateUi.reelsSpinning) resetIcon();
 	});
 
 </script>
@@ -45,9 +60,11 @@
 			{sizes}
 			onpress={() => {
 				if (key === 'spin_default') {
+					const pressMorph = ++morph;
 					rotationTween.set(Math.PI);
 					arrowScale.set(0).then(() => {
-						showStop = true;
+						// not if the spin already ended (turbo) or the press opened a popup
+						if (pressMorph === morph) showStop = true;
 					});
 				}
 				onpress();

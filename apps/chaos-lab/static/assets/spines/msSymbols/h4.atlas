@@ -1,0 +1,16 @@
+h4.png
+size:512,1024
+filter:Linear,Linear
+scale:1
+base
+bounds:0,0,306,324
+hand_glow
+bounds:0,328,278,343
+hand
+bounds:0,675,238,303
+blob
+bounds:310,0,128,128
+dust
+bounds:310,132,128,96
+spark
+bounds:0,982,32,32
