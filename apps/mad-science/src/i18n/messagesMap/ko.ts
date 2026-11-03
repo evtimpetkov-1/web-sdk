@@ -63,8 +63,8 @@ export default {
 	Cost: '비용',
 	RTP: 'RTP',
 	'Max win': '최대 당첨금',
-	'Mad Science is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Mad Science는 6릴 5행 텀블 슬롯입니다. 배당 심볼 9종(고배당 4종, 저배당 5종)과 특수 심볼 5종(와일드, 스캐터, 멀티플라이어, 폭탄, 클로너)이 있습니다.',
+	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
+		'Chaos Lab은 6릴 5행 텀블 슬롯입니다. 배당 심볼 9종(고배당 4종, 저배당 5종)과 특수 심볼 5종(와일드, 스캐터, 멀티플라이어, 폭탄, 클로너)이 있습니다.',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'이 게임에는 여섯 가지 모드가 있습니다. 각 모드의 비용은 기본 베팅의 배수이며, 모든 모드에서 모든 당첨금은 기본 베팅의 배수입니다. RTP는 많은 라운드에 걸쳐 계산된 이론상 플레이어 환수율입니다.',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':

@@ -20,4 +20,10 @@ export default {
 	'LOSS LIMIT REACHED': '손실 한도 도달',
 	'SINGLE WIN LIMIT REACHED': '단일 당첨 한도 도달',
 	'SETTINGS': '설정',
+	'INSUFFICIENT FUNDS': '잔액 부족',
+	'PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE BET LEVEL.': '계정에 자금을 추가하거나 베팅 레벨을 낮추세요.',
+	'SOMETHING WENT WRONG': '문제가 발생했습니다',
+	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': '게임 서버에 연결할 수 없습니다. 연결 상태를 확인하고 게임을 다시 불러오세요.',
+	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': '세션이 유효하지 않거나 만료되었습니다. 게임을 다시 불러오세요.',
+	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': '지금은 게임을 이용할 수 없습니다. 게임을 다시 불러오거나 나중에 다시 시도하세요.',
 };

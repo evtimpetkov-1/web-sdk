@@ -67,8 +67,21 @@ const BOOK_EVENT_TYPES_TO_RESERVE_FOR_SNAPSHOT = [
 	'setTotalWin',
 ];
 
+/**
+ * Where a resumed round picks up: the last event the client recorded with
+ * /bet/event (free spins only). A round with none recorded, e.g. a base-game
+ * win refreshed mid-spin, comes back from /authenticate WITHOUT an `event`
+ * field: Number(undefined) is NaN, which matched no event at all, so the round
+ * was ended without being shown (Stake review 2026-10-29). It replays from the
+ * start instead.
+ */
+const getResumingIndex = (bet: Bet) => {
+	const index = Number(bet.event);
+	return Number.isInteger(index) && index > 0 ? index : 0;
+};
+
 export const convertTorResumableBet = (betToResume: Bet) => {
-	const resumingIndex = Number(betToResume.event);
+	const resumingIndex = getResumingIndex(betToResume);
 	const bookEventsBeforeResume = betToResume.state.filter(
 		(_, eventIndex) => eventIndex < resumingIndex,
 	);
@@ -96,7 +109,8 @@ export const convertTorResumableBet = (betToResume: Bet) => {
  */
 export const getResumedFreeSpinsEntry = (bet: Bet | null) => {
 	if (!bet?.active) return undefined;
-	const bookEventsBeforeResume = bet.state.filter((_, eventIndex) => eventIndex < Number(bet.event));
+	const resumingIndex = getResumingIndex(bet);
+	const bookEventsBeforeResume = bet.state.filter((_, eventIndex) => eventIndex < resumingIndex);
 	return _.findLast(
 		bookEventsBeforeResume,
 		(bookEvent) => bookEvent.type === 'freeSpinTrigger' || bookEvent.type === 'buyFreeSpins',

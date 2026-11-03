@@ -5,7 +5,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 
-	import { stateBet, stateBetDerived } from 'state-shared';
+	import { stateBet, stateBetDerived, stateModal } from 'state-shared';
 
 	import { getContext } from '../context';
 
@@ -26,6 +26,13 @@
 	let stopDisabled = $state(false);
 
 	const bet = () => {
+		// A bet the balance cannot cover is answered, not ignored: Stake wants an
+		// "Insufficient Funds" message ("Insufficient Balance" on Stake.us). The
+		// button still LOOKS disabled (spin_disabled); it just reports the press.
+		if (!stateBetDerived.isBetCostAvailable()) {
+			stateModal.modal = { name: 'insufficientFunds' };
+			return;
+		}
 		if (stateBetDerived.activeBetMode()?.type === 'buy') {
 			if (stateBet.onBuyModeBet?.()) return;
 			stateBet.activeBetModeKey = 'BASE';

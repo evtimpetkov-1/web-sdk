@@ -20,4 +20,10 @@ export default {
 	'LOSS LIMIT REACHED': 'ЛИМИТ ПОТЕРЬ ДОСТИГНУТ',
 	'SINGLE WIN LIMIT REACHED': 'ЛИМИТ НА ОДИН ВЫИГРЫШ ДОСТИГНУТ',
 	'SETTINGS': 'НАСТРОЙКИ',
+	'INSUFFICIENT FUNDS': 'НЕДОСТАТОЧНО СРЕДСТВ',
+	'PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE BET LEVEL.': 'ПОПОЛНИТЕ СЧЁТ ИЛИ УМЕНЬШИТЕ РАЗМЕР СТАВКИ.',
+	'SOMETHING WENT WRONG': 'ЧТО-ТО ПОШЛО НЕ ТАК',
+	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': 'НЕ УДАЛОСЬ ПОДКЛЮЧИТЬСЯ К ИГРОВОМУ СЕРВЕРУ. ПРОВЕРЬТЕ ПОДКЛЮЧЕНИЕ И ПЕРЕЗАГРУЗИТЕ ИГРУ.',
+	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': 'ВАША СЕССИЯ НЕДЕЙСТВИТЕЛЬНА ИЛИ ИСТЕКЛА. ПЕРЕЗАГРУЗИТЕ ИГРУ.',
+	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': 'ИГРА СЕЙЧАС НЕДОСТУПНА. ПЕРЕЗАГРУЗИТЕ ИГРУ ИЛИ ПОПРОБУЙТЕ ПОЗЖЕ.',
 };

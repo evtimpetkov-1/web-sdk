@@ -10,6 +10,7 @@ import ModalBuyBonus from './src/components/ModalBuyBonus.svelte';
 import ModalBuyBonusConfirm from './src/components/ModalBuyBonusConfirm.svelte';
 import ModalAutoSpin from './src/components/ModalAutoSpin.svelte';
 import ModalAutoSpinMessage from './src/components/ModalAutoSpinMessage.svelte';
+import ModalInsufficientFunds from './src/components/ModalInsufficientFunds.svelte';
 import ModalPayTable from './src/components/ModalPayTable.svelte';
 import ModalGameRules from './src/components/ModalGameRules.svelte';
 import ModalSettings from './src/components/ModalSettings.svelte';
@@ -30,6 +31,7 @@ export {
 	ModalBuyBonusConfirm,
 	ModalAutoSpin,
 	ModalAutoSpinMessage,
+	ModalInsufficientFunds,
 	ModalPayTable,
 	ModalGameRules,
 	ModalSettings,

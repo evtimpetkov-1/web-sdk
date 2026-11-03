@@ -32,7 +32,14 @@
 		align-items: center;
 		z-index: var(--zIndex);
 		max-width: var(--maxWidth);
-		max-height: 100%;
+		/* never taller than the screen (minus Popup's padding): the panel's own
+		   scrollable body scrolls instead of the whole popup, which drew a
+		   browser scrollbar on Stake's Popout S (400x225). A % height did not
+		   bind: the wrapper above has no definite height. */
+		max-height: calc(100vh - 2 * var(--popup-pad, 1rem));
+		max-height: calc(100dvh - 2 * var(--popup-pad, 1rem));
+		min-height: 0;
+		box-sizing: border-box;
 		gap: 1rem;
 		color: var(--modal-text);
 
@@ -41,6 +48,12 @@
 		border-radius: var(--modal-panel-radius);
 		box-shadow: var(--modal-panel-shadow);
 		padding: var(--modal-panel-padding);
+
+		/* Stake's Popout S (400x225): with the full gaps the auto-spin options
+		   overflowed their column by a few px and drew a needless scrollbar */
+		@media screen and (max-height: 300px) {
+			gap: 0.6rem;
+		}
 
 		&.bare {
 			background: none;

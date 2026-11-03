@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { type Snippet } from 'svelte';
-	import { GlobalStyle } from 'components-ui-html';
+	import { onMount, type Snippet } from 'svelte';
+	import { GlobalStyle, ModalError } from 'components-ui-html';
 	import { Authenticate, LoadI18n } from 'components-shared';
-	import { stateUrlDerived, stateBet } from 'state-shared';
+	import { stateUrlDerived } from 'state-shared';
 
 	import Game from '../components/Game.svelte';
 	import LoaderGame from '../components/LoaderGame.svelte';
 	import { setContext } from '../game/context';
+	import { displayFont } from '../game/textStyles';
 
 	import messagesMap from '../i18n/messagesMap';
 
@@ -14,29 +15,36 @@
 
 	const props: Props = $props();
 
-	// Dev mode (same rule as Kraken's Wilds): no rgs_url in the URL → skip RGS
-	// auth and boot with a mock balance so the game loads without a session.
-	// Spinning still needs an RGS. The test tool always passes rgs_url.
-	const isDevMode = !stateUrlDerived.rgsUrl();
-	if (isDevMode) {
-		stateBet.balanceAmount = 10000;
-	}
-
 	setContext();
+
+	onMount(() => {
+		// Every HTML popup's display face (modal titles, rules, paytable, shop)
+		// follows the language: Creepster has no Polish/Turkish/Vietnamese letters,
+		// so those read Black Ops One (displayFont). Set here, not in Game, so the
+		// error a failed authentication shows instead of the game gets it too.
+		document.documentElement.style.setProperty('--ms-display-font', displayFont());
+		// app.html says en: the popups' uppercase (Turkish i -> İ) and the rules
+		// table's hyphenation follow the html lang. Social mode is English.
+		document.documentElement.lang = stateUrlDerived.social() ? 'en' : stateUrlDerived.lang();
+	});
 </script>
 
+<!--
+	i18n first, so a failed authentication can say so in the player's language.
+	When it fails (a bad rgs_url, an expired session) the game never mounts: the
+	error is all there is (Stake: "fails authentication, displays an error,
+	prevents gameplay"). Under `vite dev` without an rgs_url, Authenticate boots
+	on a mock balance instead; a build never does.
+-->
 <GlobalStyle>
-	{#if isDevMode}
-		<LoadI18n {messagesMap}>
-			<Game />
-		</LoadI18n>
-	{:else}
+	<LoadI18n {messagesMap}>
 		<Authenticate>
-			<LoadI18n {messagesMap}>
-				<Game />
-			</LoadI18n>
+			<Game />
+			{#snippet failed()}
+				<ModalError />
+			{/snippet}
 		</Authenticate>
-	{/if}
+	</LoadI18n>
 </GlobalStyle>
 
 <!--

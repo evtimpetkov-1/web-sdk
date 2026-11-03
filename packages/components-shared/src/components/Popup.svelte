@@ -151,9 +151,16 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		padding: 1rem;
+		/* read by the panels (BaseContent) to stay inside the screen */
+		--popup-pad: 1rem;
+		padding: var(--popup-pad);
 		box-sizing: border-box;
 		overflow-y: auto;
+
+		/* Stake's Popout S (400x225) */
+		@media screen and (max-height: 300px) {
+			--popup-pad: 0.5rem;
+		}
 	}
 
 	.click-to-close-layer {

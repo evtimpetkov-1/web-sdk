@@ -16,7 +16,9 @@
 	--modal-panel-padding: 1.5rem 1.8rem;
 
 	/* type */
-	--modal-title-font: 'Creepster', 'Inter', sans-serif;
+	/* the language's display face (displayFont, set on <html> by the layout):
+	   Creepster has no Polish/Turkish/Vietnamese letters, those get Black Ops One */
+	--modal-title-font: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
 	--modal-title-size: 1.7rem;
 	--modal-text: #f2f6ea;
 	--modal-text-dim: rgba(242, 246, 234, 0.6);

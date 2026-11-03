@@ -64,8 +64,8 @@ export default {
 	Cost: 'लागत',
 	RTP: 'RTP',
 	'Max win': 'अधिकतम जीत',
-	'Mad Science is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Mad Science 6 रील और 5 पंक्तियों वाला टम्बलिंग स्लॉट है। इसमें 9 भुगतान प्रतीक हैं, 4 उच्च और 5 निम्न, और 5 विशेष प्रतीक: Wild, Scatter, मल्टीप्लायर, बम और क्लोनर।',
+	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
+		'Chaos Lab 6 रील और 5 पंक्तियों वाला टम्बलिंग स्लॉट है। इसमें 9 भुगतान प्रतीक हैं, 4 उच्च और 5 निम्न, और 5 विशेष प्रतीक: Wild, Scatter, मल्टीप्लायर, बम और क्लोनर।',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'गेम में छह मोड हैं। हर मोड की लागत आधार दांव का गुणज है, और हर मोड में सभी जीतें आधार दांव की गुणज होती हैं। RTP खिलाड़ी को सैद्धांतिक वापसी है, जिसकी गणना कई राउंड पर की जाती है।',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':

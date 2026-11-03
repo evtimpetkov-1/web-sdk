@@ -20,4 +20,10 @@ export default {
 	'LOSS LIMIT REACHED': '損失上限に達しました',
 	'SINGLE WIN LIMIT REACHED': '単一勝利上限に達しました',
 	'SETTINGS': '設定',
+	'INSUFFICIENT FUNDS': '残高不足',
+	'PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE BET LEVEL.': 'アカウントに資金を追加するか、ベットレベルを下げてください。',
+	'SOMETHING WENT WRONG': 'エラーが発生しました',
+	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': 'ゲームサーバーに接続できません。接続を確認して、ゲームを再読み込みしてください。',
+	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': 'セッションが無効か、有効期限が切れています。ゲームを再読み込みしてください。',
+	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': '現在ゲームをご利用いただけません。ゲームを再読み込みするか、しばらくしてから再度お試しください。',
 };

@@ -1,6 +1,6 @@
 import { setup, fromPromise, assign } from 'xstate';
 
-import { stateBet, stateBetDerived } from 'state-shared';
+import { stateBet, stateBetDerived, stateModal } from 'state-shared';
 
 import { context, type Context } from './machineContext';
 import type { PrimaryMachines } from './types';
@@ -9,7 +9,14 @@ const checkSpaceHold = fromPromise(async () => {
 	if (stateBet.isSpaceHold) {
 		if (stateBetDerived.activeBetMode()?.type === 'buy') {
 			stateBet.activeBetModeKey = 'BASE';
-			return;
+		}
+
+		// hold-to-spin stops where a press would: no play request the balance
+		// cannot cover (the RGS would answer ERR_IPB). The modal disables Space,
+		// which ends the hold through EnableSpaceHold (turbo handed back there).
+		if (!stateBetDerived.isBetCostAvailable()) {
+			stateModal.modal = { name: 'insufficientFunds' };
+			throw Error('end bet with insufficientFunds');
 		}
 
 		return;

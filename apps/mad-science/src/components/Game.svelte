@@ -14,6 +14,7 @@
 		ModalBetMenu,
 		ModalAutoSpin,
 		ModalAutoSpinMessage,
+		ModalInsufficientFunds,
 		ModalSettings,
 	} from 'components-ui-html';
 
@@ -76,12 +77,8 @@
 		applyBetModeMeta();
 		// bottom bar in the logo's voice: Creepster captions in acid green, white
 		// Inter amounts, charcoal plate, green-rimmed stepper chips. The display
-		// face follows the language (displayFont), here and in the HTML popups,
-		// which read it as --ms-display-font
-		document.documentElement.style.setProperty('--ms-display-font', displayFont());
-		// app.html says en: the popups' uppercase (Turkish i -> İ) and the rules
-		// table's hyphenation follow the html lang. Social mode is English.
-		document.documentElement.lang = stateUrlDerived.social() ? 'en' : stateUrlDerived.lang();
+		// face follows the language (displayFont); the HTML popups read it as
+		// --ms-display-font, set by the layout (+layout.svelte)
 		Object.assign(stateUiTheme, {
 			labelFont: displayFont(),
 			labelWeight: '400',
@@ -233,6 +230,7 @@
 <ModalBetMenu />
 <ModalAutoSpin />
 <ModalAutoSpinMessage />
+<ModalInsufficientFunds />
 <PayTable />
 <GameRules />
 <ModalSettings />
@@ -257,6 +255,11 @@
 		}
 		@media screen and (orientation: landscape) and (max-height: 450px) {
 			font-size: 75%;
+		}
+		/* Stake's Popout S (400x225): the shared popups (auto spins, bet menu)
+		   only fit without scrolling a step smaller still (same rule as <Modals>) */
+		@media screen and (max-height: 300px) {
+			font-size: 62.5%;
 		}
 	}
 </style>

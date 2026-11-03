@@ -6241,4 +6241,56 @@ export default [
 			{ index: 100, type: 'finalWin', amount: 12990 },
 		],
 	},
+	// [3] betID 308450227 (2026-10-29, mode BASE, 1.2x at 6 EGP): a plain base-game win, captured
+	// from an authenticate after Evtim refreshed mid-win (review item 5). NO `event` field: the
+	// RGS only sends one once the client has recorded progress (/bet/event, free spins only),
+	// so a resume must read a missing event as "from the start".
+	{
+		betID: 308450227,
+		amount: 6000000,
+		payout: 7200000,
+		payoutMultiplier: 1.2,
+		active: true,
+		mode: 'BASE',
+		state: [
+			{
+				index: 0,
+				type: 'reveal',
+				board: [
+					[{ name: 'L3' }, { name: 'H3' }, { name: 'L2' }, { name: 'H1' }, { name: 'H1' }, { name: 'H4' }, { name: 'H4' }],
+					[{ name: 'H4' }, { name: 'H4' }, { name: 'H4' }, { name: 'H3' }, { name: 'H3' }, { name: 'H3' }, { name: 'L3' }],
+					[{ name: 'L3' }, { name: 'L2' }, { name: 'L2' }, { name: 'L5' }, { name: 'L1' }, { name: 'L1' }, { name: 'H4' }],
+					[{ name: 'L2' }, { name: 'H2' }, { name: 'H4' }, { name: 'H4' }, { name: 'H3' }, { name: 'H3' }, { name: 'L3' }],
+					[{ name: 'H2' }, { name: 'L2' }, { name: 'L2' }, { name: 'L3' }, { name: 'H3' }, { name: 'L1' }, { name: 'L1' }],
+					[{ name: 'H2' }, { name: 'S', scatter: true }, { name: 'L4' }, { name: 'H1' }, { name: 'H3' }, { name: 'L3' }, { name: 'L1' }],
+				],
+				paddingPositions: [11, 63, 42, 27, 66, 30],
+				gameType: 'basegame',
+				anticipation: [0, 0, 0, 0, 0, 0],
+			},
+			{
+				index: 1,
+				type: 'winInfo',
+				totalWin: 120,
+				wins: [
+					{
+						symbol: 'H3',
+						win: 120,
+						positions: [{ reel: 0, row: 1 }, { reel: 1, row: 3 }, { reel: 1, row: 4 }, { reel: 3, row: 4 }, { reel: 4, row: 4 }, { reel: 5, row: 4 }, { reel: 1, row: 5 }, { reel: 3, row: 5 }],
+						meta: { globalMult: 1, clusterMult: 1, winWithoutMult: 120, overlay: { reel: 3, row: 4 } },
+					},
+				],
+			},
+			{ index: 2, type: 'updateTumbleWin', amount: 120 },
+			{
+				index: 3,
+				type: 'tumbleBoard',
+				newSymbols: [[{ name: 'L4' }], [{ name: 'L1' }, { name: 'L1' }, { name: 'L3' }], [], [{ name: 'L5' }, { name: 'L2' }], [{ name: 'H4' }], [{ name: 'H2' }]],
+				explodingSymbols: [{ reel: 0, row: 1 }, { reel: 1, row: 3 }, { reel: 1, row: 4 }, { reel: 1, row: 5 }, { reel: 3, row: 4 }, { reel: 3, row: 5 }, { reel: 4, row: 4 }, { reel: 5, row: 4 }],
+			},
+			{ index: 4, type: 'setWin', amount: 120, winLevel: 3 },
+			{ index: 5, type: 'setTotalWin', amount: 120 },
+			{ index: 6, type: 'finalWin', amount: 120 },
+		],
+	},
 ];

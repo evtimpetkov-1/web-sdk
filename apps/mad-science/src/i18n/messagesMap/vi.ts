@@ -64,8 +64,8 @@ export default {
 	Cost: 'Chi phí',
 	RTP: 'RTP',
 	'Max win': 'Thắng tối đa',
-	'Mad Science is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Mad Science là máy slot rơi xếp tầng với 6 cuộn và 5 hàng. Có 9 biểu tượng trả thưởng, 4 cao và 5 thấp, cùng 5 biểu tượng đặc biệt: Wild, Scatter, Hệ số nhân, Bom và Máy nhân bản.',
+	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
+		'Chaos Lab là máy slot rơi xếp tầng với 6 cuộn và 5 hàng. Có 9 biểu tượng trả thưởng, 4 cao và 5 thấp, cùng 5 biểu tượng đặc biệt: Wild, Scatter, Hệ số nhân, Bom và Máy nhân bản.',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'Trò chơi có sáu chế độ. Mỗi chế độ có chi phí bằng một bội số của cược cơ bản, và ở mọi chế độ, tất cả các khoản thắng đều là bội số của cược cơ bản. RTP là tỷ lệ hoàn trả lý thuyết cho người chơi, được tính trên rất nhiều vòng chơi.',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':

@@ -33,7 +33,10 @@ const handleRequestBet = async ({ onError }: { onError: () => void }) => {
 	} catch (error) {
 		onError();
 		stateBet.autoSpinsCounter = 0;
-		stateModal.modal = { name: 'error', error };
+		// the RGS refusing the bet for the balance is the player's insufficient
+		// funds, not a game error (the client-side check normally gets there first)
+		const isInsufficientBalance = (error as { error?: string } | null)?.error === 'ERR_IPB';
+		stateModal.modal = isInsufficientBalance ? { name: 'insufficientFunds' } : { name: 'error', error };
 		console.error(error);
 		throw error;
 	}
@@ -92,39 +95,33 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 		onRequestBet,
 	} = options;
 
-	let balanceAmountFromApiHolder: null | number = null;
+	/**
+	 * A winning round is ended (end-round) only AFTER it has played. Single-reveal
+	 * wins used to end it the moment /wallet/play answered, before the animation:
+	 * a refresh mid-spin then found the round closed, so the win was never shown
+	 * and the bet fell back to the default (Stake review 2026-10-29: "a winning
+	 * round interrupted mid-spin must be displayed on return"). Left active, it
+	 * comes back through /authenticate and resumes. The balance still updates at
+	 * the round's end, as before.
+	 */
+	const endRoundAfterPlay = {
+		newGame: async () => undefined,
+		endGame: async () => {
+			if (onRequestBet) return; // dev mode: balance already handled
+			const data = await handleRequestEndRound();
+			if (data?.balance) {
+				handleUpdateBalance({ balanceAmountFromApi: data.balance.amount });
+			}
+		},
+	};
 
 	const BET_TYPE_METHODS_MAP = {
 		noWin: {
 			newGame: async () => undefined,
 			endGame: async () => undefined,
 		},
-		singleRoundWin: {
-			newGame: async () => {
-				if (onRequestBet) return; // dev mode: balance already handled
-				const endRoundData = await handleRequestEndRound();
-				if (endRoundData?.balance) {
-					balanceAmountFromApiHolder = endRoundData.balance.amount;
-				}
-			},
-			endGame: async () => {
-				if (balanceAmountFromApiHolder !== null) {
-					handleUpdateBalance({ balanceAmountFromApi: balanceAmountFromApiHolder });
-					balanceAmountFromApiHolder = null;
-				}
-			},
-		},
-		bonusWin: {
-			newGame: async () => undefined,
-			endGame: async () => {
-				if (onRequestBet) return; // dev mode: balance already handled
-				const data = await handleRequestEndRound();
-				if (data?.balance) {
-					handleUpdateBalance({ balanceAmountFromApi: data.balance.amount });
-					balanceAmountFromApiHolder = null;
-				}
-			},
-		},
+		singleRoundWin: endRoundAfterPlay,
+		bonusWin: endRoundAfterPlay,
 	} as const;
 
 	const getBetType: (args: { bet: TBet }) => keyof typeof BET_TYPE_METHODS_MAP = ({ bet }) => {

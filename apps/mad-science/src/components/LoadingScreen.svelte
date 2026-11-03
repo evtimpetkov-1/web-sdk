@@ -108,7 +108,7 @@
 	};
 	const main = $derived(context.stateLayoutDerived.mainLayout());
 	const spec = $derived(LAYOUTS[context.stateLayoutDerived.layoutType()] ?? LAYOUTS.desktop);
-	const LOGO_RATIO = 1465 / 1074; // logo.webp
+	const LOGO_RATIO = 1393 / 957; // logo.webp (Chaos Lab, trimmed to its lettering)
 	// tablet and portrait show the one-row logo (logo_one_row.webp), like the game
 	// (GameLogo): 60% of the width, never taller than the layout's logo band
 	const LOGO_ROW_RATIO = 2172 / 724;

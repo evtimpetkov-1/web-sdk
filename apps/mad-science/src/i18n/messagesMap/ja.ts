@@ -63,8 +63,8 @@ export default {
 	Cost: 'コスト',
 	RTP: 'RTP',
 	'Max win': '最大配当',
-	'Mad Science is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Mad Scienceは6リール×5行のタンブル式スロットです。配当シンボルは9種類（高配当4種、低配当5種）、特殊シンボルは5種類（ワイルド、スキャッター、マルチプライヤー、ボム、クローナー）です。',
+	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
+		'Chaos Labは6リール×5行のタンブル式スロットです。配当シンボルは9種類（高配当4種、低配当5種）、特殊シンボルは5種類（ワイルド、スキャッター、マルチプライヤー、ボム、クローナー）です。',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'このゲームには六つのモードがあります。各モードのコストはベースベットの倍数で、どのモードでもすべての配当はベースベットの倍数です。RTPは多数のラウンドで計算された理論上のプレイヤー還元率です。',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':

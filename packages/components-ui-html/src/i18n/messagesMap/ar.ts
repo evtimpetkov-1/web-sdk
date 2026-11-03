@@ -20,4 +20,10 @@ export default {
 	'LOSS LIMIT REACHED': 'تم بلوغ حد الخسارة',
 	'SINGLE WIN LIMIT REACHED': 'تم بلوغ حد الفوز الواحد',
 	'SETTINGS': 'الإعدادات',
+	'INSUFFICIENT FUNDS': 'رصيد غير كافٍ',
+	'PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE BET LEVEL.': 'يرجى إضافة أموال إلى حسابك أو خفض مستوى الرهان.',
+	'SOMETHING WENT WRONG': 'حدث خطأ ما',
+	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': 'تعذّر الاتصال بخادم اللعبة. يرجى التحقق من اتصالك وإعادة تحميل اللعبة.',
+	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': 'جلستك غير صالحة أو انتهت صلاحيتها. يرجى إعادة تحميل اللعبة.',
+	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': 'اللعبة غير متاحة حاليًا. يرجى إعادة تحميل اللعبة أو المحاولة لاحقًا.',
 };

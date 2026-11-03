@@ -3,8 +3,9 @@ import _ from 'lodash';
 import type { RawSymbol, SymbolState } from './types';
 
 // Shown in the paytable and rules footers. 1.0.0 = first submission (Kraken's
-// numbering: it submitted as 1.0.0 and bumped on each resubmission).
-export const GAME_VERSION = '1.0.0';
+// numbering: it submitted as 1.0.0 and bumped on each resubmission); 1.0.1 =
+// the resubmission after the 2026-10-29 review.
+export const GAME_VERSION = '1.0.1';
 
 // Cell height (row pitch). Also the unit every size ratio is expressed in.
 export const SYMBOL_SIZE = 100;

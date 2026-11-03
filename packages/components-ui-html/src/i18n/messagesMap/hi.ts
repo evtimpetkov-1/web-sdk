@@ -20,4 +20,10 @@ export default {
 	'LOSS LIMIT REACHED': 'हानि सीमा पूरी हुई',
 	'SINGLE WIN LIMIT REACHED': 'एकल जीत सीमा पूरी हुई',
 	'SETTINGS': 'सेटिंग्स',
+	'INSUFFICIENT FUNDS': 'अपर्याप्त धनराशि',
+	'PLEASE ADD FUNDS TO YOUR ACCOUNT OR LOWER THE BET LEVEL.': 'कृपया अपने खाते में धनराशि जोड़ें या दांव का स्तर कम करें।',
+	'SOMETHING WENT WRONG': 'कुछ गलत हो गया',
+	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': 'गेम सर्वर से कनेक्ट नहीं हो सका। कृपया अपना कनेक्शन जांचें और गेम को फिर से लोड करें।',
+	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': 'आपका सत्र अमान्य है या समाप्त हो गया है। कृपया गेम को फिर से लोड करें।',
+	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': 'गेम अभी उपलब्ध नहीं है। कृपया गेम को फिर से लोड करें या बाद में पुनः प्रयास करें।',
 };

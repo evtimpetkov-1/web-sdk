@@ -1,3 +1,17 @@
+/* The game frame never scrolls (Stake: "main game frame should not be
+   scrollable"). The canvas was inline, so its line box added a few pixels under
+   it and the page was 3-4 px taller than the viewport at every size. */
+html,
+body {
+	height: 100%;
+	overflow: hidden;
+	overscroll-behavior: none;
+}
+
+canvas {
+	display: block;
+}
+
 body {
 	font-family: 'Inter', sans-serif;
 	cursor: default;

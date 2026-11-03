@@ -63,8 +63,8 @@ export default {
 	Cost: '费用',
 	RTP: 'RTP',
 	'Max win': '最高奖金',
-	'Mad Science is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Mad Science 是一款6轴5行的连消老虎机。共有9个赔付符号（4个高赔付、5个低赔付）和5个特殊符号：百搭、分散、倍数、炸弹和克隆器。',
+	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
+		'Chaos Lab 是一款6轴5行的连消老虎机。共有9个赔付符号（4个高赔付、5个低赔付）和5个特殊符号：百搭、分散、倍数、炸弹和克隆器。',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'游戏共有六种模式。每种模式的费用是基础投注的倍数，所有模式中的全部奖金也都是基础投注的倍数。RTP是理论玩家回报率，基于大量回合计算。',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':

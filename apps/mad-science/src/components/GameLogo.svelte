@@ -4,7 +4,8 @@
 
 	import { getContext } from '../game/context';
 
-	// desktop/landscape: the Mad Science logo (1465x1074), top-left of the
+	// desktop/landscape: the Chaos Lab logo (1393x957, trimmed to its lettering
+	// like the Mad Science one it replaced, 2026-10-29), top-left of the
 	// board, as in the mockup.
 	// tablet/portrait: the one-row logo (2172x724, Evtim 2026-10-24) above the
 	// multiplier plate — there is no side room on those boxes (tablet's
@@ -17,10 +18,11 @@
 	// PORTRAIT_MAX_WIDTH of the screen, centred over the plate (which slides
 	// left of the mascot's flask), and steps further left when it would cover
 	// his head (tall phones).
-	const ASPECT = 1465 / 1074;
+	const ASPECT = 1393 / 957;
 	const ROW_ASPECT = 2172 / 724;
-	// logo_one_row.webp: the lettering's share of the art's height (rows 86-627)
-	const ROW_INK = 541 / 724;
+	// logo_one_row.webp: the lettering's share of the art's height (Chaos Lab,
+	// rows 123-614; art-review/madscience/rename_chaos_lab prints it)
+	const ROW_INK = 491 / 724;
 	// of the band-filling size: a touch smaller (Evtim, 2026-10-28: 0.92, then
 	// "just a bit" more)
 	const PORTRAIT_SCALE = 0.86;

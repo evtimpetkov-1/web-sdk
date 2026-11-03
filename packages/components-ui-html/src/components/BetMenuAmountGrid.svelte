@@ -5,20 +5,18 @@
 
 	import BaseIcon from './BaseIcon.svelte';
 	import BaseButtonContent from './BaseButtonContent.svelte';
-	import { i18nDerived } from '../i18n/i18nDerived';
 
 	const options = $derived(stateConfig.betMenuOptions);
 
-	const isMaxValue = (value: number) => value === options[options.length - 1];
-	const formatValue = (value: number) => {
-		if (Math.abs(value) > 999999) {
-			return `${parseFloat((Math.abs(value) / 1000000).toFixed(2))}M`;
-		}
-		if (Math.abs(value) > 999) {
-			return `${parseFloat((Math.abs(value) / 1000).toFixed(2))}K`;
-		}
-		return Math.abs(value).toFixed(getCurrencyDecimals());
-	};
+	/**
+	 * Every level as the full amount in the currency's decimals (2, or none for
+	 * JPY & co.). Stake review 2026-10-29: bet and balance amounts are always
+	 * shown rounded to two decimals, so no "1.5K" abbreviations and no "MAX"
+	 * label in place of the top level.
+	 */
+	const formatValue = (value: number) => Math.abs(value).toFixed(getCurrencyDecimals());
+	// long levels (MX$15000.00, Rp1500000) step down a size to stay in their chip
+	const fontSize = (label: string) => (label.length > 8 ? '0.8rem' : label.length > 6 ? '0.9rem' : '1rem');
 </script>
 
 <OptionsGrid
@@ -28,6 +26,7 @@
 	onchange={(value) => (stateBet.betAmount = value)}
 >
 	{#snippet option({ option })}
+		{@const label = formatValue(option)}
 		<BaseIcon
 			width="100%"
 			height="2rem"
@@ -37,9 +36,7 @@
 				: '1px solid var(--modal-border)'}
 		/>
 		<BaseButtonContent>
-			<span style="font-size: 1rem;"
-				>{isMaxValue(option) ? i18nDerived.max() : formatValue(option)}</span
-			>
+			<span style="font-size: {fontSize(label)}; white-space: nowrap;">{label}</span>
 		</BaseButtonContent>
 	{/snippet}
 </OptionsGrid>

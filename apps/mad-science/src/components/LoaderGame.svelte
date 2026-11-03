@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
+	import { stateModal } from 'state-shared';
 
 	import { stateApp } from '../game/stateApp';
 
@@ -48,6 +49,12 @@
 		return () => clearTimeout(timer);
 	});
 
+	// A failed authentication (bad rgs_url, expired session) never mounts the
+	// game, so `loaded` never comes: get out of the way of its error at once.
+	$effect(() => {
+		if (stateModal.modal?.name === 'error') visible = false;
+	});
+
 	// Failsafe: `loaded` is set even when individual assets fail, so this should
 	// never fire — but a loader that can hang forever is worse than one that
 	// gives up, and everything behind it is already mounted.
@@ -81,7 +88,7 @@
 		{/each}
 
 		<div class="lockup" style="--shine-opacity: {progress === 0 ? 0 : 1};">
-			<img class="base" src={baseImg} alt="Mad Science" />
+			<img class="base" src={baseImg} alt="Chaos Lab" />
 
 			<div
 				class="tube"

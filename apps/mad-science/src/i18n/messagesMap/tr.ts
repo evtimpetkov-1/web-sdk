@@ -64,8 +64,8 @@ export default {
 	Cost: 'Maliyet',
 	RTP: 'RTP',
 	'Max win': 'Maks. kazanç',
-	'Mad Science is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Mad Science, 6 makaralı ve 5 sıralı, düşen sembollü bir slottur. 9 ödeme yapan sembol (4 yüksek, 5 düşük) ve 5 özel sembol vardır: Wild, Scatter, Çarpan, Bomba ve Klonlayıcı.',
+	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
+		'Chaos Lab, 6 makaralı ve 5 sıralı, düşen sembollü bir slottur. 9 ödeme yapan sembol (4 yüksek, 5 düşük) ve 5 özel sembol vardır: Wild, Scatter, Çarpan, Bomba ve Klonlayıcı.',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'Oyunda altı mod vardır. Her modun maliyeti temel bahsin bir katıdır ve her modda tüm kazançlar temel bahsin katlarıdır. RTP, çok sayıda tur üzerinden hesaplanan teorik oyuncuya geri dönüş oranıdır.',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':

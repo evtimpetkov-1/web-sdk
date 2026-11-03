@@ -1,6 +1,5 @@
 import type { BaseBet } from 'utils-bet';
 import { stateMeta } from './stateMeta.svelte';
-import { stateConfig } from './stateConfig.svelte';
 
 export type Currency = string;
 export type BetToResume = BaseBet | null;
@@ -37,34 +36,21 @@ export const stateBet = $state({
 	onBuyModeBet: null as null | (() => boolean),
 });
 
-const correctBetAmount = (value: number) => {
-	if (value <= 0) return 0;
-	const costMultiplier = betCostMultiplier();
-	if (costMultiplier === 0) return 0;
-	const max = stateBet.balanceAmount / costMultiplier;
-	if (value >= max) {
-		/**
-		 * Snap DOWN to the largest LEGAL bet level the balance covers — never to
-		 * the raw division. Clamping to `max` itself minted bet amounts that
-		 * exist nowhere in betAmountOptions (balance 14.9 + "+" -> bet 14.9),
-		 * which the RGS would refuse. If even the smallest level is out of
-		 * reach, return that smallest level: the bet stays valid and the
-		 * affordability gates are what stop the spin.
-		 */
-		const options = [...stateConfig.betAmountOptions].sort((a, b) => a - b);
-		const affordable = options.filter((option) => option <= max);
-		if (affordable.length > 0) return affordable[affordable.length - 1];
-		return options[0] ?? 0;
-	}
-	return value;
-};
-
+/**
+ * The bar's bet steppers move through the RGS bet levels whatever the balance,
+ * as the bet menu does; a bet the balance cannot cover is answered when it is
+ * PRESSED, with the insufficient-funds popup (ButtonBetProvider). Every step
+ * used to be clamped to what the balance covered, so on a low balance "+"
+ * snapped straight back (or stepped down) and the stepper looked dead, while
+ * Stake wants every level from /authenticate selectable (2026-10-29). The
+ * callers pass levels from betAmountOptions, so nothing off-level is minted.
+ */
 const setBetAmount = (value: number) => {
-	stateBet.betAmount = correctBetAmount(value);
+	stateBet.betAmount = Math.max(value, 0);
 };
 
 const updateBetAmount = (update: (value: number) => number) => {
-	stateBet.betAmount = correctBetAmount(update(stateBet.betAmount));
+	stateBet.betAmount = Math.max(update(stateBet.betAmount), 0);
 };
 
 const updateIsTurbo = (value: boolean, options: { persistent: boolean }) => {

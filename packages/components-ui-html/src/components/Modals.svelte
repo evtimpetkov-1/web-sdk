@@ -7,6 +7,7 @@
 	import ModalBuyBonusConfirm from './ModalBuyBonusConfirm.svelte';
 	import ModalAutoSpin from './ModalAutoSpin.svelte';
 	import ModalAutoSpinMessage from './ModalAutoSpinMessage.svelte';
+	import ModalInsufficientFunds from './ModalInsufficientFunds.svelte';
 	import ModalPayTable from './ModalPayTable.svelte';
 	import ModalGameRules from './ModalGameRules.svelte';
 	import ModalSettings from './ModalSettings.svelte';
@@ -24,6 +25,7 @@
 <ModalBuyBonusConfirm />
 <ModalAutoSpin />
 <ModalAutoSpinMessage />
+<ModalInsufficientFunds />
 <ModalPayTable>
 	{@render props.version()}
 </ModalPayTable>
@@ -40,6 +42,11 @@
 		}
 		@media screen and (orientation: landscape) and (max-height: 450px) {
 			font-size: 75%;
+		}
+		/* Stake's Popout S (400x225): the popups only fit, without scrolling, a
+		   step smaller still */
+		@media screen and (max-height: 300px) {
+			font-size: 62.5%;
 		}
 	}
 </style>

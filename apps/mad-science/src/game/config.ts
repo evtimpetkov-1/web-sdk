@@ -7,10 +7,12 @@ const pays = (eight: number, ten: number, twelve: number) => ({
 
 export default {
 	// identity (metadata: nothing reads these at runtime). gameID = the Stake
-	// game id; provider + the snake_case name follow Kraken's config.
+	// game id / url slug; provider + the snake_case name follow Kraken's config.
+	// Renamed from Mad Science on 2026-10-29: Stake already has a "Mad Science"
+	// (review item 2); the app folder keeps its old name.
 	providerName: 'royal_cat_gaming',
-	gameName: 'mad_science',
-	gameID: 'mad-science',
+	gameName: 'chaos_lab',
+	gameID: 'chaos-lab',
 	rtp: 0.9622,
 	numReels: 6,
 	numRows: [5, 5, 5, 5, 5, 5],

@@ -70,7 +70,7 @@
 {#if stateModal.modal?.name === 'gameRules'}
 	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
 		<div class="panel">
-			<img src={logoImg} alt="Mad Science" class="logo" />
+			<img src={logoImg} alt="Chaos Lab" class="logo" />
 
 			<section>
 				<h2>{i18nDerived.rulesOverview()}</h2>
@@ -232,7 +232,9 @@
 			<section class="disclaimer">
 				<h2>{i18nDerived.rulesDisclaimer()}</h2>
 				<p>{i18nDerived.rulesDisclaimerText()}</p>
-				<p class="copyright">TM and &copy; 2026 Stake Engine.</p>
+				<!-- "Engine", not "Stake Engine": Stake review 2026-10-29 (their docs
+				     template still says Stake Engine) -->
+				<p class="copyright">TM and &copy; 2026 Engine.</p>
 			</section>
 
 			<div class="version">v{GAME_VERSION}</div>

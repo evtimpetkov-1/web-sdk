@@ -145,13 +145,14 @@
 	 * dark-navy plate, flat yellow for cost figures, green for payout figures,
 	 * Inter throughout (no Cinzel, no gold gradients). Keep it that way.
 	 */
+	/* The card is centred by its auto margins, not by justify/align-content:
+	   centred flex content that overflows is cut off at the TOP, out of scroll
+	   reach (Stake's Popout S screenshot, 2026-10-29). */
 	.replay-overlay {
 		position: fixed;
 		inset: 0;
 		z-index: 200;
 		display: flex;
-		align-items: center;
-		justify-content: center;
 		padding: 1rem;
 		box-sizing: border-box;
 		overflow-y: auto;
@@ -161,6 +162,7 @@
 	}
 
 	.card {
+		margin: auto;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -303,6 +305,81 @@
 		font-size: clamp(0.78rem, 3vw, 0.88rem);
 		line-height: 1.4;
 		color: #6b7385;
+	}
+
+	/* Short screens (Stake's Popout L is 800x450): the same card, tighter, so
+	   it fits whole with Start Replay in view */
+	@media screen and (max-height: 520px) {
+		.replay-overlay {
+			padding: 0.5rem;
+		}
+		.card {
+			gap: 0.55rem;
+			padding: 0.9rem 1.4rem;
+		}
+		.badge {
+			padding: 0.25rem 1rem;
+			font-size: 0.72rem;
+		}
+		.title {
+			font-size: 1.45rem;
+		}
+		.rows {
+			padding: 0.45rem 0.6rem;
+		}
+		.row {
+			padding: 0.32rem 0.75rem;
+		}
+		.divider {
+			margin: 0.3rem 0.75rem;
+		}
+		.cta {
+			padding: 0.65rem 1rem;
+			font-size: 1.15rem;
+		}
+	}
+
+	/* Popout S (400x225): the badge repeats the title and the note is a
+	   footnote; both go so the figures and Start Replay fit */
+	@media screen and (max-height: 300px) {
+		.replay-overlay {
+			padding: 0.4rem;
+		}
+		.card {
+			gap: 0.4rem;
+			padding: 0.6rem 0.9rem;
+			border-radius: 12px;
+		}
+		.badge,
+		.note {
+			display: none;
+		}
+		.title {
+			font-size: 1.3rem;
+		}
+		.rows {
+			gap: 0;
+			padding: 0.2rem 0.4rem;
+			border-radius: 9px;
+		}
+		.row {
+			padding: 0.12rem 0.6rem;
+		}
+		.row dt {
+			font-size: 1rem;
+		}
+		.row dd.value,
+		.row dd.value.strong {
+			font-size: 1.1rem;
+		}
+		.divider {
+			margin: 0.15rem 0.6rem;
+		}
+		.cta {
+			padding: 0.4rem 1rem;
+			border-radius: 10px;
+			font-size: 1.2rem;
+		}
 	}
 
 	@keyframes overlay-in {

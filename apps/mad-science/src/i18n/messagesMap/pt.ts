@@ -64,8 +64,8 @@ export default {
 	Cost: 'Custo',
 	RTP: 'RTP',
 	'Max win': 'Ganho máx.',
-	'Mad Science is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Mad Science é um slot em cascata de 6 rolos e 5 linhas. Há 9 símbolos pagantes, 4 altos e 5 baixos, e 5 símbolos especiais: Wild, Scatter, Multiplicador, Bomba e Clonador.',
+	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
+		'Chaos Lab é um slot em cascata de 6 rolos e 5 linhas. Há 9 símbolos pagantes, 4 altos e 5 baixos, e 5 símbolos especiais: Wild, Scatter, Multiplicador, Bomba e Clonador.',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'O jogo tem seis modos. Cada modo custa um múltiplo da aposta base, e em todos os modos todos os ganhos são múltiplos da aposta base. O RTP é o retorno teórico ao jogador, calculado ao longo de muitas rodadas.',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':

@@ -26,6 +26,11 @@ type ModalAutoSpinMessage = {
 	message: 'insufficientFunds' | 'lossLimitReached' | 'singleWinLimitReached';
 };
 
+/** A bet pressed (button, Space) while its cost is over the balance. */
+type ModalInsufficientFunds = {
+	name: 'insufficientFunds';
+};
+
 type ModalPayTable = {
 	name: 'payTable';
 };
@@ -46,6 +51,7 @@ type Modal =
 	| ModalBuyBonusConfirm
 	| ModalAutoSpin
 	| ModalAutoSpinMessage
+	| ModalInsufficientFunds
 	| ModalPayTable
 	| ModalGameRules
 	| ModalSettings;
