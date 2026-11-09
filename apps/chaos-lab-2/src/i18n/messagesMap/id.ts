@@ -1,4 +1,4 @@
-// Mad Science's own strings (keys = the English text, see en.ts). Figures are
+// Chaos Lab 2's own strings (keys = the English text, see en.ts). Figures are
 // __n__ placeholders filled at runtime; the bet word is written into each sentence.
 export default {
 	'PRESS ANYWHERE TO CONTINUE': 'TEKAN DI MANA SAJA UNTUK MELANJUTKAN',
@@ -11,32 +11,36 @@ export default {
 	'BOMBS & CLONERS': 'BOM & PENGKLON',
 	'Bombs blast their area and leave a Wild. Cloners turn symbols into copies of one.':
 		'Bom meledakkan area sekitarnya dan meninggalkan Wild. Pengklon mengubah simbol menjadi salinan satu simbol.',
-	'4 or more Scatters award 10 to 20 Free Spins. The multiplier keeps growing.':
-		'4 Scatter atau lebih memberi 10 hingga 20 spin gratis. Pengalinya terus bertambah.',
+	'CASH RESPINS': 'RESPIN UANG',
+	'4 or more Scatters start Cash Respins. Coins land, and Multipliers, Cloners and Bombs grow them.':
+		'4 Scatter atau lebih memicu Respin Uang. Koin mendarat, dan Pengali, Pengklon, dan Bom membuatnya bertambah.',
 	'WIN UP TO __0__': 'MENANG HINGGA __0__',
 	'CONGRATULATIONS!': 'SELAMAT!',
 	'YOU WON': 'ANDA MENANG',
 	'TOTAL WIN': 'TOTAL MENANG',
+	'RESPINS LEFT': 'SISA RESPIN',
+	RESPINS: 'RESPIN',
+	'WITH __0__ MULTIPLIER FRAMES': 'DENGAN __0__ BINGKAI PENGALI',
 	'BUY FEATURE': 'BELI FITUR',
 	'BOOST MODES': 'MODE PENGUAT',
 	'PER SPIN': 'PER SPIN',
 	ON: 'AKTIF',
 	OFF: 'MATI',
 	BUY: 'BELI',
-	'OPERATION FREE SPINS': 'SPIN GRATIS OPERASI',
-	'MUTANT FREE SPINS': 'SPIN GRATIS MUTAN',
-	'OVERCHARGED FREE SPINS': 'SPIN GRATIS BERTEGANGAN TINGGI',
+	'OPERATION RESPINS': 'RESPIN OPERASI',
+	'MUTANT RESPINS': 'RESPIN MUTAN',
+	'OVERCHARGED RESPINS': 'RESPIN BERTEGANGAN TINGGI',
 	'CHAOS MODE': 'MODE KEKACAUAN',
-	'FREE SPINS BOOST': 'PENGUAT SPIN GRATIS',
-	'Straight into Free Spins. The number of spins is drawn at random: __0__.':
-		'Langsung ke spin gratis. Jumlah spin diundi secara acak: __0__.',
-	'Free Spins with far more Multipliers, Cloners and Bombs. __0__ spins at random.':
-		'Spin gratis dengan jauh lebih banyak Pengali, Pengklon, dan Bom. __0__ spin secara acak.',
-	'Free Spins that start with a total multiplier of __0__ to __1__. __2__ spins at random.':
-		'Spin gratis yang dimulai dengan pengali total __0__ hingga __1__. __2__ spin secara acak.',
-	'Multipliers, Cloners & Bombs appear __0__ more often. Free Spins trigger __1__ more often.':
-		'Pengali, Pengklon & Bom muncul __0__ lebih sering. Spin gratis terpicu __1__ lebih sering.',
-	'Free Spins trigger __0__ more often.': 'Spin gratis terpicu __0__ lebih sering.',
+	'BONUS BOOST': 'PENGUAT BONUS',
+	'Straight into Cash Respins. They start at random as the 4, 5 or 6 Scatter version.':
+		'Langsung ke Respin Uang. Dimulai secara acak sebagai versi 4, 5, atau 6 Scatter.',
+	'Cash Respins with __0__ multiplier frames from the start, __1__ to __2__.':
+		'Respin Uang dengan __0__ bingkai pengali sejak awal, __1__ hingga __2__.',
+	'Cash Respins with every position framed from the start, __0__ to __1__.':
+		'Respin Uang dengan bingkai di setiap posisi sejak awal, __0__ hingga __1__.',
+	'Multipliers, Cloners & Bombs appear __0__ more often. Cash Respins trigger __1__ more often.':
+		'Pengali, Pengklon & Bom muncul __0__ lebih sering. Respin Uang terpicu __1__ lebih sering.',
+	'Cash Respins trigger __0__ more often.': 'Respin Uang terpicu __0__ lebih sering.',
 	bet: 'taruhan',
 	'Game Overview': 'Ikhtisar Permainan',
 	'Game Modes': 'Mode Permainan',
@@ -48,24 +52,24 @@ export default {
 	Bomb: 'Bom',
 	Cloner: 'Pengklon',
 	'Order of Play': 'Urutan Permainan',
-	'Free Spins': 'Spin Gratis',
-	'Chaos Mode and Free Spins Boost': 'Mode Kekacauan dan Penguat Spin Gratis',
+	'Cash Respins': 'Respin Uang',
+	'Chaos Mode and Bonus Boost': 'Mode Kekacauan dan Penguat Bonus',
 	'Buy Feature': 'Beli Fitur',
 	'General Rules': 'Aturan Umum',
 	'User Interface Guide': 'Panduan Antarmuka Pengguna',
 	Disclaimer: 'Penafian',
 	'Main game': 'Permainan utama',
 	'Chaos Mode': 'Mode Kekacauan',
-	'Free Spins Boost': 'Penguat Spin Gratis',
-	'Operation Free Spins': 'Spin Gratis Operasi',
-	'Mutant Free Spins': 'Spin Gratis Mutan',
-	'Overcharged Free Spins': 'Spin Gratis Bertegangan Tinggi',
+	'Bonus Boost': 'Penguat Bonus',
+	'Operation Respins': 'Respin Operasi',
+	'Mutant Respins': 'Respin Mutan',
+	'Overcharged Respins': 'Respin Bertegangan Tinggi',
 	Mode: 'Mode',
 	Cost: 'Biaya',
 	RTP: 'RTP',
 	'Max win': 'Kemenangan maks.',
-	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Chaos Lab adalah slot runtuhan dengan 6 gulungan dan 5 baris. Ada 9 simbol pembayar, 4 tinggi dan 5 rendah, serta 5 simbol khusus: Wild, Scatter, Pengali, Bom, dan Pengklon.',
+	'Chaos Lab 2 is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner. Its feature is Cash Respins: Coins land on the grid, and Multipliers, Cloners and Bombs grow them into one total win.':
+		'Chaos Lab 2 adalah slot runtuhan dengan 6 gulungan dan 5 baris. Ada 9 simbol pembayar, 4 tinggi dan 5 rendah, serta 5 simbol khusus: Wild, Scatter, Pengali, Bom, dan Pengklon. Fiturnya adalah Respin Uang: koin mendarat di kisi, dan Pengali, Pengklon, dan Bom membuatnya bertambah menjadi satu total kemenangan.',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'Permainan ini memiliki enam mode. Biaya setiap mode adalah kelipatan taruhan dasar, dan di setiap mode semua kemenangan adalah kelipatan taruhan dasar. RTP adalah pengembalian teoretis kepada pemain, dihitung dari banyak putaran.',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':
@@ -74,11 +78,13 @@ export default {
 		'Setelah setiap kemenangan, simbol pemenang dan semua Wild dihapus. Simbol yang tersisa jatuh ke bawah dan simbol baru masuk dari atas untuk mengisi posisi kosong. Ini berulang selama muncul kemenangan baru.',
 	'A Wild is created only when a Bomb explodes. It substitutes for every paying symbol at the same time and counts toward each of them, so one Wild can be part of several wins. Wilds alone do not form a win.':
 		'Wild hanya tercipta saat Bom meledak. Wild menggantikan setiap simbol pembayar sekaligus dan dihitung untuk masing-masing, sehingga satu Wild dapat menjadi bagian dari beberapa kemenangan. Wild saja tidak membentuk kemenangan.',
-	'Scatters do not form wins and are never removed during a spin. The number of Scatters on the screen when the spin ends decides the free spins, including Scatters that dropped in during tumbles:':
-		'Scatter tidak membentuk kemenangan dan tidak pernah dihapus selama spin. Jumlah Scatter di layar saat spin berakhir menentukan spin gratis, termasuk Scatter yang masuk selama runtuhan:',
-	'4 Scatters award 10 free spins.': '4 Scatter memberi 10 spin gratis.',
-	'5 Scatters award 15 free spins.': '5 Scatter memberi 15 spin gratis.',
-	'6 or more Scatters award 20 free spins.': '6 Scatter atau lebih memberi 20 spin gratis.',
+	'Scatters do not form wins and are never removed during a spin. 4 or more Scatters on the screen when the spin ends start Cash Respins, including Scatters that dropped in during tumbles. Their number decides how the grid starts:':
+		'Scatter tidak membentuk kemenangan dan tidak pernah dihapus selama spin. 4 Scatter atau lebih di layar saat spin berakhir memicu Respin Uang, termasuk Scatter yang masuk selama runtuhan. Jumlahnya menentukan cara kisi dimulai:',
+	'4 Scatters: the grid starts empty.': '4 Scatter: kisi dimulai kosong.',
+	'5 Scatters: __0__ positions start with a multiplier frame.':
+		'5 Scatter: __0__ posisi dimulai dengan bingkai pengali.',
+	'6 or more Scatters: __0__ positions start with a multiplier frame.':
+		'6 Scatter atau lebih: __0__ posisi dimulai dengan bingkai pengali.',
 	'Multipliers are collected into a total multiplier that multiplies every win awarded after them. Multipliers, Bombs and Cloners can appear on the first screen of a spin or among the new symbols that drop in during tumbles.':
 		'Pengali dikumpulkan ke dalam pengali total yang mengalikan setiap kemenangan yang diberikan setelahnya. Pengali, Bom, dan Pengklon dapat muncul di layar pertama spin atau di antara simbol baru yang masuk selama runtuhan.',
 	'Values: each Multiplier is worth __0__.': 'Nilai: setiap Pengali bernilai __0__.',
@@ -90,8 +96,8 @@ export default {
 		'Pengali total: jumlah semua nilai Pengali yang terkumpul. Pengali total mengalikan setiap kemenangan yang diberikan setelah terkumpul. Kemenangan yang diberikan lebih awal dalam spin tidak dikalikan. Tanpa Pengali yang terkumpul, kemenangan tidak dikalikan.',
 	'Base game: the total multiplier starts empty on every spin and lasts only for that spin.':
 		'Permainan dasar: pengali total dimulai kosong di setiap spin dan hanya berlaku untuk spin itu.',
-	'Free spins: the total multiplier lasts for the whole free spins round (see Free Spins).':
-		'Spin gratis: pengali total berlaku selama seluruh putaran spin gratis (lihat Spin Gratis).',
+	'Cash Respins: Multipliers work differently there, as multiplier frames (see Cash Respins).':
+		'Respin Uang: di sana Pengali bekerja secara berbeda, sebagai bingkai pengali (lihat Respin Uang).',
 	'A Bomb clears the paying symbols around it and turns into a Wild.':
 		'Bom menghapus simbol pembayar di sekitarnya dan berubah menjadi Wild.',
 	'Landing: one or two Bombs can appear at the same time.':
@@ -124,31 +130,48 @@ export default {
 		'Jika tidak ada kemenangan dan tidak ada Bom, Pengklon aktif.',
 	'When there is no win, no Bomb and no Cloner, the spin ends.':
 		'Jika tidak ada kemenangan, Bom, maupun Pengklon, spin berakhir.',
-	'4, 5, or 6 or more Scatters at the end of a base game spin award 10, 15 or 20 free spins, played with a total multiplier that keeps growing for the whole round. Free spins follow all base game rules, with these differences:':
-		'4, 5, atau 6 Scatter atau lebih di akhir spin permainan dasar memberi 10, 15, atau 20 spin gratis, yang dimainkan dengan pengali total yang terus bertambah sepanjang putaran. Spin gratis mengikuti semua aturan permainan dasar, dengan perbedaan berikut:',
-	'Persistent multiplier: the total multiplier is not reset between free spins. Every Multiplier collected during the round adds to it, and it multiplies every win until the round ends. A multiplier collected on the triggering base game spin is not carried into free spins.':
-		'Pengali tetap: pengali total tidak direset di antara spin gratis. Setiap Pengali yang terkumpul selama putaran ditambahkan padanya, dan pengali itu mengalikan setiap kemenangan hingga putaran berakhir. Pengali yang terkumpul pada spin permainan dasar yang memicu fitur tidak dibawa ke spin gratis.',
-	'Features: Multipliers, Bombs and Cloners appear more often than in the base game.':
-		'Fitur: Pengali, Bom, dan Pengklon muncul lebih sering daripada di permainan dasar.',
-	'Retrigger: 3 or more Scatters at the end of a free spin award 5 extra free spins. There is no limit on retriggers.':
-		'Pemicuan ulang: 3 Scatter atau lebih di akhir spin gratis memberi 5 spin gratis tambahan. Tidak ada batas pemicuan ulang.',
-	'Chaos Mode and Free Spins Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
-		'Mode Kekacauan dan Penguat Spin Gratis dinyalakan dan dimatikan di menu fitur saat permainan sedang diam. Hanya satu yang dapat aktif pada satu waktu. Selama salah satunya aktif, setiap spin dimainkan dengan kelipatan taruhan dasar yang tertera di bawah, dan kemenangan tetap merupakan kelipatan taruhan dasar.',
-	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and free spins trigger more often.':
-		'Mode Kekacauan: __0__ taruhan dasar per spin. Pengali, Bom, dan Pengklon muncul lebih sering di permainan dasar, dan spin gratis terpicu lebih sering.',
-	'Free Spins Boost: __0__ the base __1__ per spin. Free spins trigger more often, and triggers with 5 or more Scatters, which award more free spins, become more likely. The base game is otherwise the same as the main game.':
-		'Penguat Spin Gratis: __0__ taruhan dasar per spin. Spin gratis terpicu lebih sering, dan pemicuan dengan 5 Scatter atau lebih, yang memberi lebih banyak spin gratis, menjadi lebih mungkin. Selebihnya, permainan dasar sama dengan permainan utama.',
-	'Each of these three modes goes straight into free spins, without a base game spin, and asks for confirmation before it starts. The number of free spins is drawn at random: __0__.':
-		'Masing-masing dari tiga mode ini langsung masuk ke spin gratis, tanpa spin permainan dasar, dan meminta konfirmasi sebelum dimulai. Jumlah spin gratis diundi secara acak: __0__.',
-	'__0__ the base __1__. The free spins are the same as in the main game.':
-		'__0__ taruhan dasar. Spin gratisnya sama seperti di permainan utama.',
-	'__0__ the base __1__. Free spins where Multipliers, Bombs and Cloners appear much more often than in the main game.':
-		'__0__ taruhan dasar. Spin gratis di mana Pengali, Bom, dan Pengklon muncul jauh lebih sering daripada di permainan utama.',
-	'__0__ the base __1__. Free spins that start with a persistent total multiplier already active, drawn at random from __2__. Multipliers collected during the round add to it.':
-		'__0__ taruhan dasar. Spin gratis yang dimulai dengan pengali total tetap yang sudah aktif, diundi secara acak dari __2__. Pengali yang terkumpul selama putaran ditambahkan padanya.',
-	"Wins from tumbles, features and free spins in one round are added together into the round's total win.":
-		'Kemenangan dari runtuhan, fitur, dan spin gratis dalam satu putaran dijumlahkan menjadi total kemenangan putaran.',
-	'Scatters award free spins in any position.': 'Scatter memberi spin gratis di posisi mana pun.',
+	'4 or more Scatters at the end of a base game spin start Cash Respins on the 6×5 grid with __0__ respins. Only Coins, Multipliers, Cloners and Bombs land during Cash Respins.':
+		'4 Scatter atau lebih di akhir spin permainan dasar memicu Respin Uang di kisi 6×5 dengan __0__ respin. Selama Respin Uang, hanya Koin, Pengali, Pengklon, dan Bom yang mendarat.',
+	'Start: the number of Scatters decides how the grid starts (see Scatter). Starting multiplier frames are worth __0__. Mutant Respins and Overcharged Respins always start with frames, as described below.':
+		'Awal: jumlah Scatter menentukan cara kisi dimulai (lihat Scatter). Bingkai pengali awal bernilai __0__. Respin Mutan dan Respin Bertegangan Tinggi selalu dimulai dengan bingkai, seperti dijelaskan di bawah.',
+	'Respins: new symbols land on empty positions, all at the same time. Every respin where a symbol lands resets the respins to __0__.':
+		'Respin: simbol baru mendarat di posisi kosong, semuanya bersamaan. Setiap respin tempat sebuah simbol mendarat mengatur ulang respin menjadi __0__.',
+	'Coin: worth __0__ the base __1__. It stays on the grid until the end and is multiplied by the frame under it.':
+		'Koin: bernilai __0__ taruhan dasar. Tetap di kisi sampai akhir dan dikalikan dengan bingkai di bawahnya.',
+	'Multiplier: worth __0__. It leaves a frame on its position, or adds its value to the frame already there. Frame values add up, to a maximum of __1__, and frames stay for the whole feature.':
+		'Pengali: bernilai __0__. Meninggalkan bingkai di posisinya, atau menambahkan nilainya ke bingkai yang sudah ada di sana. Nilai bingkai dijumlahkan, hingga maksimum __1__, dan bingkai bertahan sepanjang fitur.',
+	'Cloner: it turns into a coin and spreads __0__ to __1__ more coins onto empty positions, fewer if the grid is nearly full, each with its own value. Each coin is multiplied by the frame it lands on.':
+		'Pengklon: berubah menjadi koin dan menyebarkan __0__ hingga __1__ koin tambahan ke posisi kosong, lebih sedikit jika kisi hampir penuh, masing-masing dengan nilainya sendiri. Setiap koin dikalikan dengan bingkai tempatnya mendarat.',
+	'Bomb: worth __0__ the base __1__ (in Overcharged Respins, also __2__), multiplied by the frame under it. It turns into a coin of that value and adds the same value to every coin in the 3×3 area around it.':
+		'Bom: bernilai __0__ taruhan dasar (di Respin Bertegangan Tinggi, juga __2__), dikalikan dengan bingkai di bawahnya. Berubah menjadi koin bernilai itu dan menambahkan nilai yang sama ke setiap koin di area 3×3 di sekitarnya.',
+	'After the symbols of a respin land, they act in this order:':
+		'Setelah simbol sebuah respin mendarat, simbol-simbol itu bertindak dalam urutan ini:',
+	'Multipliers leave or grow their frames and disappear.':
+		'Pengali meninggalkan atau memperbesar bingkainya lalu menghilang.',
+	'Coins are multiplied by the frame under them.': 'Koin dikalikan dengan bingkai di bawahnya.',
+	'The Cloner turns into a coin and spreads its coins.':
+		'Pengklon berubah menjadi koin dan menyebarkan koin-koinnya.',
+	'Bombs turn into coins and add their value to the coins around them.':
+		'Bom berubah menjadi koin dan menambahkan nilainya ke koin di sekitarnya.',
+	'End: the feature ends when no respins are left or all __0__ positions hold a coin. The win is the total of all coin values, as a multiple of the base __1__.':
+		'Akhir: fitur berakhir saat tidak ada respin tersisa atau semua __0__ posisi berisi koin. Kemenangannya adalah total semua nilai koin, sebagai kelipatan taruhan dasar.',
+	'Chaos Mode and Bonus Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
+		'Mode Kekacauan dan Penguat Bonus dinyalakan dan dimatikan di menu fitur saat permainan sedang diam. Hanya satu yang dapat aktif pada satu waktu. Selama salah satunya aktif, setiap spin dimainkan dengan kelipatan taruhan dasar yang tertera di bawah, dan kemenangan tetap merupakan kelipatan taruhan dasar.',
+	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and Cash Respins trigger more often.':
+		'Mode Kekacauan: __0__ taruhan dasar per spin. Pengali, Bom, dan Pengklon muncul lebih sering di permainan dasar, dan Respin Uang terpicu lebih sering.',
+	'Bonus Boost: __0__ the base __1__ per spin. Cash Respins trigger more often. The base game is otherwise the same as the main game.':
+		'Penguat Bonus: __0__ taruhan dasar per spin. Respin Uang terpicu lebih sering. Selain itu, permainan dasar sama seperti permainan utama.',
+	'Each of these three modes goes straight into Cash Respins, without a base game spin, and asks for confirmation before it starts.':
+		'Masing-masing dari tiga mode ini langsung masuk ke Respin Uang, tanpa spin permainan dasar, dan meminta konfirmasi sebelum dimulai.',
+	'__0__ the base __1__. Cash Respins start at random as the 4, 5, or 6 or more Scatter version and are the same as in the main game.':
+		'__0__ taruhan dasar. Respin Uang dimulai secara acak sebagai versi 4, 5, atau 6 Scatter atau lebih dan sama seperti di permainan utama.',
+	'__0__ the base __1__. Cash Respins where __2__ positions always start with a multiplier frame, each worth __3__. Multipliers and Bombs land more often than in Operation Respins, and Multipliers are more likely to land on the highest frames.':
+		'__0__ taruhan dasar. Respin Uang dengan __2__ posisi yang selalu dimulai dengan bingkai pengali, masing-masing bernilai __3__. Pengali dan Bom mendarat lebih sering daripada di Respin Operasi, dan Pengali lebih mungkin mendarat di bingkai tertinggi.',
+	'__0__ the base __1__. Cash Respins where all __2__ positions start with a multiplier frame, each worth __3__. Multipliers, Cloners and Bombs land more often on every respin, Multipliers are more likely to have high values, and Bombs can also be worth __4__.':
+		'__0__ taruhan dasar. Respin Uang dengan semua __2__ posisi dimulai dengan bingkai pengali, masing-masing bernilai __3__. Pengali, Pengklon, dan Bom mendarat lebih sering di setiap respin, Pengali lebih mungkin bernilai tinggi, dan Bom juga dapat bernilai __4__.',
+	"Wins from tumbles, features and Cash Respins in one round are added together into the round's total win.":
+		'Kemenangan dari runtuhan, fitur, dan Respin Uang dalam satu putaran dijumlahkan menjadi total kemenangan putaran.',
+	'Scatters start Cash Respins in any position.': 'Scatter memicu Respin Uang di posisi mana pun.',
 	'The maximum win of each mode, listed under Game Modes, is the highest win that mode can award.':
 		'Kemenangan maksimum setiap mode, yang tercantum di Mode Permainan, adalah kemenangan tertinggi yang dapat diberikan mode tersebut.',
 	'Spin: Start a spin at the current __0__ amount.':
@@ -158,8 +181,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Putar otomatis: memutar secara otomatis sebanyak jumlah yang ditentukan.',
 	'Turbo: Speed up animations.': 'Turbo: mempercepat animasi.',
-	'Buy Feature (Scatter disc): Open the feature menu with the three free spins modes and the Chaos Mode and Free Spins Boost switches.':
-		'Beli Fitur (cakram Scatter): membuka menu fitur dengan tiga mode spin gratis serta sakelar Mode Kekacauan dan Penguat Spin Gratis.',
+	'Buy Feature (Scatter disc): Open the feature menu with the three Cash Respins modes and the Chaos Mode and Bonus Boost switches.':
+		'Beli Fitur (cakram Scatter): membuka menu fitur dengan tiga mode Respin Uang serta sakelar Mode Kekacauan dan Penguat Bonus.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: menaikkan atau menurunkan jumlah taruhan.',
 	'Menu (☰): Open the menu.': 'Menu (☰): membuka menu.',
 	'Paytable: View the symbol payout values.': 'Tabel Pembayaran: melihat nilai pembayaran simbol.',
@@ -176,8 +199,18 @@ export default {
 	'Symbol Payouts': 'Pembayaran Simbol',
 	'Created only when a Bomb explodes. Substitutes for every paying symbol and counts toward each of them. Wilds alone do not form a win.':
 		'Hanya tercipta saat Bom meledak. Menggantikan setiap simbol pembayar dan dihitung untuk masing-masing. Wild saja tidak membentuk kemenangan.',
-	'4 Scatters = 10 Free Spins\n5 Scatters = 15 Free Spins\n6 or more = 20 Free Spins\n3 or more during Free Spins = 5 more Free Spins':
-		'4 Scatter = 10 Spin Gratis\n5 Scatter = 15 Spin Gratis\n6 atau lebih = 20 Spin Gratis\n3 atau lebih saat Spin Gratis = 5 Spin Gratis lagi',
+	'4 Scatters = Cash Respins\n5 Scatters = Cash Respins with __0__ multiplier frames\n6 or more = Cash Respins with __1__ multiplier frames':
+		'4 Scatter = Respin Uang\n5 Scatter = Respin Uang dengan __0__ bingkai pengali\n6 atau lebih = Respin Uang dengan __1__ bingkai pengali',
+	'Cash Respins Symbols': 'Simbol Respin Uang',
+	Coin: 'Koin',
+	'Worth __0__ the base __1__. Stays on the grid until Cash Respins end, multiplied by the frame under it.':
+		'Bernilai __0__ taruhan dasar. Tetap di kisi sampai Respin Uang berakhir, dikalikan dengan bingkai di bawahnya.',
+	'Worth __0__. Leaves a frame on its position, or adds to the frame there, up to __1__.':
+		'Bernilai __0__. Meninggalkan bingkai di posisinya, atau menambah bingkai di sana, hingga __1__.',
+	'Turns into a coin and spreads __0__ to __1__ coins onto empty positions, fewer if the grid is nearly full.':
+		'Berubah menjadi koin dan menyebarkan __0__ hingga __1__ koin ke posisi kosong, lebih sedikit jika kisi hampir penuh.',
+	'Worth __0__ (in Overcharged Respins, also __1__), multiplied by its frame. Turns into a coin and adds its value to every coin around it.':
+		'Bernilai __0__ (di Respin Bertegangan Tinggi, juga __1__), dikalikan dengan bingkainya. Berubah menjadi koin dan menambahkan nilainya ke setiap koin di sekitarnya.',
 	'Worth __0__. Collected into the total multiplier before any win is awarded.':
 		'Bernilai __0__. Dikumpulkan ke pengali total sebelum kemenangan apa pun diberikan.',
 	'When there is no win, it clears the paying symbols in the 3×3 area around it and stays as a Wild.':

@@ -3,7 +3,17 @@ import { stateI18nDerived, stateUrlDerived } from 'state-shared';
 import { i18nDerived as i18nDerivedUiPixi } from 'components-ui-pixi';
 import { i18nDerived as i18nDerivedUiHtml } from 'components-ui-html';
 
-const t = (key: string) => stateI18nDerived.translate(key);
+/**
+ * stake.us restricts "cash" (docs/reference/social-mode: cash -> coins), so in
+ * social mode the feature reads COIN RESPINS: every string this file returns
+ * passes through here. English only (social forces the en catalog).
+ */
+const socialWords = (text: string) =>
+	text.replace(/\bCASH\b/g, 'COIN').replace(/\bCash\b/g, 'Coin').replace(/\bcash\b/g, 'coin');
+const t = (key: string) => {
+	const text = stateI18nDerived.translate(key);
+	return stateUrlDerived.social() ? socialWords(text) : text;
+};
 /**
  * Social mode (stake.us) forbids gambling terms and is English-only (LoadI18n
  * forces the en catalog), so the replacement is a plain English string.
@@ -12,7 +22,10 @@ const t = (key: string) => stateI18nDerived.translate(key);
  * The mode names (Evtim, 2026-10-24) carry no restricted word.
  */
 const social = (socialText: string, key: string) =>
-	stateUrlDerived.social() ? socialText : t(key);
+	stateUrlDerived.social() ? socialWords(socialText) : t(key);
+
+/** a game key, translated (and social-safe): for keys held in data, e.g. the intro's PANELS */
+export const translateGame = t;
 
 /**
  * English and social draw the baked English title art (the FS popup's titles,
@@ -39,11 +52,15 @@ export const i18nDerived = {
 	winUpTo: () => t('WIN UP TO __0__'),
 	// FreeSpinTotalWin + the FS outro
 	totalWin: () => t('TOTAL WIN'),
+	// the intro's fourth panel title (Chaos Lab's read the SDK's FREE SPINS)
+	cashRespinsTitle: () => t('CASH RESPINS'),
 	// Cash Respins (Chaos Lab 2): the FS counter's label, and the intro's count
 	// word where there is no title art (showsBakedArt). English only so far: the
 	// other catalogs fall back to these keys until the translation pass.
 	respinsLeft: () => t('RESPINS LEFT'),
 	respins: () => t('RESPINS'),
+	// the respins intro's line under "3 RESPINS", when the grid starts with frames
+	withFrames: () => t('WITH __0__ MULTIPLIER FRAMES'),
 
 	/**
 	 * BuyShop + BuyConfirm. Titles and pitches carry no restricted word, so
@@ -57,23 +74,26 @@ export const i18nDerived = {
 	on: () => t('ON'),
 	off: () => t('OFF'),
 	buyWord: () => social('PLAY', 'BUY'),
-	offerOperation: () => t('OPERATION FREE SPINS'),
-	offerMutant: () => t('MUTANT FREE SPINS'),
-	offerOvercharged: () => t('OVERCHARGED FREE SPINS'),
+	// Chaos Lab 2's modes (its Game Rules Specification, 2026-11-04): the three
+	// buys go straight into Cash Respins
+	offerOperation: () => t('OPERATION RESPINS'),
+	offerMutant: () => t('MUTANT RESPINS'),
+	offerOvercharged: () => t('OVERCHARGED RESPINS'),
 	offerChaos: () => t('CHAOS MODE'),
-	offerBoost: () => t('FREE SPINS BOOST'),
-	// __0__ = the free spins counts ("10, 15 or 20")
+	offerBoost: () => t('BONUS BOOST'),
 	offerOperationText: () =>
-		t('Straight into Free Spins. The number of spins is drawn at random: __0__.'),
+		t('Straight into Cash Respins. They start at random as the 4, 5 or 6 Scatter version.'),
+	// __0__ = the positions framed at the start (10), __1__ / __2__ = the lowest /
+	// highest starting frame ("×2" / "×50")
 	offerMutantText: () =>
-		t('Free Spins with far more Multipliers, Cloners and Bombs. __0__ spins at random.'),
-	// __0__ / __1__ = the lowest / highest starting multiplier, __2__ = the counts
+		t('Cash Respins with __0__ multiplier frames from the start, __1__ to __2__.'),
+	// __0__ / __1__ = the lowest / highest starting frame ("×2" / "×100")
 	offerOverchargedText: () =>
-		t('Free Spins that start with a total multiplier of __0__ to __1__. __2__ spins at random.'),
+		t('Cash Respins with every position framed from the start, __0__ to __1__.'),
 	// __0__ / __1__ = "2.7×" / "1.3×" (buyOptions.ts)
 	offerChaosText: () =>
-		t('Multipliers, Cloners & Bombs appear __0__ more often. Free Spins trigger __1__ more often.'),
-	offerBoostText: () => t('Free Spins trigger __0__ more often.'),
+		t('Multipliers, Cloners & Bombs appear __0__ more often. Cash Respins trigger __1__ more often.'),
+	offerBoostText: () => t('Cash Respins trigger __0__ more often.'),
 
 	/**
 	 * GameRules + PayTable. English sentences are the keys. Every figure is a
@@ -95,8 +115,8 @@ export const i18nDerived = {
 	rulesBomb: () => t('Bomb'),
 	rulesCloner: () => t('Cloner'),
 	rulesOrderOfPlay: () => t('Order of Play'),
-	rulesFreeSpins: () => t('Free Spins'),
-	rulesSwitchModes: () => t('Chaos Mode and Free Spins Boost'),
+	rulesCashRespins: () => t('Cash Respins'),
+	rulesSwitchModes: () => t('Chaos Mode and Bonus Boost'),
 	rulesBuyModes: () => social('Feature Play', 'Buy Feature'),
 	rulesGeneral: () => t('General Rules'),
 	rulesUiGuide: () => t('User Interface Guide'),
@@ -104,10 +124,10 @@ export const i18nDerived = {
 	// mode names
 	modeBase: () => t('Main game'),
 	modeChaos: () => t('Chaos Mode'),
-	modeBoost: () => t('Free Spins Boost'),
-	modeOperation: () => t('Operation Free Spins'),
-	modeMutant: () => t('Mutant Free Spins'),
-	modeOvercharged: () => t('Overcharged Free Spins'),
+	modeBoost: () => t('Bonus Boost'),
+	modeOperation: () => t('Operation Respins'),
+	modeMutant: () => t('Mutant Respins'),
+	modeOvercharged: () => t('Overcharged Respins'),
 	// table headers
 	colMode: () => t('Mode'),
 	colCost: () => social('Value', 'Cost'),
@@ -116,8 +136,8 @@ export const i18nDerived = {
 	// Game Overview
 	rulesOverviewText: () =>
 		social(
-			'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 regular symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.',
-			'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.',
+			'Chaos Lab 2 is a 6-reel, 5-row cascading slot. There are 9 regular symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner. Its feature is Cash Respins: Coins land on the grid, and Multipliers, Cloners and Bombs grow them into one total win.',
+			'Chaos Lab 2 is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner. Its feature is Cash Respins: Coins land on the grid, and Multipliers, Cloners and Bombs grow them into one total win.',
 		),
 	// Game Modes
 	rulesGameModesText: () =>
@@ -140,11 +160,12 @@ export const i18nDerived = {
 			'A Wild is created only when a Bomb explodes. It substitutes for every paying symbol at the same time and counts toward each of them, so one Wild can be part of several wins. Wilds alone do not form a win.',
 		),
 	// Scatter
+	// __0__ = how many positions start framed (5 / 10)
 	rulesScatterText: () =>
-		t('Scatters do not form wins and are never removed during a spin. The number of Scatters on the screen when the spin ends decides the free spins, including Scatters that dropped in during tumbles:'),
-	rulesScatter4: () => t('4 Scatters award 10 free spins.'),
-	rulesScatter5: () => t('5 Scatters award 15 free spins.'),
-	rulesScatter6: () => t('6 or more Scatters award 20 free spins.'),
+		t('Scatters do not form wins and are never removed during a spin. 4 or more Scatters on the screen when the spin ends start Cash Respins, including Scatters that dropped in during tumbles. Their number decides how the grid starts:'),
+	rulesScatter4: () => t('4 Scatters: the grid starts empty.'),
+	rulesScatter5: () => t('5 Scatters: __0__ positions start with a multiplier frame.'),
+	rulesScatter6: () => t('6 or more Scatters: __0__ positions start with a multiplier frame.'),
 	// Multiplier
 	rulesMultiplierText: () =>
 		t('Multipliers are collected into a total multiplier that multiplies every win awarded after them. Multipliers, Bombs and Cloners can appear on the first screen of a spin or among the new symbols that drop in during tumbles.'),
@@ -156,8 +177,8 @@ export const i18nDerived = {
 		t('Total multiplier: the sum of all Multiplier values collected. It multiplies every win awarded after it is collected. Wins awarded earlier in the spin are not multiplied. With no Multiplier collected, wins are not multiplied.'),
 	rulesMultBase: () =>
 		t('Base game: the total multiplier starts empty on every spin and lasts only for that spin.'),
-	rulesMultFs: () =>
-		t('Free spins: the total multiplier lasts for the whole free spins round (see Free Spins).'),
+	rulesMultCash: () =>
+		t('Cash Respins: Multipliers work differently there, as multiplier frames (see Cash Respins).'),
 	// Bomb
 	rulesBombText: () =>
 		social(
@@ -198,39 +219,58 @@ export const i18nDerived = {
 	rulesOrder3: () => t('If there is no win, all Bombs explode.'),
 	rulesOrder4: () => t('If there is no win and no Bomb, the Cloner activates.'),
 	rulesOrder5: () => t('When there is no win, no Bomb and no Cloner, the spin ends.'),
-	// Free Spins
-	rulesFreeSpinsText: () =>
-		t('4, 5, or 6 or more Scatters at the end of a base game spin award 10, 15 or 20 free spins, played with a total multiplier that keeps growing for the whole round. Free spins follow all base game rules, with these differences:'),
-	rulesFsPersistent: () =>
-		t('Persistent multiplier: the total multiplier is not reset between free spins. Every Multiplier collected during the round adds to it, and it multiplies every win until the round ends. A multiplier collected on the triggering base game spin is not carried into free spins.'),
-	rulesFsFeatures: () =>
-		t('Features: Multipliers, Bombs and Cloners appear more often than in the base game.'),
-	rulesFsRetrigger: () =>
-		t('Retrigger: 3 or more Scatters at the end of a free spin award 5 extra free spins. There is no limit on retriggers.'),
-	// Chaos Mode + Free Spins Boost (the RGS ante modes): __0__ = cost,
+	// Cash Respins (Chaos Lab 2's feature). __n__ = values from rulesData
+	// (lists formatted per locale), the bet word, the respin count
+	rulesCashText: () =>
+		t('4 or more Scatters at the end of a base game spin start Cash Respins on the 6×5 grid with __0__ respins. Only Coins, Multipliers, Cloners and Bombs land during Cash Respins.'),
+	rulesCashStart: () =>
+		t('Start: the number of Scatters decides how the grid starts (see Scatter). Starting multiplier frames are worth __0__. Mutant Respins and Overcharged Respins always start with frames, as described below.'),
+	// (not rulesCashRespins: that is the section's header, and a second key of
+	// that name silently replaced it, so the header showed this sentence)
+	rulesCashRespinsRule: () =>
+		t('Respins: new symbols land on empty positions, all at the same time. Every respin where a symbol lands resets the respins to __0__.'),
+	rulesCashCoin: () =>
+		t('Coin: worth __0__ the base __1__. It stays on the grid until the end and is multiplied by the frame under it.'),
+	rulesCashMultiplier: () =>
+		t('Multiplier: worth __0__. It leaves a frame on its position, or adds its value to the frame already there. Frame values add up, to a maximum of __1__, and frames stay for the whole feature.'),
+	rulesCashCloner: () =>
+		t('Cloner: it turns into a coin and spreads __0__ to __1__ more coins onto empty positions, fewer if the grid is nearly full, each with its own value. Each coin is multiplied by the frame it lands on.'),
+	// __2__ = Overcharged Respins' extra Bomb value (×50)
+	rulesCashBomb: () =>
+		t('Bomb: worth __0__ the base __1__ (in Overcharged Respins, also __2__), multiplied by the frame under it. It turns into a coin of that value and adds the same value to every coin in the 3×3 area around it.'),
+	rulesCashOrderText: () => t('After the symbols of a respin land, they act in this order:'),
+	rulesCashOrder1: () => t('Multipliers leave or grow their frames and disappear.'),
+	rulesCashOrder2: () => t('Coins are multiplied by the frame under them.'),
+	rulesCashOrder3: () => t('The Cloner turns into a coin and spreads its coins.'),
+	rulesCashOrder4: () => t('Bombs turn into coins and add their value to the coins around them.'),
+	rulesCashEnd: () =>
+		t('End: the feature ends when no respins are left or all __0__ positions hold a coin. The win is the total of all coin values, as a multiple of the base __1__.'),
+	// Chaos Mode + Bonus Boost (the RGS ante modes): __0__ = cost,
 	// __1__ = betWord. No statistics here or anywhere in the rules: RTP and max
 	// win are the only math figures a player sees (rulesData.ts)
 	rulesSwitchModesText: () =>
-		t('Chaos Mode and Free Spins Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.'),
+		t('Chaos Mode and Bonus Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.'),
 	rulesChaos: () =>
-		t('Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and free spins trigger more often.'),
+		t('Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and Cash Respins trigger more often.'),
 	rulesBoost: () =>
-		t('Free Spins Boost: __0__ the base __1__ per spin. Free spins trigger more often, and triggers with 5 or more Scatters, which award more free spins, become more likely. The base game is otherwise the same as the main game.'),
-	// the three bought free spins modes: __0__ = cost, __1__ = betWord; the
-	// intro's __0__ = the possible free-spins counts, Overcharged's __2__ = the
-	// possible starting multipliers (values only, never their chances)
+		t('Bonus Boost: __0__ the base __1__ per spin. Cash Respins trigger more often. The base game is otherwise the same as the main game.'),
+	// the three bought modes: __0__ = cost, __1__ = betWord. Mutant: __2__ = the
+	// positions framed at the start, __3__ = their possible values. Overcharged:
+	// __2__ = all positions, __3__ = the possible frame values, __4__ = its extra
+	// Bomb value (values only, never their chances; 'more often' / 'more likely'
+	// is as far as the text goes)
 	rulesBuyModesText: () =>
-		t('Each of these three modes goes straight into free spins, without a base game spin, and asks for confirmation before it starts. The number of free spins is drawn at random: __0__.'),
+		t('Each of these three modes goes straight into Cash Respins, without a base game spin, and asks for confirmation before it starts.'),
 	rulesOperation: () =>
-		t('__0__ the base __1__. The free spins are the same as in the main game.'),
+		t('__0__ the base __1__. Cash Respins start at random as the 4, 5, or 6 or more Scatter version and are the same as in the main game.'),
 	rulesMutant: () =>
-		t('__0__ the base __1__. Free spins where Multipliers, Bombs and Cloners appear much more often than in the main game.'),
+		t('__0__ the base __1__. Cash Respins where __2__ positions always start with a multiplier frame, each worth __3__. Multipliers and Bombs land more often than in Operation Respins, and Multipliers are more likely to land on the highest frames.'),
 	rulesOvercharged: () =>
-		t('__0__ the base __1__. Free spins that start with a persistent total multiplier already active, drawn at random from __2__. Multipliers collected during the round add to it.'),
+		t('__0__ the base __1__. Cash Respins where all __2__ positions start with a multiplier frame, each worth __3__. Multipliers, Cloners and Bombs land more often on every respin, Multipliers are more likely to have high values, and Bombs can also be worth __4__.'),
 	// General Rules
 	rulesGeneral1: () =>
-		t("Wins from tumbles, features and free spins in one round are added together into the round's total win."),
-	rulesGeneral2: () => t('Scatters award free spins in any position.'),
+		t("Wins from tumbles, features and Cash Respins in one round are added together into the round's total win."),
+	rulesGeneral2: () => t('Scatters start Cash Respins in any position.'),
 	rulesGeneral3: () =>
 		t('The maximum win of each mode, listed under Game Modes, is the highest win that mode can award.'),
 	// User Interface Guide (__0__ = betWord)
@@ -240,8 +280,8 @@ export const i18nDerived = {
 	uiTurbo: () => t('Turbo: Speed up animations.'),
 	uiFeature: () =>
 		social(
-			'Feature Play (Scatter disc): Open the feature menu with the three free spins modes and the Chaos Mode and Free Spins Boost switches.',
-			'Buy Feature (Scatter disc): Open the feature menu with the three free spins modes and the Chaos Mode and Free Spins Boost switches.',
+			'Feature Play (Scatter disc): Open the feature menu with the three Cash Respins modes and the Chaos Mode and Bonus Boost switches.',
+			'Buy Feature (Scatter disc): Open the feature menu with the three Cash Respins modes and the Chaos Mode and Bonus Boost switches.',
 		),
 	uiPlusMinus: () => t('+/−: Increase or decrease the __0__ amount.'),
 	uiMenu: () => t('Menu (☰): Open the menu.'),
@@ -265,8 +305,21 @@ export const i18nDerived = {
 			'Created only when a Bomb explodes. Substitutes for every regular symbol and counts toward each of them. Wilds alone do not form a win.',
 			'Created only when a Bomb explodes. Substitutes for every paying symbol and counts toward each of them. Wilds alone do not form a win.',
 		),
+	// __0__ / __1__ = the positions framed at the start (5 / 10)
 	ptScatter: () =>
-		t('4 Scatters = 10 Free Spins\n5 Scatters = 15 Free Spins\n6 or more = 20 Free Spins\n3 or more during Free Spins = 5 more Free Spins'),
+		t('4 Scatters = Cash Respins\n5 Scatters = Cash Respins with __0__ multiplier frames\n6 or more = Cash Respins with __1__ multiplier frames'),
+	// the Cash Respins symbols' group (Chaos Lab 2): __n__ = values from rulesData
+	ptCashSymbols: () => t('Cash Respins Symbols'),
+	ptCoinName: () => t('Coin'),
+	ptCoin: () =>
+		t('Worth __0__ the base __1__. Stays on the grid until Cash Respins end, multiplied by the frame under it.'),
+	ptCashMultiplier: () =>
+		t('Worth __0__. Leaves a frame on its position, or adds to the frame there, up to __1__.'),
+	ptCashCloner: () =>
+		t('Turns into a coin and spreads __0__ to __1__ coins onto empty positions, fewer if the grid is nearly full.'),
+	// __1__ = Overcharged Respins' extra Bomb value (×50)
+	ptCashBomb: () =>
+		t('Worth __0__ (in Overcharged Respins, also __1__), multiplied by its frame. Turns into a coin and adds its value to every coin around it.'),
 	ptMultiplier: () =>
 		t('Worth __0__. Collected into the total multiplier before any win is awarded.'),
 	ptBomb: () =>

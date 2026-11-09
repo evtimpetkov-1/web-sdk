@@ -172,6 +172,18 @@ type BookEventCashRespinTrigger = {
 	positions: Position[];
 };
 
+// A bought round's first event (MEASURED 2026-11-06, Overcharged Respins buy,
+// betID 340324515): no base reveal, no trigger; cashRespinStart follows with the
+// starting frames (all 30 when allFrames).
+type BookEventBuyCashRespins = {
+	index: number;
+	type: 'buyCashRespins';
+	/** 4 / 5 / 6: the Scatter version the grid starts as (Overcharged sent 4) */
+	variant: number;
+	/** Overcharged Respins: every position starts framed */
+	allFrames?: boolean;
+};
+
 type BookEventCashRespinStart = {
 	index: number;
 	type: 'cashRespinStart';
@@ -280,6 +292,7 @@ export type BookEvent =
 	| BookEventFinalWin
 	| BookEventSetWin
 	| BookEventFreeSpinEnd
+	| BookEventBuyCashRespins
 	| BookEventCashRespinTrigger
 	| BookEventCashRespinStart
 	| BookEventCashRespinLand

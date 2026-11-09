@@ -5,7 +5,7 @@
 </script>
 
 <script lang="ts">
-	import { untrack, type Snippet } from 'svelte';
+	import { onMount, untrack, type Snippet } from 'svelte';
 	import { Tween } from 'svelte/motion';
 	import { cubicInOut } from 'svelte/easing';
 
@@ -89,6 +89,27 @@
 			: AMOUNT_MAX_WIDTH,
 	);
 
+	/**
+	 * The slot shakes as each title lands (SceneShake), harder per tier. The rig
+	 * has no impact events: its builder (art-review/madscience/bigwin/build_bigwin.py,
+	 * slam) stamps the last letter at T + 0.055 s x (letters - 1): big_in T 0.30 with
+	 * BIG WIN's 6 letters, to_mega / to_epic T 0.55 with 7. The rig plays at 1x.
+	 */
+	const SLAM_MS = { in: 575, to: 880 };
+	const SHAKES = { big: 'bigWin', mega: 'megaWin', epic: 'epicWin' } as const;
+	const timers = new Set<ReturnType<typeof setTimeout>>();
+	const shakeOnSlam = (tier: WinTier, ms: number) => {
+		const timer = setTimeout(() => {
+			timers.delete(timer);
+			context.eventEmitter.broadcast({ type: 'sceneShake', preset: SHAKES[tier] });
+		}, ms);
+		timers.add(timer);
+	};
+	onMount(() => {
+		shakeOnSlam('big', SLAM_MS.in);
+		return () => timers.forEach(clearTimeout);
+	});
+
 	const animationName = $derived(
 		phase === 'in' ? 'big_in' : phase === 'to' ? `to_${shown}` : `${shown}_${phase}`,
 	);
@@ -105,6 +126,7 @@
 		if (idx(props.tier) > idx(shown)) {
 			shown = WIN_TIERS[idx(shown) + 1];
 			phase = 'to';
+			shakeOnSlam(shown, SLAM_MS.to);
 			// BIG's stinger opened the presentation (winLevelMap); each upgrade stamps its own
 			context.eventEmitter.broadcast({
 				type: 'soundOnce',

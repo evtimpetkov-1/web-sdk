@@ -5,10 +5,19 @@
 	import { numberToWinCurrencyString } from 'utils-shared/amount';
 
 	import { i18nDerived } from '../i18n/i18nDerived';
-	import { drawnOrder, fill, formatOrList, formatTimes } from '../i18n/format';
+	import { drawnOrder, fill, formatNumber, formatOrList, formatTimes } from '../i18n/format';
 	import config from '../game/config';
 	import { GAME_VERSION } from '../game/constants';
-	import { MULTIPLIER_VALUES } from '../game/rulesData';
+	import {
+		CASH_BOMB_VALUES,
+		CASH_CLONER_COINS,
+		CASH_COIN_VALUES,
+		CASH_FRAME_MAX,
+		CASH_MULTIPLIER_VALUES,
+		CASH_OVERCHARGED_BOMB_MAX,
+		CASH_START_FRAMES,
+		MULTIPLIER_VALUES,
+	} from '../game/rulesData';
 	import { fitColumns } from './fitColumns';
 
 	/**
@@ -34,6 +43,9 @@
 		mult: new URL('../../assets/madscience/paytable/mult.webp', import.meta.url).href,
 		bomb: new URL('../../assets/madscience/paytable/bomb.webp', import.meta.url).href,
 		cloner: new URL('../../assets/madscience/paytable/cloner.webp', import.meta.url).href,
+		// Cash Respins (Chaos Lab 2): art-review/chaoslab2/respins/make_paytable_art.py
+		coin: new URL('../../assets/chaoslab2/paytable/coin.webp', import.meta.url).href,
+		cashMult: new URL('../../assets/chaoslab2/paytable/cash_mult.webp', import.meta.url).href,
 	};
 
 	type PayingSymbol = 'H1' | 'H2' | 'H3' | 'H4' | 'L1' | 'L2' | 'L3' | 'L4' | 'L5';
@@ -78,7 +90,15 @@
 
 	const specials = $derived([
 		{ img: IMG.wild, name: i18nDerived.rulesWild(), text: i18nDerived.ptWild() },
-		{ img: IMG.bonus, name: i18nDerived.rulesScatter(), text: i18nDerived.ptScatter() },
+		{
+			img: IMG.bonus,
+			name: i18nDerived.rulesScatter(),
+			text: fill(
+				i18nDerived.ptScatter(),
+				formatNumber(CASH_START_FRAMES.five),
+				formatNumber(CASH_START_FRAMES.sixOrMore),
+			),
+		},
 		{
 			img: IMG.mult,
 			name: i18nDerived.rulesMultiplier(),
@@ -86,6 +106,35 @@
 		},
 		{ img: IMG.bomb, name: i18nDerived.rulesBomb(), text: i18nDerived.ptBomb() },
 		{ img: IMG.cloner, name: i18nDerived.rulesCloner(), text: i18nDerived.ptCloner() },
+	]);
+
+	// Cash Respins' own symbols: the values each can have, never how likely each one is
+	const list = (values: number[]) => formatOrList(values.map(formatTimes));
+	const cashSymbols = $derived([
+		{
+			img: IMG.coin,
+			name: i18nDerived.ptCoinName(),
+			text: fill(i18nDerived.ptCoin(), list(CASH_COIN_VALUES), i18nDerived.betWord()),
+		},
+		{
+			img: IMG.cashMult,
+			name: i18nDerived.rulesMultiplier(),
+			text: fill(i18nDerived.ptCashMultiplier(), list(CASH_MULTIPLIER_VALUES), formatTimes(CASH_FRAME_MAX)),
+		},
+		{
+			img: IMG.cloner,
+			name: i18nDerived.rulesCloner(),
+			text: fill(
+				i18nDerived.ptCashCloner(),
+				formatNumber(CASH_CLONER_COINS.min),
+				formatNumber(CASH_CLONER_COINS.max),
+			),
+		},
+		{
+			img: IMG.bomb,
+			name: i18nDerived.rulesBomb(),
+			text: fill(i18nDerived.ptCashBomb(), list(CASH_BOMB_VALUES), formatTimes(CASH_OVERCHARGED_BOMB_MAX)),
+		},
 	]);
 
 	// pays are base-bet multiples, shown in currency at the current base bet
@@ -107,6 +156,21 @@
 				<h2>{i18nDerived.ptSpecialSymbols()}</h2>
 				<div class="specials">
 					{#each specials as special}
+						<div class="special">
+							<img src={special.img} alt={special.name} />
+							<div>
+								<span class="name">{special.name}</span>
+								<p>{special.text}</p>
+							</div>
+						</div>
+					{/each}
+				</div>
+			</section>
+
+			<section>
+				<h2>{i18nDerived.ptCashSymbols()}</h2>
+				<div class="specials">
+					{#each cashSymbols as special}
 						<div class="special">
 							<img src={special.img} alt={special.name} />
 							<div>

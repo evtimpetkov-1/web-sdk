@@ -4,8 +4,11 @@
 	export type EmitterEventFreeSpinIntro =
 		| { type: 'freeSpinIntroShow' }
 		| { type: 'freeSpinIntroHide' }
-		/** `word: 'respins'`: Chaos Lab 2's Cash Respins ("3 RESPINS") */
-		| { type: 'freeSpinIntroUpdate'; totalFreeSpins: number; word?: 'freeSpins' | 'respins' };
+		/**
+		 * `word: 'respins'`: Chaos Lab 2's Cash Respins ("3 RESPINS"); `frames`: the
+		 * grid's starting multiplier frames, a purple line under it when there are any
+		 */
+		| { type: 'freeSpinIntroUpdate'; totalFreeSpins: number; word?: 'freeSpins' | 'respins'; frames?: number };
 
 	// msFsPopup content in rig px (1600x1000 box, centre y 500): the plate's width
 	// and middle row, the top of the lamp's hoses (it hangs above the box), the
@@ -98,7 +101,8 @@
 	} from 'pixi-svelte';
 
 	import { getContext } from '../game/context';
-	import { ART_STONE, ART_YELLOW, BLACK_OPS_CAP_OFFSET, artTitleText } from '../game/textStyles';
+	import { ART_PURPLE, ART_STONE, ART_YELLOW, BLACK_OPS_CAP_OFFSET, artTitleText } from '../game/textStyles';
+	import { fill } from '../i18n/format';
 	import { i18nDerived, showsBakedArt } from '../i18n/i18nDerived';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -131,11 +135,20 @@
 	// the translated FREE SPINS word (no art): its size, and the widest the line may run
 	const WORD_SIZE = 118;
 	const LINE_MAX_WIDTH = 860;
+	// "WITH 5 MULTIPLIER FRAMES" (Evtim, 2026-11-04): the plate has no free row under
+	// the count line, so with frames that line rises and shrinks, the purple one
+	// sits below it, both inside the plate (rig px, from the line's bone)
+	const FRAMES_LINE_Y = -23;
+	const FRAMES_LINE_SCALE = 0.78;
+	const FRAMES_Y = 58;
+	const FRAMES_SIZE = 46;
+	const framesStyle = artTitleText(FRAMES_SIZE, ART_PURPLE, '#2a0638');
 
 	let show = $state(false);
 	let phase = $state<Phase>('in');
 	let total = $state(0);
 	let word = $state<'freeSpins' | 'respins'>('freeSpins');
+	let frames = $state(0);
 	let oncomplete = $state(() => {});
 	// the translated word's width at WORD_SIZE, measured off an unscaled copy
 	let wordNaturalWidth = $state(0);
@@ -161,6 +174,7 @@
 		freeSpinIntroUpdate: async (emitterEvent) => {
 			total = emitterEvent.totalFreeSpins;
 			word = emitterEvent.word ?? 'freeSpins';
+			frames = emitterEvent.frames ?? 0;
 			await waitForResolve((resolve) => (oncomplete = resolve));
 		},
 	});
@@ -189,46 +203,58 @@
 			}}
 		/>
 		<SpineSlot slotName="slot_line">
-			<Container x={-lineWidth / 2}>
-				<BitmapText
-					x={textWidth / 2}
-					anchor={0.5}
-					text={String(total)}
-					style={{ fontFamily: 'fsintro-digits', fontSize: DIGIT_SIZE, fill: 0xffffff }}
-				/>
-				{#if bakedArt && word === 'respins'}
-					<Sprite
-						key="cl2RespinsWord"
+			<Container y={frames ? FRAMES_LINE_Y : 0} scale={frames ? FRAMES_LINE_SCALE : 1}>
+				<Container x={-lineWidth / 2}>
+					<BitmapText
+						x={textWidth / 2}
 						anchor={0.5}
-						x={textWidth + GAP + RESPINS_WIDTH / 2}
-						width={RESPINS_WIDTH}
-						height={RESPINS_HEIGHT}
+						text={String(total)}
+						style={{ fontFamily: 'fsintro-digits', fontSize: DIGIT_SIZE, fill: 0xffffff }}
 					/>
-				{:else if bakedArt}
-					<Sprite
-						key="fsIntroFreeSpinsTxt"
-						anchor={0.5}
-						x={textWidth + GAP + FS_WIDTH / 2}
-						width={FS_WIDTH}
-						height={FS_HEIGHT}
-					/>
-				{:else}
-					<Container visible={false}>
+					{#if bakedArt && word === 'respins'}
+						<Sprite
+							key="cl2RespinsWord"
+							anchor={0.5}
+							x={textWidth + GAP + RESPINS_WIDTH / 2}
+							width={RESPINS_WIDTH}
+							height={RESPINS_HEIGHT}
+						/>
+					{:else if bakedArt}
+						<Sprite
+							key="fsIntroFreeSpinsTxt"
+							anchor={0.5}
+							x={textWidth + GAP + FS_WIDTH / 2}
+							width={FS_WIDTH}
+							height={FS_HEIGHT}
+						/>
+					{:else}
+						<Container visible={false}>
+							<Text
+								text={wordText}
+								style={wordStyle}
+								onresize={(sizes) => (wordNaturalWidth = sizes.width)}
+							/>
+						</Container>
 						<Text
+							anchor={0.5}
+							x={textWidth + GAP + wordWidth / 2}
+							y={-WORD_SIZE * BLACK_OPS_CAP_OFFSET * wordScale}
+							scale={wordScale}
 							text={wordText}
 							style={wordStyle}
-							onresize={(sizes) => (wordNaturalWidth = sizes.width)}
 						/>
-					</Container>
-					<Text
-						anchor={0.5}
-						x={textWidth + GAP + wordWidth / 2}
-						y={-WORD_SIZE * BLACK_OPS_CAP_OFFSET * wordScale}
-						scale={wordScale}
-						text={wordText}
-						style={wordStyle}
-					/>
-				{/if}
+					{/if}
+				</Container>
+			</Container>
+			<!-- the grid's starting frames, in the respin multipliers' purple -->
+			<Container visible={frames > 0}>
+				<ResponsiveText
+					anchor={0.5}
+					y={FRAMES_Y - FRAMES_SIZE * BLACK_OPS_CAP_OFFSET}
+					maxWidth={LINE_MAX_WIDTH}
+					text={fill(i18nDerived.withFrames(), frames)}
+					style={framesStyle}
+				/>
 			</Container>
 		</SpineSlot>
 		{#if !bakedArt}

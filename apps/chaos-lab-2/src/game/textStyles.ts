@@ -81,6 +81,8 @@ export const artTitleText = (
 });
 export const ART_STONE = '#ebe4d8';
 export const ART_YELLOW = '#ffbe1e';
+/** Chaos Lab 2: the respin multipliers' purple (cl2-multiplier), lifted to read on the plate */
+export const ART_PURPLE = '#d24bff';
 
 /** The intro's WIN UP TO banner as text: the art's acid green, in the display face. */
 export const winUpToText = (fontSize: number): TextStyleOptions => ({

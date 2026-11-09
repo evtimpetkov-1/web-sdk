@@ -1,4 +1,4 @@
-// Mad Science's own strings (keys = the English text, see en.ts). Figures are
+// Chaos Lab 2's own strings (keys = the English text, see en.ts). Figures are
 // __n__ placeholders filled at runtime; the bet word is written into each sentence.
 export default {
 	'PRESS ANYWHERE TO CONTINUE': 'اضغط في أي مكان للمتابعة',
@@ -11,32 +11,36 @@ export default {
 	'BOMBS & CLONERS': 'القنابل والمستنسخات',
 	'Bombs blast their area and leave a Wild. Cloners turn symbols into copies of one.':
 		'تفجّر القنابل منطقتها وتترك Wild. تحوّل المستنسخات الرموز إلى نسخ من رمز واحد.',
-	'4 or more Scatters award 10 to 20 Free Spins. The multiplier keeps growing.':
-		'4 رموز Scatter أو أكثر تمنح من 10 إلى 20 دورة مجانية. يواصل المضاعف النمو.',
+	'CASH RESPINS': 'دورات الإعادة النقدية',
+	'4 or more Scatters start Cash Respins. Coins land, and Multipliers, Cloners and Bombs grow them.':
+		'4 رموز Scatter أو أكثر تبدأ دورات الإعادة النقدية. تهبط العملات، وتنمّيها المضاعفات والمستنسخات والقنابل.',
 	'WIN UP TO __0__': 'اربح حتى __0__',
 	'CONGRATULATIONS!': 'تهانينا!',
 	'YOU WON': 'لقد ربحت',
 	'TOTAL WIN': 'إجمالي الربح',
+	'RESPINS LEFT': 'دورات الإعادة المتبقية',
+	RESPINS: 'دورات إعادة',
+	'WITH __0__ MULTIPLIER FRAMES': 'مع __0__ من إطارات المضاعف',
 	'BUY FEATURE': 'شراء الميزة',
 	'BOOST MODES': 'أوضاع التعزيز',
 	'PER SPIN': 'لكل دورة',
 	ON: 'تشغيل',
 	OFF: 'إيقاف',
 	BUY: 'شراء',
-	'OPERATION FREE SPINS': 'دورات العملية المجانية',
-	'MUTANT FREE SPINS': 'دورات المتحوّل المجانية',
-	'OVERCHARGED FREE SPINS': 'دورات مجانية فائقة الشحن',
+	'OPERATION RESPINS': 'دورات إعادة العملية',
+	'MUTANT RESPINS': 'دورات إعادة المتحوّل',
+	'OVERCHARGED RESPINS': 'دورات إعادة فائقة الشحن',
 	'CHAOS MODE': 'وضع الفوضى',
-	'FREE SPINS BOOST': 'تعزيز الدورات المجانية',
-	'Straight into Free Spins. The number of spins is drawn at random: __0__.':
-		'مباشرة إلى الدورات المجانية. يُسحب عدد الدورات عشوائيًا: __0__.',
-	'Free Spins with far more Multipliers, Cloners and Bombs. __0__ spins at random.':
-		'دورات مجانية بعدد أكبر بكثير من المضاعفات والمستنسخات والقنابل. __0__ دورة عشوائيًا.',
-	'Free Spins that start with a total multiplier of __0__ to __1__. __2__ spins at random.':
-		'دورات مجانية تبدأ بمضاعف إجمالي من __0__ إلى __1__. __2__ دورة عشوائيًا.',
-	'Multipliers, Cloners & Bombs appear __0__ more often. Free Spins trigger __1__ more often.':
-		'تظهر المضاعفات والمستنسخات والقنابل أكثر بمقدار __0__. وتُفعَّل الدورات المجانية أكثر بمقدار __1__.',
-	'Free Spins trigger __0__ more often.': 'تُفعَّل الدورات المجانية أكثر بمقدار __0__.',
+	'BONUS BOOST': 'تعزيز المكافأة',
+	'Straight into Cash Respins. They start at random as the 4, 5 or 6 Scatter version.':
+		'مباشرة إلى دورات الإعادة النقدية. تبدأ عشوائيًا بنسخة 4 أو 5 أو 6 رموز Scatter.',
+	'Cash Respins with __0__ multiplier frames from the start, __1__ to __2__.':
+		'دورات إعادة نقدية مع __0__ من إطارات المضاعف منذ البداية، من __1__ إلى __2__.',
+	'Cash Respins with every position framed from the start, __0__ to __1__.':
+		'دورات إعادة نقدية بإطار على كل موضع منذ البداية، من __0__ إلى __1__.',
+	'Multipliers, Cloners & Bombs appear __0__ more often. Cash Respins trigger __1__ more often.':
+		'تظهر المضاعفات والمستنسخات والقنابل أكثر بمقدار __0__. وتُفعَّل دورات الإعادة النقدية أكثر بمقدار __1__.',
+	'Cash Respins trigger __0__ more often.': 'تُفعَّل دورات الإعادة النقدية أكثر بمقدار __0__.',
 	bet: 'الرهان',
 	'Game Overview': 'نظرة عامة على اللعبة',
 	'Game Modes': 'أوضاع اللعب',
@@ -48,24 +52,24 @@ export default {
 	Bomb: 'القنبلة',
 	Cloner: 'المستنسخ',
 	'Order of Play': 'ترتيب اللعب',
-	'Free Spins': 'الدورات المجانية',
-	'Chaos Mode and Free Spins Boost': 'وضع الفوضى وتعزيز الدورات المجانية',
+	'Cash Respins': 'دورات الإعادة النقدية',
+	'Chaos Mode and Bonus Boost': 'وضع الفوضى وتعزيز المكافأة',
 	'Buy Feature': 'شراء الميزة',
 	'General Rules': 'القواعد العامة',
 	'User Interface Guide': 'دليل واجهة المستخدم',
 	Disclaimer: 'إخلاء المسؤولية',
 	'Main game': 'اللعبة الرئيسية',
 	'Chaos Mode': 'وضع الفوضى',
-	'Free Spins Boost': 'تعزيز الدورات المجانية',
-	'Operation Free Spins': 'دورات العملية المجانية',
-	'Mutant Free Spins': 'دورات المتحوّل المجانية',
-	'Overcharged Free Spins': 'دورات مجانية فائقة الشحن',
+	'Bonus Boost': 'تعزيز المكافأة',
+	'Operation Respins': 'دورات إعادة العملية',
+	'Mutant Respins': 'دورات إعادة المتحوّل',
+	'Overcharged Respins': 'دورات إعادة فائقة الشحن',
 	Mode: 'الوضع',
 	Cost: 'التكلفة',
 	RTP: 'RTP',
 	'Max win': 'أقصى ربح',
-	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Chaos Lab هي لعبة سلوت بالتساقط المتتالي من 6 بكرات و5 صفوف. تضم 9 رموز دافعة، 4 عالية و5 منخفضة، و5 رموز خاصة: Wild وScatter والمضاعف والقنبلة والمستنسخ.',
+	'Chaos Lab 2 is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner. Its feature is Cash Respins: Coins land on the grid, and Multipliers, Cloners and Bombs grow them into one total win.':
+		'Chaos Lab 2 هي لعبة سلوت بالتساقط المتتالي من 6 بكرات و5 صفوف. تضم 9 رموز دافعة، 4 عالية و5 منخفضة، و5 رموز خاصة: Wild وScatter والمضاعف والقنبلة والمستنسخ. ميزتها هي دورات الإعادة النقدية: تهبط العملات على الشبكة، وتنمّيها المضاعفات والمستنسخات والقنابل إلى ربح إجمالي واحد.',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'تحتوي اللعبة على ستة أوضاع. تكلفة كل وضع مضاعف للرهان الأساسي، وفي كل الأوضاع تكون جميع الأرباح مضاعفات للرهان الأساسي. نسبة RTP هي العائد النظري للاعب، محسوبة على عدد كبير من الجولات.',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':
@@ -74,11 +78,13 @@ export default {
 		'بعد كل ربح، تُزال الرموز الفائزة وجميع رموز Wild. تسقط الرموز المتبقية إلى الأسفل وتسقط رموز جديدة من الأعلى لملء المواضع الفارغة. يتكرر ذلك ما دامت تظهر أرباح جديدة.',
 	'A Wild is created only when a Bomb explodes. It substitutes for every paying symbol at the same time and counts toward each of them, so one Wild can be part of several wins. Wilds alone do not form a win.':
 		'لا يُنشأ Wild إلا عند انفجار قنبلة. يحل محل كل رمز دافع في الوقت نفسه ويُحتسب لكل منها، لذا يمكن أن يكون Wild واحد جزءًا من عدة أرباح. رموز Wild وحدها لا تشكل ربحًا.',
-	'Scatters do not form wins and are never removed during a spin. The number of Scatters on the screen when the spin ends decides the free spins, including Scatters that dropped in during tumbles:':
-		'لا تشكل رموز Scatter أرباحًا ولا تُزال أبدًا أثناء الدورة. يحدد عدد رموز Scatter على الشاشة عند انتهاء الدورة الدوراتِ المجانية، بما في ذلك رموز Scatter التي سقطت أثناء التساقط:',
-	'4 Scatters award 10 free spins.': '4 رموز Scatter تمنح 10 دورات مجانية.',
-	'5 Scatters award 15 free spins.': '5 رموز Scatter تمنح 15 دورة مجانية.',
-	'6 or more Scatters award 20 free spins.': '6 رموز Scatter أو أكثر تمنح 20 دورة مجانية.',
+	'Scatters do not form wins and are never removed during a spin. 4 or more Scatters on the screen when the spin ends start Cash Respins, including Scatters that dropped in during tumbles. Their number decides how the grid starts:':
+		'لا تشكل رموز Scatter أرباحًا ولا تُزال أبدًا أثناء الدورة. 4 رموز Scatter أو أكثر على الشاشة عند انتهاء الدورة تبدأ دورات الإعادة النقدية، بما في ذلك رموز Scatter التي سقطت أثناء التساقط. يحدد عددها كيف تبدأ الشبكة:',
+	'4 Scatters: the grid starts empty.': '4 رموز Scatter: تبدأ الشبكة فارغة.',
+	'5 Scatters: __0__ positions start with a multiplier frame.':
+		'5 رموز Scatter: يبدأ __0__ من المواضع بإطار مضاعف.',
+	'6 or more Scatters: __0__ positions start with a multiplier frame.':
+		'6 رموز Scatter أو أكثر: يبدأ __0__ من المواضع بإطار مضاعف.',
 	'Multipliers are collected into a total multiplier that multiplies every win awarded after them. Multipliers, Bombs and Cloners can appear on the first screen of a spin or among the new symbols that drop in during tumbles.':
 		'تُجمع المضاعفات في مضاعف إجمالي يضاعف كل ربح يُمنح بعدها. يمكن أن تظهر المضاعفات والقنابل والمستنسخات على الشاشة الأولى للدورة أو بين الرموز الجديدة التي تسقط أثناء التساقط.',
 	'Values: each Multiplier is worth __0__.': 'القيم: قيمة كل مضاعف __0__.',
@@ -90,8 +96,8 @@ export default {
 		'المضاعف الإجمالي: مجموع قيم كل المضاعفات المجمعة. يضاعف كل ربح يُمنح بعد جمعه. الأرباح الممنوحة في وقت سابق من الدورة لا تُضاعف. إن لم يُجمع أي مضاعف، فلا تُضاعف الأرباح.',
 	'Base game: the total multiplier starts empty on every spin and lasts only for that spin.':
 		'اللعبة الأساسية: يبدأ المضاعف الإجمالي فارغًا في كل دورة ويسري لتلك الدورة فقط.',
-	'Free spins: the total multiplier lasts for the whole free spins round (see Free Spins).':
-		'الدورات المجانية: يسري المضاعف الإجمالي طوال جولة الدورات المجانية بأكملها (راجع الدورات المجانية).',
+	'Cash Respins: Multipliers work differently there, as multiplier frames (see Cash Respins).':
+		'دورات الإعادة النقدية: تعمل المضاعفات هناك بشكل مختلف، كإطارات مضاعف (انظر دورات الإعادة النقدية).',
 	'A Bomb clears the paying symbols around it and turns into a Wild.':
 		'تُزيل القنبلة الرموز الدافعة من حولها وتتحول إلى Wild.',
 	'Landing: one or two Bombs can appear at the same time.':
@@ -123,31 +129,48 @@ export default {
 		'إن لم يكن هناك ربح ولا قنبلة، يُفعَّل المستنسخ.',
 	'When there is no win, no Bomb and no Cloner, the spin ends.':
 		'عندما لا يوجد ربح ولا قنبلة ولا مستنسخ، تنتهي الدورة.',
-	'4, 5, or 6 or more Scatters at the end of a base game spin award 10, 15 or 20 free spins, played with a total multiplier that keeps growing for the whole round. Free spins follow all base game rules, with these differences:':
-		'4 أو 5 أو 6 رموز Scatter أو أكثر في نهاية دورة من اللعبة الأساسية تمنح 10 أو 15 أو 20 دورة مجانية، تُلعب بمضاعف إجمالي يواصل النمو طوال الجولة. تتبع الدورات المجانية جميع قواعد اللعبة الأساسية، مع هذه الاختلافات:',
-	'Persistent multiplier: the total multiplier is not reset between free spins. Every Multiplier collected during the round adds to it, and it multiplies every win until the round ends. A multiplier collected on the triggering base game spin is not carried into free spins.':
-		'المضاعف الدائم: لا يُعاد ضبط المضاعف الإجمالي بين الدورات المجانية. يُضاف إليه كل مضاعف يُجمع أثناء الجولة، ويضاعف كل ربح حتى نهاية الجولة. المضاعف المجمّع في دورة اللعبة الأساسية التي فعّلت الميزة لا يُنقل إلى الدورات المجانية.',
-	'Features: Multipliers, Bombs and Cloners appear more often than in the base game.':
-		'الميزات: تظهر المضاعفات والقنابل والمستنسخات أكثر مما في اللعبة الأساسية.',
-	'Retrigger: 3 or more Scatters at the end of a free spin award 5 extra free spins. There is no limit on retriggers.':
-		'إعادة التفعيل: 3 رموز Scatter أو أكثر في نهاية دورة مجانية تمنح 5 دورات مجانية إضافية. لا حد لعدد مرات إعادة التفعيل.',
-	'Chaos Mode and Free Spins Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
-		'يُشغَّل وضع الفوضى وتعزيز الدورات المجانية ويُوقفان من قائمة الميزات أثناء توقف اللعبة. يمكن تشغيل واحد فقط في كل مرة. أثناء تشغيل أحدهما، تُلعب كل دورة بمضاعف الرهان الأساسي المبيّن أدناه، وتبقى الأرباح مضاعفات للرهان الأساسي.',
-	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and free spins trigger more often.':
-		'وضع الفوضى: __0__ الرهان الأساسي لكل دورة. تظهر المضاعفات والقنابل والمستنسخات أكثر في اللعبة الأساسية، وتُفعَّل الدورات المجانية أكثر.',
-	'Free Spins Boost: __0__ the base __1__ per spin. Free spins trigger more often, and triggers with 5 or more Scatters, which award more free spins, become more likely. The base game is otherwise the same as the main game.':
-		'تعزيز الدورات المجانية: __0__ الرهان الأساسي لكل دورة. تُفعَّل الدورات المجانية أكثر، ويصبح التفعيل بـ 5 رموز Scatter أو أكثر، الذي يمنح دورات مجانية أكثر، أكثر احتمالًا. وفيما عدا ذلك، اللعبة الأساسية مثل اللعبة الرئيسية.',
-	'Each of these three modes goes straight into free spins, without a base game spin, and asks for confirmation before it starts. The number of free spins is drawn at random: __0__.':
-		'ينتقل كل وضع من هذه الأوضاع الثلاثة مباشرة إلى الدورات المجانية، دون دورة من اللعبة الأساسية، ويطلب التأكيد قبل البدء. يُسحب عدد الدورات المجانية عشوائيًا: __0__.',
-	'__0__ the base __1__. The free spins are the same as in the main game.':
-		'__0__ الرهان الأساسي. الدورات المجانية مماثلة لتلك في اللعبة الرئيسية.',
-	'__0__ the base __1__. Free spins where Multipliers, Bombs and Cloners appear much more often than in the main game.':
-		'__0__ الرهان الأساسي. دورات مجانية تظهر فيها المضاعفات والقنابل والمستنسخات أكثر بكثير مما في اللعبة الرئيسية.',
-	'__0__ the base __1__. Free spins that start with a persistent total multiplier already active, drawn at random from __2__. Multipliers collected during the round add to it.':
-		'__0__ الرهان الأساسي. دورات مجانية تبدأ بمضاعف إجمالي دائم مفعّل مسبقًا، يُسحب عشوائيًا من __2__. تُضاف إليه المضاعفات المجمعة أثناء الجولة.',
-	"Wins from tumbles, features and free spins in one round are added together into the round's total win.":
-		'تُجمع أرباح التساقط والميزات والدورات المجانية في جولة واحدة في إجمالي ربح الجولة.',
-	'Scatters award free spins in any position.': 'تمنح رموز Scatter دورات مجانية في أي موضع.',
+	'4 or more Scatters at the end of a base game spin start Cash Respins on the 6×5 grid with __0__ respins. Only Coins, Multipliers, Cloners and Bombs land during Cash Respins.':
+		'4 رموز Scatter أو أكثر في نهاية دورة من اللعبة الأساسية تبدأ دورات الإعادة النقدية على شبكة 6×5 مع __0__ دورات إعادة. لا تهبط أثناء دورات الإعادة النقدية إلا العملات والمضاعفات والمستنسخات والقنابل.',
+	'Start: the number of Scatters decides how the grid starts (see Scatter). Starting multiplier frames are worth __0__. Mutant Respins and Overcharged Respins always start with frames, as described below.':
+		'البداية: يحدد عدد رموز Scatter كيف تبدأ الشبكة (انظر Scatter). تبلغ قيمة إطارات المضاعف الابتدائية __0__. تبدأ دورات إعادة المتحوّل ودورات إعادة فائقة الشحن دائمًا بإطارات، كما هو موضح أدناه.',
+	'Respins: new symbols land on empty positions, all at the same time. Every respin where a symbol lands resets the respins to __0__.':
+		'دورات الإعادة: تهبط رموز جديدة على المواضع الفارغة، كلها في الوقت نفسه. كل دورة إعادة يهبط فيها رمز تعيد عدد دورات الإعادة إلى __0__.',
+	'Coin: worth __0__ the base __1__. It stays on the grid until the end and is multiplied by the frame under it.':
+		'العملة: قيمتها __0__ الرهان الأساسي. تبقى على الشبكة حتى النهاية وتُضرب في الإطار الذي تحتها.',
+	'Multiplier: worth __0__. It leaves a frame on its position, or adds its value to the frame already there. Frame values add up, to a maximum of __1__, and frames stay for the whole feature.':
+		'المضاعف: قيمته __0__. يترك إطارًا في موضعه، أو يضيف قيمته إلى الإطار الموجود هناك. تُجمع قيم الإطارات حتى حد أقصى قدره __1__، وتبقى الإطارات طوال الميزة.',
+	'Cloner: it turns into a coin and spreads __0__ to __1__ more coins onto empty positions, fewer if the grid is nearly full, each with its own value. Each coin is multiplied by the frame it lands on.':
+		'المستنسخ: يتحول إلى عملة وينشر من __0__ إلى __1__ عملات إضافية على المواضع الفارغة، وأقل إذا كانت الشبكة شبه ممتلئة، لكل منها قيمتها الخاصة. تُضرب كل عملة في الإطار الذي تهبط عليه.',
+	'Bomb: worth __0__ the base __1__ (in Overcharged Respins, also __2__), multiplied by the frame under it. It turns into a coin of that value and adds the same value to every coin in the 3×3 area around it.':
+		'القنبلة: قيمتها __0__ الرهان الأساسي (وفي دورات إعادة فائقة الشحن أيضًا __2__)، مضروبة في الإطار الذي تحتها. تتحول إلى عملة بهذه القيمة وتضيف القيمة نفسها إلى كل عملة في منطقة 3×3 المحيطة بها.',
+	'After the symbols of a respin land, they act in this order:':
+		'بعد أن تهبط رموز دورة الإعادة، تعمل بهذا الترتيب:',
+	'Multipliers leave or grow their frames and disappear.':
+		'تترك المضاعفات إطاراتها أو تكبّرها ثم تختفي.',
+	'Coins are multiplied by the frame under them.': 'تُضرب العملات في الإطار الذي تحتها.',
+	'The Cloner turns into a coin and spreads its coins.': 'يتحول المستنسخ إلى عملة وينشر عملاته.',
+	'Bombs turn into coins and add their value to the coins around them.':
+		'تتحول القنابل إلى عملات وتضيف قيمتها إلى العملات المحيطة بها.',
+	'End: the feature ends when no respins are left or all __0__ positions hold a coin. The win is the total of all coin values, as a multiple of the base __1__.':
+		'النهاية: تنتهي الميزة عندما لا تتبقى دورات إعادة أو تحمل جميع المواضع الـ __0__ عملة. الربح هو مجموع قيم كل العملات، كمضاعف للرهان الأساسي.',
+	'Chaos Mode and Bonus Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
+		'يُشغَّل وضع الفوضى وتعزيز المكافأة ويُوقفان من قائمة الميزات أثناء توقف اللعبة. يمكن تشغيل واحد فقط في كل مرة. أثناء تشغيل أحدهما، تُلعب كل دورة بمضاعف الرهان الأساسي المبيّن أدناه، وتبقى الأرباح مضاعفات للرهان الأساسي.',
+	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and Cash Respins trigger more often.':
+		'وضع الفوضى: __0__ الرهان الأساسي لكل دورة. تظهر المضاعفات والقنابل والمستنسخات أكثر في اللعبة الأساسية، وتُفعَّل دورات الإعادة النقدية أكثر.',
+	'Bonus Boost: __0__ the base __1__ per spin. Cash Respins trigger more often. The base game is otherwise the same as the main game.':
+		'تعزيز المكافأة: __0__ الرهان الأساسي لكل دورة. تُفعَّل دورات الإعادة النقدية أكثر. وفيما عدا ذلك، اللعبة الأساسية هي نفسها اللعبة الرئيسية.',
+	'Each of these three modes goes straight into Cash Respins, without a base game spin, and asks for confirmation before it starts.':
+		'ينتقل كل وضع من هذه الأوضاع الثلاثة مباشرة إلى دورات الإعادة النقدية، دون دورة من اللعبة الأساسية، ويطلب التأكيد قبل البدء.',
+	'__0__ the base __1__. Cash Respins start at random as the 4, 5, or 6 or more Scatter version and are the same as in the main game.':
+		'__0__ الرهان الأساسي. تبدأ دورات الإعادة النقدية عشوائيًا بنسخة 4 أو 5 أو 6 رموز Scatter أو أكثر، وهي مماثلة لتلك في اللعبة الرئيسية.',
+	'__0__ the base __1__. Cash Respins where __2__ positions always start with a multiplier frame, each worth __3__. Multipliers and Bombs land more often than in Operation Respins, and Multipliers are more likely to land on the highest frames.':
+		'__0__ الرهان الأساسي. دورات إعادة نقدية يبدأ فيها __2__ من المواضع دائمًا بإطار مضاعف، قيمة كل منها __3__. تهبط المضاعفات والقنابل أكثر مما في دورات إعادة العملية، ومن المرجح أكثر أن تهبط المضاعفات على أعلى الإطارات.',
+	'__0__ the base __1__. Cash Respins where all __2__ positions start with a multiplier frame, each worth __3__. Multipliers, Cloners and Bombs land more often on every respin, Multipliers are more likely to have high values, and Bombs can also be worth __4__.':
+		'__0__ الرهان الأساسي. دورات إعادة نقدية تبدأ فيها جميع المواضع الـ __2__ بإطار مضاعف، قيمة كل منها __3__. تهبط المضاعفات والمستنسخات والقنابل أكثر في كل دورة إعادة، ومن المرجح أكثر أن تكون للمضاعفات قيم عالية، ويمكن أن تبلغ قيمة القنابل أيضًا __4__.',
+	"Wins from tumbles, features and Cash Respins in one round are added together into the round's total win.":
+		'تُجمع أرباح التساقط والميزات ودورات الإعادة النقدية في جولة واحدة في إجمالي ربح الجولة.',
+	'Scatters start Cash Respins in any position.':
+		'تبدأ رموز Scatter دورات الإعادة النقدية في أي موضع.',
 	'The maximum win of each mode, listed under Game Modes, is the highest win that mode can award.':
 		'أقصى ربح لكل وضع، المذكور ضمن أوضاع اللعب، هو أعلى ربح يمكن لذلك الوضع منحه.',
 	'Spin: Start a spin at the current __0__ amount.': 'الدوران: يبدأ دورة بمبلغ الرهان الحالي.',
@@ -155,8 +178,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'اللعب التلقائي: يدور تلقائيًا عددًا محددًا من المرات.',
 	'Turbo: Speed up animations.': 'سريع: يسرّع الرسوم المتحركة.',
-	'Buy Feature (Scatter disc): Open the feature menu with the three free spins modes and the Chaos Mode and Free Spins Boost switches.':
-		'شراء الميزة (قرص Scatter): يفتح قائمة الميزات التي تضم أوضاع الدورات المجانية الثلاثة ومفتاحي وضع الفوضى وتعزيز الدورات المجانية.',
+	'Buy Feature (Scatter disc): Open the feature menu with the three Cash Respins modes and the Chaos Mode and Bonus Boost switches.':
+		'شراء الميزة (قرص Scatter): يفتح قائمة الميزات التي تضم أوضاع دورات الإعادة النقدية الثلاثة ومفتاحي وضع الفوضى وتعزيز المكافأة.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: يزيد مبلغ الرهان أو يخفضه.',
 	'Menu (☰): Open the menu.': 'القائمة (☰): تفتح القائمة.',
 	'Paytable: View the symbol payout values.': 'جدول الدفع: يعرض قيم دفع الرموز.',
@@ -173,8 +196,18 @@ export default {
 	'Symbol Payouts': 'مدفوعات الرموز',
 	'Created only when a Bomb explodes. Substitutes for every paying symbol and counts toward each of them. Wilds alone do not form a win.':
 		'لا يُنشأ إلا عند انفجار قنبلة. يحل محل كل رمز دافع ويُحتسب لكل منها. رموز Wild وحدها لا تشكل ربحًا.',
-	'4 Scatters = 10 Free Spins\n5 Scatters = 15 Free Spins\n6 or more = 20 Free Spins\n3 or more during Free Spins = 5 more Free Spins':
-		'4 رموز Scatter = 10 دورات مجانية\n5 رموز Scatter = 15 دورة مجانية\n6 أو أكثر = 20 دورة مجانية\n3 أو أكثر أثناء الدورات المجانية = 5 دورات مجانية إضافية',
+	'4 Scatters = Cash Respins\n5 Scatters = Cash Respins with __0__ multiplier frames\n6 or more = Cash Respins with __1__ multiplier frames':
+		'4 رموز Scatter = دورات الإعادة النقدية\n5 رموز Scatter = دورات الإعادة النقدية مع __0__ من إطارات المضاعف\n6 أو أكثر = دورات الإعادة النقدية مع __1__ من إطارات المضاعف',
+	'Cash Respins Symbols': 'رموز دورات الإعادة النقدية',
+	Coin: 'العملة',
+	'Worth __0__ the base __1__. Stays on the grid until Cash Respins end, multiplied by the frame under it.':
+		'قيمتها __0__ الرهان الأساسي. تبقى على الشبكة حتى انتهاء دورات الإعادة النقدية، مضروبة في الإطار الذي تحتها.',
+	'Worth __0__. Leaves a frame on its position, or adds to the frame there, up to __1__.':
+		'قيمته __0__. يترك إطارًا في موضعه، أو يُضاف إلى الإطار الموجود هناك، حتى __1__.',
+	'Turns into a coin and spreads __0__ to __1__ coins onto empty positions, fewer if the grid is nearly full.':
+		'يتحول إلى عملة وينشر من __0__ إلى __1__ عملات على المواضع الفارغة، وأقل إذا كانت الشبكة شبه ممتلئة.',
+	'Worth __0__ (in Overcharged Respins, also __1__), multiplied by its frame. Turns into a coin and adds its value to every coin around it.':
+		'قيمتها __0__ (وفي دورات إعادة فائقة الشحن أيضًا __1__)، مضروبة في إطارها. تتحول إلى عملة وتضيف قيمتها إلى كل عملة حولها.',
 	'Worth __0__. Collected into the total multiplier before any win is awarded.':
 		'قيمته __0__. يُجمع في المضاعف الإجمالي قبل منح أي ربح.',
 	'When there is no win, it clears the paying symbols in the 3×3 area around it and stays as a Wild.':

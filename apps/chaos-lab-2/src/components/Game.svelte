@@ -46,6 +46,7 @@
 	import FreeSpinRetrigger from './FreeSpinRetrigger.svelte';
 	import Transition from './Transition.svelte';
 	import Mascot from './Mascot.svelte';
+	import SceneShake from './SceneShake.svelte';
 	import GameLogo from './GameLogo.svelte';
 	import BuyShop from './BuyShop.svelte';
 	import BuyConfirm from './BuyConfirm.svelte';
@@ -55,7 +56,7 @@
 	import ReplayOverlay from './ReplayOverlay.svelte';
 	import { applyBetModeMeta } from '../game/betModeMeta';
 	import { displayFont } from '../game/textStyles';
-	import { getResumedFreeSpinsEntry } from '../game/utils';
+	import { getResumedFeatureEntry } from '../game/utils';
 	import type { Bet } from '../game/typesBookEvent';
 
 	const context = getContext();
@@ -117,7 +118,7 @@
 	 * the curtains fade in already shut; the game mounts behind them; they part.
 	 * The curtains only show one start in five (Evtim, 2026-10-26); otherwise the
 	 * same swap happens behind a plain black fade.
-	 * A round reloaded inside its free spins opens on the free-spins theatre: it
+	 * A round reloaded inside its free spins or Cash Respins opens on the theatre: it
 	 * is dressed while the transition is shut, and the lab -> theatre cross-fade
 	 * (Background, 500 ms) runs out before it opens, so the base game never shows.
 	 * The resume snapshot (createBonusSnapshot) restores the rest.
@@ -132,7 +133,7 @@
 		await context.eventEmitter.broadcastAsync({
 			type: Math.random() < INTRO_CURTAIN_CHANCE ? 'transitionShowClosed' : 'transitionShowVeil',
 		});
-		if (getResumedFreeSpinsEntry(stateBet.betToResume as Bet | null)) {
+		if (getResumedFeatureEntry(stateBet.betToResume as Bet | null)) {
 			context.stateGame.gameType = 'freegame';
 			await waitForTimeout(BACKGROUND_FADE_MS);
 		}
@@ -161,38 +162,43 @@
 	{:else}
 		<ResumeBet />
 
-		<MainContainer>
-			<!-- zIndex -2: under the FS glow fill (-1) and the board -->
-			<BoardBacking />
-			<!-- scatter anticipation: under every symbol layer, so only empty cells show it -->
-			<AnticipationField />
-			<Board />
-			<!-- Chaos Lab 2's Cash Respins grid: where the reels are, under the pipes -->
-			<CashRespinBoard />
-			<BoardFrame />
-			<GlobalMultiplier />
-		</MainContainer>
+		<!-- the slot reacts to its big moments (bombs, the feature trigger, big win
+		     titles, the respin collect): the board layers shake as one, the
+		     background, mascot, logo, bar and popups stay still (SceneShake) -->
+		<SceneShake>
+			<MainContainer>
+				<!-- zIndex -2: under the FS glow fill (-1) and the board -->
+				<BoardBacking />
+				<!-- scatter anticipation: under every symbol layer, so only empty cells show it -->
+				<AnticipationField />
+				<Board />
+				<!-- Chaos Lab 2's Cash Respins grid: where the reels are, under the pipes -->
+				<CashRespinBoard />
+				<BoardFrame />
+				<GlobalMultiplier />
+			</MainContainer>
 
-		<MainContainer>
-			<TumbleBoard />
-			<!-- Cash Respins' blasts, casts and thrown values: over the pipes, like the tumble's -->
-			<CashRespinFx />
-			<ClusterWinAmounts />
-		</MainContainer>
+			<MainContainer>
+				<TumbleBoard />
+				<!-- Cash Respins' blasts, casts and thrown values: over the pipes, like the tumble's -->
+				<CashRespinFx />
+				<ClusterWinAmounts />
+			</MainContainer>
 
-		<MainContainer>
-			<MultiplierBoard />
-			<MovingClones />
-			<!-- the counters (FREE SPINS, TOTAL WIN, the base game's WIN): on the top
-			     pipe beside the plate, or in portrait on plates hanging from the reel
-			     window's bottom edge, where symbols spill (bonus disc, landings), so
-			     they draw above the symbol layers. Board-local units, so inside a
-			     MainContainer: outside one their board coordinates were read as raw
-			     canvas pixels and drifted with every window resize -->
-			<TumbleWinAmount />
-			<FreeSpinCounter />
-			<FreeSpinTotalWin />
-		</MainContainer>
+			<MainContainer>
+				<MultiplierBoard />
+				<MovingClones />
+				<!-- the counters (FREE SPINS, TOTAL WIN, the base game's WIN): on the top
+				     pipe beside the plate, or in portrait on plates hanging from the reel
+				     window's bottom edge, where symbols spill (bonus disc, landings), so
+				     they draw above the symbol layers. Board-local units, so inside a
+				     MainContainer: outside one their board coordinates were read as raw
+				     canvas pixels and drifted with every window resize -->
+				<TumbleWinAmount />
+				<FreeSpinCounter />
+				<FreeSpinTotalWin />
+			</MainContainer>
+		</SceneShake>
 
 		<Mascot />
 

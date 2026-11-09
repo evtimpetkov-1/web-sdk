@@ -1,4 +1,4 @@
-// Mad Science's own strings (keys = the English text, see en.ts). Figures are
+// Chaos Lab 2's own strings (keys = the English text, see en.ts). Figures are
 // __n__ placeholders filled at runtime; the bet word is written into each sentence.
 export default {
 	'PRESS ANYWHERE TO CONTINUE': 'TRYK HVOR SOM HELST FOR AT FORTSÆTTE',
@@ -11,32 +11,36 @@ export default {
 	'BOMBS & CLONERS': 'BOMBER & KLONERE',
 	'Bombs blast their area and leave a Wild. Cloners turn symbols into copies of one.':
 		'Bomber sprænger deres område og efterlader et Wild. Klonere gør symboler til kopier af ét symbol.',
-	'4 or more Scatters award 10 to 20 Free Spins. The multiplier keeps growing.':
-		'4 eller flere Scatters giver 10 til 20 gratisspins. Multiplikatoren bliver ved med at vokse.',
+	'CASH RESPINS': 'CASH-RESPINS',
+	'4 or more Scatters start Cash Respins. Coins land, and Multipliers, Cloners and Bombs grow them.':
+		'4 eller flere Scatters starter Cash-respins. Mønter lander, og Multiplikatorer, Klonere og Bomber får dem til at vokse.',
 	'WIN UP TO __0__': 'VIND OP TIL __0__',
 	'CONGRATULATIONS!': 'TILLYKKE!',
 	'YOU WON': 'DU VANDT',
 	'TOTAL WIN': 'SAMLET GEVINST',
+	'RESPINS LEFT': 'RESPINS TILBAGE',
+	RESPINS: 'RESPINS',
+	'WITH __0__ MULTIPLIER FRAMES': 'MED __0__ MULTIPLIKATORRAMMER',
 	'BUY FEATURE': 'KØB FUNKTION',
 	'BOOST MODES': 'BOOST-TILSTANDE',
 	'PER SPIN': 'PR. SPIN',
 	ON: 'TIL',
 	OFF: 'FRA',
 	BUY: 'KØB',
-	'OPERATION FREE SPINS': 'OPERATION-GRATISSPINS',
-	'MUTANT FREE SPINS': 'MUTANT-GRATISSPINS',
-	'OVERCHARGED FREE SPINS': 'OVERLADEDE GRATISSPINS',
+	'OPERATION RESPINS': 'OPERATION-RESPINS',
+	'MUTANT RESPINS': 'MUTANT-RESPINS',
+	'OVERCHARGED RESPINS': 'OVERLADEDE RESPINS',
 	'CHAOS MODE': 'KAOSTILSTAND',
-	'FREE SPINS BOOST': 'GRATISSPIN-BOOST',
-	'Straight into Free Spins. The number of spins is drawn at random: __0__.':
-		'Direkte til gratisspins. Antallet af spins trækkes tilfældigt: __0__.',
-	'Free Spins with far more Multipliers, Cloners and Bombs. __0__ spins at random.':
-		'Gratisspins med langt flere Multiplikatorer, Klonere og Bomber. __0__ spins tilfældigt.',
-	'Free Spins that start with a total multiplier of __0__ to __1__. __2__ spins at random.':
-		'Gratisspins, der starter med en samlet multiplikator på __0__ til __1__. __2__ spins tilfældigt.',
-	'Multipliers, Cloners & Bombs appear __0__ more often. Free Spins trigger __1__ more often.':
-		'Multiplikatorer, Klonere & Bomber dukker op __0__ oftere. Gratisspins udløses __1__ oftere.',
-	'Free Spins trigger __0__ more often.': 'Gratisspins udløses __0__ oftere.',
+	'BONUS BOOST': 'BONUS-BOOST',
+	'Straight into Cash Respins. They start at random as the 4, 5 or 6 Scatter version.':
+		'Direkte ind i Cash-respins. De starter tilfældigt som udgaven med 4, 5 eller 6 Scatters.',
+	'Cash Respins with __0__ multiplier frames from the start, __1__ to __2__.':
+		'Cash-respins med __0__ multiplikatorrammer fra start, __1__ til __2__.',
+	'Cash Respins with every position framed from the start, __0__ to __1__.':
+		'Cash-respins med en ramme på hver position fra start, __0__ til __1__.',
+	'Multipliers, Cloners & Bombs appear __0__ more often. Cash Respins trigger __1__ more often.':
+		'Multiplikatorer, Klonere & Bomber dukker op __0__ oftere. Cash-respins udløses __1__ oftere.',
+	'Cash Respins trigger __0__ more often.': 'Cash-respins udløses __0__ oftere.',
 	bet: 'indsats',
 	'Game Overview': 'Spilleoversigt',
 	'Game Modes': 'Spiltilstande',
@@ -48,24 +52,24 @@ export default {
 	Bomb: 'Bombe',
 	Cloner: 'Kloner',
 	'Order of Play': 'Spillets rækkefølge',
-	'Free Spins': 'Gratisspins',
-	'Chaos Mode and Free Spins Boost': 'Kaostilstand og Gratisspin-boost',
+	'Cash Respins': 'Cash-respins',
+	'Chaos Mode and Bonus Boost': 'Kaostilstand og Bonus-boost',
 	'Buy Feature': 'Køb funktion',
 	'General Rules': 'Generelle regler',
 	'User Interface Guide': 'Brugerfladevejledning',
 	Disclaimer: 'Ansvarsfraskrivelse',
 	'Main game': 'Hovedspil',
 	'Chaos Mode': 'Kaostilstand',
-	'Free Spins Boost': 'Gratisspin-boost',
-	'Operation Free Spins': 'Operation-gratisspins',
-	'Mutant Free Spins': 'Mutant-gratisspins',
-	'Overcharged Free Spins': 'Overladede gratisspins',
+	'Bonus Boost': 'Bonus-boost',
+	'Operation Respins': 'Operation-respins',
+	'Mutant Respins': 'Mutant-respins',
+	'Overcharged Respins': 'Overladede respins',
 	Mode: 'Tilstand',
 	Cost: 'Pris',
 	RTP: 'RTP',
 	'Max win': 'Maks. gevinst',
-	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Chaos Lab er en kaskadeslot med 6 hjul og 5 rækker. Der er 9 gevinstsymboler, 4 høje og 5 lave, og 5 specialsymboler: Wild, Scatter, Multiplikator, Bombe og Kloner.',
+	'Chaos Lab 2 is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner. Its feature is Cash Respins: Coins land on the grid, and Multipliers, Cloners and Bombs grow them into one total win.':
+		'Chaos Lab 2 er en kaskadeslot med 6 hjul og 5 rækker. Der er 9 gevinstsymboler, 4 høje og 5 lave, og 5 specialsymboler: Wild, Scatter, Multiplikator, Bombe og Kloner. Dens funktion er Cash-respins: Mønter lander på gitteret, og Multiplikatorer, Klonere og Bomber får dem til at vokse til én samlet gevinst.',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'Spillet har seks tilstande. Hver tilstand koster et multiplum af grundindsatsen, og i alle tilstande er alle gevinster multipla af grundindsatsen. RTP er den teoretiske tilbagebetaling til spilleren, beregnet over mange runder.',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':
@@ -74,11 +78,13 @@ export default {
 		'Efter hver gevinst fjernes vindersymbolerne og alle Wilds. De resterende symboler falder ned, og nye symboler falder ind ovenfra og fylder de tomme positioner. Det gentages, så længe der opstår nye gevinster.',
 	'A Wild is created only when a Bomb explodes. It substitutes for every paying symbol at the same time and counts toward each of them, so one Wild can be part of several wins. Wilds alone do not form a win.':
 		'Et Wild skabes kun, når en Bombe eksploderer. Det erstatter alle gevinstsymboler på samme tid og tæller for hvert af dem, så ét Wild kan indgå i flere gevinster. Wilds alene danner ikke en gevinst.',
-	'Scatters do not form wins and are never removed during a spin. The number of Scatters on the screen when the spin ends decides the free spins, including Scatters that dropped in during tumbles:':
-		'Scatters danner ikke gevinster og fjernes aldrig under et spin. Antallet af Scatters på skærmen, når spinnet slutter, afgør gratisspinsene, inklusive Scatters, der faldt ind under kaskaderne:',
-	'4 Scatters award 10 free spins.': '4 Scatters giver 10 gratisspins.',
-	'5 Scatters award 15 free spins.': '5 Scatters giver 15 gratisspins.',
-	'6 or more Scatters award 20 free spins.': '6 eller flere Scatters giver 20 gratisspins.',
+	'Scatters do not form wins and are never removed during a spin. 4 or more Scatters on the screen when the spin ends start Cash Respins, including Scatters that dropped in during tumbles. Their number decides how the grid starts:':
+		'Scatters danner ikke gevinster og fjernes aldrig under et spin. 4 eller flere Scatters på skærmen, når spinnet slutter, starter Cash-respins, inklusive Scatters, der faldt ind under kaskaderne. Deres antal afgør, hvordan gitteret starter:',
+	'4 Scatters: the grid starts empty.': '4 Scatters: gitteret starter tomt.',
+	'5 Scatters: __0__ positions start with a multiplier frame.':
+		'5 Scatters: __0__ positioner starter med en multiplikatorramme.',
+	'6 or more Scatters: __0__ positions start with a multiplier frame.':
+		'6 eller flere Scatters: __0__ positioner starter med en multiplikatorramme.',
 	'Multipliers are collected into a total multiplier that multiplies every win awarded after them. Multipliers, Bombs and Cloners can appear on the first screen of a spin or among the new symbols that drop in during tumbles.':
 		'Multiplikatorer samles i en samlet multiplikator, der ganger hver gevinst, der udbetales efter dem. Multiplikatorer, Bomber og Klonere kan dukke op på et spins første skærm eller blandt de nye symboler, der falder ind under kaskaderne.',
 	'Values: each Multiplier is worth __0__.': 'Værdier: hver Multiplikator er __0__ værd.',
@@ -90,8 +96,8 @@ export default {
 		'Samlet multiplikator: summen af alle indsamlede Multiplikatorværdier. Den ganger hver gevinst, der udbetales, efter at den er samlet. Gevinster udbetalt tidligere i spinnet ganges ikke. Uden indsamlet Multiplikator ganges gevinster ikke.',
 	'Base game: the total multiplier starts empty on every spin and lasts only for that spin.':
 		'Basisspil: den samlede multiplikator starter tom i hvert spin og gælder kun for det spin.',
-	'Free spins: the total multiplier lasts for the whole free spins round (see Free Spins).':
-		'Gratisspins: den samlede multiplikator gælder for hele gratisspinrunden (se Gratisspins).',
+	'Cash Respins: Multipliers work differently there, as multiplier frames (see Cash Respins).':
+		'Cash-respins: Der virker Multiplikatorer anderledes, som multiplikatorrammer (se Cash-respins).',
 	'A Bomb clears the paying symbols around it and turns into a Wild.':
 		'En Bombe fjerner gevinstsymbolerne omkring sig og bliver til et Wild.',
 	'Landing: one or two Bombs can appear at the same time.':
@@ -124,31 +130,49 @@ export default {
 		'Er der ingen gevinst og ingen Bombe, aktiveres Kloneren.',
 	'When there is no win, no Bomb and no Cloner, the spin ends.':
 		'Når der ikke er nogen gevinst, Bombe eller Kloner, slutter spinnet.',
-	'4, 5, or 6 or more Scatters at the end of a base game spin award 10, 15 or 20 free spins, played with a total multiplier that keeps growing for the whole round. Free spins follow all base game rules, with these differences:':
-		'4, 5, eller 6 eller flere Scatters i slutningen af et spin i basisspillet giver 10, 15 eller 20 gratisspins, der spilles med en samlet multiplikator, som vokser hele runden. Gratisspins følger alle basisspillets regler, med disse forskelle:',
-	'Persistent multiplier: the total multiplier is not reset between free spins. Every Multiplier collected during the round adds to it, and it multiplies every win until the round ends. A multiplier collected on the triggering base game spin is not carried into free spins.':
-		'Vedvarende multiplikator: den samlede multiplikator nulstilles ikke mellem gratisspins. Hver Multiplikator, der samles i runden, lægges til den, og den ganger hver gevinst, indtil runden slutter. En multiplikator samlet i det udløsende spin i basisspillet overføres ikke til gratisspinsene.',
-	'Features: Multipliers, Bombs and Cloners appear more often than in the base game.':
-		'Funktioner: Multiplikatorer, Bomber og Klonere dukker oftere op end i basisspillet.',
-	'Retrigger: 3 or more Scatters at the end of a free spin award 5 extra free spins. There is no limit on retriggers.':
-		'Genudløsning: 3 eller flere Scatters i slutningen af et gratisspin giver 5 ekstra gratisspins. Der er ingen grænse for genudløsninger.',
-	'Chaos Mode and Free Spins Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
-		'Kaostilstand og Gratisspin-boost slås til og fra i funktionsmenuen, mens spillet er i hvile. Kun én kan være slået til ad gangen. Mens én er slået til, spilles hvert spin til det multiplum af grundindsatsen, der står nedenfor, og gevinster forbliver multipla af grundindsatsen.',
-	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and free spins trigger more often.':
-		'Kaostilstand: __0__ grundindsatsen pr. spin. Multiplikatorer, Bomber og Klonere dukker oftere op i basisspillet, og gratisspins udløses oftere.',
-	'Free Spins Boost: __0__ the base __1__ per spin. Free spins trigger more often, and triggers with 5 or more Scatters, which award more free spins, become more likely. The base game is otherwise the same as the main game.':
-		'Gratisspin-boost: __0__ grundindsatsen pr. spin. Gratisspins udløses oftere, og udløsninger med 5 eller flere Scatters, som giver flere gratisspins, bliver mere sandsynlige. Ellers er basisspillet det samme som hovedspillet.',
-	'Each of these three modes goes straight into free spins, without a base game spin, and asks for confirmation before it starts. The number of free spins is drawn at random: __0__.':
-		'Hver af disse tre tilstande går direkte til gratisspins uden et spin i basisspillet og beder om bekræftelse, før den starter. Antallet af gratisspins trækkes tilfældigt: __0__.',
-	'__0__ the base __1__. The free spins are the same as in the main game.':
-		'__0__ grundindsatsen. Gratisspinsene er de samme som i hovedspillet.',
-	'__0__ the base __1__. Free spins where Multipliers, Bombs and Cloners appear much more often than in the main game.':
-		'__0__ grundindsatsen. Gratisspins, hvor Multiplikatorer, Bomber og Klonere dukker meget oftere op end i hovedspillet.',
-	'__0__ the base __1__. Free spins that start with a persistent total multiplier already active, drawn at random from __2__. Multipliers collected during the round add to it.':
-		'__0__ grundindsatsen. Gratisspins, der starter med en vedvarende samlet multiplikator, som allerede er aktiv, trukket tilfældigt blandt __2__. Multiplikatorer samlet i runden lægges til den.',
-	"Wins from tumbles, features and free spins in one round are added together into the round's total win.":
-		'Gevinster fra kaskader, funktioner og gratisspins i én runde lægges sammen til rundens samlede gevinst.',
-	'Scatters award free spins in any position.': 'Scatters giver gratisspins i enhver position.',
+	'4 or more Scatters at the end of a base game spin start Cash Respins on the 6×5 grid with __0__ respins. Only Coins, Multipliers, Cloners and Bombs land during Cash Respins.':
+		'4 eller flere Scatters i slutningen af et spin i basisspillet starter Cash-respins på 6×5-gitteret med __0__ respins. Under Cash-respins lander kun Mønter, Multiplikatorer, Klonere og Bomber.',
+	'Start: the number of Scatters decides how the grid starts (see Scatter). Starting multiplier frames are worth __0__. Mutant Respins and Overcharged Respins always start with frames, as described below.':
+		'Start: antallet af Scatters afgør, hvordan gitteret starter (se Scatter). Startende multiplikatorrammer er værd __0__. Mutant-respins og Overladede respins starter altid med rammer, som beskrevet nedenfor.',
+	'Respins: new symbols land on empty positions, all at the same time. Every respin where a symbol lands resets the respins to __0__.':
+		'Respins: nye symboler lander på tomme positioner, alle på samme tid. Hvert respin, hvor et symbol lander, nulstiller respins til __0__.',
+	'Coin: worth __0__ the base __1__. It stays on the grid until the end and is multiplied by the frame under it.':
+		'Mønt: værd __0__ grundindsatsen. Den bliver på gitteret til slutningen og ganges med rammen under den.',
+	'Multiplier: worth __0__. It leaves a frame on its position, or adds its value to the frame already there. Frame values add up, to a maximum of __1__, and frames stay for the whole feature.':
+		'Multiplikator: værd __0__. Den efterlader en ramme på sin position eller lægger sin værdi til den ramme, der allerede er der. Rammernes værdier lægges sammen, op til maksimalt __1__, og rammerne bliver under hele funktionen.',
+	'Cloner: it turns into a coin and spreads __0__ to __1__ more coins onto empty positions, fewer if the grid is nearly full, each with its own value. Each coin is multiplied by the frame it lands on.':
+		'Kloner: den bliver til en mønt og spreder __0__ til __1__ ekstra mønter ud på tomme positioner, færre hvis gitteret er næsten fyldt, hver med sin egen værdi. Hver mønt ganges med rammen, den lander på.',
+	'Bomb: worth __0__ the base __1__ (in Overcharged Respins, also __2__), multiplied by the frame under it. It turns into a coin of that value and adds the same value to every coin in the 3×3 area around it.':
+		'Bombe: værd __0__ grundindsatsen (i Overladede respins også __2__), ganget med rammen under den. Den bliver til en mønt med den værdi og lægger samme værdi til hver mønt i 3×3-området omkring den.',
+	'After the symbols of a respin land, they act in this order:':
+		'Når symbolerne i et respin er landet, virker de i denne rækkefølge:',
+	'Multipliers leave or grow their frames and disappear.':
+		'Multiplikatorer efterlader eller udvider deres rammer og forsvinder.',
+	'Coins are multiplied by the frame under them.': 'Mønter ganges med rammen under dem.',
+	'The Cloner turns into a coin and spreads its coins.':
+		'Kloneren bliver til en mønt og spreder sine mønter.',
+	'Bombs turn into coins and add their value to the coins around them.':
+		'Bomber bliver til mønter og lægger deres værdi til mønterne omkring dem.',
+	'End: the feature ends when no respins are left or all __0__ positions hold a coin. The win is the total of all coin values, as a multiple of the base __1__.':
+		'Slut: funktionen slutter, når der ikke er flere respins tilbage, eller alle __0__ positioner har en mønt. Gevinsten er summen af alle møntværdier, som et multiplum af grundindsatsen.',
+	'Chaos Mode and Bonus Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
+		'Kaostilstand og Bonus-boost slås til og fra i funktionsmenuen, mens spillet er i hvile. Kun én kan være slået til ad gangen. Mens én er slået til, spilles hvert spin til det multiplum af grundindsatsen, der står nedenfor, og gevinster forbliver multipla af grundindsatsen.',
+	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and Cash Respins trigger more often.':
+		'Kaostilstand: __0__ grundindsatsen pr. spin. Multiplikatorer, Bomber og Klonere dukker oftere op i basisspillet, og Cash-respins udløses oftere.',
+	'Bonus Boost: __0__ the base __1__ per spin. Cash Respins trigger more often. The base game is otherwise the same as the main game.':
+		'Bonus-boost: __0__ grundindsatsen pr. spin. Cash-respins udløses oftere. Ellers er basisspillet det samme som hovedspillet.',
+	'Each of these three modes goes straight into Cash Respins, without a base game spin, and asks for confirmation before it starts.':
+		'Hver af disse tre tilstande går direkte til Cash-respins uden et spin i basisspillet og beder om bekræftelse, før den starter.',
+	'__0__ the base __1__. Cash Respins start at random as the 4, 5, or 6 or more Scatter version and are the same as in the main game.':
+		'__0__ grundindsatsen. Cash-respins starter tilfældigt som udgaven med 4, 5 eller 6 eller flere Scatters og er de samme som i hovedspillet.',
+	'__0__ the base __1__. Cash Respins where __2__ positions always start with a multiplier frame, each worth __3__. Multipliers and Bombs land more often than in Operation Respins, and Multipliers are more likely to land on the highest frames.':
+		'__0__ grundindsatsen. Cash-respins, hvor __2__ positioner altid starter med en multiplikatorramme, hver værd __3__. Multiplikatorer og Bomber lander oftere end i Operation-respins, og Multiplikatorer lander med større sandsynlighed på de højeste rammer.',
+	'__0__ the base __1__. Cash Respins where all __2__ positions start with a multiplier frame, each worth __3__. Multipliers, Cloners and Bombs land more often on every respin, Multipliers are more likely to have high values, and Bombs can also be worth __4__.':
+		'__0__ grundindsatsen. Cash-respins, hvor alle __2__ positioner starter med en multiplikatorramme, hver værd __3__. Multiplikatorer, Klonere og Bomber lander oftere i hvert respin, Multiplikatorer har med større sandsynlighed høje værdier, og Bomber kan også være værd __4__.',
+	"Wins from tumbles, features and Cash Respins in one round are added together into the round's total win.":
+		'Gevinster fra kaskader, funktioner og Cash-respins i én runde lægges sammen til rundens samlede gevinst.',
+	'Scatters start Cash Respins in any position.':
+		'Scatters starter Cash-respins på enhver position.',
 	'The maximum win of each mode, listed under Game Modes, is the highest win that mode can award.':
 		'Den maksimale gevinst for hver tilstand, angivet under Spiltilstande, er den højeste gevinst, den tilstand kan udbetale.',
 	'Spin: Start a spin at the current __0__ amount.':
@@ -157,8 +181,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Autospil: spinner automatisk et fastsat antal gange.',
 	'Turbo: Speed up animations.': 'Turbo: gør animationerne hurtigere.',
-	'Buy Feature (Scatter disc): Open the feature menu with the three free spins modes and the Chaos Mode and Free Spins Boost switches.':
-		'Køb funktion (Scatter-skive): åbner funktionsmenuen med de tre gratisspintilstande og kontakterne til Kaostilstand og Gratisspin-boost.',
+	'Buy Feature (Scatter disc): Open the feature menu with the three Cash Respins modes and the Chaos Mode and Bonus Boost switches.':
+		'Køb funktion (Scatter-skive): åbner funktionsmenuen med de tre Cash-respins-tilstande og kontakterne til Kaostilstand og Bonus-boost.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: øger eller sænker indsatsbeløbet.',
 	'Menu (☰): Open the menu.': 'Menu (☰): åbner menuen.',
 	'Paytable: View the symbol payout values.':
@@ -176,8 +200,18 @@ export default {
 	'Symbol Payouts': 'Symboludbetalinger',
 	'Created only when a Bomb explodes. Substitutes for every paying symbol and counts toward each of them. Wilds alone do not form a win.':
 		'Skabes kun, når en Bombe eksploderer. Erstatter alle gevinstsymboler og tæller for hvert af dem. Wilds alene danner ikke en gevinst.',
-	'4 Scatters = 10 Free Spins\n5 Scatters = 15 Free Spins\n6 or more = 20 Free Spins\n3 or more during Free Spins = 5 more Free Spins':
-		'4 Scatters = 10 gratisspins\n5 Scatters = 15 gratisspins\n6 eller flere = 20 gratisspins\n3 eller flere under gratisspins = 5 gratisspins mere',
+	'4 Scatters = Cash Respins\n5 Scatters = Cash Respins with __0__ multiplier frames\n6 or more = Cash Respins with __1__ multiplier frames':
+		'4 Scatters = Cash-respins\n5 Scatters = Cash-respins med __0__ multiplikatorrammer\n6 eller flere = Cash-respins med __1__ multiplikatorrammer',
+	'Cash Respins Symbols': 'Cash-respins-symboler',
+	Coin: 'Mønt',
+	'Worth __0__ the base __1__. Stays on the grid until Cash Respins end, multiplied by the frame under it.':
+		'Værd __0__ grundindsatsen. Bliver på gitteret, til Cash-respins slutter, ganget med rammen under den.',
+	'Worth __0__. Leaves a frame on its position, or adds to the frame there, up to __1__.':
+		'Værd __0__. Efterlader en ramme på sin position eller lægges til rammen der, op til __1__.',
+	'Turns into a coin and spreads __0__ to __1__ coins onto empty positions, fewer if the grid is nearly full.':
+		'Bliver til en mønt og spreder __0__ til __1__ mønter ud på tomme positioner, færre hvis gitteret er næsten fyldt.',
+	'Worth __0__ (in Overcharged Respins, also __1__), multiplied by its frame. Turns into a coin and adds its value to every coin around it.':
+		'Værd __0__ (i Overladede respins også __1__), ganget med sin ramme. Bliver til en mønt og lægger sin værdi til hver mønt omkring den.',
 	'Worth __0__. Collected into the total multiplier before any win is awarded.':
 		'Værd __0__. Samles i den samlede multiplikator, før nogen gevinst udbetales.',
 	'When there is no win, it clears the paying symbols in the 3×3 area around it and stays as a Wild.':

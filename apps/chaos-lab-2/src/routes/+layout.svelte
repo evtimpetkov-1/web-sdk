@@ -6,6 +6,7 @@
 
 	import Game from '../components/Game.svelte';
 	import LoaderGame from '../components/LoaderGame.svelte';
+	import FpsMeter from '../components/FpsMeter.svelte';
 	import { setContext } from '../game/context';
 	import { displayFont } from '../game/textStyles';
 
@@ -54,5 +55,8 @@
 	dead boot time.
 -->
 <LoaderGame />
+
+<!-- debug only: `?fps=true` in the URL; over the loader, the game and the popups -->
+<FpsMeter />
 
 {@render props.children()}

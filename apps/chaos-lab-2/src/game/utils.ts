@@ -65,11 +65,21 @@ const BOOK_EVENT_TYPES_TO_RESERVE_FOR_SNAPSHOT = [
 	'buyFreeSpins',
 	'updateFreeSpin',
 	'setTotalWin',
+	// Cash Respins (Chaos Lab 2): the grid is rebuilt from every event that
+	// changed it (stateCashRespins cashGridAfter), the counter from the last update
+	'buyCashRespins',
+	'cashRespinStart',
+	'cashRespinLand',
+	'cashMultiplierFrames',
+	'cashCoinsMultiply',
+	'cashClonerActivate',
+	'cashBombActivate',
+	'cashRespinUpdate',
 ];
 
 /**
  * Where a resumed round picks up: the last event the client recorded with
- * /bet/event (free spins only). A round with none recorded, e.g. a base-game
+ * /bet/event (free spin reveals; each Cash Respin's first event and the collect). A round with none recorded, e.g. a base-game
  * win refreshed mid-spin, comes back from /authenticate WITHOUT an `event`
  * field: Number(undefined) is NaN, which matched no event at all, so the round
  * was ended without being shown (Stake review 2026-10-29). It replays from the
@@ -103,18 +113,22 @@ export const convertTorResumableBet = (betToResume: Bet) => {
 };
 
 /**
- * The free spins entry (freeSpinTrigger, or buyFreeSpins for a bought round) of
- * a bet being resumed, when the player left it inside the free spins: the entry
- * lies before the server's event cursor. Undefined otherwise.
+ * The feature entry of a bet being resumed, when the player left it inside the
+ * feature: free spins (freeSpinTrigger, or buyFreeSpins for a bought round) or
+ * Cash Respins (cashRespinStart, triggered or bought), before the server's event
+ * cursor. Undefined otherwise.
  */
-export const getResumedFreeSpinsEntry = (bet: Bet | null) => {
+export const getResumedFeatureEntry = (bet: Bet | null) => {
 	if (!bet?.active) return undefined;
 	const resumingIndex = getResumingIndex(bet);
 	const bookEventsBeforeResume = bet.state.filter((_, eventIndex) => eventIndex < resumingIndex);
 	return _.findLast(
 		bookEventsBeforeResume,
-		(bookEvent) => bookEvent.type === 'freeSpinTrigger' || bookEvent.type === 'buyFreeSpins',
-	) as BookEventOfType<'freeSpinTrigger' | 'buyFreeSpins'> | undefined;
+		(bookEvent) =>
+			bookEvent.type === 'freeSpinTrigger' ||
+			bookEvent.type === 'buyFreeSpins' ||
+			bookEvent.type === 'cashRespinStart',
+	) as BookEventOfType<'freeSpinTrigger' | 'buyFreeSpins' | 'cashRespinStart'> | undefined;
 };
 
 // other utils

@@ -1,4 +1,4 @@
-// Mad Science's own strings (keys = the English text, see en.ts). Figures are
+// Chaos Lab 2's own strings (keys = the English text, see en.ts). Figures are
 // __n__ placeholders filled at runtime; the bet word is written into each sentence.
 export default {
 	'PRESS ANYWHERE TO CONTINUE': "APPUYEZ N'IMPORTE OÙ POUR CONTINUER",
@@ -11,32 +11,36 @@ export default {
 	'BOMBS & CLONERS': 'BOMBES & CLONEURS',
 	'Bombs blast their area and leave a Wild. Cloners turn symbols into copies of one.':
 		"Les Bombes font exploser leur zone et laissent un Wild. Les Cloneurs changent des symboles en copies d'un seul.",
-	'4 or more Scatters award 10 to 20 Free Spins. The multiplier keeps growing.':
-		'4 Scatters ou plus offrent de 10 à 20 tours gratuits. Le multiplicateur ne cesse de grandir.',
+	'CASH RESPINS': 'RELANCES CASH',
+	'4 or more Scatters start Cash Respins. Coins land, and Multipliers, Cloners and Bombs grow them.':
+		'4 Scatters ou plus lancent les Relances Cash. Des pièces tombent, et les Multiplicateurs, Cloneurs et Bombes les font grandir.',
 	'WIN UP TO __0__': "GAGNEZ JUSQU'À __0__",
 	'CONGRATULATIONS!': 'FÉLICITATIONS !',
 	'YOU WON': 'VOUS AVEZ GAGNÉ',
 	'TOTAL WIN': 'GAIN TOTAL',
+	'RESPINS LEFT': 'RELANCES RESTANTES',
+	RESPINS: 'RELANCES',
+	'WITH __0__ MULTIPLIER FRAMES': 'AVEC __0__ CADRES MULTIPLICATEURS',
 	'BUY FEATURE': 'ACHAT DE FONCTIONNALITÉ',
 	'BOOST MODES': 'MODES BOOST',
 	'PER SPIN': 'PAR TOUR',
 	ON: 'OUI',
 	OFF: 'NON',
 	BUY: 'ACHETER',
-	'OPERATION FREE SPINS': 'TOURS GRATUITS OPÉRATION',
-	'MUTANT FREE SPINS': 'TOURS GRATUITS MUTANTS',
-	'OVERCHARGED FREE SPINS': 'TOURS GRATUITS SURCHARGÉS',
+	'OPERATION RESPINS': 'RELANCES OPÉRATION',
+	'MUTANT RESPINS': 'RELANCES MUTANTES',
+	'OVERCHARGED RESPINS': 'RELANCES SURCHARGÉES',
 	'CHAOS MODE': 'MODE CHAOS',
-	'FREE SPINS BOOST': 'BOOST TOURS GRATUITS',
-	'Straight into Free Spins. The number of spins is drawn at random: __0__.':
-		'Directement en tours gratuits. Le nombre de tours est tiré au hasard : __0__.',
-	'Free Spins with far more Multipliers, Cloners and Bombs. __0__ spins at random.':
-		'Tours gratuits avec bien plus de Multiplicateurs, de Cloneurs et de Bombes. __0__ tours au hasard.',
-	'Free Spins that start with a total multiplier of __0__ to __1__. __2__ spins at random.':
-		'Tours gratuits qui démarrent avec un multiplicateur total de __0__ à __1__. __2__ tours au hasard.',
-	'Multipliers, Cloners & Bombs appear __0__ more often. Free Spins trigger __1__ more often.':
-		'Multiplicateurs, Cloneurs & Bombes apparaissent __0__ plus souvent. Les tours gratuits se déclenchent __1__ plus souvent.',
-	'Free Spins trigger __0__ more often.': 'Les tours gratuits se déclenchent __0__ plus souvent.',
+	'BONUS BOOST': 'BOOST BONUS',
+	'Straight into Cash Respins. They start at random as the 4, 5 or 6 Scatter version.':
+		'Directement dans les Relances Cash. Elles démarrent au hasard en version 4, 5 ou 6 Scatters.',
+	'Cash Respins with __0__ multiplier frames from the start, __1__ to __2__.':
+		'Relances Cash avec __0__ cadres multiplicateurs dès le départ, de __1__ à __2__.',
+	'Cash Respins with every position framed from the start, __0__ to __1__.':
+		'Relances Cash avec un cadre sur chaque position dès le départ, de __0__ à __1__.',
+	'Multipliers, Cloners & Bombs appear __0__ more often. Cash Respins trigger __1__ more often.':
+		'Multiplicateurs, Cloneurs & Bombes apparaissent __0__ plus souvent. Les Relances Cash se déclenchent __1__ plus souvent.',
+	'Cash Respins trigger __0__ more often.': 'Les Relances Cash se déclenchent __0__ plus souvent.',
 	bet: 'mise',
 	'Game Overview': 'Aperçu du jeu',
 	'Game Modes': 'Modes de jeu',
@@ -48,24 +52,24 @@ export default {
 	Bomb: 'Bombe',
 	Cloner: 'Cloneur',
 	'Order of Play': 'Déroulement du jeu',
-	'Free Spins': 'Tours gratuits',
-	'Chaos Mode and Free Spins Boost': 'Mode Chaos et Boost Tours Gratuits',
+	'Cash Respins': 'Relances Cash',
+	'Chaos Mode and Bonus Boost': 'Mode Chaos et Boost Bonus',
 	'Buy Feature': 'Achat de fonctionnalité',
 	'General Rules': 'Règles générales',
 	'User Interface Guide': "Guide de l'interface utilisateur",
 	Disclaimer: 'Avertissement',
 	'Main game': 'Jeu principal',
 	'Chaos Mode': 'Mode Chaos',
-	'Free Spins Boost': 'Boost Tours Gratuits',
-	'Operation Free Spins': 'Tours Gratuits Opération',
-	'Mutant Free Spins': 'Tours Gratuits Mutants',
-	'Overcharged Free Spins': 'Tours Gratuits Surchargés',
+	'Bonus Boost': 'Boost Bonus',
+	'Operation Respins': 'Relances Opération',
+	'Mutant Respins': 'Relances Mutantes',
+	'Overcharged Respins': 'Relances Surchargées',
 	Mode: 'Mode',
 	Cost: 'Coût',
 	RTP: 'RTP',
 	'Max win': 'Gain max.',
-	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Chaos Lab est une machine à sous en cascade à 6 rouleaux et 5 rangées. Elle comporte 9 symboles payants, 4 hauts et 5 bas, et 5 symboles spéciaux : Wild, Scatter, Multiplicateur, Bombe et Cloneur.',
+	'Chaos Lab 2 is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner. Its feature is Cash Respins: Coins land on the grid, and Multipliers, Cloners and Bombs grow them into one total win.':
+		"Chaos Lab 2 est une machine à sous en cascade à 6 rouleaux et 5 rangées. Elle comporte 9 symboles payants, 4 hauts et 5 bas, et 5 symboles spéciaux : Wild, Scatter, Multiplicateur, Bombe et Cloneur. Sa fonctionnalité, ce sont les Relances Cash : des pièces tombent sur la grille, et les Multiplicateurs, Cloneurs et Bombes les font grandir jusqu'à un gain total.",
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'Le jeu comporte six modes. Chaque mode coûte un multiple de la mise de base, et dans chaque mode tous les gains sont des multiples de la mise de base. Le RTP est le taux de retour théorique au joueur, calculé sur un grand nombre de parties.',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':
@@ -74,11 +78,13 @@ export default {
 		'Après chaque gain, les symboles gagnants et tous les Wilds sont retirés. Les symboles restants tombent et de nouveaux symboles arrivent par le haut pour remplir les positions vides. Cela se répète tant que de nouveaux gains apparaissent.',
 	'A Wild is created only when a Bomb explodes. It substitutes for every paying symbol at the same time and counts toward each of them, so one Wild can be part of several wins. Wilds alone do not form a win.':
 		"Un Wild n'est créé que lorsqu'une Bombe explose. Il remplace tous les symboles payants à la fois et compte pour chacun d'eux, de sorte qu'un Wild peut faire partie de plusieurs gains. Les Wilds seuls ne forment pas de gain.",
-	'Scatters do not form wins and are never removed during a spin. The number of Scatters on the screen when the spin ends decides the free spins, including Scatters that dropped in during tumbles:':
-		"Les Scatters ne forment pas de gains et ne sont jamais retirés pendant un tour. Le nombre de Scatters à l'écran à la fin du tour détermine les tours gratuits, y compris les Scatters arrivés pendant les cascades :",
-	'4 Scatters award 10 free spins.': '4 Scatters offrent 10 tours gratuits.',
-	'5 Scatters award 15 free spins.': '5 Scatters offrent 15 tours gratuits.',
-	'6 or more Scatters award 20 free spins.': '6 Scatters ou plus offrent 20 tours gratuits.',
+	'Scatters do not form wins and are never removed during a spin. 4 or more Scatters on the screen when the spin ends start Cash Respins, including Scatters that dropped in during tumbles. Their number decides how the grid starts:':
+		"Les Scatters ne forment pas de gains et ne sont jamais retirés pendant un tour. 4 Scatters ou plus à l'écran à la fin du tour lancent les Relances Cash, y compris les Scatters arrivés pendant les cascades. Leur nombre détermine le départ de la grille :",
+	'4 Scatters: the grid starts empty.': '4 Scatters : la grille démarre vide.',
+	'5 Scatters: __0__ positions start with a multiplier frame.':
+		'5 Scatters : __0__ positions démarrent avec un cadre multiplicateur.',
+	'6 or more Scatters: __0__ positions start with a multiplier frame.':
+		'6 Scatters ou plus : __0__ positions démarrent avec un cadre multiplicateur.',
 	'Multipliers are collected into a total multiplier that multiplies every win awarded after them. Multipliers, Bombs and Cloners can appear on the first screen of a spin or among the new symbols that drop in during tumbles.':
 		"Les Multiplicateurs sont cumulés dans un multiplicateur total qui multiplie chaque gain attribué après eux. Les Multiplicateurs, Bombes et Cloneurs peuvent apparaître sur le premier écran d'un tour ou parmi les nouveaux symboles qui arrivent pendant les cascades.",
 	'Values: each Multiplier is worth __0__.': 'Valeurs : chaque Multiplicateur vaut __0__.',
@@ -90,8 +96,8 @@ export default {
 		'Multiplicateur total : la somme de toutes les valeurs de Multiplicateur collectées. Il multiplie chaque gain attribué après sa collecte. Les gains attribués plus tôt dans le tour ne sont pas multipliés. Sans Multiplicateur collecté, les gains ne sont pas multipliés.',
 	'Base game: the total multiplier starts empty on every spin and lasts only for that spin.':
 		'Jeu de base : le multiplicateur total commence vide à chaque tour et ne dure que pour ce tour.',
-	'Free spins: the total multiplier lasts for the whole free spins round (see Free Spins).':
-		'Tours gratuits : le multiplicateur total dure pendant toute la session de tours gratuits (voir Tours gratuits).',
+	'Cash Respins: Multipliers work differently there, as multiplier frames (see Cash Respins).':
+		'Relances Cash : les Multiplicateurs y fonctionnent différemment, sous forme de cadres multiplicateurs (voir Relances Cash).',
 	'A Bomb clears the paying symbols around it and turns into a Wild.':
 		"Une Bombe retire les symboles payants autour d'elle et se transforme en Wild.",
 	'Landing: one or two Bombs can appear at the same time.':
@@ -125,32 +131,50 @@ export default {
 		"S'il n'y a ni gain ni Bombe, le Cloneur s'active.",
 	'When there is no win, no Bomb and no Cloner, the spin ends.':
 		"Quand il n'y a ni gain, ni Bombe, ni Cloneur, le tour se termine.",
-	'4, 5, or 6 or more Scatters at the end of a base game spin award 10, 15 or 20 free spins, played with a total multiplier that keeps growing for the whole round. Free spins follow all base game rules, with these differences:':
-		"4, 5, ou 6 Scatters ou plus à la fin d'un tour du jeu de base offrent 10, 15 ou 20 tours gratuits, joués avec un multiplicateur total qui grandit pendant toute la session. Les tours gratuits suivent toutes les règles du jeu de base, avec ces différences :",
-	'Persistent multiplier: the total multiplier is not reset between free spins. Every Multiplier collected during the round adds to it, and it multiplies every win until the round ends. A multiplier collected on the triggering base game spin is not carried into free spins.':
-		"Multiplicateur persistant : le multiplicateur total n'est pas réinitialisé entre les tours gratuits. Chaque Multiplicateur collecté pendant la session s'y ajoute, et il multiplie chaque gain jusqu'à la fin de la session. Un multiplicateur collecté lors du tour déclencheur du jeu de base n'est pas reporté dans les tours gratuits.",
-	'Features: Multipliers, Bombs and Cloners appear more often than in the base game.':
-		'Fonctionnalités : les Multiplicateurs, Bombes et Cloneurs apparaissent plus souvent que dans le jeu de base.',
-	'Retrigger: 3 or more Scatters at the end of a free spin award 5 extra free spins. There is no limit on retriggers.':
-		"Redéclenchement : 3 Scatters ou plus à la fin d'un tour gratuit offrent 5 tours gratuits supplémentaires. Les redéclenchements sont illimités.",
-	'Chaos Mode and Free Spins Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
-		"Le Mode Chaos et le Boost Tours Gratuits s'activent et se désactivent dans le menu des fonctionnalités lorsque le jeu est inactif. Un seul peut être actif à la fois. Lorsque l'un d'eux est actif, chaque tour est joué au multiple de la mise de base indiqué ci-dessous, et les gains restent des multiples de la mise de base.",
-	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and free spins trigger more often.':
-		'Mode Chaos : __0__ la mise de base par tour. Les Multiplicateurs, Bombes et Cloneurs apparaissent plus souvent dans le jeu de base, et les tours gratuits se déclenchent plus souvent.',
-	'Free Spins Boost: __0__ the base __1__ per spin. Free spins trigger more often, and triggers with 5 or more Scatters, which award more free spins, become more likely. The base game is otherwise the same as the main game.':
-		'Boost Tours Gratuits : __0__ la mise de base par tour. Les tours gratuits se déclenchent plus souvent, et les déclenchements avec 5 Scatters ou plus, qui offrent plus de tours gratuits, deviennent plus probables. Pour le reste, le jeu de base est identique au jeu principal.',
-	'Each of these three modes goes straight into free spins, without a base game spin, and asks for confirmation before it starts. The number of free spins is drawn at random: __0__.':
-		'Chacun de ces trois modes mène directement aux tours gratuits, sans tour du jeu de base, et demande une confirmation avant de commencer. Le nombre de tours gratuits est tiré au hasard : __0__.',
-	'__0__ the base __1__. The free spins are the same as in the main game.':
-		'__0__ la mise de base. Les tours gratuits sont identiques à ceux du jeu principal.',
-	'__0__ the base __1__. Free spins where Multipliers, Bombs and Cloners appear much more often than in the main game.':
-		'__0__ la mise de base. Des tours gratuits où les Multiplicateurs, Bombes et Cloneurs apparaissent beaucoup plus souvent que dans le jeu principal.',
-	'__0__ the base __1__. Free spins that start with a persistent total multiplier already active, drawn at random from __2__. Multipliers collected during the round add to it.':
-		"__0__ la mise de base. Des tours gratuits qui commencent avec un multiplicateur total persistant déjà actif, tiré au hasard parmi __2__. Les Multiplicateurs collectés pendant la session s'y ajoutent.",
-	"Wins from tumbles, features and free spins in one round are added together into the round's total win.":
-		"Les gains des cascades, des fonctionnalités et des tours gratuits d'une même partie s'additionnent dans le gain total de la partie.",
-	'Scatters award free spins in any position.':
-		"Les Scatters offrent des tours gratuits à n'importe quelle position.",
+	'4 or more Scatters at the end of a base game spin start Cash Respins on the 6×5 grid with __0__ respins. Only Coins, Multipliers, Cloners and Bombs land during Cash Respins.':
+		"4 Scatters ou plus à la fin d'un tour du jeu de base lancent les Relances Cash sur la grille 6×5 avec __0__ relances. Pendant les Relances Cash, seuls des Pièces, Multiplicateurs, Cloneurs et Bombes tombent.",
+	'Start: the number of Scatters decides how the grid starts (see Scatter). Starting multiplier frames are worth __0__. Mutant Respins and Overcharged Respins always start with frames, as described below.':
+		'Départ : le nombre de Scatters détermine le départ de la grille (voir Scatter). Les cadres multiplicateurs de départ valent __0__. Les Relances Mutantes et les Relances Surchargées démarrent toujours avec des cadres, comme décrit ci-dessous.',
+	'Respins: new symbols land on empty positions, all at the same time. Every respin where a symbol lands resets the respins to __0__.':
+		'Relances : de nouveaux symboles tombent sur les positions vides, tous en même temps. Chaque relance où un symbole tombe remet les relances à __0__.',
+	'Coin: worth __0__ the base __1__. It stays on the grid until the end and is multiplied by the frame under it.':
+		"Pièce : vaut __0__ la mise de base. Elle reste sur la grille jusqu'à la fin et est multipliée par le cadre en dessous.",
+	'Multiplier: worth __0__. It leaves a frame on its position, or adds its value to the frame already there. Frame values add up, to a maximum of __1__, and frames stay for the whole feature.':
+		"Multiplicateur : vaut __0__. Il laisse un cadre sur sa position, ou ajoute sa valeur au cadre déjà présent. Les valeurs des cadres s'additionnent, jusqu'à un maximum de __1__, et les cadres restent pendant toute la fonctionnalité.",
+	'Cloner: it turns into a coin and spreads __0__ to __1__ more coins onto empty positions, fewer if the grid is nearly full, each with its own value. Each coin is multiplied by the frame it lands on.':
+		'Cloneur : il se transforme en pièce et répand __0__ à __1__ pièces supplémentaires sur des positions vides, moins si la grille est presque pleine, chacune avec sa propre valeur. Chaque pièce est multipliée par le cadre sur lequel elle tombe.',
+	'Bomb: worth __0__ the base __1__ (in Overcharged Respins, also __2__), multiplied by the frame under it. It turns into a coin of that value and adds the same value to every coin in the 3×3 area around it.':
+		"Bombe : vaut __0__ la mise de base (dans les Relances Surchargées, aussi __2__), multipliée par le cadre en dessous. Elle se transforme en pièce de cette valeur et ajoute la même valeur à chaque pièce de la zone 3×3 qui l'entoure.",
+	'After the symbols of a respin land, they act in this order:':
+		"Une fois les symboles d'une relance tombés, ils agissent dans cet ordre :",
+	'Multipliers leave or grow their frames and disappear.':
+		'Les Multiplicateurs laissent ou agrandissent leurs cadres et disparaissent.',
+	'Coins are multiplied by the frame under them.':
+		'Les pièces sont multipliées par le cadre en dessous.',
+	'The Cloner turns into a coin and spreads its coins.':
+		'Le Cloneur se transforme en pièce et répand ses pièces.',
+	'Bombs turn into coins and add their value to the coins around them.':
+		'Les Bombes se transforment en pièces et ajoutent leur valeur aux pièces qui les entourent.',
+	'End: the feature ends when no respins are left or all __0__ positions hold a coin. The win is the total of all coin values, as a multiple of the base __1__.':
+		'Fin : la fonctionnalité se termine quand il ne reste plus de relances ou que les __0__ positions contiennent toutes une pièce. Le gain est le total des valeurs de toutes les pièces, en multiple de la mise de base.',
+	'Chaos Mode and Bonus Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
+		"Le Mode Chaos et le Boost Bonus s'activent et se désactivent dans le menu des fonctionnalités lorsque le jeu est inactif. Un seul peut être actif à la fois. Lorsque l'un d'eux est actif, chaque tour est joué au multiple de la mise de base indiqué ci-dessous, et les gains restent des multiples de la mise de base.",
+	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and Cash Respins trigger more often.':
+		'Mode Chaos : __0__ la mise de base par tour. Les Multiplicateurs, Bombes et Cloneurs apparaissent plus souvent dans le jeu de base, et les Relances Cash se déclenchent plus souvent.',
+	'Bonus Boost: __0__ the base __1__ per spin. Cash Respins trigger more often. The base game is otherwise the same as the main game.':
+		'Boost Bonus : __0__ la mise de base par tour. Les Relances Cash se déclenchent plus souvent. Le jeu de base est par ailleurs identique au jeu principal.',
+	'Each of these three modes goes straight into Cash Respins, without a base game spin, and asks for confirmation before it starts.':
+		'Chacun de ces trois modes mène directement aux Relances Cash, sans tour du jeu de base, et demande une confirmation avant de commencer.',
+	'__0__ the base __1__. Cash Respins start at random as the 4, 5, or 6 or more Scatter version and are the same as in the main game.':
+		'__0__ la mise de base. Les Relances Cash démarrent au hasard en version 4, 5, ou 6 Scatters ou plus, et sont identiques à celles du jeu principal.',
+	'__0__ the base __1__. Cash Respins where __2__ positions always start with a multiplier frame, each worth __3__. Multipliers and Bombs land more often than in Operation Respins, and Multipliers are more likely to land on the highest frames.':
+		'__0__ la mise de base. Des Relances Cash où __2__ positions démarrent toujours avec un cadre multiplicateur, chacun valant __3__. Les Multiplicateurs et les Bombes tombent plus souvent que dans les Relances Opération, et les Multiplicateurs ont plus de chances de tomber sur les cadres les plus élevés.',
+	'__0__ the base __1__. Cash Respins where all __2__ positions start with a multiplier frame, each worth __3__. Multipliers, Cloners and Bombs land more often on every respin, Multipliers are more likely to have high values, and Bombs can also be worth __4__.':
+		"__0__ la mise de base. Des Relances Cash où les __2__ positions démarrent toutes avec un cadre multiplicateur, chacun valant __3__. Les Multiplicateurs, Cloneurs et Bombes tombent plus souvent à chaque relance, les Multiplicateurs ont plus de chances d'avoir des valeurs élevées, et les Bombes peuvent aussi valoir __4__.",
+	"Wins from tumbles, features and Cash Respins in one round are added together into the round's total win.":
+		"Les gains des cascades, des fonctionnalités et des Relances Cash d'une même partie s'additionnent dans le gain total de la partie.",
+	'Scatters start Cash Respins in any position.':
+		"Les Scatters lancent les Relances Cash à n'importe quelle position.",
 	'The maximum win of each mode, listed under Game Modes, is the highest win that mode can award.':
 		'Le gain maximum de chaque mode, indiqué dans Modes de jeu, est le gain le plus élevé que ce mode peut attribuer.',
 	'Spin: Start a spin at the current __0__ amount.':
@@ -160,8 +184,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Jeu auto : joue automatiquement un nombre défini de tours.',
 	'Turbo: Speed up animations.': 'Turbo : accélère les animations.',
-	'Buy Feature (Scatter disc): Open the feature menu with the three free spins modes and the Chaos Mode and Free Spins Boost switches.':
-		'Achat de fonctionnalité (disque Scatter) : ouvre le menu des fonctionnalités avec les trois modes de tours gratuits et les interrupteurs du Mode Chaos et du Boost Tours Gratuits.',
+	'Buy Feature (Scatter disc): Open the feature menu with the three Cash Respins modes and the Chaos Mode and Bonus Boost switches.':
+		'Achat de fonctionnalité (disque Scatter) : ouvre le menu des fonctionnalités avec les trois modes de Relances Cash et les interrupteurs du Mode Chaos et du Boost Bonus.',
 	'+/−: Increase or decrease the __0__ amount.': '+/− : augmente ou diminue le montant de la mise.',
 	'Menu (☰): Open the menu.': 'Menu (☰) : ouvre le menu.',
 	'Paytable: View the symbol payout values.':
@@ -179,8 +203,18 @@ export default {
 	'Symbol Payouts': 'Paiements des symboles',
 	'Created only when a Bomb explodes. Substitutes for every paying symbol and counts toward each of them. Wilds alone do not form a win.':
 		"Créé uniquement lorsqu'une Bombe explose. Remplace tous les symboles payants et compte pour chacun d'eux. Les Wilds seuls ne forment pas de gain.",
-	'4 Scatters = 10 Free Spins\n5 Scatters = 15 Free Spins\n6 or more = 20 Free Spins\n3 or more during Free Spins = 5 more Free Spins':
-		'4 Scatters = 10 tours gratuits\n5 Scatters = 15 tours gratuits\n6 ou plus = 20 tours gratuits\n3 ou plus pendant les tours gratuits = 5 tours gratuits de plus',
+	'4 Scatters = Cash Respins\n5 Scatters = Cash Respins with __0__ multiplier frames\n6 or more = Cash Respins with __1__ multiplier frames':
+		'4 Scatters = Relances Cash\n5 Scatters = Relances Cash avec __0__ cadres multiplicateurs\n6 ou plus = Relances Cash avec __1__ cadres multiplicateurs',
+	'Cash Respins Symbols': 'Symboles des Relances Cash',
+	Coin: 'Pièce',
+	'Worth __0__ the base __1__. Stays on the grid until Cash Respins end, multiplied by the frame under it.':
+		"Vaut __0__ la mise de base. Reste sur la grille jusqu'à la fin des Relances Cash, multipliée par le cadre en dessous.",
+	'Worth __0__. Leaves a frame on its position, or adds to the frame there, up to __1__.':
+		"Vaut __0__. Laisse un cadre sur sa position, ou s'ajoute au cadre déjà présent, jusqu'à __1__.",
+	'Turns into a coin and spreads __0__ to __1__ coins onto empty positions, fewer if the grid is nearly full.':
+		'Se transforme en pièce et répand __0__ à __1__ pièces sur des positions vides, moins si la grille est presque pleine.',
+	'Worth __0__ (in Overcharged Respins, also __1__), multiplied by its frame. Turns into a coin and adds its value to every coin around it.':
+		"Vaut __0__ (dans les Relances Surchargées, aussi __1__), multipliée par son cadre. Se transforme en pièce et ajoute sa valeur à chaque pièce qui l'entoure.",
 	'Worth __0__. Collected into the total multiplier before any win is awarded.':
 		"Vaut __0__. Collecté dans le multiplicateur total avant l'attribution de tout gain.",
 	'When there is no win, it clears the paying symbols in the 3×3 area around it and stays as a Wild.':

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Geometry, Mesh, Shader, Texture, getContextParent } from 'pixi-svelte';
+	import { Geometry, Mesh, Shader, Texture, getContextApp, getContextParent } from 'pixi-svelte';
 	import type { TextureSource } from 'pixi.js';
 
 	import { WebCodecsPlayer } from '../game/webcodecsPlayer';
@@ -27,8 +27,21 @@
 		halfHeight: number;
 		x: number;
 		y: number;
-		/** on-screen height of the character in canvas px */
+		/** on-screen height of the character in canvas px (of placement's frame) */
 		targetHeight: number;
+		/**
+		 * a video cropped to the character: the framing it belongs to (any units;
+		 * targetHeight and the bottom-centre anchor refer to it) and the video
+		 * half's rect inside it. Default: the half IS the frame.
+		 */
+		placement?: { frameWidth: number; frameHeight: number; x: number; y: number; width: number; height: number };
+		/**
+		 * mipmap the video texture (rebuilt on every frame, WebGL2): a clip drawn
+		 * well below its pixel size keeps its detail instead of aliasing under
+		 * plain bilinear minification. Element engine only. The stacked seam
+		 * (halfWidth) must divide by 8 so mip levels up to 8x never mix the halves.
+		 */
+		mipmap?: boolean;
 		/**
 		 * stacked: left = premultiplied color, right = full alpha matte.
 		 * plain:   single opaque frame, shown as-is.
@@ -43,7 +56,12 @@
 	const { mode = 'stacked', ...props }: Props = $props();
 
 	const idleCount = Math.max(1, Math.min(props.idleCount ?? 1, props.srcs.length));
-	const isIdle = (index: number) => index < idleCount;
+	// element engine, ONE idle: rewinding its own <video> at every end is a seek
+	// with the last frame on screen (a visible freeze per loop, Evtim 2026-11-04),
+	// so a twin element of the same clip takes every other turn, rewound while
+	// hidden. Its index follows the srcs; it counts as an idle.
+	const twin = idleCount === 1 ? props.srcs.length : -1;
+	const isIdle = (index: number) => index < idleCount || index === twin;
 
 	let firstFrameShown = false;
 	const firstFrame = () => {
@@ -54,9 +72,10 @@
 
 	const w = props.halfWidth;
 	const h = props.halfHeight;
+	const place = props.placement ?? { frameWidth: w, frameHeight: h, x: 0, y: 0, width: w, height: h };
 	const geometry = new Geometry({
 		attributes: {
-			aPosition: [0, 0, w, 0, w, h, 0, h],
+			aPosition: [0, 0, place.width, 0, place.width, place.height, 0, place.height],
 			aUV: [0, 0, 1, 0, 1, 1, 0, 1],
 		},
 		indexBuffer: [0, 1, 2, 0, 2, 3],
@@ -177,7 +196,7 @@
 			resources,
 		});
 		const mesh = new Mesh({ geometry, shader });
-		mesh.pivot.set(w / 2, h); // bottom-center anchor
+		mesh.pivot.set(place.frameWidth / 2 - place.x, place.frameHeight - place.y); // the frame's bottom-center
 		mesh.visible = false;
 		parentContext.addToParent(mesh);
 		meshes.push(mesh);
@@ -334,8 +353,33 @@
 	// ---------------------------------------------------------------------
 	// Engine 2 (iPhone, desktop, and Android without WebCodecs): one <video> +
 	// mesh per clip, the original implementation, built at init. Only the
-	// playing clip's mesh is visible.
+	// playing clip's mesh is visible. On WebKit its frames must go up through
+	// texImage2D (uploadWholeFrames, below).
 	// ---------------------------------------------------------------------
+	// WebKit (Safari, and every browser on iOS) copies a video frame into a
+	// texture on the GPU only through texImage2D. texSubImage2D, which Pixi 8
+	// uses for every frame after the first, takes WebKit's software path and
+	// reads each frame back through the CPU (WebGLRenderingContextBase's
+	// videoUploadGate). Measured in Safari 27.2 on the 2624x1856 idle: 14 ms of
+	// main thread per video frame, 0.9 ms through texImage2D; iPhones fell to
+	// 10-20 fps (Evtim, 2026-11-06). So on WebKit every frame re-specifies the
+	// texture: clearing the GL texture's recorded width before each upload sends
+	// Pixi's own uploader down its texImage2D branch. Chrome copies on the GPU
+	// either way and keeps Pixi's default.
+	const isWebKit =
+		typeof navigator !== 'undefined' &&
+		/AppleWebKit/.test(navigator.userAgent) &&
+		!/Chrome\/|Chromium|Android/.test(navigator.userAgent);
+	const app = getContextApp();
+	type GlTextureLookup = { getGlSource?: (source: TextureSource) => { width: number } };
+	const uploadWholeFrames = (source: TextureSource) => {
+		source.on('update', () => {
+			const textures = app.stateApp.pixiApplication?.renderer.texture as unknown as GlTextureLookup | undefined;
+			const glTexture = textures?.getGlSource?.(source);
+			if (glTexture) glTexture.width = -1;
+		});
+	};
+
 	type ElementClip = { video: HTMLVideoElement; mesh: Mesh };
 	let current = 0;
 	/** the idle that played last (a reaction in between does not reset it) */
@@ -344,7 +388,7 @@
 	let pending: number | null = null;
 	const clips: ElementClip[] = useWebCodecs
 		? []
-		: props.srcs.map((src) => {
+		: [...props.srcs, ...(twin >= 0 ? [props.srcs[0]] : [])].map((src) => {
 				const video = document.createElement('video');
 				video.muted = true;
 				// no element loops: every clip end picks what plays next
@@ -356,7 +400,11 @@
 				video.src = src;
 				// autoPlay MUST be off: VideoSource would start every (muted) clip at
 				// once and their stray 'ended' events would fight over visibility
-				const texture = Texture.from({ resource: video, autoPlay: false }, true);
+				const texture = Texture.from(
+					{ resource: video, autoPlay: false, autoGenerateMipmaps: props.mipmap ?? false },
+					true,
+				);
+				if (isWebKit) uploadWholeFrames(texture.source);
 				const mesh = buildMesh({ uTexture: texture.source });
 				return { video, mesh };
 			});
@@ -364,9 +412,15 @@
 	const show = (index: number) => {
 		clips.forEach((clip, i) => (clip.mesh.visible = i === index));
 	};
-	/** a random idle other than the last one */
+	/** a random idle other than the last one (one idle: it and its twin take turns) */
 	const nextIdle = () => {
-		if (idleCount <= 1) return 0;
+		if (idleCount <= 1) {
+			// after a reaction: the idle that played before it, rewound while the
+			// reaction ran (the twin may never have played: a cold decoder, or not
+			// even preloaded on iOS, holds the reaction's last frame)
+			if (!isIdle(current)) return lastIdle;
+			return lastIdle === 0 ? twin : 0;
+		}
 		const pick = Math.floor(Math.random() * (idleCount - 1));
 		return pick >= lastIdle ? pick + 1 : pick;
 	};
@@ -424,21 +478,19 @@
 	 * Queue a reaction clip: it plays once when the current idle ends, then an
 	 * idle follows. Ignored while another reaction is queued or playing.
 	 */
-	export const playOnce = (index: number) => {
-		if (isIdle(index) || index >= props.srcs.length) return;
-		if (player) {
-			player.playOnce(index);
-			return;
-		}
-		if (!clips.length || !isIdle(current) || pending !== null) return;
+	export const playOnce = (index: number): boolean => {
+		if (isIdle(index) || index >= props.srcs.length) return false;
+		if (player) return player.playOnce(index);
+		if (!clips.length || !isIdle(current) || pending !== null) return false;
 		pending = index;
+		return true;
 	};
 
 	$effect(() => {
 		for (const mesh of meshes) {
 			mesh.x = props.x;
 			mesh.y = props.y;
-			mesh.scale.set(props.targetHeight / h);
+			mesh.scale.set(props.targetHeight / place.frameHeight);
 		}
 	});
 

@@ -1,4 +1,4 @@
-// Mad Science's own strings (keys = the English text, see en.ts). Figures are
+// Chaos Lab 2's own strings (keys = the English text, see en.ts). Figures are
 // __n__ placeholders filled at runtime; the bet word is written into each sentence.
 export default {
 	'PRESS ANYWHERE TO CONTINUE': 'どこかを押して続行',
@@ -10,32 +10,36 @@ export default {
 	'BOMBS & CLONERS': 'ボム＆クローナー',
 	'Bombs blast their area and leave a Wild. Cloners turn symbols into copies of one.':
 		'ボムは周囲を爆破してワイルドを残します。クローナーはシンボルをひとつのシンボルのコピーに変えます。',
-	'4 or more Scatters award 10 to 20 Free Spins. The multiplier keeps growing.':
-		'スキャッター4個以上で10〜20回のフリースピン。マルチプライヤーは増え続けます。',
+	'CASH RESPINS': 'キャッシュ・リスピン',
+	'4 or more Scatters start Cash Respins. Coins land, and Multipliers, Cloners and Bombs grow them.':
+		'スキャッター4個以上でキャッシュ・リスピン。コインが止まり、マルチプライヤー、クローナー、ボムがそれを増やします。',
 	'WIN UP TO __0__': '最大__0__獲得',
 	'CONGRATULATIONS!': 'おめでとうございます！',
 	'YOU WON': '獲得',
 	'TOTAL WIN': '合計獲得額',
+	'RESPINS LEFT': '残りリスピン',
+	RESPINS: 'リスピン',
+	'WITH __0__ MULTIPLIER FRAMES': 'マルチプライヤー枠__0__個付き',
 	'BUY FEATURE': 'フィーチャー購入',
 	'BOOST MODES': 'ブーストモード',
 	'PER SPIN': 'スピンごと',
 	ON: 'オン',
 	OFF: 'オフ',
 	BUY: '購入',
-	'OPERATION FREE SPINS': 'オペレーション・フリースピン',
-	'MUTANT FREE SPINS': 'ミュータント・フリースピン',
-	'OVERCHARGED FREE SPINS': 'オーバーチャージ・フリースピン',
+	'OPERATION RESPINS': 'オペレーション・リスピン',
+	'MUTANT RESPINS': 'ミュータント・リスピン',
+	'OVERCHARGED RESPINS': 'オーバーチャージ・リスピン',
 	'CHAOS MODE': 'カオスモード',
-	'FREE SPINS BOOST': 'フリースピンブースト',
-	'Straight into Free Spins. The number of spins is drawn at random: __0__.':
-		'フリースピンに直行。スピン回数はランダムで決定：__0__。',
-	'Free Spins with far more Multipliers, Cloners and Bombs. __0__ spins at random.':
-		'マルチプライヤー、クローナー、ボムが大幅に増えたフリースピン。ランダムで__0__回。',
-	'Free Spins that start with a total multiplier of __0__ to __1__. __2__ spins at random.':
-		'合計マルチプライヤー__0__〜__1__で始まるフリースピン。ランダムで__2__回。',
-	'Multipliers, Cloners & Bombs appear __0__ more often. Free Spins trigger __1__ more often.':
-		'マルチプライヤー、クローナー＆ボムの出現頻度が__0__に。フリースピンの発生頻度が__1__に。',
-	'Free Spins trigger __0__ more often.': 'フリースピンの発生頻度が__0__に。',
+	'BONUS BOOST': 'ボーナスブースト',
+	'Straight into Cash Respins. They start at random as the 4, 5 or 6 Scatter version.':
+		'キャッシュ・リスピンに直行。スキャッター4個、5個、6個のいずれかのバージョンでランダムに始まります。',
+	'Cash Respins with __0__ multiplier frames from the start, __1__ to __2__.':
+		'最初からマルチプライヤー枠__0__個付きのキャッシュ・リスピン。__1__〜__2__。',
+	'Cash Respins with every position framed from the start, __0__ to __1__.':
+		'最初から全ポジションに枠が付いたキャッシュ・リスピン。__0__〜__1__。',
+	'Multipliers, Cloners & Bombs appear __0__ more often. Cash Respins trigger __1__ more often.':
+		'マルチプライヤー、クローナー＆ボムの出現頻度が__0__に。キャッシュ・リスピンの発生頻度が__1__に。',
+	'Cash Respins trigger __0__ more often.': 'キャッシュ・リスピンの発生頻度が__0__に。',
 	bet: 'ベット',
 	'Game Overview': 'ゲーム概要',
 	'Game Modes': 'ゲームモード',
@@ -47,24 +51,24 @@ export default {
 	Bomb: 'ボム',
 	Cloner: 'クローナー',
 	'Order of Play': 'プレイの順序',
-	'Free Spins': 'フリースピン',
-	'Chaos Mode and Free Spins Boost': 'カオスモードとフリースピンブースト',
+	'Cash Respins': 'キャッシュ・リスピン',
+	'Chaos Mode and Bonus Boost': 'カオスモードとボーナスブースト',
 	'Buy Feature': 'フィーチャー購入',
 	'General Rules': '一般ルール',
 	'User Interface Guide': 'ユーザーインターフェースガイド',
 	Disclaimer: '免責事項',
 	'Main game': 'メインゲーム',
 	'Chaos Mode': 'カオスモード',
-	'Free Spins Boost': 'フリースピンブースト',
-	'Operation Free Spins': 'オペレーション・フリースピン',
-	'Mutant Free Spins': 'ミュータント・フリースピン',
-	'Overcharged Free Spins': 'オーバーチャージ・フリースピン',
+	'Bonus Boost': 'ボーナスブースト',
+	'Operation Respins': 'オペレーション・リスピン',
+	'Mutant Respins': 'ミュータント・リスピン',
+	'Overcharged Respins': 'オーバーチャージ・リスピン',
 	Mode: 'モード',
 	Cost: 'コスト',
 	RTP: 'RTP',
 	'Max win': '最大配当',
-	'Chaos Lab is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.':
-		'Chaos Labは6リール×5行のタンブル式スロットです。配当シンボルは9種類（高配当4種、低配当5種）、特殊シンボルは5種類（ワイルド、スキャッター、マルチプライヤー、ボム、クローナー）です。',
+	'Chaos Lab 2 is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner. Its feature is Cash Respins: Coins land on the grid, and Multipliers, Cloners and Bombs grow them into one total win.':
+		'Chaos Lab 2は6リール×5行のタンブル式スロットです。配当シンボルは9種類（高配当4種、低配当5種）、特殊シンボルは5種類（ワイルド、スキャッター、マルチプライヤー、ボム、クローナー）です。フィーチャーはキャッシュ・リスピン：グリッドにコインが止まり、マルチプライヤー、クローナー、ボムがそれらを一つの合計配当へと増やします。',
 	'The game has six modes. Each mode costs a multiple of the base bet, and in every mode all wins are multiples of the base bet. The RTP is the theoretical return to player, calculated over many rounds.':
 		'このゲームには六つのモードがあります。各モードのコストはベースベットの倍数で、どのモードでもすべての配当はベースベットの倍数です。RTPは多数のラウンドで計算された理論上のプレイヤー還元率です。',
 	'A paying symbol wins when 8 or more of it are on the screen at the same time, in any positions. The win depends on how many there are: 8–9, 10–11, or 12 or more (see the Paytable). Several symbols can win at the same time, and their wins are added together.':
@@ -73,11 +77,13 @@ export default {
 		'当たりのたびに、当たりシンボルとすべてのワイルドが取り除かれます。残ったシンボルが下に落ち、空いた位置を埋めるように新しいシンボルが上から落ちてきます。新しい当たりが出る限り、これが繰り返されます。',
 	'A Wild is created only when a Bomb explodes. It substitutes for every paying symbol at the same time and counts toward each of them, so one Wild can be part of several wins. Wilds alone do not form a win.':
 		'ワイルドはボムが爆発したときにのみ生まれます。すべての配当シンボルを同時に代替し、それぞれにカウントされるため、ひとつのワイルドが複数の当たりに含まれることがあります。ワイルドだけでは当たりになりません。',
-	'Scatters do not form wins and are never removed during a spin. The number of Scatters on the screen when the spin ends decides the free spins, including Scatters that dropped in during tumbles:':
-		'スキャッターは当たりを作らず、スピン中に取り除かれることはありません。スピン終了時に画面上にあるスキャッターの数でフリースピンが決まります。タンブル中に落ちてきたスキャッターも含みます：',
-	'4 Scatters award 10 free spins.': 'スキャッター4個で10回のフリースピン。',
-	'5 Scatters award 15 free spins.': 'スキャッター5個で15回のフリースピン。',
-	'6 or more Scatters award 20 free spins.': 'スキャッター6個以上で20回のフリースピン。',
+	'Scatters do not form wins and are never removed during a spin. 4 or more Scatters on the screen when the spin ends start Cash Respins, including Scatters that dropped in during tumbles. Their number decides how the grid starts:':
+		'スキャッターは当たりを作らず、スピン中に取り除かれることはありません。スピン終了時に画面上にスキャッターが4個以上あるとキャッシュ・リスピンが始まります。タンブル中に落ちてきたスキャッターも含みます。その数でグリッドの始まり方が決まります：',
+	'4 Scatters: the grid starts empty.': 'スキャッター4個：グリッドは空の状態で始まります。',
+	'5 Scatters: __0__ positions start with a multiplier frame.':
+		'スキャッター5個：__0__か所がマルチプライヤー枠付きで始まります。',
+	'6 or more Scatters: __0__ positions start with a multiplier frame.':
+		'スキャッター6個以上：__0__か所がマルチプライヤー枠付きで始まります。',
 	'Multipliers are collected into a total multiplier that multiplies every win awarded after them. Multipliers, Bombs and Cloners can appear on the first screen of a spin or among the new symbols that drop in during tumbles.':
 		'マルチプライヤーは合計マルチプライヤーに集められ、その後に支払われるすべての配当を倍増します。マルチプライヤー、ボム、クローナーは、スピンの最初の画面、またはタンブル中に落ちてくる新しいシンボルの中に現れることがあります。',
 	'Values: each Multiplier is worth __0__.': '値：各マルチプライヤーの値は__0__です。',
@@ -89,8 +95,8 @@ export default {
 		'合計マルチプライヤー：収集されたすべてのマルチプライヤーの値の合計。収集後に支払われるすべての配当を倍増します。スピン内でそれより前に支払われた配当は倍増されません。マルチプライヤーが収集されていない場合、配当は倍増されません。',
 	'Base game: the total multiplier starts empty on every spin and lasts only for that spin.':
 		'ベースゲーム：合計マルチプライヤーは各スピンの開始時に空で、そのスピンの間だけ有効です。',
-	'Free spins: the total multiplier lasts for the whole free spins round (see Free Spins).':
-		'フリースピン：合計マルチプライヤーはフリースピンラウンド全体を通じて有効です（フリースピンを参照）。',
+	'Cash Respins: Multipliers work differently there, as multiplier frames (see Cash Respins).':
+		'キャッシュ・リスピン：そこではマルチプライヤーがマルチプライヤー枠として、異なる働きをします（キャッシュ・リスピン参照）。',
 	'A Bomb clears the paying symbols around it and turns into a Wild.': 'ボムは周囲の配当シンボルを消し、ワイルドに変わります。',
 	'Landing: one or two Bombs can appear at the same time.': '出現：ボムは同時に一つまたは二つ現れることがあります。',
 	'When it explodes: only when there is no winning combination on the screen. All Bombs on the screen explode at the same time.':
@@ -117,39 +123,52 @@ export default {
 	'If there is no win, all Bombs explode.': '当たりがなければ、すべてのボムが爆発します。',
 	'If there is no win and no Bomb, the Cloner activates.': '当たりもボムもなければ、クローナーが発動します。',
 	'When there is no win, no Bomb and no Cloner, the spin ends.': '当たりもボムもクローナーもなければ、スピンは終了します。',
-	'4, 5, or 6 or more Scatters at the end of a base game spin award 10, 15 or 20 free spins, played with a total multiplier that keeps growing for the whole round. Free spins follow all base game rules, with these differences:':
-		'ベースゲームのスピン終了時にスキャッターが4個、5個、または6個以上あると、10回、15回、または20回のフリースピンを獲得します。フリースピンはラウンドを通じて増え続ける合計マルチプライヤーでプレイされます。フリースピンはベースゲームのすべてのルールに従いますが、次の点が異なります：',
-	'Persistent multiplier: the total multiplier is not reset between free spins. Every Multiplier collected during the round adds to it, and it multiplies every win until the round ends. A multiplier collected on the triggering base game spin is not carried into free spins.':
-		'持続マルチプライヤー：合計マルチプライヤーはフリースピン間でリセットされません。ラウンド中に収集されたマルチプライヤーはすべて加算され、ラウンド終了まですべての配当を倍増します。トリガーとなったベースゲームのスピンで収集されたマルチプライヤーはフリースピンに持ち越されません。',
-	'Features: Multipliers, Bombs and Cloners appear more often than in the base game.':
-		'フィーチャー：マルチプライヤー、ボム、クローナーがベースゲームより頻繁に現れます。',
-	'Retrigger: 3 or more Scatters at the end of a free spin award 5 extra free spins. There is no limit on retriggers.':
-		'リトリガー：フリースピン終了時にスキャッターが3個以上あると、フリースピンが5回追加されます。リトリガーの回数に制限はありません。',
-	'Chaos Mode and Free Spins Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
-		'カオスモードとフリースピンブーストは、ゲームが待機中のときにフィーチャーメニューでオン・オフを切り替えます。同時にオンにできるのはひとつだけです。オンの間は、各スピンが下記のベースベットの倍数でプレイされ、配当は引き続きベースベットの倍数です。',
-	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and free spins trigger more often.':
-		'カオスモード：スピンごとにベースベットの__0__。ベースゲームでマルチプライヤー、ボム、クローナーがより頻繁に現れ、フリースピンもより頻繁に発生します。',
-	'Free Spins Boost: __0__ the base __1__ per spin. Free spins trigger more often, and triggers with 5 or more Scatters, which award more free spins, become more likely. The base game is otherwise the same as the main game.':
-		'フリースピンブースト：スピンごとにベースベットの__0__。フリースピンがより頻繁に発生し、より多くのフリースピンを獲得できるスキャッター5個以上での発生が起こりやすくなります。それ以外は、ベースゲームはメインゲームと同じです。',
-	'Each of these three modes goes straight into free spins, without a base game spin, and asks for confirmation before it starts. The number of free spins is drawn at random: __0__.':
-		'これら三つのモードは、ベースゲームのスピンなしで直接フリースピンに入り、開始前に確認を求めます。フリースピンの回数はランダムで決定されます：__0__。',
-	'__0__ the base __1__. The free spins are the same as in the main game.':
-		'ベースベットの__0__。フリースピンはメインゲームと同じです。',
-	'__0__ the base __1__. Free spins where Multipliers, Bombs and Cloners appear much more often than in the main game.':
-		'ベースベットの__0__。マルチプライヤー、ボム、クローナーがメインゲームよりはるかに頻繁に現れるフリースピン。',
-	'__0__ the base __1__. Free spins that start with a persistent total multiplier already active, drawn at random from __2__. Multipliers collected during the round add to it.':
-		'ベースベットの__0__。持続する合計マルチプライヤーがすでに有効な状態で始まるフリースピン。その値は__2__からランダムに決まります。ラウンド中に収集されたマルチプライヤーはそこに加算されます。',
-	"Wins from tumbles, features and free spins in one round are added together into the round's total win.":
-		'同じラウンド中のタンブル、フィーチャー、フリースピンによる配当は、そのラウンドの合計配当として合算されます。',
-	'Scatters award free spins in any position.': 'スキャッターはどの位置でもフリースピンを付与します。',
+	'4 or more Scatters at the end of a base game spin start Cash Respins on the 6×5 grid with __0__ respins. Only Coins, Multipliers, Cloners and Bombs land during Cash Respins.':
+		'ベースゲームのスピン終了時にスキャッターが4個以上あると、6×5のグリッドでリスピン__0__回のキャッシュ・リスピンが始まります。キャッシュ・リスピン中に止まるのはコイン、マルチプライヤー、クローナー、ボムだけです。',
+	'Start: the number of Scatters decides how the grid starts (see Scatter). Starting multiplier frames are worth __0__. Mutant Respins and Overcharged Respins always start with frames, as described below.':
+		'開始：スキャッターの数でグリッドの始まり方が決まります（スキャッター参照）。開始時のマルチプライヤー枠の値は__0__です。ミュータント・リスピンとオーバーチャージ・リスピンは、下記のとおり必ず枠付きで始まります。',
+	'Respins: new symbols land on empty positions, all at the same time. Every respin where a symbol lands resets the respins to __0__.':
+		'リスピン：新しいシンボルが空いているポジションにすべて同時に止まります。シンボルが止まったリスピンごとに、リスピンは__0__回に戻ります。',
+	'Coin: worth __0__ the base __1__. It stays on the grid until the end and is multiplied by the frame under it.':
+		'コイン：値はベースベットの__0__。終了までグリッドに残り、その下の枠で倍増されます。',
+	'Multiplier: worth __0__. It leaves a frame on its position, or adds its value to the frame already there. Frame values add up, to a maximum of __1__, and frames stay for the whole feature.':
+		'マルチプライヤー：値は__0__。自分のポジションに枠を残すか、すでにある枠に値を加えます。枠の値は最大__1__まで合算され、枠はフィーチャー終了まで残ります。',
+	'Cloner: it turns into a coin and spreads __0__ to __1__ more coins onto empty positions, fewer if the grid is nearly full, each with its own value. Each coin is multiplied by the frame it lands on.':
+		'クローナー：コインに変わり、空いているポジションに追加のコインを__0__〜__1__枚ばらまきます（グリッドがほぼ埋まっている場合は少なくなります）。それぞれに固有の値があります。各コインは止まった枠で倍増されます。',
+	'Bomb: worth __0__ the base __1__ (in Overcharged Respins, also __2__), multiplied by the frame under it. It turns into a coin of that value and adds the same value to every coin in the 3×3 area around it.':
+		'ボム：値はベースベットの__0__（オーバーチャージ・リスピンでは__2__もあり）で、その下の枠で倍増されます。その値のコインに変わり、周囲3×3エリアのすべてのコインに同じ値を加えます。',
+	'After the symbols of a respin land, they act in this order:': 'リスピンのシンボルが止まった後、次の順序で作動します：',
+	'Multipliers leave or grow their frames and disappear.': 'マルチプライヤーが枠を残すか大きくして消えます。',
+	'Coins are multiplied by the frame under them.': 'コインがその下の枠で倍増されます。',
+	'The Cloner turns into a coin and spreads its coins.': 'クローナーがコインに変わり、コインをばらまきます。',
+	'Bombs turn into coins and add their value to the coins around them.': 'ボムがコインに変わり、周囲のコインに値を加えます。',
+	'End: the feature ends when no respins are left or all __0__ positions hold a coin. The win is the total of all coin values, as a multiple of the base __1__.':
+		'終了：リスピンが残っていない場合、または__0__か所すべてにコインがある場合にフィーチャーは終了します。配当はすべてのコインの値の合計で、ベースベットの倍数です。',
+	'Chaos Mode and Bonus Boost are switched on and off in the feature menu while the game is idle. Only one can be on at a time. While one is on, each spin is played at the multiple of the base __0__ shown below, and wins stay multiples of the base __0__.':
+		'カオスモードとボーナスブーストは、ゲームが待機中のときにフィーチャーメニューでオン・オフを切り替えます。同時にオンにできるのはひとつだけです。オンの間は、各スピンが下記のベースベットの倍数でプレイされ、配当は引き続きベースベットの倍数です。',
+	'Chaos Mode: __0__ the base __1__ per spin. Multipliers, Bombs and Cloners appear more often in the base game, and Cash Respins trigger more often.':
+		'カオスモード：スピンごとにベースベットの__0__。ベースゲームでマルチプライヤー、ボム、クローナーがより頻繁に現れ、キャッシュ・リスピンもより頻繁に発生します。',
+	'Bonus Boost: __0__ the base __1__ per spin. Cash Respins trigger more often. The base game is otherwise the same as the main game.':
+		'ボーナスブースト：スピンごとにベースベットの__0__。キャッシュ・リスピンがより頻繁に発生します。それ以外のベースゲームはメインゲームと同じです。',
+	'Each of these three modes goes straight into Cash Respins, without a base game spin, and asks for confirmation before it starts.':
+		'これら三つのモードは、ベースゲームのスピンなしで直接キャッシュ・リスピンに入り、開始前に確認を求めます。',
+	'__0__ the base __1__. Cash Respins start at random as the 4, 5, or 6 or more Scatter version and are the same as in the main game.':
+		'ベースベットの__0__。キャッシュ・リスピンはスキャッター4個、5個、6個以上のいずれかのバージョンでランダムに始まり、メインゲームと同じです。',
+	'__0__ the base __1__. Cash Respins where __2__ positions always start with a multiplier frame, each worth __3__. Multipliers and Bombs land more often than in Operation Respins, and Multipliers are more likely to land on the highest frames.':
+		'ベースベットの__0__。__2__か所が必ずマルチプライヤー枠付きで始まるキャッシュ・リスピンで、各枠の値は__3__です。マルチプライヤーとボムがオペレーション・リスピンより頻繁に止まり、マルチプライヤーは最も高い枠に止まりやすくなります。',
+	'__0__ the base __1__. Cash Respins where all __2__ positions start with a multiplier frame, each worth __3__. Multipliers, Cloners and Bombs land more often on every respin, Multipliers are more likely to have high values, and Bombs can also be worth __4__.':
+		'ベースベットの__0__。__2__か所すべてがマルチプライヤー枠付きで始まるキャッシュ・リスピンで、各枠の値は__3__です。毎回のリスピンでマルチプライヤー、クローナー、ボムがより頻繁に止まり、マルチプライヤーは高い値になりやすく、ボムの値は__4__になることもあります。',
+	"Wins from tumbles, features and Cash Respins in one round are added together into the round's total win.":
+		'同じラウンド中のタンブル、フィーチャー、キャッシュ・リスピンによる配当は、そのラウンドの合計配当として合算されます。',
+	'Scatters start Cash Respins in any position.': 'スキャッターはどのポジションでもキャッシュ・リスピンを開始します。',
 	'The maximum win of each mode, listed under Game Modes, is the highest win that mode can award.':
 		'各モードの最大配当（ゲームモードに記載）は、そのモードで支払われ得る最高の配当です。',
 	'Spin: Start a spin at the current __0__ amount.': 'スピン：現在のベット額でスピンを開始します。',
 	'Stop: Stop the reels early during a spin.': 'ストップ：スピン中にリールを早く停止します。',
 	'Autoplay: Spin automatically a set number of times.': 'オートプレイ：設定した回数だけ自動でスピンします。',
 	'Turbo: Speed up animations.': 'ターボ：アニメーションを高速化します。',
-	'Buy Feature (Scatter disc): Open the feature menu with the three free spins modes and the Chaos Mode and Free Spins Boost switches.':
-		'フィーチャー購入（スキャッターディスク）：三つのフリースピンモードと、カオスモードおよびフリースピンブーストのスイッチがあるフィーチャーメニューを開きます。',
+	'Buy Feature (Scatter disc): Open the feature menu with the three Cash Respins modes and the Chaos Mode and Bonus Boost switches.':
+		'フィーチャー購入（スキャッターディスク）：三つのキャッシュ・リスピンモードと、カオスモードおよびボーナスブーストのスイッチがあるフィーチャーメニューを開きます。',
 	'+/−: Increase or decrease the __0__ amount.': '+/−：ベット額を増減します。',
 	'Menu (☰): Open the menu.': 'メニュー（☰）：メニューを開きます。',
 	'Paytable: View the symbol payout values.': '配当表：シンボルの配当値を表示します。',
@@ -165,8 +184,18 @@ export default {
 	'Symbol Payouts': 'シンボル配当',
 	'Created only when a Bomb explodes. Substitutes for every paying symbol and counts toward each of them. Wilds alone do not form a win.':
 		'ボムが爆発したときにのみ生まれます。すべての配当シンボルを代替し、それぞれにカウントされます。ワイルドだけでは当たりになりません。',
-	'4 Scatters = 10 Free Spins\n5 Scatters = 15 Free Spins\n6 or more = 20 Free Spins\n3 or more during Free Spins = 5 more Free Spins':
-		'スキャッター4個 = フリースピン10回\nスキャッター5個 = フリースピン15回\n6個以上 = フリースピン20回\nフリースピン中に3個以上 = フリースピン5回追加',
+	'4 Scatters = Cash Respins\n5 Scatters = Cash Respins with __0__ multiplier frames\n6 or more = Cash Respins with __1__ multiplier frames':
+		'スキャッター4個 = キャッシュ・リスピン\nスキャッター5個 = マルチプライヤー枠__0__個付きキャッシュ・リスピン\n6個以上 = マルチプライヤー枠__1__個付きキャッシュ・リスピン',
+	'Cash Respins Symbols': 'キャッシュ・リスピンのシンボル',
+	Coin: 'コイン',
+	'Worth __0__ the base __1__. Stays on the grid until Cash Respins end, multiplied by the frame under it.':
+		'値はベースベットの__0__。キャッシュ・リスピン終了までグリッドに残り、その下の枠で倍増されます。',
+	'Worth __0__. Leaves a frame on its position, or adds to the frame there, up to __1__.':
+		'値は__0__。自分のポジションに枠を残すか、そこにある枠に加算します（最大__1__）。',
+	'Turns into a coin and spreads __0__ to __1__ coins onto empty positions, fewer if the grid is nearly full.':
+		'コインに変わり、空いているポジションにコインを__0__〜__1__枚ばらまきます（グリッドがほぼ埋まっている場合は少なくなります）。',
+	'Worth __0__ (in Overcharged Respins, also __1__), multiplied by its frame. Turns into a coin and adds its value to every coin around it.':
+		'値は__0__（オーバーチャージ・リスピンでは__1__もあり）で、その枠で倍増されます。コインに変わり、周囲のすべてのコインに値を加えます。',
 	'Worth __0__. Collected into the total multiplier before any win is awarded.':
 		'値は__0__。配当が支払われる前に合計マルチプライヤーに収集されます。',
 	'When there is no win, it clears the paying symbols in the 3×3 area around it and stays as a Wild.':

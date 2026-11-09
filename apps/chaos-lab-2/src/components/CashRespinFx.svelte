@@ -3,7 +3,7 @@
 
 	import BoardContainer from './BoardContainer.svelte';
 	import Symbol from './Symbol.svelte';
-	import { coinTextStyle, multTextStyle } from './CashFace.svelte';
+	import { coinTextStyle } from './CashFace.svelte';
 	import { getCellKey, getSymbolX, getSymbolY } from '../game/utils';
 	import { cashGrid } from '../game/stateCashRespins.svelte';
 	import type { Position } from '../game/types';
@@ -11,11 +11,10 @@
 	/**
 	 * What spills out of a Cash Respins cell, drawn OVER the pipe frame like the
 	 * base game's tumble layer (TumbleBoard plays its bomb blasts there): the
-	 * bomb's `explode` and the cloner's `cast` rigs, the frame values rising into
-	 * their coins, and the bomb's value thrown onto each coin around it. Under the
-	 * frame, a bomb on the right column lost its blast to the pipe (Evtim,
-	 * 2026-11-03). CashRespinBoard runs the grid (stateCashRespins); this only
-	 * draws its effects.
+	 * bomb's `explode` and the cloner's `cast` rigs, and the bomb's value thrown
+	 * onto each coin around it. Under the frame, a bomb on the right column lost
+	 * its blast to the pipe (Evtim, 2026-11-03). CashRespinBoard runs the grid
+	 * (stateCashRespins); this only draws its effects.
 	 */
 	const cellX = (position: Position) => getSymbolX(position.reel);
 	const cellY = (position: Position) => getSymbolY(position.row - 1);
@@ -34,23 +33,11 @@
 				</Container>
 			{/each}
 		</Container>
-		<!-- a frame's value rising into its coin -->
-		<Container>
-			{#each cashGrid.cells as cell (getCellKey(cell))}
-				<Container x={cellX(cell)} y={cellY(cell)}>
-					{#if cell.fx}
-						<Container alpha={cell.fx.alpha.current} scale={cell.fx.scale.current}>
-							<BitmapText anchor={0.5} text={cell.fx.text} style={multTextStyle(cell.frame)} />
-						</Container>
-					{/if}
-				</Container>
-			{/each}
-		</Container>
-		<!-- a bomb's value thrown onto a coin around it -->
+		<!-- a bomb's value ("2x") thrown onto a coin around it -->
 		<Container>
 			{#each cashGrid.flights as flight (flight.id)}
 				<Container x={flight.x.current} y={flight.y.current} alpha={flight.alpha.current}>
-					<BitmapText anchor={0.5} text={flight.text} style={coinTextStyle(Number(flight.text.slice(1)))} />
+					<BitmapText anchor={0.5} text={flight.text} style={coinTextStyle(parseInt(flight.text, 10))} />
 				</Container>
 			{/each}
 		</Container>

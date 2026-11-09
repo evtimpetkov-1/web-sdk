@@ -179,23 +179,33 @@
 		scrollbar-width: none;
 	}
 
+	/* One band for every option (374 px on the 430 px card, the size the
+	   v3 grids drew at), shrinking down to 5rem when the screen is too short
+	   for the whole card. It was 16:9 in name only: an aspect-ratio box grows
+	   to its content's height, so each image set its own band (Operation's
+	   433 px pushed the card past 94dvh on 720-tall screens: a scroll). The
+	   art is absolutely placed, so it never sizes the band. */
 	.art {
-		aspect-ratio: 16 / 9;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		position: relative;
+		flex: 0 1 auto;
+		aspect-ratio: 23 / 20;
+		min-height: 5rem;
 		background:
 			radial-gradient(ellipse 60% 70% at 50% 60%, rgba(171, 234, 16, 0.25) 0%, transparent 70%),
 			linear-gradient(180deg, rgba(70, 40, 110, 0.6) 0%, rgba(20, 16, 30, 0.25) 100%);
 		border-bottom: 1px solid rgba(171, 234, 16, 0.2);
 	}
 	.art img {
-		height: 80%;
-		width: auto;
-		max-width: 70%;
+		/* the art fills the band (Evtim, 2026-11-06: "fill the cards") */
+		position: absolute;
+		inset: 0;
+		margin: auto;
+		width: 90%;
+		height: 96%;
 		object-fit: contain;
 		filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7));
 		user-select: none;
+		pointer-events: none;
 	}
 
 	.body {
@@ -274,6 +284,9 @@
 		border: none;
 		cursor: pointer;
 		position: absolute;
+		/* over the card: the art's drop-shadow filter paints it in a later
+		   layer, so where they overlap (narrow screens) it took the X's taps */
+		z-index: 1;
 		top: clamp(0.8rem, 3vh, 1.6rem);
 		right: clamp(0.8rem, 3vw, 1.8rem);
 		width: 2.8rem;

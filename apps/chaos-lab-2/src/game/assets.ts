@@ -37,7 +37,7 @@ export default {
 	// glyphs stand off the stone royals behind them; generated, smoothstep falloff
 	msWinShadow: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/fx/win_shadow.png', import.meta.url).href,
+		src: new URL('../../assets/madscience/fx/win_shadow.webp', import.meta.url).href,
 	},
 	// The reel backing (BoardBacking.svelte): what fills the frame window when the
 	// symbols do not — dark chamber with reel grooves, an edge glow and two
@@ -200,7 +200,7 @@ export default {
 	// fly from the cloner to the cells it clones onto (MovingClones)
 	msClonerGhost: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/fx/cloner_ghost.png', import.meta.url).href,
+		src: new URL('../../assets/madscience/fx/cloner_ghost.webp', import.meta.url).href,
 	},
 	msWinFx: {
 		type: 'spine',
@@ -228,7 +228,7 @@ export default {
 	},
 	msFrame: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/frame_resized.png', import.meta.url).href,
+		src: new URL('../../assets/madscience/frame_resized.webp', import.meta.url).href,
 		preload: true,
 	},
 	// free spins: the blood-stained operating theatre and the matching frame
@@ -240,7 +240,7 @@ export default {
 	},
 	msFrameFs: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/frame_resized_fs.png', import.meta.url).href,
+		src: new URL('../../assets/madscience/frame_resized_fs.webp', import.meta.url).href,
 	},
 	// the buy slot (BuySlot.svelte, the game's own button: the SDK's
 	// ButtonBuyBonus draws only when a 'bonusActive' key exists, so these keys
@@ -307,22 +307,33 @@ export default {
 		src: new URL('../../assets/chaoslab2/mascot/mascot.webp', import.meta.url).href,
 		preload: true,
 	},
-	// Cash Respins (Chaos Lab 2, 2026-11-03; the feature is not built yet).
-	// Coin plate: Evtim's coin_plate.png (297x321), the coin's value drawn on it
-	// in cl2-coin. The two faces are packed by
-	// tools/bitmap-font-generator/pack-cl2-fonts.py from
+	// Cash Respins (Chaos Lab 2). Coin v2 (Evtim, 2026-11-04): the gold coin
+	// (433x478) with its value in cl2-coin; once a multiplier frame applies, the
+	// purple one with cl2-coin-purple (art-review/chaoslab2/coin_v2/
+	// prep_new_coin.py; v1's gold plate in art-review/static-leftovers/coin_v1).
+	// The faces are packed by tools/bitmap-font-generator/pack-cl2-fonts.py from
 	// art-review/chaoslab2/fonts/<face>/raw/ (base = lineHeight: anchor 0.5
 	// centres the cell). cl2-multiplier = the purple multiplier that lands on the
-	// reels, no plate (Evtim: the purple plate is not used for now).
-	cl2CoinPlate: {
+	// reels, no plate.
+	cl2CoinGold: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/chaoslab2/coin/coin_plate.webp', import.meta.url).href,
+		src: new URL('../../assets/chaoslab2/coin/coin_gold.webp', import.meta.url).href,
+	},
+	cl2CoinPurple: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/chaoslab2/coin/coin_purple.webp', import.meta.url).href,
 	},
 	cl2CoinFont: {
 		type: 'font',
 		mipmap: true,
 		src: new URL('../../assets/chaoslab2/fonts/cl2-coin/cl2-coin.xml', import.meta.url).href,
+	},
+	cl2CoinPurpleFont: {
+		type: 'font',
+		mipmap: true,
+		src: new URL('../../assets/chaoslab2/fonts/cl2-coin-purple/cl2-coin-purple.xml', import.meta.url).href,
 	},
 	cl2MultiplierFont: {
 		type: 'font',
@@ -356,16 +367,18 @@ export default {
 		src: new URL('../../assets/chaoslab2/logo_one_row.webp', import.meta.url).href,
 		preload: true,
 	},
-	// the intro's "WIN UP TO 22 924 X" banner (2101x374, Overcharged Free Spins'
-	// top win; art-review/madscience/win_up_to/make_win_up_to.py)
-	msWinUpTo: {
+	// the intro's "WIN UP TO 31 445 X" banner (2100x385; English + social, other
+	// languages draw it as text): stake-engine/art-review/chaoslab2/win_up_to/
+	// make_win_up_to.py. Bakes the top max win: regenerate if the math moves it.
+	// Chaos Lab's 22 924 X art is in art-review/static-leftovers/madscience.
+	cl2WinUpTo: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/win_up_to.webp', import.meta.url).href,
+		src: new URL('../../assets/chaoslab2/win_up_to.webp', import.meta.url).href,
 		preload: true,
 	},
 	msMultPlate: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/mult_plate.png', import.meta.url).href,
+		src: new URL('../../assets/madscience/mult_plate.webp', import.meta.url).href,
 		preload: true,
 	},
 	// the multiplier plate's long cousin (1200x267) behind the portrait counters on
@@ -438,7 +451,7 @@ export default {
 	fsIntroFreeSpinsTxt: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/madscience/fsintro/free_spins.png', import.meta.url).href,
+		src: new URL('../../assets/madscience/fsintro/free_spins.webp', import.meta.url).href,
 	},
 	// the retrigger's '+' (FreeSpinRetrigger), drawn beside the fsintro-digits count:
 	// Nano Banana 2.1 off the digit sheet, Photoroom cut, 200 px tall = 0.65 of a
@@ -446,7 +459,7 @@ export default {
 	fsRetriggerPlus: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/madscience/fsintro/plus.png', import.meta.url).href,
+		src: new URL('../../assets/madscience/fsintro/plus.webp', import.meta.url).href,
 	},
 	// orange riveted digits 0-9 for the intro's spin count; packed by
 	// tools/bitmap-font-generator/pack-fsintro-digits.js from art-review/static-sources/fsintro-digits/raw/

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 
 import { recordBookEvent, checkIsMultipleRevealEvents, type BookEventHandlerMap } from 'utils-book';
-import { stateBet, stateBetDerived, stateUi } from 'state-shared';
+import { stateBet, stateBetDerived, stateUi, stateUrlDerived } from 'state-shared';
 import { waitForResolve, waitForTimeout } from 'utils-shared/wait';
 
 import { eventEmitter } from './eventEmitter';
@@ -20,6 +20,7 @@ import {
 	stateGame,
 	stateGameDerived,
 } from './stateGame.svelte';
+import { cashGridAfter } from './stateCashRespins.svelte';
 import type { BookEvent, BookEventOfType, BookEventContext } from './typesBookEvent';
 import type { GameType, Position, RawSymbol } from './types';
 import type { MusicName } from './sound';
@@ -238,6 +239,41 @@ let cashRespinsLeft = 0;
 // only cashRespinUpdate, which then has to spin the grid itself
 let cashSpun = false;
 
+// The resume cursor (/bet/event): the RGS keeps the last event index the client
+// records, and a reload replays the round from there (convertTorResumableBet),
+// with createBonusSnapshot rebuilding everything before it. Free spins record
+// each reveal; Cash Respins have no reveals, so nothing was recorded and a
+// reload replayed a bought round from its start (Evtim, 2026-11-06). Recorded:
+// the first event of every respin (its cashRespinLand, or the lone
+// cashRespinUpdate of an empty one) and the collect (cashRespinEnd).
+const recordRespinCursor = (bookEvent: BookEvent) => {
+	if (stateUrlDerived.replay()) return;
+	recordBookEvent({ bookEvent });
+};
+
+// Reloaded inside Cash Respins: straight back into the respin that was
+// interrupted, as free spins do (Kraken's pattern). No base game, curtains,
+// trigger or intro: Game.svelte dressed the theatre behind its intro transition,
+// and the grid, frames, coins, counters, glow and music come back at once.
+const restoreCashRespins = (bookEvents: BookEvent[], start: BookEventOfType<'cashRespinStart'>) => {
+	stateGame.gameType = 'freegame';
+	stateGame.cashRespins = true;
+	clearPlateUnseen();
+	eventEmitter.broadcast({ type: 'globalMultiplierHide' });
+	eventEmitter.broadcast({ type: 'tumbleWinAmountHide' });
+	eventEmitter.broadcast({ type: 'boardHide' });
+	eventEmitter.broadcast({ type: 'cashBoardRestore', cells: cashGridAfter(bookEvents) });
+	const lastUpdate = _.findLast(bookEvents, (event) => event.type === 'cashRespinUpdate') as
+		| BookEventOfType<'cashRespinUpdate'>
+		| undefined;
+	cashRespinsLeft = lastUpdate?.respinsLeft ?? start.respins;
+	cashSpun = false;
+	eventEmitter.broadcast({ type: 'boardFrameGlowShow' });
+	eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_ms_freespin' });
+	eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
+	eventEmitter.broadcast({ type: 'freeSpinCounterUpdate', current: cashRespinsLeft });
+};
+
 // cashRespinEnd carries no winLevel: the outro's tier comes from the amount, on
 // math-sdk's standard levels (x bet floors of levels 2-10). INFERRED: both books'
 // setWin levels fit them (0.4x -> 2, 2x -> 4); ask the math for cashRespinEnd.winLevel.
@@ -245,12 +281,6 @@ const WIN_LEVEL_FLOORS = [0.1, 1, 2, 5, 15, 30, 50, 100, 500];
 const winLevelForAmount = (bookAmount: number): WinLevel => {
 	const multiple = bookAmount / 100;
 	return (1 + WIN_LEVEL_FLOORS.filter((floor) => multiple >= floor).length) as WinLevel;
-};
-
-/** a respin starts: one respin is used (a landing puts it back to 3 at its update) */
-const cashSpinStart = () => {
-	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_fs_counter' });
-	eventEmitter.broadcast({ type: 'freeSpinCounterUpdate', current: Math.max(0, cashRespinsLeft - 1) });
 };
 
 // The way into Cash Respins (the trigger's Scatters have already celebrated):
@@ -277,11 +307,14 @@ const enterCashRespins = async (bookEvent: BookEventOfType<'cashRespinStart'>) =
 		type: 'freeSpinIntroUpdate',
 		totalFreeSpins: bookEvent.respins,
 		word: 'respins',
+		frames: bookEvent.frames.length,
 	});
 	eventEmitter.broadcast({ type: 'freeSpinIntroHide' });
 	eventEmitter.broadcast({ type: 'boardFrameGlowShow' });
 	eventEmitter.broadcast({ type: 'freeSpinCounterShow' });
 	eventEmitter.broadcast({ type: 'freeSpinCounterUpdate', current: bookEvent.respins });
+	// the starting frames (5 / 10 / all 30) pop in one by one, then wait dimmed
+	await eventEmitter.broadcastAsync({ type: 'cashBoardRevealFrames' });
 	await eventEmitter.broadcastAsync({ type: 'uiShow' });
 };
 
@@ -292,6 +325,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			const remaining = TURBO_FS_MIN_BOARD_MS - (performance.now() - boardLandedAt);
 			if (remaining > 0) await waitForTimeout(remaining);
 		}
+		// the last round's WIN leaves as this spin starts (it stays up after its round)
+		eventEmitter.broadcast({ type: 'tumbleWinAmountHide' });
 		eventEmitter.broadcast({ type: 'tumbleWinAmountReset' });
 		const isBonusGame = checkIsMultipleRevealEvents({ bookEvents });
 		if (isBonusGame) {
@@ -466,13 +501,19 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	// Cash Respins: the Scatters celebrate on the board the cascades left
 	cashRespinTrigger: async (bookEvent: BookEventOfType<'cashRespinTrigger'>) => {
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_scatter_win' });
+		// the slot rumbles under them (SceneShake)
+		eventEmitter.broadcast({ type: 'sceneShake', preset: 'featureTrigger' });
 		await animateSymbols({ positions: bookEvent.positions });
 	},
+	// A bought round opens here (no base spin, no trigger). Nothing to do yet:
+	// cashRespinStart, next, closes the curtains over the board as it stands and
+	// enters the feature. Without a handler it logged "Missing bookEventHandler".
+	buyCashRespins: async () => {},
 	cashRespinStart: async (bookEvent: BookEventOfType<'cashRespinStart'>) => {
 		await enterCashRespins(bookEvent);
 	},
 	cashRespinLand: async (bookEvent: BookEventOfType<'cashRespinLand'>) => {
-		cashSpinStart();
+		recordRespinCursor(bookEvent);
 		await eventEmitter.broadcastAsync({ type: 'cashBoardSpin', land: bookEvent });
 		cashSpun = true;
 	},
@@ -499,16 +540,27 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	cashRespinUpdate: async (bookEvent: BookEventOfType<'cashRespinUpdate'>) => {
 		// an empty respin: nothing landed, so no cashRespinLand spun the grid
 		if (!cashSpun) {
-			cashSpinStart();
+			recordRespinCursor(bookEvent);
 			await eventEmitter.broadcastAsync({ type: 'cashBoardSpin' });
 		}
 		cashSpun = false;
 		// a landing puts the respins back to 3: the counter punches up
-		const reset = bookEvent.respinsLeft > cashRespinsLeft - 1;
+		// RESPINS LEFT = the book's respinsLeft once the respin has played out: 3 from
+		// the start and after every landing, down only on an empty respin. It used to
+		// drop as a respin started, so a landing's 3 was never on show (Evtim, 2026-11-04)
+		if (bookEvent.respinsLeft !== cashRespinsLeft) {
+			const reset = bookEvent.respinsLeft > cashRespinsLeft;
+			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_fs_counter' });
+			eventEmitter.broadcast({ type: 'freeSpinCounterUpdate', current: bookEvent.respinsLeft, pop: reset });
+		}
 		cashRespinsLeft = bookEvent.respinsLeft;
-		eventEmitter.broadcast({ type: 'freeSpinCounterUpdate', current: bookEvent.respinsLeft, pop: reset });
 	},
 	cashRespinEnd: async (bookEvent: BookEventOfType<'cashRespinEnd'>) => {
+		recordRespinCursor(bookEvent);
+		// the mascot celebrates the feature's pay (Evtim, 2026-11-05), whatever its
+		// size. Asked for as the collect starts: her clip waits for the end of the
+		// idle loop on show (up to ~4.9 s), so it lands over the count or the outro
+		eventEmitter.broadcast({ type: 'mascotWin' });
 		// every coin is counted into TOTAL WIN, one by one (book units: x bet x 100)
 		let step = 0;
 		await eventEmitter.broadcastAsync({
@@ -780,6 +832,14 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];
+		// the win box is for big wins only: the WIN counter over the reels already
+		// holds every other win, so those take just their stinger (Evtim, 2026-11-04)
+		if (winLevelData?.type !== 'big') {
+			if (winLevelData?.sound?.sfx) {
+				eventEmitter.broadcast({ type: 'soundOnce', name: winLevelData.sound.sfx });
+			}
+			return;
+		}
 
 		eventEmitter.broadcast({ type: 'winShow' });
 		winLevelSoundsPlay({ winLevelData });
@@ -795,9 +855,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		winLevelSoundsStop();
 		eventEmitter.broadcast({ type: 'winHide' });
 	},
-	finalWin: async (bookEvent: BookEventOfType<'finalWin'>) => {
-		eventEmitter.broadcast({ type: 'tumbleWinAmountHide' });
-	},
+	// the WIN counter stays up with the round's win until the next spin (reveal)
+	finalWin: async () => {},
 	// customised
 	createBonusSnapshot: async (bookEvent: BookEventOfType<'createBonusSnapshot'>) => {
 		const { bookEvents } = bookEvent;
@@ -824,6 +883,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		if (lastReveal) eventEmitter.broadcast({ type: 'boardSettle', board: lastReveal.board });
 		if (lastSetTotalWinEvent) playBookEvent(lastSetTotalWinEvent, { bookEvents });
+		// Cash Respins (Chaos Lab 2): the round left inside the feature
+		const cashStart = findLastBookEvent('cashRespinStart' as const);
+		if (cashStart) {
+			restoreCashRespins(bookEvents, cashStart);
+			return;
+		}
 		if (!entry) return;
 
 		// Reloaded inside the free spins (Evtim, 2026-10-26): straight back into the

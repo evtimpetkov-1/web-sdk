@@ -17,6 +17,7 @@
 	import BoardContainer from './BoardContainer.svelte';
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
+	import { reachesTotalBet } from '../game/utils';
 	import { counterText } from '../game/textStyles';
 	import { i18nDerived } from '../i18n/i18nDerived';
 	import { drawnOrder } from '../i18n/format';
@@ -29,6 +30,8 @@
 	 * Portrait (2026-10-26): one line in the middle of the frame's bottom pipe,
 	 * where the counters moved (stateGame portraitCounterLayout).
 	 * An update resolves once its count-up has landed, as the panel's did.
+	 * It stays up after its round (the win box is for big wins only, Evtim
+	 * 2026-11-04) and fades out as the next spin starts.
 	 */
 	const context = getContext();
 
@@ -45,22 +48,34 @@
 	const LABEL_SIZE = SYMBOL_SIZE * 0.26;
 	const VALUE_SIZE = SYMBOL_SIZE * 0.36;
 	const GAP = SYMBOL_SIZE * 0.02;
-	// a plain cascade step glides up; a multiplied one (boardMultiplierInfo) takes its time
+	// a plain cascade step glides up; a multiplied one (boardMultiplierInfo) takes its
+	// time; a running win still below the total bet just shows (Evtim, 2026-11-04)
 	const STEP_MS = 400;
 	const MULTIPLIED_MS = 700;
 
 	let show = $state(false);
 	const amount = new Tween(0, { duration: STEP_MS, easing: cubicOut });
 	const visible = $derived(show && context.stateGame.gameType !== 'freegame');
+	// the figure frozen as the counter fades out, so the next spin's reset to 0
+	// does not flash on its way out
+	let frozen = $state<number | null>(null);
+	const shown = $derived(frozen ?? amount.current);
 
 	context.eventEmitter.subscribeOnMount({
-		tumbleWinAmountShow: () => (show = true),
-		tumbleWinAmountHide: () => (show = false),
+		tumbleWinAmountShow: () => {
+			frozen = null;
+			show = true;
+		},
+		tumbleWinAmountHide: () => {
+			if (show) frozen = amount.current;
+			show = false;
+		},
 		tumbleWinAmountReset: () => amount.set(0, { duration: 0 }),
 		tumbleWinAmountUpdate: async (emitterEvent) => {
 			if (emitterEvent.amount === amount.target) return;
+			const glide = emitterEvent.animate ? MULTIPLIED_MS : STEP_MS;
 			await amount.set(emitterEvent.amount, {
-				duration: emitterEvent.animate ? MULTIPLIED_MS : STEP_MS,
+				duration: reachesTotalBet(emitterEvent.amount) ? glide : 0,
 			});
 		},
 	});
@@ -82,7 +97,7 @@
 				x={boardWidth / 2}
 				y={line.textY}
 				maxWidth={line.maxWidth}
-				text={`${i18nDerived.win()} ${drawnOrder(bookEventAmountToWinCurrencyString(amount.current))}`}
+				text={`${i18nDerived.win()} ${drawnOrder(bookEventAmountToWinCurrencyString(shown))}`}
 				style={counterText(line.size)}
 			/>
 		{:else}
@@ -98,7 +113,7 @@
 					anchor={{ x: 0.5, y: 0 }}
 					y={GAP}
 					maxWidth={room * 0.95}
-					text={drawnOrder(bookEventAmountToWinCurrencyString(amount.current))}
+					text={drawnOrder(bookEventAmountToWinCurrencyString(shown))}
 					style={counterText(VALUE_SIZE)}
 				/>
 			</Container>

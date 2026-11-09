@@ -4,14 +4,14 @@
 	import { BitmapText, Container, Rectangle, Sprite, Text } from 'pixi-svelte';
 	import { FadeContainer, ResponsiveText } from 'components-pixi';
 	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
-	import { stateI18nDerived, stateUrlDerived } from 'state-shared';
+	import { stateUrlDerived } from 'state-shared';
 
 	import config from '../game/config';
 	import { getContext } from '../game/context';
 	import { displayFont, winUpToText } from '../game/textStyles';
 	import { stateReplay, setReplayStartHandler } from '../game/stateReplay.svelte';
 	import { fill, formatTimes } from '../i18n/format';
-	import { i18nDerived, showsBakedArt } from '../i18n/i18nDerived';
+	import { i18nDerived, showsBakedArt, translateGame } from '../i18n/i18nDerived';
 	import { CURTAIN_Z } from './Transition.svelte';
 	import PressToContinue from './PressToContinue.svelte';
 
@@ -38,7 +38,7 @@
 	const context = getContext();
 	const isReplay = stateUrlDerived.replay();
 
-	type PanelId = 'anywhere' | 'multipliers' | 'bombs' | 'freeSpins';
+	type PanelId = 'anywhere' | 'multipliers' | 'bombs' | 'cashRespins';
 	const PANELS: { id: PanelId; title: string; text: string }[] = [
 		{
 			id: 'anywhere',
@@ -55,10 +55,11 @@
 			title: 'BOMBS & CLONERS',
 			text: 'Bombs blast their area and leave a Wild. Cloners turn symbols into copies of one.',
 		},
+		// Chaos Lab 2's feature (2026-11-03): Cash Respins replace Free Spins
 		{
-			id: 'freeSpins',
-			title: 'FREE SPINS',
-			text: '4 or more Scatters award 10 to 20 Free Spins. The multiplier keeps growing.',
+			id: 'cashRespins',
+			title: 'CASH RESPINS',
+			text: '4 or more Scatters start Cash Respins. Coins land, and Multipliers, Cloners and Bombs grow them.',
 		},
 	];
 
@@ -115,10 +116,10 @@
 	const LOGO_ROW_WIDTH = 0.6;
 	const oneRowLogo = $derived(['portrait', 'tablet'].includes(context.stateLayoutDerived.layoutType()));
 	const GAP = 22;
-	// "WIN UP TO 22 924 X" (win_up_to.webp): the Overcharged Free Spins top win.
-	// Languages without the art (showsBakedArt) draw it as text in the same box,
-	// the figure the top max win of all modes in config.
-	const WIN_RATIO = 2101 / 374;
+	// "WIN UP TO 31 445 X" (chaoslab2/win_up_to.webp, 2100x385): the Overcharged
+	// Respins top win. Languages without the art (showsBakedArt) draw it as text
+	// in the same box, the figure the top max win of all modes in config.
+	const WIN_RATIO = 2100 / 385;
 	const bakedArt = showsBakedArt();
 	const topMaxWin = Math.max(...Object.values(config.betModes).map((mode) => mode.max_win));
 	// main units the prompt's line takes above the bottom (PressToContinue: 46-unit
@@ -209,7 +210,7 @@
 		if (!fontsReady || !measure) return spec.text;
 		const width = layout.panelW * 0.86;
 		const room = layout.panelH - titleY - titleSize * 1.35 - 4;
-		const texts = PANELS.map((panel) => stateI18nDerived.translate(panel.text));
+		const texts = PANELS.map((panel) => translateGame(panel.text));
 		for (let size = spec.text; size > spec.text * 0.7; size -= 0.5) {
 			measure.font = `400 ${size}px Inter, sans-serif`;
 			if (texts.every((text) => wrappedLines(text, width) * size * LINE_HEIGHT <= room)) {
@@ -283,7 +284,25 @@
 							<Sprite key="bomb.png" anchor={0.5} x={-symW(artH) * 0.56} rotation={-0.08} width={symW(artH * 0.94)} height={artH * 0.94} />
 							<Sprite key="cloner.png" anchor={0.5} x={symW(artH) * 0.56} rotation={0.08} width={symW(artH * 0.94)} height={artH * 0.94} />
 						{:else}
-							<Sprite key="bonus.png" anchor={0.5} width={(artH * 1.08 * BONUS.w) / BONUS.h} height={artH * 1.08} />
+							<!-- the trigger and what it brings: a Scatter beside a Coin -->
+							<Sprite
+								key="bonus.png"
+								anchor={0.5}
+								x={-symW(artH) * 0.52}
+								rotation={-0.08}
+								width={(artH * 0.98 * BONUS.w) / BONUS.h}
+								height={artH * 0.98}
+							/>
+							<!-- the gold coin (433x478), its value on the disc as CashFace draws it -->
+							<Container x={symW(artH) * 0.56} rotation={0.08}>
+								<Sprite key="cl2CoinGold" anchor={0.5} width={(artH * 0.94 * 433) / 478} height={artH * 0.94} />
+								<BitmapText
+									anchor={0.5}
+									y={(artH * 0.94 * 6) / 478}
+									text="5x"
+									style={{ fontFamily: 'cl2-coin', fontSize: artH * 0.34, fill: 0xffffff }}
+								/>
+							</Container>
 						{/if}
 					</Container>
 
@@ -291,20 +310,20 @@
 						anchor={{ x: 0.5, y: 0 }}
 						y={titleY}
 						maxWidth={layout.panelW * 0.9}
-						text={stateI18nDerived.translate(panel.title)}
+						text={translateGame(panel.title)}
 						style={titleStyle}
 					/>
 					<Text
 						anchor={{ x: 0.5, y: 0 }}
 						y={titleY + titleSize * 1.35}
-						text={stateI18nDerived.translate(panel.text)}
+						text={translateGame(panel.text)}
 						style={textStyle}
 					/>
 				</Container>
 			{/each}
 
 			{#if !isReplay && bakedArt}
-				<Sprite key="msWinUpTo" anchor={0.5} {...layout.win} />
+				<Sprite key="cl2WinUpTo" anchor={0.5} {...layout.win} />
 			{:else if !isReplay}
 				<ResponsiveText
 					anchor={0.5}

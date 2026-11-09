@@ -8,69 +8,68 @@ const pays = (eight: number, ten: number, twelve: number) => ({
 export default {
 	// identity (metadata: nothing reads these at runtime). gameID = the Stake
 	// game id / url slug; provider + the snake_case name follow Kraken's config.
-	// Renamed from Mad Science on 2026-10-29: Stake already has a "Mad Science"
-	// (review item 2). The app folder followed on 2026-11-03 (apps/chaos-lab).
+	// Chaos Lab 2 (the math's "Mad Science 2"): chaos-lab-2 until Stake assigns
+	// the slug at registration.
 	providerName: 'royal_cat_gaming',
-	gameName: 'chaos_lab',
-	gameID: 'chaos-lab',
-	rtp: 0.9622,
+	gameName: 'chaos_lab_2',
+	gameID: 'chaos-lab-2',
+	rtp: 0.9636,
 	numReels: 6,
 	numRows: [5, 5, 5, 5, 5, 5],
-	// The six RGS modes (names as the math uploads them). The FE sends them
-	// uppercase — Kraken's ANTE/BONUS against lowercase math names, and the RGS
-	// reports this game's base spins back as 'BASE'.
-	// cost/rtp from the Game Rules Specification (rebalanced math, 2026-10-27).
-	// max_win (x base bet) off the Stake dashboard's Top win for the rebalanced
-	// math (2026-10-28): the largest win in each mode's books, so the highest
-	// win that mode can award.
+	// The six RGS modes (names as the math uploads them, Chaos Lab's). The FE
+	// sends them uppercase — Kraken's ANTE/BONUS against lowercase math names,
+	// and the RGS reports this game's base spins back as 'BASE'.
+	// cost / rtp / max_win (x base bet) from Chaos Lab 2's Game Rules
+	// Specification (Mad Science 2, 2026-11-04). Re-check max_win against the
+	// Stake dashboard's top win per mode once the math is uploaded.
 	betModes: {
 		base: {
 			cost: 1.0,
 			feature: true,
 			buyBonus: false,
-			rtp: 0.9622,
-			max_win: 14587,
+			rtp: 0.9636,
+			max_win: 19345,
 			description: 'main game',
 		},
 		ante_1: {
 			cost: 2.0,
 			feature: true,
 			buyBonus: false,
-			rtp: 0.9625,
-			max_win: 15389,
-			description: 'base game features 2.7x more frequent, free spins 1.3x more often',
+			rtp: 0.9628,
+			max_win: 19336,
+			description: 'Chaos Mode: base game features 2.7x more often, Cash Respins 1.3x more often',
 		},
 		ante_2: {
 			cost: 2.0,
 			feature: true,
 			buyBonus: false,
-			rtp: 0.9651,
-			max_win: 13200,
-			description: 'free spins trigger 3.7x more often',
+			rtp: 0.9605,
+			max_win: 17585,
+			description: 'Bonus Boost: Cash Respins 3.7x more often',
 		},
 		lucky_draw_free_spins: {
 			cost: 100,
 			feature: false,
 			buyBonus: true,
-			rtp: 0.9625,
-			max_win: 14701,
-			description: 'free spins, random 10/15/20 spins',
+			rtp: 0.9639,
+			max_win: 25128,
+			description: 'Operation Respins: buys Cash Respins, a random 4 / 5 / 6 Scatter version',
 		},
 		lucky_draw_feature_heavy: {
 			cost: 250,
 			feature: false,
 			buyBonus: true,
-			rtp: 0.9623,
-			max_win: 18657,
-			description: 'feature-heavy free spins, random 10/15/20 spins',
+			rtp: 0.962,
+			max_win: 28292,
+			description: 'Mutant Respins: Cash Respins starting with 10 multiplier frames (x2-x50), more Multipliers and Bombs',
 		},
 		super_lucky_draw_free_spins: {
-			cost: 350,
+			cost: 500,
 			feature: false,
 			buyBonus: true,
-			rtp: 0.9627,
-			max_win: 22924,
-			description: 'free spins with a starting multiplier, random 10/15/20 spins',
+			rtp: 0.963,
+			max_win: 31445,
+			description: 'Overcharged Respins: Cash Respins with every position framed (x2-x100), more Multipliers, Cloners and Bombs, Bombs up to x50',
 		},
 	},
 	// Game Rules Specification pays: 8-9 / 10-11 / 12+ of a kind anywhere, in

@@ -123,10 +123,14 @@ export class WebCodecsPlayer {
 	 * Queue a one-shot reaction; it starts at the next idle boundary. Ignored
 	 * while a reaction is queued, being fed or on screen.
 	 */
-	playOnce(index: number) {
-		if (this.isIdle(index) || index >= this.clips.length) return;
-		if (!this.isIdle(this.playingClip) || !this.isIdle(this.feedClip) || this.pendingOneShot !== null) return;
+	/** queues a reaction; false when it was ignored (another one queued or playing) */
+	playOnce(index: number): boolean {
+		if (this.isIdle(index) || index >= this.clips.length) return false;
+		if (!this.isIdle(this.playingClip) || !this.isIdle(this.feedClip) || this.pendingOneShot !== null) {
+			return false;
+		}
 		this.pendingOneShot = index;
+		return true;
 	}
 
 	/**

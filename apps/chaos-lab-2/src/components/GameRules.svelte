@@ -9,9 +9,19 @@
 	import { GAME_VERSION } from '../game/constants';
 	import { modeName } from '../game/modeNames';
 	import {
-		FREE_SPIN_COUNTS,
+		CASH_BOMB_VALUES,
+		CASH_CLONER_COINS,
+		CASH_COIN_VALUES,
+		CASH_FRAME_MAX,
+		CASH_MULTIPLIER_VALUES,
+		CASH_MUTANT_START_FRAMES,
+		CASH_OVERCHARGED_BOMB_MAX,
+		CASH_OVERCHARGED_FRAME_VALUES,
+		CASH_POSITIONS,
+		CASH_RESPINS,
+		CASH_START_FRAMES,
+		CASH_START_FRAME_VALUES,
 		MULTIPLIER_VALUES,
-		OVERCHARGED_START_MULTIPLIERS,
 		type RgsMode,
 	} from '../game/rulesData';
 
@@ -42,9 +52,17 @@
 
 	const multiplierValues = $derived(formatOrList(MULTIPLIER_VALUES.map(formatTimes)));
 
-	// the values a bought round can produce, never how likely each one is
-	const freeSpinCounts = $derived(formatOrList(FREE_SPIN_COUNTS.map(formatNumber)));
-	const startMultipliers = $derived(formatOrList(OVERCHARGED_START_MULTIPLIERS.map(formatTimes)));
+	// Cash Respins: the values each symbol / frame can have, never how likely each one is
+	const list = (values: number[]) => formatOrList(values.map(formatTimes));
+	const cash = $derived({
+		startFrames: list(CASH_START_FRAME_VALUES),
+		coins: list(CASH_COIN_VALUES),
+		multipliers: list(CASH_MULTIPLIER_VALUES),
+		frameMax: formatTimes(CASH_FRAME_MAX),
+		bombs: list(CASH_BOMB_VALUES),
+		overchargedFrames: list(CASH_OVERCHARGED_FRAME_VALUES),
+		overchargedBombMax: formatTimes(CASH_OVERCHARGED_BOMB_MAX),
+	});
 
 	const buyModes = $derived([
 		{
@@ -53,7 +71,13 @@
 		},
 		{
 			name: i18nDerived.modeMutant(),
-			text: fill(i18nDerived.rulesMutant(), cost('lucky_draw_feature_heavy'), bet),
+			text: fill(
+				i18nDerived.rulesMutant(),
+				cost('lucky_draw_feature_heavy'),
+				bet,
+				formatNumber(CASH_MUTANT_START_FRAMES),
+				cash.startFrames,
+			),
 		},
 		{
 			name: i18nDerived.modeOvercharged(),
@@ -61,7 +85,9 @@
 				i18nDerived.rulesOvercharged(),
 				cost('super_lucky_draw_free_spins'),
 				bet,
-				startMultipliers,
+				formatNumber(CASH_POSITIONS),
+				cash.overchargedFrames,
+				cash.overchargedBombMax,
 			),
 		},
 	]);
@@ -70,7 +96,7 @@
 {#if stateModal.modal?.name === 'gameRules'}
 	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
 		<div class="panel">
-			<img src={logoImg} alt="Chaos Lab" class="logo" />
+			<img src={logoImg} alt="Chaos Lab 2" class="logo" />
 
 			<section>
 				<h2>{i18nDerived.rulesOverview()}</h2>
@@ -122,8 +148,8 @@
 				<p>{i18nDerived.rulesScatterText()}</p>
 				<ul>
 					<li>{i18nDerived.rulesScatter4()}</li>
-					<li>{i18nDerived.rulesScatter5()}</li>
-					<li>{i18nDerived.rulesScatter6()}</li>
+					<li>{fill(i18nDerived.rulesScatter5(), formatNumber(CASH_START_FRAMES.five))}</li>
+					<li>{fill(i18nDerived.rulesScatter6(), formatNumber(CASH_START_FRAMES.sixOrMore))}</li>
 				</ul>
 			</section>
 
@@ -136,7 +162,7 @@
 					<li>{i18nDerived.rulesMultCollection()}</li>
 					<li>{i18nDerived.rulesMultTotal()}</li>
 					<li>{i18nDerived.rulesMultBase()}</li>
-					<li>{i18nDerived.rulesMultFs()}</li>
+					<li>{i18nDerived.rulesMultCash()}</li>
 				</ul>
 			</section>
 
@@ -176,13 +202,30 @@
 			</section>
 
 			<section>
-				<h2>{i18nDerived.rulesFreeSpins()}</h2>
-				<p>{i18nDerived.rulesFreeSpinsText()}</p>
+				<h2>{i18nDerived.rulesCashRespins()}</h2>
+				<p>{fill(i18nDerived.rulesCashText(), formatNumber(CASH_RESPINS))}</p>
 				<ul>
-					<li>{i18nDerived.rulesFsPersistent()}</li>
-					<li>{i18nDerived.rulesFsFeatures()}</li>
-					<li>{i18nDerived.rulesFsRetrigger()}</li>
+					<li>{fill(i18nDerived.rulesCashStart(), cash.startFrames)}</li>
+					<li>{fill(i18nDerived.rulesCashRespinsRule(), formatNumber(CASH_RESPINS))}</li>
+					<li>{fill(i18nDerived.rulesCashCoin(), cash.coins, bet)}</li>
+					<li>{fill(i18nDerived.rulesCashMultiplier(), cash.multipliers, cash.frameMax)}</li>
+					<li>
+						{fill(
+							i18nDerived.rulesCashCloner(),
+							formatNumber(CASH_CLONER_COINS.min),
+							formatNumber(CASH_CLONER_COINS.max),
+						)}
+					</li>
+					<li>{fill(i18nDerived.rulesCashBomb(), cash.bombs, bet, cash.overchargedBombMax)}</li>
 				</ul>
+				<p>{i18nDerived.rulesCashOrderText()}</p>
+				<ol>
+					<li>{i18nDerived.rulesCashOrder1()}</li>
+					<li>{i18nDerived.rulesCashOrder2()}</li>
+					<li>{i18nDerived.rulesCashOrder3()}</li>
+					<li>{i18nDerived.rulesCashOrder4()}</li>
+				</ol>
+				<p>{fill(i18nDerived.rulesCashEnd(), formatNumber(CASH_POSITIONS), bet)}</p>
 			</section>
 
 			<section>
@@ -196,7 +239,7 @@
 
 			<section>
 				<h2>{i18nDerived.rulesBuyModes()}</h2>
-				<p>{fill(i18nDerived.rulesBuyModesText(), freeSpinCounts)}</p>
+				<p>{i18nDerived.rulesBuyModesText()}</p>
 				{#each buyModes as buyMode}
 					<h3>{buyMode.name}</h3>
 					<p>{buyMode.text}</p>
@@ -291,12 +334,18 @@
 			0 0 14px rgba(171, 234, 16, 0.3);
 	}
 
+	/* the buy modes' names: the section headers' display face, a size down
+	   (they were bold Inter, which read as a different font: Evtim, 2026-11-06) */
 	h3 {
 		margin: 1rem 0 0.3rem;
 		text-align: center;
-		font-size: 1rem;
-		font-weight: 700;
+		font-family: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
+		font-size: 1.1rem;
+		font-weight: 400;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
 		color: var(--modal-accent);
+		text-shadow: 0 2px 3px rgba(0, 0, 0, 0.9);
 	}
 
 	p,

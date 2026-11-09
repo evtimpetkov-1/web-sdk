@@ -15,6 +15,7 @@ import type { EmitterEventSound } from '../components/Sound.svelte';
 import type { EmitterEventTransition } from '../components/Transition.svelte';
 import type { EmitterEventMascot } from '../components/Mascot.svelte';
 import type { EmitterEventCashRespins } from '../components/CashRespinBoard.svelte';
+import type { EmitterEventSceneShake } from '../components/SceneShake.svelte';
 
 export type EmitterEventGame =
 	| EmitterEventBoard
@@ -33,4 +34,5 @@ export type EmitterEventGame =
 	| EmitterEventSound
 	| EmitterEventTransition
 	| EmitterEventMascot
-	| EmitterEventCashRespins;
+	| EmitterEventCashRespins
+	| EmitterEventSceneShake;

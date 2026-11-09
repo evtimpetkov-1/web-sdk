@@ -1,7 +1,11 @@
 import config from './config';
-import { FREE_SPIN_COUNTS, OVERCHARGED_START_MULTIPLIERS } from './rulesData';
+import {
+	CASH_MUTANT_START_FRAMES,
+	CASH_OVERCHARGED_FRAME_VALUES,
+	CASH_START_FRAME_VALUES,
+} from './rulesData';
 import { i18nDerived } from '../i18n/i18nDerived';
-import { fill, formatNumber, formatOrList, formatTimes } from '../i18n/format';
+import { fill, formatNumber, formatTimes } from '../i18n/format';
 
 /**
  * The feature shop's offers (BuyShop / BuyConfirm) — one per non-base RGS
@@ -10,10 +14,10 @@ import { fill, formatNumber, formatOrList, formatTimes } from '../i18n/format';
  * Titles and pitches are read when drawn (translations load after this
  * module), and every figure in them is formatted per locale.
  *
- * - BUY_OPTIONS: Operation / Mutant / Overcharged Free Spins ('buy' modes, one
+ * - BUY_OPTIONS: Operation / Mutant / Overcharged Respins ('buy' modes, one
  *   round each, behind a confirmation step — Stake requires one for modes
- *   above 2x).
- * - ANTE_OPTIONS: Chaos Mode (2x) and Free Spins Boost (2x), 'activate' modes
+ *   above 2x). Chaos Lab 2 (2026-11-03): each buys Cash Respins.
+ * - ANTE_OPTIONS: Chaos Mode (2x) and Bonus Boost (2x), 'activate' modes
  *   that stay on until switched off. Each has its own switch; there is only
  *   one active mode key, so turning one on turns the other off.
  *
@@ -42,10 +46,13 @@ export type ShopOffer = {
 // Each path must be a string LITERAL: Vite rewrites a template-literal
 // `new URL` into a glob lookup, which matches nothing here and yields
 // 'undefined' (the cards requested /src/game/undefined).
+// The three buys' cards are Chaos Lab 2's own, Evtim's v3 set for Cash Respins
+// (2026-11-09: stake-engine/art-review/chaoslab2/buy_cards/make_buy_cards.py);
+// the two antes keep Chaos Lab's art (still true: more features / more triggers).
 const ART = {
-	operation: new URL('../../assets/madscience/buy/operation.webp', import.meta.url).href,
-	mutant: new URL('../../assets/madscience/buy/mutant.webp', import.meta.url).href,
-	overcharged: new URL('../../assets/madscience/buy/overcharged.webp', import.meta.url).href,
+	operation: new URL('../../assets/chaoslab2/buy/operation.webp', import.meta.url).href,
+	mutant: new URL('../../assets/chaoslab2/buy/mutant.webp', import.meta.url).href,
+	overcharged: new URL('../../assets/chaoslab2/buy/overcharged.webp', import.meta.url).href,
 	chaos: new URL('../../assets/madscience/buy/chaos.webp', import.meta.url).href,
 	boost: new URL('../../assets/madscience/buy/boost.webp', import.meta.url).href,
 };
@@ -63,26 +70,31 @@ const offer = (
 /**
  * The antes' "N× more often" figures (Evtim kept them on the shop cards; the
  * rules show no statistics), from the spec: Chaos Mode lifts Multipliers,
- * Cloners and Bombs and the free spins trigger, Free Spins Boost the trigger.
+ * Cloners and Bombs and the Cash Respins trigger, Bonus Boost the trigger.
+ * The buys' cards carry no figures but the values a round can produce.
  */
 const CHAOS_FEATURES_FACTOR = 2.7;
-const CHAOS_FREE_SPINS_FACTOR = 1.3;
-const BOOST_FREE_SPINS_FACTOR = 3.7;
+const CHAOS_RESPINS_FACTOR = 1.3;
+const BOOST_RESPINS_FACTOR = 3.7;
 
-// "10, 15 or 20" in the player's language
-const spinCounts = () => formatOrList(FREE_SPIN_COUNTS.map(formatNumber));
-// "×2": sign first, as the cards have always read
+// "×2": sign first, as the cards have always read (a multiplier frame's value)
 const times = (value: number) => `×${formatNumber(value)}`;
 
 export const BUY_OPTIONS: ShopOffer[] = [
 	offer('lucky_draw_free_spins', {
 		title: i18nDerived.offerOperation,
-		description: () => fill(i18nDerived.offerOperationText(), spinCounts()),
+		description: i18nDerived.offerOperationText,
 		image: ART.operation,
 	}),
 	offer('lucky_draw_feature_heavy', {
 		title: i18nDerived.offerMutant,
-		description: () => fill(i18nDerived.offerMutantText(), spinCounts()),
+		description: () =>
+			fill(
+				i18nDerived.offerMutantText(),
+				formatNumber(CASH_MUTANT_START_FRAMES),
+				times(Math.min(...CASH_START_FRAME_VALUES)),
+				times(Math.max(...CASH_START_FRAME_VALUES)),
+			),
 		image: ART.mutant,
 	}),
 	offer('super_lucky_draw_free_spins', {
@@ -90,9 +102,8 @@ export const BUY_OPTIONS: ShopOffer[] = [
 		description: () =>
 			fill(
 				i18nDerived.offerOverchargedText(),
-				times(Math.min(...OVERCHARGED_START_MULTIPLIERS)),
-				times(Math.max(...OVERCHARGED_START_MULTIPLIERS)),
-				spinCounts(),
+				times(Math.min(...CASH_OVERCHARGED_FRAME_VALUES)),
+				times(Math.max(...CASH_OVERCHARGED_FRAME_VALUES)),
 			),
 		image: ART.overcharged,
 	}),
@@ -105,13 +116,13 @@ export const ANTE_OPTIONS: ShopOffer[] = [
 			fill(
 				i18nDerived.offerChaosText(),
 				formatTimes(CHAOS_FEATURES_FACTOR),
-				formatTimes(CHAOS_FREE_SPINS_FACTOR),
+				formatTimes(CHAOS_RESPINS_FACTOR),
 			),
 		image: ART.chaos,
 	}),
 	offer('ante_2', {
 		title: i18nDerived.offerBoost,
-		description: () => fill(i18nDerived.offerBoostText(), formatTimes(BOOST_FREE_SPINS_FACTOR)),
+		description: () => fill(i18nDerived.offerBoostText(), formatTimes(BOOST_RESPINS_FACTOR)),
 		image: ART.boost,
 	}),
 ];

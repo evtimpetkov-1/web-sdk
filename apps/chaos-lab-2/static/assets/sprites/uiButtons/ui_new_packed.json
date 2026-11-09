@@ -364,7 +364,7 @@
 	"meta": {
 		"app": "chaos-lab build (PIL shelf packer)",
 		"version": "1.0",
-		"image": "ui_new_packed.png",
+		"image": "ui_new_packed.webp",
 		"format": "RGBA8888",
 		"size": {
 			"w": 1024,

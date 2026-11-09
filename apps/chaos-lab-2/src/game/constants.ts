@@ -2,10 +2,10 @@ import _ from 'lodash';
 
 import type { RawSymbol, SymbolState } from './types';
 
-// Shown in the paytable and rules footers. 1.0.0 = first submission (Kraken's
-// numbering: it submitted as 1.0.0 and bumped on each resubmission); 1.0.1 =
-// the resubmission after the 2026-10-29 review.
-export const GAME_VERSION = '1.0.1';
+// Shown in the paytable and rules footers. Chaos Lab 2's first submission is
+// 1.0.0 (the studio's numbering: bump on each resubmission; Chaos Lab, which
+// this app was copied from, had reached 1.0.1).
+export const GAME_VERSION = '1.0.0';
 
 // Cell height (row pitch). Also the unit every size ratio is expressed in.
 export const SYMBOL_SIZE = 100;

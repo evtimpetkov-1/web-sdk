@@ -303,8 +303,10 @@
 		width: calc(100% + 1.6rem);
 		margin: 0 -0.8rem 0.2rem;
 		/* follows the viewport height, so the whole shop fits common desktop
-		   sizes (768-1080 tall) without scrolling */
-		height: clamp(7rem, 25vh, 14rem);
+		   sizes (768-1080 tall) without scrolling; the cap was 14rem until the
+		   hexagon badges (2026-11-06), which fill the band ("fill the cards",
+		   Evtim): 25vh still rules at 768 tall, so only taller screens grow */
+		height: clamp(7rem, 25vh, 17rem);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -314,9 +316,10 @@
 		border-bottom: 1px solid rgba(171, 234, 16, 0.18);
 	}
 	.art img {
-		height: 88%;
+		/* the badges are cut to their edges: they fill the band's height */
+		height: 98%;
 		width: auto;
-		max-width: 88%;
+		max-width: 98%;
 		object-fit: contain;
 		filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.7));
 		user-select: none;
@@ -689,7 +692,7 @@
 		}
 		.card {
 			display: grid;
-			grid-template-columns: 6.4rem minmax(0, 1fr);
+			grid-template-columns: 7.2rem minmax(0, 1fr);
 			grid-template-areas:
 				'art title'
 				'art pitch'
@@ -710,8 +713,8 @@
 		}
 		.art img {
 			height: auto;
-			max-height: 6rem;
-			max-width: 90%;
+			max-height: 7rem;
+			max-width: 96%;
 		}
 		.title {
 			grid-area: title;
