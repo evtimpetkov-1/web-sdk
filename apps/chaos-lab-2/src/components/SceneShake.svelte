@@ -7,16 +7,20 @@
 	 *   trauma squared (a small hit stays small), and it runs out at `decay` per second.
 	 * - `kick` (0-1): one damped downward thump, for slams and impacts.
 	 * Where each fires:
+	 * - cascade: each cascade's new symbols landing, once per landing, column by
+	 *   column under anticipation (TumbleBoard)
 	 * - bomb: a bomb's bang (the rig's `detonate`), base game and Cash Respins (Symbol)
 	 * - wildSlam: the Wild slamming into a bomb's cell (`wild`, Symbol)
 	 * - featureTrigger: the Scatters that start Cash Respins (cashRespinTrigger)
 	 * - bigWin / megaWin / epicWin: each title stamping in (WinAnimation)
 	 * - collect: the last coin counted into TOTAL WIN (CashRespinBoard)
-	 * Values are first guesses, all tuned here.
+	 * Tuned here (Evtim, 2026-11-12: a subtle one on every cascade, the bomb was
+	 * too subtle at trauma 0.6 / decay 1.6 / no kick, the slam at kick 0.35).
 	 */
 	export const SHAKE_PRESETS = {
-		bomb: { trauma: 0.6, decay: 1.6 },
-		wildSlam: { kick: 0.35 },
+		cascade: { trauma: 0.35, decay: 1.8, kick: 0.2 },
+		bomb: { trauma: 0.85, decay: 1.1, kick: 0.5 },
+		wildSlam: { kick: 0.5 },
 		featureTrigger: { trauma: 0.5, decay: 0.55 },
 		bigWin: { trauma: 0.45, decay: 1.4, kick: 0.4 },
 		megaWin: { trauma: 0.6, decay: 1.2, kick: 0.5 },
@@ -84,10 +88,17 @@
 			if (reducedMotion()) return;
 			const p: { trauma?: number; decay?: number; kick?: number } = SHAKE_PRESETS[preset];
 			if (p.trauma) {
+				// a lighter hit joining a stronger shake keeps that shake's decay, so a
+				// cascade landing cannot cut a bomb's rumble short
+				if (p.trauma >= trauma) decay = p.decay ?? 1;
 				trauma = Math.min(1, trauma + p.trauma);
-				decay = p.decay ?? 1;
 			}
-			if (p.kick) kicks.push({ amount: p.kick, age: 0 });
+			if (p.kick) {
+				// bombs detonating together arrive on one frame: one thump, the strongest
+				const fresh = kicks.find((kick) => kick.age === 0);
+				if (fresh) fresh.amount = Math.max(fresh.amount, p.kick);
+				else kicks.push({ amount: p.kick, age: 0 });
+			}
 		},
 	});
 

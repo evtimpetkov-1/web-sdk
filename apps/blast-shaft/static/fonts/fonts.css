@@ -1,0 +1,34 @@
+/* Self-hosted game fonts (Stake: no external font loading beyond the platform Typekit). */
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./inter-latin-400.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('./inter-latin-700.woff2') format('woff2');
+}
+/* Alfa Slab One (OFL, JM Sole; licence in alfa-slab-one.OFL.txt): the logo's voice, a
+   heavy slab like the gold lettering: labels, headings, titles. Latin, Latin Extended
+   and Vietnamese. */
+@font-face {
+	font-family: 'Alfa Slab One';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./alfa-slab-one.woff2') format('woff2');
+}
+/* Black Ops One (OFL, Sorkin Type; licence in black-ops-one.OFL.txt) — the in-game
+   counters (free spins, total win) and the cascade win amounts on the board. */
+@font-face {
+	font-family: 'Black Ops One';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./black-ops-one.woff2') format('woff2');
+}

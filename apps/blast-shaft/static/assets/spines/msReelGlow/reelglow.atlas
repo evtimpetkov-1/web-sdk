@@ -1,0 +1,10 @@
+reelglow.webp
+size:1024,512
+filter:Linear,Linear
+scale:1
+rim
+bounds:0,0,365,338
+halo
+bounds:369,0,365,338
+spark
+bounds:738,0,32,32

@@ -51,6 +51,9 @@
 	const cellDistance = (a: Position, b: Position) => Math.hypot(a.reel - b.reel, a.row - b.row);
 	// every state a cell leaves the board in (tumbleBoardRemoveExploded)
 	const REMOVED_STATES: SymbolState[] = ['explosion', 'explode', 'blasted'];
+	// backOut first reaches its target at 37% of the tween, then overshoots and
+	// settles: the moment a drop hits its cells, when the slot thumps (SceneShake)
+	const DROP_IMPACT = 0.37;
 
 	const createTumbleSymbol = ({ initY, rawSymbol }: { initY: number; rawSymbol: RawSymbol }) => {
 		const symbolY = new Tween(initY);
@@ -170,11 +173,15 @@
 				getSymbolY(symbolIndex - 1) !== tumbleSymbol.symbolY.current;
 			// only columns that move take a turn, so no dead time before the first drop
 			let turn = 0;
+			// the delays the moving columns start at: one shake per landing, not per
+			// column (every column drops at once outside anticipation)
+			const landings = new Set<number>();
 			const getPromises = () =>
 				_.flatten(
 					context.stateGameDerived.tumbleBoardCombined().map((tumbleReel, reelIndex) => {
 						const moving = tumbleReel.some(isMoving);
 						const delay = moving ? turn++ * stagger : 0;
+						if (moving) landings.add(delay);
 						// the column is full once its drop arrives (every symbol in it moves
 						// with the same delay and duration): its anticipation field goes out
 						if (moving && context.stateGame.tumbleAnticipation[reelIndex]?.length) {
@@ -206,7 +213,15 @@
 					}),
 				);
 
-			await Promise.all(getPromises());
+			const promises = getPromises();
+			// the slot shudders as each drop hits (Evtim, 2026-11-12: a subtle quake
+			// on every cascade)
+			landings.forEach((delay) => {
+				waitForTimeout(delay + duration * DROP_IMPACT).then(() =>
+					context.eventEmitter.broadcast({ type: 'sceneShake', preset: 'cascade' }),
+				);
+			});
+			await Promise.all(promises);
 		},
 	});
 </script>

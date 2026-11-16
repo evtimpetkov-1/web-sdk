@@ -5,7 +5,7 @@ import type { RawSymbol, SymbolState } from './types';
 // Shown in the paytable and rules footers. Chaos Lab 2's first submission is
 // 1.0.0 (the studio's numbering: bump on each resubmission; Chaos Lab, which
 // this app was copied from, had reached 1.0.1).
-export const GAME_VERSION = '1.0.0';
+export const GAME_VERSION = '1.0.1';
 
 // Cell height (row pitch). Also the unit every size ratio is expressed in.
 export const SYMBOL_SIZE = 100;
@@ -71,12 +71,60 @@ export const INITIAL_BOARD: RawSymbol[][] = [
 	// here as a mismatch (the mockup's four were swapped for paying symbols,
 	// 2026-10-24). No paying symbol shows more than 3 times, far from a win (8).
 	// each reel = [top padding, rows 1-5, bottom padding]
-	[{ name: 'H2' }, { name: 'L3' }, { name: 'H1' }, { name: 'H4' }, { name: 'H2' }, { name: 'L1' }, { name: 'L2' }],
-	[{ name: 'L4' }, { name: 'H3' }, { name: 'S', scatter: true }, { name: 'L5' }, { name: 'S', scatter: true }, { name: 'L3' }, { name: 'H3' }],
-	[{ name: 'H1' }, { name: 'H4' }, { name: 'L5' }, { name: 'B' }, { name: 'H1' }, { name: 'L4' }, { name: 'L3' }],
-	[{ name: 'L3' }, { name: 'L2' }, { name: 'C' }, { name: 'L4' }, { name: 'H1' }, { name: 'H3' }, { name: 'H4' }],
-	[{ name: 'H4' }, { name: 'H2' }, { name: 'H3' }, { name: 'M', multiplier: 5 }, { name: 'S', scatter: true }, { name: 'L1' }, { name: 'L2' }],
-	[{ name: 'L3' }, { name: 'L4' }, { name: 'M', multiplier: 10 }, { name: 'L1' }, { name: 'H2' }, { name: 'H4' }, { name: 'H1' }],
+	[
+		{ name: 'H2' },
+		{ name: 'L3' },
+		{ name: 'H1' },
+		{ name: 'H4' },
+		{ name: 'H2' },
+		{ name: 'L1' },
+		{ name: 'L2' },
+	],
+	[
+		{ name: 'L4' },
+		{ name: 'H3' },
+		{ name: 'S', scatter: true },
+		{ name: 'L5' },
+		{ name: 'S', scatter: true },
+		{ name: 'L3' },
+		{ name: 'H3' },
+	],
+	[
+		{ name: 'H1' },
+		{ name: 'H4' },
+		{ name: 'L5' },
+		{ name: 'B' },
+		{ name: 'H1' },
+		{ name: 'L4' },
+		{ name: 'L3' },
+	],
+	[
+		{ name: 'L3' },
+		{ name: 'L2' },
+		{ name: 'C' },
+		{ name: 'L4' },
+		{ name: 'H1' },
+		{ name: 'H3' },
+		{ name: 'H4' },
+	],
+	[
+		{ name: 'H4' },
+		{ name: 'H2' },
+		{ name: 'H3' },
+		{ name: 'M', multiplier: 5 },
+		{ name: 'S', scatter: true },
+		{ name: 'L1' },
+		{ name: 'L2' },
+	],
+	[
+		{ name: 'L3' },
+		{ name: 'L4' },
+		{ name: 'M', multiplier: 10 },
+		{ name: 'L1' },
+		{ name: 'H2' },
+		{ name: 'H4' },
+		{ name: 'H1' },
+	],
 ];
 
 export const BOARD_DIMENSIONS = { x: INITIAL_BOARD.length, y: INITIAL_BOARD[0].length - 2 };
@@ -241,7 +289,13 @@ const rigged = (
 		pending = false,
 		explode = false,
 		transform = false,
-	}: { scale?: number; idle?: boolean; pending?: boolean; explode?: boolean; transform?: boolean } = {},
+	}: {
+		scale?: number;
+		idle?: boolean;
+		pending?: boolean;
+		explode?: boolean;
+		transform?: boolean;
+	} = {},
 ) => {
 	const still = sprite(staticKey, art, scale);
 	const anim = (name: RigAnimation) => spine(animKey, name, art, scale);
@@ -304,7 +358,11 @@ export const SYMBOL_INFO_MAP = {
 	// idle = lamp sway + breathing bulbs while a round waits for its cascades
 	// (ReelSymbol/TumbleSymbol derive that state from stateGame.roundActive).
 	// pending = the heartbeat while a cascade drops one Scatter short of a trigger.
-	S: rigged('bonus.png', 'msBonusAnim', ART.bonus, { scale: BONUS_SCALE, idle: true, pending: true }),
+	S: rigged('bonus.png', 'msBonusAnim', ART.bonus, {
+		scale: BONUS_SCALE,
+		idle: true,
+		pending: true,
+	}),
 	// Multiplier symbol: riveted plate + the value in the tickup-multipliers
 	// bitmap font, composed at runtime (MultiplierSymbolSprite) so any value
 	// works. Once collected onto the plate above the reels the cell keeps the
@@ -316,7 +374,6 @@ export const SYMBOL_INFO_MAP = {
 	}),
 	M_TAKEN: allStates(sprite('mult_symbol_plate.png', ART.multPlate)),
 } as const;
-
 
 // Pitch ladders: ONE file replayed at a rising Howler rate (soundOnce `rate`),
 // never numbered files — five generations would never share a timbre.

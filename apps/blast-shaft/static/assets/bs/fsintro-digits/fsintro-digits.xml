@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<font>
+    <info face="fsintro-digits" size="311" bold="0" italic="0" charset="" unicode="1" stretchH="100" smooth="1" aa="1" padding="0,0,0,0" spacing="1,0" outline="0"/>
+    <common lineHeight="311" base="311" scaleW="945" scaleH="941" pages="1" packed="0"/>
+    <pages>
+        <page id="0" file="fsintro-digits.png"/>
+    </pages>
+    <chars count="11">
+        <char id="32" x="0" y="0" width="0" height="0" xoffset="0" yoffset="0" xadvance="78" page="0" chnl="15"/>
+        <char id="48" x="2" y="2" width="239" height="311" xoffset="-5" yoffset="0" xadvance="234" page="0" chnl="15"/>
+        <char id="49" x="243" y="2" width="179" height="311" xoffset="25" yoffset="0" xadvance="234" page="0" chnl="15"/>
+        <char id="50" x="424" y="2" width="235" height="311" xoffset="-4" yoffset="0" xadvance="234" page="0" chnl="15"/>
+        <char id="51" x="661" y="2" width="227" height="311" xoffset="1" yoffset="0" xadvance="234" page="0" chnl="15"/>
+        <char id="52" x="2" y="315" width="243" height="311" xoffset="-8" yoffset="0" xadvance="234" page="0" chnl="15"/>
+        <char id="53" x="247" y="315" width="230" height="311" xoffset="-1" yoffset="0" xadvance="234" page="0" chnl="15"/>
+        <char id="54" x="479" y="315" width="232" height="311" xoffset="-2" yoffset="0" xadvance="234" page="0" chnl="15"/>
+        <char id="55" x="713" y="315" width="230" height="311" xoffset="0" yoffset="0" xadvance="234" page="0" chnl="15"/>
+        <char id="56" x="2" y="628" width="235" height="311" xoffset="-3" yoffset="0" xadvance="234" page="0" chnl="15"/>
+        <char id="57" x="239" y="628" width="234" height="311" xoffset="-3" yoffset="0" xadvance="234" page="0" chnl="15"/>
+    </chars>
+</font>

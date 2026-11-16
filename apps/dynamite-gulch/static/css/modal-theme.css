@@ -1,0 +1,74 @@
+/* Dynamite Gulch modal theme: warm charcoal panels (the buy shop's), saloon gold
+   (#f8ac1a, the game's accent everywhere else) as the single accent, cream text.
+   Themes the SDK's bet menu, autoplay and settings popups and the game's own
+   paytable and rules; the buy screens (BuyShop/BuyConfirm) carry the same
+   colours in their own styles. Chaos Lab's acid green lived here until
+   2026-11-13: the source regrade (build_retheme.py --src) never read static/css.
+   `:root:root` outranks the package's `:root` defaults, which are injected
+   after this stylesheet. */
+:root:root {
+	/* panel */
+	--modal-panel-bg: linear-gradient(180deg, rgba(40, 33, 26, 0.96) 0%, rgba(17, 14, 10, 0.98) 100%);
+	--modal-panel-border: 1px solid rgba(248, 172, 26, 0.4);
+	--modal-panel-radius: 20px;
+	--modal-panel-shadow:
+		0 0 30px rgba(248, 172, 26, 0.12),
+		0 24px 60px rgba(0, 0, 0, 0.7),
+		inset 0 1px 0 rgba(255, 240, 210, 0.08);
+	--modal-panel-padding: 1.5rem 1.8rem;
+
+	/* type */
+	/* the language's display face (displayFont, set on <html> by the layout):
+	   Rye has no Polish/Turkish/Vietnamese letters, those get Black Ops One */
+	--modal-title-font: var(--ms-display-font, 'Rye', 'Inter', sans-serif);
+	--modal-title-size: 1.7rem;
+	--modal-text: #f7efdf;
+	--modal-text-dim: rgba(247, 239, 223, 0.6);
+
+	/* accents */
+	--modal-accent: #f8ac1a;
+	--modal-accent-selected: #f8ac1a;
+	--modal-border: rgba(248, 172, 26, 0.28);
+	--modal-border-selected: rgba(248, 172, 26, 0.95);
+	--modal-divider: linear-gradient(90deg, transparent, rgba(248, 172, 26, 0.9), transparent);
+
+	/* interactive surfaces */
+	--modal-bg: rgba(64, 48, 30, 0.45);
+	--modal-bg-hover: rgba(248, 172, 26, 0.14);
+	--modal-bg-active: rgba(248, 172, 26, 0.22);
+	--modal-btn-bg: rgba(34, 26, 17, 0.75);
+	--modal-btn-bg-hover: rgba(248, 172, 26, 0.22);
+	--modal-btn-confirm-bg: linear-gradient(180deg, rgba(255, 198, 84, 0.42) 0%, rgba(192, 131, 14, 0.58) 100%);
+	--modal-btn-confirm-border: rgba(248, 172, 26, 0.85);
+	--modal-btn-radius: 12px;
+
+	/* sliders */
+	--modal-slider-track: rgba(255, 240, 210, 0.14);
+	--modal-slider-thumb: #f8ac1a;
+	--modal-slider-fill: rgba(248, 172, 26, 0.5);
+}
+
+/* titles read in gold, uppercase, spaced like the buy screens */
+.ui-modal-title-wrap {
+	--modal-text: #f8ac1a;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-weight: 400;
+	text-shadow: 0 2px 3px rgba(0, 0, 0, 0.9), 0 0 16px rgba(248, 172, 26, 0.3);
+}
+
+/* the SDK popup's backdrop is a flat black blur; warm it with lantern light
+   over charcoal so the panels sit in the same air as the buy shop */
+.pop-up-wrap .blur-layer {
+	background:
+		radial-gradient(ellipse 80% 60% at 50% 30%, rgba(150, 92, 20, 0.2) 0%, rgba(8, 6, 4, 0) 60%),
+		rgba(7, 5, 3, 0.6);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+}
+
+/* the close X matches the buy screens' gold-ringed chip */
+.pop-up-wrap .close-button {
+	color: #f8ac1a;
+	box-shadow: 0 0 0 2px rgba(248, 172, 26, 0.5), 0 4px 10px rgba(0, 0, 0, 0.5);
+}

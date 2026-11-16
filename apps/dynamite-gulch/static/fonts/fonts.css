@@ -1,0 +1,37 @@
+/* Self-hosted game fonts (Stake: no external font loading beyond the platform Typekit). */
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./inter-latin-400.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url('./inter-latin-700.woff2') format('woff2');
+}
+/* Rye (OFL, Sorkin Type; licence in rye.OFL.txt): the logo's voice, a western slab
+   for labels, headings and titles. Latin without Polish, Turkish or Vietnamese
+   letters (those languages take Black Ops One: textStyles.ts displayFont). */
+@font-face {
+	font-family: 'Rye';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	/* Rye runs 1.6x wider than Creepster, the face these layouts were tuned for:
+	   drawn a little smaller so long titles keep their lines (HTML and canvas alike) */
+	size-adjust: 86%;
+	src: url('./rye.woff2') format('woff2');
+}
+/* Black Ops One (OFL, Sorkin Type; licence in black-ops-one.OFL.txt) — the in-game
+   counters (free spins, total win) and the cascade win amounts on the board. */
+@font-face {
+	font-family: 'Black Ops One';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url('./black-ops-one.woff2') format('woff2');
+}

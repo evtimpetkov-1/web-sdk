@@ -1,0 +1,293 @@
+{
+ "frames": {
+  "A.png": {
+   "frame": {
+    "x": 2,
+    "y": 2,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "K.png": {
+   "frame": {
+    "x": 301,
+    "y": 2,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "Q.png": {
+   "frame": {
+    "x": 600,
+    "y": 2,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "J.png": {
+   "frame": {
+    "x": 899,
+    "y": 2,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "ten.png": {
+   "frame": {
+    "x": 2,
+    "y": 325,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "h1.png": {
+   "frame": {
+    "x": 301,
+    "y": 325,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "h2.png": {
+   "frame": {
+    "x": 600,
+    "y": 325,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "h3.png": {
+   "frame": {
+    "x": 899,
+    "y": 325,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "h4.png": {
+   "frame": {
+    "x": 2,
+    "y": 648,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "wild.png": {
+   "frame": {
+    "x": 301,
+    "y": 648,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "bomb.png": {
+   "frame": {
+    "x": 600,
+    "y": 648,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "cloner.png": {
+   "frame": {
+    "x": 899,
+    "y": 648,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "mult_symbol_plate.png": {
+   "frame": {
+    "x": 2,
+    "y": 971,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "bonus.png": {
+   "frame": {
+    "x": 301,
+    "y": 971,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  }
+ },
+ "meta": {
+  "image": "symbols.webp",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1198,
+   "h": 1294
+  },
+  "scale": "1"
+ }
+}

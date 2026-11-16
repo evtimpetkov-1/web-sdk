@@ -1,0 +1,437 @@
+export default {
+	reveal: {
+		type: 'reveal',
+		board: [
+			[
+				{
+					name: 'L1',
+				},
+				{
+					name: 'L1',
+				},
+				{
+					name: 'L3',
+				},
+				{
+					name: 'H4',
+				},
+				{
+					name: 'S',
+					scatter: true,
+				},
+				{
+					name: 'L3',
+				},
+				{
+					name: 'L3',
+				},
+			],
+			[
+				{
+					name: 'H4',
+				},
+				{
+					name: 'L1',
+				},
+				{
+					name: 'H4',
+				},
+				{
+					name: 'H4',
+				},
+				{
+					name: 'H2',
+				},
+				{
+					name: 'L1',
+				},
+				{
+					name: 'H2',
+				},
+			],
+			[
+				{
+					name: 'L3',
+				},
+				{
+					name: 'H3',
+				},
+				{
+					name: 'L1',
+				},
+				{
+					name: 'L1',
+				},
+				{
+					name: 'H4',
+				},
+				{
+					name: 'L2',
+				},
+				{
+					name: 'H4',
+				},
+			],
+			[
+				{
+					name: 'H2',
+				},
+				{
+					name: 'S',
+					scatter: true,
+				},
+				{
+					name: 'L2',
+				},
+				{
+					name: 'H2',
+				},
+				{
+					name: 'H2',
+				},
+				{
+					name: 'L2',
+				},
+				{
+					name: 'L2',
+				},
+			],
+			[
+				{
+					name: 'H1',
+				},
+				{
+					name: 'H3',
+				},
+				{
+					name: 'H3',
+				},
+				{
+					name: 'H4',
+				},
+				{
+					name: 'S',
+					scatter: true,
+				},
+				{
+					name: 'H3',
+				},
+				{
+					name: 'L1',
+				},
+			],
+			[
+				{
+					name: 'H4',
+				},
+				{
+					name: 'H4',
+				},
+				{
+					name: 'L1',
+				},
+				{
+					name: 'H3',
+				},
+				{
+					name: 'S',
+					scatter: true,
+				},
+				{
+					name: 'H4',
+				},
+				{
+					name: 'H2',
+				},
+			],
+		],
+		paddingPositions: [98, 155, 195, 101, 98, 41],
+		gameType: 'basegame',
+		anticipation: [0, 0, 0, 0, 1, 2],
+	},
+	setTotalWin: {
+		type: 'setTotalWin',
+		amount: 1000,
+	},
+	freeSpinTrigger: {
+		type: 'freeSpinTrigger',
+		totalFs: 10,
+		positions: [
+			{
+				reel: 0,
+				row: 4,
+			},
+			{
+				reel: 3,
+				row: 1,
+			},
+			{
+				reel: 4,
+				row: 4,
+			},
+			{
+				reel: 5,
+				row: 4,
+			},
+		],
+	},
+	updateFreeSpin: {
+		type: 'updateFreeSpin',
+		amount: 5,
+		total: 10,
+	},
+	winInfo: {
+		type: 'winInfo',
+		totalWin: 120,
+		wins: [
+			{
+				symbol: 'L2',
+				win: 120,
+				positions: [
+					{
+						reel: 2,
+						row: 3,
+					},
+					{
+						reel: 2,
+						row: 4,
+					},
+					{
+						reel: 3,
+						row: 1,
+					},
+					{
+						reel: 3,
+						row: 5,
+					},
+					{
+						reel: 4,
+						row: 1,
+					},
+					{
+						reel: 4,
+						row: 3,
+					},
+					{
+						reel: 4,
+						row: 5,
+					},
+					{
+						reel: 5,
+						row: 2,
+					},
+					{
+						reel: 5,
+						row: 3,
+					},
+				],
+				meta: {
+					globalMult: 1,
+					clusterMult: 1,
+					winWithoutMult: 120,
+					overlay: {
+						reel: 2,
+						row: 3,
+					},
+				},
+			},
+		],
+	},
+	updateTumbleWin: {
+		type: 'updateTumbleWin',
+		amount: 120,
+	},
+	tumbleBoard: {
+		type: 'tumbleBoard',
+		newSymbols: [
+			[],
+			[],
+			[
+				{
+					name: 'L1',
+				},
+				{
+					name: 'L1',
+				},
+			],
+			[
+				{
+					name: 'L3',
+				},
+				{
+					name: 'L3',
+				},
+			],
+			[
+				{
+					name: 'L2',
+				},
+				{
+					name: 'L1',
+				},
+				{
+					name: 'H2',
+				},
+			],
+			[
+				{
+					name: 'H2',
+				},
+				{
+					name: 'L2',
+				},
+			],
+		],
+		explodingSymbols: [
+			{
+				reel: 2,
+				row: 3,
+			},
+			{
+				reel: 2,
+				row: 4,
+			},
+			{
+				reel: 3,
+				row: 1,
+			},
+			{
+				reel: 3,
+				row: 5,
+			},
+			{
+				reel: 4,
+				row: 1,
+			},
+			{
+				reel: 4,
+				row: 3,
+			},
+			{
+				reel: 4,
+				row: 5,
+			},
+			{
+				reel: 5,
+				row: 2,
+			},
+			{
+				reel: 5,
+				row: 3,
+			},
+		],
+	},
+	updateGlobalMult: {
+		type: 'updateGlobalMult',
+		globalMult: 2,
+	},
+	boardMultiplierInfo: {
+		type: 'boardMultiplierInfo',
+		multInfo: {
+			positions: [
+				{
+					reel: 2,
+					row: 4,
+					multiplier: 3,
+				},
+			],
+		},
+		winInfo: {
+			tumbleWin: 120,
+			boardMult: 3,
+			totalWin: 360,
+		},
+	},
+	setWin: {
+		type: 'setWin',
+		amount: 360,
+		winLevel: 4,
+	},
+	freeSpinEnd: {
+		type: 'freeSpinEnd',
+		amount: 4380,
+		winLevel: 5,
+	},
+	finalWin: {
+		type: 'finalWin',
+		amount: 4380,
+	},
+	// --- bomb / cloner features (proposed contract, 2026-09-09) ---
+	// a settled board with the bomb at reel 2 row 2 (rows are padded indices: 1..5 visible)
+	revealBomb: {
+		type: 'reveal',
+		board: [
+			[{ name: 'L1' }, { name: 'H4' }, { name: 'L3' }, { name: 'H2' }, { name: 'L1' }, { name: 'L4' }, { name: 'H3' }],
+			[{ name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H4' }, { name: 'L3' }, { name: 'H2' }, { name: 'L4' }],
+			[{ name: 'H1' }, { name: 'L4' }, { name: 'B' }, { name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H2' }],
+			[{ name: 'L3' }, { name: 'H2' }, { name: 'L4' }, { name: 'H1' }, { name: 'L2' }, { name: 'H4' }, { name: 'L1' }],
+			[{ name: 'H4' }, { name: 'L1' }, { name: 'H2' }, { name: 'L3' }, { name: 'H1' }, { name: 'L2' }, { name: 'H3' }],
+			[{ name: 'L4' }, { name: 'H1' }, { name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H2' }, { name: 'L4' }],
+		],
+		paddingPositions: [98, 155, 195, 101, 98, 41],
+		gameType: 'basegame',
+		anticipation: [0, 0, 0, 0, 0, 0],
+	},
+	bombExplode: {
+		type: 'bombExplode',
+		bombs: [{ reel: 2, row: 2 }],
+		wilds: [{ reel: 2, row: 2 }],
+		cleared: [
+			{ reel: 1, row: 1 },
+			{ reel: 1, row: 2 },
+			{ reel: 1, row: 3 },
+			{ reel: 2, row: 1 },
+			{ reel: 2, row: 3 },
+			{ reel: 3, row: 1 },
+			{ reel: 3, row: 2 },
+			{ reel: 3, row: 3 },
+		],
+	},
+	// the tumble that draws the blast: the ring is cleared, the bomb stays as a Wild (reel 2 refills two)
+	tumbleBoardBomb: {
+		type: 'tumbleBoard',
+		newSymbols: [
+			[],
+			[{ name: 'H1' }, { name: 'L2' }, { name: 'H4' }],
+			[{ name: 'L3' }, { name: 'H2' }],
+			[{ name: 'H3' }, { name: 'L4' }, { name: 'H1' }],
+			[],
+			[],
+		],
+		explodingSymbols: [
+			{ reel: 1, row: 1 },
+			{ reel: 1, row: 2 },
+			{ reel: 1, row: 3 },
+			{ reel: 2, row: 1 },
+			{ reel: 2, row: 3 },
+			{ reel: 3, row: 1 },
+			{ reel: 3, row: 2 },
+			{ reel: 3, row: 3 },
+		],
+	},
+	// a settled board with the cloner at reel 3 row 2
+	revealCloner: {
+		type: 'reveal',
+		board: [
+			[{ name: 'L1' }, { name: 'H4' }, { name: 'L3' }, { name: 'H2' }, { name: 'L1' }, { name: 'L4' }, { name: 'H3' }],
+			[{ name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H4' }, { name: 'L3' }, { name: 'H2' }, { name: 'L4' }],
+			[{ name: 'H1' }, { name: 'L4' }, { name: 'H3' }, { name: 'L2' }, { name: 'H4' }, { name: 'L1' }, { name: 'H2' }],
+			[{ name: 'L3' }, { name: 'H2' }, { name: 'C' }, { name: 'H1' }, { name: 'L2' }, { name: 'H4' }, { name: 'L1' }],
+			[{ name: 'H4' }, { name: 'L1' }, { name: 'H2' }, { name: 'L3' }, { name: 'H1' }, { name: 'L2' }, { name: 'H3' }],
+			[{ name: 'L4' }, { name: 'H1' }, { name: 'L2' }, { name: 'H3' }, { name: 'L1' }, { name: 'H2' }, { name: 'L4' }],
+		],
+		paddingPositions: [98, 155, 195, 101, 98, 41],
+		gameType: 'basegame',
+		anticipation: [0, 0, 0, 0, 0, 0],
+	},
+	clonerActivate: {
+		type: 'clonerActivate',
+		cloner: { reel: 3, row: 2 },
+		cloned: [
+			{ reel: 0, row: 1 },
+			{ reel: 5, row: 5 },
+			{ reel: 1, row: 4 },
+		],
+		symbol: 'H1',
+	},
+};

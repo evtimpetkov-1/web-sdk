@@ -1,0 +1,295 @@
+{
+ "frames": {
+  "bonus.png": {
+   "frame": {
+    "x": 6,
+    "y": 6,
+    "w": 427,
+    "h": 423
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 427,
+    "h": 423
+   },
+   "sourceSize": {
+    "w": 427,
+    "h": 423
+   }
+  },
+  "h1.png": {
+   "frame": {
+    "x": 439,
+    "y": 6,
+    "w": 297,
+    "h": 413
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 413
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 413
+   }
+  },
+  "h2.png": {
+   "frame": {
+    "x": 6,
+    "y": 435,
+    "w": 297,
+    "h": 343
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 343
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 343
+   }
+  },
+  "h3.png": {
+   "frame": {
+    "x": 309,
+    "y": 435,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "h4.png": {
+   "frame": {
+    "x": 612,
+    "y": 435,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "A.png": {
+   "frame": {
+    "x": 6,
+    "y": 784,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "K.png": {
+   "frame": {
+    "x": 309,
+    "y": 784,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "Q.png": {
+   "frame": {
+    "x": 612,
+    "y": 784,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "J.png": {
+   "frame": {
+    "x": 6,
+    "y": 1111,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "wild.png": {
+   "frame": {
+    "x": 309,
+    "y": 1111,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "ten.png": {
+   "frame": {
+    "x": 612,
+    "y": 1111,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "bomb.png": {
+   "frame": {
+    "x": 6,
+    "y": 1438,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "cloner.png": {
+   "frame": {
+    "x": 309,
+    "y": 1438,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  },
+  "mult_symbol_plate.png": {
+   "frame": {
+    "x": 612,
+    "y": 1438,
+    "w": 297,
+    "h": 321
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 297,
+    "h": 321
+   },
+   "sourceSize": {
+    "w": 297,
+    "h": 321
+   }
+  }
+ },
+ "meta": {
+  "app": "art-review/dynamite-gulch/build_statics.py",
+  "version": "1.0",
+  "image": "symbols.webp",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1024,
+   "h": 1765
+  },
+  "scale": "1"
+ }
+}
