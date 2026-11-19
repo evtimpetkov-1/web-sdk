@@ -3,6 +3,7 @@
 	import { Button, type ButtonProps } from 'components-pixi';
 
 	import type { ButtonIcon } from '../types';
+	import { stateUiTheme } from '../stateUiTheme.svelte';
 	import type { Snippet } from 'svelte';
 
 	type Props = Omit<ButtonProps, 'children'> & {
@@ -33,7 +34,8 @@
 	const spriteKey = $derived(icon === 'turbo' && iconActive ? 'turbo_on.png' : ICON_SPRITE_MAP[icon]);
 </script>
 
-<Button {...buttonProps}>
+<!-- art drawn past its box (spriteScale) must not take its neighbours' presses -->
+<Button {...buttonProps} boxHit={stateUiTheme.spriteScale !== 1}>
 	{#snippet children({ center, hovered, pressed })}
 		{@const alpha = buttonProps.disabled
 			? 0.35
@@ -42,7 +44,7 @@
 				: hovered || pressed
 					? 1
 					: 0.85}
-		{@const scale = hovered || pressed ? 1.15 : active ? 1.2 : 1}
+		{@const scale = (hovered || pressed ? 1.15 : active ? 1.2 : 1) * stateUiTheme.spriteScale}
 		<Sprite
 			{...center}
 			key={spriteKey}

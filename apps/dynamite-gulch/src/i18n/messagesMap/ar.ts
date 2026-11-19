@@ -178,8 +178,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'اللعب التلقائي: يدور تلقائيًا عددًا محددًا من المرات.',
 	'Turbo: Speed up animations.': 'سريع: يسرّع الرسوم المتحركة.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'شراء الميزة (زر العربة): يفتح قائمة الميزات التي تضم أوضاع دورات الإعادة النقدية الثلاثة ومفتاحي وضع المواجهة وتعزيز المكافأة.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'شراء الميزة (رمز Scatter): يفتح قائمة الميزات التي تضم أوضاع دورات الإعادة النقدية الثلاثة ومفتاحي وضع المواجهة وتعزيز المكافأة.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: يزيد مبلغ الرهان أو يخفضه.',
 	'Menu (☰): Open the menu.': 'القائمة (☰): تفتح القائمة.',
 	'Paytable: View the symbol payout values.': 'جدول الدفع: يعرض قيم دفع الرموز.',

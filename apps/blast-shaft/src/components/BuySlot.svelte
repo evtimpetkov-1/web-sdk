@@ -6,6 +6,7 @@
 	import { Button, FadeContainer, ResponsiveText } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
 	import { stateBet, stateModal } from 'state-shared';
+	import { stateUiTheme } from 'components-ui-pixi';
 
 	import { getContext } from '../game/context';
 	import { ANTE_OPTIONS, getBuyOption } from '../game/buyOptions';
@@ -73,8 +74,11 @@
 				return { x: w - 180, y: (h - 100) * 0.5, r: UI_BASE_RADIUS * 1.43 };
 			case 'tablet':
 				return { x: w * 0.5, y: h - 300, r: UI_BASE_RADIUS * 1.4 };
-			default:
-				return { x: w * 0.5, y: h - 400, r: UI_BASE_RADIUS * 1.6 };
+			default: {
+				// portrait: the theme's deck (Game.svelte sets a bigger one than the SDK's)
+				const { spinY, spinScale } = stateUiTheme.portraitDeck;
+				return { x: w * 0.5, y: h - spinY, r: UI_BASE_RADIUS * spinScale };
+			}
 		}
 	});
 
@@ -91,7 +95,8 @@
 			case 'tablet':
 				return { x: w * 0.5 - 430, y: h - 255, size: 153 };
 			default:
-				return { x: w - 140, y: h - 455, size: 162 };
+				// portrait: above Bet, in the deck's top-right corner
+				return { x: w - stateUiTheme.portraitDeck.outerX, y: h - 440, size: 176 };
 		}
 	});
 	// the X that switches the ante / armed buy off (0.34 of the disc was too

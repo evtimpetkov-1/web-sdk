@@ -181,8 +181,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Автоигра: автоматически выполняет заданное количество спинов.',
 	'Turbo: Speed up animations.': 'Турбо: ускоряет анимацию.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'Покупка функции (кнопка с тележкой): открывает меню функций с тремя режимами Денежных респинов и переключателями Режима «Дуэль» и Усиления бонуса.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'Покупка функции (символ Scatter): открывает меню функций с тремя режимами Денежных респинов и переключателями Режима «Дуэль» и Усиления бонуса.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: увеличивает или уменьшает сумму ставки.',
 	'Menu (☰): Open the menu.': 'Меню (☰): открывает меню.',
 	'Paytable: View the symbol payout values.': 'Таблица выплат: показывает выплаты за символы.',

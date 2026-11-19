@@ -136,6 +136,7 @@
 		<Button
 			anchor={0.5}
 			sizes={{ width: 150, height: 150 }}
+			boxHit={stateUiTheme.spriteScale !== 1}
 			disabled={betDisabled}
 			onpress={onBetPress}
 		>
@@ -144,8 +145,8 @@
 					{...center}
 					key="bet.png"
 					anchor={0.5}
-					width={150}
-					height={150}
+					width={150 * stateUiTheme.spriteScale}
+					height={150 * stateUiTheme.spriteScale}
 					alpha={betDisabled ? 0.4 : hovered || pressed ? 1 : 0.85}
 				/>
 			{/snippet}

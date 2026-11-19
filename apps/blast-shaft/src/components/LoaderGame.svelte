@@ -62,33 +62,14 @@
 		const timer = setTimeout(() => (visible = false), 30000);
 		return () => clearTimeout(timer);
 	});
-
-	// Acid bubbles drifting up the screen: fixed, hand-picked so they never
-	// clump; one transform/opacity keyframe each, which stays on the compositor.
-	const BUBBLES = [
-		{ left: 6, size: 10, delay: 0, duration: 8 },
-		{ left: 19, size: 6, delay: 2.4, duration: 9.5 },
-		{ left: 37, size: 14, delay: 1.1, duration: 7 },
-		{ left: 61, size: 8, delay: 3.6, duration: 9 },
-		{ left: 80, size: 12, delay: 0.7, duration: 7.5 },
-		{ left: 93, size: 7, delay: 4.3, duration: 10 },
-	];
 </script>
 
 {#if visible}
 	<div class="loader-wrap" style="--bg: url({bgImg});" transition:fade={{ duration: 400 }}>
 		<div class="vignette"></div>
 
-		{#each BUBBLES as bubble, i (i)}
-			<span
-				class="bubble"
-				style="left: {bubble.left}%; width: {bubble.size}px; height: {bubble.size}px;
-				       animation-delay: -{bubble.delay}s; animation-duration: {bubble.duration}s;"
-			></span>
-		{/each}
-
 		<div class="lockup" style="--shine-opacity: {progress === 0 ? 0 : 1};">
-			<img class="base" src={baseImg} alt="Blast Shaft" />
+			<img class="base" src={baseImg} alt="Blast Drop" />
 
 			<div
 				class="tube"
@@ -132,23 +113,6 @@
 		background:
 			radial-gradient(ellipse at center, rgba(3, 8, 4, 0.35) 0%, rgba(3, 8, 4, 0.88) 100%),
 			linear-gradient(rgba(3, 8, 4, 0.2), rgba(3, 8, 4, 0.5));
-	}
-
-	.bubble {
-		position: absolute;
-		bottom: -40px;
-		border-radius: 50%;
-		background: radial-gradient(
-			circle at 32% 28%,
-			rgba(236, 255, 160, 0.7),
-			rgba(240, 180, 60, 0.22) 60%,
-			rgba(240, 180, 60, 0.06) 100%
-		);
-		border: 1px solid rgba(190, 255, 60, 0.28);
-		animation-name: rise;
-		animation-timing-function: linear;
-		animation-iteration-count: infinite;
-		pointer-events: none;
 	}
 
 	/* The art is 1672x941. Width-bound in landscape, but capped by height so
@@ -255,32 +219,11 @@
 		}
 	}
 
-	@keyframes rise {
-		0% {
-			transform: translateY(0) translateX(0);
-			opacity: 0;
-		}
-		12% {
-			opacity: 0.8;
-		}
-		85% {
-			opacity: 0.55;
-		}
-		100% {
-			transform: translateY(-108vh) translateX(18px);
-			opacity: 0;
-		}
-	}
-
 	@media (prefers-reduced-motion: reduce) {
 		.lockup,
-		.bubble,
 		.shine,
 		.tube.waiting::after {
 			animation: none;
-		}
-		.bubble {
-			opacity: 0;
 		}
 	}
 </style>

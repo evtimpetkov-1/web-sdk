@@ -41,6 +41,10 @@ export const SYMBOL_STATES = [
 	'cast',
 	'in',
 	'out',
+	// at rest: a short one-shot of the symbol acting (the heart beats, the eye looks
+	// around, the fingers drum), handed out to random cells by BoardFidget so the
+	// board is never a still picture; derived in ReelSymbol, never set on the reel state
+	'fidget',
 ] as const;
 
 export type SymbolState = CascadingReelSymbolState | (typeof SYMBOL_STATES)[number];

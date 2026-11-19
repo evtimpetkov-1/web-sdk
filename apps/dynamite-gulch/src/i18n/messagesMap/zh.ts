@@ -162,8 +162,8 @@ export default {
 	'Stop: Stop the reels early during a spin.': '停止：在旋转过程中提前停止转轴。',
 	'Autoplay: Spin automatically a set number of times.': '自动旋转：自动旋转设定的次数。',
 	'Turbo: Speed up animations.': '加速：加快动画。',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'购买功能（购物车按钮）：打开功能菜单，其中包含三种现金重转模式以及对决模式和奖励加成的开关。',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'购买功能（分散符号）：打开功能菜单，其中包含三种现金重转模式以及对决模式和奖励加成的开关。',
 	'+/−: Increase or decrease the __0__ amount.': '+/−：增加或减少投注额。',
 	'Menu (☰): Open the menu.': '菜单（☰）：打开菜单。',
 	'Paytable: View the symbol payout values.': '赔率表：查看符号的赔付值。',

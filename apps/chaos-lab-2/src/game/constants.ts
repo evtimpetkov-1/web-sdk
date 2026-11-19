@@ -5,7 +5,17 @@ import type { RawSymbol, SymbolState } from './types';
 // Shown in the paytable and rules footers. Chaos Lab 2's first submission is
 // 1.0.0 (the studio's numbering: bump on each resubmission; Chaos Lab, which
 // this app was copied from, had reached 1.0.1).
-export const GAME_VERSION = '1.0.1';
+export const GAME_VERSION = '1.0.2';
+
+/**
+ * Which UI the game wears (Evtim, 2026-11-18: one generic UI for all games; "apply the
+ * same UI in the chaos lab 2 and the dynamite games").
+ * - 'generic': the shared HTML bar, bonus shop and single info page of
+ *   components-ui-html (src/generic). No game art, fonts or colours in it; a change
+ *   there changes every game that uses it.
+ * - 'themed': its own steel bar (BarStrip, the Pixi UI with the bare-icon sheet, BuySlot, BuyShop / BuyConfirm, separate paytable and rules popups). Everything it needs is still in the app.
+ */
+export const UI_KIND: 'generic' | 'themed' = 'generic';
 
 // Cell height (row pitch). Also the unit every size ratio is expressed in.
 export const SYMBOL_SIZE = 100;
@@ -264,7 +274,8 @@ type RigAnimation =
 	| 'explode_wild'
 	| 'cast'
 	| 'in'
-	| 'out';
+	| 'out'
+	| 'fidget';
 const spine = (assetKey: string, animationName: RigAnimation, art: ArtSize, scale = 1) => ({
 	type: 'spine' as const,
 	assetKey,
@@ -289,12 +300,15 @@ const rigged = (
 		pending = false,
 		explode = false,
 		transform = false,
+		fidget = false,
 	}: {
 		scale?: number;
 		idle?: boolean;
 		pending?: boolean;
 		explode?: boolean;
 		transform?: boolean;
+		/** true = the rig's own `fidget`; a name = that animation doubles as the at-rest one-shot */
+		fidget?: boolean | RigAnimation;
 	} = {},
 ) => {
 	const still = sprite(staticKey, art, scale);
@@ -314,6 +328,7 @@ const rigged = (
 		cast: transform ? anim('cast') : still,
 		in: transform ? anim('in') : still,
 		out: transform ? anim('out') : still,
+		fidget: fidget ? anim(fidget === true ? 'fidget' : fidget) : still,
 	};
 };
 const allStates = <T>(info: T) => ({
@@ -331,37 +346,46 @@ const allStates = <T>(info: T) => ({
 	cast: info,
 	in: info,
 	out: info,
+	fidget: info,
 });
 
 export const SYMBOL_INFO_MAP = {
-	// math codes: H1-H4 = the four lab symbols, L1-L5 = the royals A K Q J 10
-	H1: rigged('h1.png', 'msH1Anim', ART.h1),
-	H2: rigged('h2.png', 'msH2Anim', ART.h2),
-	H3: rigged('h3.png', 'msH3Anim', ART.h3),
-	H4: rigged('h4.png', 'msH4Anim', ART.h4),
-	L1: rigged('A.png', 'msAAnim', ART.plate),
-	L2: rigged('K.png', 'msKAnim', ART.plate),
-	L3: rigged('Q.png', 'msQAnim', ART.plate),
-	L4: rigged('J.png', 'msJAnim', ART.plate),
-	L5: rigged('ten.png', 'msTenAnim', ART.plate),
-	W: allStates(sprite('wild.png', ART.wild)),
-	// Cloner: cast = the sign flares and its ghosts peel off towards the cells
-	// they turn into cloners, in = a fresh clone's sign grows in, out = the sign
+	// math codes: H1-H4 = the four lab symbols, L1-L5 = the royals A K Q J 10.
+	// Rigs v3 (2026-11-16, art-review/chaoslab2/symbols_v3): weighted meshes, so the
+	// heart pumps, the eye turns, the fingers curl; `fidget` = their at-rest one-shot
+	H1: rigged('h1.png', 'msH1Anim', ART.h1, { fidget: true }),
+	H2: rigged('h2.png', 'msH2Anim', ART.h2, { fidget: true }),
+	H3: rigged('h3.png', 'msH3Anim', ART.h3, { fidget: true }),
+	H4: rigged('h4.png', 'msH4Anim', ART.h4, { fidget: true }),
+	L1: rigged('A.png', 'msAAnim', ART.plate, { fidget: true }),
+	L2: rigged('K.png', 'msKAnim', ART.plate, { fidget: true }),
+	L3: rigged('Q.png', 'msQAnim', ART.plate, { fidget: true }),
+	L4: rigged('J.png', 'msJAnim', ART.plate, { fidget: true }),
+	L5: rigged('ten.png', 'msTenAnim', ART.plate, { fidget: true }),
+	// Wild: its own rig since 2026-11-16 (it was a plain picture): land, prewin
+	// (rears back and slams on the zap) and a fidget. A bomb still forms it with its
+	// own `explode_wild`, which ends on this rig's rest pose.
+	W: rigged('wild.png', 'msWildAnim', ART.wild, { fidget: true }),
+	// Cloner: cast = the sign winds up and fires on the frame its ghosts leave
+	// (MovingClones, 0.2 s; rigs v3 dropped the rig's own two stray copies), in = a fresh clone's sign grows in, out = the sign
 	// drains away (plate intact) before the flood swaps in the paying symbol.
-	C: rigged('cloner.png', 'msClonerAnim', ART.plate, { transform: true }),
+	C: rigged('cloner.png', 'msClonerAnim', ART.plate, { transform: true, fidget: true }),
 	// Bomb: armed idle loop while a round waits for its cascades (same rule as the
 	// scatter), explode = the bomb blows itself up and ends empty; the tumble
 	// board then drops the cell like any exploded symbol.
 	B: rigged('bomb.png', 'msBombAnim', ART.plate, { idle: true, explode: true }),
-	// Scatter: the operating-theatre disc, drawn BONUS_SCALE larger than its cell.
+	// Scatter: the operating-theatre disc (Chaos Lab 1's yellow BONUS; an orb and a
+	// serum flask were tried on 2026-11-16 and dropped), drawn BONUS_SCALE larger than its cell.
 	// land = the sign slams in, prewin = the lamp switches on over the table,
 	// idle = lamp sway + breathing bulbs while a round waits for its cascades
 	// (ReelSymbol/TumbleSymbol derive that state from stateGame.roundActive).
 	// pending = the heartbeat while a cascade drops one Scatter short of a trigger.
+	// At rest it joins the fidgets with one pass of its idle (the lamp sways).
 	S: rigged('bonus.png', 'msBonusAnim', ART.bonus, {
 		scale: BONUS_SCALE,
 		idle: true,
 		pending: true,
+		fidget: 'idle',
 	}),
 	// Multiplier symbol: riveted plate + the value in the tickup-multipliers
 	// bitmap font, composed at runtime (MultiplierSymbolSprite) so any value
@@ -374,6 +398,17 @@ export const SYMBOL_INFO_MAP = {
 	}),
 	M_TAKEN: allStates(sprite('mult_symbol_plate.png', ART.multPlate)),
 } as const;
+
+// The board at rest (BoardFidget): the first random resting cell plays its
+// symbol's `fidget` the moment the board settles, a second FIDGET_SECOND_MS
+// later, then one every FIDGET_EVERY_MS, at most FIDGET_MAX at a time. Between
+// autoplay rounds nothing starts for FIDGET_AUTOPLAY_WAIT_MS. Highs are picked
+// more often than royals (their acting is the richer one).
+export const FIDGET_EVERY_MS = [450, 1100] as const;
+export const FIDGET_SECOND_MS = 220;
+export const FIDGET_AUTOPLAY_WAIT_MS = 900;
+export const FIDGET_MAX = 4;
+export const FIDGET_HIGH_WEIGHT = 2.2;
 
 // Pitch ladders: ONE file replayed at a rising Howler rate (soundOnce `rate`),
 // never numbered files — five generations would never share a timbre.

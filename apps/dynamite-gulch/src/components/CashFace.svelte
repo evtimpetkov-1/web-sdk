@@ -20,7 +20,8 @@
 	// text size by the label's length ("5x" / "25x" / "250x" / "1500x"), in board
 	// units: the coin's value fits inside its disc (~70% of the plate's width)
 	const COIN_SIZES: Record<number, number> = { 2: 0.36, 3: 0.28, 4: 0.21 };
-	const MULT_SIZES: Record<number, number> = { 2: 0.55, 3: 0.46 };
+	// (the comic face is wider than the painted digits it replaced: 0.55 / 0.46 / 0.38 ran into the neighbours)
+	const MULT_SIZES: Record<number, number> = { 2: 0.5, 3: 0.37 };
 	// bitmap faces keep fill 0xffffff, or a restyle tints them black
 	export const coinTextStyle = (value: number, purple = false) => ({
 		fontFamily: purple ? 'cl2-coin-purple' : 'cl2-coin',
@@ -30,7 +31,7 @@
 	});
 	export const multTextStyle = (value: number) => ({
 		fontFamily: 'cl2-multiplier',
-		fontSize: SYMBOL_SIZE * (MULT_SIZES[multLabel(value).length] ?? 0.38),
+		fontSize: SYMBOL_SIZE * (MULT_SIZES[multLabel(value).length] ?? 0.29),
 		align: 'center' as const,
 		fill: 0xffffff,
 	});

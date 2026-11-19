@@ -3,8 +3,23 @@
 	import { FadeContainer } from 'components-pixi';
 
 	import { getContext } from '../game/context';
+	import SceneLife from './SceneLife.svelte';
+	import LabLife from './LabLife.svelte';
 
 	const context = getContext();
+	// the living layer mounts once its sheet and the feature's glow are in (the
+	// feature's art loads after the loading screen) and then stays for good; a
+	// reduced-motion setting leaves the paintings still
+	const lifeReady = $derived(
+		Boolean(
+			context.stateApp.loadedAssets?.cl2SceneLife &&
+				context.stateApp.loadedAssets?.cl2ShimmerFs &&
+				context.stateApp.loadedAssets?.cl2FanPortrait &&
+				context.stateApp.loadedAssets?.cl2Rays &&
+				// a sheet of sprites is in under its frames' names, not its own key
+				context.stateApp.loadedAssets?.['gob_0.png'],
+		) && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches,
+	);
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
 	const isFreeSpins = $derived(context.stateGame.gameType === 'freegame');
 	// portrait-shaped canvases (phones upright, tablets upright) get the portrait
@@ -56,3 +71,9 @@
 		/>
 	</FadeContainer>
 {/each}
+
+{#if lifeReady}
+	<SceneLife />
+	<!-- slime on the move: balls of it off the ceiling, a trail across the floor -->
+	<LabLife />
+{/if}

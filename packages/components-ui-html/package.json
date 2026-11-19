@@ -33,6 +33,7 @@
 		"utils-layout": "workspace:*",
 		"utils-event-emitter": "workspace:*",
 		"utils-resize-observer": "workspace:*",
+		"utils-xstate": "workspace:*",
 		"state-shared": "workspace:*",
 		"constants-shared": "workspace:*",
 		"components-shared": "workspace:*",

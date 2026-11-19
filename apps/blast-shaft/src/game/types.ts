@@ -29,6 +29,10 @@ export const SYMBOL_STATES = [
 	// one Scatter short of a trigger (stateGame.scatterPending) — derived in
 	// TumbleSymbol like idle; the rest show their static plate
 	'pending',
+	// idle life on a resting board: one pass of the symbol's `glint` (a light on the
+	// gold, the lantern's flame, the helmet lamp), started now and then by
+	// SymbolGlints; derived in ReelSymbol like idle, never set on the reel state
+	'glint',
 	// bomb feature (tumble board): the bomb blows itself up, its neighbours keep
 	// their plate under a red blast overlay before both are removed
 	'explode',

@@ -26,4 +26,17 @@ export default {
 	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': '无法连接到游戏服务器。请检查网络连接并重新加载游戏。',
 	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': '您的会话无效或已过期。请重新加载游戏。',
 	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': '游戏当前不可用。请重新加载游戏或稍后再试。',
+	// the generic UI (src/generic): the bar's words, here so the HTML package needs no other
+	'BALANCE': '余额',
+	'WIN': '赢',
+	'TURBO': '加速',
+	'BUY BONUS': '购买奖励',
+	'INFO': '信息',
+	'DISABLE': '禁用',
+	'AUTO SPIN': '自动旋转',
+	'SOUND': '音效',
+	'MUSIC': '音乐',
+	'GAME INFO': '游戏信息',
+	'BUY': '购买',
+	'ACTIVATE': '激活',
 };

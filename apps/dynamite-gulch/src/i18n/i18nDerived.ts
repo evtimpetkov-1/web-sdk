@@ -280,8 +280,8 @@ export const i18nDerived = {
 	uiTurbo: () => t('Turbo: Speed up animations.'),
 	uiFeature: () =>
 		social(
-			'Feature Play (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.',
-			'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.',
+			'Feature Play (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.',
+			'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.',
 		),
 	uiPlusMinus: () => t('+/−: Increase or decrease the __0__ amount.'),
 	uiMenu: () => t('Menu (☰): Open the menu.'),

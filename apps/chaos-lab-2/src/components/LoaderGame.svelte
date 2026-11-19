@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { BACKGROUND_URLS } from '../game/backgroundSet';
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 	import { stateModal } from 'state-shared';
@@ -23,7 +24,7 @@
 	 * component is mounted by +layout.svelte as a sibling of <Game>, so the Pixi
 	 * context does not reach it — but the state module is a singleton.
 	 */
-	const bgImg = new URL('../../assets/madscience/bg_v1.webp', import.meta.url).href;
+	const bgImg = BACKGROUND_URLS.base;
 	// the CL2 logo over the acid tube (art-review/chaoslab2/logos/make_cl2_logos.py)
 	const baseImg = new URL('../../assets/chaoslab2/loader/loader_base.webp', import.meta.url).href;
 	const fillImg = new URL('../../assets/madscience/loader/loader_fill.webp', import.meta.url).href;

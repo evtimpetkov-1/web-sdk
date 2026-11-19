@@ -16,6 +16,9 @@
 		ModalAutoSpinMessage,
 		ModalInsufficientFunds,
 		ModalSettings,
+		GenericUI,
+		GenericShop,
+		GenericInfo,
 	} from 'components-ui-html';
 
 	import { getContext } from '../game/context';
@@ -31,7 +34,10 @@
 	import CashRespinFx from './CashRespinFx.svelte';
 	import BoardBacking from './BoardBacking.svelte';
 	import AnticipationField from './AnticipationField.svelte';
+	import BarStrip from './BarStrip.svelte';
 	import BuySlot from './BuySlot.svelte';
+	import GoldFx from './GoldFx.svelte';
+	import PortraitShade from './PortraitShade.svelte';
 	import ClusterWinAmounts from './ClusterWinAmounts.svelte';
 	import TumbleBoard from './TumbleBoard.svelte';
 	import TumbleWinAmount from './TumbleWinAmount.svelte';
@@ -48,6 +54,7 @@
 	import SceneShake from './SceneShake.svelte';
 	import GameLogo from './GameLogo.svelte';
 	import Boardwalk from './Boardwalk.svelte';
+	import GroundRoamers from './GroundRoamers.svelte';
 	import BuyShop from './BuyShop.svelte';
 	import BuyConfirm from './BuyConfirm.svelte';
 	import PayTable from './PayTable.svelte';
@@ -55,6 +62,8 @@
 	import ReplayHud from './ReplayHud.svelte';
 	import ReplayOverlay from './ReplayOverlay.svelte';
 	import { applyBetModeMeta } from '../game/betModeMeta';
+	import { ANTE_OPTIONS, BUY_OPTIONS } from '../game/buyOptions';
+	import { UI_KIND } from '../game/constants';
 	import { displayFont } from '../game/textStyles';
 	import { getResumedFeatureEntry } from '../game/utils';
 	import type { Bet } from '../game/typesBookEvent';
@@ -78,24 +87,32 @@
 	onMount(() => {
 		context.stateLayout.showLoadingScreen = true;
 		applyBetModeMeta();
-		// bottom bar in the logo's voice: Rye captions in acid green, white
-		// Inter amounts, charcoal plate, green-rimmed stepper chips. The display
-		// face follows the language (displayFont); the HTML popups read it as
+		// bottom bar in the logo's voice: Rye captions in gold and white Inter amounts
+		// over the ink timber strip (BarStrip, so the SDK's own plate is switched off),
+		// the -/+ and every other button from the ink button set (build_ink_ui.py). The
+		// display face follows the language (displayFont); the HTML popups read it as
 		// --ms-display-font, set by the layout (+layout.svelte)
-		Object.assign(stateUiTheme, {
+		// (the generic UI has no theme: UI_KIND in constants.ts)
+		if (UI_KIND === 'themed') Object.assign(stateUiTheme, {
 			labelFont: displayFont(),
 			labelWeight: '400',
 			labelFill: 0xf8ac1a,
 			labelLetterSpacing: 1,
 			barFill: 0x11100d,
-			barAlpha: 0.82,
-			stepperFill: 0x2a261c,
-			stepperRim: 0xf8ac1a,
-			stepperRimHover: 0xffce73,
-			stepperGlyph: 0xf8ac1a,
-			stepperGlyphHover: 0xffce73,
-			// turbo_on.png is already the inverted acid disc; no tint on top
+			barAlpha: 0,
+			// minus.png / plus.png instead of the code-drawn chips, set lower and a little
+			// wider than the chips sat: clear of the strip's tan rail, beside the caption
+			// and the amount
+			stepperSprites: true,
+			stepperY: -10,
+			stepperOffset: 116,
+			// the drawn autoplay button keeps its ring and grain where they are
+			autoSpinRotates: false,
+			// turbo_on.png is already the lit orange disc; no tint on top
 			turboActiveTint: 0xffffff,
+			// portrait: bigger buttons on the plank deck (BarStrip `deck`), which runs from
+			// 552 to 150 units above the bottom; BuySlot places the sack above Bet
+			portraitDeck: { spinScale: 1.85, spinY: 350, sideScale: 1, sideY: 252, outerX: 128, innerX: 298 },
 		});
 		// Pixi Text rasterises with whatever font is resolved at first draw — warm
 		// the self-hosted faces while the loading screen is up (fonts.css)
@@ -197,8 +214,21 @@
 				<TumbleWinAmount />
 				<FreeSpinCounter />
 				<FreeSpinTotalWin />
+				<!-- a win's coins flying to the WIN counter: over everything on the board -->
+				<GoldFx />
 			</MainContainer>
 		</SceneShake>
+
+		<!-- portrait's see-through shade behind the buttons: under the crossing, so the
+		     tumbleweed and the hen pass on top of it -->
+		{#if !stateUrlDerived.replay() && UI_KIND === 'themed'}
+			<PortraitShade />
+		{/if}
+
+		<!-- on a phone: small tumbleweeds, dust devils and the hen roam the ground under
+		     the reels, each its own way (elsewhere they are behind the reels, in the
+		     painting: Ambient) -->
+		<GroundRoamers />
 
 		<!-- a tumbleweed, or by day a hen, crosses in front of the reels now and
 		     then: over the board, under the bar, the win titles and the popups -->
@@ -210,7 +240,10 @@
 			<!-- replay keeps only the readouts the approval docs ask to stay
 			     visible (win, bet cost, currency) — no controls (Kraken's pattern) -->
 			<ReplayHud />
-		{:else}
+		{:else if UI_KIND === 'themed'}
+			<!-- the bar's ink timber strip (and portrait's plank deck), under the SDK's
+			     captions and buttons -->
+			<BarStrip deck />
 			<UI>
 				<!-- the logo is the GameLogo sprite (top-left / above the plate); the
 				     SDK's text slots stay empty -->
@@ -241,15 +274,40 @@
 	below.
 -->
 <ModalError />
-<ModalBetMenu />
-<ModalAutoSpin />
 <ModalAutoSpinMessage />
 <ModalInsufficientFunds />
-<PayTable />
-<GameRules />
-<ModalSettings />
-<BuyShop />
-<BuyConfirm />
+{#if UI_KIND === 'generic'}
+	<!--
+		The generic UI (components-ui-html src/generic): the HTML bar over the canvas
+		while the game is on screen (replay keeps its own readouts), the white bonus
+		cards, and ONE info page with the paytable above the rules. No bet menu,
+		autoplay popup or settings popup: the bar does those itself.
+	-->
+	{#if !context.stateLayout.showLoadingScreen && !stateUrlDerived.replay()}
+		<GenericUI />
+	{/if}
+	<GenericShop
+		switches={ANTE_OPTIONS}
+		buys={BUY_OPTIONS}
+		onconfirm={() => context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_dg_buy_confirm' })}
+	/>
+	<GenericInfo name="Dynamite Gulch">
+		{#snippet paytable()}
+			<PayTable embedded />
+		{/snippet}
+		{#snippet rules()}
+			<GameRules embedded />
+		{/snippet}
+	</GenericInfo>
+{:else}
+	<ModalBetMenu />
+	<ModalAutoSpin />
+	<PayTable />
+	<GameRules />
+	<ModalSettings />
+	<BuyShop />
+	<BuyConfirm />
+{/if}
 <!--
 	Replay mode's round card — the Start Replay panel before playback and the
 	Replay Again panel after it. HTML, so it lives out here with the modals

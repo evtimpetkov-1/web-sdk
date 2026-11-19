@@ -66,6 +66,8 @@ const winLevelSoundsStop = () => {
  * silent. Used by the big win box (Win.svelte, Evtim 2026-10-27: the shower and
  * bed ran on through the hold and the title exit) and the free spins outro.
  */
+// into a win's 1 s prewin: when the winning cells throw their gold at the WIN counter
+const WIN_GOLD_AT_MS = 640;
 const BED_FADE_MS = 700;
 const MUSIC_FADE_IN_MS = 1200;
 const countEndSounds = ({ bed, music }: { bed?: MusicName; music: () => MusicName | undefined }) => {
@@ -276,6 +278,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
 	},
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
+		const winStartedAt = performance.now();
 		const promise1 = async () => {
 			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_win_cycle' });
 			await animateSymbols({ positions: _.flatten(bookEvent.wins.map((win) => win.positions)) });
@@ -298,8 +301,23 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		// not awaited: the amounts float on over the tumble instead of holding the
 		// cascade for their full two seconds; the goo starts the moment the prewins end
+		// the winners' gold flies to the WIN counter (GoldFx): thrown late in the prewin,
+		// so it lands as the count that follows begins, not after it
+		const goldTimer = setTimeout(
+			() =>
+				eventEmitter.broadcast({
+					type: 'winGoldFly',
+					positions: _.flatten(bookEvent.wins.map((win) => win.positions)),
+				}),
+			WIN_GOLD_AT_MS / stateBetDerived.timeScale(),
+		);
 		void promise2();
-		await promise1();
+		try {
+			await promise1();
+		} finally {
+			// a skipped prewin (turbo, a stop press) ends before the gold was thrown: no stragglers
+			if (performance.now() - winStartedAt < WIN_GOLD_AT_MS / stateBetDerived.timeScale()) clearTimeout(goldTimer);
+		}
 	},
 	updateTumbleWin: async (bookEvent: BookEventOfType<'updateTumbleWin'>) => {
 		stateGame.tumbleWin = bookEvent.amount;
@@ -633,15 +651,13 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];
-		// the win box in the middle of the screen is for big wins only, as in Chaos
-		// Lab 2 and Dynamite Gulch (Evtim, 2026-11-13): the WIN counter over the reels
-		// already holds every other win, so those take just their stinger
-		if (winLevelData?.type !== 'big') {
-			if (winLevelData?.sound?.sfx) {
-				eventEmitter.broadcast({ type: 'soundOnce', name: winLevelData.sound.sfx });
-			}
-			return;
-		}
+		// The win box is for big wins only: the WIN counter over the reels already
+		// holds every other win (Evtim, 2026-11-04). Those end in SILENCE: the small /
+		// medium win jingle that used to play here, after the last cascade while the
+		// game settles for the next spin, is gone (Evtim, 2026-11-18: "very very
+		// annoying sounds which are played after the round finished ... I want these
+		// sounds removed from all games"). The wins were already heard as they paid.
+		if (winLevelData?.type !== 'big') return;
 
 		eventEmitter.broadcast({ type: 'winShow' });
 		winLevelSoundsPlay({ winLevelData });

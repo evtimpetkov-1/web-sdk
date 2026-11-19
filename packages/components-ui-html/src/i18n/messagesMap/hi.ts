@@ -26,4 +26,17 @@ export default {
 	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': 'गेम सर्वर से कनेक्ट नहीं हो सका। कृपया अपना कनेक्शन जांचें और गेम को फिर से लोड करें।',
 	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': 'आपका सत्र अमान्य है या समाप्त हो गया है। कृपया गेम को फिर से लोड करें।',
 	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': 'गेम अभी उपलब्ध नहीं है। कृपया गेम को फिर से लोड करें या बाद में पुनः प्रयास करें।',
+	// the generic UI (src/generic): the bar's words, here so the HTML package needs no other
+	'BALANCE': 'शेष',
+	'WIN': 'जीत',
+	'TURBO': 'टर्बो',
+	'BUY BONUS': 'बोनस खरीदें',
+	'INFO': 'जानकारी',
+	'DISABLE': 'अक्षम',
+	'AUTO SPIN': 'ऑटो स्पिन',
+	'SOUND': 'ध्वनि',
+	'MUSIC': 'संगीत',
+	'GAME INFO': 'गेम जानकारी',
+	'BUY': 'खरीदें',
+	'ACTIVATE': 'सक्रिय करें',
 };

@@ -124,6 +124,8 @@ const outroCountSounds = (winLevelData: WinLevelData) => {
 // logo took the cue over (2026-11-13). Smaller wins and later cascade wins in
 // the same spin leave it idle.
 let logoReacted = false;
+// a win's coins leave their cells this long into winInfo's prewins (GoldFx)
+const WIN_GOLD_AT_MS = 640;
 // the spin's win so far (earlier cascades + this one) against the total bet
 const spinWinReachesTotalBet = (cascadeWin: number) =>
 	reachesTotalBet(stateGame.tumbleWin + cascadeWin);
@@ -375,6 +377,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'soundScatterCounterClear' });
 	},
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
+		const winStartedAt = performance.now();
 		if (!logoReacted && spinWinReachesTotalBet(bookEvent.totalWin)) {
 			logoReacted = true;
 			eventEmitter.broadcast({ type: 'logoWin' });
@@ -402,8 +405,23 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		// not awaited: the amounts float on over the tumble instead of holding the
 		// cascade for their full two seconds; the goo starts the moment the prewins end
+		// the winners' coins fly to the WIN counter (GoldFx): thrown late in the prewin,
+		// so they land as the count that follows begins, not after it
+		const goldTimer = setTimeout(
+			() =>
+				eventEmitter.broadcast({
+					type: 'winGoldFly',
+					positions: _.flatten(bookEvent.wins.map((win) => win.positions)),
+				}),
+			WIN_GOLD_AT_MS / stateBetDerived.timeScale(),
+		);
 		void promise2();
-		await promise1();
+		try {
+			await promise1();
+		} finally {
+			// a skipped prewin (turbo, a stop press) ends before the coins were thrown: no stragglers
+			if (performance.now() - winStartedAt < WIN_GOLD_AT_MS / stateBetDerived.timeScale()) clearTimeout(goldTimer);
+		}
 	},
 	updateTumbleWin: async (bookEvent: BookEventOfType<'updateTumbleWin'>) => {
 		stateGame.tumbleWin = bookEvent.amount;
@@ -785,6 +803,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				forcePlay: true,
 				rate: 0.92 + 0.2 * Math.random(),
 			});
+			// each clone knocks the board as it lands; 60 ms apart, a run of them rumbles
+			eventEmitter.broadcast({ type: 'sceneShake', preset: 'cloneStrike' });
 			stateGame.cloneFx[getCellKey(to)] = {
 				kind: 'splat',
 				onSwap: () => {
@@ -796,6 +816,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		};
 		const flights = async () => {
 			await waitForTimeout(CAST_RELEASE_MS / timeScale);
+			// the cloner fires: the board recoils on the frame its copies leave
+			eventEmitter.broadcast({ type: 'sceneShake', preset: 'cloneCast' });
 			await eventEmitter.broadcastAsync({
 				type: 'clonesFly',
 				from: bookEvent.cloner,
@@ -816,6 +838,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const cloners = [bookEvent.cloner, ...bookEvent.cloned];
 		const landings: Promise<void>[] = [];
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_dg_cloner_flood' });
+		// one quake for all of them, as hard as a bomb's, on the frame the first cell
+		// bursts into the paying symbol
+		let burst = false;
 		await Promise.all(
 			cloners.map((position) =>
 				waitForResolve((resolve) => {
@@ -824,6 +849,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 					stateGame.cloneFx[getCellKey(position)] = {
 						kind: 'flood',
 						onSwap: () => {
+							if (!burst) {
+								burst = true;
+								eventEmitter.broadcast({ type: 'sceneShake', preset: 'clonerBurst' });
+							}
 							reelSymbol.rawSymbol = { name: bookEvent.symbol };
 							landings.push(waitForResolve((landed) => (reelSymbol.oncomplete = landed)));
 							reelSymbol.symbolState = 'land'; // completes to 'static' (ReelSymbol)
@@ -838,14 +867,13 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];
-		// the win box is for big wins only: the WIN counter over the reels already
-		// holds every other win, so those take just their stinger (Evtim, 2026-11-04)
-		if (winLevelData?.type !== 'big') {
-			if (winLevelData?.sound?.sfx) {
-				eventEmitter.broadcast({ type: 'soundOnce', name: winLevelData.sound.sfx });
-			}
-			return;
-		}
+		// The win box is for big wins only: the WIN counter over the reels already
+		// holds every other win (Evtim, 2026-11-04). Those end in SILENCE: the small /
+		// medium win jingle that used to play here, after the last cascade while the
+		// game settles for the next spin, is gone (Evtim, 2026-11-18: "very very
+		// annoying sounds which are played after the round finished ... I want these
+		// sounds removed from all games"). The wins were already heard as they paid.
+		if (winLevelData?.type !== 'big') return;
 
 		eventEmitter.broadcast({ type: 'winShow' });
 		winLevelSoundsPlay({ winLevelData });

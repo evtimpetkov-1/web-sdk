@@ -191,8 +191,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Autoplay: Spin automatically a set number of times.',
 	'Turbo: Speed up animations.': 'Turbo: Speed up animations.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: Increase or decrease the __0__ amount.',
 	'Menu (☰): Open the menu.': 'Menu (☰): Open the menu.',
 	'Paytable: View the symbol payout values.': 'Paytable: View the symbol payout values.',

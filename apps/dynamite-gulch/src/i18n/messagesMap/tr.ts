@@ -181,8 +181,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Otomatik oyun: belirlenen sayıda otomatik dönüş yapar.',
 	'Turbo: Speed up animations.': 'Turbo: animasyonları hızlandırır.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'Özellik Satın Al (sepet düğmesi): üç Nakit Yeniden Dönüş modu ile Düello Modu ve Bonus Takviyesi anahtarlarının bulunduğu özellik menüsünü açar.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'Özellik Satın Al (Scatter sembolü): üç Nakit Yeniden Dönüş modu ile Düello Modu ve Bonus Takviyesi anahtarlarının bulunduğu özellik menüsünü açar.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: bahis tutarını artırır veya azaltır.',
 	'Menu (☰): Open the menu.': 'Menü (☰): menüyü açar.',
 	'Paytable: View the symbol payout values.':

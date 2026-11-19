@@ -82,18 +82,7 @@ export const artTitleText = (
 export const ART_STONE = '#ebe4d8';
 export const ART_YELLOW = '#ffbe1e';
 /** Chaos Lab 2: the respin multipliers' purple (cl2-multiplier), lifted to read on the plate */
-export const ART_PURPLE = '#ff4461';
-
-/** The intro's WIN UP TO banner as text: the art's acid green, in the display face. */
-export const winUpToText = (fontSize: number): TextStyleOptions => ({
-	fontFamily: displayFont(),
-	align: 'center',
-	fill: '#f8ac1a',
-	fontSize,
-	letterSpacing: 1,
-	stroke: { color: '#240c10', width: Math.round(fontSize * 0.08) },
-	dropShadow: { color: '#000000', alpha: 0.8, blur: 8, distance: 4, angle: Math.PI / 2 },
-});
+export const ART_PURPLE = '#d62c34'; // the comic lettering's ruby (it was a pink #ff4461 beside the painted titles)
 
 /** The cascade win amounts that float up over the paid symbols. */
 export const cascadeWinText = (fontSize: number): TextStyleOptions => ({

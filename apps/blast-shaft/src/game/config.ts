@@ -12,8 +12,8 @@ export default {
 	// (copied from apps/chaos-lab on 2026-11-13). The id is ours until Stake
 	// assigns the slug.
 	providerName: 'royal_cat_gaming',
-	gameName: 'blast_shaft',
-	gameID: 'blast-shaft',
+	gameName: 'blast_drop',
+	gameID: 'blast-drop',
 	rtp: 0.9622,
 	numReels: 6,
 	numRows: [5, 5, 5, 5, 5, 5],

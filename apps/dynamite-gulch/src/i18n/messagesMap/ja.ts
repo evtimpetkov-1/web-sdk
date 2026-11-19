@@ -167,8 +167,8 @@ export default {
 	'Stop: Stop the reels early during a spin.': 'ストップ：スピン中にリールを早く停止します。',
 	'Autoplay: Spin automatically a set number of times.': 'オートプレイ：設定した回数だけ自動でスピンします。',
 	'Turbo: Speed up animations.': 'ターボ：アニメーションを高速化します。',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'フィーチャー購入（カートボタン）：三つのキャッシュ・リスピンモードと、ショーダウンモードおよびボーナスブーストのスイッチがあるフィーチャーメニューを開きます。',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'フィーチャー購入（スキャッターシンボル）：三つのキャッシュ・リスピンモードと、ショーダウンモードおよびボーナスブーストのスイッチがあるフィーチャーメニューを開きます。',
 	'+/−: Increase or decrease the __0__ amount.': '+/−：ベット額を増減します。',
 	'Menu (☰): Open the menu.': 'メニュー（☰）：メニューを開きます。',
 	'Paytable: View the symbol payout values.': '配当表：シンボルの配当値を表示します。',

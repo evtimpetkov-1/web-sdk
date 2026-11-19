@@ -5,6 +5,7 @@
 	import { Container, Graphics, Sprite } from 'pixi-svelte';
 	import { Button, FadeContainer, ResponsiveText } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
+	import { stateUiTheme } from 'components-ui-pixi';
 	import { stateBet, stateModal } from 'state-shared';
 
 	import { getContext } from '../game/context';
@@ -18,8 +19,8 @@
 	 * the AnteIndicator badge by the spin button). Mounted after <UI>, so all of
 	 * it draws OVER the shared bar (behind it, the bar hid half the ring on desktop).
 	 * - The SLOT is the SDK's buy button redrawn here (ButtonBuyBonus stays hidden:
-	 *   assets.ts has no 'bonusActive' key). It shows the cart disc, or the active
-	 *   ante's disc (Chaos / Boost, the cart's siblings). Its X switches the ante
+	 *   assets.ts has no 'bonusActive' key). It shows the Scatter's loot sack, or the
+	 *   active ante's wooden button (Showdown / Boost). Its X switches the ante
 	 *   off or leaves an armed buy (stateBuy). A tap always opens the shop.
 	 *   Desktop moves it next to Autoplay (the SDK puts it at the far left); the
 	 *   other layouts keep the SDK's spot.
@@ -34,7 +35,7 @@
 	const context = getContext();
 
 	const UI_BASE_RADIUS = 75; // UI_BASE_SIZE 150 / 2
-	const BUY_COLOR = 0xff3855; // the cart disc's magenta
+	const BUY_COLOR = 0xff3855; // an armed buy: dynamite red
 	const ANTE = {
 		ANTE_1: { color: 0xff4a2a, disc: 'msAnteChaos' },
 		ANTE_2: { color: 0xffc21a, disc: 'msAnteBoost' },
@@ -73,8 +74,11 @@
 				return { x: w - 180, y: (h - 100) * 0.5, r: UI_BASE_RADIUS * 1.43 };
 			case 'tablet':
 				return { x: w * 0.5, y: h - 300, r: UI_BASE_RADIUS * 1.4 };
-			default:
-				return { x: w * 0.5, y: h - 400, r: UI_BASE_RADIUS * 1.6 };
+			default: {
+				// portrait: the theme's deck (Game.svelte sets a bigger one than the SDK's)
+				const { spinY, spinScale } = stateUiTheme.portraitDeck;
+				return { x: w * 0.5, y: h - spinY, r: UI_BASE_RADIUS * spinScale };
+			}
 		}
 	});
 
@@ -87,11 +91,13 @@
 				// in the bar, left of Autoplay (x w-267, r 31.5), 16 units clear of it
 				return { x: w - 360, y: h - 58, size: 90 };
 			case 'landscape':
-				return { x: w - 230, y: (h - 100) * 0.5 + 320, size: 171 };
+				// 20 units left of the SDK's spot: the sack's coin pile is wider than a disc and ran into Bet
+				return { x: w - 250, y: (h - 100) * 0.5 + 320, size: 171 };
 			case 'tablet':
 				return { x: w * 0.5 - 430, y: h - 255, size: 153 };
 			default:
-				return { x: w - 140, y: h - 455, size: 162 };
+				// portrait: above Bet, in the deck's top-right corner
+				return { x: w - stateUiTheme.portraitDeck.outerX, y: h - 440, size: 176 };
 		}
 	});
 	// the X that switches the ante / armed buy off (0.34 of the disc was too

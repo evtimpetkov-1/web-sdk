@@ -6,6 +6,16 @@ import type { RawSymbol, SymbolState } from './types';
 // 1.0.0 (the studio's numbering: bump on each resubmission).
 export const GAME_VERSION = '1.0.0';
 
+/**
+ * Which UI the game wears (Evtim, 2026-11-18: one generic UI for all games; "apply the
+ * same UI in the chaos lab 2 and the dynamite games").
+ * - 'generic': the shared HTML bar, bonus shop and single info page of
+ *   components-ui-html (src/generic). No game art, fonts or colours in it; a change
+ *   there changes every game that uses it.
+ * - 'themed': its own ink bar (BarStrip, PortraitShade, the Pixi UI with the ink button sheet, BuySlot, BuyShop / BuyConfirm, separate paytable and rules popups). Everything it needs is still in the app.
+ */
+export const UI_KIND: 'generic' | 'themed' = 'generic';
+
 // Cell height (row pitch). Also the unit every size ratio is expressed in.
 export const SYMBOL_SIZE = 100;
 
@@ -19,14 +29,20 @@ const ART = {
 	// so a symbol can take its own canvas again
 	plate: { width: 297, height: 321 }, // A K Q J ten, cloner, bomb
 	wild: { width: 297, height: 321 },
-	// h1 and h2: the hat rises above the frame, so the canvas is taller than the
-	// cell by that overflow, above AND below (the frame stays centred); `cell` is
-	// the part of the canvas that fills the cell
-	h1: { width: 297, height: 413, cell: { width: 297, height: 321 } },
-	h2: { width: 297, height: 343, cell: { width: 297, height: 321 } },
-	h3: { width: 297, height: 321 },
+	// The highs (ink set, 2026-11-16: art-review/dynamite-gulch/rework): a character
+	// stands in front of its tile, and a hat or a feather rises above it, so the
+	// canvas is taller than the cell by that overflow, above AND below (the tile
+	// stays centred); `cell` is the part of the canvas that fills the cell
+	h1: { width: 297, height: 345, cell: { width: 297, height: 321 } },
+	h2: { width: 297, height: 341, cell: { width: 297, height: 321 } },
+	h3: { width: 297, height: 385, cell: { width: 297, height: 321 } },
 	h4: { width: 297, height: 321 },
-	bonus: { width: 427, height: 423 }, // bonus.png (the safe)
+	// the Scatter: a loot sack on a gold-framed tile. The tile is the cell; the sack and
+	// its coins are drawn wider than it and spill over the frame on every side (Evtim,
+	// 2026-11-16), so the canvas is larger than the cell both ways (SCATTER_PAD in
+	// art-review/dynamite-gulch/rework/build_ink_symbols.py). It sorts above its
+	// neighbours (getSymbolZIndex)
+	bonus: { width: 333, height: 361, cell: { width: 297, height: 321 } },
 	multPlate: { width: 297, height: 321 },
 };
 export const SYMBOL_WIDTH = (SYMBOL_SIZE * ART.plate.width) / ART.plate.height; // 92.5
@@ -35,9 +51,24 @@ export const SYMBOL_WIDTH = (SYMBOL_SIZE * ART.plate.width) / ART.plate.height; 
 export const SYMBOL_GAP = 0;
 // a symbol's drawn height over its cell's (the highs whose hat overflows), for
 // whoever draws a static outside the board
-export const artOverflow = (symbol: 'h1' | 'h2') => ART[symbol].height / ART[symbol].cell.height;
-// the bonus disc is drawn larger than its cell and spills over the neighbours
-export const BONUS_SCALE = 1.15;
+export const artOverflow = (symbol: 'h1' | 'h2' | 'h3' | 'bonus') =>
+	ART[symbol].height / ART[symbol].cell.height;
+// the same across (only the Scatter's sack spills sideways)
+export const artOverflowX = (symbol: 'bonus') => ART[symbol].width / ART[symbol].cell.width;
+// scales the WHOLE Scatter, tile included; 1 = its tile fills the cell like every
+// other symbol's. To change how far the sack spills over the tile, rebuild the art
+// (SCATTER_FIT in build_ink_symbols.py), not this
+export const BONUS_SCALE = 1;
+// Symbols whose `idle` loop also runs between rounds (the four characters breathe
+// and sway whenever they are at rest on the reels). The bomb and the Scatter idle
+// only while a round is in play. Empty this list to switch the rest loop off.
+export const REST_IDLE: readonly string[] = ['H1', 'H2', 'H3', 'H4'];
+// What portrait draws behind its buttons, between the reel frame's base and the bar's
+// strip (BarStrip.svelte): 'shade' = a see-through dark wash, the ground still shows
+// (a test, Evtim 2026-11-16); 'planks' = the solid wall of the strip's own timber.
+export const PORTRAIT_DECK: 'shade' | 'planks' = 'shade';
+// the wash: colour (the strip's walnut, darker) and how much of the ground it hides
+export const PORTRAIT_SHADE = { color: 0x140d09, alpha: 0.6 };
 // vertical headroom the board mask allows beyond the reel window, so an oversized
 // bonus on the top/bottom row is hidden by the pipe frame, not cut flat by the mask
 export const SYMBOL_OVERFLOW = SYMBOL_SIZE * 0.1;
@@ -176,17 +207,16 @@ export const SCATTERS_TO_TRIGGER = { basegame: 4, freegame: 3 } as const;
 // already takes longer, so only non-winning boards are held.
 export const TURBO_FS_MIN_BOARD_MS = 450;
 
-// The armed bomb's idle loop is the fuse sound's heartbeat (rig_bomb idle in
-// art-review/madscience/symbol_layers/build_rigs_v2.py, keyed to sfx_dg_bomb_fuse,
-// 2026-10-26): the loop period (= the sound's), the sound time at the rig's t = 0,
-// and the rig's rest points between beats (s). BombHeartbeatLock starts every armed
-// bomb from one of them, in phase with the sound. Keep in step with the rig.
+// The armed dynamite's idle loop beats with the fuse sound (armed_loop in
+// art-review/dynamite-gulch/rework/build_ink_rigs.py, keyed to sfx_dg_bomb_fuse):
+// the loop period (= the sound's) and the sound time at the rig's t = 0.
+// BombHeartbeatLock enters every armed bomb's loop at the sound's own phase (the
+// loop has no rest pose, so there is nothing to wait for). Keep in step with the rig.
 export const BOMB_HEARTBEAT = {
 	assetKey: 'msBombAnim',
 	animation: 'idle',
 	period: 2.25,
 	offset: 0.52,
-	quiet: [0, 0.6, 1.2],
 } as const;
 export const TUMBLE_DROP_MS = 200;
 export const ANTICIPATION_DROP_MS = 550;
@@ -326,16 +356,18 @@ const allStates = <T>(info: T) => ({
 
 export const SYMBOL_INFO_MAP = {
 	// math codes: H1-H4 = the four lab symbols, L1-L5 = the royals A K Q J 10
-	H1: rigged('h1.png', 'msH1Anim', ART.h1),
-	H2: rigged('h2.png', 'msH2Anim', ART.h2),
-	H3: rigged('h3.png', 'msH3Anim', ART.h3),
-	H4: rigged('h4.png', 'msH4Anim', ART.h4),
+	// the four characters: built from separate parts (body, arm, head, hat ...), each
+	// with an action on a win and a breathing idle
+	H1: rigged('h1.png', 'msH1Anim', ART.h1, { idle: true }),
+	H2: rigged('h2.png', 'msH2Anim', ART.h2, { idle: true }),
+	H3: rigged('h3.png', 'msH3Anim', ART.h3, { idle: true }),
+	H4: rigged('h4.png', 'msH4Anim', ART.h4, { idle: true }),
 	L1: rigged('A.png', 'msAAnim', ART.plate),
 	L2: rigged('K.png', 'msKAnim', ART.plate),
 	L3: rigged('Q.png', 'msQAnim', ART.plate),
 	L4: rigged('J.png', 'msJAnim', ART.plate),
 	L5: rigged('ten.png', 'msTenAnim', ART.plate),
-	W: allStates(sprite('wild.png', ART.wild)),
+	W: rigged('wild.png', 'msWildAnim', ART.wild),
 	// Cloner: cast = the sign flares and its ghosts peel off towards the cells
 	// they turn into cloners, in = a fresh clone's sign grows in, out = the sign
 	// drains away (plate intact) before the flood swaps in the paying symbol.
@@ -344,9 +376,9 @@ export const SYMBOL_INFO_MAP = {
 	// scatter), explode = the bomb blows itself up and ends empty; the tumble
 	// board then drops the cell like any exploded symbol.
 	B: rigged('bomb.png', 'msBombAnim', ART.plate, { idle: true, explode: true }),
-	// Scatter: the operating-theatre disc, drawn BONUS_SCALE larger than its cell.
-	// land = the sign slams in, prewin = the lamp switches on over the table,
-	// idle = lamp sway + breathing bulbs while a round waits for its cascades
+	// Scatter: the loot sack on its tile (the sack spills over it, ART.bonus).
+	// land = the sack slams in, prewin = it thuds and bursts with gold light,
+	// idle = the gold breathes and glints while a round waits for its cascades
 	// (ReelSymbol/TumbleSymbol derive that state from stateGame.roundActive).
 	// pending = the heartbeat while a cascade drops one Scatter short of a trigger.
 	S: rigged('bonus.png', 'msBonusAnim', ART.bonus, {

@@ -54,7 +54,8 @@
 	const PORTRAIT_FILL = 0.96;
 	// each title's width in rig px: its wider word (the tier word stacked over WIN;
 	// art-review/dynamite-gulch/build_bigwin.py prints them)
-	const TITLE_WIDTH: Record<WinTier, number> = { big: 784, mega: 1061, epic: 859 };
+	// (the comic-lettering rig, art-review/dynamite-gulch/rework/build_ink_bigwin.py)
+	const TITLE_WIDTH: Record<WinTier, number> = { big: 796, mega: 1076, epic: 875 };
 	const AMOUNT_MAX_WIDTH = 1200;
 	const PORTRAIT_AMOUNT_FILL = 0.9;
 	const TIER_RESIZE_MS = 350;

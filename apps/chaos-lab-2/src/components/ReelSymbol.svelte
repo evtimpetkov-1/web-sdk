@@ -45,6 +45,19 @@
 		if (props.reelSymbol.symbolState !== 'static') context.stateGame.idleHold[cellKey] = false;
 		else if (hasIdle && context.stateGame.roundActive) context.stateGame.idleHold[cellKey] = true;
 	});
+	// the at-rest fidget (BoardFidget picks the cell): dropped the moment the cell
+	// leaves 'static' or a round starts, so a spin never waits for it
+	const hasFidget = $derived(
+		getSymbolInfo({ rawSymbol: props.reelSymbol.rawSymbol, state: 'fidget' }).type === 'spine',
+	);
+	$effect(() => {
+		if (
+			context.stateGame.fidget[cellKey] &&
+			(props.reelSymbol.symbolState !== 'static' || context.stateGame.roundActive || !hasFidget)
+		) {
+			context.stateGame.fidget[cellKey] = false;
+		}
+	});
 
 	/**
 	 * The padding cells above and below the window are not part of the board the
@@ -63,6 +76,7 @@
 	const displayState = $derived.by<SymbolState>(() => {
 		const { symbolState } = props.reelSymbol;
 		if (hasPending && symbolState === 'static' && context.stateGame.scatterPending) return 'pending';
+		if (hasFidget && symbolState === 'static' && context.stateGame.fidget[cellKey]) return 'fidget';
 		return hasIdle &&
 			symbolState === 'static' &&
 			(context.stateGame.roundActive || context.stateGame.idleHold[cellKey])
@@ -143,6 +157,8 @@
 				if (displayState === 'idle' && !context.stateGame.roundActive) {
 					context.stateGame.idleHold[cellKey] = false;
 				}
+				// the fidget ends on the rest pose: back to the static plate
+				if (displayState === 'fidget') context.stateGame.fidget[cellKey] = false;
 				// win, the cloner's cast and the land after a cloner flood are awaited by
 				// their handlers (a spin's own land calls an already-spent resolver: harmless)
 				if (symbolState === 'win' || symbolState === 'cast' || symbolState === 'land') {

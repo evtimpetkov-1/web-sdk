@@ -26,4 +26,17 @@ export default {
 	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': '게임 서버에 연결할 수 없습니다. 연결 상태를 확인하고 게임을 다시 불러오세요.',
 	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': '세션이 유효하지 않거나 만료되었습니다. 게임을 다시 불러오세요.',
 	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': '지금은 게임을 이용할 수 없습니다. 게임을 다시 불러오거나 나중에 다시 시도하세요.',
+	// the generic UI (src/generic): the bar's words, here so the HTML package needs no other
+	'BALANCE': '잔액',
+	'WIN': '당첨',
+	'TURBO': '터보',
+	'BUY BONUS': '보너스 구매',
+	'INFO': '정보',
+	'DISABLE': '비활성화',
+	'AUTO SPIN': '자동 스핀',
+	'SOUND': '사운드',
+	'MUSIC': '음악',
+	'GAME INFO': '게임 정보',
+	'BUY': '구매',
+	'ACTIVATE': '활성화',
 };

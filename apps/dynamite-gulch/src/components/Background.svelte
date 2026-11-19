@@ -4,6 +4,7 @@
 
 	import { getContext } from '../game/context';
 	import Ambient, { AMBIENT_SCENES, type AmbientScene } from './Ambient.svelte';
+	import SceneWind from './SceneWind.svelte';
 
 	const context = getContext();
 	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
@@ -44,6 +45,11 @@
 </script>
 
 <Rectangle {...context.stateLayoutDerived.canvasSizes()} backgroundColor={0x000000} zIndex={-3} />
+
+<!-- the wind, seen: what it carries across the street, wind lines, dust wisps. One
+     layer over whichever painting is shown, mounted once (its particles' ticker
+     callback is never removed) -->
+<SceneWind />
 
 {#each BACKGROUNDS as bg (bg.key)}
 	{@const box = cover(bg.key, bg.scene.width, bg.scene.height)}

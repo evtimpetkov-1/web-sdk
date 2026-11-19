@@ -14,6 +14,7 @@ import type { EmitterEventWin } from '../components/Win.svelte';
 import type { EmitterEventSound } from '../components/Sound.svelte';
 import type { EmitterEventTransition } from '../components/Transition.svelte';
 import type { EmitterEventSceneShake } from '../components/SceneShake.svelte';
+import type { EmitterEventGoldFx } from '../components/GoldFx.svelte';
 
 export type EmitterEventGame =
 	| EmitterEventBoard
@@ -31,4 +32,5 @@ export type EmitterEventGame =
 	| EmitterEventFreeSpinOutro
 	| EmitterEventSound
 	| EmitterEventTransition
-	| EmitterEventSceneShake;
+	| EmitterEventSceneShake
+	| EmitterEventGoldFx;

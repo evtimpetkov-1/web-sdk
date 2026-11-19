@@ -181,8 +181,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Jogo automático: gira automaticamente um número definido de vezes.',
 	'Turbo: Speed up animations.': 'Turbo: acelera as animações.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'Compra de função (botão do carrinho): abre o menu de funções com os três modos de Regiros Cash e os botões do Modo Duelo e do Impulso de Bônus.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'Compra de função (símbolo Scatter): abre o menu de funções com os três modos de Regiros Cash e os botões do Modo Duelo e do Impulso de Bônus.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: aumenta ou diminui o valor da aposta.',
 	'Menu (☰): Open the menu.': 'Menu (☰): abre o menu.',
 	'Paytable: View the symbol payout values.':

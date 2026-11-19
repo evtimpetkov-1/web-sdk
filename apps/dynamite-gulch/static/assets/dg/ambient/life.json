@@ -1,0 +1,275 @@
+{
+ "frames": {
+  "devil_0.png": {
+   "frame": {
+    "x": 6,
+    "y": 6,
+    "w": 241,
+    "h": 320
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 241,
+    "h": 320
+   },
+   "sourceSize": {
+    "w": 241,
+    "h": 320
+   }
+  },
+  "devil_1.png": {
+   "frame": {
+    "x": 253,
+    "y": 6,
+    "w": 241,
+    "h": 320
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 241,
+    "h": 320
+   },
+   "sourceSize": {
+    "w": 241,
+    "h": 320
+   }
+  },
+  "devil_2.png": {
+   "frame": {
+    "x": 500,
+    "y": 6,
+    "w": 241,
+    "h": 320
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 241,
+    "h": 320
+   },
+   "sourceSize": {
+    "w": 241,
+    "h": 320
+   }
+  },
+  "devil_3.png": {
+   "frame": {
+    "x": 747,
+    "y": 6,
+    "w": 241,
+    "h": 320
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 241,
+    "h": 320
+   },
+   "sourceSize": {
+    "w": 241,
+    "h": 320
+   }
+  },
+  "devil_4.png": {
+   "frame": {
+    "x": 994,
+    "y": 6,
+    "w": 241,
+    "h": 320
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 241,
+    "h": 320
+   },
+   "sourceSize": {
+    "w": 241,
+    "h": 320
+   }
+  },
+  "devil_5.png": {
+   "frame": {
+    "x": 1241,
+    "y": 6,
+    "w": 241,
+    "h": 320
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 241,
+    "h": 320
+   },
+   "sourceSize": {
+    "w": 241,
+    "h": 320
+   }
+  },
+  "rotor.png": {
+   "frame": {
+    "x": 1488,
+    "y": 6,
+    "w": 256,
+    "h": 256
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 256
+   },
+   "sourceSize": {
+    "w": 256,
+    "h": 256
+   }
+  },
+  "mill_night.png": {
+   "frame": {
+    "x": 1750,
+    "y": 6,
+    "w": 137,
+    "h": 137
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 137,
+    "h": 137
+   },
+   "sourceSize": {
+    "w": 137,
+    "h": 137
+   }
+  },
+  "mill_day.png": {
+   "frame": {
+    "x": 1893,
+    "y": 6,
+    "w": 135,
+    "h": 135
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 135,
+    "h": 135
+   },
+   "sourceSize": {
+    "w": 135,
+    "h": 135
+   }
+  },
+  "mill_portrait.png": {
+   "frame": {
+    "x": 6,
+    "y": 332,
+    "w": 97,
+    "h": 97
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 97,
+    "h": 97
+   },
+   "sourceSize": {
+    "w": 97,
+    "h": 97
+   }
+  },
+  "bird_glide.png": {
+   "frame": {
+    "x": 109,
+    "y": 332,
+    "w": 160,
+    "h": 80
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 160,
+    "h": 80
+   },
+   "sourceSize": {
+    "w": 160,
+    "h": 80
+   }
+  },
+  "bird_up.png": {
+   "frame": {
+    "x": 275,
+    "y": 332,
+    "w": 72,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 72,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 72,
+    "h": 44
+   }
+  },
+  "bird_down.png": {
+   "frame": {
+    "x": 353,
+    "y": 332,
+    "w": 72,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 72,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 72,
+    "h": 44
+   }
+  }
+ },
+ "meta": {
+  "app": "art-review/dynamite-gulch/build_ambient.py",
+  "version": "1.0",
+  "image": "life.webp",
+  "format": "RGBA8888",
+  "size": {
+   "w": 2048,
+   "h": 435
+  },
+  "scale": "1"
+ }
+}

@@ -1,0 +1,46 @@
+/**
+ * Which background paintings AND dressing (reel frame, the plates over the
+ * reels, the popup's plate, the transition curtain) the game draws. One switch:
+ *   'storm'    the glass-domed lab at night in a purple thunderstorm, its portrait
+ *              cut, and the same room in overdrive for Cash Respins (Evtim's pick,
+ *              2026-11-16; art-review/chaoslab2/backgrounds), with purple-steel
+ *              pipes, brass and green glass for the frame and plates and a clean
+ *              purple lab curtain (art-review/chaoslab2/frame_v2/build_dressing.py:
+ *              every piece on the canvas of the one it replaces)
+ *   'basement' Chaos Lab 1's basement lab and operating theatre, its slime-and-blood
+ *              pipes and bloody hospital curtain (the files stay in
+ *              static/assets/madscience and spines/msFsPopup)
+ * The scene life (SceneLife.svelte) is measured off the paintings: after changing
+ * this, set SET to the same name in art-review/chaoslab2/scene_life/
+ * build_scene_life.py and run it. (Vite needs each URL as a string literal.)
+ */
+export const BACKGROUND_SET: 'storm' | 'basement' = 'storm';
+
+const SETS = {
+	storm: {
+		base: new URL('../../assets/chaoslab2/bg/storm.webp', import.meta.url).href,
+		portrait: new URL('../../assets/chaoslab2/bg/storm_portrait.webp', import.meta.url).href,
+		feature: new URL('../../assets/chaoslab2/bg/storm_overdrive.webp', import.meta.url).href,
+		frame: new URL('../../assets/chaoslab2/dressing/frame.webp', import.meta.url).href,
+		frameFeature: new URL('../../assets/chaoslab2/dressing/frame_fs.webp', import.meta.url).href,
+		multPlate: new URL('../../assets/chaoslab2/dressing/mult_plate.webp', import.meta.url).href,
+		counterPlate: new URL('../../assets/chaoslab2/dressing/counter_plate.webp', import.meta.url).href,
+		curtainLeft: new URL('../../assets/chaoslab2/dressing/curtain_left.webp', import.meta.url).href,
+		curtainRight: new URL('../../assets/chaoslab2/dressing/curtain_right.webp', import.meta.url).href,
+		popupAtlas: new URL('../../assets/spines/msFsPopup/storm/fspopup.atlas', import.meta.url).href,
+	},
+	basement: {
+		base: new URL('../../assets/madscience/bg_v1.webp', import.meta.url).href,
+		portrait: new URL('../../assets/madscience/bg_portrait.webp', import.meta.url).href,
+		feature: new URL('../../assets/madscience/fs_bg.webp', import.meta.url).href,
+		frame: new URL('../../assets/madscience/frame_resized.webp', import.meta.url).href,
+		frameFeature: new URL('../../assets/madscience/frame_resized_fs.webp', import.meta.url).href,
+		multPlate: new URL('../../assets/madscience/mult_plate.webp', import.meta.url).href,
+		counterPlate: new URL('../../assets/madscience/counter_plate.webp', import.meta.url).href,
+		curtainLeft: new URL('../../assets/madscience/curtain/curtain_left.webp', import.meta.url).href,
+		curtainRight: new URL('../../assets/madscience/curtain/curtain_right.webp', import.meta.url).href,
+		popupAtlas: new URL('../../assets/spines/msFsPopup/fspopup.atlas', import.meta.url).href,
+	},
+};
+
+export const BACKGROUND_URLS = SETS[BACKGROUND_SET];

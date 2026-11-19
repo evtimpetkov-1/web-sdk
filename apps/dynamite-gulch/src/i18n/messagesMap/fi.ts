@@ -183,8 +183,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Automaattipeli: pyöräyttää automaattisesti asetetun määrän kertoja.',
 	'Turbo: Speed up animations.': 'Turbo: nopeuttaa animaatioita.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'Osta ominaisuus (ostoskärrypainike): avaa ominaisuusvalikon, jossa ovat kolme Raha-uusintakierrostilaa sekä Showdown-tilan ja Bonusbuustin kytkimet.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'Osta ominaisuus (Scatter-symboli): avaa ominaisuusvalikon, jossa ovat kolme Raha-uusintakierrostilaa sekä Showdown-tilan ja Bonusbuustin kytkimet.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: suurentaa tai pienentää panosta.',
 	'Menu (☰): Open the menu.': 'Valikko (☰): avaa valikon.',
 	'Paytable: View the symbol payout values.': 'Voittotaulukko: näyttää symbolien voittoarvot.',

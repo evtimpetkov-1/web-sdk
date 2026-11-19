@@ -9,6 +9,7 @@
 	import ButtonBetProvider from './ButtonBetProvider.svelte';
 	import { UI_BASE_SIZE } from '../constants';
 	import { getContext } from '../context';
+	import { stateUiTheme } from '../stateUiTheme.svelte';
 
 	const props: Partial<Omit<ButtonProps, 'children'>> = $props();
 	const context = getContext();
@@ -58,6 +59,7 @@
 		<Button
 			{...props}
 			{sizes}
+			boxHit={stateUiTheme.spriteScale !== 1}
 			onpress={() => {
 				if (key === 'spin_default') {
 					const pressMorph = ++morph;
@@ -79,8 +81,8 @@
 						<Sprite
 							key="stop.png"
 							label="spinButton"
-							width={sizes.width}
-							height={sizes.height}
+							width={sizes.width * stateUiTheme.spriteScale}
+							height={sizes.height * stateUiTheme.spriteScale}
 							anchor={0.5}
 							{alpha}
 						/>
@@ -88,15 +90,15 @@
 						<Sprite
 							key="button.png"
 							label="spinButton"
-							width={sizes.width}
-							height={sizes.height}
+							width={sizes.width * stateUiTheme.spriteScale}
+							height={sizes.height * stateUiTheme.spriteScale}
 							anchor={0.5}
 							{alpha}
 						/>
 						<Sprite
 							key="spin_icon.png"
-							width={sizes.width * arrowScale.current}
-							height={sizes.height * arrowScale.current}
+							width={sizes.width * arrowScale.current * stateUiTheme.spriteScale}
+							height={sizes.height * arrowScale.current * stateUiTheme.spriteScale}
 							anchor={0.5}
 							{alpha}
 							rotation={rotationTween.current}

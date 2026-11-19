@@ -26,4 +26,17 @@ export default {
 	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': 'ゲームサーバーに接続できません。接続を確認して、ゲームを再読み込みしてください。',
 	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': 'セッションが無効か、有効期限が切れています。ゲームを再読み込みしてください。',
 	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': '現在ゲームをご利用いただけません。ゲームを再読み込みするか、しばらくしてから再度お試しください。',
+	// the generic UI (src/generic): the bar's words, here so the HTML package needs no other
+	'BALANCE': '残高',
+	'WIN': '勝利',
+	'TURBO': 'ターボ',
+	'BUY BONUS': 'ボーナス購入',
+	'INFO': '情報',
+	'DISABLE': '無効',
+	'AUTO SPIN': 'オートスピン',
+	'SOUND': 'サウンド',
+	'MUSIC': 'ミュージック',
+	'GAME INFO': 'ゲーム情報',
+	'BUY': '購入',
+	'ACTIVATE': '有効にする',
 };

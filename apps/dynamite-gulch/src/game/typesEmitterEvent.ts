@@ -16,6 +16,7 @@ import type { EmitterEventTransition } from '../components/Transition.svelte';
 import type { EmitterEventGameLogo } from '../components/GameLogo.svelte';
 import type { EmitterEventCashRespins } from '../components/CashRespinBoard.svelte';
 import type { EmitterEventSceneShake } from '../components/SceneShake.svelte';
+import type { EmitterEventGoldFx } from '../components/GoldFx.svelte';
 
 export type EmitterEventGame =
 	| EmitterEventBoard
@@ -35,4 +36,5 @@ export type EmitterEventGame =
 	| EmitterEventTransition
 	| EmitterEventGameLogo
 	| EmitterEventCashRespins
-	| EmitterEventSceneShake;
+	| EmitterEventSceneShake
+	| EmitterEventGoldFx;

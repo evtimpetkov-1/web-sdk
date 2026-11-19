@@ -26,4 +26,17 @@ export default {
 	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': 'تعذّر الاتصال بخادم اللعبة. يرجى التحقق من اتصالك وإعادة تحميل اللعبة.',
 	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': 'جلستك غير صالحة أو انتهت صلاحيتها. يرجى إعادة تحميل اللعبة.',
 	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': 'اللعبة غير متاحة حاليًا. يرجى إعادة تحميل اللعبة أو المحاولة لاحقًا.',
+	// the generic UI (src/generic): the bar's words, here so the HTML package needs no other
+	'BALANCE': 'الرصيد',
+	'WIN': 'فوز',
+	'TURBO': 'سريع',
+	'BUY BONUS': 'شراء مكافأة',
+	'INFO': 'معلومات',
+	'DISABLE': 'تعطيل',
+	'AUTO SPIN': 'دوران تلقائي',
+	'SOUND': 'الصوت',
+	'MUSIC': 'الموسيقى',
+	'GAME INFO': 'معلومات اللعبة',
+	'BUY': 'شراء',
+	'ACTIVATE': 'تفعيل',
 };

@@ -35,4 +35,17 @@ export const i18nDerived = {
 	lossLimitReached: () => stateUrlDerived.social() ? 'STOP LIMIT REACHED' : stateI18nDerived.translate('LOSS LIMIT REACHED'),
 	singleWinLimitReached: () => stateI18nDerived.translate('SINGLE WIN LIMIT REACHED'),
 	settings: () => stateI18nDerived.translate('SETTINGS'),
+	// the generic UI (src/generic)
+	balance: () => stateI18nDerived.translate('BALANCE'),
+	win: () => stateI18nDerived.translate('WIN'),
+	turbo: () => stateI18nDerived.translate('TURBO'),
+	autoSpin: () => stateI18nDerived.translate('AUTO SPIN'),
+	buyBonus: () => stateUrlDerived.social() ? 'GET BONUS' : stateI18nDerived.translate('BUY BONUS'),
+	info: () => stateI18nDerived.translate('INFO'),
+	gameInfo: () => stateI18nDerived.translate('GAME INFO'),
+	sound: () => stateI18nDerived.translate('SOUND'),
+	music: () => stateI18nDerived.translate('MUSIC'),
+	buy: () => stateUrlDerived.social() ? 'PLAY' : stateI18nDerived.translate('BUY'),
+	activate: () => stateI18nDerived.translate('ACTIVATE'),
+	disable: () => stateI18nDerived.translate('DISABLE'),
 };

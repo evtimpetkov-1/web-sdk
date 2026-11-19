@@ -16,6 +16,9 @@
 		ModalAutoSpinMessage,
 		ModalInsufficientFunds,
 		ModalSettings,
+		GenericUI,
+		GenericShop,
+		GenericInfo,
 	} from 'components-ui-html';
 
 	import { getContext } from '../game/context';
@@ -27,10 +30,15 @@
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import SceneShake from './SceneShake.svelte';
+	import SymbolGlints from './SymbolGlints.svelte';
 	import Board from './Board.svelte';
 	import BoardBacking from './BoardBacking.svelte';
 	import AnticipationField from './AnticipationField.svelte';
 	import BuySlot from './BuySlot.svelte';
+	import BarStrip from './BarStrip.svelte';
+	import DustFall from './DustFall.svelte';
+	import GoldFx from './GoldFx.svelte';
+	import Bats from './Bats.svelte';
 	import ClusterWinAmounts from './ClusterWinAmounts.svelte';
 	import TumbleBoard from './TumbleBoard.svelte';
 	import TumbleWinAmount from './TumbleWinAmount.svelte';
@@ -52,6 +60,8 @@
 	import ReplayHud from './ReplayHud.svelte';
 	import ReplayOverlay from './ReplayOverlay.svelte';
 	import { applyBetModeMeta } from '../game/betModeMeta';
+	import { ANTE_OPTIONS, BUY_OPTIONS } from '../game/buyOptions';
+	import { UI_KIND } from '../game/constants';
 	import { displayFont } from '../game/textStyles';
 	import { getResumedFreeSpinsEntry } from '../game/utils';
 	import type { Bet } from '../game/typesBookEvent';
@@ -75,24 +85,32 @@
 	onMount(() => {
 		context.stateLayout.showLoadingScreen = true;
 		applyBetModeMeta();
-		// bottom bar in the logo's voice: Alfa Slab One captions in acid green, white
-		// Inter amounts, charcoal plate, green-rimmed stepper chips. The display
-		// face follows the language (displayFont); the HTML popups read it as
+		// bottom bar: Alfa Slab One captions in gold and white Inter amounts over the
+		// painted timber strip (BarStrip, so the SDK's own plate is switched off), the
+		// -/+ and every other button from the painted iron set (build_ui.py). The
+		// display face follows the language (displayFont); the HTML popups read it as
 		// --ms-display-font, set by the layout (+layout.svelte)
-		Object.assign(stateUiTheme, {
+		// (the generic UI has no theme: UI_KIND in constants.ts)
+		if (UI_KIND === 'themed') Object.assign(stateUiTheme, {
 			labelFont: displayFont(),
 			labelWeight: '400',
-			labelFill: 0xf2b53a,
+			labelFill: 0xf6bf48,
 			labelLetterSpacing: 1,
-			barFill: 0x0c100c,
-			barAlpha: 0.82,
-			stepperFill: 0x1e281a,
-			stepperRim: 0xf2b53a,
-			stepperRimHover: 0xdff669,
-			stepperGlyph: 0xf2b53a,
-			stepperGlyphHover: 0xdff669,
-			// turbo_on.png is already the inverted acid disc; no tint on top
+			barFill: 0x0c0a08,
+			barAlpha: 0,
+			// minus.png / plus.png instead of the code-drawn chips
+			stepperSprites: true,
+			// ... set lower and a little wider than the code-drawn chips sat: clear of the
+			// strip's iron rail, beside the caption and the amount (Evtim 2026-11-16)
+			stepperY: -10,
+			stepperOffset: 116,
+			// the painted autoplay button keeps its light where it is: no spinning disc
+			autoSpinRotates: false,
+			// turbo_on.png is already the molten disc; no tint on top
 			turboActiveTint: 0xffffff,
+			// portrait: bigger buttons on the plank deck (BarStrip `deck`), which runs from
+			// 552 to 148 units above the bottom; BuySlot places the nugget above Bet
+			portraitDeck: { spinScale: 1.85, spinY: 350, sideScale: 1, sideY: 252, outerX: 128, innerX: 298 },
 		});
 		// Pixi Text rasterises with whatever font is resolved at first draw — warm
 		// the self-hosted faces while the loading screen is up (fonts.css)
@@ -158,6 +176,10 @@
 		<LoadingScreen onstart={startGame} />
 	{:else}
 		<ResumeBet />
+		<!-- idle life on a resting board: a glint on a random symbol now and then -->
+		<SymbolGlints />
+		<!-- a bat across the tunnel now and then, behind the reels (root zIndex -1.4) -->
+		<Bats />
 
 		<!-- the mine shakes with its big moments: the board layers move as one, the
 		     background, logo, bar and popups stay still (SceneShake) -->
@@ -189,6 +211,9 @@
 				<TumbleWinAmount />
 				<FreeSpinCounter />
 				<FreeSpinTotalWin />
+				<!-- gold in motion: a collected multiplier's comet and the hit on the sign,
+				     the nuggets a win throws at the WIN counter -->
+				<GoldFx />
 			</MainContainer>
 		</SceneShake>
 
@@ -198,7 +223,9 @@
 			<!-- replay keeps only the readouts the approval docs ask to stay
 			     visible (win, bet cost, currency) — no controls (Kraken's pattern) -->
 			<ReplayHud />
-		{:else}
+		{:else if UI_KIND === 'themed'}
+			<!-- the painted strip the bar's captions and buttons sit on (under the UI) -->
+			<BarStrip deck />
 			<UI>
 				<!-- the logo is the GameLogo sprite (top-left / above the plate); the
 				     SDK's text slots stay empty -->
@@ -213,6 +240,9 @@
 		<Win />
 		<FreeSpinIntro />
 		<FreeSpinOutro />
+		<!-- dust shaken off the roof, falling from the top of the screen in front of
+		     everything: on the mine's blasts and when the free spins board drops in -->
+		<DustFall />
 	{/if}
 
 	<!-- the curtains: over everything (zIndex); the intro's exit and every
@@ -229,15 +259,40 @@
 	below.
 -->
 <ModalError />
-<ModalBetMenu />
-<ModalAutoSpin />
 <ModalAutoSpinMessage />
 <ModalInsufficientFunds />
-<PayTable />
-<GameRules />
-<ModalSettings />
-<BuyShop />
-<BuyConfirm />
+{#if UI_KIND === 'generic'}
+	<!--
+		The generic UI (components-ui-html src/generic): the HTML bar over the canvas
+		while the game is on screen (replay keeps its own readouts), the white bonus
+		cards, and ONE info page with the paytable above the rules. No bet menu,
+		autoplay popup or settings popup: the bar does those itself.
+	-->
+	{#if !context.stateLayout.showLoadingScreen && !stateUrlDerived.replay()}
+		<GenericUI />
+	{/if}
+	<GenericShop
+		switches={ANTE_OPTIONS}
+		buys={BUY_OPTIONS}
+		onconfirm={() => context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_buy_confirm' })}
+	/>
+	<GenericInfo name="Blast Drop">
+		{#snippet paytable()}
+			<PayTable embedded />
+		{/snippet}
+		{#snippet rules()}
+			<GameRules embedded />
+		{/snippet}
+	</GenericInfo>
+{:else}
+	<ModalBetMenu />
+	<ModalAutoSpin />
+	<PayTable />
+	<GameRules />
+	<ModalSettings />
+	<BuyShop />
+	<BuyConfirm />
+{/if}
 <!--
 	Replay mode's round card — the Start Replay panel before playback and the
 	Replay Again panel after it. HTML, so it lives out here with the modals

@@ -1,3 +1,5 @@
+import { BACKGROUND_URLS } from './backgroundSet';
+
 export default {
 	// BIG / MEGA / EPIC WIN titles (Evtim's celebration art) as one rig: big_in,
 	// <tier>_idle, to_mega, to_epic, <tier>_out, with slot_win_count for the
@@ -61,10 +63,31 @@ export default {
 	},
 	// the sample's fsIntro / fsIntroNumber / fsOutroNumber spines and freeSpins / winSmall
 	// sheets were dropped on 2026-09-08: the intro/outro are msFsPopup + fsintro-digits now
+	// the bet bar's buttons: riveted gunmetal rings round a dark steel face, acid-green
+	// enamel icons; the SDK's 18 frame names at 2x the old sizes
+	// (art-review/chaoslab2/ui_bar/build_ui_bar.py)
 	uiButtons0: {
 		type: 'sprites',
 		mipmap: true,
 		src: new URL('../../assets/sprites/uiButtons/ui_new_packed.json', import.meta.url).href,
+		preload: true,
+	},
+	// the bet bar's strip, a dark steel plate under a riveted rail (BarStrip.svelte):
+	// one plate for portrait, two mirrored for the wide layouts
+	cl2Bar: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/ui/bar.webp', import.meta.url).href,
+		preload: true,
+	},
+	cl2BarWide: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/ui/bar_wide.webp', import.meta.url).href,
+		preload: true,
+	},
+	// portrait's steel wall behind the buttons, made of the strip's own plate
+	cl2Deck: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/ui/deck.webp', import.meta.url).href,
 		preload: true,
 	},
 	msH1Anim: {
@@ -155,13 +178,22 @@ export default {
 			scale: 1,
 		},
 	},
-	// scatter rig (land / prewin / idle), cut from bonus.png by
+	// scatter rig (land / prewin / idle / pending), cut from bonus.png by
 	// art-review/madscience/symbol_layers/cut_bonus.py + build_rigs_v2.py bonus
 	msBonusAnim: {
 		type: 'spine',
 		src: {
 			atlas: new URL('../../assets/spines/msSymbols/bonus.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/msSymbols/bonus.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	// the Wild's rig (2026-11-16; art-review/chaoslab2/symbols_v3/build_alive.py wild)
+	msWildAnim: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/msSymbols/wild.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/msSymbols/wild.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
@@ -216,19 +248,80 @@ export default {
 	// art-review/static-leftovers/png_before_webp/ to revert to.
 	msBg: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/bg_v1.webp', import.meta.url).href,
+		src: BACKGROUND_URLS.base,
 		preload: true,
 	},
 	// the base lab for portrait-shaped screens (1024x1536); Background picks it
 	// whenever the canvas is taller than wide
 	msBgPortrait: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/bg_portrait.webp', import.meta.url).href,
+		src: BACKGROUND_URLS.portrait,
+		preload: true,
+	},
+	// Scene life (SceneLife.svelte; built by art-review/chaoslab2/scene_life/
+	// build_scene_life.py): a particle sheet, each painting's own glow alone (drawn
+	// additively, breathing) and the porthole fan's blades (they turn).
+	cl2SceneLife: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/atlas.webp', import.meta.url).href,
+		preload: true,
+	},
+	// Lab life (LabLife.svelte, 2026-11-18): the slime ball with its splash (gob_0.png ...,
+	// the game's own painted win burst, small). The rats and the goo creature that were
+	// in this sheet were removed the same day.
+	// art-review/chaoslab2/lab_life/build_lab_life.py --install (also game/labLife.ts).
+	cl2LabLife: {
+		type: 'sprites',
+		mipmap: true,
+		src: new URL('../../assets/chaoslab2/scene/lab_life.json', import.meta.url).href,
+		preload: true,
+	},
+	cl2ShimmerBase: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/shimmer_base.webp', import.meta.url).href,
+		preload: true,
+	},
+	cl2ShimmerPortrait: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/shimmer_portrait.webp', import.meta.url).href,
+		preload: true,
+	},
+	cl2ShimmerFs: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/shimmer_fs.webp', import.meta.url).href,
+	},
+	cl2FanBase: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/fan_base.webp', import.meta.url).href,
+		preload: true,
+	},
+	// the mascot's contact shadow on the floor (Mascot.svelte)
+	cl2Shadow: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/shadow.webp', import.meta.url).href,
+		preload: true,
+	},
+	cl2FanPortrait: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/fan_portrait.webp', import.meta.url).href,
+		preload: true,
+	},
+	// the reel frame's own slime green alone (FrameLife.svelte draws it additively,
+	// breathing; built by art-review/chaoslab2/frame_life/build_frame_life.py)
+	cl2FrameShimmer: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/frame_shimmer.webp', import.meta.url).href,
+		preload: true,
+	},
+	// the light shafts the porthole throws through its fan (they turn with it)
+	cl2Rays: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/rays.webp', import.meta.url).href,
 		preload: true,
 	},
 	msFrame: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/frame_resized.webp', import.meta.url).href,
+		src: BACKGROUND_URLS.frame,
 		preload: true,
 	},
 	// free spins: the blood-stained operating theatre and the matching frame
@@ -236,11 +329,11 @@ export default {
 	// cross-faded in by Background / BoardFrame while gameType is 'freegame'
 	msBgFs: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/fs_bg.webp', import.meta.url).href,
+		src: BACKGROUND_URLS.feature,
 	},
 	msFrameFs: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/frame_resized_fs.webp', import.meta.url).href,
+		src: BACKGROUND_URLS.frameFeature,
 	},
 	// the buy slot (BuySlot.svelte, the game's own button: the SDK's
 	// ButtonBuyBonus draws only when a 'bonusActive' key exists, so these keys
@@ -349,6 +442,17 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/chaoslab2/respins/cell.webp', import.meta.url).href,
 	},
+	// Cash Respins light sprites (art-review/chaoslab2/respins/build_respins_fx.py):
+	// the neon frame a multiplier cell wears, and the coins' glint
+	cl2CashFrame: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/chaoslab2/respins/frame.webp', import.meta.url).href,
+	},
+	cl2Sparkle: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/respins/sparkle.webp', import.meta.url).href,
+	},
 	cl2RespinsWord: {
 		type: 'sprite',
 		mipmap: true,
@@ -367,18 +471,41 @@ export default {
 		src: new URL('../../assets/chaoslab2/logo_one_row.webp', import.meta.url).href,
 		preload: true,
 	},
-	// the intro's "WIN UP TO 31 445 X" banner (2100x385; English + social, other
-	// languages draw it as text): stake-engine/art-review/chaoslab2/win_up_to/
-	// make_win_up_to.py. Bakes the top max win: regenerate if the math moves it.
-	// Chaos Lab's 22 924 X art is in art-review/static-leftovers/madscience.
+	// the intro screen's plates, Evtim's art (2026-11-16), cropped and scaled by
+	// stake-engine/art-review/chaoslab2/intro/build_intro.py: the feature panel
+	// (as painted for the 2x2 layouts, stretched between its corners for four in a
+	// row), the green swash under a panel's title, the prompt plate, and the arched
+	// "WIN UP TO 31 445 X" (English + social, other languages draw it as text).
+	// That one bakes the top max win: it needs new art if the math moves it. The
+	// banner it replaced is in art-review/static-leftovers/intro_2026-11-16.
+	cl2IntroPanel: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/intro/panel.webp', import.meta.url).href,
+		preload: true,
+	},
+	cl2IntroPanelTall: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/intro/panel_tall.webp', import.meta.url).href,
+		preload: true,
+	},
+	cl2IntroCaption: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/intro/caption.webp', import.meta.url).href,
+		preload: true,
+	},
+	cl2IntroPrompt: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/intro/prompt.webp', import.meta.url).href,
+		preload: true,
+	},
 	cl2WinUpTo: {
 		type: 'sprite',
-		src: new URL('../../assets/chaoslab2/win_up_to.webp', import.meta.url).href,
+		src: new URL('../../assets/chaoslab2/intro/win_up_to.webp', import.meta.url).href,
 		preload: true,
 	},
 	msMultPlate: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/mult_plate.webp', import.meta.url).href,
+		src: BACKGROUND_URLS.multPlate,
 		preload: true,
 	},
 	// the multiplier plate's long cousin (1200x267) behind the portrait counters on
@@ -386,7 +513,7 @@ export default {
 	// (art-review/madscience/counter_plate)
 	msCounterPlate: {
 		type: 'sprite',
-		src: new URL('../../assets/madscience/counter_plate.webp', import.meta.url).href,
+		src: BACKGROUND_URLS.counterPlate,
 		preload: true,
 	},
 	// TexturePacker sheet of every static symbol + the multiplier plate. Frames
@@ -427,7 +554,7 @@ export default {
 	msFsPopup: {
 		type: 'spine',
 		src: {
-			atlas: new URL('../../assets/spines/msFsPopup/fspopup.atlas', import.meta.url).href,
+			atlas: BACKGROUND_URLS.popupAtlas,
 			skeleton: new URL('../../assets/spines/msFsPopup/fspopup.json', import.meta.url).href,
 			scale: 1,
 		},
@@ -439,12 +566,12 @@ export default {
 	msCurtainLeft: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/madscience/curtain/curtain_left.webp', import.meta.url).href,
+		src: BACKGROUND_URLS.curtainLeft,
 	},
 	msCurtainRight: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/madscience/curtain/curtain_right.webp', import.meta.url).href,
+		src: BACKGROUND_URLS.curtainRight,
 	},
 	// "FREE SPINS" word art for the intro's count line (the number is drawn in
 	// the fsintro-digits face next to it, so any spin count lays out)

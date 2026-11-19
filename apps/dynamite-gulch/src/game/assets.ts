@@ -71,10 +71,38 @@ export default {
 	},
 	// the sample's fsIntro / fsIntroNumber / fsOutroNumber spines and freeSpins / winSmall
 	// sheets were dropped on 2026-09-08: the intro/outro are msFsPopup + fsintro-digits now
+	// the bet bar's buttons in the game's ink hand: a tan timber ring with iron nails
+	// round a dark walnut face, flat gold icons; the SDK's 18 frame names at 2x the old
+	// sizes (art-review/dynamite-gulch/rework/build_ink_ui.py)
 	uiButtons0: {
 		type: 'sprites',
 		mipmap: true,
 		src: new URL('../../assets/dg/ui/ui_new_packed.json', import.meta.url).href,
+		preload: true,
+	},
+	// the bet bar's strip, a dark walnut beam under a tan nailed rail (BarStrip.svelte):
+	// one beam for portrait, two mirrored for the wide layouts
+	dgBar: {
+		type: 'sprite',
+		src: new URL('../../assets/dg/ui/bar.webp', import.meta.url).href,
+		preload: true,
+	},
+	dgBarWide: {
+		type: 'sprite',
+		src: new URL('../../assets/dg/ui/bar_wide.webp', import.meta.url).href,
+		preload: true,
+	},
+	// GoldFx: one row of 128 px cells (glow, star, a coin at four angles) for the coins
+	// a win throws at the WIN counter (art-review/dynamite-gulch/rework/build_ink_gold.py)
+	dgGold: {
+		type: 'sprite',
+		src: new URL('../../assets/dg/fx/gold.webp', import.meta.url).href,
+		preload: true,
+	},
+	// portrait's plank wall behind the buttons, made of the strip's own timber
+	dgDeck: {
+		type: 'sprite',
+		src: new URL('../../assets/dg/ui/deck.webp', import.meta.url).href,
 		preload: true,
 	},
 	msH1Anim: {
@@ -106,6 +134,15 @@ export default {
 		src: {
 			atlas: new URL('../../assets/dg/spines/symbols/h4.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/dg/spines/symbols/h4.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	// the Wild's own rig (ink set, 2026-11-16): the badge pops on its tile when it is part of a win
+	msWildAnim: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/dg/spines/symbols/wild.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/dg/spines/symbols/wild.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
@@ -256,9 +293,8 @@ export default {
 	},
 	// the buy slot (BuySlot.svelte, the game's own button: the SDK's
 	// ButtonBuyBonus draws only when a 'bonusActive' key exists, so these keys
-	// keep it hidden). Cart disc = Evtim's art (2026-10-24); its three states
-	// come from art-review/madscience/buy_button/make_buy_button.py, the bonus
-	// disc set it replaced is in art-review/static-leftovers/buy_button_old/.
+	// keep it hidden). The Scatter's loot sack alone, no ring (as Blast Shaft's
+	// nugget); three states from art-review/dynamite-gulch/rework/build_ink_ui.py.
 	msBuyActive: {
 		type: 'sprite',
 		mipmap: true,
@@ -274,9 +310,8 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/dg/ui/buy_inactive.webp', import.meta.url).href,
 	},
-	// the buy slot while Chaos Mode / Free Spins Boost is on: the cart disc's
-	// siblings (Scenario, 2026-10-27), same three states, built by
-	// art-review/madscience/ante_buttons/make_ante_buttons.py
+	// the buy slot while Showdown Mode / Bonus Boost is on: the dynamite / the sack
+	// under two chevrons in the bar's own wooden button, same three states and builder
 	msAnteChaosActive: {
 		type: 'sprite',
 		mipmap: true,
@@ -316,6 +351,37 @@ export default {
 		src: new URL('../../assets/dg/ambient/ambient.json', import.meta.url).href,
 		preload: true,
 	},
+	// More life in the background (2026-11-16): the windmill's fan and the patches that
+	// paint the painted one out, a dust devil's six frames, birds. Frames keyed by file
+	// name. art-review/dynamite-gulch/rework/build_ink_life.py --install (it also writes
+	// game/ambientLife.ts).
+	dgLife: {
+		type: 'sprites',
+		mipmap: true,
+		src: new URL('../../assets/dg/ambient/life.json', import.meta.url).href,
+		preload: true,
+	},
+	// The wind made visible and the reel frame's life (2026-11-17): wind lines, what
+	// the wind carries, dust wisps (SceneWind); the hook and lantern on the frame, the
+	// dust a quake shakes off it, its lights (FrameLife). Frames keyed by file name;
+	// both layers are ParticleContainers, so the whole sheet is ONE texture.
+	// art-review/dynamite-gulch/rework/build_ink_wind.py --install (also game/windLife.ts).
+	dgWind: {
+		type: 'sprites',
+		mipmap: true,
+		src: new URL('../../assets/dg/ambient/wind.json', import.meta.url).href,
+		preload: true,
+	},
+	// The loose tumbleweeds (2026-11-18): weed_c.png / weed_d.png, airy ones the ground
+	// shows through. They cross in front of the reels in turn with the dense pair
+	// (Boardwalk) and wander the ground behind them (Roamers).
+	// art-review/dynamite-gulch/rework/build_ink_roam.py --install.
+	dgRoam: {
+		type: 'sprites',
+		mipmap: true,
+		src: new URL('../../assets/dg/ambient/roam.json', import.meta.url).href,
+		preload: true,
+	},
 	// The logo's light, laid over the logo sprite by GameLogo: a sweep across the
 	// letters, glints on the stars, a flash on a win (`idle` loop, `win`). One rig
 	// per logo, each on its logo's canvas. art-review/dynamite-gulch/build_logo_fx.py.
@@ -343,9 +409,11 @@ export default {
 	// art-review/chaoslab2/fonts/<face>/raw/ (base = lineHeight: anchor 0.5
 	// centres the cell). cl2-multiplier = the purple multiplier that lands on the
 	// reels, no plate.
+	// (the gold coin and its face are on the intro screen too: loaded with the first batch)
 	cl2CoinGold: {
 		type: 'sprite',
 		mipmap: true,
+		preload: true,
 		src: new URL('../../assets/dg/coin/coin_gold.webp', import.meta.url).href,
 	},
 	cl2CoinPurple: {
@@ -356,7 +424,8 @@ export default {
 	cl2CoinFont: {
 		type: 'font',
 		mipmap: true,
-		src: new URL('../../assets/chaoslab2/fonts/cl2-coin/cl2-coin.xml', import.meta.url).href,
+		preload: true,
+		src: new URL('../../assets/dg/fonts/cl2-coin/cl2-coin.xml', import.meta.url).href,
 	},
 	cl2CoinPurpleFont: {
 		type: 'font',
@@ -377,6 +446,13 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/dg/respins/cell.webp', import.meta.url).href,
 	},
+	// a multiplier frame: the cell's frame in ruby, drawn round every cell that
+	// carries one (art-review/dynamite-gulch/rework/build_ink_respins.py)
+	dgRespinFrame: {
+		type: 'sprite',
+		mipmap: true,
+		src: new URL('../../assets/dg/respins/frame.webp', import.meta.url).href,
+	},
 	cl2RespinsWord: {
 		type: 'sprite',
 		mipmap: true,
@@ -396,13 +472,26 @@ export default {
 		src: new URL('../../assets/dg/logo_one_row.webp', import.meta.url).href,
 		preload: true,
 	},
-	// the intro's "WIN UP TO 31 445 X" banner (2100x385; English + social, other
-	// languages draw it as text): stake-engine/art-review/chaoslab2/win_up_to/
-	// make_win_up_to.py. Bakes the top max win: regenerate if the math moves it.
-	// Chaos Lab's 22 924 X art is in art-review/static-leftovers/madscience.
-	cl2WinUpTo: {
+	// the intro screen's plates (Evtim's, 2026-11-16): the parchment panel, its title
+	// ribbon, the curved plank with the English "WIN UP TO 31 445 X" lettering (bakes
+	// the top max win: other languages and any other figure are drawn as text) and the
+	// prompt's yellow plate. art-review/dynamite-gulch/rework/build_ink_intro.py
+	dgIntro: {
+		type: 'sprites',
+		mipmap: true,
+		src: new URL('../../assets/dg/intro/intro.json', import.meta.url).href,
+		preload: true,
+	},
+	// the street behind the intro's plates: the game's backgrounds blurred by the
+	// builder (no filter in the game) and stored at a third of their size
+	dgIntroBg: {
 		type: 'sprite',
-		src: new URL('../../assets/dg/win_up_to.webp', import.meta.url).href,
+		src: new URL('../../assets/dg/intro/bg.webp', import.meta.url).href,
+		preload: true,
+	},
+	dgIntroBgPortrait: {
+		type: 'sprite',
+		src: new URL('../../assets/dg/intro/bg_portrait.webp', import.meta.url).href,
 		preload: true,
 	},
 	msMultPlate: {
@@ -432,6 +521,7 @@ export default {
 	// from art-review/static-sources/tickup-multipliers/raw/.
 	tickupMultipliers: {
 		type: 'font',
+		preload: true,
 		src: new URL('../../assets/dg/fonts/tickup-multipliers/tickup-multipliers.xml', import.meta.url).href,
 	},
 	// Win count-up glyphs (the winbox + the free-spin total): riveted cracked-

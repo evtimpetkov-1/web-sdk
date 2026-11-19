@@ -92,6 +92,12 @@
 	const SETTLE_MS = 170;
 	// tiles stopping close together share one tick
 	const STOP_TICK_GAP_MS = 70;
+	// A tile is heard to stop when it is SEEN to stop. Its roll eases out (cubicOut):
+	// at this share of its time it has covered 99 % of the way and stands still to
+	// the eye, a good 300-450 ms before the tween and the settle after it are over.
+	// The tick used to wait for all of that (Evtim, 2026-11-18: the sound "appears
+	// more or less once the reels are already stopped").
+	const STOP_HEARD_AT = 0.78;
 	// coin / multiplier fillers must stay within CashCellSpin's ROLL_COIN_VALUES /
 	// ROLL_MULT_VALUES: its slots hold one text per value
 	const FILLERS: { item: CashSpinItem; weight: number }[] = [
@@ -220,7 +226,7 @@
 		}
 	};
 
-	const spinCell = async (cell: CashCell, target: CashSpinItem) => {
+	const spinCell = async (cell: CashCell, target: CashSpinItem, onStop?: () => void) => {
 		// this tile's own start, length and speed
 		const delay = ms(Math.random() * START_SPREAD_MS);
 		const duration = ms(SPIN_MIN_MS + Math.random() * SPIN_SPREAD_MS);
@@ -232,6 +238,7 @@
 		const p = new Tween(0);
 		cell.spin = { items, p };
 		if (delay > 0) await waitForTimeout(delay);
+		if (onStop) void waitForTimeout(duration * STOP_HEARD_AT).then(onStop);
 		await p.set(count + OVERSHOOT, { duration, easing: cubicOut });
 		await p.set(count, { duration: ms(SETTLE_MS), easing: backOut });
 		cell.spin = null;
@@ -350,20 +357,23 @@
 			land?.cloners.forEach((cloner) => targets.set(getCellKey(cloner), { kind: 'cloner', value: 0 }));
 			land?.bombs.forEach((bomb) => targets.set(getCellKey(bomb), { kind: 'bomb', value: 0 }));
 			const empty = cashGrid.cells.filter((cell) => !cell.kind);
-			// each tile ticks as it stops, rising in pitch as the grid settles; tiles
-			// stopping within STOP_TICK_GAP_MS of each other share one tick
+			// the spin is heard from its first frame: the base game's own spin-start
+			// sound (the feature had none: silence while the tiles rolled, then the ticks)
+			if (empty.length) sound('sfx_dg_board_dropout');
+			// each tile ticks as it stops (STOP_HEARD_AT), rising in pitch as the grid
+			// settles; tiles stopping within STOP_TICK_GAP_MS of each other share one tick
 			let stopped = 0;
 			let lastTick = -Infinity;
+			const tick = () => {
+				const step = Math.floor((stopped++ * REEL_LAND_RATES.length) / empty.length);
+				const now = performance.now();
+				if (now - lastTick >= ms(STOP_TICK_GAP_MS)) {
+					lastTick = now;
+					sound('sfx_dg_reel_land', ladderRate(REEL_LAND_RATES, step));
+				}
+			};
 			await Promise.all(
-				empty.map(async (cell) => {
-					await spinCell(cell, targets.get(getCellKey(cell)) ?? { kind: 'blank', value: 0 });
-					const step = Math.floor((stopped++ * REEL_LAND_RATES.length) / empty.length);
-					const now = performance.now();
-					if (now - lastTick >= ms(STOP_TICK_GAP_MS)) {
-						lastTick = now;
-						sound('sfx_dg_reel_land', ladderRate(REEL_LAND_RATES, step));
-					}
-				}),
+				empty.map((cell) => spinCell(cell, targets.get(getCellKey(cell)) ?? { kind: 'blank', value: 0 }, tick)),
 			);
 		},
 		cashBoardFrames: async ({ multipliers }) => {
@@ -406,6 +416,10 @@
 			const cell = cashCellAt(cloner);
 			await setFocus([getCellKey(cloner), ...coins.map(getCellKey)]);
 			sound('sfx_dg_cloner_cast');
+			// the rig fires 0.2 s into its cast: the board recoils with it
+			void waitForTimeout(ms(200)).then(() =>
+				context.eventEmitter.broadcast({ type: 'sceneShake', preset: 'cloneCast' }),
+			);
 			await playRig(cell, 'cast');
 			// its coins first (each takes its own frame as it lands), then the cloner
 			// itself becomes a coin and takes its frame: the other way round, a
@@ -420,12 +434,15 @@
 					if (!coin) return;
 					const target = cashCellAt(coin);
 					sound('sfx_dg_clone_splat');
+					context.eventEmitter.broadcast({ type: 'sceneShake', preset: 'cloneStrike' });
 					placeCoin(target, coin.value);
 					target.frame = coin.frame;
 					arrivals.push(punch(target, 1.2).then(() => applyFrame(target, coin.total)));
 				},
 			});
 			await Promise.all(arrivals);
+			// the cloner itself turns into its coin: the feature's own burst, lighter than the base game's
+			context.eventEmitter.broadcast({ type: 'sceneShake', preset: 'wildSlam' });
 			placeCoin(cell, cloner.value);
 			await punch(cell, 1.2);
 			cell.frame = cloner.frame;
@@ -521,6 +538,29 @@
 					width={CASH_CELL.width}
 					height={CASH_CELL.height}
 				/>
+			{/each}
+		</Container>
+		<!-- a multiplier FRAME is a frame: the cell's own frame in ruby, for as long as
+		     the cell carries one (it pops in with its value, waits dimmed like the
+		     value, and stays round the coin that lands on it) -->
+		<Container>
+			{#each cashGrid.cells as cell (getCellKey(cell))}
+				{@const a = cell.frameAlpha.current}
+				<Container x={cellX(cell)} y={cellY(cell)}>
+					{#if cell.frame > 0}
+						<Container
+							scale={cell.kind ? 1 : cell.framePop.current}
+							alpha={cell.kind ? 1 : Math.min(1, a / FRAME_DIM) * (0.6 + 0.4 * a)}
+						>
+							<Sprite
+								key="dgRespinFrame"
+								anchor={0.5}
+								width={CASH_CELL.width}
+								height={CASH_CELL.height}
+							/>
+						</Container>
+					{/if}
+				</Container>
 			{/each}
 		</Container>
 		<!-- the acting bomb's 3x3 glows under the coins it boosts -->

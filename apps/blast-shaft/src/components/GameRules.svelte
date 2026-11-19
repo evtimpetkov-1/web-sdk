@@ -16,6 +16,13 @@
 	} from '../game/rulesData';
 
 	/**
+	 * `embedded`: only the content, with no popup, panel or logo, for the generic
+	 * UI's one info page (GenericInfo), where the rules follow the paytable.
+	 */
+	type Props = { embedded?: boolean };
+	const props: Props = $props();
+
+	/**
 	 * Game Rules, drawn in place of the SDK's ModalGameRules (whose body is the
 	 * template's "ADD YOUR GAME RULES"). Text follows the Game Rules
 	 * Specification; every figure comes from config.betModes or rulesData, so
@@ -67,10 +74,11 @@
 	]);
 </script>
 
-{#if stateModal.modal?.name === 'gameRules'}
-	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
-		<div class="panel">
-			<img src={logoImg} alt="Blast Shaft" class="logo" />
+{#snippet body()}
+		<div class="panel" class:embedded={props.embedded}>
+			{#if !props.embedded}
+				<img src={logoImg} alt="Blast Drop" class="logo" />
+			{/if}
 
 			<section>
 				<h2>{i18nDerived.rulesOverview()}</h2>
@@ -222,10 +230,15 @@
 					<li>{i18nDerived.uiFeature()}</li>
 					<li>{fill(i18nDerived.uiPlusMinus(), bet)}</li>
 					<li>{i18nDerived.uiMenu()}</li>
-					<li>{i18nDerived.uiPaytable()}</li>
+					<!-- the generic UI has one info page (this one) and no settings popup -->
+					{#if !props.embedded}
+						<li>{i18nDerived.uiPaytable()}</li>
+					{/if}
 					<li>{i18nDerived.uiGameRules()}</li>
 					<li>{i18nDerived.uiSound()}</li>
-					<li>{i18nDerived.uiSettings()}</li>
+					{#if !props.embedded}
+						<li>{i18nDerived.uiSettings()}</li>
+					{/if}
 				</ul>
 			</section>
 
@@ -239,6 +252,13 @@
 
 			<div class="version">v{GAME_VERSION}</div>
 		</div>
+{/snippet}
+
+{#if props.embedded}
+	{@render body()}
+{:else if stateModal.modal?.name === 'gameRules'}
+	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
+		{@render body()}
 	</Popup>
 {/if}
 
@@ -448,6 +468,34 @@
 		.logo {
 			width: min(120px, 30%);
 			margin-bottom: 0.6rem;
+		}
+	}
+
+	/* inside the generic info page: content only, in the page's plain voice */
+	.panel.embedded {
+		z-index: auto;
+		width: 100%;
+		max-height: none;
+		overflow: visible;
+		padding: 0;
+		background: none;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+
+		:global(h1),
+		:global(h2),
+		:global(h3) {
+			font-family: inherit;
+			font-weight: 800;
+			letter-spacing: 0.06em;
+			text-shadow: none;
+		}
+		:global(h1) {
+			font-size: 1.3rem;
+		}
+		:global(h2) {
+			font-size: 1.05rem;
 		}
 	}
 </style>

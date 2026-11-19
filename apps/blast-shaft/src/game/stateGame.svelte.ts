@@ -155,6 +155,10 @@ export const stateGame = $state({
 	// until its next loop boundary. Shared state, not a ReelSymbol local: every cell
 	// is mounted in both board layers and only the drawing layer hears the loop end.
 	idleHold: {} as Record<string, boolean>,
+	// per cell (getCellKey): performance.now() when SymbolGlints started a `glint` on a
+	// resting cell (0 = none). ReelSymbol draws the rig while it is set and clears it
+	// when the pass ends or the cell stops resting.
+	glints: {} as Record<string, number>,
 	// the spin in progress's cascade win (book units, cumulative per spin): set by
 	// updateTumbleWin / boardMultiplierInfo, zeroed by reveal and by setTotalWin,
 	// which folds it into stateBet.winBookEventAmount. FreeSpinTotalWin adds the two.

@@ -1,0 +1,611 @@
+<script lang="ts">
+	import {
+		Container,
+		ParticleContainer,
+		Particles,
+		PixiRectangle,
+		Sprite,
+		Texture,
+		type ParticlesProps,
+	} from 'pixi-svelte';
+
+	import { getContext } from '../game/context';
+	import { SCENE_LIFE, type SceneArt } from '../game/sceneLife';
+	import { SHAKE_PRESETS } from './SceneShake.svelte';
+
+	/**
+	 * The lab is alive (2026-11-16; the reviewers' "too static" was about the whole
+	 * screen, and nothing behind the reels moved). Nothing in the paintings is
+	 * redrawn: light and particles are laid over them, placed by points measured
+	 * off the art (game/sceneLife.ts, written by
+	 * art-review/chaoslab2/scene_life/build_scene_life.py).
+	 * The lab (base game):
+	 * - the glow breathes: the painting's own green (tanks, flasks, slime and their
+	 *   reflections on the wet floor) drawn again additively, and now and then the
+	 *   power dips and it all stutters
+	 * - the tanks bubble, the flasks simmer and breathe vapour, slime drips off the
+	 *   benches and splashes, the pipes vent steam, the porthole fan turns, the lamp
+	 *   over the door flickers, wet spots on the floor glint, spores drift in the air
+	 * - it answers the board: a shake (bomb, cascade, big win, the feature trigger)
+	 *   makes the tanks boil, the pipes vent and dust come down
+	 * The theatre (Cash Respins): the surgical lamps flicker and gutter, their light
+	 * on the floor with them, and dust hangs in it.
+	 * The storm lab (BACKGROUND_SET 'storm', 2026-11-16) keeps the tanks, flasks,
+	 * steam, glints and spores and adds its own: lightning flashes through the dome
+	 * (the painting's storm alone, drawn additively for half a second; more often in
+	 * the feature's overdrive room, and on a hard shake), the Tesla coil's head
+	 * crackles, purple mist drifts low in the corners.
+	 * One additive and one normal ParticleContainer on a shared atlas, stepped on the
+	 * Pixi ticker: no Svelte state per particle. Mounted once (Background) and kept:
+	 * pixi-svelte's Particles never removes its ticker callback. Drawn in art px about
+	 * the art's centre, in a container that cover-fits exactly as the background does.
+	 */
+	// (the app has no pixi.js dependency of its own: the type comes off pixi-svelte's props)
+	type Particle = Parameters<ParticlesProps['init']>[0][number];
+
+	const context = getContext();
+	const canvas = $derived(context.stateLayoutDerived.canvasSizes());
+	const isFeature = $derived(context.stateGame.gameType === 'freegame');
+	// the same choice Background makes: the feature has one (landscape) painting
+	const artKey = $derived<'base' | 'portrait' | 'fs'>(
+		isFeature ? 'fs' : canvas.height > canvas.width ? 'portrait' : 'base',
+	);
+	const art = $derived(SCENE_LIFE[artKey]);
+	const scale = $derived(Math.max(canvas.width / art.width, canvas.height / art.height));
+	const SHIMMER = { base: 'cl2ShimmerBase', portrait: 'cl2ShimmerPortrait', fs: 'cl2ShimmerFs' } as const;
+	const FAN = { base: 'cl2FanBase', portrait: 'cl2FanPortrait', fs: 'cl2FanBase' } as const;
+	const FLASH = { base: 'cl2FlashBase', portrait: 'cl2FlashPortrait', fs: 'cl2FlashFs' } as const;
+
+	// atlas cells (128 px): soft glow, bubble, droplet, speck, 4-point glint, steam puff
+	const CELL = 128;
+	const [GLOW, BUBBLE, DROP, SPECK, STAR, PUFF] = [0, 1, 2, 3, 4, 5];
+	const cells = (particles: Particle[]) => {
+		const source = particles[0].texture.source;
+		return [0, 1, 2, 3, 4, 5].map(
+			(i) => new Texture({ source, frame: new PixiRectangle(i * CELL, 0, CELL, CELL) }),
+		);
+	};
+	const rand = (a: number, b: number) => a + Math.random() * (b - a);
+	const hide = (p: Particle) => {
+		p.alpha = 0;
+		p.scaleX = p.scaleY = 0;
+	};
+	const TAU = 2 * Math.PI;
+	const LAB_GREEN = 0x9cff3a;
+
+	let shimmer = $state(0.3);
+	let fanAngle = $state(0);
+	// lightning (a storm painting): the storm's own light, flashed for half a second
+	let flash = $state(0);
+	let strikeAt = rand(1.5, 4);
+	let strikeAge = 1;
+	let strikePower = 0.8;
+	// one bolt: a hard flash, a dip, a second flash, a fade
+	const strikeLight = (age: number) =>
+		age < 0.06 ? 1 : age < 0.12 ? 0.25 : age < 0.2 ? 0.85 : Math.max(0, (0.62 - age) / 0.42) * 0.6;
+	let clock = 0;
+	let last = 0;
+	let dt = 0.016;
+	let shownArt: SceneArt | undefined;
+	// a shake of the board, waiting to be answered by the scene
+	let surge = 0;
+	let ventNow = false;
+	let dustNow = 0;
+	// the lab's power: 1 = steady; a dip stutters every light at once
+	let power = 1;
+	let dipAt = rand(6, 12);
+	let dipAge = 1;
+
+	context.eventEmitter.subscribeOnMount({
+		sceneShake: ({ preset }) => {
+			const strength = (SHAKE_PRESETS[preset] as { trauma?: number }).trauma ?? 0.3;
+			surge = Math.max(surge, strength);
+			if (strength >= 0.5) {
+				ventNow = true;
+				dustNow += Math.round(8 + strength * 14);
+				dipAge = 0;
+				strikeAge = 0;
+				strikePower = 1;
+			}
+		},
+	});
+
+	// ------------------------------------------------------------ the lit layer
+	const TANKS = 2;
+	const PER_TANK = 10;
+	const FLASKS = 3;
+	const PER_FLASK_BUBBLES = 2;
+	const PER_FLASK_VAPOUR = 3;
+	const LAMPS = 3;
+	const TESLAS = 2;
+	const MISTS = 8;
+	const GLINTS = 6;
+	const DRIPS = 6;
+	const MOTES = 30;
+	// the lit particles, block after block: [name, count, atlas cell]
+	const BLOCKS = [
+		['tankBubble', TANKS * PER_TANK, BUBBLE],
+		['tankHalo', TANKS, GLOW],
+		['flaskBubble', FLASKS * PER_FLASK_BUBBLES, BUBBLE],
+		['vapour', FLASKS * PER_FLASK_VAPOUR, GLOW],
+		['lamp', LAMPS * 2, GLOW],
+		['tesla', TESLAS * 2, GLOW],
+		['mist', MISTS, PUFF],
+		['glint', GLINTS, STAR],
+		['drop', DRIPS, DROP],
+		['splash', DRIPS, GLOW],
+		['mote', MOTES, SPECK],
+	] as const;
+	const AT = {} as Record<(typeof BLOCKS)[number][0], number>;
+	let LIT = 0;
+	for (const [name, count] of BLOCKS) {
+		AT[name] = LIT;
+		LIT += count;
+	}
+	const mistPhase = Array.from({ length: MISTS }, () => rand(0, TAU));
+
+	type Bubble = { x: number; y: number; v: number; size: number; wobble: number; phase: number };
+	const tankBubbles: Bubble[] = Array.from({ length: TANKS * PER_TANK }, () => ({ x: 0, y: 0, v: 0, size: 0, wobble: 0, phase: 0 }));
+	const flaskPhase = Array.from({ length: FLASKS * (PER_FLASK_BUBBLES + PER_FLASK_VAPOUR) }, () => rand(0, 1));
+	const lamps = Array.from({ length: LAMPS }, (_, i) => ({ phase: i * 2.1 + 0.7, gutter: 0, next: rand(3, 8) }));
+	type Glint = { life: number; age: number; x: number; y: number; size: number };
+	const glints: Glint[] = Array.from({ length: GLINTS }, () => ({ life: 0, age: 0, x: 0, y: 0, size: 0 }));
+	let glintWait = 1;
+	type Drip = { state: 'wait' | 'grow' | 'fall' | 'splash'; t: number; y: number; vy: number };
+	const drips: Drip[] = Array.from({ length: DRIPS }, () => ({ state: 'wait' as const, t: rand(0.5, 6), y: 0, vy: 0 }));
+	type Mote = { x: number; y: number; vx: number; vy: number; size: number; phase: number };
+	const motes: Mote[] = [];
+
+	const spawnTankBubble = (b: Bubble, tank: number[], anywhere = false) => {
+		const [x0, y0, x1, y1] = tank;
+		b.x = rand(x0 + 5, x1 - 5);
+		b.y = anywhere ? rand(y0 + 8, y1 - 2) : y1 - 2;
+		b.v = rand(16, 42);
+		b.size = rand(3, 8.5);
+		b.wobble = rand(2.4, 5);
+		b.phase = rand(0, TAU);
+	};
+
+	const reseed = () => {
+		art.tanks.forEach((tank, t) => {
+			for (let i = 0; i < PER_TANK; i++) spawnTankBubble(tankBubbles[t * PER_TANK + i], tank, true);
+		});
+		glints.forEach((g) => (g.life = 0));
+		drips.forEach((d) => Object.assign(d, { state: 'wait', t: rand(0.5, 6) }));
+		motes.length = 0;
+		for (let i = 0; i < MOTES; i++) {
+			motes.push({ x: rand(0, art.width), y: rand(0, art.height), vx: rand(-7, 7), vy: rand(-6, 2), size: rand(3.5, 8), phase: rand(0, TAU) });
+		}
+		steam.forEach((s) => (s.age = s.life = 0));
+		dust.forEach((s) => (s.age = s.life = 0));
+	};
+
+	const initLit = (particles: Particle[]) => {
+		const tex = cells(particles);
+		let i = 0;
+		for (const [, count, cell] of BLOCKS) {
+			for (let n = 0; n < count; n++, i++) {
+				const p = particles[i];
+				p.anchorX = p.anchorY = 0.5;
+				p.texture = tex[cell];
+				hide(p);
+			}
+		}
+	};
+
+	const updateLit = (particles: Particle[]) => {
+		const now = performance.now();
+		dt = Math.min(0.05, last ? (now - last) / 1000 : 0.016);
+		last = now;
+		clock += dt;
+		if (shownArt !== art) {
+			// another painting (the feature, a rotated phone): start over on its points
+			shownArt = art;
+			reseed();
+		}
+		const cx = art.width / 2;
+		const cy = art.height / 2;
+		const warm = art.warm;
+
+		// the basement's power dips every so often, and on a hard shake; a storm
+		// painting has lightning instead (more of it in the feature)
+		dipAt -= dt;
+		if (dipAt <= 0 && !warm && !art.storm) {
+			dipAt = rand(9, 20);
+			dipAge = 0;
+		}
+		dipAge += dt;
+		power = !art.storm && dipAge < 0.45 ? 1 - 0.8 * (Math.sin(TAU * 11 * dipAge) > 0.1 ? 1 : 0) * (1 - dipAge / 0.45) : 1;
+		if (art.storm) {
+			strikeAt -= dt;
+			if (strikeAt <= 0) {
+				strikeAt = isFeature ? rand(1.2, 3.6) : rand(2.6, 7.5);
+				strikeAge = 0;
+				strikePower = rand(0.55, 1);
+			}
+			strikeAge += dt;
+			flash = strikeLight(strikeAge) * strikePower;
+		} else {
+			flash = 0;
+		}
+
+		// lamps: slow sines and a fast one, a gutter now and then
+		let flameSum = 0;
+		for (let i = 0; i < LAMPS; i++) {
+			const halo = particles[AT.lamp + i * 2];
+			const core = particles[AT.lamp + i * 2 + 1];
+			const spot = art.lamps[i];
+			if (!spot) {
+				hide(halo);
+				hide(core);
+				continue;
+			}
+			const [x, y, radius] = spot;
+			const lamp = lamps[i];
+			lamp.next -= dt;
+			if (lamp.next <= 0) {
+				lamp.gutter = 1;
+				lamp.next = rand(warm ? 2.5 : 5, warm ? 8 : 13);
+			}
+			lamp.gutter = Math.max(0, lamp.gutter - dt * 4.5);
+			const t = clock + lamp.phase;
+			const flame =
+				(0.86 + 0.07 * Math.sin(TAU * 1.3 * t) + 0.04 * Math.sin(TAU * 3.7 * t + lamp.phase) + 0.03 * Math.sin(TAU * 9.1 * t) -
+					0.45 * lamp.gutter * (0.5 + 0.5 * Math.sin(TAU * 17 * t))) *
+				power;
+			flameSum += flame;
+			halo.x = x - cx;
+			halo.y = y - cy + (warm ? radius * 0.25 : radius * 0.3);
+			halo.scaleX = halo.scaleY = ((2 * radius) / CELL) * (0.95 + 0.07 * flame);
+			halo.tint = warm ? 0xffb060 : 0x9dffc0;
+			halo.alpha = (warm ? 0.3 : 0.22) * flame;
+			core.x = x - cx;
+			core.y = y - cy;
+			core.scaleX = core.scaleY = ((radius * 0.5) / CELL) * (0.9 + 0.12 * flame);
+			core.tint = warm ? 0xffe0a0 : 0xe8fff0;
+			core.alpha = 0.42 * flame;
+		}
+		const flameAvg = art.lamps.length ? flameSum / art.lamps.length : 0.86;
+
+		// a Tesla coil's head: a violet halo that crackles, brighter when the sky strikes
+		for (let i = 0; i < TESLAS; i++) {
+			const halo = particles[AT.tesla + i * 2];
+			const core = particles[AT.tesla + i * 2 + 1];
+			const spot = art.tesla[i];
+			if (!spot) {
+				hide(halo);
+				hide(core);
+				continue;
+			}
+			const [x, y, radius] = spot;
+			const t = clock + i * 1.7;
+			const crackle =
+				0.35 + 0.4 * Math.max(0, Math.sin(TAU * 13 * t)) ** 3 + 0.25 * Math.max(0, Math.sin(TAU * 7.3 * t + 1.1)) ** 5 + 0.5 * flash + 0.4 * surge;
+			halo.x = x - cx;
+			halo.y = y - cy;
+			halo.scaleX = halo.scaleY = ((2 * radius) / CELL) * (0.85 + 0.3 * crackle);
+			halo.tint = 0xb47cff;
+			halo.alpha = Math.min(1, 0.4 * crackle);
+			core.x = x - cx + 3 * Math.sin(TAU * 9 * t);
+			core.y = y - cy + 3 * Math.sin(TAU * 11 * t + 2);
+			core.scaleX = core.scaleY = ((radius * 0.55) / CELL) * (0.7 + 0.6 * crackle);
+			core.tint = 0xf0e0ff;
+			core.alpha = Math.min(1, 0.55 * crackle);
+		}
+
+		// purple mist drifts low in the corners
+		for (let i = 0; i < MISTS; i++) {
+			const p = particles[AT.mist + i];
+			const spot = art.mist.length ? art.mist[i % art.mist.length] : undefined;
+			if (!spot) {
+				hide(p);
+				continue;
+			}
+			const [x, y, radius] = spot;
+			const ph = mistPhase[i];
+			p.x = x + radius * 0.9 * Math.sin(clock * 0.11 + ph) - cx;
+			p.y = y + radius * 0.22 * Math.sin(clock * 0.17 + ph * 1.7) - cy;
+			p.scaleX = ((2.6 * radius) / CELL) * (1 + 0.15 * Math.sin(clock * 0.23 + ph));
+			p.scaleY = p.scaleX * 0.6;
+			p.rotation = 0.3 * Math.sin(clock * 0.07 + ph);
+			p.tint = isFeature ? 0xb040e0 : 0x8a3fd0;
+			p.alpha = (0.13 + 0.05 * Math.sin(clock * 0.31 + ph * 2.3)) * (1 + 1.5 * flash);
+		}
+
+		// the painting's own glow breathes; one write a frame
+		shimmer = warm
+			? 0.06 + 0.3 * flameAvg
+			: Math.min(1, (0.36 + 0.17 * Math.sin((TAU * clock) / 4.6) + 0.05 * Math.sin((TAU * clock) / 1.1 + 1)) * power * (art.storm ? 0.4 : 1) + (art.storm ? 0.3 : 0.5) * surge + 0.2 * flash);
+		fanAngle = (clock * (2.2 + 5 * surge)) % TAU;
+
+		// tanks: a soft halo each, and bubbles climbing the liquid (boiling on a shake)
+		for (let t = 0; t < TANKS; t++) {
+			const tank = art.tanks[t];
+			const halo = particles[AT.tankHalo + t];
+			if (!tank) {
+				hide(halo);
+				for (let i = 0; i < PER_TANK; i++) hide(particles[AT.tankBubble + t * PER_TANK + i]);
+				continue;
+			}
+			const [x0, y0, x1, y1] = tank;
+			halo.x = (x0 + x1) / 2 - cx;
+			halo.y = (y0 + y1) / 2 - cy;
+			halo.scaleX = halo.scaleY = (2.3 * (y1 - y0)) / CELL;
+			halo.tint = 0x7dff2a;
+			// (the storm paintings' tanks are bright on their own: Evtim found them glaring, 2026-11-16)
+			halo.alpha = (0.13 + 0.05 * Math.sin((TAU * clock) / 3.1 + t * 2) + 0.3 * surge) * power * (art.storm ? 0.3 : 1);
+			for (let i = 0; i < PER_TANK; i++) {
+				const b = tankBubbles[t * PER_TANK + i];
+				const p = particles[AT.tankBubble + t * PER_TANK + i];
+				b.y -= b.v * dt * (1 + 3.5 * surge);
+				if (b.y < y0 + 4) spawnTankBubble(b, tank);
+				p.x = b.x + 2.4 * Math.sin(clock * b.wobble + b.phase) - cx;
+				p.y = b.y - cy;
+				p.scaleX = p.scaleY = b.size / 92;
+				p.tint = 0xe4ffa8;
+				p.alpha = 0.6 * Math.min(1, (y1 - b.y) / 12) * Math.min(1, (b.y - y0) / 16) * (0.6 + 0.4 * power);
+			}
+		}
+
+		// flasks: two bubbles simmering in the liquid, vapour breathing from the neck
+		for (let f = 0; f < FLASKS; f++) {
+			const flask = art.flasks[f];
+			for (let i = 0; i < PER_FLASK_BUBBLES + PER_FLASK_VAPOUR; i++) {
+				const vapour = i >= PER_FLASK_BUBBLES;
+				const p = particles[vapour ? AT.vapour + f * PER_FLASK_VAPOUR + (i - PER_FLASK_BUBBLES) : AT.flaskBubble + f * PER_FLASK_BUBBLES + i];
+				if (!flask) {
+					hide(p);
+					continue;
+				}
+				const [lx, ly, nx, ny, tint] = flask;
+				const slot = f * (PER_FLASK_BUBBLES + PER_FLASK_VAPOUR) + i;
+				const period = vapour ? 3.2 : 1.5 + 0.5 * i;
+				flaskPhase[slot] = (flaskPhase[slot] + (dt / period) * (1 + 2 * surge)) % 1;
+				const k = flaskPhase[slot];
+				if (vapour) {
+					p.x = nx + 7 * Math.sin(TAU * (k * 0.8 + slot * 0.37)) * k - cx;
+					p.y = ny - 6 - 48 * k - cy;
+					p.scaleX = p.scaleY = (10 + 30 * k) / (CELL * 0.6);
+					p.tint = tint;
+					p.alpha = 0.2 * Math.sin(Math.PI * k) ** 0.8;
+				} else {
+					p.x = lx + (i ? 8 : -7) + 1.5 * Math.sin(TAU * k * 2) - cx;
+					p.y = ly + 5 - 15 * k - cy;
+					p.scaleX = p.scaleY = (3 + 1.5 * i) / 92;
+					p.tint = 0xf0ffd0;
+					p.alpha = 0.7 * Math.sin(Math.PI * k);
+				}
+			}
+		}
+
+		// wet spots on the floor glint, a couple at a time
+		glintWait -= dt;
+		if (glintWait <= 0 && art.glints.length) {
+			glintWait = rand(0.5, 1.4);
+			const free = glints.find((g) => g.age >= g.life);
+			if (free) {
+				const [x, y] = art.glints[Math.floor(Math.random() * art.glints.length)];
+				Object.assign(free, { x: x + rand(-10, 10), y: y + rand(-5, 5), age: 0, life: rand(0.6, 1.2), size: rand(16, 30) });
+			}
+		}
+		glints.forEach((g, i) => {
+			const p = particles[AT.glint + i];
+			if (g.age >= g.life) return hide(p);
+			g.age += dt;
+			const k = Math.sin(Math.PI * Math.min(1, g.age / g.life));
+			p.x = g.x - cx;
+			p.y = g.y - cy;
+			p.scaleX = (g.size / 100) * (0.3 + 0.7 * k);
+			p.scaleY = p.scaleX * 0.6; // the floor is seen at a slant
+			p.tint = 0xe6ffb4;
+			p.alpha = k * power;
+		});
+
+		// slime drips: a drop swells on the bench's edge, falls, splashes on the floor
+		for (let i = 0; i < DRIPS; i++) {
+			const drop = particles[AT.drop + i];
+			const splash = particles[AT.splash + i];
+			const spot = art.drips[i];
+			const d = drips[i];
+			hide(drop);
+			hide(splash);
+			if (!spot) continue;
+			const [x, y, floor] = spot;
+			d.t -= dt;
+			if (d.state === 'wait') {
+				if (d.t <= 0) Object.assign(d, { state: 'grow', t: 0.5, y, vy: 0 });
+				continue;
+			}
+			if (d.state === 'splash') {
+				const k = 1 - Math.max(0, d.t) / 0.45;
+				splash.x = x - cx;
+				splash.y = floor - cy;
+				splash.scaleX = (10 + 34 * k) / CELL;
+				splash.scaleY = splash.scaleX * 0.3;
+				splash.tint = LAB_GREEN;
+				splash.alpha = 0.7 * (1 - k);
+				if (d.t <= 0) Object.assign(d, { state: 'wait', t: rand(2.5, 8) });
+				continue;
+			}
+			let stretch = 1;
+			let grown = 1;
+			if (d.state === 'grow') {
+				grown = 1 - Math.max(0, d.t) / 0.5;
+				if (d.t <= 0) d.state = 'fall';
+			} else {
+				d.vy += 1100 * dt;
+				d.y += d.vy * dt;
+				stretch = 1 + Math.min(0.9, d.vy / 600);
+				if (d.y >= floor) Object.assign(d, { state: 'splash', t: 0.45 });
+			}
+			drop.x = x - cx;
+			drop.y = d.y + 4 * grown - cy;
+			drop.scaleX = (5.5 * grown) / 54;
+			drop.scaleY = drop.scaleX * stretch;
+			drop.tint = 0xb8ff4a;
+			drop.alpha = 0.9;
+		}
+
+		// the air: spores in the lab, lit near the tanks; dust in the theatre's lamp light
+		motes.forEach((m, i) => {
+			const p = particles[AT.mote + i];
+			m.x += (m.vx + 4 * Math.sin(clock * 0.7 + m.phase)) * dt;
+			m.y += m.vy * dt;
+			if (m.y < -10) m.y = art.height + 10;
+			if (m.y > art.height + 10) m.y = -10;
+			if (m.x < -10) m.x = art.width + 10;
+			if (m.x > art.width + 10) m.x = -10;
+			let light = warm ? 0.1 : 0.09;
+			for (const [x0, y0, x1, y1] of art.tanks) {
+				const d = Math.hypot(m.x - (x0 + x1) / 2, m.y - (y0 + y1) / 2) / 330;
+				if (d < 1) light = Math.max(light, 0.85 * (1 - d) ** 1.3);
+			}
+			for (const [lx, ly, radius] of art.lamps) {
+				const d = Math.hypot(m.x - lx, m.y - (ly + radius)) / (radius * 2.2);
+				if (d < 1) light = Math.max(light, 0.8 * (1 - d) ** 1.2);
+			}
+			p.x = m.x - cx;
+			p.y = m.y - cy;
+			p.scaleX = p.scaleY = m.size / 64;
+			p.tint = warm ? 0xffd9a0 : 0xc4ff70;
+			p.alpha = light * (0.6 + 0.4 * Math.sin(clock * 1.9 + m.phase)) * (0.5 + 0.5 * power);
+		});
+
+		surge = Math.max(0, surge - dt * 0.9);
+	};
+
+	// ------------------------------------------------------------ steam and dust
+	const VENTS = 2;
+	const PER_VENT = 9;
+	const DUST = 26;
+	const SMOKE = VENTS * PER_VENT + DUST;
+	type Grain = { age: number; life: number; x: number; y: number; vx: number; vy: number; size: number };
+	const grain = (): Grain => ({ age: 0, life: 0, x: 0, y: 0, vx: 0, vy: 0, size: 0 });
+	const steam = Array.from({ length: VENTS * PER_VENT }, grain);
+	const dust = Array.from({ length: DUST }, grain);
+	const vents = Array.from({ length: VENTS }, (_, i) => ({ wait: rand(2, 6) + i * 3, left: 0, gap: 0 }));
+
+	const initSmoke = (particles: Particle[]) => {
+		const tex = cells(particles);
+		particles.forEach((p, i) => {
+			p.anchorX = p.anchorY = 0.5;
+			p.texture = i < VENTS * PER_VENT ? tex[PUFF] : tex[SPECK];
+			hide(p);
+		});
+	};
+
+	const updateSmoke = (particles: Particle[]) => {
+		const cx = art.width / 2;
+		const cy = art.height / 2;
+		// a pipe joint vents a short jet of steam every few seconds, and on a hard shake
+		for (let v = 0; v < VENTS; v++) {
+			const spot = art.vents[v];
+			const vent = vents[v];
+			if (spot) {
+				vent.wait -= dt;
+				if (vent.wait <= 0 || ventNow) {
+					vent.wait = rand(6, 14);
+					vent.left = PER_VENT;
+					vent.gap = 0;
+				}
+				vent.gap -= dt;
+				if (vent.left > 0 && vent.gap <= 0) {
+					const puff = steam.slice(v * PER_VENT, (v + 1) * PER_VENT).find((g) => g.age >= g.life);
+					if (puff) {
+						const [x, y, dir] = spot;
+						Object.assign(puff, { age: 0, life: rand(1.4, 2.1), x, y, vx: dir * rand(70, 130), vy: rand(-40, -5), size: rand(12, 18) });
+					}
+					vent.left -= 1;
+					vent.gap = 0.07;
+				}
+			}
+			for (let i = 0; i < PER_VENT; i++) {
+				const g = steam[v * PER_VENT + i];
+				const p = particles[v * PER_VENT + i];
+				if (!spot || g.age >= g.life) {
+					hide(p);
+					continue;
+				}
+				g.age += dt;
+				const k = g.age / g.life;
+				g.vx *= 1 - 2.2 * dt;
+				g.vy -= 22 * dt;
+				g.x += g.vx * dt;
+				g.y += g.vy * dt;
+				p.x = g.x - cx;
+				p.y = g.y - cy;
+				p.scaleX = p.scaleY = (g.size * (1 + 4.6 * k)) / (CELL * 0.6);
+				p.rotation = k * 1.2 * (i % 2 ? 1 : -1);
+				p.tint = 0xcfdcc6;
+				p.alpha = 0.55 * Math.sin(Math.PI * Math.min(1, k)) ** 0.7;
+			}
+		}
+		ventNow = false;
+
+		// a hard shake brings dust down from the pipes under the ceiling
+		if (dustNow > 0) {
+			const halfW = canvas.width / scale / 2;
+			const top = cy - canvas.height / scale / 2;
+			for (const g of dust) {
+				if (dustNow <= 0) break;
+				if (g.age < g.life) continue;
+				Object.assign(g, { age: -rand(0, 0.35), life: rand(1.1, 1.9), x: cx + rand(-halfW, halfW), y: top + rand(-8, 30), vx: rand(-10, 10), vy: rand(40, 130), size: rand(3, 6.5) });
+				dustNow -= 1;
+			}
+			dustNow = 0;
+		}
+		dust.forEach((g, i) => {
+			const p = particles[VENTS * PER_VENT + i];
+			if (g.age >= g.life) return hide(p);
+			g.age += dt;
+			if (g.age < 0) return hide(p);
+			g.vy += 220 * dt;
+			g.x += g.vx * dt;
+			g.y += g.vy * dt;
+			p.x = g.x - cx;
+			p.y = g.y - cy;
+			p.scaleX = g.size / 64;
+			p.scaleY = p.scaleX * (1 + Math.min(1.2, g.vy / 260));
+			p.tint = art.warm ? 0xd8c8a8 : 0xaab89c;
+			p.alpha = 0.55 * Math.min(1, g.age * 8) * (1 - g.age / g.life) ** 0.6;
+		});
+	};
+</script>
+
+<!-- over the backgrounds (zIndex -2), under everything else at the root -->
+<Container zIndex={-1.5} x={canvas.width / 2} y={canvas.height / 2} {scale}>
+	<Sprite
+		key={SHIMMER[artKey]}
+		anchor={0.5}
+		width={art.width}
+		height={art.height}
+		blendMode="add"
+		alpha={Math.max(0, Math.min(1, shimmer))}
+	/>
+	<Sprite
+		key={FLASH[artKey]}
+		anchor={0.5}
+		width={art.width}
+		height={art.height}
+		blendMode="add"
+		visible={art.storm}
+		alpha={Math.max(0, Math.min(1, flash))}
+	/>
+	{#if art.fan}
+		<Sprite
+			key={FAN[artKey]}
+			anchor={0.5}
+			x={art.fan[0] - art.width / 2}
+			y={art.fan[1] - art.height / 2}
+			width={2 * art.fan[2] + 4}
+			height={2 * art.fan[2] + 4}
+			rotation={fanAngle}
+		/>
+	{/if}
+	<ParticleContainer blendMode="add">
+		<Particles key="cl2SceneLife" size={LIT} init={initLit} update={updateLit} />
+	</ParticleContainer>
+	<ParticleContainer>
+		<Particles key="cl2SceneLife" size={SMOKE} init={initSmoke} update={updateSmoke} />
+	</ParticleContainer>
+</Container>

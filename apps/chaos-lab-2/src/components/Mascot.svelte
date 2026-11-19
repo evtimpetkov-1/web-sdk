@@ -84,6 +84,19 @@
      the backgrounds (-2) and under every zIndex-0 layer (board, frame, UI); the
      mascot stays mounted, so a rotation never restarts the video decoder -->
 <MainContainer zIndex={portrait ? -1 : 0}>
+	<!-- she stands ON the floor: a contact shadow under her boots (row 1067 of the
+	     1104-row frame). Not in portrait, where the board hides her legs -->
+	{#if !portrait}
+		<Sprite
+			key="cl2Shadow"
+			anchor={0.5}
+			x={layout.x + layout.targetHeight * ASPECT * 0.02}
+			y={layout.y - layout.targetHeight * ((MASCOT_CLIP.height - 1067) / MASCOT_CLIP.height) + layout.targetHeight * 0.004}
+			width={layout.targetHeight * ASPECT * 0.62}
+			height={layout.targetHeight * 0.075}
+			alpha={0.62}
+		/>
+	{/if}
 	<Sprite
 		key="cl2Mascot"
 		visible={!videoShown}

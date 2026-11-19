@@ -32,10 +32,34 @@
 	 * nothing here or in the locale files can drift from the math. RTP and max
 	 * win are the only math figures shown: no probabilities, percentages,
 	 * frequencies or odds tables (Evtim, 2026-10-24).
+	 * Layout (2026-11-17, the reviewers: "The Game Info could be more polished. Too
+	 * much unused space."): it was one 640 px column of text, 4,800 px of scrolling
+	 * on a desktop with the rest of the screen empty. Now the panel takes the width
+	 * it is given and every section is a card: two cards a row on a wide screen, one
+	 * on a phone, each feature with its symbol beside the title, the buy modes and
+	 * the switch modes with their shop art. The texts and their translations are
+	 * unchanged, and so is their order.
 	 */
 
 	// the logo the game already loads (assets.ts), so no second download
 	const logoImg = new URL('../../assets/chaoslab2/logo.webp', import.meta.url).href;
+	// the paytable's symbol pictures and the shop's art, beside the sections about them
+	// (URL-relative string literals, like assets.ts)
+	const ICON = {
+		h1: new URL('../../assets/madscience/paytable/h1.webp', import.meta.url).href,
+		h2: new URL('../../assets/madscience/paytable/h2.webp', import.meta.url).href,
+		wild: new URL('../../assets/madscience/paytable/wild.webp', import.meta.url).href,
+		bonus: new URL('../../assets/madscience/paytable/bonus.webp', import.meta.url).href,
+		mult: new URL('../../assets/madscience/paytable/mult.webp', import.meta.url).href,
+		bomb: new URL('../../assets/madscience/paytable/bomb.webp', import.meta.url).href,
+		cloner: new URL('../../assets/madscience/paytable/cloner.webp', import.meta.url).href,
+		coin: new URL('../../assets/chaoslab2/paytable/coin.webp', import.meta.url).href,
+		chaos: new URL('../../assets/madscience/buy/chaos.webp', import.meta.url).href,
+		boost: new URL('../../assets/madscience/buy/boost.webp', import.meta.url).href,
+		operation: new URL('../../assets/chaoslab2/buy/operation.webp', import.meta.url).href,
+		mutant: new URL('../../assets/chaoslab2/buy/mutant.webp', import.meta.url).href,
+		overcharged: new URL('../../assets/chaoslab2/buy/overcharged.webp', import.meta.url).href,
+	};
 
 	const cost = (mode: RgsMode) => formatTimes(config.betModes[mode].cost);
 
@@ -66,10 +90,12 @@
 
 	const buyModes = $derived([
 		{
+			img: ICON.operation,
 			name: i18nDerived.modeOperation(),
 			text: fill(i18nDerived.rulesOperation(), cost('lucky_draw_free_spins'), bet),
 		},
 		{
+			img: ICON.mutant,
 			name: i18nDerived.modeMutant(),
 			text: fill(
 				i18nDerived.rulesMutant(),
@@ -80,6 +106,7 @@
 			),
 		},
 		{
+			img: ICON.overcharged,
 			name: i18nDerived.modeOvercharged(),
 			text: fill(
 				i18nDerived.rulesOvercharged(),
@@ -91,197 +118,248 @@
 			),
 		},
 	]);
+
+	/**
+	 * `embedded`: only the content, with no popup or panel round it, for the generic
+	 * UI's one info page (GenericInfo: the paytable first, the rules under it).
+	 */
+	type Props = { embedded?: boolean };
+	const props: Props = $props();
 </script>
 
-{#if stateModal.modal?.name === 'gameRules'}
-	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
-		<div class="panel">
-			<img src={logoImg} alt="Chaos Lab 2" class="logo" />
+{#snippet heading(title: string, icon?: string)}
+	<div class="heading">
+		{#if icon}<img src={icon} alt="" />{/if}
+		<h2>{title}</h2>
+	</div>
+{/snippet}
 
-			<section>
-				<h2>{i18nDerived.rulesOverview()}</h2>
-				<p>{i18nDerived.rulesOverviewText()}</p>
-			</section>
+{#snippet body()}
+		<!-- dir="auto": the text's own direction (Arabic reads right to left: the cards,
+		     the table and the bullets mirror, and mixed Latin words fall in the right
+		     place; every other language is left to right as before) -->
+		<div class="panel" class:embedded={props.embedded} dir="auto">
+			<header class="about">
+				{#if !props.embedded}
+					<img src={logoImg} alt="Chaos Lab 2" class="logo" />
+				{/if}
+				<div>
+					<h2>{i18nDerived.rulesOverview()}</h2>
+					<p>{i18nDerived.rulesOverviewText()}</p>
+				</div>
+			</header>
 
-			<section>
-				<h2>{i18nDerived.rulesGameModes()}</h2>
-				<p>{i18nDerived.rulesGameModesText()}</p>
-				<table class="modes">
-					<thead>
-						<tr>
-							<th scope="col">{i18nDerived.colMode()}</th>
-							<th scope="col">{i18nDerived.colCost()}</th>
-							<th scope="col">{i18nDerived.colRtp()}</th>
-							<th scope="col">{i18nDerived.colMaxWin()}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each modes as mode}
+			<div class="cards">
+				<section class="wide">
+					{@render heading(i18nDerived.rulesGameModes())}
+					<p>{i18nDerived.rulesGameModesText()}</p>
+					<table class="modes">
+						<thead>
 							<tr>
-								<th scope="row">{mode.name}</th>
-								<td>{mode.cost}</td>
-								<td>{mode.rtp}</td>
-								<td>{mode.maxWin}</td>
+								<th scope="col">{i18nDerived.colMode()}</th>
+								<th scope="col">{i18nDerived.colCost()}</th>
+								<th scope="col">{i18nDerived.colRtp()}</th>
+								<th scope="col">{i18nDerived.colMaxWin()}</th>
 							</tr>
+						</thead>
+						<tbody>
+							{#each modes as mode}
+								<tr>
+									<th scope="row">{mode.name}</th>
+									<td>{mode.cost}</td>
+									<td>{mode.rtp}</td>
+									<td>{mode.maxWin}</td>
+								</tr>
+							{/each}
+						</tbody>
+					</table>
+				</section>
+
+				<section>
+					{@render heading(i18nDerived.rulesWinAnywhere(), ICON.h1)}
+					<p>{i18nDerived.rulesWinAnywhereText()}</p>
+				</section>
+
+				<section>
+					{@render heading(i18nDerived.rulesTumbles(), ICON.h2)}
+					<p>{i18nDerived.rulesTumblesText()}</p>
+				</section>
+
+				<section>
+					{@render heading(i18nDerived.rulesWild(), ICON.wild)}
+					<p>{i18nDerived.rulesWildText()}</p>
+				</section>
+
+				<section>
+					{@render heading(i18nDerived.rulesScatter(), ICON.bonus)}
+					<p>{i18nDerived.rulesScatterText()}</p>
+					<ul>
+						<li>{i18nDerived.rulesScatter4()}</li>
+						<li>{fill(i18nDerived.rulesScatter5(), formatNumber(CASH_START_FRAMES.five))}</li>
+						<li>{fill(i18nDerived.rulesScatter6(), formatNumber(CASH_START_FRAMES.sixOrMore))}</li>
+					</ul>
+				</section>
+
+				<section>
+					{@render heading(i18nDerived.rulesMultiplier(), ICON.mult)}
+					<p>{i18nDerived.rulesMultiplierText()}</p>
+					<ul>
+						<li>{fill(i18nDerived.rulesMultValues(), multiplierValues)}</li>
+						<li>{i18nDerived.rulesMultLanding()}</li>
+						<li>{i18nDerived.rulesMultCollection()}</li>
+						<li>{i18nDerived.rulesMultTotal()}</li>
+						<li>{i18nDerived.rulesMultBase()}</li>
+						<li>{i18nDerived.rulesMultCash()}</li>
+					</ul>
+				</section>
+
+				<section>
+					{@render heading(i18nDerived.rulesBomb(), ICON.bomb)}
+					<p>{i18nDerived.rulesBombText()}</p>
+					<ul>
+						<li>{i18nDerived.rulesBombLanding()}</li>
+						<li>{i18nDerived.rulesBombWhen()}</li>
+						<li>{i18nDerived.rulesBombClears()}</li>
+						<li>{i18nDerived.rulesBombAfter()}</li>
+					</ul>
+				</section>
+
+				<section>
+					{@render heading(i18nDerived.rulesCloner(), ICON.cloner)}
+					<p>{i18nDerived.rulesClonerText()}</p>
+					<ul>
+						<li>{i18nDerived.rulesClonerWhen()}</li>
+						<li>{i18nDerived.rulesClonerWhat()}</li>
+						<li>{i18nDerived.rulesClonerNot()}</li>
+						<li>{i18nDerived.rulesClonerAfter()}</li>
+						<li>{i18nDerived.rulesClonerOne()}</li>
+					</ul>
+				</section>
+
+				<section>
+					{@render heading(i18nDerived.rulesOrderOfPlay())}
+					<p>{i18nDerived.rulesOrderText()}</p>
+					<ol>
+						<li>{i18nDerived.rulesOrder1()}</li>
+						<li>{i18nDerived.rulesOrder2()}</li>
+						<li>{i18nDerived.rulesOrder3()}</li>
+						<li>{i18nDerived.rulesOrder4()}</li>
+						<li>{i18nDerived.rulesOrder5()}</li>
+					</ol>
+				</section>
+
+				<!-- the feature: the full width, its rules beside its order of play -->
+				<section class="wide feature">
+					{@render heading(i18nDerived.rulesCashRespins(), ICON.coin)}
+					<div class="split">
+						<div>
+							<p>{fill(i18nDerived.rulesCashText(), formatNumber(CASH_RESPINS))}</p>
+							<ul>
+								<li>{fill(i18nDerived.rulesCashStart(), cash.startFrames)}</li>
+								<li>{fill(i18nDerived.rulesCashRespinsRule(), formatNumber(CASH_RESPINS))}</li>
+								<li>{fill(i18nDerived.rulesCashCoin(), cash.coins, bet)}</li>
+								<li>{fill(i18nDerived.rulesCashMultiplier(), cash.multipliers, cash.frameMax)}</li>
+								<li>
+									{fill(
+										i18nDerived.rulesCashCloner(),
+										formatNumber(CASH_CLONER_COINS.min),
+										formatNumber(CASH_CLONER_COINS.max),
+									)}
+								</li>
+								<li>{fill(i18nDerived.rulesCashBomb(), cash.bombs, bet, cash.overchargedBombMax)}</li>
+							</ul>
+						</div>
+						<div>
+							<p>{i18nDerived.rulesCashOrderText()}</p>
+							<ol>
+								<li>{i18nDerived.rulesCashOrder1()}</li>
+								<li>{i18nDerived.rulesCashOrder2()}</li>
+								<li>{i18nDerived.rulesCashOrder3()}</li>
+								<li>{i18nDerived.rulesCashOrder4()}</li>
+							</ol>
+							<p>{fill(i18nDerived.rulesCashEnd(), formatNumber(CASH_POSITIONS), bet)}</p>
+						</div>
+					</div>
+				</section>
+
+				<section class="wide">
+					{@render heading(i18nDerived.rulesSwitchModes())}
+					<p>{fill(i18nDerived.rulesSwitchModesText(), bet)}</p>
+					<div class="offers two">
+						<div class="offer row">
+							<img src={ICON.chaos} alt="" />
+							<p>{fill(i18nDerived.rulesChaos(), cost('ante_1'), bet)}</p>
+						</div>
+						<div class="offer row">
+							<img src={ICON.boost} alt="" />
+							<p>{fill(i18nDerived.rulesBoost(), cost('ante_2'), bet)}</p>
+						</div>
+					</div>
+				</section>
+
+				<section class="wide">
+					{@render heading(i18nDerived.rulesBuyModes())}
+					<p>{i18nDerived.rulesBuyModesText()}</p>
+					<div class="offers three">
+						{#each buyModes as buyMode}
+							<div class="offer">
+								<img src={buyMode.img} alt="" />
+								<h3>{buyMode.name}</h3>
+								<p>{buyMode.text}</p>
+							</div>
 						{/each}
-					</tbody>
-				</table>
-			</section>
+					</div>
+				</section>
 
-			<section>
-				<h2>{i18nDerived.rulesWinAnywhere()}</h2>
-				<p>{i18nDerived.rulesWinAnywhereText()}</p>
-			</section>
+				<section>
+					{@render heading(i18nDerived.rulesGeneral())}
+					<ul>
+						<li>{i18nDerived.rulesGeneral1()}</li>
+						<li>{i18nDerived.rulesGeneral2()}</li>
+						<li>{i18nDerived.rulesGeneral3()}</li>
+					</ul>
+				</section>
 
-			<section>
-				<h2>{i18nDerived.rulesTumbles()}</h2>
-				<p>{i18nDerived.rulesTumblesText()}</p>
-			</section>
+				<!-- beside General and the disclaimer on a wide screen (two rows tall) -->
+				<section class="tall">
+					{@render heading(i18nDerived.rulesUiGuide())}
+					<ul>
+						<li>{fill(i18nDerived.uiSpin(), bet)}</li>
+						<li>{i18nDerived.uiStop()}</li>
+						<li>{i18nDerived.uiAutoplay()}</li>
+						<li>{i18nDerived.uiTurbo()}</li>
+						<li>{i18nDerived.uiFeature()}</li>
+						<li>{fill(i18nDerived.uiPlusMinus(), bet)}</li>
+						<li>{i18nDerived.uiMenu()}</li>
+						{#if !props.embedded}
+							<li>{i18nDerived.uiPaytable()}</li>
+						{/if}
+						<li>{i18nDerived.uiGameRules()}</li>
+						<li>{i18nDerived.uiSound()}</li>
+						{#if !props.embedded}
+							<li>{i18nDerived.uiSettings()}</li>
+						{/if}
+					</ul>
+				</section>
 
-			<section>
-				<h2>{i18nDerived.rulesWild()}</h2>
-				<p>{i18nDerived.rulesWildText()}</p>
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesScatter()}</h2>
-				<p>{i18nDerived.rulesScatterText()}</p>
-				<ul>
-					<li>{i18nDerived.rulesScatter4()}</li>
-					<li>{fill(i18nDerived.rulesScatter5(), formatNumber(CASH_START_FRAMES.five))}</li>
-					<li>{fill(i18nDerived.rulesScatter6(), formatNumber(CASH_START_FRAMES.sixOrMore))}</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesMultiplier()}</h2>
-				<p>{i18nDerived.rulesMultiplierText()}</p>
-				<ul>
-					<li>{fill(i18nDerived.rulesMultValues(), multiplierValues)}</li>
-					<li>{i18nDerived.rulesMultLanding()}</li>
-					<li>{i18nDerived.rulesMultCollection()}</li>
-					<li>{i18nDerived.rulesMultTotal()}</li>
-					<li>{i18nDerived.rulesMultBase()}</li>
-					<li>{i18nDerived.rulesMultCash()}</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesBomb()}</h2>
-				<p>{i18nDerived.rulesBombText()}</p>
-				<ul>
-					<li>{i18nDerived.rulesBombLanding()}</li>
-					<li>{i18nDerived.rulesBombWhen()}</li>
-					<li>{i18nDerived.rulesBombClears()}</li>
-					<li>{i18nDerived.rulesBombAfter()}</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesCloner()}</h2>
-				<p>{i18nDerived.rulesClonerText()}</p>
-				<ul>
-					<li>{i18nDerived.rulesClonerWhen()}</li>
-					<li>{i18nDerived.rulesClonerWhat()}</li>
-					<li>{i18nDerived.rulesClonerNot()}</li>
-					<li>{i18nDerived.rulesClonerAfter()}</li>
-					<li>{i18nDerived.rulesClonerOne()}</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesOrderOfPlay()}</h2>
-				<p>{i18nDerived.rulesOrderText()}</p>
-				<ol>
-					<li>{i18nDerived.rulesOrder1()}</li>
-					<li>{i18nDerived.rulesOrder2()}</li>
-					<li>{i18nDerived.rulesOrder3()}</li>
-					<li>{i18nDerived.rulesOrder4()}</li>
-					<li>{i18nDerived.rulesOrder5()}</li>
-				</ol>
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesCashRespins()}</h2>
-				<p>{fill(i18nDerived.rulesCashText(), formatNumber(CASH_RESPINS))}</p>
-				<ul>
-					<li>{fill(i18nDerived.rulesCashStart(), cash.startFrames)}</li>
-					<li>{fill(i18nDerived.rulesCashRespinsRule(), formatNumber(CASH_RESPINS))}</li>
-					<li>{fill(i18nDerived.rulesCashCoin(), cash.coins, bet)}</li>
-					<li>{fill(i18nDerived.rulesCashMultiplier(), cash.multipliers, cash.frameMax)}</li>
-					<li>
-						{fill(
-							i18nDerived.rulesCashCloner(),
-							formatNumber(CASH_CLONER_COINS.min),
-							formatNumber(CASH_CLONER_COINS.max),
-						)}
-					</li>
-					<li>{fill(i18nDerived.rulesCashBomb(), cash.bombs, bet, cash.overchargedBombMax)}</li>
-				</ul>
-				<p>{i18nDerived.rulesCashOrderText()}</p>
-				<ol>
-					<li>{i18nDerived.rulesCashOrder1()}</li>
-					<li>{i18nDerived.rulesCashOrder2()}</li>
-					<li>{i18nDerived.rulesCashOrder3()}</li>
-					<li>{i18nDerived.rulesCashOrder4()}</li>
-				</ol>
-				<p>{fill(i18nDerived.rulesCashEnd(), formatNumber(CASH_POSITIONS), bet)}</p>
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesSwitchModes()}</h2>
-				<p>{fill(i18nDerived.rulesSwitchModesText(), bet)}</p>
-				<ul>
-					<li>{fill(i18nDerived.rulesChaos(), cost('ante_1'), bet)}</li>
-					<li>{fill(i18nDerived.rulesBoost(), cost('ante_2'), bet)}</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesBuyModes()}</h2>
-				<p>{i18nDerived.rulesBuyModesText()}</p>
-				{#each buyModes as buyMode}
-					<h3>{buyMode.name}</h3>
-					<p>{buyMode.text}</p>
-				{/each}
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesGeneral()}</h2>
-				<ul>
-					<li>{i18nDerived.rulesGeneral1()}</li>
-					<li>{i18nDerived.rulesGeneral2()}</li>
-					<li>{i18nDerived.rulesGeneral3()}</li>
-				</ul>
-			</section>
-
-			<section>
-				<h2>{i18nDerived.rulesUiGuide()}</h2>
-				<ul>
-					<li>{fill(i18nDerived.uiSpin(), bet)}</li>
-					<li>{i18nDerived.uiStop()}</li>
-					<li>{i18nDerived.uiAutoplay()}</li>
-					<li>{i18nDerived.uiTurbo()}</li>
-					<li>{i18nDerived.uiFeature()}</li>
-					<li>{fill(i18nDerived.uiPlusMinus(), bet)}</li>
-					<li>{i18nDerived.uiMenu()}</li>
-					<li>{i18nDerived.uiPaytable()}</li>
-					<li>{i18nDerived.uiGameRules()}</li>
-					<li>{i18nDerived.uiSound()}</li>
-					<li>{i18nDerived.uiSettings()}</li>
-				</ul>
-			</section>
-
-			<section class="disclaimer">
-				<h2>{i18nDerived.rulesDisclaimer()}</h2>
-				<p>{i18nDerived.rulesDisclaimerText()}</p>
-				<!-- "Engine", not "Stake Engine": Stake review 2026-10-29 (their docs
-				     template still says Stake Engine) -->
-				<p class="copyright">TM and &copy; 2026 Engine.</p>
-			</section>
+				<section class="disclaimer">
+					{@render heading(i18nDerived.rulesDisclaimer())}
+					<p>{i18nDerived.rulesDisclaimerText()}</p>
+					<!-- "Engine", not "Stake Engine": Stake review 2026-10-29 (their docs
+					     template still says Stake Engine) -->
+					<p class="copyright">TM and &copy; 2026 Engine.</p>
+				</section>
+			</div>
 
 			<div class="version">v{GAME_VERSION}</div>
 		</div>
+{/snippet}
+
+{#if props.embedded}
+	{@render body()}
+{:else if stateModal.modal?.name === 'gameRules'}
+	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
+		{@render body()}
 	</Popup>
 {/if}
 
@@ -293,12 +371,17 @@
 		position: relative;
 		z-index: 100;
 		box-sizing: border-box;
-		width: min(640px, 92vw);
+		/* as wide as the screen allows: a desktop no longer shows a narrow column */
+		width: min(1100px, 94vw);
 		/* dvh = the visible height (iOS vh includes the area behind the browser bars) */
-		max-height: 86vh;
-		max-height: 86dvh;
+		max-height: 88vh;
+		max-height: 88dvh;
 		overflow-y: auto;
-		padding: 2rem 1.6rem 1rem;
+		/* the scrollbar's room is always kept: a card grid that re-fits its columns
+		   changes the height, and a scrollbar coming and going would change the width
+		   under it (fitColumns would chase its own tail) */
+		scrollbar-gutter: stable;
+		padding: 1.4rem 1.6rem 1rem;
 		background: var(--modal-panel-bg);
 		border: var(--modal-panel-border);
 		border-radius: var(--modal-panel-radius);
@@ -309,23 +392,79 @@
 		scrollbar-color: rgba(171, 234, 16, 0.35) transparent;
 	}
 
+	/* the logo beside what the game is */
+	.about {
+		display: flex;
+		align-items: center;
+		gap: 1.6rem;
+		margin-bottom: 1.1rem;
+		/* clear of the popup's X in the top right corner (physical: it does not
+		   change sides in a right-to-left language) */
+		padding-right: 2.4rem;
+
+		> div {
+			flex: 1;
+			min-width: 0;
+		}
+
+		p {
+			margin: 0;
+		}
+	}
+
 	.logo {
+		flex: none;
 		display: block;
-		width: min(220px, 55%);
+		width: min(210px, 34%);
 		height: auto;
-		margin: 0 auto 1.4rem;
+		filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.6));
+	}
+
+	/* every section a card; two a row where the screen is wide (below) */
+	.cards {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 0.8rem;
 	}
 
 	section {
-		margin-bottom: 1.5rem;
+		min-width: 0;
+		box-sizing: border-box;
+		padding: 0.9rem 1rem 0.6rem;
+		border-radius: 14px;
+		background: var(--modal-bg);
+		border: 1px solid var(--modal-border);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+	}
+
+	/* the feature stands out */
+	.feature {
+		border-color: rgba(171, 234, 16, 0.55);
+		background: linear-gradient(180deg, rgba(64, 84, 40, 0.5), rgba(40, 50, 36, 0.45));
+	}
+
+	/* a section's title, its symbol in front of it */
+	.heading {
+		display: flex;
+		align-items: center;
+		gap: 0.7rem;
+		margin-bottom: 0.5rem;
+
+		img {
+			flex: none;
+			width: 52px;
+			height: 52px;
+			object-fit: contain;
+			filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.6));
+		}
 	}
 
 	h2 {
-		margin: 0 0 0.5rem;
-		text-align: center;
+		margin: 0;
 		font-family: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
-		font-size: 1.4rem;
+		font-size: 1.35rem;
 		font-weight: 400;
+		line-height: 1.15;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
 		color: var(--modal-accent);
@@ -334,10 +473,15 @@
 			0 0 14px rgba(171, 234, 16, 0.3);
 	}
 
+	.about h2 {
+		margin-bottom: 0.4rem;
+		font-size: 1.6rem;
+	}
+
 	/* the buy modes' names: the section headers' display face, a size down
 	   (they were bold Inter, which read as a different font: Evtim, 2026-11-06) */
 	h3 {
-		margin: 1rem 0 0.3rem;
+		margin: 0.5rem 0 0.3rem;
 		text-align: center;
 		font-family: var(--ms-display-font, 'Creepster', 'Inter', sans-serif);
 		font-size: 1.1rem;
@@ -350,8 +494,8 @@
 
 	p,
 	li {
-		font-size: 0.95rem;
-		line-height: 1.55;
+		font-size: 0.92rem;
+		line-height: 1.5;
 		color: rgba(242, 246, 234, 0.82);
 	}
 
@@ -370,23 +514,73 @@
 
 		li {
 			position: relative;
-			padding-left: 1.2rem;
+			padding-inline-start: 1.2rem;
 
 			&::before {
 				content: '•';
 				position: absolute;
-				left: 0.2rem;
+				inset-inline-start: 0.2rem;
 				color: var(--modal-accent);
 			}
 		}
 	}
 
 	ol {
-		padding-left: 1.6rem;
+		padding-inline-start: 1.6rem;
 
 		li::marker {
 			color: var(--modal-accent);
 			font-weight: 700;
+		}
+	}
+
+	li + li {
+		margin-top: 0.15rem;
+	}
+
+	/* the switch modes (art beside the text) and the buy modes (art over the name) */
+	.offers {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 0.6rem;
+		margin-bottom: 0.4rem;
+	}
+
+	.offer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		min-width: 0;
+		padding: 0.7rem 0.8rem 0.4rem;
+		border-radius: 12px;
+		background: rgba(8, 12, 8, 0.45);
+		border: 1px solid var(--modal-border);
+
+		img {
+			flex: none;
+			width: auto;
+			height: 104px;
+			max-width: 100%;
+			object-fit: contain;
+			filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.55));
+		}
+
+		p {
+			margin: 0 0 0.3rem;
+		}
+
+		&.row {
+			flex-direction: row;
+			gap: 0.9rem;
+			padding-bottom: 0.7rem;
+
+			img {
+				height: 72px;
+			}
+
+			p {
+				margin: 0;
+			}
 		}
 	}
 
@@ -401,8 +595,13 @@
 	td {
 		padding: 0.4rem 0.5rem;
 		border-bottom: 1px solid var(--modal-border);
-		text-align: right;
+		text-align: end;
 		color: rgba(242, 246, 234, 0.88);
+	}
+
+	tbody tr:last-child th,
+	tbody tr:last-child td {
+		border-bottom: 0;
 	}
 
 	thead th {
@@ -427,7 +626,7 @@
 
 	th:first-child,
 	td:first-child {
-		text-align: left;
+		text-align: start;
 	}
 
 	tbody th {
@@ -435,18 +634,13 @@
 	}
 
 	.modes {
-		margin-top: 0.75rem;
+		margin: 0.4rem 0 0.3rem;
 	}
 
-	.disclaimer {
-		padding-top: 1rem;
-		border-top: 1px solid var(--modal-border);
-
-		p {
-			font-size: 0.85rem;
-			line-height: 1.5;
-			color: rgba(242, 246, 234, 0.55);
-		}
+	.disclaimer p {
+		font-size: 0.85rem;
+		line-height: 1.5;
+		color: rgba(242, 246, 234, 0.6);
 	}
 
 	.copyright {
@@ -454,19 +648,87 @@
 	}
 
 	.version {
+		margin-top: 0.8rem;
 		text-align: center;
 		font-size: 0.7rem;
 		color: rgba(242, 246, 234, 0.35);
 	}
 
+	/* a wide screen (a desktop, a tablet, the Popout L window): two cards a row. The
+	   table, the feature and the mode sections take the full width; the UI guide
+	   stands beside General and the disclaimer */
+	@media screen and (min-width: 700px) {
+		.cards {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.wide {
+			grid-column: 1 / -1;
+		}
+
+		.tall {
+			grid-row: span 2;
+		}
+
+		.split {
+			display: grid;
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 0 1.6rem;
+		}
+
+		.offers.two {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.offers.three {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
+	/* between a phone and that: one card a row, the offers already side by side */
+	@media screen and (min-width: 560px) and (max-width: 699.98px) {
+		.offers.two {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+
+		.offers.three {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+	}
+
 	@media screen and (max-width: 500px) {
 		.panel {
 			width: 94vw;
-			padding: 1.6rem 1rem 0.8rem;
+			padding: 1.4rem 0.7rem 0.8rem;
+		}
+
+		/* the logo over the overview */
+		.about {
+			flex-direction: column;
+			gap: 0.7rem;
+			padding-right: 0;
+			text-align: center;
+		}
+
+		.logo {
+			width: min(190px, 52%);
+		}
+
+		section {
+			padding: 0.8rem 0.8rem 0.5rem;
+		}
+
+		.heading img {
+			width: 44px;
+			height: 44px;
 		}
 
 		h2 {
 			font-size: 1.2rem;
+		}
+
+		.about h2 {
+			font-size: 1.3rem;
 		}
 
 		p,
@@ -480,7 +742,22 @@
 
 		th,
 		td {
-			padding: 0.35rem 0.3rem;
+			padding: 0.35rem 0.25rem;
+		}
+
+		/* the table runs wider than the card's text (the card's padding took the room
+		   the COST header needs: it broke as "COS / T") */
+		.modes {
+			width: calc(100% + 1rem);
+			margin-inline: -0.5rem;
+		}
+
+		.offer img {
+			height: 92px;
+		}
+
+		.offer.row img {
+			height: 60px;
 		}
 	}
 
@@ -490,13 +767,43 @@
 			/* the whole visible height minus the popup's 1rem padding */
 			max-height: calc(100vh - 2rem);
 			max-height: calc(100dvh - 2rem);
-			padding-top: 1.2rem;
+			padding-top: 1rem;
 		}
 
-		/* a third of the visible height at 160px; the rules matter more here */
 		.logo {
-			width: min(120px, 30%);
-			margin-bottom: 0.6rem;
+			width: min(150px, 26%);
+		}
+
+		.offer img {
+			height: 84px;
+		}
+	}
+
+	/* inside the generic info page (GenericInfo): content only, in the page's plain voice */
+	.panel.embedded {
+		z-index: auto;
+		width: 100%;
+		max-height: none;
+		overflow: visible;
+		padding: 0;
+		background: none;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+
+		:global(h1),
+		:global(h2),
+		:global(h3) {
+			font-family: inherit;
+			font-weight: 800;
+			letter-spacing: 0.06em;
+			text-shadow: none;
+		}
+		:global(h1) {
+			font-size: 1.3rem;
+		}
+		:global(h2) {
+			font-size: 1.05rem;
 		}
 	}
 </style>

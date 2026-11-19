@@ -36,3 +36,16 @@ export {
 	ModalGameRules,
 	ModalSettings,
 };
+
+// THE GENERIC UI (src/generic): one HTML bar, bonus shop and info page for every
+// game, with no game art or theme in it. A game mounts these instead of
+// components-ui-pixi's <UI> and its own shop / paytable / rules popups.
+export { default as GenericUI } from './src/generic/GenericUI.svelte';
+export { default as GenericShop, type GenericOffer } from './src/generic/GenericShop.svelte';
+export { default as GenericInfo } from './src/generic/GenericInfo.svelte';
+export { default as GenericIcon } from './src/generic/GenericIcon.svelte';
+
+// The studio ident (ROYAL CAT GAMING assembles itself), shown over a game's own
+// loader from the first frame. The same in every game: <GlobalStyle> mounts it
+// (its `studioIntro={false}` leaves it out), so a game never mounts this itself.
+export { default as StudioIntro } from './src/studio/StudioIntro.svelte';

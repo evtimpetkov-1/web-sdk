@@ -61,10 +61,31 @@ export default {
 	},
 	// the sample's fsIntro / fsIntroNumber / fsOutroNumber spines and freeSpins / winSmall
 	// sheets were dropped on 2026-09-08: the intro/outro are msFsPopup + fsintro-digits now
+	// the bet bar's buttons: forged-iron rings with cast-gold icons, the SDK's 18 frame
+	// names at 2x the old sizes (art-review/blast-shaft/build_ui.py)
 	uiButtons0: {
 		type: 'sprites',
 		mipmap: true,
 		src: new URL('../../assets/sprites/uiButtons/ui_new_packed.json', import.meta.url).href,
+		preload: true,
+	},
+	// the bet bar's strip, a timber beam under an iron rail (BarStrip.svelte): one
+	// beam for portrait, two mirrored for the wide layouts
+	bsBar: {
+		type: 'sprite',
+		src: new URL('../../assets/bs/ui/bar.webp', import.meta.url).href,
+		preload: true,
+	},
+	bsBarWide: {
+		type: 'sprite',
+		src: new URL('../../assets/bs/ui/bar_wide.webp', import.meta.url).href,
+		preload: true,
+	},
+	// portrait's button deck: a plank wall under the strip's iron rail, behind the
+	// buttons (BarStrip.svelte; art-review/blast-shaft/build_ui.py --deck)
+	bsDeck: {
+		type: 'sprite',
+		src: new URL('../../assets/bs/ui/deck.webp', import.meta.url).href,
 		preload: true,
 	},
 	// Blast Shaft's own symbol rigs (art-review/blast-shaft/build_symbol_rigs.py): the
@@ -342,6 +363,37 @@ export default {
 		src: new URL('../../assets/bs/logo.webp', import.meta.url).href,
 		preload: true,
 	},
+	// GoldFx: one row of 128 px cells (glow, star, four nuggets) for the multiplier's
+	// comet and the nuggets a win throws at the WIN counter (build_extras.py)
+	bsGold: {
+		type: 'sprite',
+		src: new URL('../../assets/bs/fx/gold.webp', import.meta.url).href,
+		preload: true,
+	},
+	// Bats: four flight frames, bat_0.png .. bat_3.png (build_extras.py)
+	bsBat: {
+		type: 'sprites',
+		src: new URL('../../assets/bs/fx/bat.json', import.meta.url).href,
+		preload: true,
+	},
+	// the logo's light: overlay rigs laid over the logo sprites (GameLogo), a pass of
+	// light across the letters and glints (art-review/blast-shaft/build_logo_fx.py)
+	bsLogoFx: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/bsLogoFx/logo.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/bsLogoFx/logo.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	bsLogoRowFx: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/bsLogoFx/logo_row.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/bsLogoFx/logo_row.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
 	// the one-row logo (2172x724) for the portrait layout: GameLogo above the
 	// plate and the intro screen
 	msLogoRow: {
@@ -349,12 +401,27 @@ export default {
 		src: new URL('../../assets/bs/logo_one_row.webp', import.meta.url).href,
 		preload: true,
 	},
-	// the intro's "WIN UP TO 22 924 X" banner (2101x374, Overcharged Free Spins'
-	// top win; art-review/madscience/win_up_to/make_win_up_to.py)
-	msWinUpTo: {
-		type: 'sprite',
-		src: new URL('../../assets/bs/win_up_to.webp', import.meta.url).href,
+	// the intro screen's panel, chain, English lettering and symbols: frames bs_i_*.png
+	// (set 3, Evtim's into_2 pieces, 2026-11-19), packed by
+	// art-review/blast-shaft/build_intro_v3.py (LoadingScreen.svelte)
+	bsIntro: {
+		type: 'sprites',
+		src: new URL('../../assets/bs/intro/intro.json', import.meta.url).href,
 		preload: true,
+		mipmap: true,
+	},
+	// the intro's mine timbers: one for wide screens, one for the two-column layouts
+	bsIntroBgWide: {
+		type: 'sprite',
+		src: new URL('../../assets/bs/intro/bg_wide.webp', import.meta.url).href,
+		preload: true,
+		mipmap: true,
+	},
+	bsIntroBgTall: {
+		type: 'sprite',
+		src: new URL('../../assets/bs/intro/bg_tall.webp', import.meta.url).href,
+		preload: true,
+		mipmap: true,
 	},
 	msMultPlate: {
 		type: 'sprite',

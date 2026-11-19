@@ -1,0 +1,115 @@
+{
+	"frames": {
+		"plate.png": {
+			"frame": {
+				"x": 6,
+				"y": 6,
+				"w": 450,
+				"h": 579
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 450,
+				"h": 579
+			},
+			"sourceSize": {
+				"w": 450,
+				"h": 579
+			}
+		},
+		"caption.png": {
+			"frame": {
+				"x": 462,
+				"y": 6,
+				"w": 419,
+				"h": 128
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 419,
+				"h": 128
+			},
+			"sourceSize": {
+				"w": 419,
+				"h": 128
+			}
+		},
+		"plank.png": {
+			"frame": {
+				"x": 6,
+				"y": 591,
+				"w": 921,
+				"h": 262
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 921,
+				"h": 262
+			},
+			"sourceSize": {
+				"w": 921,
+				"h": 262
+			}
+		},
+		"win_up_to.png": {
+			"frame": {
+				"x": 6,
+				"y": 859,
+				"w": 1400,
+				"h": 255
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 1400,
+				"h": 255
+			},
+			"sourceSize": {
+				"w": 1400,
+				"h": 255
+			}
+		},
+		"prompt.png": {
+			"frame": {
+				"x": 6,
+				"y": 1120,
+				"w": 910,
+				"h": 172
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 910,
+				"h": 172
+			},
+			"sourceSize": {
+				"w": 910,
+				"h": 172
+			}
+		}
+	},
+	"meta": {
+		"app": "dynamite-gulch rework/build_ink_intro.py",
+		"version": "1.0",
+		"image": "intro.webp",
+		"format": "RGBA8888",
+		"size": {
+			"w": 1412,
+			"h": 1298
+		},
+		"scale": "1"
+	}
+}

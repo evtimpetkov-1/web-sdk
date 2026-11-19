@@ -779,6 +779,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 				forcePlay: true,
 				rate: 0.92 + 0.2 * Math.random(),
 			});
+			eventEmitter.broadcast({ type: 'sceneShake', preset: 'cloneStrike' });
 			stateGame.cloneFx[getCellKey(to)] = {
 				kind: 'splat',
 				onSwap: () => {
@@ -790,6 +791,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		};
 		const flights = async () => {
 			await waitForTimeout(CAST_RELEASE_MS / timeScale);
+			// the cloner fires: the board recoils on the frame its copies leave
+			eventEmitter.broadcast({ type: 'sceneShake', preset: 'cloneCast' });
 			await eventEmitter.broadcastAsync({
 				type: 'clonesFly',
 				from: bookEvent.cloner,
@@ -810,6 +813,8 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const cloners = [bookEvent.cloner, ...bookEvent.cloned];
 		const landings: Promise<void>[] = [];
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_cloner_flood' });
+		// one quake for all of them, on the frame the first cell bursts into the symbol
+		let burst = false;
 		await Promise.all(
 			cloners.map((position) =>
 				waitForResolve((resolve) => {
@@ -818,6 +823,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 					stateGame.cloneFx[getCellKey(position)] = {
 						kind: 'flood',
 						onSwap: () => {
+							if (!burst) {
+								burst = true;
+								eventEmitter.broadcast({ type: 'sceneShake', preset: 'clonerBurst' });
+							}
 							reelSymbol.rawSymbol = { name: bookEvent.symbol };
 							landings.push(waitForResolve((landed) => (reelSymbol.oncomplete = landed)));
 							reelSymbol.symbolState = 'land'; // completes to 'static' (ReelSymbol)
@@ -832,14 +841,13 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	setWin: async (bookEvent: BookEventOfType<'setWin'>) => {
 		const winLevelData = winLevelMap[bookEvent.winLevel as WinLevel];
-		// the win box is for big wins only: the WIN counter over the reels already
-		// holds every other win, so those take just their stinger (Evtim, 2026-11-04)
-		if (winLevelData?.type !== 'big') {
-			if (winLevelData?.sound?.sfx) {
-				eventEmitter.broadcast({ type: 'soundOnce', name: winLevelData.sound.sfx });
-			}
-			return;
-		}
+		// The win box is for big wins only: the WIN counter over the reels already
+		// holds every other win (Evtim, 2026-11-04). Those end in SILENCE: the small /
+		// medium win jingle that used to play here, after the last cascade while the
+		// game settles for the next spin, is gone (Evtim, 2026-11-18: "very very
+		// annoying sounds which are played after the round finished ... I want these
+		// sounds removed from all games"). The wins were already heard as they paid.
+		if (winLevelData?.type !== 'big') return;
 
 		eventEmitter.broadcast({ type: 'winShow' });
 		winLevelSoundsPlay({ winLevelData });

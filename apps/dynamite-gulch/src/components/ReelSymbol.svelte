@@ -4,7 +4,7 @@
 	import WinCharge from './WinCharge.svelte';
 	import CloneFx from './CloneFx.svelte';
 	import { getCellKey, getSymbolInfo, getSymbolX, getSymbolZIndex } from '../game/utils';
-	import { BOARD_DIMENSIONS, WIN_CHARGE_EXCLUDED } from '../game/constants';
+	import { BOARD_DIMENSIONS, REST_IDLE, WIN_CHARGE_EXCLUDED } from '../game/constants';
 	import { getContext } from '../game/context';
 	import type { ReelSymbol } from '../game/stateGame.svelte';
 	import type { SymbolState } from '../game/types';
@@ -41,6 +41,8 @@
 	const hasPending = $derived(
 		getSymbolInfo({ rawSymbol: props.reelSymbol.rawSymbol, state: 'pending' }).type === 'spine',
 	);
+	// the characters keep their idle loop between rounds too (REST_IDLE)
+	const restIdle = $derived(REST_IDLE.includes(props.reelSymbol.rawSymbol.name));
 	$effect(() => {
 		if (props.reelSymbol.symbolState !== 'static') context.stateGame.idleHold[cellKey] = false;
 		else if (hasIdle && context.stateGame.roundActive) context.stateGame.idleHold[cellKey] = true;
@@ -65,7 +67,7 @@
 		if (hasPending && symbolState === 'static' && context.stateGame.scatterPending) return 'pending';
 		return hasIdle &&
 			symbolState === 'static' &&
-			(context.stateGame.roundActive || context.stateGame.idleHold[cellKey])
+			(context.stateGame.roundActive || context.stateGame.idleHold[cellKey] || restIdle)
 			? 'idle'
 			: symbolState;
 	});
@@ -81,7 +83,7 @@
 	// starting on the same frame. The win state ends with the prewin alone: the
 	// charge is never waited for — it drops into its residual hold and keeps
 	// playing through postWinStatic until the board tumbles, cut by the board hide.
-	// (The wild has no rig, but the cluster waits for the longest prewin anyway.)
+	// (The cluster waits for the longest prewin.)
 	// Scatters and multipliers keep their own presentation.
 	const fxEligible = $derived(!WIN_CHARGE_EXCLUDED.includes(props.reelSymbol.rawSymbol.name));
 	let chargeDone = $state(false);
@@ -105,12 +107,20 @@
 {#if !isPadding}
 	<!--
 		The FX lives in its OWN wraps, not inside the symbol's: every wrap is a sibling
-		in the board layer's container, so zIndex -1 puts ALL halos under ALL winning
-		symbols and zIndex 1 puts ALL arcs over them, whatever order the cells entered
+		in the board layer's container, so one zIndex puts ALL outlines under ALL winning
+		symbols and zIndex 1 puts ALL sparkles over them, whatever order the cells entered
 		their win state (the same reason Kraken's win frame is hoisted).
 	-->
+	<!--
+		The under layer is a gold outline that stands out round the tile, so it has to
+		lie OVER every loser and under every winner. Losers that run a rig (the four
+		characters' rest idle, an armed dynamite) share this layer with the winners:
+		at -1 the outline was hidden wherever a winner's neighbour was one of them and
+		showed only next to letters, as loose yellow lines (Evtim, 2026-11-17). So the
+		outline sits at 0.5 and a winner is lifted to 0.6 while its charge plays.
+	-->
 	{#if fxPhase}
-		<SymbolWrap {x} {y} animating={true} zIndex={-1}>
+		<SymbolWrap {x} {y} animating={true} zIndex={0.5}>
 			<WinCharge layer="under" phase={fxPhase} />
 		</SymbolWrap>
 	{/if}
@@ -129,7 +139,7 @@
 	<SymbolWrap
 		{x}
 		{y}
-		{zIndex}
+		zIndex={fxPhase ? zIndex + 0.6 : zIndex}
 		animating={displayState !== 'land' &&
 			(symbolInfo.type === 'spine' || fxPhase !== undefined || cloneFx !== undefined)}
 	>

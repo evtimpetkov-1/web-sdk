@@ -144,11 +144,17 @@
 	const shownValues = $derived(
 		symbols.map((symbol) => symbol.tiers.map((tier) => formatWin(tier.value)).join()).join(),
 	);
+
+	/**
+	 * `embedded`: only the content, with no popup or panel round it, for the generic
+	 * UI's one info page (GenericInfo: the paytable first, the rules under it).
+	 */
+	type Props = { embedded?: boolean };
+	const props: Props = $props();
 </script>
 
-{#if stateModal.modal?.name === 'payTable'}
-	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
-		<div class="panel">
+{#snippet body()}
+		<div class="panel" class:embedded={props.embedded}>
 			<h1 class="title">{i18nDerived.ptTitle()}</h1>
 			<p class="intro">{fill(i18nDerived.ptIntro(), i18nDerived.betWord())}</p>
 
@@ -157,7 +163,9 @@
 				<div class="specials">
 					{#each specials as special}
 						<div class="special">
-							<img src={special.img} alt={special.name} />
+							<!-- the Scatter's picture is wider than its tile (the sack spills over it):
+							     grown so its tile matches the other symbols' -->
+							<img class:spill={special.img === IMG.bonus} src={special.img} alt={special.name} />
 							<div>
 								<span class="name">{special.name}</span>
 								<p>{special.text}</p>
@@ -182,7 +190,7 @@
 				</div>
 			</section>
 
-			<section>
+			<section class="payouts">
 				<h2>{i18nDerived.ptSymbolPayouts()}</h2>
 				<div class="symbols" use:fitColumns={shownValues}>
 					{#each symbols as symbol}
@@ -199,8 +207,17 @@
 				</div>
 			</section>
 
-			<div class="version">v{GAME_VERSION}</div>
+			{#if !props.embedded}
+				<div class="version">v{GAME_VERSION}</div>
+			{/if}
 		</div>
+{/snippet}
+
+{#if props.embedded}
+	{@render body()}
+{:else if stateModal.modal?.name === 'payTable'}
+	<Popup zIndex={zIndex.modal} closeAnchor="content" onclose={() => (stateModal.modal = null)}>
+		{@render body()}
 	</Popup>
 {/if}
 
@@ -281,6 +298,10 @@
 			width: 84px;
 			height: 84px;
 			object-fit: contain;
+		}
+
+		img.spill {
+			transform: scale(1.125); /* 361 / 321: the canvas over the cell (constants.ts ART.bonus) */
 		}
 
 		.name {
@@ -437,6 +458,46 @@
 		.special img {
 			width: 60px;
 			height: 60px;
+		}
+	}
+
+	/* inside the generic info page (GenericInfo): content only, in the page's plain voice */
+	.panel.embedded {
+		/* the payouts first, the special symbols under them (order, below) */
+		display: flex;
+		flex-direction: column;
+		z-index: auto;
+		width: 100%;
+		max-height: none;
+		overflow: visible;
+		padding: 0;
+		background: none;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+
+		:global(h1),
+		:global(h2),
+		:global(h3) {
+			font-family: inherit;
+			font-weight: 800;
+			letter-spacing: 0.06em;
+			text-shadow: none;
+		}
+		:global(h1) {
+			font-size: 1.3rem;
+		}
+		:global(h2) {
+			font-size: 1.05rem;
+		}
+		.title {
+			order: -3;
+		}
+		.intro {
+			order: -2;
+		}
+		.payouts {
+			order: -1;
 		}
 	}
 </style>

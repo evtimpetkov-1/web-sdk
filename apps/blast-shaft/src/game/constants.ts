@@ -7,6 +7,18 @@ import type { RawSymbol, SymbolState } from './types';
 // the resubmission after the 2026-10-29 review.
 export const GAME_VERSION = '1.0.0';
 
+/**
+ * Which UI the game wears (Evtim, 2026-11-18: "ditch this customized UI and use one
+ * generic for all games").
+ * - 'generic': the shared HTML bar, bonus shop and single info page of
+ *   components-ui-html (src/generic). No game art, fonts or colours in it; a change
+ *   there changes every game that uses it.
+ * - 'themed': this game's own painted bar as it was reviewed (BarStrip, the Pixi
+ *   UI with the bs/ui button sheet, BuySlot, BuyShop / BuyConfirm, separate
+ *   paytable and rules popups). Everything it needs is still in the app.
+ */
+export const UI_KIND: 'generic' | 'themed' = 'generic';
+
 // Cell height (row pitch). Also the unit every size ratio is expressed in.
 export const SYMBOL_SIZE = 100;
 
@@ -201,6 +213,7 @@ type RigAnimation =
 	| 'land'
 	| 'prewin'
 	| 'idle'
+	| 'glint'
 	| 'pending'
 	| 'explode'
 	| 'explode_wild'
@@ -228,13 +241,21 @@ const rigged = (
 	{
 		scale = 1,
 		idle = false,
+		glint = false,
 		pending = false,
 		explode = false,
 		transform = false,
-	}: { scale?: number; idle?: boolean; pending?: boolean; explode?: boolean; transform?: boolean } = {},
+	}: {
+		scale?: number;
+		idle?: boolean;
+		glint?: boolean;
+		pending?: boolean;
+		explode?: boolean;
+		transform?: boolean;
+	} = {},
 ) => {
 	const still = sprite(staticKey, art, scale);
-	// the game's own rigs (spines/bsSymbols, build_symbol_rigs.py). SYMBOL_RIGS off
+	// the game's own rigs (spines/bsSymbols, build_symbol_rigs3.py: layered highs + Wild). SYMBOL_RIGS off
 	// draws the static tile in every state (it completes at once), for debugging.
 	const anim = (name: RigAnimation) => (SYMBOL_RIGS ? spine(animKey, name, art, scale) : still);
 	return {
@@ -245,6 +266,8 @@ const rigged = (
 		spin: still,
 		land: anim('land'),
 		idle: idle ? anim('idle') : still,
+		// one pass of idle life on a resting board (SymbolGlints picks the cells)
+		glint: glint ? anim('glint') : still,
 		pending: pending ? anim('pending') : still,
 		explode: explode ? anim('explode') : still,
 		explodeWild: explode ? anim('explode_wild') : still,
@@ -262,6 +285,7 @@ const allStates = <T>(info: T) => ({
 	spin: info,
 	land: info,
 	idle: info,
+	glint: info,
 	pending: info,
 	explode: info,
 	explodeWild: info,
@@ -273,17 +297,17 @@ const allStates = <T>(info: T) => ({
 
 export const SYMBOL_INFO_MAP = {
 	// math codes: H1-H4 = the four lab symbols, L1-L5 = the royals A K Q J 10
-	H1: rigged('h1.png', 'msH1Anim', ART.h1),
-	H2: rigged('h2.png', 'msH2Anim', ART.h2),
-	H3: rigged('h3.png', 'msH3Anim', ART.h3),
-	H4: rigged('h4.png', 'msH4Anim', ART.h4),
-	L1: rigged('A.png', 'msAAnim', ART.plate),
-	L2: rigged('K.png', 'msKAnim', ART.plate),
-	L3: rigged('Q.png', 'msQAnim', ART.plate),
-	L4: rigged('J.png', 'msJAnim', ART.plate),
-	L5: rigged('ten.png', 'msTenAnim', ART.plate),
+	H1: rigged('h1.png', 'msH1Anim', ART.h1, { glint: true }),
+	H2: rigged('h2.png', 'msH2Anim', ART.h2, { glint: true }),
+	H3: rigged('h3.png', 'msH3Anim', ART.h3, { glint: true }),
+	H4: rigged('h4.png', 'msH4Anim', ART.h4, { glint: true }),
+	L1: rigged('A.png', 'msAAnim', ART.plate, { glint: true }),
+	L2: rigged('K.png', 'msKAnim', ART.plate, { glint: true }),
+	L3: rigged('Q.png', 'msQAnim', ART.plate, { glint: true }),
+	L4: rigged('J.png', 'msJAnim', ART.plate, { glint: true }),
+	L5: rigged('ten.png', 'msTenAnim', ART.plate, { glint: true }),
 	// the Wild lands and wins like the others; the bomb's explode_wild ends on it
-	W: rigged('wild.png', 'msWildAnim', ART.wild),
+	W: rigged('wild.png', 'msWildAnim', ART.wild, { glint: true }),
 	// Cloner: cast = the sign flares and its ghosts peel off towards the cells
 	// they turn into cloners, in = a fresh clone's sign grows in, out = the sign
 	// drains away (plate intact) before the flood swaps in the paying symbol.

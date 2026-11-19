@@ -181,8 +181,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Tự động chơi: tự động quay một số lần đã đặt.',
 	'Turbo: Speed up animations.': 'Turbo: tăng tốc hoạt ảnh.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'Mua tính năng (nút giỏ hàng): mở menu tính năng với ba chế độ Quay Lại Tiền và các công tắc Chế độ Đấu súng và Tăng cường Thưởng.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'Mua tính năng (biểu tượng Scatter): mở menu tính năng với ba chế độ Quay Lại Tiền và các công tắc Chế độ Đấu súng và Tăng cường Thưởng.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: tăng hoặc giảm mức cược.',
 	'Menu (☰): Open the menu.': 'Menu (☰): mở menu.',
 	'Paytable: View the symbol payout values.':

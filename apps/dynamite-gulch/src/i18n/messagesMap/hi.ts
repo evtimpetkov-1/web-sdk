@@ -180,8 +180,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'ऑटोप्ले: तय संख्या में अपने आप स्पिन करता है।',
 	'Turbo: Speed up animations.': 'टर्बो: एनिमेशन तेज़ करता है।',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'फीचर खरीदें (कार्ट बटन): फीचर मेनू खोलता है, जिसमें तीन कैश रीस्पिन मोड और शोडाउन मोड व बोनस बूस्ट के स्विच हैं।',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'फीचर खरीदें (Scatter प्रतीक): फीचर मेनू खोलता है, जिसमें तीन कैश रीस्पिन मोड और शोडाउन मोड व बोनस बूस्ट के स्विच हैं।',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: दांव राशि बढ़ाता या घटाता है।',
 	'Menu (☰): Open the menu.': 'मेनू (☰): मेनू खोलता है।',
 	'Paytable: View the symbol payout values.': 'पे टेबल: प्रतीकों के भुगतान मान देखें।',

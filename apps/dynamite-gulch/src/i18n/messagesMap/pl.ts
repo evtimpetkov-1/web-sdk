@@ -180,8 +180,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Autogra: automatycznie wykonuje ustaloną liczbę spinów.',
 	'Turbo: Speed up animations.': 'Turbo: przyspiesza animacje.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'Zakup funkcji (przycisk z wózkiem): otwiera menu funkcji z trzema trybami Respinów Cash oraz przełącznikami Trybu Pojedynku i Wzmocnienia Bonusu.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'Zakup funkcji (symbol Scatter): otwiera menu funkcji z trzema trybami Respinów Cash oraz przełącznikami Trybu Pojedynku i Wzmocnienia Bonusu.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: zwiększa lub zmniejsza kwotę zakładu.',
 	'Menu (☰): Open the menu.': 'Menu (☰): otwiera menu.',
 	'Paytable: View the symbol payout values.': 'Tabela wypłat: pokazuje wartości wypłat symboli.',

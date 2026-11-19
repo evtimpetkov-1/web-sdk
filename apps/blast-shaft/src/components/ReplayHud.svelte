@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Container, Rectangle } from 'pixi-svelte';
+	import BarStrip from './BarStrip.svelte';
+	import { Container } from 'pixi-svelte';
 	import { ResponsiveText } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
 	import { stateUiTheme } from 'components-ui-pixi';
@@ -80,17 +81,10 @@
 	const betValue = $derived(numberToCurrencyString(replayTotalCost()));
 </script>
 
+<!-- the same painted strip as the live bar -->
+<BarStrip />
+
 <MainContainer standard alignVertical="bottom">
-	<Rectangle
-		x={cx}
-		y={barTop}
-		anchor={{ x: 0.5, y: 0 }}
-		width={w + 20}
-		height={barHeight}
-		backgroundColor={stateUiTheme.barFill}
-		backgroundAlpha={stateUiTheme.barAlpha}
-		borderRadius={14}
-	/>
 
 	<!-- standing REPLAY marker, in the slot the balance readout normally holds,
 	     so it stays obvious throughout that this is a replay, not a live round -->

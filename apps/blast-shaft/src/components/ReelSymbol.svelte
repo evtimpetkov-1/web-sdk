@@ -45,6 +45,15 @@
 		if (props.reelSymbol.symbolState !== 'static') context.stateGame.idleHold[cellKey] = false;
 		else if (hasIdle && context.stateGame.roundActive) context.stateGame.idleHold[cellKey] = true;
 	});
+	// a glint (SymbolGlints) belongs to a resting board only: a spin or a round drops it
+	$effect(() => {
+		if (
+			context.stateGame.glints[cellKey] &&
+			(props.reelSymbol.symbolState !== 'static' || context.stateGame.roundActive)
+		) {
+			context.stateGame.glints[cellKey] = 0;
+		}
+	});
 
 	/**
 	 * The padding cells above and below the window are not part of the board the
@@ -63,6 +72,9 @@
 	const displayState = $derived.by<SymbolState>(() => {
 		const { symbolState } = props.reelSymbol;
 		if (hasPending && symbolState === 'static' && context.stateGame.scatterPending) return 'pending';
+		if (symbolState === 'static' && !context.stateGame.roundActive && context.stateGame.glints[cellKey]) {
+			return 'glint';
+		}
 		return hasIdle &&
 			symbolState === 'static' &&
 			(context.stateGame.roundActive || context.stateGame.idleHold[cellKey])
@@ -139,6 +151,8 @@
 			rawSymbol={props.reelSymbol.rawSymbol}
 			oncomplete={() => {
 				const { symbolState } = props.reelSymbol;
+				// the glint's one pass is over: back to the static tile (its rest pose)
+				if (displayState === 'glint') context.stateGame.glints[cellKey] = 0;
 				// a loop boundary: the round is over, let the idle rig go static here
 				if (displayState === 'idle' && !context.stateGame.roundActive) {
 					context.stateGame.idleHold[cellKey] = false;

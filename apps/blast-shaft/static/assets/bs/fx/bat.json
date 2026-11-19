@@ -1,0 +1,95 @@
+{
+	"frames": {
+		"bat_0.png": {
+			"frame": {
+				"x": 4,
+				"y": 4,
+				"w": 288,
+				"h": 288
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 288,
+				"h": 288
+			},
+			"sourceSize": {
+				"w": 288,
+				"h": 288
+			}
+		},
+		"bat_1.png": {
+			"frame": {
+				"x": 296,
+				"y": 4,
+				"w": 288,
+				"h": 288
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 288,
+				"h": 288
+			},
+			"sourceSize": {
+				"w": 288,
+				"h": 288
+			}
+		},
+		"bat_2.png": {
+			"frame": {
+				"x": 588,
+				"y": 4,
+				"w": 288,
+				"h": 288
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 288,
+				"h": 288
+			},
+			"sourceSize": {
+				"w": 288,
+				"h": 288
+			}
+		},
+		"bat_3.png": {
+			"frame": {
+				"x": 880,
+				"y": 4,
+				"w": 288,
+				"h": 288
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 288,
+				"h": 288
+			},
+			"sourceSize": {
+				"w": 288,
+				"h": 288
+			}
+		}
+	},
+	"meta": {
+		"app": "blast-shaft build_ui.py",
+		"version": "1.0",
+		"image": "bat.webp",
+		"format": "RGBA8888",
+		"size": {
+			"w": 1172,
+			"h": 296
+		},
+		"scale": "1"
+	}
+}

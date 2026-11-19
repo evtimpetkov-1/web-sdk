@@ -96,9 +96,10 @@
 	/**
 	 * 2026-08-28 stepper redesign: the -/+ render as code-drawn chips (navy
 	 * fill, gold rim and glyph — the buy-shop stepper's voice) instead of the
-	 * grey minus.png/plus.png sprites. Set true to revert to the sprites.
+	 * grey minus.png/plus.png sprites. A game whose sheet has painted minus.png /
+	 * plus.png buttons opts back into the sprites with stateUiTheme.stepperSprites.
 	 */
-	const CLASSIC_STEPPER_SPRITES = false;
+	const CLASSIC_STEPPER_SPRITES = $derived(stateUiTheme.stepperSprites);
 
 	// BET label + amount press → bet menu (same behavior as LabelBet)
 	const betMenuDisabled = $derived(!context.stateXstateDerived.isIdle());
@@ -212,10 +213,11 @@
 		</Container>
 	{/snippet}
 
-	<Container x={w * 0.67 - STEPPER_OFFSET} y={rowY - 26}>
+	<Container x={w * 0.67 - stateUiTheme.stepperOffset} y={rowY + stateUiTheme.stepperY}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}
+			boxHit={stateUiTheme.spriteScale !== 1}
 			disabled={decDisabled}
 			onpress={onDecrease}
 		>
@@ -225,9 +227,9 @@
 						{...center}
 						key="minus.png"
 						anchor={0.5}
-						width={50}
-						height={50}
-						alpha={decDisabled ? 0.3 : hovered ? 1 : 0.7}
+						width={(hovered && !decDisabled ? 56 : 52) * stateUiTheme.spriteScale}
+						height={(hovered && !decDisabled ? 56 : 52) * stateUiTheme.spriteScale}
+						alpha={decDisabled ? 0.35 : 1}
 					/>
 				{:else}
 					<Container {...center}>
@@ -238,10 +240,11 @@
 		</Button>
 	</Container>
 
-	<Container x={w * 0.67 + STEPPER_OFFSET} y={rowY - 26}>
+	<Container x={w * 0.67 + stateUiTheme.stepperOffset} y={rowY + stateUiTheme.stepperY}>
 		<Button
 			anchor={0.5}
 			sizes={{ width: 50, height: 50 }}
+			boxHit={stateUiTheme.spriteScale !== 1}
 			disabled={incDisabled}
 			onpress={onIncrease}
 		>
@@ -251,9 +254,9 @@
 						{...center}
 						key="plus.png"
 						anchor={0.5}
-						width={50}
-						height={50}
-						alpha={incDisabled ? 0.3 : hovered ? 1 : 0.7}
+						width={(hovered && !incDisabled ? 56 : 52) * stateUiTheme.spriteScale}
+						height={(hovered && !incDisabled ? 56 : 52) * stateUiTheme.spriteScale}
+						alpha={incDisabled ? 0.35 : 1}
 					/>
 				{:else}
 					<Container {...center}>

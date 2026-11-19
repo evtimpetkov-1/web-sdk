@@ -1,0 +1,235 @@
+{
+	"frames": {
+		"bs_i_dp.png": {
+			"frame": {
+				"x": 6,
+				"y": 6,
+				"w": 875,
+				"h": 687
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 875,
+				"h": 687
+			},
+			"sourceSize": {
+				"w": 875,
+				"h": 687
+			}
+		},
+		"bs_i_sp.png": {
+			"frame": {
+				"x": 887,
+				"y": 6,
+				"w": 425,
+				"h": 449
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 425,
+				"h": 449
+			},
+			"sourceSize": {
+				"w": 425,
+				"h": 449
+			}
+		},
+		"bs_i_lp.png": {
+			"frame": {
+				"x": 6,
+				"y": 699,
+				"w": 824,
+				"h": 200
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 824,
+				"h": 200
+			},
+			"sourceSize": {
+				"w": 824,
+				"h": 200
+			}
+		},
+		"bs_i_cap.png": {
+			"frame": {
+				"x": 836,
+				"y": 699,
+				"w": 822,
+				"h": 141
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 822,
+				"h": 141
+			},
+			"sourceSize": {
+				"w": 822,
+				"h": 141
+			}
+		},
+		"bs_i_cp.png": {
+			"frame": {
+				"x": 6,
+				"y": 905,
+				"w": 403,
+				"h": 75
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 403,
+				"h": 75
+			},
+			"sourceSize": {
+				"w": 403,
+				"h": 75
+			}
+		},
+		"bs_i_t_wut.png": {
+			"frame": {
+				"x": 415,
+				"y": 905,
+				"w": 769,
+				"h": 103
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 769,
+				"h": 103
+			},
+			"sourceSize": {
+				"w": 769,
+				"h": 103
+			}
+		},
+		"bs_i_t_patc.png": {
+			"frame": {
+				"x": 6,
+				"y": 1014,
+				"w": 802,
+				"h": 77
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 802,
+				"h": 77
+			},
+			"sourceSize": {
+				"w": 802,
+				"h": 77
+			}
+		},
+		"bs_i_t_wa.png": {
+			"frame": {
+				"x": 814,
+				"y": 1014,
+				"w": 346,
+				"h": 58
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 346,
+				"h": 58
+			},
+			"sourceSize": {
+				"w": 346,
+				"h": 58
+			}
+		},
+		"bs_i_t_m.png": {
+			"frame": {
+				"x": 1166,
+				"y": 1014,
+				"w": 311,
+				"h": 54
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 311,
+				"h": 54
+			},
+			"sourceSize": {
+				"w": 311,
+				"h": 54
+			}
+		},
+		"bs_i_t_bc.png": {
+			"frame": {
+				"x": 6,
+				"y": 1097,
+				"w": 353,
+				"h": 57
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 353,
+				"h": 57
+			},
+			"sourceSize": {
+				"w": 353,
+				"h": 57
+			}
+		},
+		"bs_i_t_fs.png": {
+			"frame": {
+				"x": 365,
+				"y": 1097,
+				"w": 280,
+				"h": 55
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 280,
+				"h": 55
+			},
+			"sourceSize": {
+				"w": 280,
+				"h": 55
+			}
+		}
+	},
+	"meta": {
+		"app": "blast-shaft build_ui.py",
+		"version": "1.0",
+		"image": "intro.webp",
+		"format": "RGBA8888",
+		"size": {
+			"w": 1664,
+			"h": 1160
+		},
+		"scale": "1"
+	}
+}

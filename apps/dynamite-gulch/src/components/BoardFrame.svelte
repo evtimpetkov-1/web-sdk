@@ -9,6 +9,7 @@
 	import { FadeContainer } from 'components-pixi';
 
 	import { getContext } from '../game/context';
+	import FrameLife from './FrameLife.svelte';
 
 	const context = getContext();
 	// the free-spins frame is the same cut with blood on the pipes; cross-faded on gameType
@@ -88,3 +89,8 @@
 		</FadeContainer>
 	{/each}
 </Container>
+
+<!-- the frame's life, over the timber: lanterns on hooks that swing in the wind and
+     with every quake, dust off the top beam, glints on the iron, the light that runs
+     round the frame (FrameLife) -->
+<FrameLife />

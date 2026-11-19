@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Container, Rectangle } from 'pixi-svelte';
+	import { Container } from 'pixi-svelte';
 	import { ResponsiveText } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
 	import { stateUiTheme } from 'components-ui-pixi';
@@ -9,6 +9,7 @@
 	import { getContext } from '../game/context';
 	import { replayTotalCost } from '../game/replayRound';
 	import { i18nDerived } from '../i18n/i18nDerived';
+	import BarStrip from './BarStrip.svelte';
 
 	/**
 	 * The readouts that stay on screen WHILE a replay plays back.
@@ -29,17 +30,11 @@
 
 	const w = $derived(context.stateLayoutDerived.mainLayoutStandard().width);
 	const h = $derived(context.stateLayoutDerived.mainLayoutStandard().height);
-	const cx = $derived(w * 0.5);
 	const isDesktop = $derived(context.stateLayoutDerived.layoutType() === 'desktop');
 
-	/**
-	 * Copied from the real bars so the plate lands exactly where the player is
-	 * used to it: desktop runs a shorter bar and smaller type, every other
-	 * layout shares the taller one (see LayoutDesktop vs Portrait / Landscape /
-	 * Tablet in components-ui-pixi).
-	 */
-	const barHeight = $derived(isDesktop ? 115 : 140);
-	const barTop = $derived(isDesktop ? h - 115 : h - 130);
+	// the readouts' row, as the real bars place it: desktop runs a shorter bar and
+	// smaller type, every other layout shares the taller one (LayoutDesktop vs
+	// Portrait / Landscape / Tablet in components-ui-pixi). The plate is BarStrip.
 	const rowY = $derived(isDesktop ? h - 58 : h - 65);
 
 	const labelStyle = $derived({
@@ -80,17 +75,10 @@
 	const betValue = $derived(numberToCurrencyString(replayTotalCost()));
 </script>
 
+<!-- the same steel strip as the live bar; it stays up with the readouts -->
+<BarStrip always />
+
 <MainContainer standard alignVertical="bottom">
-	<Rectangle
-		x={cx}
-		y={barTop}
-		anchor={{ x: 0.5, y: 0 }}
-		width={w + 20}
-		height={barHeight}
-		backgroundColor={stateUiTheme.barFill}
-		backgroundAlpha={stateUiTheme.barAlpha}
-		borderRadius={14}
-	/>
 
 	<!-- standing REPLAY marker, in the slot the balance readout normally holds,
 	     so it stays obvious throughout that this is a replay, not a live round -->

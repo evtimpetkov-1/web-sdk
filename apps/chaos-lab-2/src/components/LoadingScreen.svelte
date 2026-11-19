@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { Tween } from 'svelte/motion';
+	import { sineInOut } from 'svelte/easing';
 
-	import { BitmapText, Container, Rectangle, Sprite, Text } from 'pixi-svelte';
+	import { BitmapText, Container, Graphics, Sprite, Text } from 'pixi-svelte';
 	import { FadeContainer, ResponsiveText } from 'components-pixi';
 	import { CanvasSizeRectangle, MainContainer } from 'components-layout';
 	import { stateUrlDerived } from 'state-shared';
@@ -21,9 +23,13 @@
 	};
 
 	/**
-	 * The intro, shown once the HTML boot loader (LoaderGame) is gone: the logo,
-	 * four panels that explain the game at a glance, and the prompt — one screen
-	 * on every layout (a row of four on wide screens, 2x2 on tablet and portrait).
+	 * The intro, shown once the HTML boot loader (LoaderGame) is gone: the logo
+	 * on top, four panels that explain the game at a glance, the WIN UP TO art and
+	 * the prompt — one screen on every layout (a row of four on wide screens, 2x2
+	 * on tablet and portrait). Reworked 2026-11-16 on Evtim's art and preview
+	 * (art-review/chaoslab2/intro: steel-framed panel plates, a green paint swash
+	 * under each title, an arched WIN UP TO, a prompt plate); the preview's mascot
+	 * is left out at his word and the logo sits centred on top.
 	 * A press fades it out over the closed curtains (Game.svelte startGame), which
 	 * then open on the game. Sits above the curtains' layer.
 	 *
@@ -97,35 +103,36 @@
 
 	// ---- layout, per layout type, in main-layout units ----
 	// Phones (portrait, landscape) draw a main-layout unit at ~0.43-0.49 px, so
-	// their copy is sized up to stay ~12-13 px on screen; desktop is ~1:1.
-	// Bands are fractions of the main height: logo centre + height, the panel
-	// block between top and bottom, the WIN UP TO banner (winH tall) centred
-	// between the block and the prompt (PressToContinue).
+	// their copy is sized up to stay readable; desktop is ~1:1.
+	// Fractions of the main height unless said: the logo's centre and height, the
+	// panel block's band (top..bottom), the WIN UP TO art's height (it sits centred
+	// between the block and the prompt plate), the prompt plate's width (of the main
+	// width) and its margin from the bottom (units).
+	// plate: 'tall' = the panel art stretched between its corners (four in a row),
+	// 'wide' = the art as painted (2x2).
 	const LAYOUTS = {
-		desktop: { cols: 4, maxW: 300, title: 36, text: 19, logoY: 0.14, logoH: 0.22, top: 0.28, bottom: 0.76, winH: 0.1 },
-		landscape: { cols: 4, maxW: 350, title: 44, text: 27, logoY: 0.11, logoH: 0.18, top: 0.225, bottom: 0.755, winH: 0.12 },
-		tablet: { cols: 2, maxW: 380, title: 38, text: 21, logoY: 0.1, logoH: 0.14, top: 0.19, bottom: 0.81, winH: 0.08 },
-		portrait: { cols: 2, maxW: 370, title: 44, text: 27, logoY: 0.085, logoH: 0.12, top: 0.165, bottom: 0.825, winH: 0.08 },
-	};
+		desktop: { cols: 4, plate: 'tall', maxW: 300, text: 21, logoY: 0.105, logoH: 0.155, top: 0.215, bottom: 0.715, winH: 0.12, promptW: 0.31, promptMargin: 26 },
+		landscape: { cols: 4, plate: 'tall', maxW: 362, text: 27, logoY: 0.1, logoH: 0.135, top: 0.19, bottom: 0.72, winH: 0.115, promptW: 0.31, promptMargin: 22 },
+		tablet: { cols: 2, plate: 'wide', maxW: 300, text: 21, logoY: 0.075, logoH: 0.1, top: 0.15, bottom: 0.8, winH: 0.085, promptW: 0.44, promptMargin: 20 },
+		portrait: { cols: 2, plate: 'wide', maxW: 352, text: 27, logoY: 0.095, logoH: 0.115, top: 0.195, bottom: 0.765, winH: 0.105, promptW: 0.78, promptMargin: 52 },
+	} as const;
 	const main = $derived(context.stateLayoutDerived.mainLayout());
 	const spec = $derived(LAYOUTS[context.stateLayoutDerived.layoutType()] ?? LAYOUTS.desktop);
-	const LOGO_RATIO = 1480 / 985; // logo.webp (Chaos Lab 2, trimmed to its lettering)
-	// tablet and portrait show the one-row logo (logo_one_row.webp), like the game
-	// (GameLogo): 60% of the width, never taller than the layout's logo band
+	// the one-row logo (logo_one_row.webp) on every layout: centred on top, at most
+	// 62% of the width
 	const LOGO_ROW_RATIO = 2209 / 701;
-	const LOGO_ROW_WIDTH = 0.6;
-	const oneRowLogo = $derived(['portrait', 'tablet'].includes(context.stateLayoutDerived.layoutType()));
+	const LOGO_ROW_WIDTH = 0.62;
 	const GAP = 22;
-	// "WIN UP TO 31 445 X" (chaoslab2/win_up_to.webp, 2100x385): the Overcharged
+	// width / height of the pieces (art-review/chaoslab2/intro/build_intro.py prints them)
+	const PLATE_RATIO = { tall: 0.759, wide: 0.892 };
+	const CAPTION_RATIO = 4.39;
+	const PROMPT_RATIO = 5.333;
+	// "WIN UP TO 31 445 X" (chaoslab2/intro/win_up_to.webp, arched): the Overcharged
 	// Respins top win. Languages without the art (showsBakedArt) draw it as text
 	// in the same box, the figure the top max win of all modes in config.
-	const WIN_RATIO = 2100 / 385;
+	const WIN_RATIO = 4.043;
 	const bakedArt = showsBakedArt();
 	const topMaxWin = Math.max(...Object.values(config.betModes).map((mode) => mode.max_win));
-	// main units the prompt's line takes above the bottom (PressToContinue: 46-unit
-	// text, 28 margin). Its container is bottom-aligned, so on a canvas taller than
-	// the main layout the prompt sits lower by the letterbox, and the banner follows.
-	const PROMPT_BAND = 82;
 
 	const layout = $derived.by(() => {
 		const { width: W, height: H, scale } = main;
@@ -133,25 +140,30 @@
 		const rows = PANELS.length / cols;
 		const top = H * spec.top;
 		const bottom = H * spec.bottom;
-		const panelW = Math.min((W * 0.92 - GAP * (cols - 1)) / cols, spec.maxW);
-		const panelH = Math.min((bottom - top - GAP * (rows - 1)) / rows, panelW * 1.35);
+		// the panel keeps its plate's aspect: as wide as the row allows, or as tall as the band does
+		const ratio = PLATE_RATIO[spec.plate];
+		const panelH = Math.min(
+			Math.min((W * 0.93 - GAP * (cols - 1)) / cols, spec.maxW) / ratio,
+			(bottom - top - GAP * (rows - 1)) / rows,
+		);
+		const panelW = panelH * ratio;
 		const blockW = cols * panelW + (cols - 1) * GAP;
 		const blockH = rows * panelH + (rows - 1) * GAP;
 		const x0 = (W - blockW) / 2;
 		const y0 = top + (bottom - top - blockH) / 2;
-		const logoH = H * spec.logoH;
-		const rowW = Math.min(W * LOGO_ROW_WIDTH, logoH * LOGO_ROW_RATIO);
-		const letterbox = (context.stateLayoutDerived.canvasSizes().height - H * scale) / 2 / scale;
-		const promptTop = H - PROMPT_BAND + Math.max(0, letterbox);
-		const winH = Math.min(H * spec.winH, (W * 0.9) / WIN_RATIO);
+		const rowW = Math.min(W * LOGO_ROW_WIDTH, H * spec.logoH * LOGO_ROW_RATIO);
+		// the prompt's container is bottom-aligned, so on a canvas taller than the main
+		// layout the plate sits lower by the letterbox, and the WIN UP TO art follows
+		const letterbox = Math.max(0, (context.stateLayoutDerived.canvasSizes().height - H * scale) / 2 / scale);
+		const promptW = W * spec.promptW;
+		const promptH = promptW / PROMPT_RATIO;
+		const promptTop = H - spec.promptMargin - promptH + letterbox;
+		const winH = Math.min(H * spec.winH, (W * 0.9) / WIN_RATIO, (promptTop - (y0 + blockH)) * 0.96);
 		return {
-			logo: {
-				x: W / 2,
-				y: H * spec.logoY,
-				width: oneRowLogo ? rowW : logoH * LOGO_RATIO,
-				height: oneRowLogo ? rowW / LOGO_ROW_RATIO : logoH,
-			},
+			logo: { x: W / 2, y: H * spec.logoY, width: rowW, height: rowW / LOGO_ROW_RATIO },
 			win: { x: W / 2, y: (y0 + blockH + promptTop) / 2, width: winH * WIN_RATIO, height: winH },
+			// in the bottom-aligned container's own units (no letterbox)
+			prompt: { x: W / 2, y: H - spec.promptMargin - promptH / 2, width: promptW, height: promptH },
 			panelW,
 			panelH,
 			panels: PANELS.map((panel, i) => ({
@@ -162,11 +174,18 @@
 		};
 	});
 
-	// panel inner geometry, from the panel box: art band, title, up to 4 lines
-	const artY = $derived(layout.panelH * 0.27);
-	const artH = $derived(Math.min(layout.panelH * 0.34, layout.panelW * 0.5));
-	const titleY = $derived(layout.panelH * 0.53);
-	const titleSize = $derived(spec.title);
+	// panel inner geometry, from the panel box: the art, the green swash with the
+	// title on it (the swash is an arch: its middle sits higher than its ends, and
+	// its upper edge tucks under the art), then the copy down to the frame
+	const artH = $derived(Math.min(layout.panelH * 0.33, layout.panelW * 0.45));
+	const artY = $derived(layout.panelH * 0.07 + artH / 2);
+	const capW = $derived(layout.panelW * 0.93);
+	const capH = $derived(capW / CAPTION_RATIO);
+	const capTop = $derived(artY + artH / 2 - capH * 0.1);
+	const titleY = $derived(capTop + capH * 0.41);
+	const titleSize = $derived(capH * 0.46);
+	const textY = $derived(capTop + capH * 0.95 + 4);
+	const textBottom = $derived(layout.panelH * 0.915);
 
 	/**
 	 * The copy's size: the layout's, or smaller where a translation's wrapped
@@ -176,6 +195,14 @@
 	 * the way Pixi does: at spaces, and per character where a word is wider
 	 * than the line (breakWords: a CJK sentence has no spaces at all).
 	 */
+	// Scripts the display faces do not cover (Cyrillic, CJK, Arabic, Devanagari)
+	// fall back whole to Inter / the system sans: bold there, or a title is too thin
+	// on the green
+	const fallbackScript = !stateUrlDerived.social() && ['ru', 'ja', 'zh', 'ko', 'ar', 'hi'].includes(stateUrlDerived.lang());
+	const displayWeight = fallbackScript ? ('700' as const) : ('400' as const);
+	// no letter spacing there either: Pixi draws spaced text glyph by glyph, which
+	// breaks Arabic's joined letters and Devanagari's conjuncts
+	const letterSpacing = fallbackScript ? 0 : 1;
 	const LINE_HEIGHT = 1.32;
 	const measure = document.createElement('canvas').getContext('2d');
 	const wrappedLines = (text: string, width: number) => {
@@ -208,25 +235,29 @@
 	};
 	const textSize = $derived.by(() => {
 		if (!fontsReady || !measure) return spec.text;
-		const width = layout.panelW * 0.86;
-		const room = layout.panelH - titleY - titleSize * 1.35 - 4;
+		const width = layout.panelW * 0.84;
+		const room = textBottom - textY;
 		const texts = PANELS.map((panel) => translateGame(panel.text));
 		for (let size = spec.text; size > spec.text * 0.7; size -= 0.5) {
 			measure.font = `400 ${size}px Inter, sans-serif`;
-			if (texts.every((text) => wrappedLines(text, width) * size * LINE_HEIGHT <= room)) {
+			// a fallback script is set in a system face the measure only guesses at
+			// (Devanagari ran a line past it): 10% in hand
+			if (texts.every((text) => wrappedLines(text, width) * size * LINE_HEIGHT * (fallbackScript ? 1.1 : 1) <= room)) {
 				return size;
 			}
 		}
 		return spec.text * 0.7;
 	});
 
+	// dark on the green swash, no outline (the art's own look)
+	const INK = '#0e1a06';
 	const titleStyle = $derived({
 		fontFamily: displayFont(),
 		fontSize: titleSize,
-		fill: '#abea10',
-		letterSpacing: 1,
+		fontWeight: displayWeight,
+		fill: INK,
+		letterSpacing,
 		align: 'center' as const,
-		stroke: { color: '#000000', width: 3 },
 	});
 	const textStyle = $derived({
 		fontFamily: ['Inter', 'sans-serif'],
@@ -235,7 +266,7 @@
 		align: 'center' as const,
 		lineHeight: textSize * LINE_HEIGHT,
 		wordWrap: true,
-		wordWrapWidth: layout.panelW * 0.86,
+		wordWrapWidth: layout.panelW * 0.84,
 		breakWords: true,
 	});
 
@@ -243,42 +274,102 @@
 	const SYM = { w: 297, h: 321 };
 	const BONUS = { w: 427, h: 423 };
 	const symW = (h: number) => (h * SYM.w) / SYM.h;
+	// the WIN ANYWHERE panel's three symbols in a row: as tall as the row's width
+	// allows inside the frame (three widths = 0.84 of the panel)
+	const trioH = $derived(Math.min(artH * 0.86, (layout.panelW * 0.285 * SYM.h) / SYM.w));
+
+	// the prompt: Evtim's plate with the line on it in the titles' face, dark on
+	// the green, between two pairs of chevrons; the line and the chevrons breathe
+	// (a fade, never a bounce). PressToContinue below only takes the press.
+	const BREATH_MS = 900;
+	const breath = new Tween(1, { duration: BREATH_MS, easing: sineInOut });
+	onMount(() => {
+		let bright = true;
+		const id = setInterval(() => {
+			bright = !bright;
+			breath.set(bright ? 1 : 0.6);
+		}, BREATH_MS);
+		return () => clearInterval(id);
+	});
+	// one line at 0.4 of the plate's height, smaller if the translation is longer;
+	// one that would fall under 0.27 goes on two lines instead, at the largest
+	// size that wraps to two
+	const promptLine = $derived(context.i18nDerived.pressToContinue());
+	const promptWidth = $derived(layout.prompt.width * 0.66);
+	const promptFit = $derived.by(() => {
+		const h = layout.prompt.height;
+		if (!fontsReady || !measure) return { size: h * 0.4, wrap: false };
+		const font = (size: number) => `${displayWeight} ${size}px ${displayFont()}`;
+		measure.font = font(h * 0.4);
+		const width = measure.measureText(promptLine).width + promptLine.length * letterSpacing;
+		const oneLine = Math.min(h * 0.4, (h * 0.4 * promptWidth) / width);
+		if (oneLine >= h * 0.27) return { size: oneLine, wrap: false };
+		for (let size = h * 0.26; size > h * 0.14; size -= h * 0.01) {
+			measure.font = font(size);
+			// 6% narrower than Pixi's own wrap width: the measure ignores the letter spacing
+			if (wrappedLines(promptLine, promptWidth * 0.94) <= 2) return { size, wrap: true };
+		}
+		return { size: h * 0.14, wrap: true };
+	});
+	const promptStyle = $derived({
+		fontFamily: displayFont(),
+		fontSize: promptFit.size,
+		fontWeight: displayWeight,
+		fill: INK,
+		letterSpacing,
+		align: 'center' as const,
+		lineHeight: promptFit.size * 1.08,
+		wordWrap: promptFit.wrap,
+		wordWrapWidth: promptWidth,
+	});
+	// two chevrons pointing along dir (1 = right), drawn round the origin, h tall
+	const chevrons = (graphics: { clear: () => unknown; poly: (points: number[]) => { fill: (style: { color: number }) => unknown } }, h: number, dir: number) => {
+		graphics.clear();
+		const t = h * 0.3; // arm thickness along x
+		const reach = h * 0.42; // how far the point leads the arms
+		for (const offset of [-h * 0.34, h * 0.34]) {
+			const x = offset * 1 - (reach + t) / 2;
+			graphics
+				.poly([x, -h / 2, x + t, -h / 2, x + t + reach, 0, x + t, h / 2, x, h / 2, x + reach, 0].map((v, i) => (i % 2 ? v : v * dir)))
+				.fill({ color: 0x0e1a06 });
+		}
+	};
 </script>
 
 <Container zIndex={CURTAIN_Z + 1}>
 	<FadeContainer {show}>
-		<!-- the lab stays faintly visible behind the copy -->
-		<CanvasSizeRectangle backgroundColor={0x050805} backgroundAlpha={0.72} />
+		<!-- the lab stays visible behind the plates -->
+		<CanvasSizeRectangle backgroundColor={0x050805} backgroundAlpha={0.55} />
 
 		<MainContainer>
-			<Sprite key={oneRowLogo ? 'msLogoRow' : 'msLogo'} anchor={0.5} {...layout.logo} />
+			<Sprite key="msLogoRow" anchor={0.5} {...layout.logo} />
 
 			{#each isReplay ? [] : layout.panels as panel (panel.id)}
 				<Container x={panel.x} y={panel.y}>
-					<Rectangle
+					<Sprite
+						key={spec.plate === 'tall' ? 'cl2IntroPanelTall' : 'cl2IntroPanel'}
 						anchor={{ x: 0.5, y: 0 }}
 						width={layout.panelW}
 						height={layout.panelH}
-						borderRadius={16}
-						backgroundColor={0x0c120c}
-						backgroundAlpha={0.86}
-						borderColor={0xabea10}
-						borderWidth={2}
-						borderAlpha={0.4}
 					/>
 
 					<Container y={artY}>
 						{#if panel.id === 'anywhere'}
-							<!-- three highs fanned, the middle one in front -->
-							<Sprite key="h2.png" anchor={0.5} x={-symW(artH) * 0.62} y={artH * 0.06} rotation={-0.14} width={symW(artH * 0.86)} height={artH * 0.86} />
-							<Sprite key="h3.png" anchor={0.5} x={symW(artH) * 0.62} y={artH * 0.06} rotation={0.14} width={symW(artH * 0.86)} height={artH * 0.86} />
-							<Sprite key="h1.png" anchor={0.5} width={symW(artH)} height={artH} />
+							<!-- three highs side by side, each one whole (Evtim 2026-11-16: fanned
+							     behind the middle one they were "cut off"): the outer two lean
+							     out a little and tuck a sliver under the middle one, which is a
+							     touch bigger; the row sits on the swash -->
+							<Container y={(artH - trioH * 1.08) / 2}>
+								<Sprite key="h2.png" anchor={0.5} x={-symW(trioH) * 0.98} y={trioH * 0.03} rotation={-0.09} width={symW(trioH)} height={trioH} />
+								<Sprite key="h3.png" anchor={0.5} x={symW(trioH) * 0.98} y={trioH * 0.03} rotation={0.09} width={symW(trioH)} height={trioH} />
+								<Sprite key="h1.png" anchor={0.5} width={symW(trioH * 1.08)} height={trioH * 1.08} />
+							</Container>
 						{:else if panel.id === 'multipliers'}
 							<Sprite key="mult_symbol_plate.png" anchor={0.5} width={symW(artH)} height={artH} />
 							<BitmapText
 								anchor={0.5}
 								text="x10"
-								style={{ fontFamily: 'tickup-multipliers', fontSize: artH * 0.5, fill: 0xffffff }}
+								style={{ fontFamily: 'tickup-multipliers', fontSize: artH * 0.36, fill: 0xffffff }}
 							/>
 						{:else if panel.id === 'bombs'}
 							<Sprite key="bomb.png" anchor={0.5} x={-symW(artH) * 0.56} rotation={-0.08} width={symW(artH * 0.94)} height={artH * 0.94} />
@@ -306,16 +397,18 @@
 						{/if}
 					</Container>
 
+					<!-- the title on its paint swash, over the art's lower edge -->
+					<Sprite key="cl2IntroCaption" anchor={{ x: 0.5, y: 0 }} y={capTop} width={capW} height={capH} />
 					<ResponsiveText
-						anchor={{ x: 0.5, y: 0 }}
+						anchor={0.5}
 						y={titleY}
-						maxWidth={layout.panelW * 0.9}
+						maxWidth={capW * 0.8}
 						text={translateGame(panel.title)}
 						style={titleStyle}
 					/>
 					<Text
 						anchor={{ x: 0.5, y: 0 }}
-						y={titleY + titleSize * 1.35}
+						y={textY}
 						text={translateGame(panel.text)}
 						style={textStyle}
 					/>
@@ -331,13 +424,34 @@
 					y={layout.win.y}
 					maxWidth={layout.win.width}
 					text={fill(i18nDerived.winUpTo(), formatTimes(topMaxWin))}
-					style={winUpToText(layout.win.height * 0.75)}
+					style={{ ...winUpToText(layout.win.height * 0.6), letterSpacing }}
 				/>
 			{/if}
 		</MainContainer>
 
 		{#if !isReplay}
-			<PressToContinue onpress={start} />
+			<MainContainer alignVertical="bottom">
+				<Container x={layout.prompt.x} y={layout.prompt.y}>
+					<Sprite key="cl2IntroPrompt" anchor={0.5} width={layout.prompt.width} height={layout.prompt.height} />
+					<!-- the plate's green field is centred a touch above the art's middle
+					     (its shadow hangs below) -->
+					<Container y={-layout.prompt.height * 0.01} alpha={breath.current}>
+						<ResponsiveText
+							anchor={0.5}
+							maxWidth={promptWidth}
+							text={promptLine}
+							style={promptStyle}
+						/>
+						{#each [-1, 1] as side (side)}
+							<Graphics
+								x={side * layout.prompt.width * 0.395}
+								draw={(graphics) => chevrons(graphics, layout.prompt.height * 0.24, -side)}
+							/>
+						{/each}
+					</Container>
+				</Container>
+			</MainContainer>
+			<PressToContinue onpress={start} showText={false} />
 		{/if}
 	</FadeContainer>
 </Container>

@@ -181,8 +181,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Putar otomatis: memutar secara otomatis sebanyak jumlah yang ditentukan.',
 	'Turbo: Speed up animations.': 'Turbo: mempercepat animasi.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'Beli Fitur (tombol keranjang): membuka menu fitur dengan tiga mode Respin Uang serta sakelar Mode Duel dan Penguat Bonus.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'Beli Fitur (simbol Scatter): membuka menu fitur dengan tiga mode Respin Uang serta sakelar Mode Duel dan Penguat Bonus.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: menaikkan atau menurunkan jumlah taruhan.',
 	'Menu (☰): Open the menu.': 'Menu (☰): membuka menu.',
 	'Paytable: View the symbol payout values.': 'Tabel Pembayaran: melihat nilai pembayaran simbol.',

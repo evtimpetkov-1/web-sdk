@@ -20,6 +20,13 @@
 	export const SHAKE_PRESETS = {
 		cascade: { trauma: 0.35, decay: 1.8, kick: 0.2 },
 		bomb: { trauma: 0.85, decay: 1.1, kick: 0.5 },
+		// the cloner (Evtim, 2026-11-16: Blast Shaft's cloner felt far more dynamic, its
+		// quakes were missing here): a recoil as it fires its copies, a knock as each
+		// one lands, and one quake as strong as a bomb's when every cloner bursts into
+		// the paying symbol
+		cloneCast: { kick: 0.35 },
+		cloneStrike: { trauma: 0.2, decay: 1.6, kick: 0.3 },
+		clonerBurst: { trauma: 0.85, decay: 1.0, kick: 0.6 },
 		wildSlam: { kick: 0.5 },
 		featureTrigger: { trauma: 0.5, decay: 0.55 },
 		bigWin: { trauma: 0.45, decay: 1.4, kick: 0.4 },

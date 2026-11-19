@@ -35,11 +35,24 @@
 			]
 		>;
 		debug?: boolean;
+		/**
+		 * true: a press counts inside the `sizes` box only. By default the hit area is
+		 * whatever the children draw, transparent pixels included, so art drawn larger
+		 * than the box (a sprite with a margin for its shadow) would take the presses
+		 * meant for its neighbours.
+		 */
+		boxHit?: boolean;
 	};
 </script>
 
 <script lang="ts">
-	const { children, sizes, anchor, disabled, onpress, debug, ...containerProps }: Props = $props();
+	const { children, sizes, anchor, disabled, onpress, debug, boxHit, ...containerProps }: Props = $props();
+	// in the container's own units: its pivot puts the box at 0..sizes
+	const hitArea = $derived(
+		boxHit
+			? { contains: (x: number, y: number) => x >= 0 && x <= sizes.width && y >= 0 && y <= sizes.height }
+			: undefined,
+	);
 	const center = $derived({
 		x: sizes.width * 0.5,
 		y: sizes.height * 0.5,
@@ -59,6 +72,7 @@
 <Container
 	{...containerProps}
 	eventMode="static"
+	{hitArea}
 	cursor={disabled ? 'not-allowed' : 'pointer'}
 	pivot={anchorToPivot({ sizes, anchor })}
 	onpointerover={() => {

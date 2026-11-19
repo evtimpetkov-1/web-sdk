@@ -1,0 +1,435 @@
+{
+ "frames": {
+  "hook.png": {
+   "frame": {
+    "x": 6,
+    "y": 6,
+    "w": 163,
+    "h": 420
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 163,
+    "h": 420
+   },
+   "sourceSize": {
+    "w": 163,
+    "h": 420
+   }
+  },
+  "door_l_night.png": {
+   "frame": {
+    "x": 175,
+    "y": 6,
+    "w": 126,
+    "h": 402
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 126,
+    "h": 402
+   },
+   "sourceSize": {
+    "w": 126,
+    "h": 402
+   }
+  },
+  "door_r_night.png": {
+   "frame": {
+    "x": 307,
+    "y": 6,
+    "w": 96,
+    "h": 399
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 96,
+    "h": 399
+   },
+   "sourceSize": {
+    "w": 96,
+    "h": 399
+   }
+  },
+  "door_l_day.png": {
+   "frame": {
+    "x": 409,
+    "y": 6,
+    "w": 126,
+    "h": 375
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 126,
+    "h": 375
+   },
+   "sourceSize": {
+    "w": 126,
+    "h": 375
+   }
+  },
+  "door_r_day.png": {
+   "frame": {
+    "x": 541,
+    "y": 6,
+    "w": 93,
+    "h": 366
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 93,
+    "h": 366
+   },
+   "sourceSize": {
+    "w": 93,
+    "h": 366
+   }
+  },
+  "lantern.png": {
+   "frame": {
+    "x": 640,
+    "y": 6,
+    "w": 148,
+    "h": 340
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 148,
+    "h": 340
+   },
+   "sourceSize": {
+    "w": 148,
+    "h": 340
+   }
+  },
+  "doorway_day.png": {
+   "frame": {
+    "x": 794,
+    "y": 6,
+    "w": 76,
+    "h": 142
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 76,
+    "h": 142
+   },
+   "sourceSize": {
+    "w": 76,
+    "h": 142
+   }
+  },
+  "doorway_night.png": {
+   "frame": {
+    "x": 876,
+    "y": 6,
+    "w": 76,
+    "h": 142
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 76,
+    "h": 142
+   },
+   "sourceSize": {
+    "w": 76,
+    "h": 142
+   }
+  },
+  "glow.png": {
+   "frame": {
+    "x": 6,
+    "y": 432,
+    "w": 128,
+    "h": 128
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 128,
+    "h": 128
+   },
+   "sourceSize": {
+    "w": 128,
+    "h": 128
+   }
+  },
+  "gust_0.png": {
+   "frame": {
+    "x": 140,
+    "y": 432,
+    "w": 384,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 384,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 384,
+    "h": 120
+   }
+  },
+  "gust_1.png": {
+   "frame": {
+    "x": 530,
+    "y": 432,
+    "w": 384,
+    "h": 120
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 384,
+    "h": 120
+   },
+   "sourceSize": {
+    "w": 384,
+    "h": 120
+   }
+  },
+  "fpuff.png": {
+   "frame": {
+    "x": 6,
+    "y": 566,
+    "w": 112,
+    "h": 100
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 112,
+    "h": 100
+   },
+   "sourceSize": {
+    "w": 112,
+    "h": 100
+   }
+  },
+  "star.png": {
+   "frame": {
+    "x": 124,
+    "y": 566,
+    "w": 96,
+    "h": 96
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 96,
+    "h": 96
+   },
+   "sourceSize": {
+    "w": 96,
+    "h": 96
+   }
+  },
+  "wisp.png": {
+   "frame": {
+    "x": 226,
+    "y": 566,
+    "w": 256,
+    "h": 72
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 72
+   },
+   "sourceSize": {
+    "w": 256,
+    "h": 72
+   }
+  },
+  "streak.png": {
+   "frame": {
+    "x": 488,
+    "y": 566,
+    "w": 256,
+    "h": 72
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 256,
+    "h": 72
+   },
+   "sourceSize": {
+    "w": 256,
+    "h": 72
+   }
+  },
+  "bit_leaf.png": {
+   "frame": {
+    "x": 750,
+    "y": 566,
+    "w": 48,
+    "h": 44
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 44
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 44
+   }
+  },
+  "bit_twig.png": {
+   "frame": {
+    "x": 804,
+    "y": 566,
+    "w": 48,
+    "h": 36
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 36
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 36
+   }
+  },
+  "bit_straw.png": {
+   "frame": {
+    "x": 858,
+    "y": 566,
+    "w": 48,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 32
+   }
+  },
+  "bit_grain.png": {
+   "frame": {
+    "x": 912,
+    "y": 566,
+    "w": 32,
+    "h": 32
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 32,
+    "h": 32
+   },
+   "sourceSize": {
+    "w": 32,
+    "h": 32
+   }
+  },
+  "splinter_0.png": {
+   "frame": {
+    "x": 950,
+    "y": 566,
+    "w": 48,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 24
+   }
+  },
+  "splinter_1.png": {
+   "frame": {
+    "x": 6,
+    "y": 672,
+    "w": 48,
+    "h": 24
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 48,
+    "h": 24
+   },
+   "sourceSize": {
+    "w": 48,
+    "h": 24
+   }
+  }
+ },
+ "meta": {
+  "app": "art-review/dynamite-gulch/build_ambient.py",
+  "version": "1.0",
+  "image": "wind.webp",
+  "format": "RGBA8888",
+  "size": {
+   "w": 1024,
+   "h": 702
+  },
+  "scale": "1"
+ }
+}

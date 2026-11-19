@@ -1,0 +1,12 @@
+wild.webp
+size:1021,326
+filter:Linear,Linear
+scale:1
+base
+bounds:2,2,301,322
+letter
+bounds:618,2,271,282
+letter_glow
+bounds:305,2,311,322
+blob
+bounds:891,2,128,128

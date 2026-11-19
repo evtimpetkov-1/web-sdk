@@ -53,6 +53,10 @@
 	the approval rules bar Stake branding in game assets, and it cost 2s of
 	dead boot time.
 -->
+<!--
+	The studio ident (ROYAL CAT GAMING, about three seconds) plays over this
+	loader from the first frame: GlobalStyle mounts it, the same in every game.
+-->
 <LoaderGame />
 
 {@render props.children()}

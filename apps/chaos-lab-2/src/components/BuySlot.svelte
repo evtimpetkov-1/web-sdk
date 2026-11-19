@@ -5,6 +5,7 @@
 	import { Container, Graphics, Sprite } from 'pixi-svelte';
 	import { Button, FadeContainer, ResponsiveText } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
+	import { stateUiTheme } from 'components-ui-pixi';
 	import { stateBet, stateModal } from 'state-shared';
 
 	import { getContext } from '../game/context';
@@ -73,8 +74,11 @@
 				return { x: w - 180, y: (h - 100) * 0.5, r: UI_BASE_RADIUS * 1.43 };
 			case 'tablet':
 				return { x: w * 0.5, y: h - 300, r: UI_BASE_RADIUS * 1.4 };
-			default:
-				return { x: w * 0.5, y: h - 400, r: UI_BASE_RADIUS * 1.6 };
+			default: {
+				// portrait: the theme's deck (Game.svelte sets a bigger one than the SDK's)
+				const { spinY, spinScale } = stateUiTheme.portraitDeck;
+				return { x: w * 0.5, y: h - spinY, r: UI_BASE_RADIUS * spinScale };
+			}
 		}
 	});
 
@@ -91,7 +95,8 @@
 			case 'tablet':
 				return { x: w * 0.5 - 430, y: h - 255, size: 153 };
 			default:
-				return { x: w - 140, y: h - 455, size: 162 };
+				// portrait: above Bet, in the deck's top-right corner
+				return { x: w - stateUiTheme.portraitDeck.outerX, y: h - 440, size: 176 };
 		}
 	});
 	// the X that switches the ante / armed buy off (0.34 of the disc was too
@@ -157,16 +162,28 @@
 					<Button
 						anchor={0.5}
 						sizes={{ width: closeSize * 1.25, height: closeSize * 1.25 }}
+						boxHit
 						disabled={!idle}
 						onpress={switchOff}
 					>
 						{#snippet children({ center, hovered, pressed })}
+							<!-- close.png is a bare X since the ringless button set (2026-11-16):
+							     a dark badge under it, or it is lost on the ante's disc. The
+							     sheet's icons carry a margin, hence the 1.5 -->
+							<Graphics
+								{...center}
+								alpha={idle ? 1 : 0.6}
+								draw={(graphics) => {
+									graphics.clear();
+									graphics.circle(0, 0, closeSize * 0.5).fill({ color: 0x0c100c, alpha: 0.94 });
+								}}
+							/>
 							<Sprite
 								{...center}
 								key="close.png"
 								anchor={0.5}
-								width={closeSize * (pressed ? 0.92 : 1)}
-								height={closeSize * (pressed ? 0.92 : 1)}
+								width={closeSize * 1.5 * (pressed ? 0.92 : 1)}
+								height={closeSize * 1.5 * (pressed ? 0.92 : 1)}
 								alpha={idle ? (hovered ? 1 : 0.92) : 0.45}
 							/>
 						{/snippet}

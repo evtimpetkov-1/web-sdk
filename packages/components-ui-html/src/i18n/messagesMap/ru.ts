@@ -26,4 +26,17 @@ export default {
 	'UNABLE TO CONNECT TO THE GAME SERVER. PLEASE CHECK YOUR CONNECTION AND RELOAD THE GAME.': 'НЕ УДАЛОСЬ ПОДКЛЮЧИТЬСЯ К ИГРОВОМУ СЕРВЕРУ. ПРОВЕРЬТЕ ПОДКЛЮЧЕНИЕ И ПЕРЕЗАГРУЗИТЕ ИГРУ.',
 	'YOUR SESSION IS INVALID OR HAS EXPIRED. PLEASE RELOAD THE GAME.': 'ВАША СЕССИЯ НЕДЕЙСТВИТЕЛЬНА ИЛИ ИСТЕКЛА. ПЕРЕЗАГРУЗИТЕ ИГРУ.',
 	'THE GAME IS UNAVAILABLE RIGHT NOW. PLEASE RELOAD THE GAME OR TRY AGAIN LATER.': 'ИГРА СЕЙЧАС НЕДОСТУПНА. ПЕРЕЗАГРУЗИТЕ ИГРУ ИЛИ ПОПРОБУЙТЕ ПОЗЖЕ.',
+	// the generic UI (src/generic): the bar's words, here so the HTML package needs no other
+	'BALANCE': 'БАЛАНС',
+	'WIN': 'ВЫИГРЫШ',
+	'TURBO': 'ТУРБО',
+	'BUY BONUS': 'КУПИТЬ БОНУС',
+	'INFO': 'ИНФО',
+	'DISABLE': 'ОТКЛЮЧИТЬ',
+	'AUTO SPIN': 'АВТОВРАЩЕНИЕ',
+	'SOUND': 'ЗВУК',
+	'MUSIC': 'МУЗЫКА',
+	'GAME INFO': 'ОБ ИГРЕ',
+	'BUY': 'КУПИТЬ',
+	'ACTIVATE': 'АКТИВИРОВАТЬ',
 };

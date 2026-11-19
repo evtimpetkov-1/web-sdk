@@ -16,6 +16,9 @@
 		ModalAutoSpinMessage,
 		ModalInsufficientFunds,
 		ModalSettings,
+		GenericUI,
+		GenericShop,
+		GenericInfo,
 	} from 'components-ui-html';
 
 	import { getContext } from '../game/context';
@@ -26,11 +29,13 @@
 	import Background from './Background.svelte';
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
+	import FrameLife from './FrameLife.svelte';
 	import Board from './Board.svelte';
 	import CashRespinBoard from './CashRespinBoard.svelte';
 	import CashRespinFx from './CashRespinFx.svelte';
 	import BoardBacking from './BoardBacking.svelte';
 	import AnticipationField from './AnticipationField.svelte';
+	import BarStrip from './BarStrip.svelte';
 	import BuySlot from './BuySlot.svelte';
 	import ClusterWinAmounts from './ClusterWinAmounts.svelte';
 	import TumbleBoard from './TumbleBoard.svelte';
@@ -47,6 +52,7 @@
 	import Transition from './Transition.svelte';
 	import Mascot from './Mascot.svelte';
 	import SceneShake from './SceneShake.svelte';
+	import BoardFidget from './BoardFidget.svelte';
 	import GameLogo from './GameLogo.svelte';
 	import BuyShop from './BuyShop.svelte';
 	import BuyConfirm from './BuyConfirm.svelte';
@@ -55,11 +61,15 @@
 	import ReplayHud from './ReplayHud.svelte';
 	import ReplayOverlay from './ReplayOverlay.svelte';
 	import { applyBetModeMeta } from '../game/betModeMeta';
+	import { ANTE_OPTIONS, BUY_OPTIONS } from '../game/buyOptions';
+	import { UI_KIND } from '../game/constants';
 	import { displayFont } from '../game/textStyles';
 	import { getResumedFeatureEntry } from '../game/utils';
 	import type { Bet } from '../game/typesBookEvent';
 
 	const context = getContext();
+	// the scene's own life (frame, background, logo) is left out for players who ask for less motion
+	const reducedMotion = Boolean(window.matchMedia?.('(prefers-reduced-motion: reduce)').matches);
 
 	// Popup open / close: the shared bet menu, autoplay, settings, rules and the buy
 	// shop all run on stateModal. A new card (shop -> confirm) opens again; a
@@ -78,24 +88,37 @@
 	onMount(() => {
 		context.stateLayout.showLoadingScreen = true;
 		applyBetModeMeta();
-		// bottom bar in the logo's voice: Creepster captions in acid green, white
-		// Inter amounts, charcoal plate, green-rimmed stepper chips. The display
-		// face follows the language (displayFont); the HTML popups read it as
-		// --ms-display-font, set by the layout (+layout.svelte)
-		Object.assign(stateUiTheme, {
+		// bottom bar in the logo's voice: Creepster captions in acid green and white
+		// Inter amounts over the steel strip (BarStrip, so the SDK's own plate is
+		// switched off), the -/+ and every other button from the bare-icon set
+		// (art-review/chaoslab2/ui_bar/build_ui_bar.py). The display face follows the
+		// language (displayFont); the HTML popups read it as --ms-display-font, set by
+		// the layout (+layout.svelte)
+		// (the generic UI has no theme: UI_KIND in constants.ts)
+		if (UI_KIND === 'themed') Object.assign(stateUiTheme, {
 			labelFont: displayFont(),
 			labelWeight: '400',
 			labelFill: 0xabea10,
 			labelLetterSpacing: 1,
 			barFill: 0x0c100c,
-			barAlpha: 0.82,
-			stepperFill: 0x1e281a,
-			stepperRim: 0xabea10,
-			stepperRimHover: 0xdff669,
-			stepperGlyph: 0xabea10,
-			stepperGlyphHover: 0xdff669,
-			// turbo_on.png is already the inverted acid disc; no tint on top
+			barAlpha: 0,
+			// minus.png / plus.png instead of the code-drawn chips, set lower and a little
+			// wider than the chips sat: clear of the strip's rail, beside the caption and
+			// the amount
+			stepperSprites: true,
+			stepperY: -10,
+			stepperOffset: 116,
+			// the painted autoplay icon stays still (its shading has a fixed light)
+			autoSpinRotates: false,
+			// turbo_on.png is already the lit acid disc; no tint on top
 			turboActiveTint: 0xffffff,
+			// the sheet holds bare icons (no ring: Evtim 2026-11-16) with a margin for their
+			// shadow, drawn larger than the button boxes: the widest icon is 1.18 of its box.
+			// Keep equal to SPRITE_SCALE in art-review/chaoslab2/ui_bar/build_ui_bar.py
+			spriteScale: 1.9,
+			// portrait: the buttons on the steel deck (BarStrip part="deck"), which runs
+			// from 552 to 148 units above the bottom; BuySlot places the cart above Bet
+			portraitDeck: { spinScale: 1.85, spinY: 350, sideScale: 0.9, sideY: 252, outerX: 128, innerX: 298 },
 		});
 		// Pixi Text rasterises with whatever font is resolved at first draw — warm
 		// the self-hosted faces while the loading screen is up (fonts.css)
@@ -161,10 +184,18 @@
 		<LoadingScreen onstart={startGame} />
 	{:else}
 		<ResumeBet />
+		<!-- the board at rest: random cells play their symbol's fidget (logic only) -->
+		<BoardFidget />
 
 		<!-- the slot reacts to its big moments (bombs, the feature trigger, big win
 		     titles, the respin collect): the board layers shake as one, the
 		     background, mascot, logo, bar and popups stay still (SceneShake) -->
+		{#if !stateUrlDerived.replay() && UI_KIND === 'themed'}
+			<!-- portrait's steel wall behind the bar buttons: under the board, so the
+			     frame's slime drips hang over its rail (replay has no buttons) -->
+			<BarStrip part="deck" />
+		{/if}
+
 		<SceneShake>
 			<MainContainer>
 				<!-- zIndex -2: under the FS glow fill (-1) and the board -->
@@ -175,6 +206,10 @@
 				<!-- Chaos Lab 2's Cash Respins grid: where the reels are, under the pipes -->
 				<CashRespinBoard />
 				<BoardFrame />
+				<!-- the frame's sheen, glowing slime, drips and steam: over the pipes, under the plate -->
+				{#if !reducedMotion}
+					<FrameLife />
+				{/if}
 				<GlobalMultiplier />
 			</MainContainer>
 
@@ -208,7 +243,9 @@
 			<!-- replay keeps only the readouts the approval docs ask to stay
 			     visible (win, bet cost, currency) — no controls (Kraken's pattern) -->
 			<ReplayHud />
-		{:else}
+		{:else if UI_KIND === 'themed'}
+			<!-- the bar's steel strip, under the SDK's captions and buttons -->
+			<BarStrip />
 			<UI>
 				<!-- the logo is the GameLogo sprite (top-left / above the plate); the
 				     SDK's text slots stay empty -->
@@ -239,15 +276,40 @@
 	below.
 -->
 <ModalError />
-<ModalBetMenu />
-<ModalAutoSpin />
 <ModalAutoSpinMessage />
 <ModalInsufficientFunds />
-<PayTable />
-<GameRules />
-<ModalSettings />
-<BuyShop />
-<BuyConfirm />
+{#if UI_KIND === 'generic'}
+	<!--
+		The generic UI (components-ui-html src/generic): the HTML bar over the canvas
+		while the game is on screen (replay keeps its own readouts), the white bonus
+		cards, and ONE info page with the paytable above the rules. No bet menu,
+		autoplay popup or settings popup: the bar does those itself.
+	-->
+	{#if !context.stateLayout.showLoadingScreen && !stateUrlDerived.replay()}
+		<GenericUI />
+	{/if}
+	<GenericShop
+		switches={ANTE_OPTIONS}
+		buys={BUY_OPTIONS}
+		onconfirm={() => context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_buy_confirm' })}
+	/>
+	<GenericInfo name="Chaos Lab 2">
+		{#snippet paytable()}
+			<PayTable embedded />
+		{/snippet}
+		{#snippet rules()}
+			<GameRules embedded />
+		{/snippet}
+	</GenericInfo>
+{:else}
+	<ModalBetMenu />
+	<ModalAutoSpin />
+	<PayTable />
+	<GameRules />
+	<ModalSettings />
+	<BuyShop />
+	<BuyConfirm />
+{/if}
 <!--
 	Replay mode's round card — the Start Replay panel before playback and the
 	Replay Again panel after it. HTML, so it lives out here with the modals

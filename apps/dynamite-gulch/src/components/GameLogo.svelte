@@ -12,6 +12,7 @@
 	import { MainContainer } from 'components-layout';
 
 	import { getContext } from '../game/context';
+	import { SHAKE_PRESETS } from './SceneShake.svelte';
 
 	// desktop/landscape: the Dynamite Gulch logo (contained in Chaos Lab 2's
 	// 1480x985 canvas, so the box is unchanged), top-left of the board.
@@ -37,7 +38,7 @@
 	// logo_one_row.webp: the lettering's share of the art's height (Dynamite
 	// Gulch, rows 248-570, under the hat; art-review/dynamite-gulch/build_scene.py
 	// prints it)
-	const ROW_INK = 323 / 701;
+	const ROW_INK = 314 / 701; // the ink logo (rows 211..524); the painted one was 323
 	// of the band-filling size: a touch smaller (Evtim, 2026-10-28: 0.92, then
 	// "just a bit" more)
 	const PORTRAIT_SCALE = 0.86;
@@ -47,6 +48,8 @@
 	const TOP_MARGIN = 16;
 	const BREATH = { amount: 0.012, seconds: 5.2 };
 	const SWELL = 1.07;
+	// at a shake of strength 1: the rattle's roll (radians) and drop (x the logo's height)
+	const RATTLE = { roll: 0.03, drop: 0.035, hz: 15, decay: 2.4 };
 
 	const context = getContext();
 	const board = $derived(context.stateGameDerived.boardLayout());
@@ -87,31 +90,51 @@
 		};
 	});
 
-	// the breath, on the Pixi ticker (it pauses with the renderer); none under
-	// prefers-reduced-motion
+	// the breath and the rattle, on the Pixi ticker (it pauses with the renderer);
+	// none under prefers-reduced-motion
 	let time = $state(0);
+	let jolt = $state(0);
+	let still = true;
 	onMount(() => {
 		const app = context.stateApp.pixiApplication;
-		if (!app || window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return;
-		const tick = () => (time += app.ticker.deltaMS / 1000);
+		still = !app || !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+		if (!app || still) return;
+		const tick = () => {
+			const dt = app.ticker.deltaMS / 1000;
+			time += dt;
+			if (jolt > 0) jolt = Math.max(0, jolt - RATTLE.decay * dt);
+		};
 		app.ticker.add(tick);
 		return () => app.ticker.remove(tick);
 	});
 	const breath = $derived(1 + BREATH.amount * Math.sin((2 * Math.PI * time) / BREATH.seconds));
+	const roll = $derived(RATTLE.roll * jolt * jolt * Math.sin(2 * Math.PI * RATTLE.hz * time));
+	const drop = $derived(RATTLE.drop * jolt * jolt * Math.abs(Math.sin(2 * Math.PI * RATTLE.hz * 0.5 * time)));
 
 	const swell = new Tween(1);
 	let light = $state<'idle' | 'win'>('idle');
+	const flare = async () => {
+		if (light === 'win') return;
+		light = 'win';
+		await swell.set(SWELL, { duration: 140, easing: cubicOut });
+		await swell.set(1, { duration: 460, easing: backOut });
+	};
 	context.eventEmitter.subscribeOnMount({
-		logoWin: async () => {
-			light = 'win';
-			await swell.set(SWELL, { duration: 140, easing: cubicOut });
-			await swell.set(1, { duration: 460, easing: backOut });
+		logoWin: flare,
+		// the sign hangs outside the shaking board: it rattles with EVERY quake, and
+		// the strong ones (a bomb, the cloners' burst, the big wins) also flash its
+		// light and swell it once (Blast Shaft's logo, Evtim 2026-11-16)
+		sceneShake: async ({ preset }) => {
+			if (still) return;
+			const { trauma = 0, kick = 0 } = SHAKE_PRESETS[preset] as { trauma?: number; kick?: number };
+			jolt = Math.min(1, Math.max(jolt, trauma, kick * 0.7));
+			if (trauma >= 0.5) await flare();
 		},
 	});
 </script>
 
 <MainContainer>
-	<Container x={box.x} y={box.y} scale={breath * swell.current}>
+	<Container x={box.x} y={box.y + drop * box.height} rotation={roll} scale={breath * swell.current}>
 		<Sprite
 			key={stacked ? 'msLogoRow' : 'msLogo'}
 			anchor={0.5}

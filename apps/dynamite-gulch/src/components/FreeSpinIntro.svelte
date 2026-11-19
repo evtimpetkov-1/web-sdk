@@ -138,10 +138,11 @@
 	const FS_HEIGHT = 107;
 	const FS_WIDTH = (FS_HEIGHT * 1623) / 297;
 	// Cash Respins: the RESPINS wordmark (respins_word.webp: a 2000x502 canvas whose
-	// letters fill rows 83..420), its letters drawn 104 tall beside the 119 px digit
+	// letters fill rows 68..434 in the comic lettering; 83..420 in the painted art),
+	// its letters drawn 104 tall beside the 119 px digit
 	// (they were 90, and the digit towered over the word)
 	const RESPINS_LETTERS = 104;
-	const RESPINS_HEIGHT = (RESPINS_LETTERS * 502) / (420 - 83);
+	const RESPINS_HEIGHT = (RESPINS_LETTERS * 502) / (434 - 68);
 	const RESPINS_WIDTH = (RESPINS_HEIGHT * 2000) / 502;
 	const GAP = 26;
 	// the translated FREE SPINS word (no art): its size, and the widest the line may run

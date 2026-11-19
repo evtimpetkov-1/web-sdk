@@ -1629,6 +1629,9 @@ importers:
       utils-shared:
         specifier: workspace:*
         version: link:../utils-shared
+      utils-xstate:
+        specifier: workspace:*
+        version: link:../utils-xstate
       vite:
         specifier: 6.2.0
         version: 6.2.0(@types/node@26.3.0)(jiti@1.21.7)(sass-embedded@1.89.2)

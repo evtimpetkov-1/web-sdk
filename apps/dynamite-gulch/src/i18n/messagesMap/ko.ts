@@ -169,8 +169,8 @@ export default {
 	'Stop: Stop the reels early during a spin.': '정지: 스핀 중에 릴을 일찍 멈춥니다.',
 	'Autoplay: Spin automatically a set number of times.': '오토플레이: 설정한 횟수만큼 자동으로 스핀합니다.',
 	'Turbo: Speed up animations.': '터보: 애니메이션 속도를 높입니다.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'피처 구매(카트 버튼): 세 가지 캐시 리스핀 모드와 쇼다운 모드 및 보너스 부스트 스위치가 있는 피처 메뉴를 엽니다.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'피처 구매(스캐터 심볼): 세 가지 캐시 리스핀 모드와 쇼다운 모드 및 보너스 부스트 스위치가 있는 피처 메뉴를 엽니다.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: 베팅 금액을 늘리거나 줄입니다.',
 	'Menu (☰): Open the menu.': '메뉴(☰): 메뉴를 엽니다.',
 	'Paytable: View the symbol payout values.': '배당표: 심볼 배당 값을 확인합니다.',

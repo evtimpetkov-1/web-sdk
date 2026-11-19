@@ -4,6 +4,7 @@
 
 	import { getContext } from '../game/context';
 	import { BG_LIFE, type BgLife } from '../game/bgLife';
+	import { draughtNow, reducedMotion } from '../game/draught';
 	import { SHAKE_PRESETS } from './SceneShake.svelte';
 
 	/**
@@ -21,6 +22,19 @@
 	 *   gold embers rising
 	 * - dust: every few seconds a thin fall of dust, sometimes a pebble, from a
 	 *   point under the roof; a shake of the board (SceneShake) brings several down
+	 * 2026-11-17, after the second review ("The background is too static": all of the
+	 * above was in that build, but it is small and sits at the sides). Added, large
+	 * and always on, all driven by ONE draught (game/draught.ts, as Dynamite Gulch's
+	 * wind drives its street):
+	 * - the dust in the air STREAMS out of the tunnel towards the viewer, slowly in
+	 *   still air, fast in a gust, and a blast in the reels blows it out
+	 * - banks of lit haze drift across the roof and along the floor
+	 * - lamp light sways over the rock (one pool on the roof, one low down), so the
+	 *   stone itself seems to move; it is what a phone held upright sees most of
+	 * - the lantern flames gutter in the gusts, their light swells and sinks, and
+	 *   moths circle the two near lanterns
+	 * - dust comes off the roof about twice as often
+	 * The version the reviewers saw: art-review/alt/bg_life_v1_2026-11-17/restore.sh
 	 * One additive and one normal ParticleContainer on the shared atlas, stepped on
 	 * the Pixi ticker: no Svelte state per particle. Mounted once (Background) and
 	 * kept: pixi-svelte's Particles never removes its ticker callback.
@@ -51,6 +65,10 @@
 		);
 	};
 
+	// Pixi 8.8's Particle stores a NUMBER tint as it is, and its colour is BGR: a plain
+	// 0xRRGGBB comes out with red and blue swapped (warm dust drew ice-blue). Every
+	// tint goes through this.
+	const bgr = (rgb: number) => ((rgb & 0xff) << 16) | (rgb & 0xff00) | ((rgb >> 16) & 0xff);
 	const rand = (a: number, b: number) => a + Math.random() * (b - a);
 	const hide = (p: Particle) => {
 		p.alpha = 0;
@@ -77,6 +95,7 @@
 		return !(x > frame.left && x < frame.right && y > frame.top && y < frame.bottom);
 	};
 
+	const still = reducedMotion();
 	let shimmer = $state(0.4);
 	let clock = 0;
 	let last = 0;
@@ -98,24 +117,53 @@
 	// ---------------------------------------------------------------- the lit things
 	const LANTERNS = 3;
 	const GLINTS = 12;
-	const MOTES = 34;
-	const LIT = LANTERNS * 2 + GLINTS + MOTES;
+	const MOTES = 64;
+	const SWAYS = 2;
+	const HAZE = 6;
+	const MOTHS = 6; // three round each near lantern
+	const MOTE0 = LANTERNS * 2 + GLINTS;
+	const SWAY0 = MOTE0 + MOTES;
+	const HAZE0 = SWAY0 + SWAYS;
+	const MOTH0 = HAZE0 + HAZE;
+	const LIT = MOTH0 + MOTHS;
 	type Glint = { life: number; age: number; x: number; y: number; size: number; spin: number };
-	type Mote = { x: number; y: number; vx: number; vy: number; size: number; phase: number };
+	type Mote = { x: number; y: number; depth: number; size: number; phase: number; age: number };
+	// a bank of haze: x, y, width, height in visible heights about the screen's centre
+	type Bank = { x: number; y: number; w: number; h: number; v: number; phase: number };
+	const banks: Bank[] = [];
 	const glints: Glint[] = Array.from({ length: GLINTS }, () => ({ life: 0, age: 0, x: 0, y: 0, size: 0, spin: 0 }));
 	const motes: Mote[] = [];
 	const lamps = Array.from({ length: LANTERNS }, (_, i) => ({ phase: i * 2.1 + 0.7, gutter: 0, next: rand(3, 8) }));
 	let glintWait = 0;
 
+	// what the canvas shows of the painting, in art px
+	const view = () => ({ halfW: canvas.width / scale / 2, halfH: canvas.height / scale / 2 });
+	// a mote somewhere on the screen; it fades in, so one put down in plain sight never pops
+	const placeMote = (m: Mote, age = 0) => {
+		const { halfW, halfH } = view();
+		m.x = art.width / 2 + rand(-halfW, halfW);
+		m.y = art.height / 2 + rand(-halfH, halfH);
+		m.depth = rand(0.5, 1.5);
+		m.size = rand(8, 17);
+		m.phase = rand(0, 6.28);
+		m.age = age;
+	};
 	const seedMotes = () => {
 		motes.length = 0;
 		for (let i = 0; i < MOTES; i++) {
-			motes.push({
-				x: rand(0, art.width),
-				y: rand(0, art.height),
-				vx: rand(-7, 7),
-				vy: rand(-5, 3),
-				size: rand(4, 9),
+			const m = {} as Mote;
+			placeMote(m, rand(0, 3));
+			motes.push(m);
+		}
+		banks.length = 0;
+		for (let i = 0; i < HAZE; i++) {
+			banks.push({
+				x: rand(-1, 1),
+				// half of them under the roof, half along the floor
+				y: i % 2 ? rand(0.14, 0.42) : rand(-0.44, -0.18),
+				w: rand(0.9, 1.5),
+				h: rand(0.24, 0.38),
+				v: rand(0.012, 0.03),
 				phase: rand(0, 6.28),
 			});
 		}
@@ -125,7 +173,8 @@
 		const tex = cells(particles);
 		particles.forEach((p, i) => {
 			p.anchorX = p.anchorY = 0.5;
-			p.texture = i < LANTERNS * 2 ? tex[GLOW] : i < LANTERNS * 2 + GLINTS ? tex[STAR] : tex[SPECK];
+			p.texture =
+				i < LANTERNS * 2 ? tex[GLOW] : i < MOTE0 ? tex[STAR] : i < SWAY0 ? tex[SPECK] : i < MOTH0 ? tex[GLOW] : tex[SPECK];
 			hide(p);
 		});
 	};
@@ -145,6 +194,12 @@
 		const cx = art.width / 2;
 		const cy = art.height / 2;
 		const fs = isFreeSpins;
+		const { halfW, halfH } = view();
+		const visH = 2 * halfH;
+		// what the light pools and haze banks are sized by: a phone held upright is narrow,
+		// and a pool sized by its height lit the whole roof evenly (a flat brown wash)
+		const span = Math.min(visH, halfW * 2.4);
+		const draught = still ? 0 : draughtNow();
 
 		// the veins breathe; one write a frame
 		shimmer = (fs ? 0.5 : 0.42) + (fs ? 0.4 : 0.34) * Math.sin((2 * Math.PI * clock) / 5.5) + 0.25 * jolt;
@@ -164,20 +219,23 @@
 				0.09 * Math.sin(2 * Math.PI * 1.3 * t) +
 				0.05 * Math.sin(2 * Math.PI * 3.7 * t + lamp.phase) +
 				0.03 * Math.sin(2 * Math.PI * 9.1 * t) -
+				// a gust makes the flame gutter, all the lanterns together
+				0.2 * draught * (0.5 + 0.5 * Math.sin(2 * Math.PI * 7.3 * t)) -
 				0.34 * lamp.gutter -
 				0.3 * jolt * (0.5 + 0.5 * Math.sin(2 * Math.PI * 13 * t));
 			const halo = particles[i * 2];
 			halo.x = x - cx;
 			halo.y = y - cy;
 			halo.scaleX = halo.scaleY = ((2 * radius) / CELL) * (0.94 + 0.08 * flame);
-			halo.tint = fs ? 0xffa040 : 0xff8c32;
-			halo.alpha = (fs ? 0.34 : 0.3) * flame;
+			halo.tint = bgr(fs ? 0xffa040 : 0xff8c32);
+			// the pool of light swells and sinks slowly, so the wall beside it is never still
+			halo.alpha = (fs ? 0.34 : 0.3) * flame * (still ? 1 : 1.08 + 0.3 * Math.sin((2 * Math.PI * t) / 3.1));
 			const core = particles[i * 2 + 1];
-			core.x = x - cx + 1.2 * Math.sin(2 * Math.PI * 5.3 * t);
+			core.x = x - cx + 1.2 * Math.sin(2 * Math.PI * 5.3 * t) + radius * 0.02 * draught;
 			core.y = y - cy - 2 * Math.sin(2 * Math.PI * 4.1 * t + 1);
 			core.scaleX = ((radius * 0.27) / CELL) * (0.9 + 0.12 * flame);
 			core.scaleY = core.scaleX * (1.1 + 0.16 * Math.sin(2 * Math.PI * 6.7 * t));
-			core.tint = 0xffc470;
+			core.tint = bgr(0xffc470);
 			core.alpha = 0.5 * flame;
 		});
 
@@ -211,30 +269,90 @@
 			p.y = g.y - cy;
 			p.scaleX = p.scaleY = (g.size / 80) * (0.25 + 0.75 * k);
 			p.rotation = g.spin * (g.age / g.life);
-			p.tint = 0xffecb0;
+			p.tint = bgr(0xffecb0);
 			p.alpha = Math.min(1, k * 1.25);
 		});
 
-		// motes: lit only where a lantern reaches them; in free spins, gold embers rising
+		// the dust in the air streams out of the tunnel (the far lamp marks where it runs
+		// to) towards the viewer: slowly in still air, fast in a gust, and a blast blows
+		// it out. Lit where a lantern reaches it; in free spins, gold embers that rise.
+		const [farX, farY] = art.lanterns[2];
+		const pace = still ? 0 : (0.022 + 0.085 * draught + 0.3 * jolt) * visH;
 		motes.forEach((m, i) => {
-			const p = particles[LANTERNS * 2 + GLINTS + i];
-			m.x += (m.vx + 4 * Math.sin(clock * 0.7 + m.phase)) * dt;
-			m.y += (fs ? m.vy - 16 : m.vy) * dt;
-			if (m.y < -10) m.y = art.height + 10;
-			if (m.y > art.height + 10) m.y = -10;
-			if (m.x < -10) m.x = art.width + 10;
-			if (m.x > art.width + 10) m.x = -10;
-			let light = fs ? 0.34 : 0.07;
+			const p = particles[MOTE0 + i];
+			const dx = m.x - farX;
+			const dy = m.y - farY;
+			const dist = Math.hypot(dx, dy) || 1;
+			const near = dist / visH; // 0 at the tunnel's end, about 0.8 at the screen's edge
+			const v = pace * m.depth * (0.35 + near); // what comes at you speeds up
+			m.x += ((dx / dist) * v + 5 * Math.sin(clock * 0.7 + m.phase)) * dt;
+			m.y += ((dy / dist) * v + 4 * Math.sin(clock * 0.9 + 2 * m.phase) - (fs ? 16 : 3)) * dt;
+			m.age += dt;
+			if (Math.abs(m.x - cx) > halfW + 12 || Math.abs(m.y - cy) > halfH + 12) placeMote(m);
+			let light = (fs ? 0.55 : 0.3) + 0.22 * draught;
 			for (const [lx, ly, radius] of art.lanterns) {
 				const d = Math.hypot(m.x - lx, m.y - ly) / (radius * 1.7);
 				if (d < 1) light = Math.max(light, 0.95 * (1 - d) ** 1.3);
 			}
 			p.x = m.x - cx;
 			p.y = m.y - cy;
-			p.scaleX = p.scaleY = m.size / 70;
-			p.tint = fs ? 0xffc850 : 0xffd9a0;
-			p.alpha = light * (0.65 + 0.35 * Math.sin(clock * 1.9 + m.phase));
+			p.scaleX = p.scaleY = (m.size / 70) * (0.7 + 1.1 * near);
+			// warm, or pale specks on dark rock read as snow
+			p.tint = bgr(fs ? 0xffc850 : 0xffb464);
+			p.alpha = light * (0.65 + 0.35 * Math.sin(clock * 1.9 + m.phase)) * Math.min(1, m.age / 0.8);
 		});
+
+		// lamp light sways over the rock: one pool on the roof, one low down
+		for (let k = 0; k < SWAYS; k++) {
+			const p = particles[SWAY0 + k];
+			if (still) {
+				hide(p);
+				continue;
+			}
+			const t = clock * (k ? 0.83 : 1) + k * 2.4;
+			p.x = (0.62 * Math.sin((2 * Math.PI * t) / 7.1) + 0.1 * Math.sin((2 * Math.PI * t) / 2.9 + 1)) * halfW;
+			p.y = (k ? 0.46 : -0.74) * halfH;
+			const r = span * (k ? 0.46 : 0.6);
+			p.scaleX = ((2 * r) / CELL) * 1.5;
+			p.scaleY = (2 * r) / CELL;
+			p.tint = bgr(fs ? 0xffb050 : 0xff8c32);
+			// (the atlas glow is a narrow bell, 0.2 at half its radius: a wide pool needs a high peak)
+			p.alpha = (k ? 0.24 : 0.33) * (0.82 + 0.18 * Math.sin(2 * Math.PI * 1.1 * t)) * (1 + 0.35 * draught) + 0.25 * jolt;
+		}
+
+		// haze: banks of lit dust drifting one way, thicker and faster in a gust
+		const reach = halfW / visH;
+		banks.forEach((bank, i) => {
+			const p = particles[HAZE0 + i];
+			if (still) return hide(p);
+			bank.x += bank.v * (0.5 + 2.2 * draught) * dt;
+			if (bank.x - bank.w / 2 > reach) bank.x = -reach - bank.w / 2;
+			p.x = bank.x * visH;
+			p.y = bank.y * visH;
+			p.scaleX = (bank.w * span) / CELL;
+			p.scaleY = (bank.h * span) / CELL;
+			p.tint = bgr(fs ? 0xc89040 : 0xa87848);
+			// enough to be seen drifting, not so much that the rock's blacks go milky
+			p.alpha = (0.13 + 0.1 * draught) * (0.6 + 0.4 * Math.sin(clock * 0.31 + bank.phase));
+		});
+
+		// moths round the two near lanterns: specks on restless loops, their wings a flutter
+		for (let j = 0; j < MOTHS; j++) {
+			const p = particles[MOTH0 + j];
+			const [lx, ly, radius] = art.lanterns[j % 2];
+			if (still || !seen(lx, ly, frame)) {
+				hide(p);
+				continue;
+			}
+			const a = clock * (2.3 + 0.7 * j) * (j % 3 ? 1 : -1) + j * 1.9;
+			const r = radius * (0.24 + 0.1 * Math.sin(clock * 1.7 + j * 2.1));
+			p.x = lx - cx + r * Math.cos(a) + 5 * Math.sin(clock * 9 + j);
+			p.y = ly - cy - radius * 0.06 + r * 0.62 * Math.sin(a * 1.3 + j);
+			const wing = 0.55 + 0.45 * Math.sin(clock * 31 + j * 1.7);
+			p.scaleX = p.scaleY = (17 / 70) * (0.8 + 0.35 * wing);
+			p.tint = bgr(0xffe2b0);
+			p.alpha = 0.8 * wing;
+		}
 
 		jolt = Math.max(0, jolt - dt * 1.6);
 	};
@@ -302,7 +420,7 @@
 		const cy = art.height / 2;
 		fallWait -= dt;
 		if (fallWait <= 0) {
-			fallWait = rand(4, 10);
+			fallWait = rand(2.2, 5.5);
 			falls += 1;
 		}
 		if (falls > 0) {
@@ -323,17 +441,17 @@
 			p.y = g.y - cy;
 			if (kind === 'puff') {
 				p.scaleX = p.scaleY = ((g.size * 2) / CELL) * (0.6 + 1.6 * k);
-				p.tint = 0xa89884;
+				p.tint = bgr(0xa89884);
 				p.alpha = 0.4 * Math.sin(Math.PI * Math.min(1, k)) ** 0.8;
 			} else if (kind === 'pebble') {
 				p.scaleX = p.scaleY = g.size / 90;
 				p.rotation = g.spin * t;
-				p.tint = g.shade;
+				p.tint = bgr(g.shade);
 				p.alpha = Math.min(1, (1 - k) * 4);
 			} else {
 				p.scaleX = g.size / 70;
 				p.scaleY = p.scaleX * (1 + Math.min(1.2, g.vy / 260)); // a falling grain streaks
-				p.tint = g.shade;
+				p.tint = bgr(g.shade);
 				p.alpha = Math.min(1, t * 8) * (1 - k) ** 0.6;
 			}
 		};

@@ -1,7 +1,9 @@
 <script lang="ts" module>
 	/**
-	 * The slot's reactions to its big moments (Evtim, 2026-11-05). Each preset is a
-	 * mix of two moves:
+	 * The street shakes with the slot's big moments (Evtim, 2026-11-05; 2026-11-16:
+	 * "ideally we want this game to behave in terms of earthshake effects the same as
+	 * the blast game", so the presets are Blast Shaft's heavier ones and the cloner
+	 * has its three quakes). Each preset is a mix of two moves:
 	 * - `trauma` (0-1): a noisy shake + a slight roll, for blasts and rumbles. It
 	 *   stacks (two bombs shake harder than one, capped at 1), its strength is
 	 *   trauma squared (a small hit stays small), and it runs out at `decay` per second.
@@ -10,21 +12,30 @@
 	 * - cascade: each cascade's new symbols landing, once per landing, column by
 	 *   column under anticipation (TumbleBoard)
 	 * - bomb: a bomb's bang (the rig's `detonate`), base game and Cash Respins (Symbol)
-	 * - wildSlam: the Wild slamming into a bomb's cell (`wild`, Symbol)
-	 * - featureTrigger: the Scatters that start Cash Respins (cashRespinTrigger)
+	 * - cloneCast: the cloner firing its copies, a recoil (clonerActivate, CashRespinBoard)
+	 * - cloneStrike: each flying clone hitting its cell; they land 60 ms apart, so a
+	 *   run of them builds into a rumble (clonerActivate, CashRespinBoard)
+	 * - clonerBurst: every cloner tile bursting into the paying symbol, once for the
+	 *   lot, as hard as a bomb (clonerActivate)
+	 * - wildSlam: the Wild slamming into a bomb's cell (`wild`, Symbol); in Cash
+	 *   Respins also the cloner turning into its own coin
+	 * - featureTrigger: the Scatters that start Cash Respins (cashRespinTrigger): a
+	 *   long low rumble
 	 * - bigWin / megaWin / epicWin: each title stamping in (WinAnimation)
 	 * - collect: the last coin counted into TOTAL WIN (CashRespinBoard)
-	 * Tuned here (Evtim, 2026-11-12: a subtle one on every cascade, the bomb was
-	 * too subtle at trauma 0.6 / decay 1.6 / no kick, the slam at kick 0.35).
+	 * The logo rattles and the ground throws up dust with them (GameLogo, Boardwalk).
 	 */
 	export const SHAKE_PRESETS = {
-		cascade: { trauma: 0.35, decay: 1.8, kick: 0.2 },
-		bomb: { trauma: 0.85, decay: 1.1, kick: 0.5 },
-		wildSlam: { kick: 0.5 },
-		featureTrigger: { trauma: 0.5, decay: 0.55 },
-		bigWin: { trauma: 0.45, decay: 1.4, kick: 0.4 },
-		megaWin: { trauma: 0.6, decay: 1.2, kick: 0.5 },
-		epicWin: { trauma: 0.8, decay: 1.0, kick: 0.6 },
+		cascade: { trauma: 0.32, decay: 1.9, kick: 0.22 },
+		bomb: { trauma: 0.95, decay: 0.95, kick: 0.6 },
+		cloneCast: { kick: 0.35 },
+		cloneStrike: { trauma: 0.18, decay: 1.6, kick: 0.3 },
+		clonerBurst: { trauma: 0.95, decay: 0.95, kick: 0.6 },
+		wildSlam: { kick: 0.55 },
+		featureTrigger: { trauma: 0.6, decay: 0.45 },
+		bigWin: { trauma: 0.5, decay: 1.3, kick: 0.5 },
+		megaWin: { trauma: 0.68, decay: 1.1, kick: 0.6 },
+		epicWin: { trauma: 0.9, decay: 0.9, kick: 0.7 },
 		collect: { kick: 0.5 },
 	} satisfies Record<string, { trauma?: number; decay?: number; kick?: number }>;
 

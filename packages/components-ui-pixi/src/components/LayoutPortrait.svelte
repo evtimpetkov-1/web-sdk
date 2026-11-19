@@ -25,6 +25,8 @@
 	const w = $derived(context.stateLayoutDerived.mainLayoutStandard().width);
 	const h = $derived(context.stateLayoutDerived.mainLayoutStandard().height);
 	const cx = $derived(w * 0.5);
+	// the buttons' sizes and places: the theme's, so a game can run a bigger deck
+	const deck = $derived(stateUiTheme.portraitDeck);
 
 	// Bottom bar text styles (same as landscape)
 	// fonts/colours come from stateUiTheme (defaults = the former hardcoded look)
@@ -131,16 +133,16 @@
 <MainContainer standard alignVertical="bottom">
 	<Container y={drawerTween.current}>
 		<!-- SPIN (hero) — centered -->
-		<Container x={cx} y={h - 400} scale={1.6}>
+		<Container x={cx} y={h - deck.spinY} scale={deck.spinScale}>
 			{@render props.buttonBet({ anchor: 0.5 })}
 		</Container>
 
 		<!-- Left: menu, autoplay -->
-		<Container x={140} y={h - 280} scale={0.8}>
+		<Container x={deck.outerX} y={h - deck.sideY} scale={deck.sideScale}>
 			{@render props.buttonMenu({ anchor: 0.5 })}
 		</Container>
 
-		<Container x={290} y={h - 280} scale={0.8}>
+		<Container x={deck.innerX} y={h - deck.sideY} scale={deck.sideScale}>
 			{@render props.buttonAutoSpin({ anchor: 0.5 })}
 		</Container>
 
@@ -150,14 +152,15 @@
 		</Container>
 
 		<!-- Right: turbo, bet -->
-		<Container x={w - 290} y={h - 280} scale={0.8}>
+		<Container x={w - deck.innerX} y={h - deck.sideY} scale={deck.sideScale}>
 			{@render props.buttonTurbo({ anchor: 0.5 })}
 		</Container>
 
-		<Container x={w - 140} y={h - 280} scale={0.8}>
+		<Container x={w - deck.outerX} y={h - deck.sideY} scale={deck.sideScale}>
 			<Button
 				anchor={0.5}
 				sizes={{ width: 150, height: 150 }}
+				boxHit={stateUiTheme.spriteScale !== 1}
 				disabled={betDisabled}
 				onpress={onBetPress}
 			>
@@ -166,8 +169,8 @@
 						{...center}
 						key="bet.png"
 						anchor={0.5}
-						width={150}
-						height={150}
+						width={150 * stateUiTheme.spriteScale}
+						height={150 * stateUiTheme.spriteScale}
 						alpha={betDisabled ? 0.4 : hovered || pressed ? 1 : 0.85}
 					/>
 				{/snippet}
@@ -242,7 +245,7 @@
 	/>
 
 	<MainContainer standard alignVertical="bottom">
-		<Container x={140} y={h - 500}>
+		<Container x={deck.outerX} y={h - 500}>
 			<Container y={-640} scale={0.7}>
 				{@render props.buttonPayTable({ anchor: 0.5 })}
 			</Container>

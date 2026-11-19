@@ -111,8 +111,8 @@ export const i18nDerived = {
 	// Game Overview
 	rulesOverviewText: () =>
 		social(
-			'Blast Shaft is a 6-reel, 5-row cascading slot. There are 9 regular symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.',
-			'Blast Shaft is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.',
+			'Blast Drop is a 6-reel, 5-row cascading slot. There are 9 regular symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.',
+			'Blast Drop is a 6-reel, 5-row cascading slot. There are 9 paying symbols, 4 high and 5 low, and 5 special symbols: Wild, Scatter, Multiplier, Bomb and Cloner.',
 		),
 	// Game Modes
 	rulesGameModesText: () =>

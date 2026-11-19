@@ -181,8 +181,8 @@ export default {
 	'Autoplay: Spin automatically a set number of times.':
 		'Autospil: spinner automatisk et fastsat antal gange.',
 	'Turbo: Speed up animations.': 'Turbo: gør animationerne hurtigere.',
-	'Buy Feature (cart button): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
-		'Køb funktion (vognknappen): åbner funktionsmenuen med de tre Cash-respins-tilstande og kontakterne til Showdown-tilstand og Bonus-boost.',
+	'Buy Feature (Scatter symbol): Open the feature menu with the three Cash Respins modes and the Showdown Mode and Bonus Boost switches.':
+		'Køb funktion (Scatter-symbol): åbner funktionsmenuen med de tre Cash-respins-tilstande og kontakterne til Showdown-tilstand og Bonus-boost.',
 	'+/−: Increase or decrease the __0__ amount.': '+/−: øger eller sænker indsatsbeløbet.',
 	'Menu (☰): Open the menu.': 'Menu (☰): åbner menuen.',
 	'Paytable: View the symbol payout values.':

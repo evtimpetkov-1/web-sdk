@@ -5,6 +5,7 @@
 
 	import UiButton from './UiButton.svelte';
 	import { getContext } from '../context';
+	import { stateUiTheme } from '../stateUiTheme.svelte';
 	import { UI_BASE_SIZE } from '../constants';
 	import ButtonBetAutoSpinsCounter from './ButtonBetAutoSpinsCounter.svelte';
 
@@ -16,7 +17,7 @@
 	let iconRotation = $state(0);
 
 	$effect(() => {
-		if (active) {
+		if (active && stateUiTheme.autoSpinRotates) {
 			let frame: number;
 			const animate = () => {
 				iconRotation += 0.03;
