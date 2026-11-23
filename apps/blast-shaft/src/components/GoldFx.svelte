@@ -45,14 +45,10 @@
 
 	// where a win lands: the WIN counter (base game) / TOTAL WIN (free spins)
 	const counter = () => {
-		const plate = context.stateGameDerived.multiplierPlateLayout();
-		const boardWidth = context.stateGameDerived.boardLayout().width;
-		if (context.stateLayoutDerived.layoutType() === 'portrait') {
-			const line = context.stateGameDerived.portraitCounterLayout();
-			return { x: context.stateGame.gameType === 'freegame' ? line.right : boardWidth / 2, y: line.y };
-		}
-		const room = boardWidth - (plate.x + plate.width / 2);
-		return { x: boardWidth - room / 2, y: plate.y + SYMBOL_SIZE * 0.1 };
+		const line = context.stateGameDerived.winBeamLayout(context.stateGame.gameType === 'freegame');
+		if (line) return { x: line.x, y: line.y };
+		const spot = context.stateGameDerived.counterSpots().right;
+		return { x: spot.x, y: spot.y + SYMBOL_SIZE * 0.1 };
 	};
 
 	// ---------------------------------------------------------------- nuggets (normal blend)

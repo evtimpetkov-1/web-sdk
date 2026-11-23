@@ -52,6 +52,10 @@
 		if (context.stateLayoutDerived.layoutType() === 'portrait') {
 			return { x: boardWidth / 2, y: context.stateGameDerived.portraitCounterLayout().y };
 		}
+		if (context.stateGameDerived.sideLayout()) {
+			const side = context.stateGameDerived.sideColumns();
+			return { x: side.right, y: side.y + SYMBOL_SIZE * 0.1 };
+		}
 		const room = boardWidth - (plate.x + plate.width / 2);
 		return { x: boardWidth - room / 2, y: plate.y + SYMBOL_SIZE * 0.1 };
 	};

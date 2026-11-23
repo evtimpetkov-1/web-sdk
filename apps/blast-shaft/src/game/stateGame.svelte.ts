@@ -14,6 +14,7 @@ import {
 	SYMBOL_SIZE,
 	BOARD_SIZES,
 	FRAME_ART,
+	UI_KIND,
 	INITIAL_BOARD,
 	BOARD_DIMENSIONS,
 	SPIN_OPTIONS_DEFAULT,
@@ -239,14 +240,155 @@ const portraitStage = () => {
 	};
 };
 
+/**
+ * Side stage (Evtim, 2026-11-20: "for desktop / landscape can you move the
+ * multiplier plate on the right of the slot. The idea here is to leave some empty
+ * space on the top, so we can increase the reels board size, but not overlap its
+ * bottom reels frame part with the UI black bar"). With the generic UI on desktop
+ * and landscape the board group grows until the frame's top beam is SIDE_TOP
+ * under the screen's top or the beam under the reels (frame art rows 1084-1216)
+ * ends SIDE_UI_GAP over the UI, whichever comes first. The lower sill and the
+ * legs below that beam may run behind the bar (Evtim, same day: "the reels can
+ * be increased further ... it is fine that the legs of the reelsboard are behind
+ * the UI"). The logo stands left of the frame at its old size (its top level
+ * with the beam), the multiplier plate right of it, level with the logo, and the
+ * FREE SPINS counter under the logo. WIN / TOTAL WIN is one line on the beam
+ * under the reels (winBeamLayout; it stood under the plate until Evtim moved it
+ * there the same day). The board is centred on the screen
+ * when all of that fits, else pushed aside.
+ * Desktop: Spin rises over the bar and the cat's button over its left end, so
+ * the beam under the reels may come down to the bar only where the frame keeps
+ * clear of them: three placements are tried (down to the bar between the cat
+ * and Spin; down to the cat's head left of Spin; above Spin anywhere) and the
+ * one with the largest board wins. Landscape (phones, Stake's popouts): the
+ * buttons are a column on the right, the plate keeps clear of it.
+ * Main-layout units; plate and counters board-local. undefined on the other
+ * layouts and with the themed bar.
+ */
+// GenericUI.svelte, measured in the browser: standard units (1920x1080), x from
+// the canvas centre, y up from the canvas bottom (catTop: his crown, with room
+// for his tilt). Re-measure if the bar changes.
+const GENERIC_UI = {
+	desktop: { barTop: 108, catRight: -552, catTop: 140, spinLeft: 436, spinTop: 160 },
+	landscape: { stripTop: 124, columnLeft: 718 },
+};
+const SIDE_TOP = 8; // the screen's top -> the frame's top beam
+const SIDE_UI_GAP = 6; // the beam under the reels -> the UI
+const SIDE_GAP = 14; // a frame post -> the logo / the plate; desktop: the frame -> the cat / Spin
+const SIDE_EDGE = 16; // the logo -> the screen's edge; the plate -> the button column / the edge
+const SIDE_MAX_SCALE = 1.6;
+// the stacked logo (GameLogo, msLogo): its height at board scale 1 and its art's
+// aspect. It does not grow past that with the board (the room goes to the reels).
+const LOGO_HEIGHT = BOARD_SIZES.height * 0.34;
+export const LOGO_ASPECT = 1393 / 957;
+// the logo's centre under the board's top edge, of its height (its top level with the beam)
+const LOGO_DROP = 0.18;
+// under the lower of the logo and the plate, to the counters' label/value line
+const SIDE_COUNTER_DROP = SYMBOL_SIZE * 0.42;
+// frame_resized.png: the last row of the beam under the reels (the lower sill below it)
+const FRAME_BEAM_BOTTOM = 1216;
+// board-local: the frame beyond the board on each side
+const FRAME_UNIT_X = BOARD_SIZES.width / FRAME_ART.window.width;
+const FRAME_LEFT = FRAME_ART.window.x * FRAME_UNIT_X;
+const FRAME_RIGHT = (FRAME_ART.width - FRAME_ART.window.x - FRAME_ART.window.width) * FRAME_UNIT_X;
+const FRAME_TOP = FRAME_ART.window.y * FRAME_UNIT_Y;
+const FRAME_TO_BEAM = FRAME_BEAM_BOTTOM * FRAME_UNIT_Y;
+
+const sideStage = () => {
+	const type = stateLayoutDerived.layoutType();
+	if (UI_KIND !== 'generic' || (type !== 'desktop' && type !== 'landscape')) return undefined;
+	const main = stateLayoutDerived.mainLayout();
+	const canvas = stateLayoutDerived.canvasSizes();
+	// main units per standard unit
+	const k = stateLayoutDerived.mainLayoutStandard().scale / main.scale;
+	const visibleWidth = canvas.width / main.scale;
+	const visibleHeight = canvas.height / main.scale;
+	const top = (main.height - visibleHeight) / 2;
+	const left = (main.width - visibleWidth) / 2;
+	const centre = main.width / 2;
+	const bottom = top + visibleHeight;
+	const plate = plateSize();
+	const frameWidth1 = FRAME_LEFT + BOARD_SIZES.width + FRAME_RIGHT;
+	const logoScale = (scale: number) => Math.min(scale, 1);
+	const minX = left + SIDE_EDGE;
+	const ui = GENERIC_UI.desktop;
+	// where the beam may come down to (standard units over the bottom) and the band
+	// the frame must then keep to
+	const placements =
+		type === 'desktop'
+			? [
+					{ clear: ui.barTop, min: centre + ui.catRight * k + SIDE_GAP, max: centre + ui.spinLeft * k - SIDE_GAP },
+					{ clear: ui.catTop, min: -Infinity, max: centre + ui.spinLeft * k - SIDE_GAP },
+					{ clear: ui.spinTop, min: -Infinity, max: Infinity },
+				]
+			: [{ clear: GENERIC_UI.landscape.stripTop, min: -Infinity, max: Infinity }];
+	const maxX = type === 'desktop' ? left + visibleWidth - SIDE_EDGE : centre + GENERIC_UI.landscape.columnLeft * k - SIDE_EDGE;
+	// the frame's left edge may run from `lo` to `hi` at this scale (lo > hi: no room)
+	const span = (scale: number, place: (typeof placements)[number]) => ({
+		lo: Math.max(place.min, minX + LOGO_HEIGHT * LOGO_ASPECT * logoScale(scale) + SIDE_GAP),
+		hi: Math.min(place.max, maxX - SIDE_GAP - plate.width * scale) - frameWidth1 * scale,
+	});
+	// the largest board, but a board pushed off the middle must be clearly larger
+	// than a centred one to win (1600x900: 1.111 against the side of Spin vs 1.098 centred)
+	const centredLeft = (scale: number) => centre - (FRAME_LEFT + BOARD_SIZES.width / 2) * scale;
+	const offCentre = (scale: number, place: (typeof placements)[number]) => {
+		const { lo, hi } = span(scale, place);
+		return Math.abs(Math.max(lo, Math.min(hi, centredLeft(scale))) - centredLeft(scale)) > 1;
+	};
+	const OFF_CENTRE_COST = 0.97;
+	let best = { scale: 0, place: placements[0], score: 0 };
+	for (const place of placements) {
+		let high = Math.min(SIDE_MAX_SCALE, (bottom - place.clear * k - SIDE_UI_GAP - top - SIDE_TOP) / FRAME_TO_BEAM);
+		let low = 0.5;
+		const fits = (scale: number) => {
+			const { lo, hi } = span(scale, place);
+			return lo <= hi;
+		};
+		if (fits(high)) low = high;
+		else for (let i = 0; i < 24; i++) {
+			const mid = (low + high) / 2;
+			if (fits(mid)) low = mid;
+			else high = mid;
+		}
+		const score = low * (offCentre(low, place) ? OFF_CENTRE_COST : 1);
+		if (score > best.score) best = { scale: low, place, score };
+	}
+	const { scale } = best;
+	const logo = { width: LOGO_HEIGHT * LOGO_ASPECT * logoScale(scale), height: LOGO_HEIGHT * logoScale(scale) };
+	// the board centred, kept inside its span
+	const { lo, hi } = span(scale, best.place);
+	const frameLeft = Math.max(lo, Math.min(hi, centredLeft(scale)));
+	const boardLeft = frameLeft + FRAME_LEFT * scale;
+	const boardTop = top + SIDE_TOP + FRAME_TOP * scale;
+	// board-local
+	const logoX = (frameLeft - SIDE_GAP - logo.width / 2 - boardLeft) / scale;
+	const logoY = (LOGO_DROP * logo.height) / scale;
+	const plateX = BOARD_SIZES.width + FRAME_RIGHT + SIDE_GAP / scale + plate.width / 2;
+	const counterY = Math.max(logoY + logo.height / 2 / scale, logoY + plate.height / 2) + SIDE_COUNTER_DROP;
+	return {
+		scale,
+		boardX: boardLeft + (BOARD_SIZES.width / 2) * scale,
+		boardY: boardTop + (BOARD_SIZES.height / 2) * scale,
+		/** main units, centre */
+		logo: { x: boardLeft + logoX * scale, y: boardTop + logoY * scale, ...logo },
+		plate: { x: plateX, y: logoY },
+		counters: {
+			left: { x: logoX, y: counterY, room: logo.width / scale },
+			// unused here: the win is on the beam (winBeamLayout)
+			right: { x: plateX, y: counterY, room: plate.width },
+		},
+	};
+};
+
 const boardLayout = () => {
 	const main = stateLayoutDerived.mainLayout();
 	const portrait = stateLayoutDerived.layoutType() === 'portrait' ? portraitStage() : undefined;
+	const side = portrait ? undefined : sideStage();
 	return {
-		x: main.width * 0.5,
-		y: portrait?.boardY ?? main.height * 0.5,
+		x: side?.boardX ?? main.width * 0.5,
+		y: portrait?.boardY ?? side?.boardY ?? main.height * 0.5,
 		// width/height stay the board-local BOARD_SIZES; `scale` maps them to main units
-		scale: portrait?.scale ?? 1,
+		scale: portrait?.scale ?? side?.scale ?? 1,
 		anchor: { x: 0.5, y: 0.5 },
 		pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
 		...BOARD_SIZES,
@@ -269,10 +411,13 @@ const frameLayout = () => {
 	};
 };
 
-// The plate sits in the middle of the frame's top beam on every layout: with no mascot
-// behind the board (2026-11-13) nothing in portrait needs it to step aside.
+// The plate sits in the middle of the frame's top beam on portrait and tablet (with no
+// mascot behind the board, 2026-11-13, nothing in portrait needs it to step aside), and
+// right of the frame on desktop and landscape (sideStage, 2026-11-20).
 const multiplierPlateLayout = () => {
 	const { width, height } = plateSize();
+	const side = sideStage();
+	if (side) return { ...side.plate, width, height };
 	// frame sprite top edge in board-local coords
 	const frameTop = -FRAME_ART.window.y * FRAME_UNIT_Y;
 	return {
@@ -282,6 +427,26 @@ const multiplierPlateLayout = () => {
 		height,
 	};
 };
+
+/**
+ * Where the two counters stand off portrait, board-local: FREE SPINS (`left`) and
+ * WIN / TOTAL WIN (`right`), label over value about `y`, `room` = the width they
+ * may take. Either side of the plate on the frame's top beam (tablet, the themed
+ * bar), or under the logo and under the plate (sideStage). Portrait has its own
+ * one-line counters (portraitCounterLayout).
+ */
+const counterSpots = () => {
+	const side = sideStage();
+	if (side) return side.counters;
+	const plate = multiplierPlateLayout();
+	const leftRoom = plate.x - plate.width / 2;
+	const rightRoom = BOARD_SIZES.width - (plate.x + plate.width / 2);
+	return {
+		left: { x: leftRoom / 2, y: plate.y, room: leftRoom },
+		right: { x: BOARD_SIZES.width - rightRoom / 2, y: plate.y, room: rightRoom },
+	};
+};
+export type CounterSpot = ReturnType<typeof counterSpots>['left'];
 
 /**
  * Portrait counters (Evtim, 2026-10-26: beside the plate they were squeezed on
@@ -319,6 +484,23 @@ const portraitCounterLayout = () => {
 	};
 };
 export type PortraitCounterLayout = ReturnType<typeof portraitCounterLayout>;
+
+/**
+ * The WIN / TOTAL WIN counter as one line on a counter plate on the beam under the
+ * reels (portraitCounterLayout's plate and line): portrait since 2026-10-26, and
+ * desktop / landscape with the generic UI since 2026-11-20 (Evtim: "I think there
+ * is plenty of space in desktop / landscape to put the win which right now is below
+ * the multiplier plate on the reels frame bottom"). Portrait shares the beam with
+ * FREE SPINS in free spins, so TOTAL WIN takes its right half there; desktop /
+ * landscape keep FREE SPINS under the logo and the win in the middle. `x` is the
+ * line's centre, board-local. undefined on the other layouts (tablet, themed bar).
+ */
+const winBeamLayout = (freegame: boolean) => {
+	const portrait = stateLayoutDerived.layoutType() === 'portrait';
+	if (!portrait && !sideStage()) return undefined;
+	const line = portraitCounterLayout();
+	return { ...line, x: portrait && freegame ? line.right : BOARD_SIZES.width / 2 };
+};
 
 const boardRaw = () =>
 	board.map((reel) => reel.reelState.symbols.map((reelSymbol) => reelSymbol.rawSymbol));
@@ -362,10 +544,13 @@ export const { getWinLevelDataByWinLevelAlias } = createGetWinLevelDataByWinLeve
 export const stateGameDerived = {
 	onSymbolLand,
 	portraitStage,
+	sideStage,
 	boardLayout,
 	frameLayout,
 	multiplierPlateLayout,
+	counterSpots,
 	portraitCounterLayout,
+	winBeamLayout,
 	boardRaw,
 	tumbleBoardCombined,
 	enhancedBoard,

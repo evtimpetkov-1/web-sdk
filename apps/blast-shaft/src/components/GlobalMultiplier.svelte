@@ -16,7 +16,8 @@
 	import BoardContainer from './BoardContainer.svelte';
 	import { getContext } from '../game/context';
 
-	// The multiplier plate above the reels. It is on screen only while it holds a
+	// The multiplier plate above the reels (right of them on desktop / landscape since
+	// 2026-11-20). It was on screen only while it held a
 	// value (Evtim, 2026-11-18: "make the multiplier plate hide and show when needed
 	// similar to chaos lab 2 and dynamite games"; their logic, ported as it is.
 	// Before, it was always shown, empty: that copy is in
@@ -36,14 +37,19 @@
 	const plate = $derived(context.stateGameDerived.multiplierPlateLayout());
 	const fontSize = $derived(plate.height * 0.62);
 
+	// ON SCREEN ALL THE TIME again, empty until a collect (Evtim, 2026-11-20: "the
+	// multiplier plate - show it all the time", once it moved beside the reels on
+	// desktop / landscape). false = the show-only-with-a-value logic below.
+	const ALWAYS_SHOWN = true;
+
 	let show = $state(true);
 	let multiplier = $state(1);
 	const textScale = new Tween(1, { duration: 200, easing: cubicOut });
 	// a collect is on its way: the plate comes in ahead of the value
 	let armed = $state(false);
-	const wanted = $derived(multiplier > 1 || armed);
+	const wanted = $derived(ALWAYS_SHOWN || multiplier > 1 || armed);
 	// 0 = away (lifted a little, see-through), 1 = in place
-	const plateIn = new Tween(0, { duration: 260, easing: backOut });
+	const plateIn = new Tween(ALWAYS_SHOWN ? 1 : 0, { duration: 260, easing: backOut });
 	$effect(() => {
 		plateIn.set(wanted ? 1 : 0, wanted ? { duration: 260, easing: backOut } : { duration: 320, easing: cubicOut });
 	});
@@ -60,7 +66,7 @@
 				armed = false;
 				textScale.set(1, { duration: 0 });
 				// behind the curtains / on a reload: in place (or gone) at once
-				plateIn.set(next > 1 ? 1 : 0, { duration: 0 });
+				plateIn.set(ALWAYS_SHOWN || next > 1 ? 1 : 0, { duration: 0 });
 				return;
 			}
 

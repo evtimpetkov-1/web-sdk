@@ -2,8 +2,8 @@
  "frames": {
   "A.png": {
    "frame": {
-    "x": 309,
-    "y": 758,
+    "x": 608,
+    "y": 1062,
     "w": 297,
     "h": 321
    },
@@ -22,8 +22,8 @@
   },
   "J.png": {
    "frame": {
-    "x": 610,
-    "y": 758,
+    "x": 909,
+    "y": 1062,
     "w": 297,
     "h": 321
    },
@@ -42,8 +42,8 @@
   },
   "K.png": {
    "frame": {
-    "x": 911,
-    "y": 758,
+    "x": 1210,
+    "y": 1062,
     "w": 297,
     "h": 321
    },
@@ -63,7 +63,7 @@
   "Q.png": {
    "frame": {
     "x": 4,
-    "y": 1084,
+    "y": 1388,
     "w": 297,
     "h": 321
    },
@@ -83,7 +83,7 @@
   "bomb.png": {
    "frame": {
     "x": 305,
-    "y": 1084,
+    "y": 1388,
     "w": 297,
     "h": 321
    },
@@ -103,27 +103,27 @@
   "bonus.png": {
    "frame": {
     "x": 4,
-    "y": 4,
-    "w": 427,
-    "h": 423
+    "y": 535,
+    "w": 486,
+    "h": 523
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 427,
-    "h": 423
+    "w": 486,
+    "h": 523
    },
    "sourceSize": {
-    "w": 427,
-    "h": 423
+    "w": 486,
+    "h": 523
    }
   },
   "cloner.png": {
    "frame": {
     "x": 606,
-    "y": 1084,
+    "y": 1388,
     "w": 297,
     "h": 321
    },
@@ -142,88 +142,88 @@
   },
   "h1.png": {
    "frame": {
-    "x": 312,
-    "y": 431,
-    "w": 311,
-    "h": 322
+    "x": 494,
+    "y": 535,
+    "w": 493,
+    "h": 522
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 311,
-    "h": 322
+    "w": 493,
+    "h": 522
    },
    "sourceSize": {
-    "w": 311,
-    "h": 322
+    "w": 493,
+    "h": 522
    }
   },
   "h2.png": {
    "frame": {
-    "x": 745,
-    "y": 4,
-    "w": 306,
-    "h": 323
+    "x": 991,
+    "y": 535,
+    "w": 492,
+    "h": 521
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 306,
-    "h": 323
+    "w": 492,
+    "h": 521
    },
    "sourceSize": {
-    "w": 306,
-    "h": 323
+    "w": 492,
+    "h": 521
    }
   },
   "h3.png": {
    "frame": {
-    "x": 4,
-    "y": 431,
-    "w": 304,
-    "h": 323
+    "x": 994,
+    "y": 4,
+    "w": 491,
+    "h": 525
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 304,
-    "h": 323
+    "w": 491,
+    "h": 525
    },
    "sourceSize": {
-    "w": 304,
-    "h": 323
+    "w": 491,
+    "h": 525
    }
   },
   "h4.png": {
    "frame": {
-    "x": 435,
+    "x": 4,
     "y": 4,
-    "w": 306,
-    "h": 324
+    "w": 492,
+    "h": 527
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 306,
-    "h": 324
+    "w": 492,
+    "h": 527
    },
    "sourceSize": {
-    "w": 306,
-    "h": 324
+    "w": 492,
+    "h": 527
    }
   },
   "mult_symbol_glow.png": {
    "frame": {
-    "x": 627,
-    "y": 431,
+    "x": 4,
+    "y": 1062,
     "w": 298,
     "h": 322
    },
@@ -242,8 +242,8 @@
   },
   "mult_symbol_plate.png": {
    "frame": {
-    "x": 929,
-    "y": 431,
+    "x": 306,
+    "y": 1062,
     "w": 298,
     "h": 322
    },
@@ -263,7 +263,7 @@
   "ten.png": {
    "frame": {
     "x": 907,
-    "y": 1084,
+    "y": 1388,
     "w": 297,
     "h": 321
    },
@@ -282,33 +282,33 @@
   },
   "wild.png": {
    "frame": {
-    "x": 4,
-    "y": 758,
-    "w": 301,
-    "h": 322
+    "x": 500,
+    "y": 4,
+    "w": 490,
+    "h": 526
    },
    "rotated": false,
    "trimmed": false,
    "spriteSourceSize": {
     "x": 0,
     "y": 0,
-    "w": 301,
-    "h": 322
+    "w": 490,
+    "h": 526
    },
    "sourceSize": {
-    "w": 301,
-    "h": 322
+    "w": 490,
+    "h": 526
    }
   }
  },
  "meta": {
-  "app": "art-review/chaoslab2/symbols_v3/build_statics.py",
+  "app": "art-review/chaoslab2/symbols_v4/install.py",
   "version": "1.0",
   "image": "symbols.webp",
   "format": "RGBA8888",
   "size": {
-   "w": 1231,
-   "h": 1409
+   "w": 1511,
+   "h": 1713
   },
   "scale": "1"
  }

@@ -116,6 +116,9 @@
 			const y = (TOP_MARGIN + plateTop - GAP) / 2;
 			return { x: board.x, y, width, height: width / ROW_ASPECT };
 		}
+		// desktop / landscape with the generic UI: left of the grown board (stateGame sideStage)
+		const side = context.stateGameDerived.sideStage();
+		if (side) return side.logo;
 		// mockup (2026-09-02): logo centre ~0.2 board widths left of the board, its
 		// top level with the frame's top pipe
 		const height = board.height * 0.34;

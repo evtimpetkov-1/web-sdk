@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { STUDIO_CAT_LEVELS } from './cat';
 	import { STUDIO_LOGO } from './logo';
 
 	/**
@@ -21,23 +22,47 @@
 	 *   90 %  a small nod
 	 * Transform and opacity only. Under prefers-reduced-motion he holds still.
 	 *
-	 * The box is the old still picture's (cat.ts): the head plus 14 % of its width
-	 * each side for the whiskers, from the crown's top to the head's bottom, so it
-	 * drops in where that picture was. It fills its parent's width.
+	 * The box is the old still picture's: the head plus 14 % of its width each side
+	 * for the whiskers, from the crown's top to the head's bottom. It fills its
+	 * parent's width.
+	 *
+	 * SHARPNESS (2026-11-20, Evtim: "the buy button is looking a bit pixalated
+	 * especially the wiskers ... I need this fixed on platform level"): the intro's
+	 * atlas has the head at 514 px and the whiskers at twice that, and a bonus button
+	 * draws the head at ~100-200 device px. On a layer with a running animation the
+	 * browser shrinks with plain bilinear sampling, so a 3-10x shrink broke the thin
+	 * whiskers into steps. cat.ts holds the pieces shrunk properly at a few sizes; he
+	 * draws the smallest that is at least his size on screen (measured, x device pixel
+	 * ratio), the intro's atlas above the last, so the browser never shrinks much.
 	 */
-	const { atlas, pieces, src, headClip, ears, whiskers } = STUDIO_LOGO;
+	const { pieces, headClip, ears, whiskers } = STUDIO_LOGO;
 	type Piece = (typeof pieces)[number];
 	type Frame = { x: number; y: number; w: number; h: number };
+	type Packed = readonly [number, number, number, number];
+	type Level = { head: number; atlas: { width: number; height: number }; src: string; pieces: Record<string, Packed> };
+
+	const LEVELS: Level[] = [
+		...STUDIO_CAT_LEVELS,
+		{
+			head: pieces.find((piece) => piece.name === 'head')!.aw,
+			atlas: STUDIO_LOGO.atlas,
+			src: STUDIO_LOGO.src,
+			pieces: Object.fromEntries(pieces.map((piece) => [piece.name, [piece.ax, piece.ay, piece.aw, piece.ah] as const])),
+		},
+	];
 
 	const percent = (value: number) => `${value * 100}%`;
 	// one piece of the packed image, as a background
-	const sprite = (piece: Piece) =>
-		[
-			`--sx: ${percent(atlas.width / piece.aw)}`,
-			`--sy: ${percent(atlas.height / piece.ah)}`,
-			`--px: ${percent(atlas.width === piece.aw ? 0 : piece.ax / (atlas.width - piece.aw))}`,
-			`--py: ${percent(atlas.height === piece.ah ? 0 : piece.ay / (atlas.height - piece.ah))}`,
+	const sprite = (piece: Piece, level: Level) => {
+		const { atlas } = level;
+		const [ax, ay, aw, ah] = level.pieces[piece.name];
+		return [
+			`--sx: ${percent(atlas.width / aw)}`,
+			`--sy: ${percent(atlas.height / ah)}`,
+			`--px: ${percent(atlas.width === aw ? 0 : ax / (atlas.width - aw))}`,
+			`--py: ${percent(atlas.height === ah ? 0 : ay / (atlas.height - ah))}`,
 		].join('; ');
+	};
 	// a piece's box inside another box
 	const boxIn = (piece: Piece, frame: Frame) =>
 		[
@@ -59,10 +84,51 @@
 		w: head.w + side * 2,
 		h: head.y + head.h - crown.y,
 	};
+
+	// the level: the smallest whose head is at least ~his head on screen in device
+	// pixels. Up to a 15 % upscale is allowed (not seen), so a 2560 px retina desktop
+	// (~275 px of head) keeps the 257 px level instead of a ~2x shrink of the intro's
+	// atlas. The middle one until he is measured.
+	let root: HTMLSpanElement | undefined = $state();
+	let levelIndex = $state(1);
+	const level = $derived(LEVELS[levelIndex]);
+	$effect(() => {
+		if (!root) return;
+		const el = root;
+		const pick = () => {
+			const need = (el.clientWidth * head.w * window.devicePixelRatio) / BOX.w;
+			const index = LEVELS.findIndex((candidate) => candidate.head * 1.15 >= need);
+			levelIndex = index === -1 ? LEVELS.length - 1 : index;
+		};
+		pick();
+		const observer = new ResizeObserver(pick);
+		observer.observe(el);
+		// a zoom or a move to another screen changes the pixel ratio, not his box
+		let dpr: MediaQueryList | undefined;
+		const watchDpr = () => {
+			dpr?.removeEventListener('change', onDpr);
+			dpr = window.matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
+			dpr.addEventListener('change', onDpr);
+		};
+		const onDpr = () => {
+			pick();
+			watchDpr();
+		};
+		watchDpr();
+		return () => {
+			observer.disconnect();
+			dpr?.removeEventListener('change', onDpr);
+		};
+	});
 </script>
 
-<span class="studio-cat" style={`aspect-ratio: ${BOX.w} / ${BOX.h}; --atlas: url("${src}");`} aria-hidden="true">
-	<span class="head" style={`${boxIn(head, BOX)}; ${sprite(head)};`}>
+<span
+	class="studio-cat"
+	bind:this={root}
+	style={`aspect-ratio: ${BOX.w} / ${BOX.h}; --atlas: url("${level.src}");`}
+	aria-hidden="true"
+>
+	<span class="head" style={`${boxIn(head, BOX)}; ${sprite(head, level)};`}>
 		<span class="tilt">
 			<i class="skin" style={`clip-path: ${headClip};`}></i>
 			<i class="skin ear ear_l" style={`clip-path: ${ears.l.clip}; transform-origin: ${ears.l.origin};`}></i>
@@ -70,13 +136,13 @@
 			{#each hairs as hair (hair.name)}
 				<i
 					class={`hair ${hair.name}`}
-					style={`${boxIn(hair, head)}; ${sprite(hair)}; transform-origin: ${whiskers[hair.name as keyof typeof whiskers].origin};`}
+					style={`${boxIn(hair, head)}; ${sprite(hair, level)}; transform-origin: ${whiskers[hair.name as keyof typeof whiskers].origin};`}
 				></i>
 			{/each}
 			{#each lids as lid (lid.name)}
-				<i class={`lid ${lid.name}`} style={`${boxIn(lid, head)}; ${sprite(lid)};`}></i>
+				<i class={`lid ${lid.name}`} style={`${boxIn(lid, head)}; ${sprite(lid, level)};`}></i>
 			{/each}
-			<span class="crown" style={`${boxIn(crown, head)}; ${sprite(crown)};`}>
+			<span class="crown" style={`${boxIn(crown, head)}; ${sprite(crown, level)};`}>
 				<i class="skin"></i>
 				<i class="glint"></i>
 			</span>

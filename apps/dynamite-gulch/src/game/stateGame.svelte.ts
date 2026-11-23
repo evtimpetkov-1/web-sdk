@@ -23,6 +23,7 @@ import {
 	REEL_LAND_RATES,
 	BONUS_LAND_RATES,
 	ladderRate,
+	UI_KIND,
 } from './constants';
 import type { SoundEffectName } from './sound';
 
@@ -241,14 +242,100 @@ const portraitStage = () => {
 	};
 };
 
+/**
+ * Desktop and phone landscape (Evtim, 2026-11-20: "increase the slot size ... in desktop
+ * and landscape"): the board group (reels, frame, plate, counters) grows until the reels'
+ * bottom row stands just above the generic bar and the multiplier plate, when it shows,
+ * just under the canvas top. On a 16:9 screen the plate and the bar already took all the
+ * height, so on LANDSCAPE the room is the frame's bottom beam, which goes behind the bar.
+ * DESKTOP (the same day, his next ask) has the side layout below instead: the plate and
+ * counters beside the frame, the whole frame in view. On a window narrower than 16:9 the width caps it (the
+ * logo keeps its room beside the frame) and the group is centred in the height.
+ * WIDE_GROW = false = the old fixed size (scale 1, centred). The themed bar is not
+ * measured here, so it keeps the old size.
+ */
+const WIDE_GROW = UI_KIND === 'generic';
+// the generic bar's top, standard layout units above the canvas bottom
+// (components-ui-html GenericUI.svelte: desktop's plate is 96 tall, 12 off the bottom;
+// the phone layouts' strip is 124). The replay HUD's rows sit inside the same height.
+const WIDE_UI_TOP = { desktop: 108, landscape: 124 };
+const WIDE_UI_GAP = 4; // the reel window's bottom to the bar
+const WIDE_TOP_MARGIN = 8; // the plate's top to the canvas top
+const SIDE_UI_GAP = 10; // desktop side layout: the frame's bottom beam to the bar
+const SIDE_TOP_MARGIN = 14; // and its top beam to the canvas top
+const WIDE_MAX_FRAME = 0.53; // the frame's share of the visible width, at most (16:9 uses 0.51; wider, and on a 16:10 window Spin clips the bottom-right cell; it also leaves the side columns their room)
+
+/**
+ * Desktop side columns (Evtim, 2026-11-20: "for desktop - can you move the multipliers plate
+ * to the right side of the slot ... free up space on top, so we can move the reelsboard up,
+ * right now its too much into the UI"). Nothing stands above the frame any more: the plate
+ * is in a column right of the frame, its top level with the reels' top, the WIN / TOTAL WIN
+ * counter under it; the mirror column left of the frame holds the logo and RESPINS LEFT
+ * under it; the lanterns hang on the houses in the background (HouseLanterns). So the board
+ * group is the frame alone, top beam to bottom beam, fitted between the canvas top and the
+ * bar. Board-local units; `left` / `right` are the columns' centres, `y` the counters'
+ * label / value line (label above it, value below), `room` a counter's width.
+ * DESK_SIDE = false = the plate and counters above the frame, as on landscape.
+ */
+const DESK_SIDE = true;
+const sideLayout = () => WIDE_GROW && DESK_SIDE && stateLayoutDerived.layoutType() === 'desktop';
+// frame.webp: the side post's width (right of the window; the left is 69)
+const FRAME_SIDE = ((FRAME_ART.width - FRAME_ART.window.x - FRAME_ART.window.width) * BOARD_SIZES.width) / FRAME_ART.window.width;
+const SIDE_GAP = 24; // the frame's outer edge to the plate
+const SIDE_COUNTER_GAP = 30; // the plate's bottom to the counter's label
+const SIDE_LABEL = SYMBOL_SIZE * 0.26; // the counters' LABEL_SIZE
+const FRAME_OPAQUE_BOTTOM = 846; // frame.webp: the bottom beam's last row (the art is 879 tall)
+const sideColumns = () => {
+	const plate = plateSize();
+	const reach = FRAME_SIDE + SIDE_GAP + plate.width / 2;
+	return {
+		left: -reach,
+		right: BOARD_SIZES.width + reach,
+		y: plate.height + SIDE_COUNTER_GAP + SIDE_LABEL,
+		room: plate.width,
+	};
+};
+
+const wideStage = (layout: 'desktop' | 'landscape') => {
+	const main = stateLayoutDerived.mainLayout();
+	const canvas = stateLayoutDerived.canvasSizes();
+	const visibleWidth = canvas.width / main.scale;
+	const top = (main.height - canvas.height / main.scale) / 2;
+	const uiTop =
+		top +
+		(canvas.height - WIDE_UI_TOP[layout] * stateLayoutDerived.mainLayoutStandard().scale) /
+			main.scale;
+	const side = layout === 'desktop' && sideLayout();
+	// at scale 1, above the reel window: the frame's top beam, and the plate over it unless it
+	// is in the side column; below it (side layout only): the frame's bottom beam, which then
+	// stays in view above the bar instead of going behind it
+	const above =
+		FRAME_ART.window.y * FRAME_UNIT_Y +
+		(side ? 0 : plateSize().height * (1 - MULT_PLATE_OVERLAP));
+	const below = side
+		? (FRAME_OPAQUE_BOTTOM - FRAME_ART.window.y - FRAME_ART.window.height) * FRAME_UNIT_Y
+		: 0;
+	const tall = above + BOARD_SIZES.height + below;
+	const room = uiTop - (side ? SIDE_UI_GAP : WIDE_UI_GAP) - top - (side ? SIDE_TOP_MARGIN : WIDE_TOP_MARGIN);
+	const scale = Math.min(room / tall, (visibleWidth * WIDE_MAX_FRAME) / FRAME_WIDTH);
+	const groupTop = top + (side ? SIDE_TOP_MARGIN : WIDE_TOP_MARGIN) + (room - tall * scale) / 2;
+	return { scale, uiTop, boardY: groupTop + (above + BOARD_SIZES.height / 2) * scale };
+};
+
 const boardLayout = () => {
 	const main = stateLayoutDerived.mainLayout();
-	const portrait = stateLayoutDerived.layoutType() === 'portrait' ? portraitStage() : undefined;
+	const layout = stateLayoutDerived.layoutType();
+	const stage =
+		layout === 'portrait'
+			? portraitStage()
+			: WIDE_GROW && (layout === 'desktop' || layout === 'landscape')
+				? wideStage(layout)
+				: undefined;
 	return {
 		x: main.width * 0.5,
-		y: portrait?.boardY ?? main.height * 0.5,
+		y: stage?.boardY ?? main.height * 0.5,
 		// width/height stay the board-local BOARD_SIZES; `scale` maps them to main units
-		scale: portrait?.scale ?? 1,
+		scale: stage?.scale ?? 1,
 		anchor: { x: 0.5, y: 0.5 },
 		pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
 		...BOARD_SIZES,
@@ -272,9 +359,11 @@ const frameLayout = () => {
 };
 
 // the plate is centred over the reels on every layout (in portrait it used to
-// slide left of the mascot; she left the game on 2026-11-13)
+// slide left of the mascot; she left the game on 2026-11-13), except desktop's side
+// layout: right of the frame, its top level with the reels' top
 const multiplierPlateLayout = () => {
 	const { width, height } = plateSize();
+	if (sideLayout()) return { x: sideColumns().right, y: height / 2, width, height };
 	// frame sprite top edge in board-local coords
 	const frameTop = -FRAME_ART.window.y * FRAME_UNIT_Y;
 	return {
@@ -364,6 +453,9 @@ export const { getWinLevelDataByWinLevelAlias } = createGetWinLevelDataByWinLeve
 export const stateGameDerived = {
 	onSymbolLand,
 	portraitStage,
+	wideStage,
+	sideLayout,
+	sideColumns,
 	boardLayout,
 	frameLayout,
 	multiplierPlateLayout,

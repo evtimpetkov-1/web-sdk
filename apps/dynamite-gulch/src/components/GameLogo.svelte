@@ -43,6 +43,8 @@
 	// "just a bit" more)
 	const PORTRAIT_SCALE = 0.86;
 	const ROW_WIDTH = 0.8; // of the board width (0.86 of the screen was too big)
+	// desktop / landscape: the logo box's gap to the frame's outer left edge, of its width
+	const LOGO_GAP = 0.08;
 	const PORTRAIT_MAX_WIDTH = 0.84; // of the visible width
 	const GAP = 12; // to the plate's top
 	const TOP_MARGIN = 16;
@@ -80,11 +82,17 @@
 		}
 		// mockup (2026-09-02): logo centre ~0.2 board widths left of the board, its
 		// top level with the frame's top pipe
-		const height = board.height * 0.34;
+		// (the board group grows on these layouts since 2026-11-20: the logo grows with it)
+		const height = board.height * board.scale * 0.34;
 		const width = height * ASPECT;
+		// left of the frame, its box a little clear of the frame's outer edge (Evtim,
+		// 2026-11-20: "the logo can be moved just a bit to the left, now its too crowded
+		// with the reels frame"; on desktop it was centred on the left column and touched
+		// the frame, on landscape it overlapped the frame's top-left corner)
+		const frame = context.stateGameDerived.frameLayout();
 		return {
-			x: Math.max(board.x - board.width * 0.5 - width * 0.52, width * 0.52),
-			y: board.y - board.height * 0.5 + height * 0.18,
+			x: Math.max(frame.x - frame.width / 2 - width * (LOGO_GAP + 0.5), width * 0.52),
+			y: board.y - board.height * board.scale * 0.5 + height * 0.18,
 			width,
 			height,
 		};

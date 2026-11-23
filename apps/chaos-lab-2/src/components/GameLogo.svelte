@@ -109,6 +109,20 @@
 			const y = (TOP_MARGIN + plateTop - GAP) / 2;
 			return { x: board.x, y, width, height: width / ROW_ASPECT };
 		}
+		if (context.stateGameDerived.sideLayout()) {
+			// desktop / phone landscape (2026-11-20): on top of the column left of the frame,
+			// over the multiplier plate; it grows with the board, as wide as the column lets it
+			const column = context.stateGameDerived.sideColumn();
+			const stage = context.stateGameDerived.wideStage();
+			const x = board.x + (column.x - board.pivot.x) * board.scale;
+			const frameLeft = board.x - board.pivot.x * board.scale;
+			const width = Math.min(
+				column.logo.height * board.scale * ASPECT,
+				2 * (x - stage.left - SIDE_MARGIN),
+				2 * (frameLeft - x),
+			);
+			return { x, y: board.y + (column.logo.y - board.pivot.y) * board.scale, width, height: width / ASPECT };
+		}
 		// mockup (2026-09-02): logo centre ~0.2 board widths left of the board, its
 		// top level with the frame's top pipe
 		const height = board.height * 0.34;

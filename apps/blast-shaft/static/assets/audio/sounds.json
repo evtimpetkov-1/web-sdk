@@ -7,259 +7,259 @@
 		],
 		"bgm_bs_main": [
 			51961,
-			46153.061,
+			49105.441999999995,
 			true
 		],
 		"bgm_bs_totalwin": [
-			99114,
+			102066,
 			6930.612,
 			true
 		],
 		"bgm_bs_win_big": [
-			107044,
+			109997,
 			7278.866,
 			true
 		],
 		"bgm_bs_win_epic": [
-			115323,
+			118275,
 			7289.228999999999,
 			true
 		],
 		"bgm_bs_win_mega": [
-			123612,
+			126565,
 			7295.918000000001,
 			true
 		],
 		"sfx_bs_anticipation": [
-			131908,
+			134861,
 			3000,
 			true
 		],
 		"sfx_bs_anticipation_end": [
-			135908,
+			138861,
 			917.279
 		],
 		"sfx_bs_anticipation_start": [
-			137826,
+			140778,
 			723.288
 		],
 		"sfx_bs_blast_hit": [
-			139549,
+			142501,
 			804.626
 		],
 		"sfx_bs_board_dropout": [
-			141353,
+			144306,
 			885.9639999999999
 		],
 		"sfx_bs_bomb_arm": [
-			143239,
+			146192,
 			480
 		],
 		"sfx_bs_bomb_explode": [
-			144719,
+			147672,
 			2000
 		],
 		"sfx_bs_bomb_fuse": [
-			147719,
+			150672,
 			2250,
 			true
 		],
 		"sfx_bs_bomb_land": [
-			150969,
+			153922,
 			490.363
 		],
 		"sfx_bs_bonus_land": [
-			152460,
+			155412,
 			1200
 		],
 		"sfx_bs_buy_confirm": [
-			154660,
+			157612,
 			1103.764
 		],
 		"sfx_bs_cascade_step": [
-			156764,
+			159716,
 			600
 		],
 		"sfx_bs_clone_splat": [
-			158364,
+			161316,
 			600
 		],
 		"sfx_bs_cloner_cast": [
-			159964,
+			162916,
 			891.156
 		],
 		"sfx_bs_cloner_flood": [
-			161855,
+			164807,
 			1080.9979999999998
 		],
 		"sfx_bs_cloner_land": [
-			163936,
+			166888,
 			681.542
 		],
 		"sfx_bs_cluster_amount": [
-			165617,
+			168570,
 			480
 		],
 		"sfx_bs_curtain_close": [
-			167097,
+			170050,
 			844.376
 		],
 		"sfx_bs_curtain_open": [
-			168942,
+			171894,
 			849.365
 		],
 		"sfx_bs_fs_counter": [
-			170791,
+			173743,
 			480
 		],
 		"sfx_bs_fs_intro": [
-			172271,
+			175223,
 			2203.22
 		],
 		"sfx_bs_fs_outro": [
-			175474,
+			178427,
 			2203.243
 		],
 		"sfx_bs_fs_retrigger": [
-			178677,
+			181630,
 			1468.345
 		],
 		"sfx_bs_game_start": [
-			181146,
+			184098,
 			2000
 		],
 		"sfx_bs_mascot_win_1": [
-			184146,
+			187098,
 			2000
 		],
 		"sfx_bs_mascot_win_2": [
-			187146,
+			190098,
 			2000
 		],
 		"sfx_bs_mascot_win_3": [
-			190146,
+			193098,
 			2000
 		],
 		"sfx_bs_mascot_win_4": [
-			193146,
+			196098,
 			2000
 		],
 		"sfx_bs_mascot_win_5": [
-			196146,
+			199098,
 			2000
 		],
 		"sfx_bs_mult_activate": [
-			199146,
+			202098,
 			648.753
 		],
 		"sfx_bs_mult_apply": [
-			200795,
+			203747,
 			1180
 		],
 		"sfx_bs_mult_fly": [
-			202975,
+			205927,
 			1000
 		],
 		"sfx_bs_mult_land": [
-			204975,
+			207927,
 			856.576
 		],
 		"sfx_bs_mult_reset": [
-			206831,
+			209783,
 			600
 		],
 		"sfx_bs_mult_up": [
-			208431,
+			211383,
 			950.998
 		],
 		"sfx_bs_popup_out": [
-			210382,
+			213334,
 			699.2969999999999
 		],
 		"sfx_bs_reel_land": [
-			212081,
+			215034,
 			436.66700000000003
 		],
 		"sfx_bs_scatter_win": [
-			213518,
+			216470,
 			2057.6639999999998
 		],
 		"sfx_bs_shatter": [
-			216576,
+			219528,
 			649.773
 		],
 		"sfx_bs_shower": [
-			218225,
+			221178,
 			3000,
 			true
 		],
 		"sfx_bs_tickup": [
-			222225,
+			225178,
 			3000,
 			true
 		],
 		"sfx_bs_tickup_end": [
-			226225,
+			229178,
 			910.227
 		],
 		"sfx_bs_tumble_drop": [
-			228136,
+			231088,
 			694.2629999999999
 		],
 		"sfx_bs_ui_click": [
-			229830,
+			232782,
 			394.172
 		],
 		"sfx_bs_ui_popup_close": [
-			231224,
+			234177,
 			480
 		],
 		"sfx_bs_ui_popup_open": [
-			232704,
+			235657,
 			680.249
 		],
 		"sfx_bs_ui_spin": [
-			234384,
+			237337,
 			480
 		],
 		"sfx_bs_ui_stop": [
-			235864,
+			238817,
 			448.844
 		],
 		"sfx_bs_wild_land": [
-			237313,
+			240266,
 			762.313
 		],
 		"sfx_bs_win_big": [
-			239076,
+			242028,
 			2000
 		],
 		"sfx_bs_win_cycle": [
-			242076,
+			245028,
 			723.515
 		],
 		"sfx_bs_win_end": [
-			243799,
+			246751,
 			1434.3760000000002
 		],
 		"sfx_bs_win_epic": [
-			246233,
+			249186,
 			2306.5989999999997
 		],
 		"sfx_bs_win_medium": [
-			249540,
+			252492,
 			1092.812
 		],
 		"sfx_bs_win_mega": [
-			251633,
+			254585,
 			1910.295
 		],
 		"sfx_bs_win_small": [
-			254543,
+			257496,
 			912.744
 		],
 		"sfx_bs_win_zap": [
-			256456,
+			259408,
 			526.168
 		]
 	},

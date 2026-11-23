@@ -11,6 +11,7 @@ import { winLevelMap } from './winLevelMap';
 import { eventEmitter } from './eventEmitter';
 import { BLACK_OPS_CAP_OFFSET } from './textStyles';
 import {
+	UI_KIND,
 	SYMBOL_SIZE,
 	BOARD_SIZES,
 	FRAME_ART,
@@ -280,14 +281,138 @@ const portraitMascot = () => {
 	};
 };
 
+/**
+ * Desktop and phone landscape: the SIDE layout (Evtim, 2026-11-20: "move the multiplier
+ * plate on the left side of the slot ... leave some empty space on the top, so we can
+ * increase the reels board size, but not overlap its bottom reels frame part with the UI
+ * black bar"). Nothing stands above the frame any more:
+ * - the multiplier plate is in a column LEFT of the frame, under the logo
+ *   (multiplierPlateLayout, GameLogo);
+ * - the counters (WIN / TOTAL WIN, RESPINS LEFT) are one line each on the frame's bottom
+ *   pipe, as in portrait (counterLine);
+ * - the board group is the frame alone and grows until its top pipe is just under the
+ *   canvas top and its slime drips end at the bar's top. Nothing of the frame is behind
+ *   the bar: on desktop the bottom pipe also ends above Spin, which rides higher than the
+ *   bar and reaches under the frame's corner;
+ * - the mascot stays right of the frame, her boots at the bottom pipe's level (Mascot).
+ * Sideways the group needs room for the plate's column and for her. Phone landscape has
+ * the bar's button column on the right, so the board is NOT centred there: it sits in the
+ * middle of what the column leaves.
+ * Generic UI only (the bar's sizes are copied from components-ui-html GenericUI.svelte
+ * and must follow it); WIDE_SIDE = false = the old layout: plate and counters above a
+ * frame at scale 1, centred. Main-layout units unless a name says board-local.
+ */
+const WIDE_SIDE = UI_KIND === 'generic';
+const sideLayout = () => {
+	const type = stateLayoutDerived.layoutType();
+	return WIDE_SIDE && (type === 'desktop' || type === 'landscape');
+};
+// GenericUI.svelte, standard layout units. row (desktop): the plate is 96 tall, 12 off the
+// bottom; Spin (150 across, its bottom 10 off the canvas bottom) starts 437 right of the
+// centre. side (phone landscape): the strip is 124 tall, the button column 214 wide, 28
+// off the main box's right edge
+const WIDE_UI = {
+	desktop: { bar: 108, spinTop: 160, spinLeft: 437 },
+	landscape: { bar: 124, column: 242 },
+};
+const FRAME_ART_BOTTOM = FRAME_ART.height; // the slime drips reach the art's last row
+const SIDE_TOP_MARGIN = 8; // the top pipe to the canvas top
+const SIDE_DRIP_GAP = 2; // the drips' ends to the bar
+const SIDE_SPIN_GAP = 3; // the bottom pipe to Spin's top
+const SIDE_MAX_SCALE = 1.3; // tall desktop windows: the mascot keeps her size, so the frame stops here
+const SIDE_GAP = 18; // board-local: the frame's left post to the plate, and the plate to the column's far edge
+// right of the frame, for the mascot: orb to coat tail she is ~305 across at this size. Desktop
+// keeps her whole (her orb may lap the frame's edge a little); on phone landscape her coat
+// runs under the bar's buttons by 40, as it always did there
+const SIDE_MASCOT_ROOM = { desktop: 300, landscape: 265 };
+const SIDE_MASCOT_TUCK = { desktop: 0, landscape: 40 };
+// board-local, from the reel window's left edge / top
+const FRAME_UNIT_X = BOARD_SIZES.width / FRAME_ART.window.width;
+const FRAME_POST = {
+	left: FRAME_ART.window.x * FRAME_UNIT_X,
+	right: (FRAME_ART.width - FRAME_ART.window.x - FRAME_ART.window.width) * FRAME_UNIT_X,
+};
+const sideColumn = () => {
+	const plate = plateSize();
+	const logoHeight = BOARD_SIZES.height * 0.34; // as on the old desktop layout
+	const frameTop = -FRAME_ART.window.y * FRAME_UNIT_Y;
+	const logoY = frameTop + 6 + logoHeight / 2;
+	return {
+		/** board-local: the column's centre line */
+		x: -(FRAME_POST.left + SIDE_GAP + plate.width / 2),
+		width: plate.width + 2 * SIDE_GAP,
+		logo: { y: logoY, height: logoHeight },
+		plateY: logoY + logoHeight / 2 + 22 + plate.height / 2,
+	};
+};
+
+const wideStage = () => {
+	const layout = stateLayoutDerived.layoutType() === 'landscape' ? 'landscape' : 'desktop';
+	const main = stateLayoutDerived.mainLayout();
+	const canvas = stateLayoutDerived.canvasSizes();
+	const unit = stateLayoutDerived.mainLayoutStandard().scale / main.scale; // a standard unit in main units
+	const visibleWidth = canvas.width / main.scale;
+	const visibleHeight = canvas.height / main.scale;
+	const top = (main.height - visibleHeight) / 2;
+	const left = (main.width - visibleWidth) / 2;
+	const bottom = top + visibleHeight;
+	const uiTop = bottom - WIDE_UI[layout].bar * unit;
+	// the bar's button column is at the MAIN box's right edge, however wide the window
+	const freeRight =
+		layout === 'landscape' ? main.width - WIDE_UI.landscape.column * unit : left + visibleWidth;
+	// board-local heights: above the reel window, and below its top
+	const above = FRAME_ART.window.y * FRAME_UNIT_Y;
+	const pipe = (FRAME_PIPE_BOTTOM - FRAME_ART.window.y) * FRAME_UNIT_Y;
+	const drips = (FRAME_ART_BOTTOM - FRAME_ART.window.y) * FRAME_UNIT_Y;
+	const groupTop = top + SIDE_TOP_MARGIN;
+	const halfLeft = BOARD_SIZES.width / 2 + FRAME_POST.left;
+	const halfRight = BOARD_SIZES.width / 2 + FRAME_POST.right;
+	const column = sideColumn().width;
+	let scale = Math.min(
+		(uiTop - SIDE_DRIP_GAP - groupTop) / (above + drips),
+		(freeRight - left - SIDE_MASCOT_ROOM[layout]) / (column + halfLeft + halfRight),
+		SIDE_MAX_SCALE,
+	);
+	// desktop: Spin rises above the bar. A frame wide enough to reach over it ends above it
+	let pipeLimit = uiTop - SIDE_DRIP_GAP - (drips - pipe) * scale;
+	if (layout === 'desktop') {
+		const spinLeft = main.width / 2 + WIDE_UI.desktop.spinLeft * unit;
+		const spinTop = bottom - WIDE_UI.desktop.spinTop * unit;
+		const clears = (spinLeft - SIDE_SPIN_GAP - main.width / 2) / halfRight; // narrow enough to stand beside Spin
+		const over = (spinTop - SIDE_SPIN_GAP - groupTop) / (above + pipe); // or short enough to end above it
+		if (scale > clears) {
+			scale = Math.min(scale, Math.max(clears, over));
+			if (scale > clears) pipeLimit = Math.min(pipeLimit, spinTop - SIDE_SPIN_GAP);
+		}
+	}
+	const x = Math.max(
+		left + (column + halfLeft) * scale,
+		Math.min(main.width / 2, freeRight - SIDE_MASCOT_ROOM[layout] - halfRight * scale),
+	);
+	// spare height (a width-bound window): the group is centred in it
+	const frameTop = groupTop + Math.max(0, pipeLimit - groupTop - (above + pipe) * scale) / 2;
+	return {
+		scale,
+		x,
+		boardY: frameTop + (above + BOARD_SIZES.height / 2) * scale,
+		left,
+		uiTop,
+		/** the furthest right the mascot's coat may reach */
+		mascotRight: freeRight + SIDE_MASCOT_TUCK[layout],
+		frameRight: x + halfRight * scale,
+		pipeBottom: frameTop + (above + pipe) * scale,
+	};
+};
+
 const boardLayout = () => {
 	const main = stateLayoutDerived.mainLayout();
 	const portrait = stateLayoutDerived.layoutType() === 'portrait' ? portraitStage() : undefined;
+	const side = sideLayout() ? wideStage() : undefined;
 	return {
-		x: main.width * 0.5,
-		y: portrait?.boardY ?? main.height * 0.5,
+		x: side?.x ?? main.width * 0.5,
+		y: portrait?.boardY ?? side?.boardY ?? main.height * 0.5,
 		// width/height stay the board-local BOARD_SIZES; `scale` maps them to main units
-		scale: portrait?.scale ?? 1,
+		scale: portrait?.scale ?? side?.scale ?? 1,
 		anchor: { x: 0.5, y: 0.5 },
 		pivot: { x: BOARD_SIZES.width / 2, y: BOARD_SIZES.height / 2 },
 		...BOARD_SIZES,
@@ -317,8 +442,25 @@ const frameLayout = () => {
 // (portraitCounterLayout), so nothing else needs the room.
 const PORTRAIT_PLATE_FLASK_GAP = 8;
 
+// Where the plate is on screen ALL the time, empty until a Multiplier is collected (Evtim,
+// 2026-11-20: "show the multiplier plate all the time", for the layouts whose plate had just
+// moved beside the frame: in its own column it covers nothing, and a column that is empty
+// most of the time read as a hole). Elsewhere it shows only while it holds a value
+// (2026-11-17: above the reels the empty plate hid the porthole fan). By layout type; the
+// two wide ones only in the side layout.
+const PLATE_ALWAYS: Record<string, boolean> = { desktop: true, landscape: true, tablet: false, portrait: false };
+const multiplierPlateAlways = () => {
+	const type = stateLayoutDerived.layoutType();
+	return Boolean(PLATE_ALWAYS[type]) && (sideLayout() || type === 'tablet' || type === 'portrait');
+};
+
 const multiplierPlateLayout = () => {
 	const { width, height } = plateSize();
+	// desktop / phone landscape: in the column left of the frame, under the logo
+	if (sideLayout()) {
+		const column = sideColumn();
+		return { x: column.x, y: column.plateY, width, height };
+	}
 	// frame sprite top edge in board-local coords
 	const frameTop = -FRAME_ART.window.y * FRAME_UNIT_Y;
 	let x = BOARD_SIZES.width * 0.5;
@@ -371,6 +513,11 @@ const portraitCounterLayout = () => {
 	};
 };
 export type PortraitCounterLayout = ReturnType<typeof portraitCounterLayout>;
+// the counters' one-line layout on the bottom pipe: portrait, and the side layout (desktop /
+// phone landscape, where the plate they stood beside has left the top); undefined = the old
+// label-over-value pairs either side of the plate (tablet)
+const counterLine = () =>
+	stateLayoutDerived.layoutType() === 'portrait' || sideLayout() ? portraitCounterLayout() : undefined;
 
 const boardRaw = () =>
 	board.map((reel) => reel.reelState.symbols.map((reelSymbol) => reelSymbol.rawSymbol));
@@ -415,9 +562,14 @@ export const stateGameDerived = {
 	onSymbolLand,
 	portraitStage,
 	portraitMascot,
+	sideLayout,
+	sideColumn,
+	wideStage,
+	counterLine,
 	boardLayout,
 	frameLayout,
 	multiplierPlateLayout,
+	multiplierPlateAlways,
 	portraitCounterLayout,
 	boardRaw,
 	tumbleBoardCombined,

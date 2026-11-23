@@ -99,7 +99,7 @@
 				_.flatten(
 					context.stateGame.multiplierBoard.map((multiplierReel) => {
 						return multiplierReel.filter(Boolean).map(async (multiplierSymbol) => {
-							// onto the multiplier plate above the reels
+							// onto the multiplier plate (above the reels, or left of the frame: multiplierPlateLayout)
 							const plate = context.stateGameDerived.multiplierPlateLayout();
 							const target = { x: plate.x, y: plate.y };
 							const tweenOptions = { duration: 600, easing: quartInOut };

@@ -1,4 +1,5 @@
 <script lang="ts" module>
+	import { HOUSE_LANTERNS, type HouseLantern } from '../game/houseLanterns';
 	import { MILLS } from '../game/ambientLife';
 	import { DOORS } from '../game/windLife';
 	import type { RoamScene } from './Roamers.svelte';
@@ -34,6 +35,8 @@
 		occluders: { key: string; x: number; y: number; width: number; height: number }[];
 		stars: { x: number; y: number; size: number }[];
 		lanterns: { x: number; y: number; size: number }[];
+		/** the frame's lanterns hung on the houses (desktop / landscape): HouseLanterns */
+		houseLanterns?: HouseLantern[];
 		mill?: (typeof MILLS)[keyof typeof MILLS];
 		soarers: { x: number; y: number; rx: number; ry: number; size: number; period: number; turn: 1 | -1; phase: number }[];
 		flock?: { y: [number, number]; size: [number, number] };
@@ -88,6 +91,7 @@
 			],
 			flock: { y: [150, 330], size: [30, 40] },
 			doors: DOORS.day,
+			houseLanterns: HOUSE_LANTERNS.day,
 			roam: STREET_ROAM,
 		},
 		// the tall art: its sky is open down to y 640, the clouds stay above that
@@ -153,6 +157,7 @@
 			],
 			mill: MILLS.night,
 			doors: DOORS.night,
+			houseLanterns: HOUSE_LANTERNS.night,
 			roam: STREET_ROAM,
 			soarers: [], // birds roost at night
 		},
@@ -167,6 +172,7 @@
 	import { reducedMotion, windNow } from '../game/wind';
 	import { SHAKE_PRESETS } from './SceneShake.svelte';
 	import Roamers from './Roamers.svelte';
+	import HouseLanterns from './HouseLanterns.svelte';
 
 	/**
 	 * The living background (Evtim, 2026-11-13: no mascot, "animate the background
@@ -345,6 +351,8 @@
 			key: Math.sin(2 * Math.PI * FLOCK.beat * t + bird.phase) > 0 ? 'bird_up.png' : 'bird_down.png',
 		};
 	};
+	// desktop and landscape: the lanterns hang on the houses (HouseLanterns), not on the frame
+	const housed = $derived(['desktop', 'landscape'].includes(context.stateLayoutDerived.layoutType()));
 	const lanternAlpha = (index: number) =>
 		0.2 + 0.05 * Math.sin(time * 7.3 + index * 2) + 0.04 * Math.sin(time * 12.7 + index) + 0.03 * Math.sin(time * 2.1);
 </script>
@@ -415,6 +423,12 @@
 		/>
 	{/if}
 
+	<!-- the frame's lanterns on the houses, desktop and landscape (elsewhere the frame has
+	     them and the small painted ones stay) -->
+	{#if props.scene.houseLanterns}
+		<HouseLanterns lanterns={props.scene.houseLanterns} night={props.scene.night} active={props.active && housed} />
+	{/if}
+
 	<!-- small tumbleweeds and dust devils wandering the ground, each its own way
 	     (the reel frame is drawn over this layer: they pass behind it) -->
 	{#if props.scene.roam}
@@ -442,7 +456,9 @@
 		/>
 	{/each}
 
-	{#each props.scene.lanterns as lantern, index (index)}
+	<!-- the painted porch lanterns' flicker at night (where HouseLanterns hangs its own, it
+	     brings its own glow) -->
+	{#each housed && props.scene.houseLanterns ? [] : props.scene.lanterns as lantern, index (index)}
 		<Sprite
 			key="blob.png"
 			anchor={0.5}

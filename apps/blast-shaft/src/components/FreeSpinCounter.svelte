@@ -1,6 +1,6 @@
 <script lang="ts" module>
 	import { SYMBOL_SIZE } from '../game/constants';
-	import type { PortraitCounterLayout } from '../game/stateGame.svelte';
+	import type { CounterSpot, PortraitCounterLayout } from '../game/stateGame.svelte';
 
 	export type EmitterEventFreeSpinCounter =
 		| { type: 'freeSpinCounterShow' }
@@ -15,29 +15,26 @@
 	const VALUE_PIVOT = VALUE_SIZE * 0.6;
 
 	/**
-	 * FREE SPINS counter on the frame's top pipe, left of the multiplier plate
-	 * (Evtim's FS mockup, 2026-09-08): label over value, centred between the
-	 * board's left edge and the plate. Portrait (`line`, 2026-10-26): one line
-	 * in the left half of the bottom pipe (stateGame portraitCounterLayout).
+	 * FREE SPINS counter, label over value: on the frame's top pipe left of the
+	 * multiplier plate (Evtim's FS mockup, 2026-09-08; tablet), or under the logo
+	 * beside the frame on desktop / landscape (2026-11-20; stateGame counterSpots).
+	 * Portrait (`line`, 2026-10-26): one line in the left half of the bottom pipe
+	 * (stateGame portraitCounterLayout).
 	 * Board-local coordinates like the plate. Shared with FreeSpinRetrigger,
 	 * whose +N flies onto the value (portrait: the line's middle).
 	 */
-	export const freeSpinCounterLayout = (
-		plate: { x: number; y: number; width: number },
-		line?: PortraitCounterLayout,
-	) => {
+	export const freeSpinCounterLayout = (spot: CounterSpot, line?: PortraitCounterLayout) => {
 		if (line) {
 			const value = { x: line.left, y: line.textY, size: line.size };
 			return { room: line.maxWidth, x: line.left, y: line.textY, value };
 		}
-		const room = plate.x - plate.width / 2;
-		const x = room / 2;
+		const { room, x, y } = spot;
 		return {
 			room,
 			x,
-			y: plate.y,
+			y,
 			/** the value's middle and on-screen text size, board-local */
-			value: { x, y: plate.y + GAP + VALUE_PIVOT, size: VALUE_SIZE },
+			value: { x, y: y + GAP + VALUE_PIVOT, size: VALUE_SIZE },
 		};
 	};
 </script>
@@ -62,7 +59,7 @@
 			: undefined,
 	);
 	const layout = $derived(
-		freeSpinCounterLayout(context.stateGameDerived.multiplierPlateLayout(), line),
+		freeSpinCounterLayout(context.stateGameDerived.counterSpots().left, line),
 	);
 
 	let show = $state(false);

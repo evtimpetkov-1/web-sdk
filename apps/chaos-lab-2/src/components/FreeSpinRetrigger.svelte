@@ -65,9 +65,7 @@
 	const counter = $derived(
 		freeSpinCounterLayout(
 			context.stateGameDerived.multiplierPlateLayout(),
-			context.stateLayoutDerived.layoutType() === 'portrait'
-				? context.stateGameDerived.portraitCounterLayout()
-				: undefined,
+			context.stateGameDerived.counterLine(),
 		).value,
 	);
 

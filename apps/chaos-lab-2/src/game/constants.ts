@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 import type { RawSymbol, SymbolState } from './types';
+import { TILE_ART } from './symbolTiles';
 
 // Shown in the paytable and rules footers. Chaos Lab 2's first submission is
 // 1.0.0 (the studio's numbering: bump on each resubmission; Chaos Lab, which
@@ -26,21 +27,15 @@ export const SYMBOL_SIZE = 100;
 // to that window instead of the art being stretched to the frame.
 const ART = {
 	plate: { width: 297, height: 321 }, // A K Q J ten, cloner, bomb
-	wild: { width: 301, height: 322 },
-	h1: { width: 311, height: 322 },
-	h2: { width: 306, height: 323 },
-	h3: { width: 304, height: 323 },
-	h4: { width: 306, height: 324 },
-	bonus: { width: 427, height: 423 }, // bonus.png (operating-theatre disc, 2026-09-08)
 	multPlate: { width: 298, height: 322 },
 };
 export const SYMBOL_WIDTH = (SYMBOL_SIZE * ART.plate.width) / ART.plate.height; // 92.5
 // space left between neighbouring plates (the PNGs carry no transparent padding)
 export const SYMBOL_GAP = 1;
-// the bonus disc is drawn larger than its cell and spills over the neighbours
-export const BONUS_SCALE = 1.15;
-// vertical headroom the board mask allows beyond the reel window, so an oversized
-// bonus on the top/bottom row is hidden by the pipe frame, not cut flat by the mask
+// vertical headroom the board mask allows beyond the reel window: what a symbol's
+// animation throws past its cell on the top/bottom row (the Scatter's pop, a hand's
+// fingers) is hidden by the pipe frame, not cut flat by the mask. (It was made for the
+// BONUS disc, drawn 1.15x its cell until 2026-11-20; the Scatter is a tile now.)
 export const SYMBOL_OVERFLOW = SYMBOL_SIZE * 0.1;
 
 // reel centre in cells: reels are centred in their column (the sample's 0.53 offset
@@ -260,10 +255,29 @@ const fitSymbol = (art: ArtSize, scale = 1) => {
 	const k = Math.min(box.width / art.width, box.height / art.height) * scale;
 	return { width: (art.width * k) / SYMBOL_SIZE, height: (art.height * k) / SYMBOL_SIZE };
 };
-const sprite = (assetKey: string, art: ArtSize, scale = 1) => ({
+// The four highs and the Wild (symbols v4, 2026-11-20: built from Evtim's layered PSD): their
+// pictures are the tile's own edge plus a few px of margin (src/game/symbolTiles.ts, written
+// by the builder). They are drawn so that the tile's VISIBLE edge is exactly a royal plate's:
+// the plate art's ink is 296 x 320 of its 297 x 321 picture. (Fitted like the other pictures
+// they came out about 1% narrower and 3% shorter than the royals: Evtim, "make them the same
+// size as the royals".) The 1% of stretch this takes is the tile's, on both axes within a pixel.
+const PLATE_INK = { width: 296 / 297, height: 320 / 321 };
+type TileArt = { sizeRatios: { width: number; height: number } };
+const tileArt = (tile: (typeof TILE_ART)[keyof typeof TILE_ART]): TileArt => {
+	const plate = fitSymbol(ART.plate);
+	return {
+		sizeRatios: {
+			width: (plate.width * PLATE_INK.width * tile.frame.width) / tile.ink.width,
+			height: (plate.height * PLATE_INK.height * tile.frame.height) / tile.ink.height,
+		},
+	};
+};
+const sizeOf = (art: ArtSize | TileArt, scale = 1) =>
+	'sizeRatios' in art ? art.sizeRatios : fitSymbol(art, scale);
+const sprite = (assetKey: string, art: ArtSize | TileArt, scale = 1) => ({
 	type: 'sprite' as const,
 	assetKey,
-	sizeRatios: fitSymbol(art, scale),
+	sizeRatios: sizeOf(art, scale),
 });
 type RigAnimation =
 	| 'land'
@@ -276,11 +290,11 @@ type RigAnimation =
 	| 'in'
 	| 'out'
 	| 'fidget';
-const spine = (assetKey: string, animationName: RigAnimation, art: ArtSize, scale = 1) => ({
+const spine = (assetKey: string, animationName: RigAnimation, art: ArtSize | TileArt, scale = 1) => ({
 	type: 'spine' as const,
 	assetKey,
 	animationName,
-	sizeRatios: fitSymbol(art, scale),
+	sizeRatios: sizeOf(art, scale),
 });
 // static plate + land/prewin rig; `idle` is the rig's in-round loop where the
 // symbol has one (scatter, bomb), the static plate otherwise; `pending` is the
@@ -293,7 +307,7 @@ const spine = (assetKey: string, animationName: RigAnimation, art: ArtSize, scal
 const rigged = (
 	staticKey: string,
 	animKey: string,
-	art: ArtSize,
+	art: ArtSize | TileArt,
 	{
 		scale = 1,
 		idle = false,
@@ -351,21 +365,24 @@ const allStates = <T>(info: T) => ({
 
 export const SYMBOL_INFO_MAP = {
 	// math codes: H1-H4 = the four lab symbols, L1-L5 = the royals A K Q J 10.
-	// Rigs v3 (2026-11-16, art-review/chaoslab2/symbols_v3): weighted meshes, so the
-	// heart pumps, the eye turns, the fingers curl; `fidget` = their at-rest one-shot
-	H1: rigged('h1.png', 'msH1Anim', ART.h1, { fidget: true }),
-	H2: rigged('h2.png', 'msH2Anim', ART.h2, { fidget: true }),
-	H3: rigged('h3.png', 'msH3Anim', ART.h3, { fidget: true }),
-	H4: rigged('h4.png', 'msH4Anim', ART.h4, { fidget: true }),
+	// Rigs v4 (2026-11-20, art-review/chaoslab2/symbols_v4): the same acting as v3 (the
+	// heart pumps, the eye turns, the fingers curl; `fidget` = their at-rest one-shot) on
+	// the clean tile + subject layers of Evtim's PSD, meshes that follow each outline
+	H1: rigged('h1.png', 'msH1Anim', tileArt(TILE_ART.h1), { fidget: true }),
+	H2: rigged('h2.png', 'msH2Anim', tileArt(TILE_ART.h2), { fidget: true }),
+	H3: rigged('h3.png', 'msH3Anim', tileArt(TILE_ART.h3), { fidget: true }),
+	H4: rigged('h4.png', 'msH4Anim', tileArt(TILE_ART.h4), { fidget: true }),
 	L1: rigged('A.png', 'msAAnim', ART.plate, { fidget: true }),
 	L2: rigged('K.png', 'msKAnim', ART.plate, { fidget: true }),
 	L3: rigged('Q.png', 'msQAnim', ART.plate, { fidget: true }),
 	L4: rigged('J.png', 'msJAnim', ART.plate, { fidget: true }),
 	L5: rigged('ten.png', 'msTenAnim', ART.plate, { fidget: true }),
 	// Wild: its own rig since 2026-11-16 (it was a plain picture): land, prewin
-	// (rears back and slams on the zap) and a fidget. A bomb still forms it with its
-	// own `explode_wild`, which ends on this rig's rest pose.
-	W: rigged('wild.png', 'msWildAnim', ART.wild, { fidget: true }),
+	// (rears back and slams on the zap) and a fidget; rebuilt 2026-11-20 on the PSD's plate
+	// and W layers (symbols_v4), the static picture = its rest pose. A bomb still forms it
+	// with its own `explode_wild`, which ends on the same picture (symbols_v4/patch_bomb.py
+	// keeps the bomb rig's copy of the Wild in step).
+	W: rigged('wild.png', 'msWildAnim', tileArt(TILE_ART.wild), { fidget: true }),
 	// Cloner: cast = the sign winds up and fires on the frame its ghosts leave
 	// (MovingClones, 0.2 s; rigs v3 dropped the rig's own two stray copies), in = a fresh clone's sign grows in, out = the sign
 	// drains away (plate intact) before the flood swaps in the paying symbol.
@@ -374,15 +391,17 @@ export const SYMBOL_INFO_MAP = {
 	// scatter), explode = the bomb blows itself up and ends empty; the tumble
 	// board then drops the cell like any exploded symbol.
 	B: rigged('bomb.png', 'msBombAnim', ART.plate, { idle: true, explode: true }),
-	// Scatter: the operating-theatre disc (Chaos Lab 1's yellow BONUS; an orb and a
-	// serum flask were tried on 2026-11-16 and dropped), drawn BONUS_SCALE larger than its cell.
-	// land = the sign slams in, prewin = the lamp switches on over the table,
-	// idle = lamp sway + breathing bulbs while a round waits for its cascades
-	// (ReelSymbol/TumbleSymbol derive that state from stateGame.roundActive).
-	// pending = the heartbeat while a cascade drops one Scatter short of a trigger.
-	// At rest it joins the fidgets with one pass of its idle (the lamp sways).
-	S: rigged('bonus.png', 'msBonusAnim', ART.bonus, {
-		scale: BONUS_SCALE,
+	// Scatter: the BONUS warning sign, a TILE the size of every other since 2026-11-20 (the
+	// PSD's Bonus group; rig built by art-review/chaoslab2/symbols_v4 build_bonus). Before
+	// that it was Chaos Lab 1's yellow disc, drawn 1.15x its cell (an orb and a serum flask
+	// were tried on 2026-11-16 and dropped). The lamp, the table and each letter of the word
+	// are their own parts. land = the sign slams in and the letters hop; prewin = the lamp
+	// switches on at 0.40 s and B O N U S slam in one by one; idle = the lamp swings with its
+	// beam, a wave runs through the word, while a round waits for its cascades
+	// (ReelSymbol/TumbleSymbol derive that state from stateGame.roundActive); pending = the
+	// alarm on the heartbeat (the tile thumps and flushes, the word turns red) while a cascade
+	// drops one Scatter short of a trigger. At rest it joins the fidgets with one pass of its idle.
+	S: rigged('bonus.png', 'msBonusAnim', tileArt(TILE_ART.bonus), {
 		idle: true,
 		pending: true,
 		fidget: 'idle',

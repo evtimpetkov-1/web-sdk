@@ -16,7 +16,8 @@
 	import BoardContainer from './BoardContainer.svelte';
 	import { getContext } from '../game/context';
 
-	// The multiplier plate above the reels. It is on screen only while it holds a
+	// The multiplier plate: above the reels on tablet and portrait, in the column left of
+	// the frame on desktop and phone landscape (2026-11-20, stateGame sideLayout). It is on screen only while it holds a
 	// value (Evtim, 2026-11-17: "do 2", after the third "too static" review: the
 	// empty plate sat over the porthole fan and its light shafts, the liveliest part
 	// of the wall; before, 2026-10-24, it was always shown, empty). It drops in as a
@@ -29,6 +30,8 @@
 	// the curtains into and out of free spins clear it unseen (Evtim, 2026-10-28).
 	// Layout lives in stateGameDerived.multiplierPlateLayout
 	// so MultiplierBoard can fly the collected symbols onto the same spot.
+	// Desktop and phone landscape (2026-11-20): there the plate has its own column and is on
+	// screen all the time, empty until a value arrives (stateGameDerived.multiplierPlateAlways).
 	const context = getContext();
 	const plate = $derived(context.stateGameDerived.multiplierPlateLayout());
 	const fontSize = $derived(plate.height * 0.62);
@@ -38,7 +41,8 @@
 	const textScale = new Tween(1, { duration: 200, easing: cubicOut });
 	// a collect is on its way: the plate comes in ahead of the value
 	let armed = $state(false);
-	const wanted = $derived(multiplier > 1 || armed);
+	const always = $derived(context.stateGameDerived.multiplierPlateAlways());
+	const wanted = $derived(multiplier > 1 || armed || always);
 	// 0 = away (lifted a little, see-through), 1 = in place
 	const plateIn = new Tween(0, { duration: 260, easing: backOut });
 	$effect(() => {
@@ -57,7 +61,7 @@
 				armed = false;
 				textScale.set(1, { duration: 0 });
 				// behind the curtains / on a reload: in place (or gone) at once
-				plateIn.set(next > 1 ? 1 : 0, { duration: 0 });
+				plateIn.set(next > 1 || always ? 1 : 0, { duration: 0 });
 				return;
 			}
 

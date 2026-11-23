@@ -28,6 +28,9 @@
 	// empties on the spin press (actor.ts) and accumulates that spin's collects;
 	// in free spins it carries over per the book's updateGlobalMult events, and
 	// the curtains into and out of free spins clear it unseen (Evtim, 2026-10-28).
+	// DESKTOP AND LANDSCAPE (Evtim, 2026-11-20: "can the multiplier plate be shown all the
+	// time - again for desktop/landscape only"): it stays on screen, empty until a collect
+	// (as it was from 2026-10-24); portrait and tablet keep the dynamic plate.
 	// Layout lives in stateGameDerived.multiplierPlateLayout
 	// so MultiplierBoard can fly the collected symbols onto the same spot.
 	const context = getContext();
@@ -39,7 +42,8 @@
 	const textScale = new Tween(1, { duration: 200, easing: cubicOut });
 	// a collect is on its way: the plate comes in ahead of the value
 	let armed = $state(false);
-	const wanted = $derived(multiplier > 1 || armed);
+	const always = $derived(['desktop', 'landscape'].includes(context.stateLayoutDerived.layoutType()));
+	const wanted = $derived(always || multiplier > 1 || armed);
 	// 0 = away (lifted a little, see-through), 1 = in place
 	const plateIn = new Tween(0, { duration: 260, easing: backOut });
 	$effect(() => {
@@ -58,12 +62,13 @@
 				armed = false;
 				textScale.set(1, { duration: 0 });
 				// behind the curtains / on a reload: in place (or gone) at once
-				plateIn.set(next > 1 ? 1 : 0, { duration: 0 });
+				plateIn.set(always || next > 1 ? 1 : 0, { duration: 0 });
 				return;
 			}
 
 			if (next === 1 && multiplier !== 1) {
-				// reset: the old value shrinks away and the plate leaves with it
+				// reset: the old value shrinks away and the plate leaves with it (on desktop /
+				// landscape it stays, empty)
 				await textScale.set(0, { duration: 200 });
 				context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_dg_mult_reset' });
 				multiplier = 1;

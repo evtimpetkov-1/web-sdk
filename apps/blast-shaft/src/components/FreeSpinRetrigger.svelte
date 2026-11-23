@@ -64,7 +64,7 @@
 	const centre = $derived({ x: board.width / 2, y: board.height / 2 + NUMBER_DY });
 	const counter = $derived(
 		freeSpinCounterLayout(
-			context.stateGameDerived.multiplierPlateLayout(),
+			context.stateGameDerived.counterSpots().left,
 			context.stateLayoutDerived.layoutType() === 'portrait'
 				? context.stateGameDerived.portraitCounterLayout()
 				: undefined,

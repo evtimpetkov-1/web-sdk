@@ -25,7 +25,14 @@
 	export const freeSpinCounterLayout = (
 		plate: { x: number; y: number; width: number },
 		line?: PortraitCounterLayout,
+		side?: { left: number; y: number; room: number },
 	) => {
+		// desktop's side layout (2026-11-20): left of the frame, under the logo, level with
+		// the TOTAL WIN under the plate on the right
+		if (side) {
+			const x = side.left;
+			return { room: side.room, x, y: side.y, value: { x, y: side.y + GAP + VALUE_PIVOT, size: VALUE_SIZE } };
+		}
 		if (line) {
 			const value = { x: line.left, y: line.textY, size: line.size };
 			return { room: line.maxWidth, x: line.left, y: line.textY, value };
@@ -62,7 +69,11 @@
 			: undefined,
 	);
 	const layout = $derived(
-		freeSpinCounterLayout(context.stateGameDerived.multiplierPlateLayout(), line),
+		freeSpinCounterLayout(
+			context.stateGameDerived.multiplierPlateLayout(),
+			line,
+			context.stateGameDerived.sideLayout() ? context.stateGameDerived.sideColumns() : undefined,
+		),
 	);
 
 	let show = $state(false);

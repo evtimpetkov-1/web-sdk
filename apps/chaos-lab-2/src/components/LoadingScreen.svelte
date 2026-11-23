@@ -111,10 +111,10 @@
 	// plate: 'tall' = the panel art stretched between its corners (four in a row),
 	// 'wide' = the art as painted (2x2).
 	const LAYOUTS = {
-		desktop: { cols: 4, plate: 'tall', maxW: 300, text: 21, logoY: 0.105, logoH: 0.155, top: 0.215, bottom: 0.715, winH: 0.12, promptW: 0.31, promptMargin: 26 },
-		landscape: { cols: 4, plate: 'tall', maxW: 362, text: 27, logoY: 0.1, logoH: 0.135, top: 0.19, bottom: 0.72, winH: 0.115, promptW: 0.31, promptMargin: 22 },
-		tablet: { cols: 2, plate: 'wide', maxW: 300, text: 21, logoY: 0.075, logoH: 0.1, top: 0.15, bottom: 0.8, winH: 0.085, promptW: 0.44, promptMargin: 20 },
-		portrait: { cols: 2, plate: 'wide', maxW: 352, text: 27, logoY: 0.095, logoH: 0.115, top: 0.195, bottom: 0.765, winH: 0.105, promptW: 0.78, promptMargin: 52 },
+		desktop: { cols: 4, plate: 'tall', maxW: 300, text: 21, logoY: 0.105, logoH: 0.155, top: 0.215, bottom: 0.715, winH: 0.095, promptW: 0.31, promptMargin: 26 },
+		landscape: { cols: 4, plate: 'tall', maxW: 362, text: 27, logoY: 0.1, logoH: 0.135, top: 0.19, bottom: 0.72, winH: 0.092, promptW: 0.31, promptMargin: 22 },
+		tablet: { cols: 2, plate: 'wide', maxW: 300, text: 21, logoY: 0.075, logoH: 0.1, top: 0.15, bottom: 0.8, winH: 0.068, promptW: 0.44, promptMargin: 20 },
+		portrait: { cols: 2, plate: 'wide', maxW: 352, text: 27, logoY: 0.095, logoH: 0.115, top: 0.195, bottom: 0.765, winH: 0.078, promptW: 0.78, promptMargin: 52 },
 	} as const;
 	const main = $derived(context.stateLayoutDerived.mainLayout());
 	const spec = $derived(LAYOUTS[context.stateLayoutDerived.layoutType()] ?? LAYOUTS.desktop);
@@ -124,13 +124,16 @@
 	const LOGO_ROW_WIDTH = 0.62;
 	const GAP = 22;
 	// width / height of the pieces (art-review/chaoslab2/intro/build_intro.py prints them)
-	const PLATE_RATIO = { tall: 0.759, wide: 0.892 };
+	const PLATE_RATIO = { tall: 0.759, wide: 0.886 }; // panel_tall.webp, panel.webp (the pipe-framed plate since 2026-11-20)
 	const CAPTION_RATIO = 4.39;
 	const PROMPT_RATIO = 5.333;
-	// "WIN UP TO 31 445 X" (chaoslab2/intro/win_up_to.webp, arched): the Overcharged
-	// Respins top win. Languages without the art (showsBakedArt) draw it as text
-	// in the same box, the figure the top max win of all modes in config.
-	const WIN_RATIO = 4.043;
+	// "WIN UP TO 31 445X" (chaoslab2/intro/win_up_to.webp): the Overcharged Respins
+	// top win, one straight row in the logo's cracked slime letters (Evtim's
+	// win-up-to-txt-new.png, 2026-11-20; before it an arched art, ratio 4.043, whose
+	// letters filled ~60% of its height, hence the lower winH figures above).
+	// Languages without the art (showsBakedArt) draw it as text in the same box,
+	// the figure the top max win of all modes in config.
+	const WIN_RATIO = 6.073;
 	const bakedArt = showsBakedArt();
 	const topMaxWin = Math.max(...Object.values(config.betModes).map((mode) => mode.max_win));
 
@@ -179,7 +182,8 @@
 	// its upper edge tucks under the art), then the copy down to the frame
 	const artH = $derived(Math.min(layout.panelH * 0.33, layout.panelW * 0.45));
 	const artY = $derived(layout.panelH * 0.07 + artH / 2);
-	const capW = $derived(layout.panelW * 0.93);
+	// inside the pipe frame (its pipes take ~5% a side; the steel frame before 2026-11-20 took 3%, and the swash was 0.93)
+	const capW = $derived(layout.panelW * 0.89);
 	const capH = $derived(capW / CAPTION_RATIO);
 	const capTop = $derived(artY + artH / 2 - capH * 0.1);
 	const titleY = $derived(capTop + capH * 0.41);
@@ -272,11 +276,26 @@
 
 	// symbol art keeps each PNG's own aspect (symbols.json frame sizes)
 	const SYM = { w: 297, h: 321 };
-	const BONUS = { w: 427, h: 423 };
+	const HIGH = SYM; // h1-h4: drawn at the plates' size, as on the board (constants.ts tileArt)
+	const BONUS = SYM; // the Scatter is a tile like the others since 2026-11-20 (it was a 427x423 disc)
 	const symW = (h: number) => (h * SYM.w) / SYM.h;
-	// the WIN ANYWHERE panel's three symbols in a row: as tall as the row's width
-	// allows inside the frame (three widths = 0.84 of the panel)
-	const trioH = $derived(Math.min(artH * 0.86, (layout.panelW * 0.285 * SYM.h) / SYM.w));
+	const highW = (h: number) => (h * HIGH.w) / HIGH.h;
+	// the WIN ANYWHERE panel's three symbols in a row, at the size of the other
+	// panels' symbols (artH * 0.94; Evtim 2026-11-20: they were "too small compared
+	// to the other cards symbols", 0.71-0.83 of them, because three whole widths had
+	// to fit between the pipes). The row spans TRIO_SPAN of the panel, inside the
+	// pipe frame; the outer two tuck under the middle one by what that leaves, at
+	// most TRIO_TUCK of their width (the tall, narrow panel is then a little smaller).
+	const TRIO_SPAN = 0.87;
+	const TRIO_LEAN = 0.06; // radians, the outer two lean out
+	const TRIO_TUCK = 0.26;
+	// a leaning symbol's footprint is wider than the symbol: w cos + h sin
+	const TRIO_FOOT = Math.cos(TRIO_LEAN) + (SYM.h / SYM.w) * Math.sin(TRIO_LEAN);
+	const trioH = $derived(
+		Math.min(artH * 0.94, (((layout.panelW * TRIO_SPAN) / (2 * (1 - TRIO_TUCK) + TRIO_FOOT)) * SYM.h) / SYM.w),
+	);
+	// the outer two's centres: out to the span's ends, never further than just touching the middle one
+	const trioX = $derived(Math.min(symW(trioH) * 0.94, (layout.panelW * TRIO_SPAN - symW(trioH) * TRIO_FOOT) / 2));
 
 	// the prompt: Evtim's plate with the line on it in the titles' face, dark on
 	// the green, between two pairs of chevrons; the line and the chevrons breathe
@@ -355,14 +374,14 @@
 
 					<Container y={artY}>
 						{#if panel.id === 'anywhere'}
-							<!-- three highs side by side, each one whole (Evtim 2026-11-16: fanned
-							     behind the middle one they were "cut off"): the outer two lean
-							     out a little and tuck a sliver under the middle one, which is a
-							     touch bigger; the row sits on the swash -->
-							<Container y={(artH - trioH * 1.08) / 2}>
-								<Sprite key="h2.png" anchor={0.5} x={-symW(trioH) * 0.98} y={trioH * 0.03} rotation={-0.09} width={symW(trioH)} height={trioH} />
-								<Sprite key="h3.png" anchor={0.5} x={symW(trioH) * 0.98} y={trioH * 0.03} rotation={0.09} width={symW(trioH)} height={trioH} />
-								<Sprite key="h1.png" anchor={0.5} width={symW(trioH * 1.08)} height={trioH * 1.08} />
+							<!-- three highs side by side (Evtim 2026-11-16: fanned behind the
+							     middle one they were "cut off"; 2026-11-20: as big as the other
+							     panels' symbols): the outer two lean out a little and tuck under
+							     the middle one, which is a touch bigger; the row sits on the swash -->
+							<Container y={(artH - trioH * 1.04) / 2}>
+								<Sprite key="h2.png" anchor={0.5} x={-trioX} y={trioH * 0.02} rotation={-TRIO_LEAN} width={highW(trioH)} height={trioH} />
+								<Sprite key="h3.png" anchor={0.5} x={trioX} y={trioH * 0.02} rotation={TRIO_LEAN} width={highW(trioH)} height={trioH} />
+								<Sprite key="h1.png" anchor={0.5} width={highW(trioH * 1.04)} height={trioH * 1.04} />
 							</Container>
 						{:else if panel.id === 'multipliers'}
 							<Sprite key="mult_symbol_plate.png" anchor={0.5} width={symW(artH)} height={artH} />
@@ -381,8 +400,8 @@
 								anchor={0.5}
 								x={-symW(artH) * 0.52}
 								rotation={-0.08}
-								width={(artH * 0.98 * BONUS.w) / BONUS.h}
-								height={artH * 0.98}
+								width={(artH * 0.94 * BONUS.w) / BONUS.h}
+								height={artH * 0.94}
 							/>
 							<!-- the gold coin (433x478), its value on the disc as CashFace draws it -->
 							<Container x={symW(artH) * 0.56} rotation={0.08}>
@@ -424,7 +443,7 @@
 					y={layout.win.y}
 					maxWidth={layout.win.width}
 					text={fill(i18nDerived.winUpTo(), formatTimes(topMaxWin))}
-					style={{ ...winUpToText(layout.win.height * 0.6), letterSpacing }}
+					style={{ ...winUpToText(layout.win.height * 0.78), letterSpacing }}
 				/>
 			{/if}
 		</MainContainer>

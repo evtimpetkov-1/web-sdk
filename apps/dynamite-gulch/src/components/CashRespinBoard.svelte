@@ -194,7 +194,7 @@
 		await cell.badgeFly.set(1, { duration: ms(300), easing: cubicIn });
 		cell.badge = false;
 		cell.badgeFly.set(0, { duration: 0 });
-		sound('sfx_dg_mult_apply');
+		// no sound here: sfx_dg_mult_apply was removed (Evtim, 2026-11-20)
 		void cell.purple.set(1, { duration: ms(200), easing: cubicOut });
 		await countTo(cell, total);
 	};
@@ -478,7 +478,6 @@
 			await Promise.all(
 				boosted.map(async (target) => {
 					await flyValue(bomb, target, coinLabel(target.add));
-					sound('sfx_dg_mult_apply');
 					await countTo(cashCellAt(target), target.total);
 				}),
 			);

@@ -69,7 +69,19 @@
 		if (portrait) return context.stateGameDerived.portraitMascot();
 		const targetHeight = board.height * (stacked ? 0.95 : 1.3);
 		const width = targetHeight * ASPECT;
-		// right side of the reels, the orb just clear of the frame's right pipe and
+		if (context.stateGameDerived.sideLayout()) {
+			// desktop / phone landscape (2026-11-20, the board grows there): the same distance
+			// from the frame's right edge as before, inside the canvas (or the bar's button
+			// column), her boots at the bottom pipe's level as they were
+			const stage = context.stateGameDerived.wideStage();
+			return {
+				targetHeight,
+				// her orb is 0.286 of the clip's width left of its centre, her coat's tail 0.337 right
+				x: Math.min(stage.frameRight + width * 0.286, stage.mascotRight - width * 0.337),
+				y: stage.pipeBottom + 9,
+			};
+		}
+		// tablet (and the themed UI's desktop / landscape): right side of the reels, the orb just clear of the frame's right pipe and
 		// boots just below its bottom pipe (the Chemist's spot, Evtim 2026-09-02);
 		// clamped to the main-layout right edge
 		return {

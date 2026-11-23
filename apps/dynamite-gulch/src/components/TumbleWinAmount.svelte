@@ -42,9 +42,13 @@
 			? context.stateGameDerived.portraitCounterLayout()
 			: undefined,
 	);
-	const room = $derived(boardWidth - (plate.x + plate.width / 2));
-	const x = $derived(boardWidth - room / 2);
-	const y = $derived(plate.y);
+	// desktop's side layout: the counter in the column under the plate, right of the frame
+	const side = $derived(
+		context.stateGameDerived.sideLayout() ? context.stateGameDerived.sideColumns() : undefined,
+	);
+	const room = $derived(side?.room ?? boardWidth - (plate.x + plate.width / 2));
+	const x = $derived(side?.right ?? boardWidth - room / 2);
+	const y = $derived(side?.y ?? plate.y);
 	const LABEL_SIZE = SYMBOL_SIZE * 0.26;
 	const VALUE_SIZE = SYMBOL_SIZE * 0.36;
 	const GAP = SYMBOL_SIZE * 0.02;

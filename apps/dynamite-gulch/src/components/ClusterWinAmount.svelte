@@ -52,11 +52,11 @@
 	});
 
 	// update scale: a multiplied win shows "win x mult" for a second, then collapses
-	// into the result — the plate's payoff, so it lands on the apply hit
+	// into the result, silently (its sfx_dg_mult_apply hit, once per cluster, was removed:
+	// Evtim, 2026-11-20, "horrible sound remove it")
 	onMount(async () => {
 		if (showMultiplier) {
 			await waitForTimeout(SECOND / stateBetDerived.timeScale());
-			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_dg_mult_apply' });
 			await scale.set(0.1, { duration: 200 / stateBetDerived.timeScale() });
 			await scale.set(1, { duration: 200 / stateBetDerived.timeScale() });
 		}

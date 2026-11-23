@@ -93,12 +93,18 @@
 		// the canvas in main units: a crossing enters and leaves at its edges
 		const visibleWidth = canvas.width / main.scale;
 		const cell = SYMBOL_SIZE * board.scale;
-		const portrait = context.stateLayoutDerived.layoutType() === 'portrait';
+		const layout = context.stateLayoutDerived.layoutType();
+		const portrait = layout === 'portrait';
+		const base = frame.y + frame.height * (FRAME_BASE - 0.5) + (portrait ? cell * PORTRAIT_DROP : 0);
+		// landscape: the grown frame's base is behind the bar (wideStage), so the crossing
+		// runs along the bar's top instead of half hidden under it (desktop's side layout
+		// keeps the base in view, above the bar, and the crossing on it)
+		const wide = layout === 'desktop' || layout === 'landscape';
 		return {
 			left: (main.width - visibleWidth) / 2,
 			width: visibleWidth,
 			cell,
-			ground: frame.y + frame.height * (FRAME_BASE - 0.5) + (portrait ? cell * PORTRAIT_DROP : 0),
+			ground: wide ? Math.min(base, context.stateGameDerived.wideStage(layout).uiTop) : base,
 		};
 	});
 

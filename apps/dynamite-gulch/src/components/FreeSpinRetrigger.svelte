@@ -68,6 +68,7 @@
 			context.stateLayoutDerived.layoutType() === 'portrait'
 				? context.stateGameDerived.portraitCounterLayout()
 				: undefined,
+			context.stateGameDerived.sideLayout() ? context.stateGameDerived.sideColumns() : undefined,
 		).value,
 	);
 

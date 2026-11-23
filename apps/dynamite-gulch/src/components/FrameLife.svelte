@@ -26,7 +26,12 @@
 	 *  - A LIGHT RUNS ROUND THE FRAME on a win worth the bet or more, with every big
 	 *    win title and when Cash Respins start, and keeps running, a chase, while the
 	 *    reels wait for the last Scatter.
-	 * The hooks stand at the frame's corners and curl outwards, where the canvas
+	 * DESKTOP AND LANDSCAPE (2026-11-20, Evtim: "these lanterns instead of being on the side
+	 * of the reels, Can you put them on the left and on the right houses in the background"):
+	 * the frame has no lanterns there; they hang on the two houses (HouseLanterns.svelte, in
+	 * the background). Earlier the same day they hung from wall brackets on the side posts
+	 * (parked: art-review/dynamite-gulch/rework/build_side_bracket.py).
+	 * Elsewhere (tablet, portrait) the hooks stand at the frame's corners and curl outwards, where the canvas
 	 * has room; where it has none (portrait: the frame spans the screen) they step
 	 * inwards just enough, and the whole fitting shrinks if the room above the frame
 	 * is short. Desktop's counters beside the plaque stay clear either way.
@@ -132,7 +137,12 @@
 	let roundWas = false;
 	let shake = 0; // a quake waiting to be answered: its strength
 	// where the fitting stands this frame (set by the normal layer, read by the lit one)
-	const fit = { k: 1, ratio: 1, feet: [0, 0], top: 0, tips: [{ x: 0, y: 0 }, { x: 0, y: 0 }] };
+	// `on`: the lanterns hang on the frame (not on desktop or landscape: HouseLanterns)
+	const fit = { on: true, k: 1, ratio: 1, feet: [0, 0], top: 0, tips: [{ x: 0, y: 0 }, { x: 0, y: 0 }] };
+	const onHouses = () => {
+		const layout = context.stateLayoutDerived.layoutType();
+		return layout === 'desktop' || layout === 'landscape';
+	};
 
 	const strengthOf = (preset: keyof typeof SHAKE_PRESETS) => {
 		const { trauma = 0, kick = 0 } = SHAKE_PRESETS[preset] as { trauma?: number; kick?: number };
@@ -270,6 +280,7 @@
 		const rightEdge = (canvas.width - EDGE_PX - at.left) / at.scale;
 		fit.feet[0] = Math.max(CORNER, leftEdge + out);
 		fit.feet[1] = Math.min(FRAME_ART.width - CORNER, rightEdge - out);
+		fit.on = !onHouses();
 
 		if (FAST && !still) {
 			demoWait -= dt;
@@ -353,6 +364,12 @@
 			}
 			const foot = fit.feet[i];
 			const hook = particles[N_DUST + 2 * i];
+			const body = particles[N_DUST + 2 * i + 1];
+			if (!fit.on) {
+				hide(hook);
+				hide(body);
+				return;
+			}
 			hook.texture = textures!['hook.png'];
 			hook.anchorX = HOOK_ART.foot;
 			hook.anchorY = 1;
@@ -366,7 +383,6 @@
 			const tip = fit.tips[i];
 			tip.x = foot + lantern.side * REACH * fit.k;
 			tip.y = fit.top - RISE * fit.k;
-			const body = particles[N_DUST + 2 * i + 1];
 			body.texture = textures!['lantern.png'];
 			body.anchorX = LANTERN_ART.bail.x;
 			body.anchorY = LANTERN_ART.bail.y;
@@ -411,6 +427,7 @@
 		// ---- the lanterns' halos, on the glass (which swings with the lantern)
 		lanterns.forEach((lantern, i) => {
 			const p = particles[i];
+			if (!fit.on) return hide(p);
 			const tip = fit.tips[i];
 			const drop = (LANTERN_ART.glass.y - LANTERN_ART.bail.y) * LANTERN_H * fit.k;
 			const flicker = still

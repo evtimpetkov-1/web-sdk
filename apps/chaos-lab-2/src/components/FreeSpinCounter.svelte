@@ -56,11 +56,8 @@
 
 	const context = getContext();
 
-	const line = $derived(
-		context.stateLayoutDerived.layoutType() === 'portrait'
-			? context.stateGameDerived.portraitCounterLayout()
-			: undefined,
-	);
+	// portrait, and desktop / phone landscape since the plate moved beside the frame (2026-11-20)
+	const line = $derived(context.stateGameDerived.counterLine());
 	const layout = $derived(
 		freeSpinCounterLayout(context.stateGameDerived.multiplierPlateLayout(), line),
 	);

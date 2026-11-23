@@ -61,7 +61,6 @@ export type SoundEffectName =
 	| 'sfx_dg_mult_fly'
 	| 'sfx_dg_mult_up'
 	| 'sfx_dg_mult_reset'
-	| 'sfx_dg_mult_apply'
 	// bomb
 	| 'sfx_dg_bomb_arm'
 	| 'sfx_dg_bomb_explode'

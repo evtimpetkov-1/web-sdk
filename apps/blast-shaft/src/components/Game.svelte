@@ -144,7 +144,9 @@
 	const startGame = async () => {
 		soundReady = true;
 		await tick();
-		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_game_start' });
+		// No start sting (Evtim 2026-11-20: every take of sfx_bs_game_start is a steam
+		// whistle that reads as a train horn). The cue stays in the sprite; the way back is
+		// broadcast({ type: 'soundOnce', name: 'sfx_bs_game_start' }) here.
 		await context.eventEmitter.broadcastAsync({
 			type: Math.random() < INTRO_CURTAIN_CHANCE ? 'transitionShowClosed' : 'transitionShowVeil',
 		});

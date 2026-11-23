@@ -90,8 +90,11 @@ export default {
 		src: new URL('../../assets/chaoslab2/ui/deck.webp', import.meta.url).href,
 		preload: true,
 	},
+	// The four highs' pages hold 1.5 px per unit (v4, 2026-11-20) and are drawn smaller than
+	// that on most screens: mipmapped, like the static sheet they swap with (8 px atlas padding).
 	msH1Anim: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/msSymbols/h1.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/msSymbols/h1.json', import.meta.url).href,
@@ -100,6 +103,7 @@ export default {
 	},
 	msH2Anim: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/msSymbols/h2.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/msSymbols/h2.json', import.meta.url).href,
@@ -108,6 +112,7 @@ export default {
 	},
 	msH3Anim: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/msSymbols/h3.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/msSymbols/h3.json', import.meta.url).href,
@@ -116,6 +121,7 @@ export default {
 	},
 	msH4Anim: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/msSymbols/h4.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/msSymbols/h4.json', import.meta.url).href,
@@ -178,10 +184,11 @@ export default {
 			scale: 1,
 		},
 	},
-	// scatter rig (land / prewin / idle / pending), cut from bonus.png by
-	// art-review/madscience/symbol_layers/cut_bonus.py + build_rigs_v2.py bonus
+	// scatter rig (land / prewin / idle / pending): the BONUS sign tile, built from the PSD's
+	// Bonus group by art-review/chaoslab2/symbols_v4/build_highs.py bonus (2026-11-20)
 	msBonusAnim: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/msSymbols/bonus.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/msSymbols/bonus.json', import.meta.url).href,
@@ -191,6 +198,7 @@ export default {
 	// the Wild's rig (2026-11-16; art-review/chaoslab2/symbols_v3/build_alive.py wild)
 	msWildAnim: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/msSymbols/wild.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/msSymbols/wild.json', import.meta.url).href,

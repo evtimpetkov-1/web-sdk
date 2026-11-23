@@ -37,11 +37,8 @@
 
 	const plate = $derived(context.stateGameDerived.multiplierPlateLayout());
 	const boardWidth = $derived(context.stateGameDerived.boardLayout().width);
-	const line = $derived(
-		context.stateLayoutDerived.layoutType() === 'portrait'
-			? context.stateGameDerived.portraitCounterLayout()
-			: undefined,
-	);
+	// portrait, and desktop / phone landscape since the plate moved beside the frame (2026-11-20)
+	const line = $derived(context.stateGameDerived.counterLine());
 	const room = $derived(boardWidth - (plate.x + plate.width / 2));
 	const x = $derived(boardWidth - room / 2);
 	const y = $derived(plate.y);

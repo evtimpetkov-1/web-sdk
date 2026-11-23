@@ -27,18 +27,17 @@
 	 * so it climbs with every cascade instead of jumping once per spin. The
 	 * tumble win panel stays hidden in free spins; this is its stand-in.
 	 * Portrait (2026-10-26): one line in the right half of the frame's bottom
-	 * pipe, mirroring FREE SPINS (stateGame portraitCounterLayout).
+	 * pipe, mirroring FREE SPINS; desktop / landscape (2026-11-20): one line in the
+	 * middle of that beam, where the base game's WIN is (stateGame winBeamLayout).
 	 */
-	const plate = $derived(context.stateGameDerived.multiplierPlateLayout());
-	const boardWidth = $derived(context.stateGameDerived.boardLayout().width);
-	const line = $derived(
-		context.stateLayoutDerived.layoutType() === 'portrait'
-			? context.stateGameDerived.portraitCounterLayout()
-			: undefined,
-	);
-	const room = $derived(boardWidth - (plate.x + plate.width / 2));
-	const x = $derived(boardWidth - room / 2);
-	const y = $derived(plate.y);
+	// one line on the beam under the reels (portrait: its right half; desktop /
+	// landscape: its middle), else label over value beside the plate (tablet)
+	const line = $derived(context.stateGameDerived.winBeamLayout(true));
+	// right of the plate on its beam, or under it beside the frame (stateGame counterSpots)
+	const spot = $derived(context.stateGameDerived.counterSpots().right);
+	const room = $derived(spot.room);
+	const x = $derived(spot.x);
+	const y = $derived(spot.y);
 	const LABEL_SIZE = SYMBOL_SIZE * 0.26;
 	const VALUE_SIZE = SYMBOL_SIZE * 0.36;
 	const GAP = SYMBOL_SIZE * 0.02;
@@ -63,14 +62,14 @@
 			<Sprite
 				key="msCounterPlate"
 				anchor={0.5}
-				x={line.right}
+				x={line.x}
 				y={line.y}
 				width={line.plate.width}
 				height={line.plate.height}
 			/>
 			<ResponsiveText
 				anchor={{ x: 0.5, y: 0.5 }}
-				x={line.right}
+				x={line.x}
 				y={line.textY}
 				maxWidth={line.maxWidth}
 				text={`${i18nDerived.totalWin()} ${drawnOrder(bookEventAmountToWinCurrencyString(shown.current))}`}
