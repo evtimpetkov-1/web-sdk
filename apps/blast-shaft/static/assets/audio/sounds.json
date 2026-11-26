@@ -2,265 +2,180 @@
 	"sprite": {
 		"bgm_bs_freespin": [
 			0,
-			50960.544,
+			45728.481,
 			true
 		],
 		"bgm_bs_main": [
-			51961,
-			49105.441999999995,
+			46728,
+			20874.739,
 			true
 		],
 		"bgm_bs_totalwin": [
-			102066,
-			6930.612,
+			68603,
+			7620.272,
 			true
 		],
 		"bgm_bs_win_big": [
-			109997,
-			7278.866,
+			77223,
+			7621.3150000000005,
 			true
 		],
 		"bgm_bs_win_epic": [
-			118275,
-			7289.228999999999,
+			85845,
+			7751.8820000000005,
 			true
 		],
 		"bgm_bs_win_mega": [
-			126565,
-			7295.918000000001,
+			94597,
+			8664.263,
 			true
 		],
 		"sfx_bs_anticipation": [
-			134861,
+			104261,
 			3000,
 			true
 		],
 		"sfx_bs_anticipation_end": [
-			138861,
+			108261,
 			917.279
 		],
 		"sfx_bs_anticipation_start": [
-			140778,
-			723.288
-		],
-		"sfx_bs_blast_hit": [
-			142501,
-			804.626
+			110178,
+			800
 		],
 		"sfx_bs_board_dropout": [
-			144306,
+			111978,
 			885.9639999999999
 		],
-		"sfx_bs_bomb_arm": [
-			146192,
-			480
-		],
 		"sfx_bs_bomb_explode": [
-			147672,
+			113864,
 			2000
 		],
 		"sfx_bs_bomb_fuse": [
-			150672,
+			116864,
 			2250,
 			true
 		],
 		"sfx_bs_bomb_land": [
-			153922,
-			490.363
+			120114,
+			526.168
 		],
 		"sfx_bs_bonus_land": [
-			155412,
+			121640,
 			1200
 		],
 		"sfx_bs_buy_confirm": [
-			157612,
-			1103.764
+			123840,
+			962.88
 		],
-		"sfx_bs_cascade_step": [
-			159716,
-			600
-		],
-		"sfx_bs_clone_splat": [
-			161316,
-			600
-		],
-		"sfx_bs_cloner_cast": [
-			162916,
-			891.156
+		"sfx_bs_clone_burst": [
+			125803,
+			1700
 		],
 		"sfx_bs_cloner_flood": [
-			164807,
+			128503,
 			1080.9979999999998
 		],
 		"sfx_bs_cloner_land": [
-			166888,
+			130584,
 			681.542
 		],
-		"sfx_bs_cluster_amount": [
-			168570,
-			480
+		"sfx_bs_curtain_blast": [
+			132266,
+			1850
+		],
+		"sfx_bs_curtain_build": [
+			135116,
+			800
 		],
 		"sfx_bs_curtain_close": [
-			170050,
+			136916,
 			844.376
 		],
 		"sfx_bs_curtain_open": [
-			171894,
+			138760,
 			849.365
 		],
 		"sfx_bs_fs_counter": [
-			173743,
+			140610,
 			480
 		],
-		"sfx_bs_fs_intro": [
-			175223,
-			2203.22
-		],
-		"sfx_bs_fs_outro": [
-			178427,
-			2203.243
-		],
-		"sfx_bs_fs_retrigger": [
-			181630,
-			1468.345
-		],
-		"sfx_bs_game_start": [
-			184098,
-			2000
-		],
-		"sfx_bs_mascot_win_1": [
-			187098,
-			2000
-		],
-		"sfx_bs_mascot_win_2": [
-			190098,
-			2000
-		],
-		"sfx_bs_mascot_win_3": [
-			193098,
-			2000
-		],
-		"sfx_bs_mascot_win_4": [
-			196098,
-			2000
-		],
-		"sfx_bs_mascot_win_5": [
-			199098,
-			2000
-		],
-		"sfx_bs_mult_activate": [
-			202098,
-			648.753
-		],
-		"sfx_bs_mult_apply": [
-			203747,
-			1180
-		],
 		"sfx_bs_mult_fly": [
-			205927,
+			142090,
 			1000
 		],
 		"sfx_bs_mult_land": [
-			207927,
+			144090,
 			856.576
 		],
-		"sfx_bs_mult_reset": [
-			209783,
-			600
-		],
 		"sfx_bs_mult_up": [
-			211383,
+			145946,
 			950.998
 		],
-		"sfx_bs_popup_out": [
-			213334,
-			699.2969999999999
-		],
 		"sfx_bs_reel_land": [
-			215034,
+			147897,
 			436.66700000000003
 		],
 		"sfx_bs_scatter_win": [
-			216470,
-			2057.6639999999998
+			149334,
+			1641.338
 		],
 		"sfx_bs_shatter": [
-			219528,
-			649.773
+			151975,
+			950
 		],
 		"sfx_bs_shower": [
-			221178,
-			3000,
-			true
-		],
-		"sfx_bs_tickup": [
-			225178,
-			3000,
+			153925,
+			2920,
 			true
 		],
 		"sfx_bs_tickup_end": [
-			229178,
+			157845,
 			910.227
 		],
 		"sfx_bs_tumble_drop": [
-			231088,
+			159755,
 			694.2629999999999
 		],
 		"sfx_bs_ui_click": [
-			232782,
+			161450,
 			394.172
 		],
 		"sfx_bs_ui_popup_close": [
-			234177,
+			162844,
 			480
 		],
 		"sfx_bs_ui_popup_open": [
-			235657,
+			164324,
 			680.249
 		],
 		"sfx_bs_ui_spin": [
-			237337,
+			166004,
 			480
 		],
 		"sfx_bs_ui_stop": [
-			238817,
+			167484,
 			448.844
 		],
 		"sfx_bs_wild_land": [
-			240266,
+			168933,
 			762.313
 		],
 		"sfx_bs_win_big": [
-			242028,
+			170695,
 			2000
 		],
-		"sfx_bs_win_cycle": [
-			245028,
-			723.515
-		],
-		"sfx_bs_win_end": [
-			246751,
-			1434.3760000000002
+		"sfx_bs_win_build": [
+			173695,
+			1040
 		],
 		"sfx_bs_win_epic": [
-			249186,
+			175735,
 			2306.5989999999997
 		],
-		"sfx_bs_win_medium": [
-			252492,
-			1092.812
-		],
 		"sfx_bs_win_mega": [
-			254585,
+			179042,
 			1910.295
-		],
-		"sfx_bs_win_small": [
-			257496,
-			912.744
-		],
-		"sfx_bs_win_zap": [
-			259408,
-			526.168
 		]
 	},
 	"src": [
@@ -295,13 +210,7 @@
 		"sfx_bs_anticipation_start": {
 			"volume": 1
 		},
-		"sfx_bs_blast_hit": {
-			"volume": 1
-		},
 		"sfx_bs_board_dropout": {
-			"volume": 1
-		},
-		"sfx_bs_bomb_arm": {
 			"volume": 1
 		},
 		"sfx_bs_bomb_explode": {
@@ -319,13 +228,7 @@
 		"sfx_bs_buy_confirm": {
 			"volume": 1
 		},
-		"sfx_bs_cascade_step": {
-			"volume": 1
-		},
-		"sfx_bs_clone_splat": {
-			"volume": 1
-		},
-		"sfx_bs_cloner_cast": {
+		"sfx_bs_clone_burst": {
 			"volume": 1
 		},
 		"sfx_bs_cloner_flood": {
@@ -334,7 +237,10 @@
 		"sfx_bs_cloner_land": {
 			"volume": 1
 		},
-		"sfx_bs_cluster_amount": {
+		"sfx_bs_curtain_blast": {
+			"volume": 1
+		},
+		"sfx_bs_curtain_build": {
 			"volume": 1
 		},
 		"sfx_bs_curtain_close": {
@@ -346,52 +252,13 @@
 		"sfx_bs_fs_counter": {
 			"volume": 1
 		},
-		"sfx_bs_fs_intro": {
-			"volume": 1
-		},
-		"sfx_bs_fs_outro": {
-			"volume": 1
-		},
-		"sfx_bs_fs_retrigger": {
-			"volume": 1
-		},
-		"sfx_bs_game_start": {
-			"volume": 1
-		},
-		"sfx_bs_mascot_win_1": {
-			"volume": 1
-		},
-		"sfx_bs_mascot_win_2": {
-			"volume": 1
-		},
-		"sfx_bs_mascot_win_3": {
-			"volume": 1
-		},
-		"sfx_bs_mascot_win_4": {
-			"volume": 1
-		},
-		"sfx_bs_mascot_win_5": {
-			"volume": 1
-		},
-		"sfx_bs_mult_activate": {
-			"volume": 1
-		},
-		"sfx_bs_mult_apply": {
-			"volume": 1
-		},
 		"sfx_bs_mult_fly": {
 			"volume": 1
 		},
 		"sfx_bs_mult_land": {
 			"volume": 1
 		},
-		"sfx_bs_mult_reset": {
-			"volume": 1
-		},
 		"sfx_bs_mult_up": {
-			"volume": 1
-		},
-		"sfx_bs_popup_out": {
 			"volume": 1
 		},
 		"sfx_bs_reel_land": {
@@ -404,9 +271,6 @@
 			"volume": 1
 		},
 		"sfx_bs_shower": {
-			"volume": 1
-		},
-		"sfx_bs_tickup": {
 			"volume": 1
 		},
 		"sfx_bs_tickup_end": {
@@ -436,25 +300,13 @@
 		"sfx_bs_win_big": {
 			"volume": 1
 		},
-		"sfx_bs_win_cycle": {
-			"volume": 1
-		},
-		"sfx_bs_win_end": {
+		"sfx_bs_win_build": {
 			"volume": 1
 		},
 		"sfx_bs_win_epic": {
 			"volume": 1
 		},
-		"sfx_bs_win_medium": {
-			"volume": 1
-		},
 		"sfx_bs_win_mega": {
-			"volume": 1
-		},
-		"sfx_bs_win_small": {
-			"volume": 1
-		},
-		"sfx_bs_win_zap": {
 			"volume": 1
 		}
 	}

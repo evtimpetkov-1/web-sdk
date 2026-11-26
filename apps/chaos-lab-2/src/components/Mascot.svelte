@@ -10,51 +10,35 @@
 	import { MASCOT_CLIP } from '../game/constants';
 	import StackedAlphaVideo from './StackedAlphaVideo.svelte';
 
-	// Chaos Lab 2's mascot (Evtim, 2026-11-04): his MiniMax H3 takes, an idle that
-	// loops and two wins (the orb's bursts), all starting and ending on the hero
-	// still's pose (v11; the earlier Wan clips were removed). Native resolution,
-	// one crop for all: stacked alpha 2624x1856 = premultiplied colour | alpha
-	// matte with the light baked in (hybrid), 24 fps; built by
-	// art-review/chaoslab2/mascot/video/v11_evtim/build_clips.py. PLACEMENT (the
-	// builder's RECT, fitted to mascot.webp) puts the crop on the still's framing
-	// (MASCOT_CLIP), so every layout tuned for the still holds. Mipmapped like the
-	// still: it draws at a third to a half of its pixel size beside the reels.
+	// The mascot is Chaos Lab's Chemist (Evtim, 2026-11-26: "move the mascot from
+	// chaos lab 1 here"; MASCOT_KIND in constants.ts). His clips as Chaos Lab plays
+	// them: hybrid stacked mp4s, 1664x1104 = raw frame (all baked effects) |
+	// character matte, 30 fps; the shader keys out the black background live,
+	// keeping the effects. 01 = idle loop, 02 = win reaction (one-shot, fired by
+	// `mascotWin`, cutting in at once: his laugh starts with it).
+	// The encode is decoder-friendly for Android (2026-09-03): 16-aligned size, Main
+	// profile, no B-frames, a keyframe every second.
+	// The woman's version of this file (her three stacked-alpha clips, a random win,
+	// a placement rect) is art-review/alt/mascot_woman_2026-11-26/Mascot.svelte.
 	const SRCS = [
-		new URL('../../assets/chaoslab2/mascot/idle.mp4', import.meta.url).href,
-		new URL('../../assets/chaoslab2/mascot/win.mp4', import.meta.url).href,
-		new URL('../../assets/chaoslab2/mascot/win2.mp4', import.meta.url).href,
+		new URL('../../assets/mascot/hybrid_01.mp4', import.meta.url).href,
+		new URL('../../assets/mascot/hybrid_02.mp4', import.meta.url).href,
 	];
-	const WINS = [1, 2];
-	const HALF = { width: 1312, height: 1856 };
-	const PLACEMENT = {
-		frameWidth: MASCOT_CLIP.width,
-		frameHeight: MASCOT_CLIP.height,
-		x: 51.74,
-		y: 76,
-		width: 703.69,
-		height: 995.47,
-	};
+	const WIN_CLIP = 1;
 	const ASPECT = MASCOT_CLIP.width / MASCOT_CLIP.height;
 
 	const context = getContext();
 
 	let video: StackedAlphaVideo | undefined = $state();
-	// the still (mascot.webp, the same framing) shows until the first video
-	// frame is on screen, and stays if the video never plays
+	// the still (the idle's first frame, the same framing) shows until the first
+	// video frame is on screen, and stays if the video never plays
 	let videoShown = $state(false);
 
 	// a win (bookEventHandlerMap: once per spin, the first cascade win reaching the
-	// total bet, and at the end of Cash Respins as the coins are collected) plays a
-	// win clip at random, never the same one twice running, from the end of the
-	// current idle loop
-	let lastWin = -1;
+	// total bet, and at the end of Cash Respins as the coins are collected) plays
+	// his reaction; one already on is not restarted
 	context.eventEmitter.subscribeOnMount({
-		mascotWin: () => {
-			const pool = WINS.filter((clip) => clip !== lastWin);
-			const clip = pool[Math.floor(Math.random() * pool.length)];
-			// remembered only if it plays: one is ignored while another is queued or on
-			if (video?.playOnce(clip)) lastWin = clip;
-		},
+		mascotWin: () => video?.playOnce(WIN_CLIP),
 	});
 
 	const board = $derived(context.stateGameDerived.boardLayout());
@@ -70,19 +54,20 @@
 		const targetHeight = board.height * (stacked ? 0.95 : 1.3);
 		const width = targetHeight * ASPECT;
 		if (context.stateGameDerived.sideLayout()) {
-			// desktop / phone landscape (2026-11-20, the board grows there): the same distance
-			// from the frame's right edge as before, inside the canvas (or the bar's button
-			// column), her boots at the bottom pipe's level as they were
+			// desktop / phone landscape (2026-11-20, the board grows there): his flask at
+			// the frame's right edge, inside the canvas (or the bar's button column), his
+			// boots at the bottom pipe's level
 			const stage = context.stateGameDerived.wideStage();
 			return {
 				targetHeight,
-				// her orb is 0.286 of the clip's width left of its centre, her coat's tail 0.337 right
-				x: Math.min(stage.frameRight + width * 0.286, stage.mascotRight - width * 0.337),
+				// the idle's reach either side of the clip's centre (MASCOT_CLIP left / right)
+				x: Math.min(stage.frameRight + width * MASCOT_CLIP.left, stage.mascotRight - width * MASCOT_CLIP.right),
 				y: stage.pipeBottom + 9,
 			};
 		}
-		// tablet (and the themed UI's desktop / landscape): right side of the reels, the orb just clear of the frame's right pipe and
-		// boots just below its bottom pipe (the Chemist's spot, Evtim 2026-09-02);
+		// tablet (and the themed UI's desktop / landscape): right side of the reels, the
+		// flask just clear of the frame's right pipe and boots just below its bottom
+		// pipe (Evtim 2026-09-02);
 		// clamped to the main-layout right edge
 		return {
 			targetHeight,
@@ -96,15 +81,15 @@
      the backgrounds (-2) and under every zIndex-0 layer (board, frame, UI); the
      mascot stays mounted, so a rotation never restarts the video decoder -->
 <MainContainer zIndex={portrait ? -1 : 0}>
-	<!-- she stands ON the floor: a contact shadow under her boots (row 1067 of the
-	     1104-row frame). Not in portrait, where the board hides her legs -->
+	<!-- he stands ON the floor: a contact shadow under his boots (row 1067 of the
+	     1104-row frame). Not in portrait, where the board hides his legs -->
 	{#if !portrait}
 		<Sprite
 			key="cl2Shadow"
 			anchor={0.5}
-			x={layout.x + layout.targetHeight * ASPECT * 0.02}
+			x={layout.x + layout.targetHeight * ASPECT * MASCOT_CLIP.shadow.x}
 			y={layout.y - layout.targetHeight * ((MASCOT_CLIP.height - 1067) / MASCOT_CLIP.height) + layout.targetHeight * 0.004}
-			width={layout.targetHeight * ASPECT * 0.62}
+			width={layout.targetHeight * ASPECT * MASCOT_CLIP.shadow.width}
 			height={layout.targetHeight * 0.075}
 			alpha={0.62}
 		/>
@@ -122,11 +107,10 @@
 		bind:this={video}
 		srcs={SRCS}
 		onFirstFrame={() => (videoShown = true)}
-		mode="stacked"
-		halfWidth={HALF.width}
-		halfHeight={HALF.height}
-		placement={PLACEMENT}
-		mipmap
+		mode="hybrid"
+		cutIn
+		halfWidth={MASCOT_CLIP.width}
+		halfHeight={MASCOT_CLIP.height}
 		x={layout.x}
 		y={layout.y}
 		targetHeight={layout.targetHeight}

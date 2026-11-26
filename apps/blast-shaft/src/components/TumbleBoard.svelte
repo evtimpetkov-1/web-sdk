@@ -114,12 +114,9 @@
 			const getTumbleSymbol = (position: Position) =>
 				context.stateGame.tumbleBoardBase[position.reel][position.row];
 
-			// sounds once per wave, however many bombs: the ARM pulses as the rigs start;
-			// the boom is the rig's `detonate` event and the Wild's sting its `wild`
-			// event (Symbol.svelte), which the once player never doubles
-			if (bomb?.bombs.length) {
-				context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_bomb_arm' });
-			}
+			// sounds once per wave, however many bombs: the boom is the rig's `detonate`
+			// event and the Wild's sting its `wild` event (Symbol.svelte), which the once
+			// player never doubles (the arm pulse before it was removed, 2026-11-24)
 			const leavesWild = (position: Position) =>
 				!!bomb?.wilds.some((wild) => isSamePosition(wild, position));
 			const detonateMs = (position: Position) =>

@@ -103,9 +103,9 @@
 		labelAlpha.set(0, { duration: 0 });
 		active = true;
 		splat = true;
-		// the stamp: the retrigger's own cue; the flight: the multiplier's fly
-		// (the same gesture onto a counter); the handler ticks the counter on arrival
-		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_fs_retrigger' });
+		// the stamp is silent (its cue was removed in the sound review of 2026-11-24); the
+		// flight keeps the multiplier's fly (the same gesture onto a counter) and the
+		// handler ticks the counter on arrival
 
 		dim.set(DIM_ALPHA, { duration: ms(200) });
 		numberAlpha.set(1, { duration: ms(140) });

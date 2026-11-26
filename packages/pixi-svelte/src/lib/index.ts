@@ -10,7 +10,9 @@ export * from './context.svelte';
 export {
 	BlurFilter,
 	FillGradient,
+	Filter,
 	Geometry,
+	GlProgram,
 	Mesh,
 	Shader,
 	Texture,

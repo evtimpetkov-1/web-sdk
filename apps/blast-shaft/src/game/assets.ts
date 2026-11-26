@@ -1,10 +1,11 @@
 export default {
-	// BIG / MEGA / EPIC WIN titles (Evtim's celebration art) as one rig: big_in,
-	// <tier>_idle, to_mega, to_epic, <tier>_out, with slot_win_count for the
-	// amount. Built by art-review/madscience/bigwin/build_bigwin.py; the sample's
-	// spines/bigwin (sample) is parked in art-review/template-assets.
+	// BIG / MEGA / EPIC WIN as one rig: big_in, <tier>_idle, to_mega, to_epic,
+	// <tier>_out, with slot_win_count for the amount. Second build (2026-11-24,
+	// art-review/blast-shaft/build_popups2.py): the words slam in one by one, an upgrade
+	// blows the old title to pieces; the plank holds 2 px per rig px, so mipmapped.
 	msBigwin: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/msBigwin/bigwin.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/msBigwin/bigwin.json', import.meta.url).href,
@@ -200,6 +201,16 @@ export default {
 		src: {
 			atlas: new URL('../../assets/spines/goo/goo.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/goo/goo.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	// A symbol breaking apart in its own pieces (SymbolShatter.svelte; built by
+	// art-review/blast-shaft/build_shatter.py): sym_<tile>_<pattern> + break_<pattern>
+	bsShatter: {
+		type: 'spine',
+		src: {
+			atlas: new URL('../../assets/spines/bsShatter/shatter.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/bsShatter/shatter.json', import.meta.url).href,
 			scale: 1,
 		},
 	},
@@ -466,13 +477,13 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/bs/tickup-win/tickup-win.xml', import.meta.url).href,
 	},
-	// Free-spins intro / outro popup (Evtim's mockup 2026-09-08): the surgical
-	// lamp with its beam, the riveted plate with the bloody cloth, the
-	// CONGRATULATIONS / YOU WON / TOTAL WIN plates — one rig, intro_* and
-	// outro_* animations, slot_line (intro count line) and slot_amount (outro).
-	// Built by art-review/madscience/fsintro/build_fsintro.py.
+	// Free-spins intro / outro popup: a mine notice board on two ropes, one rig, intro_*
+	// and outro_* animations, slot_line (intro count line) and slot_amount (outro), plus
+	// outro_hit for the moment the total lands. Second build (2026-11-24,
+	// art-review/blast-shaft/build_popups2.py); the board holds 2 px per rig px, so mipmapped.
 	msFsPopup: {
 		type: 'spine',
+		mipmap: true,
 		src: {
 			atlas: new URL('../../assets/spines/msFsPopup/fspopup.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/msFsPopup/fspopup.json', import.meta.url).href,

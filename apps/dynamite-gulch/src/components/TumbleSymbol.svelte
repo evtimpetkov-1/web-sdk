@@ -9,6 +9,7 @@
 	import GooBurst from './GooBurst.svelte';
 	import BlastBurst from './BlastBurst.svelte';
 	import { getSymbolX, getSymbolInfo, getSymbolZIndex } from '../game/utils';
+	import { SYMBOL_SIZE } from '../game/constants';
 	import { getContext } from '../game/context';
 	import type { TumbleSymbol } from '../game/stateGame.svelte';
 	import type { SymbolState } from '../game/types';
@@ -30,8 +31,20 @@
 	const hasPending = $derived(
 		getSymbolInfo({ rawSymbol: props.tumbleSymbol.rawSymbol, state: 'pending' }).type === 'spine',
 	);
+	/**
+	 * A symbol dropping in from ABOVE the window shows its plain picture until its tile
+	 * is well inside: the tumble board lies over the reel frame, so a rig (a character's
+	 * idle, an armed dynamite) entering in the unmasked layer crossed the top beam with
+	 * its whole tile (Evtim, 2026-11-26). A survivor dropping inside the window keeps
+	 * its loop (an armed dynamite must not go plain for the length of a drop).
+	 */
+	const entering = $derived(
+		props.tumbleSymbol.symbolY.current !== props.tumbleSymbol.symbolY.target &&
+			props.tumbleSymbol.symbolY.current < SYMBOL_SIZE,
+	);
 	const displayState = $derived.by<SymbolState>(() => {
 		if (props.tumbleSymbol.symbolState !== 'static') return props.tumbleSymbol.symbolState;
+		if (entering) return 'static';
 		if (hasPending && context.stateGame.scatterPending) return 'pending';
 		if (hasIdle && context.stateGame.roundActive) return 'idle';
 		return 'static';

@@ -1,0 +1,16 @@
+fspopup.webp
+size:2048,2048
+filter:Linear,Linear
+scale:1
+halo
+bounds:0,0,256,256
+rope
+bounds:260,0,28,512
+board
+bounds:292,0,1300,758
+congrats
+bounds:0,762,1250,158
+youwon
+bounds:0,924,1250,305
+totalwin
+bounds:0,1233,1250,271

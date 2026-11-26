@@ -1,16 +1,8 @@
-<script lang="ts" module>
-	// The ring reaches its eight cells within ~100ms of each other: one bang per
-	// wave, not eight. Placeholder sfx until a custom blast is produced.
-	let lastBangAt = 0;
-	const BANG_SFX = 'sfx_bs_blast_hit';
-</script>
-
 <script lang="ts">
 	import { SpineProvider, SpineTrack } from 'pixi-svelte';
 	import { stateBetDerived } from 'state-shared';
 
 	import { SYMBOL_SIZE } from '../game/constants';
-	import { getContext } from '../game/context';
 
 	/**
 	 * Bomb blast on a neighbouring cell ("hit"): a red fire burst drawn OVER the
@@ -28,15 +20,9 @@
 	};
 
 	const props: Props = $props();
-	const context = getContext();
 	// twelve variants so the ring never bursts identically
 	const animationName = `hit_${String(Math.floor(Math.random() * 12)).padStart(2, '0')}`;
 
-	const now = performance.now();
-	if (now - lastBangAt > 80) {
-		lastBangAt = now;
-		context.eventEmitter.broadcast({ type: 'soundOnce', name: BANG_SFX });
-	}
 </script>
 
 <SpineProvider

@@ -5,12 +5,15 @@
 </script>
 
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import { Container, Sprite, SpineProvider, SpineTrack } from 'pixi-svelte';
 	import { FadeContainer } from 'components-pixi';
 
 	import { getContext } from '../game/context';
 	import FrameLife from './FrameLife.svelte';
 
+	/** drawn over the timber and under the frame's life: the winners' layer (BoardOver) */
+	const props: { children?: Snippet } = $props();
 	const context = getContext();
 	// the free-spins frame is the same cut with blood on the pipes; cross-faded on gameType
 	const isFreeSpins = $derived(context.stateGame.gameType === 'freegame');
@@ -89,6 +92,8 @@
 		</FadeContainer>
 	{/each}
 </Container>
+
+{@render props.children?.()}
 
 <!-- the frame's life, over the timber: lanterns on hooks that swing in the wind and
      with every quake, dust off the top beam, glints on the iron, the light that runs

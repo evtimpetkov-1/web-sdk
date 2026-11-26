@@ -33,10 +33,10 @@ const ART = {
 	// stands in front of its tile, and a hat or a feather rises above it, so the
 	// canvas is taller than the cell by that overflow, above AND below (the tile
 	// stays centred); `cell` is the part of the canvas that fills the cell
-	h1: { width: 297, height: 345, cell: { width: 297, height: 321 } },
-	h2: { width: 297, height: 341, cell: { width: 297, height: 321 } },
-	h3: { width: 297, height: 385, cell: { width: 297, height: 321 } },
-	h4: { width: 297, height: 321 },
+	h1: { width: 315, height: 381, cell: { width: 297, height: 321 } }, // 2026-11-26: Evtim's PSD (rework/build_h1_h4_psd.py): her hat 30 px over the tile's top, her elbow 9 px over its left side
+	h2: { width: 297, height: 369, cell: { width: 297, height: 321 } }, // 2026-11-26: Evtim's PSD (rework/build_h2_psd.py), 24 px of hat above the tile
+	h3: { width: 297, height: 389, cell: { width: 297, height: 321 } }, // 2026-11-26: Evtim's PSD (rework/build_h3_psd.py), 34 px of feather above the tile
+	h4: { width: 297, height: 325, cell: { width: 297, height: 321 } }, // 2026-11-26: Evtim's PSD (rework/build_h1_h4_psd.py), 2 px of hat above the tile
 	// the Scatter: a loot sack on a gold-framed tile. The tile is the cell; the sack and
 	// its coins are drawn wider than it and spill over the frame on every side (Evtim,
 	// 2026-11-16), so the canvas is larger than the cell both ways (SCATTER_PAD in
@@ -51,10 +51,10 @@ export const SYMBOL_WIDTH = (SYMBOL_SIZE * ART.plate.width) / ART.plate.height; 
 export const SYMBOL_GAP = 0;
 // a symbol's drawn height over its cell's (the highs whose hat overflows), for
 // whoever draws a static outside the board
-export const artOverflow = (symbol: 'h1' | 'h2' | 'h3' | 'bonus') =>
+export const artOverflow = (symbol: 'h1' | 'h2' | 'h3' | 'h4' | 'bonus') =>
 	ART[symbol].height / ART[symbol].cell.height;
-// the same across (only the Scatter's sack spills sideways)
-export const artOverflowX = (symbol: 'bonus') => ART[symbol].width / ART[symbol].cell.width;
+// the same across (the Scatter's sack spills sideways, and the cowgirl's elbow)
+export const artOverflowX = (symbol: 'h1' | 'bonus') => ART[symbol].width / ART[symbol].cell.width;
 // scales the WHOLE Scatter, tile included; 1 = its tile fills the cell like every
 // other symbol's. To change how far the sack spills over the tile, rebuild the art
 // (SCATTER_FIT in build_ink_symbols.py), not this
@@ -179,6 +179,18 @@ export const HIGH_SYMBOLS = ['H1', 'H2', 'H3', 'H4'];
 // Symbols that skip the generic win FX (overload charge): scatters have their own
 // trigger celebration, multipliers are collected by the multiplier board.
 export const WIN_CHARGE_EXCLUDED: string[] = ['S', 'M'];
+// What the board draws IN FRONT of the reel frame (BoardOver.svelte); everything else
+// lies under it, where the top beam covers a top-row hat.
+//   'rigs'    every animated state: the winners, and every idle loop (the four
+//             characters breathe at rest, so their hats, the feather and the cowgirl's
+//             elbow stand over the frame all the time; the Scatter and the armed
+//             dynamite during a round), the cloner's cast / in / out and covers.
+//             Evtim, 2026-11-26: "move the idle animations on top of the reels frame too"
+//   'winners' only a symbol in its win (his first ask that day)
+//   'off'     nothing, as before
+// A landing is never in front: its bounce starts half a row above the cell and would
+// carry the top row's tile over the beam.
+export const OVER_FRAME: 'rigs' | 'winners' | 'off' = 'rigs';
 
 export const INITIAL_SYMBOL_STATE: SymbolState = 'static';
 

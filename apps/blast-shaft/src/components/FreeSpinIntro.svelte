@@ -157,11 +157,32 @@
 		},
 	});
 
+	// Each line slams on with the reels' landing sound (Evtim, 2026-11-26: "a stop sound of
+	// the ones we already have can be used for the free spins intro texts slamming"), at the
+	// rig's stamp times (art-review/blast-shaft/build_popups2.py: CONGRATULATIONS 0.75 s,
+	// YOU WON 1.02 s, the count 1.3 s, the heaviest punch, so a deeper rate). The slams
+	// come 0.27 s apart and the cue is 0.44 s long: forcePlay, or the next one is skipped.
+	// A press skips the entrance and the slams still to come.
+	const SLAMS = [
+		{ at: 0.75, rate: 1 },
+		{ at: 1.02, rate: 1.08 },
+		{ at: 1.3, rate: 0.92 },
+	];
+	$effect(() => {
+		if (!show || phase !== 'in') return;
+		const timers = SLAMS.map(({ at, rate }) =>
+			setTimeout(
+				() => context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_reel_land', forcePlay: true, rate }),
+				at * 1000,
+			),
+		);
+		return () => timers.forEach(clearTimeout);
+	});
+
 	// a press during the entrance skips straight to the exit
 	const onpress = () => {
 		if (phase === 'out') return;
 		phase = 'out';
-		context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_popup_out' });
 	};
 </script>
 

@@ -7,9 +7,11 @@
 	import Symbol from './Symbol.svelte';
 	import SymbolWrap from './SymbolWrap.svelte';
 	import GooBurst from './GooBurst.svelte';
+	import SymbolShatter from './SymbolShatter.svelte';
 	import BlastBurst from './BlastBurst.svelte';
 	import { getSymbolX, getSymbolInfo, getSymbolZIndex } from '../game/utils';
 	import { getContext } from '../game/context';
+	import { FX_SET } from '../game/constants';
 	import type { TumbleSymbol } from '../game/stateGame.svelte';
 	import type { SymbolState } from '../game/types';
 
@@ -56,6 +58,9 @@
 	// A goo cell starts a random 0-90ms late so a row of winners never bursts in
 	// lockstep; a blasted cell waits for the ring to reach it (blastDelay, set by
 	// TumbleBoard from its distance to the bomb).
+	// 'energy': a symbol leaving the board breaks apart in its own pieces
+	// (SymbolShatter). 'slime': the tile pops and fades under the slime splash (GooBurst).
+	const SHATTER = FX_SET === 'energy';
 	const plateScale = new Tween(1);
 	const plateAlpha = new Tween(1);
 	let burstStarted = $state(false);
@@ -71,6 +76,12 @@
 		const delay = blasted ? (props.tumbleSymbol.blastDelay ?? 0) : Math.random() * 90;
 		const timer = setTimeout(async () => {
 			burstStarted = true;
+			if (SHATTER) {
+				// the pieces stand exactly on the tile as they mount: it goes without a pop
+				// (two frames of overlap, so the cell is never seen empty)
+				plateAlpha.set(0, { duration: 40 / timeScale });
+				return;
+			}
 			await plateScale.set(1.15, { duration: 80 / timeScale, easing: cubicOut });
 			plateAlpha.set(0, { duration: 60 / timeScale, easing: cubicIn });
 			await plateScale.set(1.25, { duration: 60 / timeScale, easing: cubicOut });
@@ -96,9 +107,17 @@
 		/>
 	</Container>
 	{#if exploding && burstStarted}
-		<GooBurst oncomplete={props.tumbleSymbol.oncomplete} />
+		{#if SHATTER}
+			<SymbolShatter rawSymbol={props.tumbleSymbol.rawSymbol} oncomplete={props.tumbleSymbol.oncomplete} />
+		{:else}
+			<GooBurst oncomplete={props.tumbleSymbol.oncomplete} />
+		{/if}
 	{/if}
 	{#if blasted && burstStarted}
+		<!-- a bomb's neighbour: its pieces are blown out from under the fire hit -->
+		{#if SHATTER}
+			<SymbolShatter rawSymbol={props.tumbleSymbol.rawSymbol} quick />
+		{/if}
 		<BlastBurst oncomplete={props.tumbleSymbol.oncomplete} />
 	{/if}
 </SymbolWrap>

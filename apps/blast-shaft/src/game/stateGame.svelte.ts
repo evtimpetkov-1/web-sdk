@@ -32,6 +32,7 @@ import type { SoundEffectName } from './sound';
 // and the Wild never lands: it is made by a bomb (TumbleBoard plays its sting)
 const LAND_SFX: Partial<Record<RawSymbol['name'], SoundEffectName>> = {
 	M: 'sfx_bs_mult_land',
+	// the bomb's landing is the old win hit since the sound review of 2026-11-24 (the file changed, not the name)
 	B: 'sfx_bs_bomb_land',
 	C: 'sfx_bs_cloner_land',
 };

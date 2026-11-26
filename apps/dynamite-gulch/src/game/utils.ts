@@ -164,9 +164,11 @@ export const getSymbolInfo = ({
 	return SYMBOL_INFO_MAP[symbolKey][state];
 };
 
-// symbols drawn larger than their cell (the bonus disc) sort above their neighbours
+// symbols drawn larger than their cell sort above their neighbours: the Scatter's sack,
+// and the dynamite, whose armed loop thumps its tile and throws its sunburst, sparks
+// and smoke past the cell's edges (2026-11-26)
 export const getSymbolZIndex = ({ rawSymbol }: { rawSymbol: RawSymbol }) =>
-	rawSymbol.name === 'S' ? 1 : 0;
+	rawSymbol.name === 'S' || rawSymbol.name === 'B' ? 1 : 0;
 
 export const getSymbolBackgroundInfo = ({
 	rawSymbol,

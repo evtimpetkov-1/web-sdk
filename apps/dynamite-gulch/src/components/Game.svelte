@@ -30,6 +30,7 @@
 	import LoadingScreen from './LoadingScreen.svelte';
 	import BoardFrame from './BoardFrame.svelte';
 	import Board from './Board.svelte';
+	import BoardOver from './BoardOver.svelte';
 	import CashRespinBoard from './CashRespinBoard.svelte';
 	import CashRespinFx from './CashRespinFx.svelte';
 	import BoardBacking from './BoardBacking.svelte';
@@ -191,7 +192,10 @@
 				<Board />
 				<!-- Chaos Lab 2's Cash Respins grid: where the reels are, under the pipes -->
 				<CashRespinBoard />
-				<BoardFrame />
+				<!-- winning symbols stand in front of the frame's timber (BoardOver) -->
+				<BoardFrame>
+					<BoardOver />
+				</BoardFrame>
 				<GlobalMultiplier />
 			</MainContainer>
 

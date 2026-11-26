@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { Container } from 'pixi-svelte';
+
 	import Symbol from './Symbol.svelte';
 	import SymbolWrap from './SymbolWrap.svelte';
 	import WinCharge from './WinCharge.svelte';
@@ -114,6 +116,12 @@
 	// Cloner goo cover registered for this cell by the clonerActivate handler
 	// (splat: the cell becomes a cloner; flood: the cloner becomes the paying symbol)
 	const cloneFx = $derived(context.stateGame.cloneFx[cellKey]);
+	// CLONE_OWNS_CELL styles draw the cell themselves (the old picture, then the new):
+	// the real symbol is hidden from the rig's `hide` to its `swap`
+	let cloneCovers = $state(false);
+	$effect(() => {
+		if (!cloneFx) cloneCovers = false;
+	});
 </script>
 
 {#if !isPadding}
@@ -147,6 +155,7 @@
 		animating={displayState !== 'land' &&
 			(symbolInfo.type === 'spine' || fxPhase !== undefined || cloneFx !== undefined)}
 	>
+		<Container alpha={cloneCovers ? 0 : 1}>
 		<Symbol
 			state={displayState}
 			loop={displayState === 'idle' || displayState === 'pending'}
@@ -175,6 +184,7 @@
 				}
 			}}
 		/>
+		</Container>
 	</SymbolWrap>
 
 	{#if fxPhase}
@@ -190,7 +200,18 @@
 	<!-- over the symbol: the swap underneath happens while the cell is fully covered -->
 	{#if cloneFx}
 		<SymbolWrap {x} {y} animating={true} zIndex={3}>
-			<CloneFx kind={cloneFx.kind} onswap={cloneFx.onSwap} oncomplete={cloneFx.oncomplete} />
+			<CloneFx
+				kind={cloneFx.kind}
+				from={cloneFx.from}
+				to={cloneFx.to}
+				onhide={() => (cloneCovers = true)}
+				onburst={cloneFx.onBurst}
+				onswap={() => {
+					cloneFx.onSwap();
+					cloneCovers = false;
+				}}
+				oncomplete={cloneFx.oncomplete}
+			/>
 		</SymbolWrap>
 	{/if}
 {/if}

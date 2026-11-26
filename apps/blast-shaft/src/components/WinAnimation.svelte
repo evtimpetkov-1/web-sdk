@@ -123,7 +123,6 @@
 		if (phase === 'out') return;
 		if (props.requestExit) {
 			phase = 'out';
-			context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_win_end' });
 			return;
 		}
 		if (idx(props.tier) > idx(shown)) {

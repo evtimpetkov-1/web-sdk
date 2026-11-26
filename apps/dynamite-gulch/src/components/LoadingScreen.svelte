@@ -321,7 +321,7 @@
 									     right just a bit ... the middle h1 is covering most of them") -->
 									<Sprite key="h2.png" anchor={0.5} x={-symW(artH) * FAN.spread} y={artH * 0.05} rotation={-FAN.tilt} width={symW(artH * FAN.side)} height={artH * FAN.side * artOverflow('h2')} />
 									<Sprite key="h3.png" anchor={0.5} x={symW(artH) * FAN.spread} y={artH * 0.05} rotation={FAN.tilt} width={symW(artH * FAN.side)} height={artH * FAN.side * artOverflow('h3')} />
-									<Sprite key="h1.png" anchor={0.5} width={symW(artH * FAN.middle)} height={artH * FAN.middle * artOverflow('h1')} />
+									<Sprite key="h1.png" anchor={0.5} width={symW(artH * FAN.middle) * artOverflowX('h1')} height={artH * FAN.middle * artOverflow('h1')} />
 								{:else if panel.id === 'multipliers'}
 									<Sprite key="mult_symbol_plate.png" anchor={0.5} width={symW(artH * 1.08)} height={artH * 1.08} />
 									<BitmapText

@@ -15,6 +15,8 @@
 	// reaction queued with playOnce(index): it starts when the current idle ends
 	// (never mid-idle: all clips start and end on the same pose, so only a
 	// boundary switch is seamless), plays through, then an idle follows.
+	// `cutIn` starts a reaction at once instead (Chaos Lab's Chemist: his reaction
+	// comes with a laugh, which cannot wait for the loop's end).
 	// All clips must share the same half-frame dimensions.
 	type Props = {
 		srcs: string[];
@@ -22,6 +24,11 @@
 		idleCount?: number;
 		/** called once, when the first video frame is on screen */
 		onFirstFrame?: () => void;
+		/**
+		 * a reaction cuts into the idle at once instead of waiting for its end
+		 * (element engine; the WebCodecs engine still switches at the idle's end)
+		 */
+		cutIn?: boolean;
 		/** pixel size of ONE half of the stacked frame (full frame when mode="plain") */
 		halfWidth: number;
 		halfHeight: number;
@@ -475,14 +482,16 @@
 	};
 
 	/**
-	 * Queue a reaction clip: it plays once when the current idle ends, then an
-	 * idle follows. Ignored while another reaction is queued or playing.
+	 * Queue a reaction clip: it plays once when the current idle ends (at once
+	 * with `cutIn`), then an idle follows. Ignored while another reaction is
+	 * queued or playing.
 	 */
 	export const playOnce = (index: number): boolean => {
 		if (isIdle(index) || index >= props.srcs.length) return false;
 		if (player) return player.playOnce(index);
 		if (!clips.length || !isIdle(current) || pending !== null) return false;
-		pending = index;
+		if (props.cutIn) switchTo(index);
+		else pending = index;
 		return true;
 	};
 

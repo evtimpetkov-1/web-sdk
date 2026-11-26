@@ -1,0 +1,296 @@
+{
+ "sfx_bs_anticipation_end": {
+  "kind": "boom",
+  "did": "take 2, its low end x0.56",
+  "seconds": 0.92,
+  "body": 74.3,
+  "mid": 23.8
+ },
+ "sfx_bs_anticipation_start": {
+  "kind": null,
+  "did": "take 3",
+  "seconds": 0.72,
+  "body": 27.3,
+  "mid": 52.9
+ },
+ "sfx_bs_blast_hit": {
+  "kind": "boom",
+  "did": "take 3, its low end x0.41",
+  "seconds": 0.8,
+  "body": 76.6,
+  "mid": 22.8
+ },
+ "sfx_bs_board_dropout": {
+  "kind": "slam",
+  "did": "take 3 + a synthesised impact at -6 dB",
+  "seconds": 0.89,
+  "body": 58.3,
+  "mid": 40.8
+ },
+ "sfx_bs_bomb_arm": {
+  "kind": "tap",
+  "did": "take 3 + a synthesised impact at -5 dB",
+  "seconds": 0.48,
+  "body": 39.8,
+  "mid": 14.9
+ },
+ "sfx_bs_bomb_explode": {
+  "kind": "boom",
+  "did": "Evtim's pick candidates/_audition_blast_2026-11-18/raw/explosion_A.mp3, as generated, +12 dB into a soft clip",
+  "seconds": 2,
+  "body": 65.4,
+  "mid": 30.0
+ },
+ "sfx_bs_bomb_land": {
+  "kind": "slam",
+  "did": "take 2, its low end x0.72",
+  "seconds": 0.49,
+  "body": 69.8,
+  "mid": 30.1
+ },
+ "sfx_bs_bonus_land": {
+  "kind": "slam",
+  "did": "take 2, its low end x0.57",
+  "seconds": 1.2,
+  "body": 67.5,
+  "mid": 32.4
+ },
+ "sfx_bs_buy_confirm": {
+  "kind": "slam",
+  "did": "take 1 + a synthesised impact at -2 dB",
+  "seconds": 1.1,
+  "body": 53.0,
+  "mid": 33.7
+ },
+ "sfx_bs_cascade_step": {
+  "kind": "tap",
+  "did": "take 1 + a synthesised impact at +1 dB",
+  "seconds": 0.6,
+  "body": 50.3,
+  "mid": 46.4
+ },
+ "sfx_bs_clone_splat": {
+  "kind": "slam",
+  "did": "take 1 + the low end of take 2 at +9 dB",
+  "seconds": 0.6,
+  "body": 51.7,
+  "mid": 41.0
+ },
+ "sfx_bs_cloner_cast": {
+  "kind": null,
+  "did": "take 3, its low end x0.53",
+  "seconds": 0.89,
+  "body": 73.8,
+  "mid": 25.9
+ },
+ "sfx_bs_cloner_flood": {
+  "kind": "boom",
+  "did": "take 1 + the low end of take 2 at -6 dB",
+  "seconds": 1.08,
+  "body": 61.8,
+  "mid": 32.5
+ },
+ "sfx_bs_cloner_land": {
+  "kind": "slam",
+  "did": "take 3, its low end x0.79",
+  "seconds": 0.68,
+  "body": 67.5,
+  "mid": 24.1
+ },
+ "sfx_bs_curtain_close": {
+  "kind": "tap",
+  "did": "take 2, its low end x0.63",
+  "seconds": 0.84,
+  "body": 48.0,
+  "mid": 51.2
+ },
+ "sfx_bs_curtain_open": {
+  "kind": null,
+  "did": "take 2",
+  "seconds": 0.85,
+  "body": 0.1,
+  "mid": 45.5
+ },
+ "sfx_bs_fs_intro": {
+  "kind": "boom",
+  "did": "take 3, its low end x0.51",
+  "seconds": 2.2,
+  "body": 53.9,
+  "mid": 33.0
+ },
+ "sfx_bs_fs_outro": {
+  "kind": "boom",
+  "did": "take 1 + the low end of take 2 at -2 dB",
+  "seconds": 2.2,
+  "body": 35.4,
+  "mid": 61.4
+ },
+ "sfx_bs_fs_retrigger": {
+  "kind": "slam",
+  "did": "take 1 + a synthesised impact at +7 dB",
+  "seconds": 1.47,
+  "body": 56.9,
+  "mid": 39.5
+ },
+ "sfx_bs_game_start": {
+  "kind": "boom",
+  "did": "take 1 + a synthesised impact at +2 dB",
+  "seconds": 2.0,
+  "body": 43.2,
+  "mid": 56.4
+ },
+ "sfx_bs_mult_activate": {
+  "kind": "tap",
+  "did": "take 2, its low end x0.41",
+  "seconds": 0.65,
+  "body": 47.4,
+  "mid": 50.8
+ },
+ "sfx_bs_mult_apply": {
+  "kind": "boom",
+  "did": "take 1 + the low end of take 2 at -8 dB",
+  "seconds": 1.18,
+  "body": 53.4,
+  "mid": 33.0
+ },
+ "sfx_bs_mult_fly": {
+  "kind": null,
+  "did": "take 1",
+  "seconds": 1.0,
+  "body": 4.9,
+  "mid": 41.4
+ },
+ "sfx_bs_mult_land": {
+  "kind": "slam",
+  "did": "take 1",
+  "seconds": 0.86,
+  "body": 51.4,
+  "mid": 48.6
+ },
+ "sfx_bs_mult_up": {
+  "kind": "tap",
+  "did": "take 1 + a synthesised impact at +6 dB",
+  "seconds": 0.95,
+  "body": 59.7,
+  "mid": 36.2
+ },
+ "sfx_bs_popup_out": {
+  "kind": "tap",
+  "did": "take 2 + a synthesised impact at +4 dB",
+  "seconds": 0.7,
+  "body": 46.1,
+  "mid": 53.8
+ },
+ "sfx_bs_reel_land": {
+  "kind": "slam",
+  "did": "take 1 + the low end of take 2 at -4 dB",
+  "seconds": 0.44,
+  "body": 46.0,
+  "mid": 46.9
+ },
+ "sfx_bs_scatter_win": {
+  "kind": "boom",
+  "did": "take 1 + the low end of take 3 at -8 dB",
+  "seconds": 2.06,
+  "body": 31.5,
+  "mid": 6.6
+ },
+ "sfx_bs_shatter": {
+  "kind": "slam",
+  "did": "take 3 + a synthesised impact at -14 dB",
+  "seconds": 0.65,
+  "body": 55.2,
+  "mid": 43.5
+ },
+ "sfx_bs_tickup_end": {
+  "kind": "slam",
+  "did": "take 3 + a synthesised impact at -10 dB",
+  "seconds": 0.91,
+  "body": 45.0,
+  "mid": 39.8
+ },
+ "sfx_bs_tumble_drop": {
+  "kind": "slam",
+  "did": "take 2 + a synthesised impact at -11 dB",
+  "seconds": 0.69,
+  "body": 61.8,
+  "mid": 36.7
+ },
+ "sfx_bs_ui_spin": {
+  "kind": "tap",
+  "did": "take 3 + a synthesised impact at -15 dB",
+  "seconds": 0.48,
+  "body": 37.6,
+  "mid": 41.9
+ },
+ "sfx_bs_ui_stop": {
+  "kind": "tap",
+  "did": "take 2, its low end x0.44",
+  "seconds": 0.45,
+  "body": 49.6,
+  "mid": 46.0
+ },
+ "sfx_bs_wild_land": {
+  "kind": "slam",
+  "did": "take 1 + the low end of take 2 at -6 dB",
+  "seconds": 0.76,
+  "body": 50.5,
+  "mid": 49.4
+ },
+ "sfx_bs_win_big": {
+  "kind": "boom",
+  "did": "take 1",
+  "seconds": 2.0,
+  "body": 49.7,
+  "mid": 44.6
+ },
+ "sfx_bs_win_cycle": {
+  "kind": "tap",
+  "did": "take 2 + a synthesised impact at -5 dB",
+  "seconds": 0.72,
+  "body": 57.0,
+  "mid": 25.9
+ },
+ "sfx_bs_win_end": {
+  "kind": "tap",
+  "did": "take 2, its low end x0.59",
+  "seconds": 1.43,
+  "body": 71.1,
+  "mid": 28.9
+ },
+ "sfx_bs_win_epic": {
+  "kind": "boom",
+  "did": "take 1 + the low end of take 2 at -9 dB",
+  "seconds": 2.31,
+  "body": 41.7,
+  "mid": 56.7
+ },
+ "sfx_bs_win_medium": {
+  "kind": "slam",
+  "did": "take 1 + the low end of take 3 at +0 dB",
+  "seconds": 1.09,
+  "body": 40.6,
+  "mid": 55.9
+ },
+ "sfx_bs_win_mega": {
+  "kind": "boom",
+  "did": "take 1 + the low end of take 3 at -7 dB",
+  "seconds": 1.91,
+  "body": 38.3,
+  "mid": 58.2
+ },
+ "sfx_bs_win_small": {
+  "kind": "tap",
+  "did": "take 1 + the low end of take 3 at -3 dB",
+  "seconds": 0.91,
+  "body": 36.9,
+  "mid": 62.8
+ },
+ "sfx_bs_win_zap": {
+  "kind": "slam",
+  "did": "take 1 + the low end of take 2 at -2 dB",
+  "seconds": 0.53,
+  "body": 56.1,
+  "mid": 2.1
+ }
+}

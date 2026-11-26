@@ -28,7 +28,7 @@ export const winLevelMap = {
 		type: 'small',
 		text: null,
 		presentDuration: 0.6 * SECOND,
-		sound: { sfx: 'sfx_bs_win_small', bgm: undefined },
+		sound: { sfx: undefined, bgm: undefined },
 		tier: undefined,
 	},
 	3: {
@@ -37,7 +37,7 @@ export const winLevelMap = {
 		type: 'small',
 		text: null,
 		presentDuration: 1 * SECOND,
-		sound: { sfx: 'sfx_bs_win_small', bgm: undefined },
+		sound: { sfx: undefined, bgm: undefined },
 		tier: undefined,
 	},
 	4: {
@@ -46,7 +46,7 @@ export const winLevelMap = {
 		type: 'medium',
 		text: null,
 		presentDuration: 1.5 * SECOND,
-		sound: { sfx: 'sfx_bs_win_medium', bgm: undefined },
+		sound: { sfx: undefined, bgm: undefined },
 		tier: undefined,
 	},
 	5: {
@@ -55,7 +55,7 @@ export const winLevelMap = {
 		type: 'medium',
 		text: null,
 		presentDuration: 2.0 * SECOND,
-		sound: { sfx: 'sfx_bs_win_medium', bgm: undefined },
+		sound: { sfx: undefined, bgm: undefined },
 		tier: undefined,
 	},
 	6: {

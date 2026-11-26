@@ -62,8 +62,8 @@
 	 * From the popup to the count (Evtim, 2026-10-28: too long, ~2.5 s with the
 	 * bar's fade): outro_in plays this much faster than authored (2.1 s), and the
 	 * count starts as the amount pops in (rig 1.63 s), not when outro_in ends.
-	 * sfx_bs_fs_outro is cut to the authored build (peak at the TOTAL WIN slam,
-	 * 1.5 s), so a much faster build would run ahead of it.
+	 * (The popup's own sound, cut to that build, was removed in the sound review of
+	 * 2026-11-24; the board now drops in over the music alone.)
 	 */
 	const OUTRO_IN_SPEED = 1.25;
 	const AMOUNT_IN_S = 1.63;
@@ -77,6 +77,9 @@
 	let oncountend = () => {};
 	let startCountUpRequested = $state(false);
 	let countTimer: ReturnType<typeof setTimeout> | undefined;
+	// the total has landed: the rig's `outro_hit` plays once on a second track (the
+	// amount punches, sparks and nuggets fly) and is taken off again when it ends
+	let landed = $state(false);
 
 	const animationName = $derived(`outro_${phase}`);
 
@@ -93,6 +96,7 @@
 			if (!bakedArt) hidePopupTitleArt(context.stateApp.loadedAssets?.msFsPopup as LoadedSpine);
 			phase = 'in';
 			startCountUpRequested = false;
+			landed = false;
 			show = true;
 		},
 		freeSpinOutroHide: () => {
@@ -118,6 +122,8 @@
 			oncomplete={() => {
 				// the total lands (or was skipped to): the tickup ends on its hit, the bed fades
 				oncountend();
+				landed = true;
+				context.eventEmitter.broadcast({ type: 'sceneShake', preset: 'wildSlam' });
 			}}
 		>
 			{#snippet children({ countUpAmount, startCountUp, finishCountUp, countUpCompleted })}
@@ -149,6 +155,14 @@
 							},
 						}}
 					/>
+					{#if landed && phase !== 'out'}
+						<SpineTrack
+							trackIndex={1}
+							animationName="outro_hit"
+							loop={false}
+							listener={{ complete: () => (landed = false) }}
+						/>
+					{/if}
 					<SpineSlot slotName="slot_amount">
 						<ResponsiveBitmapText
 							anchor={0.5}
@@ -182,7 +196,6 @@
 						if (!countUpCompleted) finishCountUp();
 						else if (phase === 'idle') {
 							phase = 'out';
-							context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_popup_out' });
 						}
 					}}
 				/>

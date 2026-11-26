@@ -1,4 +1,5 @@
 import { BACKGROUND_URLS } from './backgroundSet';
+import { MASCOT_KIND } from './constants';
 
 export default {
 	// BIG / MEGA / EPIC WIN titles (Evtim's celebration art) as one rig: big_in,
@@ -213,6 +214,48 @@ export default {
 			scale: 1,
 		},
 	},
+	// FX_SET 'energy' (art-review/chaoslab2/fx_v5/build_fx_v5.py), both with a plate-sized
+	// skeleton box (297x321). cl2Shatter: a symbol breaking apart in its own pieces
+	// (SymbolShatter: sym_<tile>_<pattern> + break_<pattern>). cl2CloneFx: the cloner over
+	// a cell (CloneFx): `splat` = a thrown copy slams in, `flood_0..3` = the tile charges and
+	// bursts into its pieces; both fire `swap` while the cell is covered and end empty.
+	cl2Shatter: {
+		type: 'spine',
+		mipmap: true,
+		src: {
+			atlas: new URL('../../assets/spines/cl2Shatter/shatter.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/cl2Shatter/shatter.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	cl2CloneFx: {
+		type: 'spine',
+		mipmap: true,
+		src: {
+			atlas: new URL('../../assets/spines/cl2CloneFx/clonefx.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/cl2CloneFx/clonefx.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	// The cloner in three styles (CLONE_STYLE; art-review/chaoslab2/fx_v5/build_clone_v6.py):
+	// old_<tile> + new_<tile> + `<style>_in` / `<style>_out`, events hide / burst / swap
+	cl2Clone: {
+		type: 'spine',
+		mipmap: true,
+		src: {
+			atlas: new URL('../../assets/spines/cl2Clone/clone.atlas', import.meta.url).href,
+			skeleton: new URL('../../assets/spines/cl2Clone/clone.json', import.meta.url).href,
+			scale: 1,
+		},
+	},
+	// what travels from the cloner to its cells (CloneLinks.svelte): a comet (flip), a
+	// beam (scan), four lightning bolts (zap), each drawn along the line between two cells
+	cl2LinkComet: { type: 'sprite', src: new URL('../../assets/chaoslab2/fx/link_comet.webp', import.meta.url).href },
+	cl2LinkBeam: { type: 'sprite', src: new URL('../../assets/chaoslab2/fx/link_beam.webp', import.meta.url).href },
+	cl2LinkBolt0: { type: 'sprite', src: new URL('../../assets/chaoslab2/fx/link_bolt_0.webp', import.meta.url).href },
+	cl2LinkBolt1: { type: 'sprite', src: new URL('../../assets/chaoslab2/fx/link_bolt_1.webp', import.meta.url).href },
+	cl2LinkBolt2: { type: 'sprite', src: new URL('../../assets/chaoslab2/fx/link_bolt_2.webp', import.meta.url).href },
+	cl2LinkBolt3: { type: 'sprite', src: new URL('../../assets/chaoslab2/fx/link_bolt_3.webp', import.meta.url).href },
 	// Bomb blast for the 3x3 ring: one-cell box like msGoo, hit_00..hit_11 red
 	// fire bursts (0.5s one-shots, end empty), drawn over the neighbour's plate
 	// while it pops (BlastBurst / TumbleSymbol 'blasted').
@@ -301,6 +344,12 @@ export default {
 	cl2FanBase: {
 		type: 'sprite',
 		src: new URL('../../assets/chaoslab2/scene/fan_base.webp', import.meta.url).href,
+		preload: true,
+	},
+	// the scene camera's ground fog: a cloud texture that tiles (SceneCamera.svelte)
+	cl2Fog: {
+		type: 'sprite',
+		src: new URL('../../assets/chaoslab2/scene/fog.webp', import.meta.url).href,
 		preload: true,
 	},
 	// the mascot's contact shadow on the floor (Mascot.svelte)
@@ -396,16 +445,18 @@ export default {
 		mipmap: true,
 		src: new URL('../../assets/sprites/ui/ante_boost_inactive.webp', import.meta.url).href,
 	},
-	// Chaos Lab 2's mascot still (1664x2208 = MASCOT_CLIP at 2x; Photoroom cut of
-	// iCloud chaos lab 2/static/hero_original_smoke_fixed.png, framed by
-	// art-review/chaoslab2/static_mascot/build_static_mascot.py). Shown by
-	// Mascot.svelte until her video's first frame is on screen (the clips are on
-	// the same framing and start on this pose). Mipmapped: it draws at about
-	// half its size beside the reels.
+	// the mascot's still, shown by Mascot.svelte until the video's first frame is on
+	// screen (and for good if the video never plays): the clips are on the same
+	// framing and start on this pose. Chemist: his idle's first frame, keyed as the
+	// player keys it (832x1104 = MASCOT_CLIP). Woman: 1664x2208, MASCOT_CLIP at 2x
+	// (art-review/chaoslab2/static_mascot/build_static_mascot.py). Mipmapped.
 	cl2Mascot: {
 		type: 'sprite',
 		mipmap: true,
-		src: new URL('../../assets/chaoslab2/mascot/mascot.webp', import.meta.url).href,
+		src:
+			MASCOT_KIND === 'chemist'
+				? new URL('../../assets/mascot/chemist.webp', import.meta.url).href
+				: new URL('../../assets/chaoslab2/mascot/mascot.webp', import.meta.url).href,
 		preload: true,
 	},
 	// Cash Respins (Chaos Lab 2). Coin v2 (Evtim, 2026-11-04): the gold coin

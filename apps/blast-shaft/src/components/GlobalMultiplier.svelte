@@ -73,7 +73,6 @@
 			if (next === 1 && multiplier !== 1) {
 				// reset: the old value shrinks away and the plate leaves with it
 				await textScale.set(0, { duration: 200 });
-				context.eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_mult_reset' });
 				multiplier = 1;
 				armed = false;
 				await textScale.set(1, { duration: 250, easing: backOut });

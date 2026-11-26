@@ -1,10 +1,18 @@
 import { createSound } from 'utils-sound';
 
 /**
- * Every cue the game plays: Mad Science's own (sfx_bs_ / bgm_bs_, built from
- * tools/audio-pipeline/games/chaos-lab, map in SOUND-MAP-chaos-lab.md) plus
- * the shared library cues it still leans on. Ladders (reel land, bonus land,
- * cascade step) are ONE file pitched up per repeat via soundOnce `rate`.
+ * Every cue the game plays (tools/audio-pipeline/games/blast-shaft). Ladders (reel
+ * land, bonus land) are ONE file pitched up per repeat via soundOnce `rate`.
+ *
+ * Evtim's sound review of 2026-11-24 (after the third rejection, "Bad sound design"
+ * x2; board https://claude.ai/artifact/QtRqFWzVwx2cXStvNw9Mro): 24 cues were REMOVED
+ * from the game with nothing in their place (the win light-up, hit, amount pop and
+ * counter step, the count-up tick, the small / medium total stingers, the big win's
+ * exit, three multiplier cues, the bomb's arm and blast hit, the cloner's cast, the
+ * popup boards in and out, the retrigger stamp, the start whistle and the mascot's
+ * laughs). Two moments were given a sound he already liked: a bomb LANDING plays the
+ * old win hit (the file is sfx_bs_bomb_land now), a clone landing plays the cloner's
+ * own landing sound.
  */
 export type MusicName =
 	| 'bgm_bs_main'
@@ -16,7 +24,6 @@ export type MusicName =
 
 export type SoundEffectName =
 	// boot + ui
-	| 'sfx_bs_game_start'
 	| 'sfx_bs_ui_click'
 	| 'sfx_bs_ui_spin'
 	| 'sfx_bs_ui_stop'
@@ -38,51 +45,40 @@ export type SoundEffectName =
 	| 'sfx_bs_cloner_land'
 	| 'sfx_bs_bomb_fuse'
 	// wins and cascades
-	| 'sfx_bs_win_cycle'
-	| 'sfx_bs_win_zap'
-	| 'sfx_bs_cluster_amount'
+	| 'sfx_bs_win_build'
 	| 'sfx_bs_shatter'
-	| 'sfx_bs_cascade_step'
-	| 'sfx_bs_tickup'
 	| 'sfx_bs_tickup_end'
-	| 'sfx_bs_win_small'
-	| 'sfx_bs_win_medium'
 	| 'sfx_bs_win_big'
 	| 'sfx_bs_win_mega'
 	| 'sfx_bs_win_epic'
-	| 'sfx_bs_win_end'
 	| 'sfx_bs_shower'
 	// multiplier
-	| 'sfx_bs_mult_activate'
 	| 'sfx_bs_mult_fly'
 	| 'sfx_bs_mult_up'
-	| 'sfx_bs_mult_reset'
-	| 'sfx_bs_mult_apply'
 	// bomb
-	| 'sfx_bs_bomb_arm'
 	| 'sfx_bs_bomb_explode'
-	| 'sfx_bs_blast_hit'
 	// cloner
-	| 'sfx_bs_cloner_cast'
-	| 'sfx_bs_clone_splat'
 	| 'sfx_bs_cloner_flood'
+	| 'sfx_bs_clone_burst'
 	// free spins
 	| 'sfx_bs_scatter_win'
 	| 'sfx_bs_curtain_close'
 	| 'sfx_bs_curtain_open'
-	| 'sfx_bs_fs_intro'
-	| 'sfx_bs_popup_out'
-	| 'sfx_bs_fs_counter'
-	| 'sfx_bs_fs_retrigger'
-	| 'sfx_bs_fs_outro'
-	// the mascot's laugh: five takes, one at random (MASCOT_LAUGHS)
-	| 'sfx_bs_mascot_win_1'
-	| 'sfx_bs_mascot_win_2'
-	| 'sfx_bs_mascot_win_3'
-	| 'sfx_bs_mascot_win_4'
-	| 'sfx_bs_mascot_win_5';
+	| 'sfx_bs_curtain_build'
+	| 'sfx_bs_curtain_blast'
+	| 'sfx_bs_fs_counter';
 
 export type SoundName = MusicName | SoundEffectName;
+
+/**
+ * Sounds switched OFF while a replacement is being chosen: their triggers stay where
+ * they are and Sound.svelte skips these names. EMPTY since the review's last round
+ * (2026-11-24): all ten sounds Evtim wanted changed have the take he picked and are back
+ * on (both music loops, the three win beds and the total win bed, the anticipation start
+ * and loop, the free spins trigger, the buy confirmation). Add a name here to silence a
+ * sound without touching its trigger.
+ */
+export const SOUNDS_OFF_FOR_NOW: ReadonlySet<SoundName> = new Set<SoundName>([]);
 
 const sound = createSound<SoundName>();
 

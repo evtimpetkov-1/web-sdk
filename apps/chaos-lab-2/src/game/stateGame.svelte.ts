@@ -16,6 +16,7 @@ import {
 	BOARD_SIZES,
 	FRAME_ART,
 	MASCOT_CLIP,
+	MASCOT_KIND,
 	INITIAL_BOARD,
 	BOARD_DIMENSIONS,
 	SPIN_OPTIONS_DEFAULT,
@@ -104,8 +105,13 @@ export type BombPending = { bombs: Position[]; wilds: Position[] };
 // `${reel}-${row}` where row is the book's padded index (getCellKey).
 // `onSwap` fires on the rig's `swap` event — the cell is fully covered, exchange
 // the symbol underneath; `oncomplete` when the cover has drained away.
+// CLONE_OWNS_CELL styles draw the cell themselves: `from` / `to` = what it was and what
+// it becomes, `onBurst` = the reveal's moment (the rig's `burst` event).
 export type CloneFx = {
 	kind: 'splat' | 'flood';
+	from?: RawSymbol;
+	to?: RawSymbol;
+	onBurst?: () => void;
 	onSwap: () => void;
 	oncomplete: () => void;
 };
@@ -321,10 +327,14 @@ const SIDE_DRIP_GAP = 2; // the drips' ends to the bar
 const SIDE_SPIN_GAP = 3; // the bottom pipe to Spin's top
 const SIDE_MAX_SCALE = 1.3; // tall desktop windows: the mascot keeps her size, so the frame stops here
 const SIDE_GAP = 18; // board-local: the frame's left post to the plate, and the plate to the column's far edge
-// right of the frame, for the mascot: orb to coat tail she is ~305 across at this size. Desktop
-// keeps her whole (her orb may lap the frame's edge a little); on phone landscape her coat
-// runs under the bar's buttons by 40, as it always did there
-const SIDE_MASCOT_ROOM = { desktop: 300, landscape: 265 };
+// right of the frame, for the mascot, per mascot (MASCOT_KIND). The Chemist is ~265
+// across at this size, flask to coat; the woman ~305, orb to coat tail. Desktop keeps
+// the mascot whole (the flask / orb may lap the frame's edge a little); on phone
+// landscape the coat runs under the bar's buttons by 40, as it always did there
+const SIDE_MASCOT_ROOM = {
+	chemist: { desktop: 262, landscape: 225 },
+	woman: { desktop: 300, landscape: 265 },
+}[MASCOT_KIND];
 const SIDE_MASCOT_TUCK = { desktop: 0, landscape: 40 };
 // board-local, from the reel window's left edge / top
 const FRAME_UNIT_X = BOARD_SIZES.width / FRAME_ART.window.width;

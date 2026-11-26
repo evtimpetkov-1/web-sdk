@@ -341,7 +341,5 @@ export const SYMBOL_INFO_MAP = {
 export const REEL_LAND_RATES = [1.0, 1.04, 1.08, 1.12, 1.16, 1.2] as const;
 /** sfx_bs_bonus_land, rising with each bonus landed this spin (the 4th triggers) */
 export const BONUS_LAND_RATES = [1.0, 1.08, 1.16, 1.26, 1.36, 1.46] as const;
-/** sfx_bs_cascade_step, rising with each cascade win of a spin */
-export const CASCADE_STEP_RATES = [1.0, 1.06, 1.12, 1.19, 1.26, 1.33, 1.41, 1.5] as const;
 export const ladderRate = (rates: readonly number[], step: number) =>
 	rates[Math.max(0, Math.min(step, rates.length - 1))];

@@ -49,24 +49,96 @@ export const FRAME_ART = {
 	window: { x: 69, y: 64, width: 824, height: 707 },
 };
 
-// The mascot frame (Chaos Lab 2's still, static/assets/chaoslab2/mascot/
-// mascot.webp at 2x, and her clips, one stacked half each): Chaos Lab's
-// video-clip framing, 832x1104 units, her hair top on row 204 and her boots on
-// row 1067 like the Chemist's. Landmarks in those units (build_static_mascot.py
-// prints them): hair top and belt rows, the face's centre and the hair's half
-// width, and the orb glass's leftmost edge (`flaskLeft`, the name kept from the
-// Chemist's flask). flaskLeft is the WIN reactions' reach, like Chaos Lab's:
-// win_2 swings the orb to 144 (win_1 178; the idles and the still sit at ~213),
-// so the portrait plate stays clear of it all through a win.
-export const MASCOT_CLIP = {
-	width: 832,
-	height: 1104,
-	headTop: 204,
-	waist: 531,
-	headX: 430,
-	headHalfWidth: 66,
-	flaskLeft: 144,
+// The effects over the symbols. 'energy' (2026-11-26, Evtim: "please change the cloner
+// spitting out cloner symbols animation + cloner reveal animation + win symbol green stuff
+// animations, I dont like them") = no slime: a winner breaks apart in its own pieces
+// (SymbolShatter), the cloner throws copies of its tile (FlyingClones) that slam into
+// their cells, and the reveal is the cloner tiles charging and bursting open (CloneFx on
+// spines/cl2CloneFx). 'slime' = the painted slime it replaced (GooBurst, MovingClones,
+// spines/clonefx), all still in the app. Rigs by art-review/chaoslab2/fx_v5/build_fx_v5.py
+export const FX_SET: 'energy' | 'slime' = 'energy';
+// a winning symbol shakes, swells and cracks for this long before it explodes (the rig's
+// FUSE in build_fx_v5.py: keep the two equal); the break's sound waits for it
+export const SHATTER_FUSE_MS = FX_SET === 'energy' ? 280 : 0;
+
+// The cloner's look inside FX_SET 'energy' (2026-11-26, after "i dont like the cloner new
+// stuff, change it"): styles to choose from, none with a thrown tile, a cover or a
+// flat flash. The rig (spines/cl2Clone, art-review/chaoslab2/fx_v5/build_clone_v6.py)
+// holds every tile, so it shows what the cell was and what it becomes.
+//   'frames' (Evtim, the same day, of the three below: "i dont like them do something
+//           else - I want the rectangles to fly and then some reveal effect is done,
+//           similiar to how it was before I asked you to change it") the cloner's SIGN,
+//           its two green rectangles, lifts off the cloner and flies to each cell on an
+//           arc (FlyingSigns), lands on the symbol and the cloner tile spreads out from
+//           under it (both liked). Reveal ("every cloned symbol should expload or something
+//           and revealing somehow the symbol underneath"): every cloner tile shakes, cracks
+//           with light and explodes into its own pieces, the paying symbol under it
+//   'zap'   lightning jumps from the cloner to its cells; a struck tile jumps and comes
+//           down as the cloner. Reveal: the cloners are wired together by arcs, shiver
+//           faster and faster, and are struck into the paying symbol at once
+//   'flip'  a comet flies to each cell and the tile turns over like a card; the reveal
+//           turns every cloner over onto the paying symbol
+//   'scan'  a beam holds on each cell while a line of light prints the cloner down it; the
+//           reveal prints the paying symbol up through every cloner
+//   'throw' the first 'energy' version (copies of the tile thrown, a white-hot burst)
+// `?clone=frames|zap|flip|scan|throw` in the address picks one for a single load, to compare.
+export type CloneStyle = 'frames' | 'zap' | 'flip' | 'scan' | 'throw';
+const CLONE_STYLES: CloneStyle[] = ['frames', 'zap', 'flip', 'scan', 'throw'];
+const CLONE_STYLE_DEFAULT: CloneStyle = 'frames';
+const cloneParam =
+	typeof window === 'undefined' ? null : new URLSearchParams(window.location.search).get('clone');
+export const CLONE_STYLE: CloneStyle = CLONE_STYLES.includes(cloneParam as CloneStyle)
+	? (cloneParam as CloneStyle)
+	: CLONE_STYLE_DEFAULT;
+// the rig draws the cell itself (old picture, then new) and the real symbol is hidden under it
+export const CLONE_OWNS_CELL = FX_SET === 'energy' && CLONE_STYLE !== 'throw';
+
+// Which mascot stands by the reels. 'chemist' (Evtim, 2026-11-26: "move the mascot
+// from chaos lab 1 here") = Chaos Lab's Chemist, his idle loop, his win reaction
+// and his laughs. 'woman' = Chaos Lab 2's first mascot; her clips are parked, so
+// this switch alone does not bring her back: run
+// art-review/alt/mascot_woman_2026-11-26/restore.sh
+export const MASCOT_KIND: 'chemist' | 'woman' = 'chemist';
+
+// The mascot frame: Chaos Lab's video-clip framing, 832x1104 units, the hair top
+// on row 204 and the boots on row 1067 (the woman was fitted to the Chemist's).
+// Landmarks in those units: hair top and waist / belt rows, the head's centre and
+// half width, and `flaskLeft`, how far left the WIN reaction swings what the
+// mascot holds, so the portrait plate stays clear of it all through a win (the
+// Chemist's flask glass reaches ~100, only thin splash wisps go further; his idle
+// holds it at 175. The woman's orb: 144, idle ~213).
+// `left` / `right`: the idle's widest reach either side of the clip's centre, as
+// shares of its width (the side layout stands the mascot by the frame with them:
+// the Chemist's flask and his coat; the woman's orb as win_1 swings it, and her
+// coat's tail). `shadow`: the contact shadow under the boots, its offset from the
+// centre and its width, as shares of the clip's width.
+const MASCOT_CLIPS = {
+	chemist: {
+		width: 832,
+		height: 1104,
+		headTop: 204,
+		waist: 560,
+		headX: 430,
+		headHalfWidth: 65,
+		flaskLeft: 100,
+		left: 0.29,
+		right: 0.237,
+		shadow: { x: 0.0, width: 0.52 },
+	},
+	woman: {
+		width: 832,
+		height: 1104,
+		headTop: 204,
+		waist: 531,
+		headX: 430,
+		headHalfWidth: 66,
+		flaskLeft: 144,
+		left: 0.286,
+		right: 0.337,
+		shadow: { x: 0.02, width: 0.62 },
+	},
 };
+export const MASCOT_CLIP = MASCOT_CLIPS[MASCOT_KIND];
 
 // initial board (padded top and bottom)
 export const INITIAL_BOARD: RawSymbol[][] = [

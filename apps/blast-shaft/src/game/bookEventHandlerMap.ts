@@ -9,10 +9,8 @@ import { getCellKey, getSymbolY, playBookEvent } from './utils';
 import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
 import {
 	BOARD_DIMENSIONS,
-	CASCADE_STEP_RATES,
 	SCATTERS_TO_TRIGGER,
 	TURBO_FS_MIN_BOARD_MS,
-	ladderRate,
 } from './constants';
 import {
 	scatterPendingEnd,
@@ -32,10 +30,8 @@ const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) =>
 	if (winLevelData?.sound?.bgm) {
 		eventEmitter.broadcast({ type: 'soundMusic', name: winLevelData.sound.bgm });
 	}
-	// the count-up runs over its own loop; Win / FreeSpinOutro stop it with the end hit
-	if (winLevelData?.presentDuration) {
-		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_bs_tickup' });
-	}
+	// the count-up itself is silent (its ticking loop was removed in the sound review of
+	// 2026-11-24); Win / FreeSpinOutro still end it on the landing hit
 	// the celebration shower is the bed of the big presentations only
 	if (winLevelData?.type === 'big') {
 		eventEmitter.broadcast({ type: 'soundLoop', name: 'sfx_bs_shower' });
@@ -47,8 +43,6 @@ const winLevelSoundsPlay = ({ winLevelData }: { winLevelData: WinLevelData }) =>
 let winSoundsRun = 0;
 const winLevelSoundsStop = () => {
 	winSoundsRun += 1;
-	// the tickup normally stops with its end hit; this catches an aborted count-up
-	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bs_tickup' });
 	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bs_shower' });
 	if (stateGame.gameType === 'freegame') {
 		eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_bs_freespin' });
@@ -71,7 +65,6 @@ const WIN_GOLD_AT_MS = 640;
 const BED_FADE_MS = 700;
 const MUSIC_FADE_IN_MS = 1200;
 const countEndSounds = ({ bed, music }: { bed?: MusicName; music: () => MusicName | undefined }) => {
-	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bs_tickup' });
 	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_tickup_end' });
 	eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bs_shower' });
 	if (!bed) return;
@@ -159,8 +152,6 @@ const emptyRows = (newSymbols: RawSymbol[][]) =>
 				)
 			: [],
 	);
-// cascade wins of the current spin: the step ladder climbs with each one
-let cascadeStep = 0;
 // the free spins total on the counter (entry, updateFreeSpin, retriggers; a
 // resume replays updateFreeSpin): a retrigger's +N is its totalFs minus this
 let freeSpinsTotal = 0;
@@ -194,9 +185,10 @@ const enterFreeSpins = async ({ totalFs, multiplier }: { totalFs: number; multip
 	// the trigger spin's collect goes behind the closed curtains, so the intro
 	// already shows an empty plate (Evtim, 2026-10-28: it went on the first spin)
 	clearPlateUnseen();
-	await eventEmitter.broadcastAsync({ type: 'transitionOpen' });
+	// free spins are won: light builds behind the curtains and they are thrown open
+	// in a burst of light, dust and gold (Transition `celebrate`, 2026-11-24)
+	await eventEmitter.broadcastAsync({ type: 'transitionOpen', celebrate: true });
 	eventEmitter.broadcast({ type: 'freeSpinIntroShow' });
-	eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_fs_intro' });
 	eventEmitter.broadcast({ type: 'soundMusic', name: 'bgm_bs_freespin' });
 	// resolves once the intro has played out and the player pressed through it
 	await eventEmitter.broadcastAsync({
@@ -242,7 +234,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		stateGame.gameType = bookEvent.gameType;
 		stateGame.tumbleWin = 0;
 		stateGame.scatterPending = false;
-		cascadeStep = 0;
 		// base game: the plate's accumulated multiplier belongs to one spin only
 		// (free spins carry it via the book's updateGlobalMult events). The press
 		// already emptied it (actor.ts onNewGameStart); this covers the rounds the
@@ -279,8 +270,10 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	},
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
 		const winStartedAt = performance.now();
+		// the winners' sound starts with their animation and builds to their break-up, where
+		// tumbleBoard plays its burst (sfx_bs_shatter) and stops this (Evtim's round-6 pick, 2026-11-26)
+		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_win_build', forcePlay: true });
 		const promise1 = async () => {
-			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_win_cycle' });
 			await animateSymbols({ positions: _.flatten(bookEvent.wins.map((win) => win.positions)) });
 		};
 
@@ -322,12 +315,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	updateTumbleWin: async (bookEvent: BookEventOfType<'updateTumbleWin'>) => {
 		stateGame.tumbleWin = bookEvent.amount;
 		if (bookEvent.amount > 0) {
-			eventEmitter.broadcast({
-				type: 'soundOnce',
-				name: 'sfx_bs_cascade_step',
-				forcePlay: true,
-				rate: ladderRate(CASCADE_STEP_RATES, cascadeStep++),
-			});
 			eventEmitter.broadcast({ type: 'tumbleWinAmountShow' });
 			eventEmitter.broadcast({
 				type: 'tumbleWinAmountUpdate',
@@ -394,7 +381,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		// the outro plays over the free-spins theatre; gameType flips to base only
 		// once the curtains are closed, so the dressing swap is never seen
 		eventEmitter.broadcast({ type: 'freeSpinOutroShow' });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_fs_outro' });
 		const countSounds = outroCountSounds(winLevelData);
 		await eventEmitter.broadcastAsync({
 			type: 'freeSpinOutroCountUp',
@@ -438,7 +424,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		eventEmitter.broadcast({ type: 'multiplierBoardShow' });
 		eventEmitter.broadcast({ type: 'multiplierBoardInit' });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_mult_activate' });
 		await eventEmitter.broadcastAsync({ type: 'multiplierBoardAnimate' });
 		eventEmitter.broadcast({ type: 'boardWithMovingMultiplierTexts' });
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_mult_fly' });
@@ -466,9 +451,15 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'boardHide' });
 		eventEmitter.broadcast({ type: 'tumbleBoardShow' });
 		eventEmitter.broadcast({ type: 'tumbleBoardInit', addingBoard: bookEvent.newSymbols });
-		// a bomb tumble bangs on the rig's `detonate` event instead (Symbol.svelte)
+		// the winners' build ends here: at normal speed it is just running out, under turbo or a
+		// stop press the break comes early and the burst takes over from it
+		eventEmitter.broadcast({ type: 'soundStop', name: 'sfx_bs_win_build' });
+		// a bomb tumble bangs on the rig's `detonate` event instead (Symbol.svelte). The
+		// break-up's burst (round 6, 2026-11-26: a lighter, brighter cut of the cloners' gold
+		// eruption) rings longer than a turbo cascade, and a sound still playing is skipped
+		// without forcePlay
 		if (!stateGame.bombPending) {
-			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_shatter' });
+			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_shatter', forcePlay: true });
 		}
 		await eventEmitter.broadcastAsync({
 			type: 'tumbleBoardExplode',
@@ -517,7 +508,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		eventEmitter.broadcast({ type: 'multiplierBoardShow' });
 		eventEmitter.broadcast({ type: 'multiplierBoardInit' });
-		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_mult_activate' });
 		await eventEmitter.broadcastAsync({ type: 'multiplierBoardAnimate' });
 		bookEvent.multipliers.forEach((position) => {
 			getReelSymbol(position).rawSymbol = { name: 'M_TAKEN' };
@@ -543,8 +533,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const added = bookEvent.totalFs - freeSpinsTotal;
 		if (freeSpinsTotal > 0 && added > 0) {
 			await eventEmitter.broadcastAsync({ type: 'freeSpinRetriggerShow', added });
-		} else {
-			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_fs_retrigger' });
 		}
 		freeSpinsTotal = bookEvent.totalFs;
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_fs_counter' });
@@ -572,7 +560,6 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 
 		// 1. cast + flights run together: the flights start CAST_RELEASE_MS into the cast
 		const cast = async () => {
-			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_cloner_cast' });
 			origin.symbolState = 'cast';
 			await waitForResolve((resolve) => (origin.oncomplete = resolve));
 		};
@@ -586,10 +573,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			const splat = splats.find(({ clone }) => clone.reel === to.reel && clone.row === to.row);
 			if (!splat) return;
 			const reelSymbol = getReelSymbol(to);
-			// one splat per ghost, 60ms apart: a varied rate keeps the run from sounding copied
+			// one hit per clone, 60ms apart, in the cloner's own landing sound (Evtim's sound
+			// review, 2026-11-24: "use cloner land sound"); a varied rate keeps the run from
+			// sounding copied
 			eventEmitter.broadcast({
 				type: 'soundOnce',
-				name: 'sfx_bs_clone_splat',
+				name: 'sfx_bs_cloner_land',
 				forcePlay: true,
 				rate: 0.92 + 0.2 * Math.random(),
 			});
@@ -625,10 +614,12 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const cloners = [bookEvent.cloner, ...bookEvent.cloned];
 		const landings: Promise<void>[] = [];
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_cloner_flood' });
-		// one quake for all of them, on the frame they burst
-		void waitForTimeout(FLOOD_BURST_MS / timeScale).then(() =>
-			eventEmitter.broadcast({ type: 'sceneShake', preset: 'clonerBurst' }),
-		);
+		// one quake and one blast for all of them, on the frame they burst. The blast is a
+		// gold eruption (Evtim's round-5 pick, 2026-11-26); its hit is at its very start
+		void waitForTimeout(FLOOD_BURST_MS / timeScale).then(() => {
+			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_bs_clone_burst', forcePlay: true });
+			eventEmitter.broadcast({ type: 'sceneShake', preset: 'clonerBurst' });
+		});
 		await Promise.all(
 			cloners.map((position) =>
 				waitForResolve((resolve) => {

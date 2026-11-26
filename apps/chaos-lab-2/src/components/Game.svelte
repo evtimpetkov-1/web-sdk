@@ -43,6 +43,9 @@
 	import GlobalMultiplier from './GlobalMultiplier.svelte';
 	import MultiplierBoard from './MultiplierBoard.svelte';
 	import MovingClones from './MovingClones.svelte';
+	import FlyingClones from './FlyingClones.svelte';
+	import CloneLinks from './CloneLinks.svelte';
+	import FlyingSigns from './FlyingSigns.svelte';
 	import Win from './Win.svelte';
 	import FreeSpinIntro from './FreeSpinIntro.svelte';
 	import FreeSpinCounter from './FreeSpinCounter.svelte';
@@ -62,7 +65,7 @@
 	import ReplayOverlay from './ReplayOverlay.svelte';
 	import { applyBetModeMeta } from '../game/betModeMeta';
 	import { ANTE_OPTIONS, BUY_OPTIONS } from '../game/buyOptions';
-	import { UI_KIND } from '../game/constants';
+	import { CLONE_OWNS_CELL, CLONE_STYLE, FX_SET, UI_KIND } from '../game/constants';
 	import { displayFont } from '../game/textStyles';
 	import { getResumedFeatureEntry } from '../game/utils';
 	import type { Bet } from '../game/typesBookEvent';
@@ -222,7 +225,18 @@
 
 			<MainContainer>
 				<MultiplierBoard />
-				<MovingClones />
+				<!-- from the cloner to its cells: its sign, the two rectangles (CLONE_STYLE
+				     'frames'), light (zap / flip / scan), its own tile thrown ('throw'), or the
+				     slime ghosts (FX_SET 'slime') -->
+				{#if CLONE_OWNS_CELL && CLONE_STYLE === 'frames'}
+					<FlyingSigns />
+				{:else if CLONE_OWNS_CELL}
+					<CloneLinks />
+				{:else if FX_SET === 'energy'}
+					<FlyingClones />
+				{:else}
+					<MovingClones />
+				{/if}
 				<!-- the counters (FREE SPINS, TOTAL WIN, the base game's WIN): on the top
 				     pipe beside the plate, or in portrait on plates hanging from the reel
 				     window's bottom edge, where symbols spill (bonus disc, landings), so

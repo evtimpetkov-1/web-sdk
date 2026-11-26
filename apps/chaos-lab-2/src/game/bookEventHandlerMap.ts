@@ -10,6 +10,10 @@ import { winLevelMap, type WinLevel, type WinLevelData } from './winLevelMap';
 import {
 	BOARD_DIMENSIONS,
 	CASCADE_STEP_RATES,
+	CLONE_OWNS_CELL,
+	CLONE_STYLE,
+	MASCOT_KIND,
+	SHATTER_FUSE_MS,
 	SCATTERS_TO_TRIGGER,
 	TURBO_FS_MIN_BOARD_MS,
 	ladderRate,
@@ -120,9 +124,28 @@ const outroCountSounds = (winLevelData: WinLevelData) => {
 
 // The mascot reacts once per spin: on the first cascade win that brings the
 // spin's win to at least the total bet (Chaos Lab's rule, Evtim 2026-10-24).
-// Smaller wins and later cascade wins in the same spin leave her in her idles.
-// No voice yet: Chaos Lab's laugh cues are the Chemist's (male).
+// Smaller wins and later cascade wins in the same spin leave the mascot idle.
 let mascotReacted = false;
+// The Chemist laughs as he reacts (Chaos Lab's five takes, one at random, never
+// the same one twice running: a repeated laugh is what gives a canned voice
+// away). The woman has no voice: the cues are his.
+const MASCOT_LAUGHS = [
+	'sfx_ms_mascot_win_1',
+	'sfx_ms_mascot_win_2',
+	'sfx_ms_mascot_win_3',
+	'sfx_ms_mascot_win_4',
+	'sfx_ms_mascot_win_5',
+] as const;
+let lastLaugh = -1;
+const mascotWin = () => {
+	eventEmitter.broadcast({ type: 'mascotWin' });
+	if (MASCOT_KIND !== 'chemist') return;
+	const pool = MASCOT_LAUGHS.length - (lastLaugh < 0 ? 0 : 1);
+	let pick = Math.floor(Math.random() * pool);
+	if (lastLaugh >= 0 && pick >= lastLaugh) pick += 1;
+	lastLaugh = pick;
+	eventEmitter.broadcast({ type: 'soundOnce', name: MASCOT_LAUGHS[pick] });
+};
 // the spin's win so far (earlier cascades + this one) against the total bet
 const spinWinReachesTotalBet = (cascadeWin: number) =>
 	reachesTotalBet(stateGame.tumbleWin + cascadeWin);
@@ -376,7 +399,7 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	winInfo: async (bookEvent: BookEventOfType<'winInfo'>) => {
 		if (!mascotReacted && spinWinReachesTotalBet(bookEvent.totalWin)) {
 			mascotReacted = true;
-			eventEmitter.broadcast({ type: 'mascotWin' });
+			mascotWin();
 		}
 
 		const promise1 = async () => {
@@ -558,9 +581,9 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 	cashRespinEnd: async (bookEvent: BookEventOfType<'cashRespinEnd'>) => {
 		recordRespinCursor(bookEvent);
 		// the mascot celebrates the feature's pay (Evtim, 2026-11-05), whatever its
-		// size. Asked for as the collect starts: her clip waits for the end of the
-		// idle loop on show (up to ~4.9 s), so it lands over the count or the outro
-		eventEmitter.broadcast({ type: 'mascotWin' });
+		// size, as the collect starts (the Chemist at once, with his laugh; the
+		// woman's clip waited for the end of her idle loop)
+		mascotWin();
 		// every coin is counted into TOTAL WIN, one by one (book units: x bet x 100)
 		let step = 0;
 		await eventEmitter.broadcastAsync({
@@ -654,8 +677,11 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		eventEmitter.broadcast({ type: 'tumbleBoardShow' });
 		eventEmitter.broadcast({ type: 'tumbleBoardInit', addingBoard: bookEvent.newSymbols });
 		// a bomb tumble bangs on the rig's `detonate` event instead (Symbol.svelte)
+		// (the winners shake and swell first: the bang waits for the moment they go)
 		if (!stateGame.bombPending) {
-			eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_goo_burst' });
+			const bang = () => eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_goo_burst' });
+			if (SHATTER_FUSE_MS) void waitForTimeout(SHATTER_FUSE_MS / stateBetDerived.timeScale()).then(bang);
+			else bang();
 		}
 		await eventEmitter.broadcastAsync({
 			type: 'tumbleBoardExplode',
@@ -782,9 +808,13 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 			eventEmitter.broadcast({ type: 'sceneShake', preset: 'cloneStrike' });
 			stateGame.cloneFx[getCellKey(to)] = {
 				kind: 'splat',
+				// CLONE_OWNS_CELL: the rig draws what the cell was, then the cloner
+				from: { ...reelSymbol.rawSymbol },
+				to: { name: 'C' },
 				onSwap: () => {
 					reelSymbol.rawSymbol = { name: 'C' };
-					reelSymbol.symbolState = 'in'; // completes to 'static' (ReelSymbol)
+					// the rig already showed the cloner whole: the sign must not grow in again
+					reelSymbol.symbolState = CLONE_OWNS_CELL ? 'static' : 'in'; // 'in' completes to 'static' (ReelSymbol)
 				},
 				oncomplete: splat.resolve,
 			};
@@ -813,21 +843,37 @@ export const bookEventHandlerMap: BookEventHandlerMap<BookEvent, BookEventContex
 		const cloners = [bookEvent.cloner, ...bookEvent.cloned];
 		const landings: Promise<void>[] = [];
 		eventEmitter.broadcast({ type: 'soundOnce', name: 'sfx_ms_cloner_flood' });
+		// zap: arcs wire the cloners together while they charge (CloneLinks), up to the strike
+		if (CLONE_OWNS_CELL && CLONE_STYLE === 'zap') {
+			eventEmitter.broadcast({ type: 'clonesLink', cells: cloners, ms: 500 / timeScale });
+		}
 		// one quake for all of them, on the frame the first cell bursts into the symbol
 		let burst = false;
+		const quake = () => {
+			if (burst) return;
+			burst = true;
+			eventEmitter.broadcast({ type: 'sceneShake', preset: 'clonerBurst' });
+		};
 		await Promise.all(
 			cloners.map((position) =>
 				waitForResolve((resolve) => {
 					const reelSymbol = getReelSymbol(position);
-					reelSymbol.symbolState = 'out'; // holds its last frame until the swap
+					// the covers hide the sign draining out ('out' holds its last frame until
+					// the swap); a rig that draws the cell itself leaves the cloner whole
+					if (!CLONE_OWNS_CELL) reelSymbol.symbolState = 'out';
 					stateGame.cloneFx[getCellKey(position)] = {
 						kind: 'flood',
+						from: { name: 'C' },
+						to: { name: bookEvent.symbol },
+						onBurst: quake,
 						onSwap: () => {
-							if (!burst) {
-								burst = true;
-								eventEmitter.broadcast({ type: 'sceneShake', preset: 'clonerBurst' });
-							}
 							reelSymbol.rawSymbol = { name: bookEvent.symbol };
+							if (CLONE_OWNS_CELL) {
+								// the rig landed the symbol itself: it stands at rest as it is handed over
+								reelSymbol.symbolState = 'static';
+								return;
+							}
+							quake();
 							landings.push(waitForResolve((landed) => (reelSymbol.oncomplete = landed)));
 							reelSymbol.symbolState = 'land'; // completes to 'static' (ReelSymbol)
 						},

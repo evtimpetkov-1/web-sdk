@@ -4,7 +4,7 @@
 	import WinCharge from './WinCharge.svelte';
 	import CloneFx from './CloneFx.svelte';
 	import { getCellKey, getSymbolInfo, getSymbolX, getSymbolZIndex } from '../game/utils';
-	import { BOARD_DIMENSIONS, REST_IDLE, WIN_CHARGE_EXCLUDED } from '../game/constants';
+	import { BOARD_DIMENSIONS, REST_IDLE, WIN_CHARGE_EXCLUDED, OVER_FRAME } from '../game/constants';
 	import { getContext } from '../game/context';
 	import type { ReelSymbol } from '../game/stateGame.svelte';
 	import type { SymbolState } from '../game/types';
@@ -62,8 +62,19 @@
 		if (isPadding && props.reelSymbol.symbolState === 'land') props.reelSymbol.symbolState = 'static';
 	});
 
+	/**
+	 * A symbol that is still FALLING shows its plain picture, never a rig. The reel
+	 * sets every new symbol 'static' while it hangs above the window, so a character
+	 * (whose idle also runs at rest) was already idling on its way down; rigs are
+	 * drawn in front of the reel frame (OVER_FRAME), and the whole tile fell in over
+	 * the top beam (Evtim, 2026-11-26). Falling, it is a sprite in the masked layer
+	 * under the frame; it comes forward once it has landed.
+	 */
+	const falling = $derived(props.reelSymbol.symbolY.current !== props.reelSymbol.symbolY.target);
+
 	const displayState = $derived.by<SymbolState>(() => {
 		const { symbolState } = props.reelSymbol;
+		if (falling && symbolState === 'static') return 'static';
 		if (hasPending && symbolState === 'static' && context.stateGame.scatterPending) return 'pending';
 		return hasIdle &&
 			symbolState === 'static' &&
@@ -102,6 +113,26 @@
 	// Cloner goo cover registered for this cell by the clonerActivate handler
 	// (splat: the cell becomes a cloner; flood: the cloner becomes the paying symbol)
 	const cloneFx = $derived(context.stateGame.cloneFx[cellKey]);
+
+	// Which board layer draws this cell. The board's own two layers lie UNDER the reel
+	// frame, where the top beam covers a top-row hat; BoardOver's lies in front of it
+	// (Evtim, 2026-11-26; OVER_FRAME in constants.ts).
+	//   `animated`  what used to pick the unmasked layer: every rig state (win, idle,
+	//               the cloner's cast / in / out), a symbol in its win FX and a cell
+	//               under a goo cover. Never a landing.
+	//   `over`      in front of the frame: all of that ('rigs'), or the winners alone
+	// A cell's FX and covers always go where its symbol goes: they sort against each
+	// other inside one container.
+	const winning = $derived(
+		props.reelSymbol.symbolState === 'win' || props.reelSymbol.symbolState === 'postWinStatic',
+	);
+	const animated = $derived(
+		displayState !== 'land' &&
+			(symbolInfo.type === 'spine' || fxPhase !== undefined || cloneFx !== undefined),
+	);
+	const over = $derived(OVER_FRAME === 'rigs' ? animated : OVER_FRAME === 'winners' && winning);
+	const fxOver = OVER_FRAME !== 'off';
+	const coverOver = OVER_FRAME === 'rigs';
 </script>
 
 {#if !isPadding}
@@ -120,13 +151,14 @@
 		outline sits at 0.5 and a winner is lifted to 0.6 while its charge plays.
 	-->
 	{#if fxPhase}
-		<SymbolWrap {x} {y} animating={true} zIndex={0.5}>
+		<SymbolWrap {x} {y} over={fxOver} animating={true} zIndex={0.5}>
 			<WinCharge layer="under" phase={fxPhase} />
 		</SymbolWrap>
 	{/if}
 
 	<!--
-		`animating` picks the unmasked board layer. Every rig state (win, idle, the
+		`animating` picks the unmasked board layer, and with OVER_FRAME 'rigs' the layer
+		in FRONT of the reel frame instead (`over`). Every rig state (win, idle, the
 		cloner's cast/in/out) lives there, as does a held symbol (its halo is not
 		clipped by the board mask and sorts under it) and a cell under a goo cover
 		(symbol and cover must share one container to sort against each other).
@@ -139,9 +171,9 @@
 	<SymbolWrap
 		{x}
 		{y}
+		{over}
 		zIndex={fxPhase ? zIndex + 0.6 : zIndex}
-		animating={displayState !== 'land' &&
-			(symbolInfo.type === 'spine' || fxPhase !== undefined || cloneFx !== undefined)}
+		animating={animated}
 	>
 		<Symbol
 			state={displayState}
@@ -172,7 +204,7 @@
 	</SymbolWrap>
 
 	{#if fxPhase}
-		<SymbolWrap {x} {y} animating={true} zIndex={1}>
+		<SymbolWrap {x} {y} over={fxOver} animating={true} zIndex={1}>
 			<WinCharge
 				layer="over"
 				phase={fxPhase}
@@ -183,7 +215,7 @@
 
 	<!-- over the symbol: the swap underneath happens while the cell is fully covered -->
 	{#if cloneFx}
-		<SymbolWrap {x} {y} animating={true} zIndex={3}>
+		<SymbolWrap {x} {y} over={coverOver} animating={true} zIndex={3}>
 			<CloneFx kind={cloneFx.kind} onswap={cloneFx.onSwap} oncomplete={cloneFx.oncomplete} />
 		</SymbolWrap>
 	{/if}
